@@ -8,7 +8,7 @@ const NavBar = () => {
         <StyledNav>
             <div className='left'>
                 <NavLink to='/'><p>QualityHub</p></NavLink>
-                <img src="http://clipartmag.com/images/quail-clipart-1.jpg" /> 
+                <img src="http://clipartmag.com/images/quail-clipart-1.jpg" alt='quail'/> 
             </div>
             <div className='right'>
                 <NavLink to='signup'> Sign up</NavLink>

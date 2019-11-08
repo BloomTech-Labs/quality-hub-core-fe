@@ -6,11 +6,16 @@ const LOGIN = gql`
 mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     token
+    user {
+        first_name,
+        id
+    }
   }
 }
 `
 
-const SignInForm = () => {
+const SignInForm = (props) => {
+    console.log(props)
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -35,8 +40,8 @@ const SignInForm = () => {
             console.log(res);
             let token = res.data.login.token;
             localStorage.setItem('token', token);
-            // props.setToken(token);
-
+            localStorage.setItem('id', res.data.login.user.id)
+            props.history.push('/dashboard')
         })
 
 

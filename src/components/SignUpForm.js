@@ -35,12 +35,14 @@ mutation signup(
         ) {
             token,
             user{
-                first_name
+                first_name,
+                id
             }
         }
     }`
 
-const SignUpForm = () => {
+const SignUpForm = props => {
+    console.log(props)
     const [user, setUser] = useState({
         first_name: "",
         last_name: "",
@@ -75,6 +77,7 @@ const SignUpForm = () => {
               let token = results.data.signup.token;
             //   loginStatus.error = null;
               localStorage.setItem('token', token);
+              props.history.push('/signin')
           })
           .catch(err=>{
               console.log(err);
