@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import styled from 'styled-components';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -47,7 +48,7 @@ const SignInForm = props => {
 
   return (
     <div>
-      Sign in form
+      <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder='email'
@@ -63,7 +64,7 @@ const SignInForm = props => {
           onChange={handleChange}
         />
         <br />
-        <button>Sign in</button>
+        <button className='submit-btn'>Sign in</button>
       </form>
     </div>
   );
