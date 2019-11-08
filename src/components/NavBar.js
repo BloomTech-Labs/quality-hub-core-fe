@@ -7,7 +7,7 @@ const NavBar = () => {
     <StyledNav>
       <div className='left'>
         <NavLink to='/'>
-          <p>QualityHub</p>
+          <h2>QualityHub</h2>
         </NavLink>
         <img
           src='http://clipartmag.com/images/quail-clipart-1.jpg'
@@ -15,29 +15,45 @@ const NavBar = () => {
         />
       </div>
       <div className='right'>
-        <NavLink to='signup'> Sign up</NavLink>
-        <NavLink to='signin'> Sign in </NavLink>
+        <NavLink to='signin'> Sign In </NavLink>
+        <NavLink to='signup'> Sign Up</NavLink>
         {/* <NavLink to='dashboard'> Dashboard</NavLink> */}
-        <p> dropdown menu?</p>
+        {/* <p> dropdown menu?</p> */}
       </div>
     </StyledNav>
   );
 };
 
 const StyledNav = styled.div`
-  background-color: red;
+  //   background-color: red;
   display: flex;
   justify-content: space-between;
 
   .left {
     display: flex;
+    padding-left: 2%;
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
     img {
-      width: 2.5rem;
+      width: 5rem;
     }
   }
   .right {
     display: flex;
+    justify-content: space-evenly;
+    width: 180px;
     align-items: center;
+
+    a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      width: 80px;
+    }
   }
 `;
 
