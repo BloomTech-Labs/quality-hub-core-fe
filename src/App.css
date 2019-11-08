@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
 }
 
@@ -19,21 +25,19 @@
 
 .App-link {
   color: #09d3ac;
-}
+} */
 
 .editform {
-  
-  display:flex;
+  display: flex;
   margin: 40px auto;
   justify-content: space-between;
   width: 200px;
-  
 }
 
-.cancel-button{
-  color:red;
+.cancel-button {
+  color: red;
 }
 
-.accept-button{
-  color:green;
+.accept-button {
+  color: green;
 }
