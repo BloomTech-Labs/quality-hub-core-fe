@@ -10,6 +10,7 @@ const getToken = () => {
   let token = localStorage.getItem('token');
   return token;
 };
+
 const client = new ApolloClient({
   uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
   request: operation => {
