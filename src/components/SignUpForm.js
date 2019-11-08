@@ -9,10 +9,8 @@ const SIGN_UP = gql`
     $email: String!
     $password: String!
     $city: String!
-    $state: String!
-  ) # $image: String,
-  # $gender: String,
-  # $personal_url: String,
+    $state: String! # $image: String, # $gender: String,
+  ) # $personal_url: String,
   # $blog_url: String,
   # $linkedin_url: String,
   # $github_url: String,
@@ -24,10 +22,8 @@ const SIGN_UP = gql`
       email: $email
       password: $password
       city: $city
-      state: $state
-    ) # image: $image,
-    # gender: $gender,
-    # personal_url: $personal_url,
+      state: $state # image: $image, # gender: $gender,
+    ) # personal_url: $personal_url,
     # blog_url: $blog_url,
     # linkedin_url: $linkedin_url,
     # github_url: $github_url,
@@ -85,8 +81,8 @@ const SignUpForm = props => {
     console.log(user);
   };
   return (
-    <div>
-      Sign up form
+    <form>
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <input
           name='first_name'
@@ -136,9 +132,9 @@ const SignUpForm = props => {
           required
         />
         <br />
-        <button>Submit</button>
+        <button className='submit-btn'>Submit</button>
       </form>
-    </div>
+    </form>
   );
 };
 
