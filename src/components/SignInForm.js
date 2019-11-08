@@ -1,4 +1,14 @@
 import React, { useState } from 'react';
+import {useMutation} from '@apollo/react-hooks';
+import {gql} from 'apollo-boost';
+
+const LOGIN = gql`
+mutation Login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+  }
+}
+`
 
 const SignInForm = () => {
     const [user, setUser] = useState({
@@ -6,6 +16,8 @@ const SignInForm = () => {
         password: ""
     });
 
+    const [login, loginStatus] = useMutation(LOGIN);
+    
     const handleChange = (e) => {
         setUser({
             ...user,
@@ -17,6 +29,17 @@ const SignInForm = () => {
         //Add validation checking here
 
         e.preventDefault();
+        let {email, password} = user;
+        login({variables: {email,password}})
+        .then(res=>{
+            console.log(res);
+            let token = res.data.login.token;
+            localStorage.setItem('token', token);
+            // props.setToken(token);
+
+        })
+
+
         console.log(user);
     }
 

@@ -5,27 +5,17 @@ import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
+import NavBar from './components/NavBar'
 
 function App() {
   return (
     <div className="App">
-
-      {/* 
-      Landing Page
-        sign in
-          dashboard
-        sign up
-          wizard
-            dashboard
-        interview q
-        other features
-      
-      */}
+      <NavBar />
       <Switch>
         <Route exact path='/' component={LandingPage} />
-        <Route exact path='/signin' component={SignInForm} />
-        <Route exact path='/signup' component={SignUpForm} />
-        <Route exact path='/dashboard' component={Dashboard} />
+        <Route path='/signin' component={SignInForm} />
+        <Route path='/signup' component={SignUpForm} />
+        <Route path='/dashboard' component={Dashboard} />
       </Switch>
     </div>
   );
