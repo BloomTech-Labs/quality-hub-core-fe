@@ -58,17 +58,27 @@ const GET_USER = gql`
             # blog_url
             # linkedin_url
             # github_url
-            # bio
-            
+            # bio  
+        }
+        {
+            token
         }
     } 
 ` 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const userID = {
         id: null
     };
+
+    const [user, userMutation] = useMutation(EDIT_USER);
     const [getUser, {data: userData}] = useLazyQuery(GET_USER);
-    
+    const [editUser, setEditUser] = useState(userData);
+    const [editing, setEditing] = useState(false);
+    const [testEditingValue, setTestEditingValue] = useState({
+        testname: "Julie A"
+    });
+    const [testOriginalName, setTestOriginalName]= useState("Julie A")
+
     useEffect(()=>{
         const token = localStorage.getItem('token');
         if(token){
@@ -93,11 +103,96 @@ const Dashboard = () => {
         // bio: ""
     })
 
-    const [user, userMutation] = useMutation(EDIT_USER);
+   
 
+    
+    const handleChange = (e) => {
+
+        setEditUser({
+            ...editUser,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handleTestChange = e =>{
+        setTestEditingValue({
+            ...testEditingValue,
+            [e.target.name]:e.target.value
+        })
+    }
+
+    const handleTestCancelEdit = e =>{
+        setEditing(false);
+        setTestEditingValue({
+            ...testEditingValue,
+            testname: testOriginalName
+        })
+    }
+
+    const acceptTestEdit = e =>{
+        console.log('accept');
+        console.log(testOriginalName);
+        setTestOriginalName(testEditingValue.testname);
+        console.log(testOriginalName);
+        setEditing(false);
+        
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        user({variables: user})
+          .then(results => {
+              console.log(results);
+              let token = localStorage.token;
+            //   loginStatus.error = null;
+              props.history.push('/dashboard')
+          })
+          .catch(err=>{
+              console.log(err);
+          })
+          console.log(user);
+      }
     return (
-        <div>
-            DASHBOARD
+        <div className="editform">
+            {editing ? <input name="testname" value={testEditingValue.testname} onChange={handleTestChange} /> : testOriginalName}
+            {editing && <button onClick={()=> handleTestCancelEdit()} className="cancel-button">X</button>}
+            {editing && <button onClick={()=> acceptTestEdit()} className="accept-button">&#x2713;</button>}
+            {!editing && <button onClick = {() => setEditing(true)}>EDIT</button>}
+
+
+
+            {/* <form onSubmit={handleSubmit}>
+            <input
+            name="first_name"
+            placeholder= {userData.first_name}
+            onChange={handleChange}
+            value = {editUser.first_name}
+            />
+             <input
+            name="last_name"
+            placeholder= {userData.last_name}
+            onChange={handleChange}
+            value= {editUser.last_name}
+            />
+            <input
+            name="email"
+            placeholder= {userData.email}
+            onChange={handleChange}
+            value= {editUser.email}
+            />
+            <input
+            name="city"
+            placeholder= {userData.city}
+            onChange={handleChange}
+            value= {editUser.city}
+            />
+            <input
+            name="state"
+            placeholder= {userData.state}
+            onChange={handleChange}
+            value={editUser.state}
+            />
+            <button type='submit'>Submit </button>
+            </form> */}
         </div>
     );
 }

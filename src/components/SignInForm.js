@@ -15,7 +15,6 @@ mutation Login($email: String!, $password: String!) {
 `
 
 const SignInForm = (props) => {
-    console.log(props)
     const [user, setUser] = useState({
         email: "",
         password: ""

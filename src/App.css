@@ -20,3 +20,20 @@
 .App-link {
   color: #09d3ac;
 }
+
+.editform {
+  
+  display:flex;
+  margin: 40px auto;
+  justify-content: space-between;
+  width: 200px;
+  
+}
+
+.cancel-button{
+  color:red;
+}
+
+.accept-button{
+  color:green;
+}
