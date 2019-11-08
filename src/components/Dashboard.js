@@ -55,9 +55,6 @@ const GET_USER = gql`
       # github_url
       # bio
     }
-    # {
-    #     token
-    # }
   }
 `;
 const Dashboard = props => {
@@ -141,6 +138,7 @@ const Dashboard = props => {
       });
     console.log(user);
   };
+  console.log(userData);
   return (
     <div className='editform'>
       {editing ? (

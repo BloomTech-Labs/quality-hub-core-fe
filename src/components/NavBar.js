@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { printIntrospectionSchema } from 'graphql';
 
-const NavBar = () => {
+const NavBar = ({ loggedin, setLoggedin }) => {
+
+  const logout = () => {
+    localStorage.clear();
+    setLoggedin(false);
+  };
+
   return (
     <StyledNav>
-      <div className='left'>
-        <NavLink to='/'>
+      <div className="left">
+        <NavLink to="/">
           <h2>QualityHub</h2>
         </NavLink>
         <img
-          src='http://clipartmag.com/images/quail-clipart-1.jpg'
-          alt='quail'
+          src="http://clipartmag.com/images/quail-clipart-1.jpg"
+          alt="quail"
         />
       </div>
-      <div className='right'>
-        <NavLink to='signin'> Sign In </NavLink>
-        <NavLink to='signup'> Sign Up</NavLink>
+      <div className="right">
+        {loggedin ?
+        <NavLink to="/" onClick={logout}>
+          Log Out
+        </NavLink> :
+        <>
+        <NavLink to="signin"> Sign In </NavLink>
+        <NavLink to="signup"> Sign Up</NavLink> 
+        </>}
         {/* <NavLink to='dashboard'> Dashboard</NavLink> */}
         {/* <p> dropdown menu?</p> */}
       </div>
