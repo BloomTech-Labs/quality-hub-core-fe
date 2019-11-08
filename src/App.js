@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from "react-router-dom";
 import './App.css';
 import LandingPage from './components/LandingPage';
@@ -8,12 +8,15 @@ import SignUpForm from './components/SignUpForm';
 import NavBar from './components/NavBar'
 
 function App() {
+
+  const [loggedin, setLoggedin] = useState(false);
+  //Pass this guy to nav and login ^^
   return (
     <div className="App">
-      <NavBar />
+      <NavBar loggedin={loggedin} setLoggedin={setLoggedin} />
       <Switch>
-        <Route exact path='/' component={LandingPage} />
-        <Route path='/signin' component={SignInForm} />
+  <Route exact path='/' render={props=><LandingPage {...props}/>} />
+        <Route path='/signin' render= {props => <SignInForm {...props} loggedin={loggedin} setLoggedin={setLoggedin}/>} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/dashboard' component={Dashboard} />
       </Switch>
