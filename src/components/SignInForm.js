@@ -39,7 +39,8 @@ const SignInForm = props => {
       let token = res.data.login.token;
       localStorage.setItem('token', token);
       localStorage.setItem('id', res.data.login.user.id);
-      props.history.push('/dashboard');
+      props.history.push('/dashboard');  
+      props.setLoggedin(true);
     });
 
     console.log(user);
@@ -59,6 +60,7 @@ const SignInForm = props => {
         <input
           placeholder='password'
           name='password'
+          type='password'
           value={user.password}
           onChange={handleChange}
         />
