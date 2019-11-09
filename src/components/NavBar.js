@@ -19,6 +19,7 @@ const NavBar = ({ loggedin, setLoggedin }) => {
         <img
           src="http://clipartmag.com/images/quail-clipart-1.jpg"
           alt="quail"
+          className="rotate"
         />
       </div>
       <div className="right">
