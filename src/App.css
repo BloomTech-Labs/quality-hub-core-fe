@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 * {
   box-sizing: border-box;
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
@@ -90,10 +90,6 @@ a {
   }
 }
 
-.dash-input {
-  display: flex;
-  justify-content: space-between;
-}
 .editform {
   display: flex;
   margin: 40px auto;
