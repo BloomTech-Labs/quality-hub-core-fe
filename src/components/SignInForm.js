@@ -36,15 +36,12 @@ const SignInForm = props => {
     e.preventDefault();
     let { email, password } = user;
     login({ variables: { email, password } }).then(res => {
-      console.log(res);
       let token = res.data.login.token;
       localStorage.setItem("token", token);
       localStorage.setItem("id", res.data.login.user.id);
       props.history.push("/dashboard");
       props.setLoggedin(true);
     });
-
-    console.log(user);
   };
 
   return (

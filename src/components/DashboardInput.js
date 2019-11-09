@@ -100,7 +100,7 @@ const DashboardInput = ({ userKey, userValue }) => {
         </button>
       )}
       </div>
-      {!editing && <button classname= 'edit-button' onClick={() => setEditing(true)}>&#x1F589;</button>}
+      {!editing && <button className= 'edit-button' onClick={() => setEditing(true)}>&#x1F589;</button>}
     </div>
   );
 };
