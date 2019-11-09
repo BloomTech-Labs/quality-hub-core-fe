@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
 }
 
@@ -29,11 +29,10 @@ a {
   font-size: 1.5rem;
 }
 
-
 .blinking-cursor {
   font-weight: 100;
   font-size: 30px;
-  color: #2E3D48;
+  color: #2e3d48;
   -webkit-animation: 1s blink step-end infinite;
   -moz-animation: 1s blink step-end infinite;
   -ms-animation: 1s blink step-end infinite;
@@ -41,9 +40,9 @@ a {
   animation: 1s blink step-end infinite;
 }
 
-
 @keyframes blink {
-  from, to {
+  from,
+  to {
     color: transparent;
   }
   50% {
@@ -51,10 +50,9 @@ a {
   }
 }
 
-
-
 @-moz-keyframes blink {
-  from, to {
+  from,
+  to {
     color: transparent;
   }
   50% {
@@ -63,7 +61,8 @@ a {
 }
 
 @-webkit-keyframes blink {
-  from, to {
+  from,
+  to {
     color: transparent;
   }
   50% {
@@ -72,7 +71,8 @@ a {
 }
 
 @-ms-keyframes blink {
-  from, to {
+  from,
+  to {
     color: transparent;
   }
   50% {
@@ -81,16 +81,17 @@ a {
 }
 
 @-o-keyframes blink {
-  from, to {
+  from,
+  to {
     color: transparent;
   }
   50% {
     color: black;
   }
- }
- 
-.dash-input{
-  display:flex;
+}
+
+.dash-input {
+  display: flex;
   justify-content: space-between;
 }
 .editform {
@@ -101,7 +102,7 @@ a {
   flex-direction: column;
 }
 
-.edit-button{
+.edit-button {
   background-color: none;
   border: none;
   font-size: 26px;
@@ -115,7 +116,7 @@ a {
   border: none;
 }
 
-.accept-button{
+.accept-button {
   color: green;
   font-size: 20px;
   font-weight: 900px;
@@ -146,7 +147,7 @@ input {
   color: white;
 }
 
-.danger{
+.danger {
   background-color: red;
   color: white;
   font-weight: 900;
@@ -154,72 +155,59 @@ input {
 }
 
 .input-label {
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
 }
 
-.input-label label{
+.input-label label {
   text-align: left;
   margin-bottom: -14px;
-  /* width: 100%; */
-  /* margin: 0 auto; */
-  /* border: 1px solid red; */
-  
 }
-.input-label p{
+.input-label p {
   align-self: flex-end;
   margin: 0 0;
 }
 .sign-in-button,
 .input-label input {
   width: 100%;
-  /* margin: 0 0; */
 }
 
-.sign-in-button{
+.sign-in-button {
   margin: 0 0;
 }
 
 label {
   font-size: 1.4rem;
-  /* text-align: left; */
-  /* border: 1px solid red; */
-  
 }
 
-.sign-in-form{
-  /* border: 1px solid black; */
+.sign-in-form {
   width: 400px;
   margin: 0 auto;
 }
 
-.sign-up-form{
-  /* border: 1px solid black; */
+.sign-up-form {
   width: 400px;
   margin: 0 auto;
 }
 
-.two-inputs{
+.two-inputs {
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
-.two-inputs .input-label{
-  /* flex: 1; */
+.two-inputs .input-label {
   width: 47%;
-
 }
 
 .sign-in-or {
-  width: 100%; 
-  text-align: center; 
-  border-bottom: 1px solid #000; 
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
   line-height: 0.1em;
-  margin: 10px 0 20px; 
-} 
+  margin: 10px 0 20px;
+}
 
-.sign-in-or span { 
-   background:#fff; 
-   padding:0 10px; 
+.sign-in-or span {
+  background: #fff;
+  padding: 0 10px;
 }

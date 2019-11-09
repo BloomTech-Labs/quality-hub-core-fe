@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { gql } from 'apollo-boost';
-import { useMutation } from '@apollo/react-hooks';
+import React, { useState } from "react";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
 
 const SIGN_UP = gql`
   mutation signup(
@@ -9,9 +9,8 @@ const SIGN_UP = gql`
     $email: String!
     $password: String!
     $city: String!
-    $state: String! # $image: String, # $gender: String,
-  ) # $personal_url: String,
-  # $blog_url: String,
+    $state: String! # $image: String, # $gender: String, # $personal_url: String,
+  ) # $blog_url: String,
   # $linkedin_url: String,
   # $github_url: String,
   # $bio: String,
@@ -22,9 +21,8 @@ const SIGN_UP = gql`
       email: $email
       password: $password
       city: $city
-      state: $state # image: $image, # gender: $gender,
-    ) # personal_url: $personal_url,
-    # blog_url: $blog_url,
+      state: $state # image: $image, # gender: $gender, # personal_url: $personal_url,
+    ) # blog_url: $blog_url,
     # linkedin_url: $linkedin_url,
     # github_url: $github_url,
     # bio: $bio
@@ -41,12 +39,12 @@ const SIGN_UP = gql`
 const SignUpForm = props => {
   console.log(props);
   const [user, setUser] = useState({
-    first_name: '',
-    last_name: '',
-    password: '',
-    email: '',
-    city: '',
-    state: '',
+    first_name: "",
+    last_name: "",
+    password: "",
+    email: "",
+    city: "",
+    state: ""
     // image: "",
     // gender: "",
     // personal_url: "",
@@ -61,7 +59,7 @@ const SignUpForm = props => {
   const handleChange = e => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -72,8 +70,8 @@ const SignUpForm = props => {
         console.log(results);
         let token = results.data.signup.token;
         //   loginStatus.error = null;
-        localStorage.setItem('token', token);
-        props.history.push('/signin');
+        localStorage.setItem("token", token);
+        props.history.push("/signin");
       })
       .catch(err => {
         console.log(err);
@@ -81,98 +79,97 @@ const SignUpForm = props => {
     console.log(user);
   };
   return (
-
     <div className="sign-up-form">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-      <div className="two-inputs">
-      <div className='input-label'>
-          
-          <label for="sign-up-first-name">First Name</label><br/>
-        <input
-        id="sign-up-first-name"
-          name='first_name'
-          placeholder='First Name'
-          value={user.first_name}
-          onChange={handleChange}
-          required
-        />
+        <div className="two-inputs">
+          <div className="input-label">
+            <label for="sign-up-first-name">First Name</label>
+            <br />
+            <input
+              id="sign-up-first-name"
+              name="first_name"
+              placeholder="First Name"
+              value={user.first_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <br />
+
+          <div className="input-label">
+            <label for="sign-up-first-name">Last Name</label>
+            <br />
+            <input
+              id="sign-up-last-name"
+              name="last_name"
+              placeholder="Last Name"
+              value={user.last_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
         <br />
-        
-        <div className='input-label'>
-          
-          <label for="sign-up-first-name">Last Name</label><br/>
-        <input
-        id="sign-up-last-name"
-          name='last_name'
-          placeholder='Last Name'
-          value={user.last_name}
-          onChange={handleChange}
-          required
-        />
-        </div>
+        <div className="input-label">
+          <label for="sign-up-password">Password</label>
+          <br />
+          <input
+            id="sign-up-password"
+            name="password"
+            placeholder="Password"
+            value={user.password}
+            onChange={handleChange}
+            required
+          />
         </div>
         <br />
-        <div className='input-label'>
-          
-          <label for="sign-up-password">Password</label><br/>
-        <input
-        id='sign-up-password'
-          name='password'
-          placeholder='Password'
-          value={user.password}
-          onChange={handleChange}
-          required
-        />
-        </div>
-        <br />
-        <div className='input-label'>
-          
-          <label for="sign-up-email">Email</label><br/>
-        <input
-        id='sign-up-email'
-          name='email'
-          placeholder='Email'
-          value={user.email}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-label">
+          <label for="sign-up-email">Email</label>
+          <br />
+          <input
+            id="sign-up-email"
+            name="email"
+            placeholder="Email"
+            value={user.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <br />
 
         <div className="two-inputs">
-        <div className='input-label'>
-          
-          <label for="sign-up-city">City</label><br/>
-        <input
-        id="sign-up-city"
-          name='city'
-          placeholder='City'
-          value={user.city}
-          onChange={handleChange}
-          required
-        />
-        </div>
-        <br />
+          <div className="input-label">
+            <label for="sign-up-city">City</label>
+            <br />
+            <input
+              id="sign-up-city"
+              name="city"
+              placeholder="City"
+              value={user.city}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <br />
 
-        <div className='input-label'>
-          
-          <label for="sign-up-state">State</label><br/>
-        <input
-        id="sign-up-state"
-          name='state'
-          placeholder='State'
-          value={user.state}
-          onChange={handleChange}
-          required
-        />
-        </div>
+          <div className="input-label">
+            <label for="sign-up-state">State</label>
+            <br />
+            <input
+              id="sign-up-state"
+              name="state"
+              placeholder="State"
+              value={user.state}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
         <br />
-        <button className='submit-btn'>Submit</button>
+        <button className="submit-btn">Submit</button>
       </form>
-      </div>
+    </div>
   );
 };
 
