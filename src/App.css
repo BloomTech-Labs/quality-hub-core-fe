@@ -89,20 +89,38 @@ a {
   }
  }
  
-
+.dash-input{
+  display:flex;
+  justify-content: space-between;
+}
 .editform {
   display: flex;
   margin: 40px auto;
   justify-content: space-between;
-  width: 200px;
+  width: 300px;
+  flex-direction: column;
+}
+
+.edit-button{
+  background-color: none;
+  border: none;
+  font-size: 26px;
 }
 
 .cancel-button {
   color: red;
+  font-size: 20px;
+  font-weight: 900px;
+  background-color: white;
+  border: none;
 }
 
-.accept-button {
+.accept-button{
   color: green;
+  font-size: 20px;
+  font-weight: 900px;
+  background-color: white;
+  border: none;
 }
 
 input {
@@ -126,4 +144,11 @@ input {
 .submit-btn:hover {
   background-color: silver;
   color: white;
+}
+
+.danger{
+  background-color: red;
+  color: white;
+  font-weight: 900;
+  padding: 20px;
 }

@@ -55,7 +55,7 @@ const LandingPage = (props) => {
   return (
     <StyledLandingPage>
       <div className='banner'>
-        <h1>The best way to assess the quality of <span className="blinking-cursor">|</span> <span className="typewriter"></span></h1>
+        <h1>The best way to assess the quality of  <span className="typewriter"></span><span className="blinking-cursor">|</span></h1>
         <p>
           QualityHub offers the opportunity for anyone to have experienced
           professionals assess the quality of anything.
