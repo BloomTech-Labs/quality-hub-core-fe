@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { printIntrospectionSchema } from 'graphql';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { printIntrospectionSchema } from "graphql";
 
 const NavBar = ({ loggedin, setLoggedin }) => {
-
   const logout = () => {
     localStorage.clear();
     setLoggedin(false);
+  };
+
+  const toggleDropdown = () => {
+    console.log("toggling dropdown");
+    document.querySelector(".dropdown-content").classList.toggle("hidden");
   };
 
   return (
@@ -23,16 +27,56 @@ const NavBar = ({ loggedin, setLoggedin }) => {
         />
       </div>
       <div className="right">
-        {loggedin ?
-        <NavLink to="/" onClick={logout}>
-          Log Out
-        </NavLink> :
-        <>
-        <NavLink to="signin"> Sign In </NavLink>
-        <NavLink to="signup"> Sign Up</NavLink> 
-        </>}
-        {/* <NavLink to='dashboard'> Dashboard</NavLink> */}
-        {/* <p> dropdown menu?</p> */}
+        {loggedin ? (
+          <NavLink to="/" onClick={logout}>
+            Log Out
+          </NavLink>
+        ) : (
+          <>
+            <NavLink to="signin"> Sign In </NavLink>
+            <NavLink to="signup"> Sign Up</NavLink>
+          </>
+        )}
+
+        <div className="dropdown">
+          {/* Main avatar image you see on top right */}
+          <img
+            src="/avatar.png"
+            alt="Profile avatar"
+            className="avatar-menu"
+            onClick={() => toggleDropdown()}
+          />
+          {/* This is the content at appears when you click on the avatar image */}
+          <div className="dropdown-content hidden">
+            
+            <div className="dropdown-avatar-camera">
+              {/* Avatar image in dropdown menu */}
+              <img
+                src="/avatar.png"
+                alt="Profile avatar"
+                className="avatar-submenu"
+              />
+              {/* This is the offset camera icon */}
+              <div className="dropdown-camera-icon">&#x1F4F7;</div>
+            </div>
+            <p className="dropdown-menu-name">Quailnana</p>
+            <p className="dropdown-menu-email">quailnana@qualityhub.com</p>
+
+            {/* Need to link to dashboard */}
+            <button className="manage-btn">
+              Manage your Quality Hub account
+            </button>
+            <hr />
+            {/* Need to add sign out functionality */}
+            <button className="signout-btn">Sign Out </button>
+            <hr />
+            <div className="dropdown-menu-links-div">
+
+              {/* Need to link to policy and TOS eventually */}
+            <a href="#" className="dropdown-menu-links">Privacy Policy</a>&#8226;<a href="#" className="dropdown-menu-links">Terms of Service</a>
+            </div>
+          </div>
+        </div>
       </div>
     </StyledNav>
   );

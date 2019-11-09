@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import styled from "styled-components";
+import Loading from "./Loading";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -21,6 +22,8 @@ const SignInForm = props => {
     password: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const [login, loginStatus] = useMutation(LOGIN);
 
   const handleChange = e => {
@@ -34,14 +37,20 @@ const SignInForm = props => {
     //Add validation checking here
 
     e.preventDefault();
+    setLoading(true);
     let { email, password } = user;
-    login({ variables: { email, password } }).then(res => {
-      let token = res.data.login.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("id", res.data.login.user.id);
-      props.history.push("/dashboard");
-      props.setLoggedin(true);
-    });
+    login({ variables: { email, password } })
+      .then(res => {
+        setLoading(false);
+        let token = res.data.login.token;
+        localStorage.setItem("token", token);
+        localStorage.setItem("id", res.data.login.user.id);
+        props.history.push("/dashboard");
+        props.setLoggedin(true);
+      })
+      .catch(err => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -49,7 +58,7 @@ const SignInForm = props => {
       <h1>Quality Hub</h1>
       <h2>Welcome back!</h2>
       <br />
-
+      {/* Insert Google Login Button Here */}
       <h2 className="sign-in-or">
         <span>OR</span>
       </h2>
@@ -81,10 +90,14 @@ const SignInForm = props => {
           />
           <p>Forgot password?</p>
         </div>
-
         <br />
-        <button className="submit-btn sign-in-button">Sign in</button>
-        <p>Don't have an account? Sign up</p>
+
+        {!loading && (
+          <button className="submit-btn sign-in-button">Sign in</button>
+        )}
+        {!loading && <p>Don't have an account? Sign up</p>}
+
+        {loading && <Loading />}
       </form>
     </div>
   );
