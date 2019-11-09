@@ -12,7 +12,6 @@ const getToken = () => {
 };
 
 const client = new ApolloClient({
-//   uri: 'https://quality-hub-core-staging.herokuapp.com/',
   uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
   request: operation => {
     operation.setContext({
