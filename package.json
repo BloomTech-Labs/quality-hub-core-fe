@@ -33,5 +33,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@react-mock/state": "^0.1.8",
+    "@testing-library/jest-dom": "^4.2.3",
+    "@testing-library/react": "^9.3.2"
   }
 }
