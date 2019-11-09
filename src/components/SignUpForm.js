@@ -37,7 +37,6 @@ const SIGN_UP = gql`
 `;
 
 const SignUpForm = props => {
-  console.log(props);
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -84,7 +83,7 @@ const SignUpForm = props => {
       <form onSubmit={handleSubmit}>
         <div className="two-inputs">
           <div className="input-label">
-            <label for="sign-up-first-name">First Name</label>
+            <label htmlFor="sign-up-first-name">First Name</label>
             <br />
             <input
               id="sign-up-first-name"
@@ -98,7 +97,7 @@ const SignUpForm = props => {
           <br />
 
           <div className="input-label">
-            <label for="sign-up-first-name">Last Name</label>
+            <label htmlFor="sign-up-first-name">Last Name</label>
             <br />
             <input
               id="sign-up-last-name"
@@ -112,7 +111,7 @@ const SignUpForm = props => {
         </div>
         <br />
         <div className="input-label">
-          <label for="sign-up-password">Password</label>
+          <label htmlFor="sign-up-password">Password</label>
           <br />
           <input
             id="sign-up-password"
@@ -125,7 +124,7 @@ const SignUpForm = props => {
         </div>
         <br />
         <div className="input-label">
-          <label for="sign-up-email">Email</label>
+          <label htmlFor="sign-up-email">Email</label>
           <br />
           <input
             id="sign-up-email"
@@ -140,7 +139,7 @@ const SignUpForm = props => {
 
         <div className="two-inputs">
           <div className="input-label">
-            <label for="sign-up-city">City</label>
+            <label htmlFor="sign-up-city">City</label>
             <br />
             <input
               id="sign-up-city"
@@ -154,7 +153,7 @@ const SignUpForm = props => {
           <br />
 
           <div className="input-label">
-            <label for="sign-up-state">State</label>
+            <label htmlFor="sign-up-state">State</label>
             <br />
             <input
               id="sign-up-state"

@@ -59,7 +59,7 @@ const SignInForm = props => {
 
       <form onSubmit={handleSubmit}>
         <div className="input-label">
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <br />
           <input
             placeholder="Email"
@@ -72,7 +72,7 @@ const SignInForm = props => {
 
         <br />
         <div className="input-label">
-          <label for="password"> Password </label>
+          <label htmlFor="password"> Password </label>
           <br />
           <input
             placeholder="Password"
