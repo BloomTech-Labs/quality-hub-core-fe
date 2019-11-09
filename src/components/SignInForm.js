@@ -59,9 +59,9 @@ const SignInForm = props => {
       <h2>Welcome back!</h2>
       <br />
       {/* Insert Google Login Button Here */}
-      <h2 className="sign-in-or">
+      {/* <h2 className="sign-in-or">
         <span>OR</span>
-      </h2>
+      </h2> */}
 
       <form onSubmit={handleSubmit}>
         <div className="input-label">

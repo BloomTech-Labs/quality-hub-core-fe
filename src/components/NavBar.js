@@ -17,6 +17,8 @@ const NavBar = ({ loggedin, setLoggedin }) => {
   return (
     <StyledNav>
       <div className="left">
+      <div class="bird"></div>
+      {/* <div class="pirate"></div> */}
         <NavLink to="/">
           <h2>QualityHub</h2>
         </NavLink>
