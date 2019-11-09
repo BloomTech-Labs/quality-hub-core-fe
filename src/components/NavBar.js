@@ -9,10 +9,10 @@ const NavBar = ({ loggedin, setLoggedin }) => {
     setLoggedin(false);
   };
 
-  const toggleDropdown = () =>{
-    console.log('toggling dropdown');
-    document.querySelector(".dropdown-content").classList.toggle('hidden');
-  }
+  const toggleDropdown = () => {
+    console.log("toggling dropdown");
+    document.querySelector(".dropdown-content").classList.toggle("hidden");
+  };
 
   return (
     <StyledNav>
@@ -37,14 +37,35 @@ const NavBar = ({ loggedin, setLoggedin }) => {
             <NavLink to="signup"> Sign Up</NavLink>
           </>
         )}
-        
+
         <div className="dropdown">
-          <img src="/avatar.png" alt="Profile avatar" className="avatar-menu" onClick={()=>toggleDropdown()} />
+          <img
+            src="/avatar.png"
+            alt="Profile avatar"
+            className="avatar-menu"
+            onClick={() => toggleDropdown()}
+          />
           <div className="dropdown-content hidden">
-            <div>
-            <img src="/avatar.png" alt="Profile avatar" className="avatar-menu"/>
+            <div className="dropdown-avatar-camera">
+              <img
+                src="/avatar.png"
+                alt="Profile avatar"
+                className="avatar-submenu"
+              />
+              <div className="dropdown-camera-icon">&#x1F4F7;</div>
             </div>
-            <div className="desc">Beautiful Cinque Terre</div>
+            <p className="dropdown-menu-name">Quailnana</p>
+            <p className="dropdown-menu-email">quailnana@qualityhub.com</p>
+
+            <button className="manage-btn">
+              Manage your Quality Hub account
+            </button>
+            <hr />
+            <button className="signout-btn">Sign Out </button>
+            <hr />
+            <div className="dropdown-menu-links-div">
+            <a href="#" className="dropdown-menu-links">Privacy Policy</a>&#8226;<a href="#" className="dropdown-menu-links">Terms of Service</a>
+            </div>
           </div>
         </div>
         {/* <NavLink to='dashboard'> Dashboard</NavLink> */}
