@@ -68,8 +68,6 @@ const NavBar = ({ loggedin, setLoggedin }) => {
             </div>
           </div>
         </div>
-        {/* <NavLink to='dashboard'> Dashboard</NavLink> */}
-        {/* <p> dropdown menu?</p> */}
       </div>
     </StyledNav>
   );

@@ -245,6 +245,8 @@ label {
   padding: 0 10px;
 }
 
+/* Start avatar dropdown menu */
+
 .avatar-menu{
   border-radius: 100%;
   height: 50px;
@@ -305,11 +307,9 @@ label {
   align-content: center;
   align-items: center;
   background-color: white;
-  /* opacity: 0.8; */
   margin-top: -25px;
   margin-right: -55px;
 }
-
 
 .desc {
   text-align: center;
@@ -330,6 +330,8 @@ label {
   color: grey;
   margin-top: 0px;
 }
+
+/* End dropdown menu */
 
 
 
