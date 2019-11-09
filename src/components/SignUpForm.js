@@ -81,60 +81,98 @@ const SignUpForm = props => {
     console.log(user);
   };
   return (
-    <form>
+
+    <div className="sign-up-form">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
+      <div className="two-inputs">
+      <div className='input-label'>
+          
+          <label for="sign-up-first-name">First Name</label><br/>
         <input
+        id="sign-up-first-name"
           name='first_name'
-          placeholder='first name'
+          placeholder='First Name'
           value={user.first_name}
           onChange={handleChange}
           required
         />
+        </div>
         <br />
+        
+        <div className='input-label'>
+          
+          <label for="sign-up-first-name">Last Name</label><br/>
         <input
+        id="sign-up-last-name"
           name='last_name'
-          placeholder='last name'
+          placeholder='Last Name'
           value={user.last_name}
           onChange={handleChange}
           required
         />
+        </div>
+        </div>
         <br />
+        <div className='input-label'>
+          
+          <label for="sign-up-password">Password</label><br/>
         <input
+        id='sign-up-password'
           name='password'
-          placeholder='password'
+          placeholder='Password'
           value={user.password}
           onChange={handleChange}
           required
         />
+        </div>
         <br />
+        <div className='input-label'>
+          
+          <label for="sign-up-email">Email</label><br/>
         <input
+        id='sign-up-email'
           name='email'
-          placeholder='email'
+          placeholder='Email'
           value={user.email}
           onChange={handleChange}
           required
         />
+        </div>
         <br />
+
+        <div className="two-inputs">
+        <div className='input-label'>
+          
+          <label for="sign-up-city">City</label><br/>
         <input
+        id="sign-up-city"
           name='city'
-          placeholder='city'
+          placeholder='City'
           value={user.city}
           onChange={handleChange}
           required
         />
+        </div>
         <br />
+
+        <div className='input-label'>
+          
+          <label for="sign-up-state">State</label><br/>
         <input
+        id="sign-up-state"
           name='state'
-          placeholder='state'
+          placeholder='State'
           value={user.state}
           onChange={handleChange}
           required
         />
+        </div>
+        </div>
         <br />
         <button className='submit-btn'>Submit</button>
       </form>
-    </form>
+      </div>
   );
 };
 

@@ -152,3 +152,74 @@ input {
   font-weight: 900;
   padding: 20px;
 }
+
+.input-label {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label label{
+  text-align: left;
+  margin-bottom: -14px;
+  /* width: 100%; */
+  /* margin: 0 auto; */
+  /* border: 1px solid red; */
+  
+}
+.input-label p{
+  align-self: flex-end;
+  margin: 0 0;
+}
+.sign-in-button,
+.input-label input {
+  width: 100%;
+  /* margin: 0 0; */
+}
+
+.sign-in-button{
+  margin: 0 0;
+}
+
+label {
+  font-size: 1.4rem;
+  /* text-align: left; */
+  /* border: 1px solid red; */
+  
+}
+
+.sign-in-form{
+  /* border: 1px solid black; */
+  width: 400px;
+  margin: 0 auto;
+}
+
+.sign-up-form{
+  /* border: 1px solid black; */
+  width: 400px;
+  margin: 0 auto;
+}
+
+.two-inputs{
+  display: flex;
+  justify-content: space-between;  
+}
+
+.two-inputs .input-label{
+  /* flex: 1; */
+  width: 47%;
+
+}
+
+.sign-in-or {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid #000; 
+  line-height: 0.1em;
+  margin: 10px 0 20px; 
+} 
+
+.sign-in-or span { 
+   background:#fff; 
+   padding:0 10px; 
+}
