@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+
+const GET_INDUSTRIES = gql`
+query {
+  industries{
+    name
+    id
+  }
+}
+`
 
 const SIGN_UP = gql`
   mutation signup(
@@ -9,7 +18,11 @@ const SIGN_UP = gql`
     $email: String!
     $password: String!
     $city: String!
-    $state: String! # $image: String, # $gender: String, # $personal_url: String,
+    $state: String!
+    $industry: ID 
+    # $image: String, 
+    # $gender: String, 
+    # $personal_url: String,
   ) # $blog_url: String,
   # $linkedin_url: String,
   # $github_url: String,
@@ -21,7 +34,11 @@ const SIGN_UP = gql`
       email: $email
       password: $password
       city: $city
-      state: $state # image: $image, # gender: $gender, # personal_url: $personal_url,
+      state: $state 
+    # image: $image, 
+    # gender: $gender, 
+    # personal_url: $personal_url,
+      industry: $industry,
     ) # blog_url: $blog_url,
     # linkedin_url: $linkedin_url,
     # github_url: $github_url,
@@ -42,6 +59,7 @@ const SignUpForm = props => {
     last_name: "",
     password: "",
     email: "",
+    industry: "",
     city: "",
     state: ""
     // image: "",
@@ -55,12 +73,23 @@ const SignUpForm = props => {
 
   const [signup, signupStatus] = useMutation(SIGN_UP);
 
+  const { data } = useQuery(GET_INDUSTRIES);
+  console.log(data && data.industries)
+  // console.log(error)
   const handleChange = e => {
     setUser({
       ...user,
       [e.target.name]: e.target.value
     });
   };
+
+  const handleIndustryChange = e => {
+    setUser({
+      ...user,
+      industries: {id: e.target.value}
+    })
+    console.log(user, e.target.value)
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -134,6 +163,26 @@ const SignUpForm = props => {
             onChange={handleChange}
             required
           />
+        </div>
+        <br />
+
+        <div className="input-label">
+          <label htmlFor="sign-up-industry">Industry</label>
+          <br />
+          <select
+            id="sign-up-industry"
+            name="industry"
+            placeholder="Industry"
+            value={user.industry}
+            onChange={handleChange}
+            required
+          >
+            {data && data.industries.map(industry => (
+              <option value={industry.id} key={industry.id}>
+                {industry.name}
+              </option>
+            ))}
+          </select>
         </div>
         <br />
 
