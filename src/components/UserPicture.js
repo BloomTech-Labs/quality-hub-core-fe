@@ -21,7 +21,11 @@ export default function UserPicture() {
           onChange={e => setPicture(e.target.files[0])}
         />
         <label htmlFor='imageInput'>
-          <ProfileImg />
+          <ProfileImg
+            style={{
+              backgroundImage: `url('https://www.gannett-cdn.com/-mm-/c8995a178a2d0111697175844796b5eefe349c58/c=0-0-1935-2580/local/-/media/2016/12/30/Redding/Redding/636186645572972159-birdwords.jpg?width=534&height=712&fit=crop')`,
+            }}
+          />
         </label>
       </PictureWrapper>
     </div>

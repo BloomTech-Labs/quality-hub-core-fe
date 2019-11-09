@@ -3,6 +3,8 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 
+import { capitalize } from '../utils/capitalize';
+
 //GraphQuail Mutation
 const EDIT_USER = gql`
   mutation update(
@@ -68,7 +70,7 @@ const DashboardInput = ({ userKey, userValue }) => {
     <DashInput>
       <DashRow>
         <DashHeading>
-          <h2>{userKey.split('_').join(' ')}</h2>
+          <h2>{capitalize(userKey)}</h2>
         </DashHeading>
         <div>
           {editing ? (
