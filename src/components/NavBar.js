@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { printIntrospectionSchema } from 'graphql';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { printIntrospectionSchema } from "graphql";
 
 const NavBar = ({ loggedin, setLoggedin }) => {
-
   const logout = () => {
     localStorage.clear();
     setLoggedin(false);
   };
+
+  const toggleDropdown = () =>{
+    console.log('toggling dropdown');
+    document.querySelector(".dropdown-content").classList.toggle('hidden');
+  }
 
   return (
     <StyledNav>
@@ -23,14 +27,26 @@ const NavBar = ({ loggedin, setLoggedin }) => {
         />
       </div>
       <div className="right">
-        {loggedin ?
-        <NavLink to="/" onClick={logout}>
-          Log Out
-        </NavLink> :
-        <>
-        <NavLink to="signin"> Sign In </NavLink>
-        <NavLink to="signup"> Sign Up</NavLink> 
-        </>}
+        {loggedin ? (
+          <NavLink to="/" onClick={logout}>
+            Log Out
+          </NavLink>
+        ) : (
+          <>
+            <NavLink to="signin"> Sign In </NavLink>
+            <NavLink to="signup"> Sign Up</NavLink>
+          </>
+        )}
+        
+        <div className="dropdown">
+          <img src="/avatar.png" alt="Profile avatar" className="avatar-menu" onClick={()=>toggleDropdown()} />
+          <div className="dropdown-content hidden">
+            <div>
+            <img src="/avatar.png" alt="Profile avatar" className="avatar-menu"/>
+            </div>
+            <div className="desc">Beautiful Cinque Terre</div>
+          </div>
+        </div>
         {/* <NavLink to='dashboard'> Dashboard</NavLink> */}
         {/* <p> dropdown menu?</p> */}
       </div>
