@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { printIntrospectionSchema } from "graphql";
@@ -17,7 +17,7 @@ const NavBar = ({ loggedin, setLoggedin }) => {
   return (
     <StyledNav>
       <div className="left">
-      <div class="bird"></div>
+      <div className="bird"></div>
       {/* <div class="pirate"></div> */}
         <NavLink to="/">
           <h2>QualityHub</h2>

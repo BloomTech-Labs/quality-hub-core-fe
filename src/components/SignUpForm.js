@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import GeneralSignUp from './GeneralSignUp.js'
+import ExpSignUp from './ExpSignUp.js'
 
+//GraphQuail Stuff
 const GET_INDUSTRIES = gql`
 query {
   industries{
@@ -19,31 +22,29 @@ const SIGN_UP = gql`
     $password: String!
     $city: String!
     $state: String!
-    $industry: ID 
-    # $image: String, 
-    # $gender: String, 
-    # $personal_url: String,
-  ) # $blog_url: String,
-  # $linkedin_url: String,
-  # $github_url: String,
-  # $bio: String,
-  {
+    $industry: ID
+    # $image: String,
+    $personal_url: String
+    $portfolio_url: String
+    $twitter_url: String
+    $linkedin_url: String
+    $github_url: String
+  ) {
     signup(
       first_name: $first_name
       last_name: $last_name
       email: $email
       password: $password
       city: $city
-      state: $state 
-    # image: $image, 
-    # gender: $gender, 
-    # personal_url: $personal_url,
-      industry: $industry,
-    ) # blog_url: $blog_url,
-    # linkedin_url: $linkedin_url,
-    # github_url: $github_url,
-    # bio: $bio
-    {
+      state: $state
+      # image: $image,
+      personal_url: $personal_url
+      portfolio_url: $portfolio_url
+      industry: $industry
+      twitter_url: $twitter_url
+      linkedin_url: $linkedin_url
+      github_url: $github_url
+    ) {
       token
       user {
         first_name
@@ -53,6 +54,8 @@ const SIGN_UP = gql`
   }
 `;
 
+
+//COM-ponent
 const SignUpForm = props => {
   const [user, setUser] = useState({
     first_name: "",
@@ -61,21 +64,24 @@ const SignUpForm = props => {
     email: "",
     industry: "",
     city: "",
-    state: ""
+    state: "",
     // image: "",
     // gender: "",
-    // personal_url: "",
-    // blog_url: "",
-    // linkedin_url: "",
-    // github_url: "",
+    personal_url: "",
+    portfolio_url: "",
+    twitter_url: "",
+    linkedin_url: "",
+    github_url: ""
     // bio: ""
   });
 
   const [signup, signupStatus] = useMutation(SIGN_UP);
 
   const { data } = useQuery(GET_INDUSTRIES);
-  console.log(data && data.industries)
-  // console.log(error)
+  console.log(data && data.industries);
+
+  const [progress, setProgress] = useState(1);
+
   const handleChange = e => {
     setUser({
       ...user,
@@ -83,13 +89,13 @@ const SignUpForm = props => {
     });
   };
 
-  const handleIndustryChange = e => {
-    setUser({
-      ...user,
-      industries: {id: e.target.value}
-    })
-    console.log(user, e.target.value)
-  }
+  // const handleIndustryChange = e => {
+  //   setUser({
+  //     ...user,
+  //     industries: {id: e.target.value}
+  //   })
+  //   console.log(user, e.target.value)
+  // }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -106,116 +112,70 @@ const SignUpForm = props => {
       });
     console.log(user);
   };
+
+  const handleNext = e => {
+    e.preventDefault();
+    setProgress(progress + 1);
+    console.log(progress);
+  };
+  const handleBack = e => {
+    e.preventDefault();
+    setProgress(progress - 1);
+    console.log(progress);
+  };
   return (
     <div className="sign-up-form">
-      <h2>Sign Up</h2>
+       <h2>Sign Up</h2>
+      <ul className="progressbar">
+        <li className={progress >= 2 ? 'active' : null}>Basic Info</li>
+        <li className={progress >= 3 ? "active" : null}>Experience</li>
+        <li >Payment Info</li>
+      </ul>
+
       <form onSubmit={handleSubmit}>
-        <div className="two-inputs">
-          <div className="input-label">
-            <label htmlFor="sign-up-first-name">First Name</label>
-            <br />
-            <input
-              id="sign-up-first-name"
-              name="first_name"
-              placeholder="First Name"
-              value={user.first_name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <br />
+        {(function() {
+          switch (progress) {
+            case 1:
+              return (
+                <>
+                  <GeneralSignUp
+                    user={user}
+                    data={data}
+                    handleChange={handleChange}
+                  />
+                  <button className="form-btn" onClick={handleNext}>
+                    Next
+                  </button>
+                </>
+              );
+            case 2:
+              return (
+                <>
+                  <ExpSignUp user={user} handleChange={handleChange} />
+                  <button className="form-btn" onClick={handleBack}>
+                    Back
+                  </button>
+                  <button className="form-btn" onClick={handleNext}>
+                    Next
+                  </button>
+                </>
+              );
+            case 3:
+              return (
+                <>
+                  <h3>Payment Info</h3>
+                  <button className="form-btn" onClick={handleBack}>
+                    Back
+                  </button>
+                  <button className="submit-btn">Submit</button>
+                </>
+              );
+            default:
+              return <>Error</>;
+          }
+        })()}
 
-          <div className="input-label">
-            <label htmlFor="sign-up-first-name">Last Name</label>
-            <br />
-            <input
-              id="sign-up-last-name"
-              name="last_name"
-              placeholder="Last Name"
-              value={user.last_name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
         <br />
-        <div className="input-label">
-          <label htmlFor="sign-up-password">Password</label>
-          <br />
-          <input
-            id="sign-up-password"
-            name="password"
-            placeholder="Password"
-            value={user.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <br />
-        <div className="input-label">
-          <label htmlFor="sign-up-email">Email</label>
-          <br />
-          <input
-            id="sign-up-email"
-            name="email"
-            placeholder="Email"
-            value={user.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <br />
-
-        <div className="input-label">
-          <label htmlFor="sign-up-industry">Industry</label>
-          <br />
-          <select
-            id="sign-up-industry"
-            name="industry"
-            placeholder="Industry"
-            value={user.industry}
-            onChange={handleChange}
-            required
-          >
-            {data && data.industries.map(industry => (
-              <option value={industry.id} key={industry.id}>
-                {industry.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <br />
-
-        <div className="two-inputs">
-          <div className="input-label">
-            <label htmlFor="sign-up-city">City</label>
-            <br />
-            <input
-              id="sign-up-city"
-              name="city"
-              placeholder="City"
-              value={user.city}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <br />
-
-          <div className="input-label">
-            <label htmlFor="sign-up-state">State</label>
-            <br />
-            <input
-              id="sign-up-state"
-              name="state"
-              placeholder="State"
-              value={user.state}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-        <br />
-        <button className="submit-btn">Submit</button>
       </form>
     </div>
   );
