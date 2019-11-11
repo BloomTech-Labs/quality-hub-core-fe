@@ -179,27 +179,6 @@
   }
 }
 
-@keyframes bird-2 {
-  from {
-    transform: translateX(50vw);
-  }
-  to {
-    transform: translateX(70vw);
-    transform: translateY(50vh);
-  }
-}
-
-@keyframes bird-3 {
-  from {
-    transform: translateX(70vw);
-    transform: translateY(50vh);
-  }
-  to {
-    transform: translateX(30vw);
-    transform: translateY(20vh);
-  }
-}
-
 @keyframes bird-exit {
   from {
     transform: translateX(50vw);
