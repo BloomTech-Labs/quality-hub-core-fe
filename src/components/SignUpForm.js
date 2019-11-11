@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import GeneralSignUp from './GeneralSignUp.js'
 import ExpSignUp from './ExpSignUp.js'
+import CompletedSignUp from './CompletedSignUp.js'
 
 //GraphQuail Stuff
 const GET_INDUSTRIES = gql`
@@ -67,11 +68,11 @@ const SignUpForm = props => {
     state: "",
     // image: "",
     // gender: "",
-    personal_url: "",
-    portfolio_url: "",
-    twitter_url: "",
-    linkedin_url: "",
-    github_url: ""
+    personal_url: null,
+    portfolio_url: null,
+    twitter_url: null,
+    linkedin_url: null,
+    github_url: null
     // bio: ""
   });
 
@@ -105,7 +106,10 @@ const SignUpForm = props => {
         let token = results.data.signup.token;
         //   loginStatus.error = null;
         localStorage.setItem("token", token);
-        props.history.push("/signin");
+        setProgress(progress + 1);
+        setTimeout(() => {
+          props.history.push("/signin");
+        }, 1000); 
       })
       .catch(err => {
         console.log(err);
@@ -155,19 +159,17 @@ const SignUpForm = props => {
                   <button className="form-btn" onClick={handleBack}>
                     Back
                   </button>
-                  <button className="form-btn" onClick={handleNext}>
-                    Next
-                  </button>
+                  <button className="submit-btn" type="submit">Submit</button>
                 </>
               );
             case 3:
               return (
                 <>
-                  <h3>Payment Info</h3>
-                  <button className="form-btn" onClick={handleBack}>
+                  <CompletedSignUp />
+                  {/* <button className="form-btn" onClick={handleBack}>
                     Back
-                  </button>
-                  <button className="submit-btn">Submit</button>
+                  </button> */}
+                  
                 </>
               );
             default:
