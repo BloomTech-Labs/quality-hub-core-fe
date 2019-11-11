@@ -5,12 +5,13 @@ import './Avatar.scss';
 
 export default function Avatar() {
   const [picture, setPicture] = useState(null);
-  const [imgUrl, setImgUrl] = useState('');
+  const [cloudinaryData, setCloudinaryData] = useState('');
 
   useEffect(() => {
     if (picture) {
       const formData = new FormData();
-      formData.append('image', picture);
+      formData.append('file', picture);
+      formData.append('upload_preset', 'vlvqk9zi');
 
       axios
         .post(
@@ -19,6 +20,7 @@ export default function Avatar() {
         )
         .then(res => {
           console.log(res);
+          setCloudinaryData(res.data);
         })
         .catch(err => {
           console.log(err);
