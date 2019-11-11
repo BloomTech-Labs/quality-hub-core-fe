@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { printIntrospectionSchema } from "graphql";
+import AvatarDropdown from './AvatarDropdown';
+import GridDropdown from './GridDropdown';
 
 const NavBar = ({ loggedin, setLoggedin }) => {
   const logout = () => {
@@ -13,9 +15,9 @@ const NavBar = ({ loggedin, setLoggedin }) => {
     document.querySelector(".dropdown-content").classList.toggle("hidden");
   };
 
-  const toggleGridDropdown = () => {
-    document.querySelector(".dropdown-grid-content").classList.toggle("hidden");
-  };
+  // const toggleGridDropdown = () => {
+  //   document.querySelector(".dropdown-grid-content").classList.toggle("hidden");
+  // };
 
   return (
     <StyledNav>
@@ -43,42 +45,8 @@ const NavBar = ({ loggedin, setLoggedin }) => {
           </>
         )}
 
+        <GridDropdown />
         
-        <div className="dropdown grid-icon">
-          <img
-            src="grid.svg"
-            alt="Grid Menu"
-            className="grid-menu"
-            onClick={() => toggleGridDropdown()}
-          />
-          {/* This is the content at appears when you click on the grid image */}
-          <div className="dropdown-grid-content hidden dropdown-icons">
-            <div>
-            <a href="#">
-              <img src="favicon.svg" height="50px" width="50px"/>
-              <p>Resume Q</p>
-              </a>
-            </div>
-            <div>
-            <a href="#">
-            <img src="sad.svg" height="50px" width="50px"/>
-            <p>Interview Q</p>
-            </a>
-            </div>
-            <div>
-            <a href="#">
-            <img src="quailr.svg" height="50px" width="50px"/>
-            <p>QuailR</p>
-            </a>
-            </div>
-            <div>
-            <a href="#">
-            <img src="drug.svg" height="50px" width="50px"/>
-            <p>Design Q</p>
-            </a>
-            </div>
-          </div>
-        </div>
 
 
         <div className="dropdown">
