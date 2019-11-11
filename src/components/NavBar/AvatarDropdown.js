@@ -1,8 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
+import {Link} from 'react-router-dom';
 
 const AvatarDropdown = props => {
+  console.log(props);
   const node = useRef();
   const [open, setOpen] = useState(false);
+
+const logout = () =>{
+  
+  console.log('now here')
+  setOpen(false);
+  console.log('3')
+  props.logout();
+  console.log('4')
+  
+  document.removeEventListener("mousedown", handleOutsideClick);
+}
 
   const handleOutsideClick = e => {
     if (node.current.contains(e.target)) {
@@ -48,7 +61,7 @@ const AvatarDropdown = props => {
           </button>
           <hr />
           {/* Need to add sign out functionality */}
-          <button className="signout-btn">Sign Out </button>
+          <Link to="/"><button className="signout-btn" onClick={()=>logout()}>Sign Out</button></Link>
           <hr />
           <div className="dropdown-menu-links-div">
             {/* Need to link to policy and TOS eventually */}

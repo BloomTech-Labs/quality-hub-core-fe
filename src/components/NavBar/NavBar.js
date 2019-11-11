@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { printIntrospectionSchema } from "graphql";
-import AvatarDropdown from './AvatarDropdown';
-import GridDropdown from './GridDropdown';
+// import { printIntrospectionSchema } from "graphql";
+import AvatarDropdown from "./AvatarDropdown";
+import GridDropdown from "./GridDropdown";
 
 const NavBar = ({ loggedin, setLoggedin }) => {
   const logout = () => {
@@ -11,13 +11,8 @@ const NavBar = ({ loggedin, setLoggedin }) => {
     setLoggedin(false);
   };
 
-  const toggleDropdown = () => {
-    document.querySelector(".dropdown-content").classList.toggle("hidden");
-  };
-
   return (
     <StyledNav>
-
       {/* Animated bird flying across the screen */}
       <div className="left">
         <div className="bird"></div>
@@ -32,8 +27,6 @@ const NavBar = ({ loggedin, setLoggedin }) => {
       </div>
       {/* End animated bird */}
 
-
-
       <div className="right">
         {loggedin ? (
           <NavLink to="/" onClick={logout}>
@@ -47,10 +40,8 @@ const NavBar = ({ loggedin, setLoggedin }) => {
         )}
 
         <GridDropdown />
-        <AvatarDropdown />
-
-
-        
+        {loggedin &&
+        <AvatarDropdown logout={logout} className="hidden"/>}
       </div>
     </StyledNav>
   );
