@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 
-import { capitalize } from '../utils/capitalize';
+import { capitalize } from '../../utils/capitalize';
 
 //GraphQuail Mutation
 const EDIT_USER = gql`
