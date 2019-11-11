@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Loading from "./Loading";
 
 const LOGIN = gql`
