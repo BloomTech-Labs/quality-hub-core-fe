@@ -9,6 +9,7 @@ const CompletedSignUp = () => {
             <h3>Click Here to Login</h3>
             </NavLink> */}
             <p>You'll be redirected to login in a moment</p>
+            <img className="quail-walk" src ="https://i.imgur.com/ABm9pT1.gif" />
         </div>
     )
 }

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-<<<<<<< HEAD:src/components/SignUpForm.js
-import GeneralSignUp from './GeneralSignUp.js'
-import ExpSignUp from './ExpSignUp.js'
-import CompletedSignUp from './CompletedSignUp.js'
-=======
-import GeneralSignUp from '../GeneralSignUp'
-import ExpSignUp from '../ExpSignUp'
->>>>>>> 431cf6e78e193fd8b9705400eeaeefbc238b20db:src/components/SignUpForm/SignUpForm.js
+import GeneralSignUp from './GeneralSignUp.js';
+import ExpSignUp from './ExpSignUp.js';
+import CompletedSignUp from './CompletedSignUp';
+
 
 //GraphQuail Stuff
 const GET_INDUSTRIES = gql`
@@ -64,22 +60,10 @@ const SIGN_UP = gql`
 //COM-ponent
 const SignUpForm = props => {
   const [user, setUser] = useState({
-    first_name: "",
-    last_name: "",
-    password: "",
-    email: "",
-    industry: "",
-    city: "",
-    state: "",
-    // image: "",
-    // gender: "",
-    personal_url: null,
-    portfolio_url: null,
-    twitter_url: null,
-    linkedin_url: null,
-    github_url: null
-    // bio: ""
+
   });
+
+
 
   const [signup, signupStatus] = useMutation(SIGN_UP);
 
@@ -89,19 +73,19 @@ const SignUpForm = props => {
   const [progress, setProgress] = useState(1);
 
   const handleChange = e => {
+    if(e.target.vale === null){
+     setUser({
+       ...user
+      })
+    } else {
     setUser({
       ...user,
       [e.target.name]: e.target.value
     });
+  }
   };
 
-  // const handleIndustryChange = e => {
-  //   setUser({
-  //     ...user,
-  //     industries: {id: e.target.value}
-  //   })
-  //   console.log(user, e.target.value)
-  // }
+
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -114,7 +98,7 @@ const SignUpForm = props => {
         setProgress(progress + 1);
         setTimeout(() => {
           props.history.push("/signin");
-        }, 1000); 
+        }, 3000); 
       })
       .catch(err => {
         console.log(err);
@@ -132,13 +116,28 @@ const SignUpForm = props => {
     setProgress(progress - 1);
     console.log(progress);
   };
+
+  const reqInput = document.getElementsByTagName('input');
+  console.log(reqInput);
+  console.log(reqInput[0])
+
+  const checkInput = (i) => {
+    for (i = 0; i < reqInput.length; i++) {
+      if (reqInput[i].hasAttribute("required") && reqInput[i].value.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  };
+
   return (
     <div className="sign-up-form">
        <h2>Sign Up</h2>
       <ul className="progressbar">
         <li className={progress >= 2 ? 'active' : null}>Basic Info</li>
         <li className={progress >= 3 ? "active" : null}>Experience</li>
-        <li >Payment Info</li>
+        <li className={progress >= 3 ? "active" : null}>Success</li>
       </ul>
 
       <form onSubmit={handleSubmit}>
@@ -152,9 +151,11 @@ const SignUpForm = props => {
                     data={data}
                     handleChange={handleChange}
                   />
-                  <button className="form-btn" onClick={handleNext}>
-                    Next
-                  </button>
+                  {checkInput() ? (
+                    <button className="form-btn" onClick={handleNext}>Next</button>
+                  ) : (
+                    <button className="form-btn" disabled>Next</button>
+                  )}
                 </>
               );
             case 2:
