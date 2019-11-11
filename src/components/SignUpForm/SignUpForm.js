@@ -118,8 +118,6 @@ const SignUpForm = props => {
   };
 
   const reqInput = document.getElementsByTagName('input');
-  console.log(reqInput);
-  console.log(reqInput[0])
 
   const checkInput = (i) => {
     for (i = 0; i < reqInput.length; i++) {

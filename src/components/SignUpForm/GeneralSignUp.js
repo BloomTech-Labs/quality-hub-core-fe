@@ -54,6 +54,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
           <input
             id="sign-up-email"
             name="email"
+            type="email"
             placeholder="Email"
             value={user.email}
             onChange={handleChange}
@@ -100,7 +101,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
           <br />
 
           <div className="input-label">
-            <label htmlFor="sign-up-state">State*</label>
+            <label htmlFor="sign-up-state">State/Territory*</label>
             <br />
             <input
               id="sign-up-state"
