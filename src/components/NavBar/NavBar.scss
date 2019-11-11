@@ -111,3 +111,101 @@
 .hidden {
   display: none;
 }
+
+
+
+
+/* Spinning logo - Delete later */
+.rotate {
+  animation: rotation 10s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+/* End of spinning logo - delete later */
+
+.bird {
+  background-image: url("/avatar.png");
+}
+
+/* common styles for pirate and bird */
+.bird {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 100%;
+}
+
+/* choreography 
+
+0     1     2     3     4     5         6     7     8     9s
+←---------  enter  --------⇥ ← pause ⇥ ←----- exit ---⇥
+
+0 - 5s : enter animation
+5 - 6s : pause
+6 - 9s : exit animation
+
+*/
+
+.bird {
+  /*         ↓ enter animation       ↓ exit animation   */
+  animation: bird-enter 2s ease-out, 
+
+  bird-exit 1s ease-in;
+  /* 0s delay for the entry animation, 6s for the exit  */
+  animation-delay: 0s, 2.4s;
+}
+ 
+.bird {
+  animation-fill-mode: forwards;
+}
+
+/* keyframe animations */
+
+@keyframes bird-enter {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(50vw); /* half way */
+  }
+}
+
+@keyframes bird-2 {
+  from {
+    transform: translateX(50vw);
+  }
+  to {
+    transform: translateX(70vw);
+    transform: translateY(50vh);
+  }
+}
+
+@keyframes bird-3 {
+  from {
+    transform: translateX(70vw);
+    transform: translateY(50vh);
+  }
+  to {
+    transform: translateX(30vw);
+    transform: translateY(20vh);
+  }
+}
+
+@keyframes bird-exit {
+  from {
+    transform: translateX(50vw);
+  }
+  to {
+    transform: translateX(-10vw); /* exit outside the frame */
+  }
+}
+ 
