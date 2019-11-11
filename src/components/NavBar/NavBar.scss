@@ -112,9 +112,6 @@
   display: none;
 }
 
-
-
-
 /* Spinning logo - Delete later */
 .rotate {
   animation: rotation 10s infinite linear;
@@ -144,22 +141,9 @@
   border-radius: 100%;
 }
 
-/* choreography 
-
-0     1     2     3     4     5         6     7     8     9s
-←---------  enter  --------⇥ ← pause ⇥ ←----- exit ---⇥
-
-0 - 5s : enter animation
-5 - 6s : pause
-6 - 9s : exit animation
-
-*/
-
 .bird {
   /*         ↓ enter animation       ↓ exit animation   */
-  animation: bird-enter 2s ease-out, 
-
-  bird-exit 1s ease-in;
+  animation: bird-enter 2s ease-out, bird-exit 1s ease-in;
   /* 0s delay for the entry animation, 6s for the exit  */
   animation-delay: 0s, 2.4s;
 }
