@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
 
-import UserPicture from './UserPicture';
-import DashboardInput from './DashboardInput';
+import UserPicture from '../UserPicture';
+import DashboardInput from '../DashboardInput';
 
 //GraphQuaiL Query
 const GET_USER = gql`
