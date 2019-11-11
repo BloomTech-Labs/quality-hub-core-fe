@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+<<<<<<< HEAD:src/components/SignUpForm.js
 import GeneralSignUp from './GeneralSignUp.js'
 import ExpSignUp from './ExpSignUp.js'
 import CompletedSignUp from './CompletedSignUp.js'
+=======
+import GeneralSignUp from '../GeneralSignUp'
+import ExpSignUp from '../ExpSignUp'
+>>>>>>> 431cf6e78e193fd8b9705400eeaeefbc238b20db:src/components/SignUpForm/SignUpForm.js
 
 //GraphQuail Stuff
 const GET_INDUSTRIES = gql`
