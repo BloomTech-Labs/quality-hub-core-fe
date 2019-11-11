@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import LandingPage from "./components/LandingPage";
-import Dashboard from "./components/Dashboard";
-import SignInForm from "./components/SignInForm";
-import SignUpForm from "./components/SignUpForm";
+import Dashboard from "./components/Dashboard/index.js";
+import SignInForm from "./components/SignInForm/index.js";
+import SignUpForm from "./components/SignUpForm/index.js";
 import NavBar from "./components/NavBar";
 
 import "./global/index.scss";

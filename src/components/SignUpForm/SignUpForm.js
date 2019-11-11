@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import GeneralSignUp from '../GeneralSignUp'
-import ExpSignUp from '../ExpSignUp'
+import GeneralSignUp from './GeneralSignUp.js';
+import ExpSignUp from './ExpSignUp.js';
+import CompletedSignUp from './CompletedSignUp';
+
 
 //GraphQuail Stuff
 const GET_INDUSTRIES = gql`
@@ -58,22 +60,10 @@ const SIGN_UP = gql`
 //COM-ponent
 const SignUpForm = props => {
   const [user, setUser] = useState({
-    first_name: "",
-    last_name: "",
-    password: "",
-    email: "",
-    industry: "",
-    city: "",
-    state: "",
-    // image: "",
-    // gender: "",
-    personal_url: "",
-    portfolio_url: "",
-    twitter_url: "",
-    linkedin_url: "",
-    github_url: ""
-    // bio: ""
+
   });
+
+
 
   const [signup, signupStatus] = useMutation(SIGN_UP);
 
@@ -83,19 +73,19 @@ const SignUpForm = props => {
   const [progress, setProgress] = useState(1);
 
   const handleChange = e => {
+    if(e.target.vale === null){
+     setUser({
+       ...user
+      })
+    } else {
     setUser({
       ...user,
       [e.target.name]: e.target.value
     });
+  }
   };
 
-  // const handleIndustryChange = e => {
-  //   setUser({
-  //     ...user,
-  //     industries: {id: e.target.value}
-  //   })
-  //   console.log(user, e.target.value)
-  // }
+
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -105,7 +95,10 @@ const SignUpForm = props => {
         let token = results.data.signup.token;
         //   loginStatus.error = null;
         localStorage.setItem("token", token);
-        props.history.push("/signin");
+        setProgress(progress + 1);
+        setTimeout(() => {
+          props.history.push("/signin");
+        }, 3000); 
       })
       .catch(err => {
         console.log(err);
@@ -123,13 +116,28 @@ const SignUpForm = props => {
     setProgress(progress - 1);
     console.log(progress);
   };
+
+  const reqInput = document.getElementsByTagName('input');
+  console.log(reqInput);
+  console.log(reqInput[0])
+
+  const checkInput = (i) => {
+    for (i = 0; i < reqInput.length; i++) {
+      if (reqInput[i].hasAttribute("required") && reqInput[i].value.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  };
+
   return (
     <div className="sign-up-form">
        <h2>Sign Up</h2>
       <ul className="progressbar">
         <li className={progress >= 2 ? 'active' : null}>Basic Info</li>
         <li className={progress >= 3 ? "active" : null}>Experience</li>
-        <li >Payment Info</li>
+        <li className={progress >= 3 ? "active" : null}>Success</li>
       </ul>
 
       <form onSubmit={handleSubmit}>
@@ -143,9 +151,11 @@ const SignUpForm = props => {
                     data={data}
                     handleChange={handleChange}
                   />
-                  <button className="form-btn" onClick={handleNext}>
-                    Next
-                  </button>
+                  {checkInput() ? (
+                    <button className="form-btn" onClick={handleNext}>Next</button>
+                  ) : (
+                    <button className="form-btn" disabled>Next</button>
+                  )}
                 </>
               );
             case 2:
@@ -155,19 +165,17 @@ const SignUpForm = props => {
                   <button className="form-btn" onClick={handleBack}>
                     Back
                   </button>
-                  <button className="form-btn" onClick={handleNext}>
-                    Next
-                  </button>
+                  <button className="submit-btn" type="submit">Submit</button>
                 </>
               );
             case 3:
               return (
                 <>
-                  <h3>Payment Info</h3>
-                  <button className="form-btn" onClick={handleBack}>
+                  <CompletedSignUp />
+                  {/* <button className="form-btn" onClick={handleBack}>
                     Back
-                  </button>
-                  <button className="submit-btn">Submit</button>
+                  </button> */}
+                  
                 </>
               );
             default:

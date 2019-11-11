@@ -2,11 +2,12 @@ import React from 'react';
 
 const GeneralSignUp = ({ user, handleChange, data }) => {
 
+  
     return (
       <div className="general-sign-up">
         <div className="two-inputs">
           <div className="input-label">
-            <label htmlFor="sign-up-first-name">First Name</label>
+            <label htmlFor="sign-up-first-name">First Name*</label>
             <br />
             <input
               id="sign-up-first-name"
@@ -20,7 +21,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
           <br />
 
           <div className="input-label">
-            <label htmlFor="sign-up-first-name">Last Name</label>
+            <label htmlFor="sign-up-first-name">Last Name*</label>
             <br />
             <input
               id="sign-up-last-name"
@@ -34,10 +35,11 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
         </div>
         <br />
         <div className="input-label">
-          <label htmlFor="sign-up-password">Password</label>
+          <label htmlFor="sign-up-password">Password*</label>
           <br />
           <input
             id="sign-up-password"
+            type="password"
             name="password"
             placeholder="Password"
             value={user.password}
@@ -47,7 +49,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
         </div>
         <br />
         <div className="input-label">
-          <label htmlFor="sign-up-email">Email</label>
+          <label htmlFor="sign-up-email">Email*</label>
           <br />
           <input
             id="sign-up-email"
@@ -61,7 +63,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
         <br />
 
         <div className="input-label">
-          <label htmlFor="sign-up-industry">Industry</label>
+          <label htmlFor="sign-up-industry">Industry*</label>
           <br />
           <select
             id="sign-up-industry"
@@ -84,7 +86,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
 
         <div className="two-inputs">
           <div className="input-label">
-            <label htmlFor="sign-up-city">City</label>
+            <label htmlFor="sign-up-city">City*</label>
             <br />
             <input
               id="sign-up-city"
@@ -98,7 +100,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
           <br />
 
           <div className="input-label">
-            <label htmlFor="sign-up-state">State</label>
+            <label htmlFor="sign-up-state">State*</label>
             <br />
             <input
               id="sign-up-state"
