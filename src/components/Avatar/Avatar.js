@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Image } from 'cloudinary-react';
 import './Avatar.scss';
 
 export default function Avatar() {
   const [picture, setPicture] = useState(null);
+  const [imgUrl, setImgUrl] = useState('');
 
   useEffect(() => {
     if (picture) {
       const formData = new FormData();
       formData.append('image', picture);
+
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/hpzwvtjsz/image/upload`,
+          formData,
+        )
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }, [picture]);
 
@@ -25,6 +40,10 @@ export default function Avatar() {
           style={{
             backgroundImage: `url('https://www.gannett-cdn.com/-mm-/c8995a178a2d0111697175844796b5eefe349c58/c=0-0-1935-2580/local/-/media/2016/12/30/Redding/Redding/636186645572972159-birdwords.jpg?width=534&height=712&fit=crop')`,
           }}></div>
+        {/* <Image
+          cloudName={process.env.REACT_APP_CLOUD_NAME}
+          publicId={publicId}
+        /> */}
       </label>
     </div>
   );
