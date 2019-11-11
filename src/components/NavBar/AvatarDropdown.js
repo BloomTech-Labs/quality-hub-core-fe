@@ -1,28 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const AvatarDropdown = props => {
-
   const node = useRef();
   const [open, setOpen] = useState(false);
 
-const logout = () =>{
-  document.removeEventListener("mousedown", handleOutsideClick);
-  setOpen(false);
-  props.logout();
-}
+  const logout = () => {
+    document.removeEventListener("mousedown", handleOutsideClick);
+    setOpen(false);
+    props.logout();
+  };
 
+  //If you click outside the dropdown menu, the menu will close.
   const handleOutsideClick = e => {
-    if(props.loggedin){
-      console.log(props.loggedin)
-      if(node.current){
+    if (props.loggedin) {
+      if (node.current) {
         if (node.current.contains(e.target)) {
           return;
         }
         setOpen(false);
       }
-    
-  }
+    }
   };
 
   useEffect(() => {
@@ -58,13 +56,17 @@ const logout = () =>{
 
           {/* Need to link to dashboard */}
           <Link to="/dashboard">
-          <button className="manage-btn">
-            Manage your Quality Hub account
-          </button>
+            <button className="manage-btn">
+              Manage your Quality Hub account
+            </button>
           </Link>
           <hr />
           {/* Need to add sign out functionality */}
-          <Link to="/"><button className="signout-btn" onClick={()=>logout()}>Sign Out</button></Link>
+          <Link to="/">
+            <button className="signout-btn" onClick={() => logout()}>
+              Sign Out
+            </button>
+          </Link>
           <hr />
           <div className="dropdown-menu-links-div">
             {/* Need to link to policy and TOS eventually */}
