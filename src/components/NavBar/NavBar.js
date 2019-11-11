@@ -10,15 +10,18 @@ const NavBar = ({ loggedin, setLoggedin }) => {
   };
 
   const toggleDropdown = () => {
-    console.log("toggling dropdown");
     document.querySelector(".dropdown-content").classList.toggle("hidden");
+  };
+
+  const toggleGridDropdown = () => {
+    document.querySelector(".dropdown-grid-content").classList.toggle("hidden");
   };
 
   return (
     <StyledNav>
       <div className="left">
-      <div className="bird"></div>
-      {/* <div class="pirate"></div> */}
+        <div className="bird"></div>
+        {/* <div class="pirate"></div> */}
         <NavLink to="/">
           <h2>QualityHub</h2>
         </NavLink>
@@ -40,6 +43,44 @@ const NavBar = ({ loggedin, setLoggedin }) => {
           </>
         )}
 
+        
+        <div className="dropdown grid-icon">
+          <img
+            src="grid.svg"
+            alt="Grid Menu"
+            className="grid-menu"
+            onClick={() => toggleGridDropdown()}
+          />
+          {/* This is the content at appears when you click on the grid image */}
+          <div className="dropdown-grid-content hidden dropdown-icons">
+            <div>
+            <a href="#">
+              <img src="favicon.svg" height="50px" width="50px"/>
+              <p>Resume Q</p>
+              </a>
+            </div>
+            <div>
+            <a href="#">
+            <img src="sad.svg" height="50px" width="50px"/>
+            <p>Interview Q</p>
+            </a>
+            </div>
+            <div>
+            <a href="#">
+            <img src="quailr.svg" height="50px" width="50px"/>
+            <p>QuailR</p>
+            </a>
+            </div>
+            <div>
+            <a href="#">
+            <img src="drug.svg" height="50px" width="50px"/>
+            <p>Design Q</p>
+            </a>
+            </div>
+          </div>
+        </div>
+
+
         <div className="dropdown">
           {/* Main avatar image you see on top right */}
           <img
@@ -50,7 +91,6 @@ const NavBar = ({ loggedin, setLoggedin }) => {
           />
           {/* This is the content at appears when you click on the avatar image */}
           <div className="dropdown-content hidden">
-            
             <div className="dropdown-avatar-camera">
               {/* Avatar image in dropdown menu */}
               <img
@@ -73,9 +113,14 @@ const NavBar = ({ loggedin, setLoggedin }) => {
             <button className="signout-btn">Sign Out </button>
             <hr />
             <div className="dropdown-menu-links-div">
-
               {/* Need to link to policy and TOS eventually */}
-            <a href="#" className="dropdown-menu-links">Privacy Policy</a>&#8226;<a href="#" className="dropdown-menu-links">Terms of Service</a>
+              <a href="#" className="dropdown-menu-links">
+                Privacy Policy
+              </a>
+              &#8226;
+              <a href="#" className="dropdown-menu-links">
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>
