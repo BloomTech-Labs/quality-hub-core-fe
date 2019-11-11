@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import styled from 'styled-components';
+import './DashboardInput.scss';
 
 import { capitalize } from '../../utils/capitalize';
 
@@ -67,11 +67,11 @@ const DashboardInput = ({ userKey, userValue }) => {
   };
 
   return (
-    <DashInput>
-      <DashRow>
-        <DashHeading>
+    <div className='dash-input'>
+      <div className='dash-row'>
+        <span className='dash-heading'>
           <h2>{capitalize(userKey)}</h2>
-        </DashHeading>
+        </span>
         <div>
           {editing ? (
             <input
@@ -84,7 +84,7 @@ const DashboardInput = ({ userKey, userValue }) => {
             <p>{user[userKey]}</p>
           )}
         </div>
-      </DashRow>
+      </div>
       <div>
         {editing && (
           <button onClick={() => handleCancel()} className='cancel-button'>
@@ -102,22 +102,8 @@ const DashboardInput = ({ userKey, userValue }) => {
           &#x1F589;
         </button>
       )}
-    </DashInput>
+    </div>
   );
 };
 
 export default DashboardInput;
-
-const DashInput = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const DashRow = styled.div`
-  display: flex;
-`;
-
-const DashHeading = styled.span`
-  width: 100px;
-  text-align: left;
-`;
