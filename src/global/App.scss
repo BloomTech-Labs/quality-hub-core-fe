@@ -199,6 +199,18 @@ input, option, select {
   margin: 2rem 4rem;
 }
 
+.form-btn:disabled{
+  background-color: white;
+  font-family: inherit;
+  color:gray;
+  border: 1px solid silver;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5%;
+  cursor: not-allowed;
+  margin: 2rem 4rem;
+}
+
 
 .submit-btn {
   background-color: white;
@@ -209,6 +221,8 @@ input, option, select {
   padding: 0.8rem 1.5%;
   cursor: pointer;
 }
+
+
 
 .submit-btn:hover {
   background-color: silver;
@@ -472,3 +486,18 @@ label {
   }
 }
  
+
+@keyframes birdwalk
+{
+    from {
+        margin-left: -40%;
+    }
+    to {
+        margin-left: 70%;
+    }
+}
+
+.quail-walk{
+  animation: birdwalk 5s infinite;
+  width: 100px;
+}
