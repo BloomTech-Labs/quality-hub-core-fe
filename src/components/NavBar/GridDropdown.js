@@ -5,7 +5,6 @@ const GridDropdown = props => {
   const [open, setOpen] = useState(false);
 
   const handleOutsideClick = e => {
-    console.log("clicked outside");
     if (node.current.contains(e.target)) {
       return;
     }
