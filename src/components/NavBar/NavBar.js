@@ -11,6 +11,12 @@ const NavBar = ({ loggedin, setLoggedin }) => {
     setLoggedin(false);
   };
 
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      setLoggedin(true);
+    }
+  },[])
+
   return (
     <StyledNav>
       {/* Animated bird flying across the screen */}
@@ -28,11 +34,7 @@ const NavBar = ({ loggedin, setLoggedin }) => {
       {/* End animated bird */}
 
       <div className="right">
-        {loggedin ? (
-          <NavLink to="/" onClick={logout}>
-            Log Out
-          </NavLink>
-        ) : (
+        {!loggedin && (
           <>
             <NavLink to="signin"> Sign In </NavLink>
             <NavLink to="signup"> Sign Up</NavLink>
@@ -41,7 +43,7 @@ const NavBar = ({ loggedin, setLoggedin }) => {
 
         <GridDropdown />
         {loggedin &&
-        <AvatarDropdown logout={logout} className="hidden"/>}
+        <AvatarDropdown logout={logout} loggedin={loggedin} className="hidden"/>}
       </div>
     </StyledNav>
   );
