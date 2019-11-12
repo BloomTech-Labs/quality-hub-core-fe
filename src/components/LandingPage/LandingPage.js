@@ -1,6 +1,9 @@
 import React from 'react';
 import './LandingPage.scss';
 
+import Features from './Features';
+import Panels from './Panels';
+
 const LandingPage = props => {
   // array with texts to type in typewriter
   let dataText = ['Interviews', 'Code', 'Designs', 'Resumes', 'Quailcoin'];
@@ -60,9 +63,8 @@ const LandingPage = props => {
         </p>
         <button className='start-btn'>Get Started</button>
       </div>
-      <div className='features'>
-        <h3>Features</h3>
-      </div>
+      <Features />
+      <Panels />
     </div>
   );
 };
