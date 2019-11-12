@@ -48,11 +48,15 @@ export default function Avatar() {
     if (picture) {
       const formData = new FormData();
       formData.append('file', picture);
-      formData.append('upload_preset', uploadPreset);
+      formData.append(
+        'upload_preset',
+        process.env.REACT_APP_UPLOAD_PRESET || uploadPreset,
+      );
 
       axios
         .post(
-          `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME ||
+            cloudName}/image/upload`,
           formData,
         )
         .then(res => {
