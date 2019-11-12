@@ -2,25 +2,48 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gql } from 'apollo-boost';
 import { useLazyQuery, useQuery } from '@apollo/react-hooks';
+// import {ApolloConsumer} from '@apollo/react-hooks';
+
+
+
+
+
+// const resetStore = () =>(
+//   <ApolloConsumer>
+//     {client=>{
+//       client.clearStore();
+//     }}
+//   </ApolloConsumer>
+// );
+
+
 
 const GET_USER = gql`
-  query {
+  query dropdownMenu{
     me {
+      id
       first_name
       last_name
       email
+      city
+      state
+      image_url
+      gender
     }
   }
 `;
 
 const AvatarDropdown = props => {
-  const [getUser, { data: userData }] = useLazyQuery(GET_USER);
+  const [getUser, {called, loading, data}] = useLazyQuery(GET_USER);
+  // const {userData} = useQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
+  // const [editUser, setEditUser] = useState(userData);
 
   const logout = () => {
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
+    // resetStore();
     props.logout();
   };
 
@@ -37,7 +60,7 @@ const AvatarDropdown = props => {
   };
 
   useEffect(()=>{
-    
+    getUser();
   },[])
 
   useEffect(() => {
@@ -47,11 +70,12 @@ const AvatarDropdown = props => {
       document.removeEventListener("mousedown", handleOutsideClick);
     }
     getUser();
+    // setEditUser(userData);
   }, [open]);
 
-  if(userData){
-    console.log(userData);
-  }
+  // useEffect(() => {
+    
+  // }, [userData]);
 
   return (
     <div ref={node}>
@@ -66,15 +90,15 @@ const AvatarDropdown = props => {
           <div className="dropdown-avatar-camera">
             {/* Avatar image in dropdown menu */}
             <img
-              src="/avatar.png"
+              src={data.me.image_url || "avatar.png" }
               alt="Profile avatar"
               className="avatar-submenu"
             />
             {/* This is the offset camera icon */}
             <div className="dropdown-camera-icon">&#x1F4F7;</div>
           </div>
-          {userData && <p className="dropdown-menu-name">{userData.me.first_name + " " + userData.me.last_name}</p>}
-          {userData && <p className="dropdown-menu-email">{userData.me.email}</p>}
+          {data && <p className="dropdown-menu-name">{data.me.first_name + " " + data.me.last_name}</p>}
+          {data && <p className="dropdown-menu-email">{data.me.email}</p>}
 
           {/* Need to link to dashboard */}
           <Link to="/dashboard">
