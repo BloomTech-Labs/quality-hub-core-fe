@@ -67,11 +67,11 @@ const AvatarDropdown = props => {
         <div className="dropdown-content">
           <div className="dropdown-avatar-camera">
             {/* Avatar image in dropdown menu */}
-            <img
+            {data && <img
               src={data.me.image_url || "avatar.png" }
               alt="Profile avatar"
               className="avatar-submenu"
-            />
+            />}
             {/* This is the offset camera icon */}
             <div className="dropdown-camera-icon">&#x1F4F7;</div>
           </div>
