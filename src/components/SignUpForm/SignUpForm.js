@@ -25,7 +25,7 @@ const SIGN_UP = gql`
     $password: String!
     $city: String!
     $state: String!
-    $industry: ID
+    $industry: ID!
     # $image: String,
     $personal_url: String
     $portfolio_url: String
@@ -64,8 +64,20 @@ const SignUpForm = props => {
   // console.log(data && data.industries);
 
   //Set user object
-  const [user, setUser] = useState({});
-  let newUser = {};
+  const [user, setUser] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    city: "",
+    state: "",
+    personal_url: "",
+    portfolio_url: "",
+    industry: "",
+    twitter_url: "",
+    linkedin_url: "",
+  });
+ 
   const [signup, signupStatus] = useMutation(SIGN_UP);
 
   useEffect(()=>{
@@ -82,7 +94,12 @@ const SignUpForm = props => {
     industry: mixed().required("Please select your industry"),
     city: string().required("Please enter your city"),
     state: string().required("Please enter your state"),
-    password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password')
+    password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password'),
+    linkedin_url: string().url(),
+    github_url: string().url(),
+    personal_url: string().url(),
+    portfolio_url: string().url(),
+    twitter_url: string().url(),
   });
 
   const validateUser = () => {
@@ -99,16 +116,19 @@ const SignUpForm = props => {
     });
   };
  
+
   const handleChange = e => {
     
-    if (e.target.value === "") {
-      delete newUser[e.target.name];
-      setUser({
-        ...newUser
-      });
+    // if (e.target.value === "" ) {
+    //   let newUser = {...user};
+    //   delete newuser [e.target.name],
+    //   setUser({
+        
+    //     ...user
+    //   });
       
-    } else {
-      // console.log('before validate user')
+    // } else {
+    //   console.log('before validate user')
       
       setUser({
         ...user,
@@ -116,7 +136,7 @@ const SignUpForm = props => {
       });
 
       
-    }
+    //}
     // console.log(user);
     
   };
