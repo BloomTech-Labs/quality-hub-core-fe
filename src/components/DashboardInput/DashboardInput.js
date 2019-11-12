@@ -22,9 +22,6 @@ const EDIT_USER = gql`
       state: $state # blog_url: $blog_url, # image: $image, # gender: $gender, # personal_url: $personal_url, # linkedin_url: $linkedin_url, # github_url: $github_url, # bio: $bio
     ) {
       id
-      #   user {
-      #     id
-      #   }
     }
   }
 `;

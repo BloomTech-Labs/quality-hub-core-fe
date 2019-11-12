@@ -4,8 +4,6 @@ import { gql } from 'apollo-boost';
 import axios from 'axios';
 import './Avatar.scss';
 
-import { cloudName, uploadPreset } from '../../secrets';
-
 const GET_IMG = gql`
   query {
     me {
@@ -50,13 +48,12 @@ export default function Avatar() {
       formData.append('file', picture);
       formData.append(
         'upload_preset',
-        process.env.REACT_APP_UPLOAD_PRESET || uploadPreset,
+        process.env.REACT_APP_UPLOAD_PRESET
       );
 
       axios
         .post(
-          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME ||
-            cloudName}/image/upload`,
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
           formData,
         )
         .then(res => {
