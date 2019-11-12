@@ -83,9 +83,9 @@ export default function Avatar() {
             style={{
               backgroundImage: `url('${data && data.me.image_url}')`,
             }}>
-            {!data && <p className='edit-image'>Edit Image</p>}
+            {!data && <p className='add-image'>Add Image</p>}
           </div>
-          <div className='hover'>
+          <div className='edit-image'>
             <p>Edit Image</p>
           </div>
         </div>
