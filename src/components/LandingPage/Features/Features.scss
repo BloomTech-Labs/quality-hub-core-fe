@@ -17,15 +17,17 @@
   }
 }
 
-.card-wrapper {
+.container {
   display: flex;
   width: 90%;
   justify-content: space-evenly;
+  border: 1px solid green;
 }
 
 .feature-card {
   width: 250px;
   box-shadow: 1px 1px 2px 2px silver;
+  transition: transform 300ms ease 100ms;
 }
 
 .feature-img {
@@ -43,3 +45,16 @@
     font-size: 1.2rem;
   }
 }
+
+.container:hover .feature-card {
+  transform: translateX(-10%);
+}
+
+.feature-card:hover ~ .feature-card {
+  transform: translateX(10%);
+}
+
+.feature-card:hover {
+  transform: scale(1.05) !important;
+}
+
