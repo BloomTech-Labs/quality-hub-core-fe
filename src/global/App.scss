@@ -29,67 +29,6 @@ a {
   font-size: 1.5rem;
 }
 
-.blinking-cursor {
-  font-weight: 100;
-  font-size: 30px;
-  color: #2e3d48;
-  -webkit-animation: 1s blink step-end infinite;
-  -moz-animation: 1s blink step-end infinite;
-  -ms-animation: 1s blink step-end infinite;
-  -o-animation: 1s blink step-end infinite;
-  animation: 1s blink step-end infinite;
-}
-
-@keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-moz-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-webkit-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-ms-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-o-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
 .editform {
   display: flex;
   margin: 40px auto;
@@ -99,9 +38,10 @@ a {
 }
 
 .edit-button {
-  background-color: none;
+  background-color: white;
   border: none;
   font-size: 26px;
+  cursor: pointer;
 }
 
 .cancel-button {
@@ -110,6 +50,7 @@ a {
   font-weight: 900px;
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 
 .accept-button {
@@ -118,9 +59,12 @@ a {
   font-weight: 900px;
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 
-input, option, select {
+input,
+option,
+select {
   border-radius: 0.3rem;
   border: 1px solid silver;
   font-family: inherit;
@@ -128,14 +72,14 @@ input, option, select {
   margin-bottom: 1rem;
 }
 
-.progressbar{
+.progressbar {
   width: 100%;
- counter-reset: step;
- margin-bottom: 100px;
- margin-top: 20px;
+  counter-reset: step;
+  margin-bottom: 100px;
+  margin-top: 20px;
 }
 
-.progressbar li{
+.progressbar li {
   list-style-type: none;
   float: left;
   width: 33.33%;
@@ -143,12 +87,12 @@ input, option, select {
   text-align: center;
 }
 
-.progressbar li:before{
+.progressbar li:before {
   content: counter(step);
   counter-increment: step;
- text-align: center;
- margin: 5px auto 5px auto;
- line-height: 20px;
+  text-align: center;
+  margin: 5px auto 5px auto;
+  line-height: 20px;
   width: 20px;
   height: 20px;
   border: 3px solid gainsboro;
@@ -158,7 +102,7 @@ input, option, select {
   background-color: white;
 }
 
-.progressbar li:after{
+.progressbar li:after {
   content: ' ';
   position: absolute;
   z-index: -1;
@@ -187,8 +131,7 @@ input, option, select {
   background-color: purple;
 }
 
-
-.form-btn{
+.form-btn {
   background-color: white;
   font-family: inherit;
   border: 1px solid silver;
@@ -199,6 +142,17 @@ input, option, select {
   margin: 2rem 4rem;
 }
 
+.form-btn:disabled {
+  background-color: white;
+  font-family: inherit;
+  color: gray;
+  border: 1px solid silver;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5%;
+  cursor: not-allowed;
+  margin: 2rem 4rem;
+}
 
 .submit-btn {
   background-color: white;
@@ -225,6 +179,7 @@ input, option, select {
   cursor: pointer;
   margin-bottom: 1rem;
   width: 220px;
+  outline: 0;
 }
 
 .manage-btn:hover {
@@ -241,6 +196,10 @@ input, option, select {
   margin-bottom: 1rem;
   padding: 0.8rem 1.5%;
   cursor: pointer;
+}
+
+.signout-btn:focus {
+  outline: 0;
 }
 
 .signout-btn:hover {
@@ -313,162 +272,16 @@ label {
   padding: 0 10px;
 }
 
-/* Start avatar dropdown menu */
-
-.avatar-menu {
-  border-radius: 100%;
-  height: 50px;
-  margin-right: 10px;
-}
-
-.avatar-submenu {
-  margin-top: 20px;
-  border-radius: 100%;
-  height: 70px;
-}
-
-.dropdown-avatar-camera {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.hidden {
-  display: none;
-}
-
-.dropdown-content {
-  position: absolute;
-  right: 20px;
-  top: 70px;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  width: 300px;
-  height: 340px;
-  border-radius: 14px;
-  border: 1px solid lightgray;
-}
-
-.dropdown-content hr {
-  height: 1px;
-  background-color: lightgrey;
-  color: lightgray;
-  border: none;
-}
-.dropdown-camera-icon {
-  font-size: 15px;
-  border: 1px solid grey;
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  background-color: white;
-  margin-top: -25px;
-  margin-right: -55px;
-}
-
-.desc {
-  text-align: center;
-}
-.dropdown-menu-links {
-  font-size: 12px;
-  font-weight: lighter !important;
-}
-.dropdown-menu-links-div {
-  margin-top: 14px;
-}
-
-.dropdown-menu-name {
-  margin: 15px 0 0 0;
-}
-
-.dropdown-menu-email {
-  color: grey;
-  margin-top: 0px;
-}
-
-/* End dropdown menu */
-
-/* Spinning logo - Delete later */
-.rotate {
-  animation: rotation 8s infinite linear;
-}
-
-@keyframes rotation {
+@keyframes birdwalk {
   from {
-    transform: rotate(0deg);
+    margin-left: -40%;
   }
   to {
-    transform: rotate(359deg);
-  }
-}
-/* End of spinning logo - delete later */
-
-.bird {
-  background-image: url("/avatar.png");
-}
-
-/* common styles for pirate and bird */
-.bird {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 100%;
-}
-
-/* choreography 
-
-0     1     2     3     4     5         6     7     8     9s
-←---------  enter  --------⇥ ← pause ⇥ ←----- exit ---⇥
-
-0 - 5s : enter animation
-5 - 6s : pause
-6 - 9s : exit animation
-
-*/
-
-.bird {
-  /*         ↓ enter animation       ↓ exit animation   */
-  animation: bird-enter 5s ease-out, bird-exit 3s ease-in;
-  /* 0s delay for the entry animation, 6s for the exit  */
-  animation-delay: 0s, 6s;
-}
- 
-.bird {
-  animation-fill-mode: forwards;
-}
-
-/* keyframe animations */
-
-@keyframes bird-enter {
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(50vw); /* half way */
+    margin-left: 70%;
   }
 }
 
-@keyframes bird-exit {
-  from {
-    transform: translateX(50vw);
-  }
-  to {
-    transform: translateX(-10vw); /* exit outside the frame */
-  }
+.quail-walk {
+  animation: birdwalk 5s infinite;
+  width: 100px;
 }
- 
