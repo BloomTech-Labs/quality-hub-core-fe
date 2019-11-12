@@ -1,0 +1,25 @@
+.picture-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dash-heading {
+  width: 100px;
+  text-align: left;
+}
+
+.image-input {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: gray;
+  cursor: pointer;
+}
