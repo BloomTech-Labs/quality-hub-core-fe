@@ -9,7 +9,6 @@ const ExpSignUp=({ handleChange, user }) => {
           <input
             id="sign-up-linkedin"
             name="linkedin_url"
-            type="url"
             placeholder="URL"
             value={user.linkedin_url}
             onChange={handleChange}
@@ -21,7 +20,6 @@ const ExpSignUp=({ handleChange, user }) => {
           <input
             id="sign-up-github"
             name="github_url"
-            type="url"
             placeholder="URL"
             value={user.github_url}
             onChange={handleChange}
@@ -33,7 +31,6 @@ const ExpSignUp=({ handleChange, user }) => {
           <input
             id="sign-up-portfolio"
             name="portfolio_url"
-            type="url"
             placeholder="URL"
             value={user.portfolio_url}
             onChange={handleChange}
@@ -45,7 +42,6 @@ const ExpSignUp=({ handleChange, user }) => {
           <input
             id="sign-up-website"
             name="personal_url"
-            type="url"
             placeholder="URL"
             value={user.personal_url}
             onChange={handleChange}
@@ -57,7 +53,6 @@ const ExpSignUp=({ handleChange, user }) => {
           <input
             id="sign-up-twitter"
             name="twitter_url"
-            type="url"
             placeholder="URL"
             value={user.twitter_url}
             onChange={handleChange}
