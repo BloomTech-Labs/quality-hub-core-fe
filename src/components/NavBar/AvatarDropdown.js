@@ -34,7 +34,7 @@ const EDIT_IMG = gql`
 
 const AvatarDropdown = props => {
   const [picture, setPicture] = useState(null);
-  const [getUser, { called, loading, data }] = useLazyQuery(GET_USER);
+  const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
 
@@ -58,6 +58,7 @@ const AvatarDropdown = props => {
   const logout = () => {
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
+    client.clearStore();
     props.logout();
   };
 

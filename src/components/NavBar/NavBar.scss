@@ -60,20 +60,15 @@
   align-content: center;
   align-items: center;
   background-color: white;
-  // margin-top: -25px;
-  // margin-right: -15px;
   right: 100px;
   top: 85px;
 }
 .grey-on-hover {
-  // position: relative;
   cursor: pointer;
   
   &:before {
     content: "";
     position: absolute;
-    // top: 0;
-    // left: 0;
     width: 100%;
     height: 100%;
     border-radius: 100%;
@@ -86,14 +81,6 @@
   &:hover:before {
     opacity: 1;
   }
-}
-
-.dropdown-camera-icon:hover{
-  
-}
-
-.camera-image{
-  
 }
 
 .desc {
