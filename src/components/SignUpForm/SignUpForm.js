@@ -92,7 +92,7 @@ const SignUpForm = props => {
     email: string()
       .email("Please enter a valid email address")
       .required("Please enter your email address"),
-    industry: mixed().required("Please select your industry"),
+    industry: string().required("Please select your industry"),
     city: string().required("Please enter your city"),
     state: string().required("Please enter your state"),
     password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password'),
@@ -133,8 +133,8 @@ const SignUpForm = props => {
     signup({ variables: user })
       .then(results => {
         console.log(results);
-        let token = results.data.signup.token;
-        localStorage.setItem("token", token);
+        // let token = results.data.signup.token;
+        // localStorage.setItem("token", token);
         setProgress(progress + 1);
         setTimeout(() => {
           props.history.push("/signin");
@@ -189,7 +189,7 @@ const SignUpForm = props => {
                   )}
                   {valError
                     ? valError.map(message => {
-                        return <p>{message}</p>;
+                        return <p key={message}>{message}</p>;
                       })
                     : null}
                 </>
