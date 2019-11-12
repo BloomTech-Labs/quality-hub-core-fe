@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import GeneralSignUp from "./GeneralSignUp.js";
@@ -61,12 +61,16 @@ const SIGN_UP = gql`
 const SignUpForm = props => {
   //Get industry list
   const { data } = useQuery(GET_INDUSTRIES);
-  console.log(data && data.industries);
+  // console.log(data && data.industries);
 
   //Set user object
   const [user, setUser] = useState({});
-
+  let newUser = {};
   const [signup, signupStatus] = useMutation(SIGN_UP);
+
+  useEffect(()=>{
+    validateUser();
+  }, [user]);
 
   //Form management/validation
   const userSchema = object({
@@ -77,28 +81,44 @@ const SignUpForm = props => {
       .required("Please enter your email address"),
     industry: mixed().required("Please select your industry"),
     city: string().required("Please enter your city"),
-    state: string().required("Please enter your state")
+    state: string().required("Please enter your state"),
+    password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password')
   });
 
   const validateUser = () => {
-    userSchema.validate(user, { abortEarly: false }).catch(err => {
+    console.log(user);
+    userSchema.validate(user, { abortEarly: false })
+    .then(res=>{
+      console.log("SUCCESS. NO MORE ERRORS", res)
+      setValError();
+    })
+    .catch(err => {
+      
       setValError(err.errors);
       console.log(err.errors);
     });
   };
-
+ 
   const handleChange = e => {
-    if (e.target.vale === null) {
+    
+    if (e.target.value === "") {
+      delete newUser[e.target.name];
       setUser({
-        ...user
+        ...newUser
       });
+      
     } else {
-      validateUser();
+      // console.log('before validate user')
+      
       setUser({
         ...user,
         [e.target.name]: e.target.value
       });
+
+      
     }
+    // console.log(user);
+    
   };
 
   const handleSubmit = e => {
@@ -134,7 +154,7 @@ const SignUpForm = props => {
     }
   };
 
-  console.log(valError);
+  // console.log(valError);
 
   //Set form step
   const [progress, setProgress] = useState(1);
@@ -142,12 +162,12 @@ const SignUpForm = props => {
   const handleNext = e => {
     e.preventDefault();
     setProgress(progress + 1);
-    console.log(progress);
+    // console.log(progress);
   };
   const handleBack = e => {
     e.preventDefault();
     setProgress(progress - 1);
-    console.log(progress);
+    // console.log(progress);
   };
 
   return (
