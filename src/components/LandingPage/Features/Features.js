@@ -7,19 +7,21 @@ import FeatureCard from "./FeatureCard";
 export default function Features() {
   const [position, setPosition] = useState(0);
 
+  const scrollLength = 275;
+
   const handleLeftClick = () => {
-    setPosition(position - 275);
+    setPosition(position - scrollLength);
   };
 
   const handleRightClick = () => {
-    setPosition(position + 275);
+    setPosition(position + scrollLength);
   };
 
   return (
     <div>
       <h2>Features</h2>
       <div className="carousel">
-        {position > -550 && (
+        {position > -1 * (FeaturesInfo.length - 3) * scrollLength && (
           <button className="scroll-btn left-scroll" onClick={handleLeftClick}>
             &lsaquo;
           </button>
