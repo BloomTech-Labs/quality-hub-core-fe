@@ -1,13 +1,64 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { gql } from "apollo-boost";
+import { useLazyQuery } from "@apollo/react-hooks";
+
+import { useQuery, useMutation } from "@apollo/react-hooks";
+
+import axios from "axios";
+
+import { cloudName, uploadPreset } from "../../secrets";
+
+const GET_USER = gql`
+  query dropdownMenu {
+    me {
+      id
+      first_name
+      last_name
+      email
+      city
+      state
+      image_url
+      gender
+    }
+  }
+`;
+
+const EDIT_IMG = gql`
+  mutation EditImage($image_url: String) {
+    update(image_url: $image_url) {
+      image_url
+    }
+  }
+`;
 
 const AvatarDropdown = props => {
+  const [picture, setPicture] = useState(null);
+  const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
+
+  const [editImage] = useMutation(EDIT_IMG, {
+    update(
+      cache,
+      {
+        data: {
+          update: { image_url }
+        }
+      }
+    ) {
+      const { me } = cache.readQuery({ query: GET_USER });
+      cache.writeQuery({
+        query: GET_USER,
+        data: { me: { ...me, image_url } }
+      });
+    }
+  });
 
   const logout = () => {
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
+    client.clearStore();
     props.logout();
   };
 
@@ -24,11 +75,40 @@ const AvatarDropdown = props => {
   };
 
   useEffect(() => {
+    if (picture) {
+      const formData = new FormData();
+      formData.append("file", picture);
+      formData.append(
+        "upload_preset",
+        process.env.REACT_APP_UPLOAD_PRESET || uploadPreset
+      );
+
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME ||
+            cloudName}/image/upload`,
+          formData
+        )
+        .then(res => {
+          editImage({ variables: { image_url: res.data.secure_url } });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, [picture]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
     if (open) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
       document.removeEventListener("mousedown", handleOutsideClick);
     }
+    getUser();
   }, [open]);
 
   return (
@@ -42,17 +122,46 @@ const AvatarDropdown = props => {
       {open && (
         <div className="dropdown-content">
           <div className="dropdown-avatar-camera">
-            {/* Avatar image in dropdown menu */}
-            <img
-              src="/avatar.png"
-              alt="Profile avatar"
-              className="avatar-submenu"
+            <input
+              className="image-input-dropdown"
+              type="file"
+              id="imageInput"
+              onChange={e => setPicture(e.target.files[0])}
             />
+            <label htmlFor="imageInput-2">
+              <div className="img-wrapper-dropdown">
+                <div
+                  className="profile-img-dropdown"
+                  style={{
+                    backgroundImage: `url('${data && data.me.image_url}')`
+                  }}
+                >
+                  {/* {!data && <p className="add-image">Add Image</p>} */}
+                </div>
+                {/* <div className="edit-image">
+                <p>Edit Image</p>
+              </div> */}
+              </div>
+            </label>
+            {/* Avatar image in dropdown menu */}
+            {/* {data && (
+              <img
+                src={data.me.image_url || "avatar.png"}
+                alt="Profile avatar"
+                className="avatar-submenu"
+              />
+            )} */}
             {/* This is the offset camera icon */}
-            <div className="dropdown-camera-icon">&#x1F4F7;</div>
+            <label htmlFor="imageInput" className="camera-label">
+              <div className="dropdown-camera-icon grey-on-hover">&#x1F4F7;</div>
+            </label>
           </div>
-          <p className="dropdown-menu-name">Quailnana</p>
-          <p className="dropdown-menu-email">quailnana@qualityhub.com</p>
+          {data && (
+            <p className="dropdown-menu-name">
+              {data.me.first_name + " " + data.me.last_name}
+            </p>
+          )}
+          {data && <p className="dropdown-menu-email">{data.me.email}</p>}
 
           {/* Need to link to dashboard */}
           <Link to="/dashboard">
