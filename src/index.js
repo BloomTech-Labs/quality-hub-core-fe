@@ -5,6 +5,8 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+require('dotenv').config();
+
 
 const getToken = () => {
   let token = localStorage.getItem('token');

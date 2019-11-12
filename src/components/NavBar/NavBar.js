@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AvatarDropdown from "./AvatarDropdown";
 import GridDropdown from "./GridDropdown";
 
+
 const NavBar = ({ loggedin, setLoggedin }) => {
   const logout = () => {
     localStorage.clear();
