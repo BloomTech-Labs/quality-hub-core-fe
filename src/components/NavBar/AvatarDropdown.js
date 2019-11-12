@@ -1,7 +1,20 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { gql } from 'apollo-boost';
+import { useLazyQuery, useQuery } from '@apollo/react-hooks';
+
+const GET_USER = gql`
+  query {
+    me {
+      first_name
+      last_name
+      email
+    }
+  }
+`;
 
 const AvatarDropdown = props => {
+  const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
 
@@ -23,13 +36,22 @@ const AvatarDropdown = props => {
     }
   };
 
+  useEffect(()=>{
+    
+  },[])
+
   useEffect(() => {
     if (open) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
       document.removeEventListener("mousedown", handleOutsideClick);
     }
+    getUser();
   }, [open]);
+
+  if(userData){
+    console.log(userData);
+  }
 
   return (
     <div ref={node}>
@@ -51,8 +73,8 @@ const AvatarDropdown = props => {
             {/* This is the offset camera icon */}
             <div className="dropdown-camera-icon">&#x1F4F7;</div>
           </div>
-          <p className="dropdown-menu-name">Quailnana</p>
-          <p className="dropdown-menu-email">quailnana@qualityhub.com</p>
+          {userData && <p className="dropdown-menu-name">{userData.me.first_name + " " + userData.me.last_name}</p>}
+          {userData && <p className="dropdown-menu-email">{userData.me.email}</p>}
 
           {/* Need to link to dashboard */}
           <Link to="/dashboard">
