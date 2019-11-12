@@ -1,21 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gql } from 'apollo-boost';
-import { useLazyQuery, useQuery } from '@apollo/react-hooks';
-// import {ApolloConsumer} from '@apollo/react-hooks';
-
-
-
-
-
-// const resetStore = () =>(
-//   <ApolloConsumer>
-//     {client=>{
-//       client.clearStore();
-//     }}
-//   </ApolloConsumer>
-// );
-
+import { useLazyQuery } from '@apollo/react-hooks';
 
 
 const GET_USER = gql`
@@ -35,15 +21,12 @@ const GET_USER = gql`
 
 const AvatarDropdown = props => {
   const [getUser, {called, loading, data}] = useLazyQuery(GET_USER);
-  // const {userData} = useQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
-  // const [editUser, setEditUser] = useState(userData);
 
   const logout = () => {
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
-    // resetStore();
     props.logout();
   };
 
@@ -70,12 +53,7 @@ const AvatarDropdown = props => {
       document.removeEventListener("mousedown", handleOutsideClick);
     }
     getUser();
-    // setEditUser(userData);
   }, [open]);
-
-  // useEffect(() => {
-    
-  // }, [userData]);
 
   return (
     <div ref={node}>
