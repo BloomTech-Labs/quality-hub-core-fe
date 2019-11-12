@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
 
-import UserPicture from '../UserPicture';
+import DashboardPicture from '../DashboardPicture';
 import DashboardInput from '../DashboardInput';
 
 //GraphQuaiL Query
@@ -56,7 +56,7 @@ const Dashboard = props => {
 
   return (
     <div className='editform'>
-      <UserPicture />
+      <DashboardPicture />
       {userData &&
         editUser &&
         Object.keys(userData.me).forEach(field => {
