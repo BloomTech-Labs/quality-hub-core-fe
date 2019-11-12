@@ -13,7 +13,6 @@ body {
   line-height: 1.5;
 }
 
-
 .App {
   text-align: center;
 }
@@ -30,67 +29,6 @@ a {
   font-size: 1.5rem;
 }
 
-.blinking-cursor {
-  font-weight: 100;
-  font-size: 30px;
-  color: #2e3d48;
-  -webkit-animation: 1s blink step-end infinite;
-  -moz-animation: 1s blink step-end infinite;
-  -ms-animation: 1s blink step-end infinite;
-  -o-animation: 1s blink step-end infinite;
-  animation: 1s blink step-end infinite;
-}
-
-@keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-moz-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-webkit-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-ms-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-o-keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
 .editform {
   display: flex;
   margin: 40px auto;
@@ -100,9 +38,10 @@ a {
 }
 
 .edit-button {
-  background-color: none;
+  background-color: white;
   border: none;
   font-size: 26px;
+  cursor: pointer;
 }
 
 .cancel-button {
@@ -111,6 +50,7 @@ a {
   font-weight: 900px;
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 
 .accept-button {
@@ -119,9 +59,12 @@ a {
   font-weight: 900px;
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 
-input, option, select {
+input,
+option,
+select {
   border-radius: 0.3rem;
   border: 1px solid silver;
   font-family: inherit;
@@ -129,14 +72,14 @@ input, option, select {
   margin-bottom: 1rem;
 }
 
-.progressbar{
+.progressbar {
   width: 100%;
- counter-reset: step;
- margin-bottom: 100px;
- margin-top: 20px;
+  counter-reset: step;
+  margin-bottom: 100px;
+  margin-top: 20px;
 }
 
-.progressbar li{
+.progressbar li {
   list-style-type: none;
   float: left;
   width: 33.33%;
@@ -144,12 +87,12 @@ input, option, select {
   text-align: center;
 }
 
-.progressbar li:before{
+.progressbar li:before {
   content: counter(step);
   counter-increment: step;
- text-align: center;
- margin: 5px auto 5px auto;
- line-height: 20px;
+  text-align: center;
+  margin: 5px auto 5px auto;
+  line-height: 20px;
   width: 20px;
   height: 20px;
   border: 3px solid gainsboro;
@@ -159,7 +102,7 @@ input, option, select {
   background-color: white;
 }
 
-.progressbar li:after{
+.progressbar li:after {
   content: ' ';
   position: absolute;
   z-index: -1;
@@ -188,8 +131,7 @@ input, option, select {
   background-color: purple;
 }
 
-
-.form-btn{
+.form-btn {
   background-color: white;
   font-family: inherit;
   border: 1px solid silver;
@@ -200,10 +142,10 @@ input, option, select {
   margin: 2rem 4rem;
 }
 
-.form-btn:disabled{
+.form-btn:disabled {
   background-color: white;
   font-family: inherit;
-  color:gray;
+  color: gray;
   border: 1px solid silver;
   border-radius: 0.3rem;
   margin-top: 1rem;
@@ -211,7 +153,6 @@ input, option, select {
   cursor: not-allowed;
   margin: 2rem 4rem;
 }
-
 
 .submit-btn {
   background-color: white;
@@ -222,8 +163,6 @@ input, option, select {
   padding: 0.8rem 1.5%;
   cursor: pointer;
 }
-
-
 
 .submit-btn:hover {
   background-color: silver;
@@ -259,7 +198,7 @@ input, option, select {
   cursor: pointer;
 }
 
-.signout-btn:focus{
+.signout-btn:focus {
   outline: 0;
 }
 
@@ -333,18 +272,16 @@ label {
   padding: 0 10px;
 }
 
-
-@keyframes birdwalk
-{
-    from {
-        margin-left: -40%;
-    }
-    to {
-        margin-left: 70%;
-    }
+@keyframes birdwalk {
+  from {
+    margin-left: -40%;
+  }
+  to {
+    margin-left: 70%;
+  }
 }
 
-.quail-walk{
+.quail-walk {
   animation: birdwalk 5s infinite;
   width: 100px;
 }
