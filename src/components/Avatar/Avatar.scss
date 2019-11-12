@@ -4,12 +4,42 @@
   pointer-events: none;
 }
 
+.img-wrapper {
+  display: flex;
+}
+
 .profile-img {
   border-radius: 50%;
   width: 100px;
   height: 100px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: gray;
-  cursor: pointer;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-image {
+  color: white;
+}
+
+.hover {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  right: 100px;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+    p {
+      color: white;
+    }
+  }
 }
