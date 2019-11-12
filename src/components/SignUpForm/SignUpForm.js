@@ -80,7 +80,7 @@ const SignUpForm = props => {
  
   const [signup, error] = useMutation(SIGN_UP);
 
-  console.log(error)
+  // console.log(error)
   //Form management/validation
   useEffect(()=>{
     validateUser();
@@ -189,7 +189,7 @@ const SignUpForm = props => {
                   )}
                   {valError
                     ? valError.map(message => {
-                        return <p>{message}</p>;
+                        return <p key={message}>{message}</p>;
                       })
                     : null}
                 </>

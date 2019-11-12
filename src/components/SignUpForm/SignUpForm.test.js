@@ -40,6 +40,6 @@ test('is rendering', async () => {
         <ApolloProvider client={client}>  
             <SignUpForm />
         </ApolloProvider> 
-    )
+    );
     await wait();
 })
