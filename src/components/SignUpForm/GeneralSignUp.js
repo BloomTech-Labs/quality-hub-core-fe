@@ -1,6 +1,8 @@
 import React from 'react';
+import { statesArray } from './States.js'
 
 const GeneralSignUp = ({ user, handleChange, data }) => {
+
 
   
     return (
@@ -103,14 +105,21 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
           <div className="input-label">
             <label htmlFor="sign-up-state">State/Territory*</label>
             <br />
-            <input
+            <select
               id="sign-up-state"
               name="state"
               placeholder="State"
               value={user.state}
               onChange={handleChange}
               required
-            />
+            >
+              <option>Select</option>
+            {statesArray.map(state => (
+                <option value={state} key={state}>
+                  {state}
+                </option>
+              ))}
+          </select>
           </div>
         </div>
       </div>

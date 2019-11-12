@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import GeneralSignUp from './GeneralSignUp.js';
-import ExpSignUp from './ExpSignUp.js';
-import CompletedSignUp from './CompletedSignUp';
-
+import GeneralSignUp from "./GeneralSignUp.js";
+import ExpSignUp from "./ExpSignUp.js";
+import CompletedSignUp from "./CompletedSignUp";
+import * as yup from "yup";
+import { string, object, mixed } from "yup";
 
 //GraphQuail Stuff
 const GET_INDUSTRIES = gql`
-query {
-  industries{
-    name
-    id
+  query {
+    industries {
+      name
+      id
+    }
   }
-}
-`
+`;
 
 const SIGN_UP = gql`
   mutation signup(
@@ -56,39 +57,53 @@ const SIGN_UP = gql`
   }
 `;
 
-
 //COM-ponent
 const SignUpForm = props => {
-  const [user, setUser] = useState({
-
-  });
-
-
-
-  const [signup, signupStatus] = useMutation(SIGN_UP);
-
+  //Get industry list
   const { data } = useQuery(GET_INDUSTRIES);
   console.log(data && data.industries);
 
-  const [progress, setProgress] = useState(1);
+  //Set user object
+  const [user, setUser] = useState({});
 
-  const handleChange = e => {
-    if(e.target.vale === null){
-     setUser({
-       ...user
-      })
-    } else {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
+  const [signup, signupStatus] = useMutation(SIGN_UP);
+
+  //Form management/validation
+  const userSchema = object({
+    first_name: string().required("Please enter your first name"),
+    last_name: string().required("Please enter your last name"),
+    email: string()
+      .email("Please enter a valid email address")
+      .required("Please enter your email address"),
+    industry: mixed().required("Please select your industry"),
+    city: string().required("Please enter your city"),
+    state: string().required("Please enter your state")
+  });
+
+  const validateUser = () => {
+    userSchema.validate(user, { abortEarly: false }).catch(err => {
+      setValError(err.errors);
+      console.log(err.errors);
     });
-  }
   };
 
-
+  const handleChange = e => {
+    if (e.target.vale === null) {
+      setUser({
+        ...user
+      });
+    } else {
+      validateUser();
+      setUser({
+        ...user,
+        [e.target.name]: e.target.value
+      });
+    }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
+    validateUser();
     signup({ variables: user })
       .then(results => {
         console.log(results);
@@ -98,13 +113,31 @@ const SignUpForm = props => {
         setProgress(progress + 1);
         setTimeout(() => {
           props.history.push("/signin");
-        }, 3000); 
+        }, 3000);
       })
       .catch(err => {
         console.log(err);
       });
     console.log(user);
   };
+
+  //Check if form is filled out and validated/activate next button
+  const reqInput = document.getElementsByTagName("input");
+  const [valError, setValError] = useState();
+  const checkInput = i => {
+    for (i = 0; i < reqInput.length; i++) {
+      if (valError) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  };
+
+  console.log(valError);
+
+  //Set form step
+  const [progress, setProgress] = useState(1);
 
   const handleNext = e => {
     e.preventDefault();
@@ -117,23 +150,11 @@ const SignUpForm = props => {
     console.log(progress);
   };
 
-  const reqInput = document.getElementsByTagName('input');
-
-  const checkInput = (i) => {
-    for (i = 0; i < reqInput.length; i++) {
-      if (reqInput[i].hasAttribute("required") && reqInput[i].value.length === 0) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  };
-
   return (
     <div className="sign-up-form">
-       <h2>Sign Up</h2>
+      <h2>Sign Up</h2>
       <ul className="progressbar">
-        <li className={progress >= 2 ? 'active' : null}>Basic Info</li>
+        <li className={progress >= 2 ? "active" : null}>Basic Info</li>
         <li className={progress >= 3 ? "active" : null}>Experience</li>
         <li className={progress >= 3 ? "active" : null}>Success</li>
       </ul>
@@ -150,10 +171,19 @@ const SignUpForm = props => {
                     handleChange={handleChange}
                   />
                   {checkInput() ? (
-                    <button className="form-btn" onClick={handleNext}>Next</button>
+                    <button className="form-btn" onClick={handleNext}>
+                      Next
+                    </button>
                   ) : (
-                    <button className="form-btn" disabled>Next</button>
+                    <button className="form-btn" disabled>
+                      Next
+                    </button>
                   )}
+                  {valError
+                    ? valError.map(message => {
+                        return <p>{message}</p>;
+                      })
+                    : null}
                 </>
               );
             case 2:
@@ -163,17 +193,20 @@ const SignUpForm = props => {
                   <button className="form-btn" onClick={handleBack}>
                     Back
                   </button>
-                  <button className="submit-btn" type="submit">Submit</button>
+                  <button className="submit-btn" type="submit">
+                    Submit
+                  </button>
+                  {valError
+                    ? valError.map(message => {
+                        return <p>{message}</p>;
+                      })
+                    : null}
                 </>
               );
             case 3:
               return (
                 <>
                   <CompletedSignUp />
-                  {/* <button className="form-btn" onClick={handleBack}>
-                    Back
-                  </button> */}
-                  
                 </>
               );
             default:
