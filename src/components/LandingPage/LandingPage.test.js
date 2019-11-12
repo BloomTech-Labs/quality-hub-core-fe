@@ -12,6 +12,6 @@ test('is rendering', () => {
 
 test('h1 exists and says the right thing', () => {
     const { getByText } = render(<LandingPage />)
-    getByText('The best way to assess the quality of skill.')
+    getByText('The best way to assess the quality of')
 })
 
