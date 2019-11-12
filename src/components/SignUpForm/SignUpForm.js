@@ -86,7 +86,7 @@ const SignUpForm = props => {
   });
 
   const validateUser = () => {
-    console.log(user);
+    // console.log(user);
     userSchema.validate(user, { abortEarly: false })
     .then(res=>{
       console.log("SUCCESS. NO MORE ERRORS", res)
@@ -95,7 +95,7 @@ const SignUpForm = props => {
     .catch(err => {
       
       setValError(err.errors);
-      console.log(err.errors);
+      // console.log(err.errors);
     });
   };
  
