@@ -7,8 +7,6 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 
 import axios from "axios";
 
-import { cloudName, uploadPreset } from "../../secrets";
-
 const GET_USER = gql`
   query dropdownMenu {
     me {
@@ -80,13 +78,12 @@ const AvatarDropdown = props => {
       formData.append("file", picture);
       formData.append(
         "upload_preset",
-        process.env.REACT_APP_UPLOAD_PRESET || uploadPreset
+        process.env.REACT_APP_UPLOAD_PRESET
       );
 
       axios
         .post(
-          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME ||
-            cloudName}/image/upload`,
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
           formData
         )
         .then(res => {
