@@ -61,7 +61,6 @@ const SIGN_UP = gql`
 const SignUpForm = props => {
   //Get industry list
   const { data } = useQuery(GET_INDUSTRIES);
-  // console.log(data && data.industries);
 
   //Set user object
   const [user, setUser] = useState({
@@ -71,20 +70,22 @@ const SignUpForm = props => {
     password: "",
     city: "",
     state: "",
-    personal_url: "",
-    portfolio_url: "",
     industry: "",
-    twitter_url: "",
-    linkedin_url: "",
+    personal_url: "http://",
+    portfolio_url: "http://",
+    twitter_url: "http://",
+    linkedin_url: "http://",
+    github_url: "http://",
   });
  
-  const [signup, signupStatus] = useMutation(SIGN_UP);
+  const [signup, error] = useMutation(SIGN_UP);
 
+  console.log(error)
+  //Form management/validation
   useEffect(()=>{
     validateUser();
   }, [user]);
 
-  //Form management/validation
   const userSchema = object({
     first_name: string().required("Please enter your first name"),
     last_name: string().required("Please enter your last name"),
@@ -95,13 +96,14 @@ const SignUpForm = props => {
     city: string().required("Please enter your city"),
     state: string().required("Please enter your state"),
     password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password'),
-    linkedin_url: string().url(),
-    github_url: string().url(),
-    personal_url: string().url(),
-    portfolio_url: string().url(),
-    twitter_url: string().url(),
+    linkedin_url: string(),
+    github_url: string(),
+    personal_url: string(),
+    portfolio_url: string(),
+    twitter_url: string(),
   });
 
+  const [valError, setValError] = useState();
   const validateUser = () => {
     console.log(user);
     userSchema.validate(user, { abortEarly: false })
@@ -118,29 +120,13 @@ const SignUpForm = props => {
  
 
   const handleChange = e => {
-    
-    // if (e.target.value === "" ) {
-    //   let newUser = {...user};
-    //   delete newuser [e.target.name],
-    //   setUser({
-        
-    //     ...user
-    //   });
-      
-    // } else {
-    //   console.log('before validate user')
-      
       setUser({
         ...user,
         [e.target.name]: e.target.value
       });
-
-      
-    //}
-    // console.log(user);
-    
   };
 
+  const [gqlErr, setGqlErr] = useState(null)
   const handleSubmit = e => {
     e.preventDefault();
     validateUser();
@@ -148,7 +134,6 @@ const SignUpForm = props => {
       .then(results => {
         console.log(results);
         let token = results.data.signup.token;
-        //   loginStatus.error = null;
         localStorage.setItem("token", token);
         setProgress(progress + 1);
         setTimeout(() => {
@@ -160,34 +145,17 @@ const SignUpForm = props => {
       });
     console.log(user);
   };
-
-  //Check if form is filled out and validated/activate next button
-  const reqInput = document.getElementsByTagName("input");
-  const [valError, setValError] = useState();
-  const checkInput = i => {
-    for (i = 0; i < reqInput.length; i++) {
-      if (valError) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  };
-
-  // console.log(valError);
-
+ 
   //Set form step
   const [progress, setProgress] = useState(1);
 
   const handleNext = e => {
     e.preventDefault();
     setProgress(progress + 1);
-    // console.log(progress);
   };
   const handleBack = e => {
     e.preventDefault();
     setProgress(progress - 1);
-    // console.log(progress);
   };
 
   return (
@@ -210,12 +178,12 @@ const SignUpForm = props => {
                     data={data}
                     handleChange={handleChange}
                   />
-                  {checkInput() ? (
-                    <button className="form-btn" onClick={handleNext}>
+                  {valError ? (
+                    <button className="form-btn" disabled>
                       Next
                     </button>
                   ) : (
-                    <button className="form-btn" disabled>
+                    <button className="form-btn" onClick={handleNext}>
                       Next
                     </button>
                   )}
@@ -236,6 +204,7 @@ const SignUpForm = props => {
                   <button className="submit-btn" type="submit">
                     Submit
                   </button>
+               {error.error ? <p>This email address is already in use- please enter a unique email address</p> : null}
                   {valError
                     ? valError.map(message => {
                         return <p>{message}</p>;
@@ -261,29 +230,3 @@ const SignUpForm = props => {
 };
 
 export default SignUpForm;
-
-/*
-
-required fiieds
-
-name
-password
-email
-city
-state
-
-optional fields
-
-image
-gender
-personal_url
-blog_url
-twitter_url
-portfolio_url
-linkedin_url
-github_url
-bio
-payment_info
-
-
-*/
