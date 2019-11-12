@@ -9,24 +9,18 @@
   background: none;
   border: none;
   cursor: pointer;
-}
-
-.left-scroll {
   display: flex;
   align-items: center;
   font-size: 3rem;
+  &:hover {
+    color: gray;
+  }
 }
 
 .card-wrapper {
   display: flex;
   width: 90%;
   justify-content: space-evenly;
-}
-
-.right-scroll {
-  display: flex;
-  align-items: center;
-  font-size: 3rem;
 }
 
 .feature-card {
