@@ -71,7 +71,8 @@ const Dashboard = props => {
     "last_name",
     "email",
     "city",
-    "state"
+    "state",
+    'industries'
   ];
   const experience = [
     "personal_url",

@@ -73,17 +73,14 @@ const DashboardInput = ({ userKey, userValue }) => {
     
     //check if valid email
     if(userKey=='email'){
-      
-      if(user[userKey].match(mailFormat)){
-        //continue
-      } else {
+      if(!user[userKey].match(mailFormat)){
         console.log('not an email address');
         setUser({
           [userKey]: original,
         });
         setEditing(false);
         return;
-      }
+      } 
     }
 
     //this makes sure any required fields are not submitted as blank strings
@@ -115,6 +112,7 @@ const DashboardInput = ({ userKey, userValue }) => {
     setEditing(false);
   };
 
+  console.log(user);
   return (
     <div className='dash-input'>
       <div className='dash-row'>
@@ -122,6 +120,7 @@ const DashboardInput = ({ userKey, userValue }) => {
           <h2>{capitalize(userKey)}</h2>
         </span>
         <div>
+          
           {editing ? (
             <input
               name={userKey}
@@ -129,9 +128,9 @@ const DashboardInput = ({ userKey, userValue }) => {
               onChange={handleChange}
               value={user.userKey}
             />
-          ) : (
-            <p>{user[userKey]}</p>
-          )}
+          ) : 
+            userKey != 'industries' ? (<p>{user[userKey]}</p>) : user[userKey][0] ? <p>{user[userKey][0].name}</p> : <p></p>}
+          
         </div>
       </div>
       <div>

@@ -3,6 +3,7 @@ import DashboardPicture from "../DashboardPicture";
 import DashboardInput from "../DashboardInput";
 
 const BasicInfo = ({ myArray, basicInfo, userData }) => {
+  console.log(userData);
   return (
     <div className="editform">
       <DashboardPicture />
