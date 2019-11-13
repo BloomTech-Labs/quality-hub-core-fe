@@ -15,7 +15,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <NavBar loggedin={loggedin} setLoggedin={setLoggedin} /> */}
       <Route path ="/" render={props => <NavBar {...props} loggedin={loggedin} setLoggedin={setLoggedin} />} />
       <Switch>
         <Route exact path="/" render={props => <LandingPage {...props} />} />
