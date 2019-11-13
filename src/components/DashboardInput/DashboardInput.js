@@ -112,7 +112,6 @@ const DashboardInput = ({ userKey, userValue }) => {
     setEditing(false);
   };
 
-  console.log(user);
   return (
     <div className='dash-input'>
       <div className='dash-row'>

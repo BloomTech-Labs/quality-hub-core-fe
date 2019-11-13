@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardPicture from "../DashboardPicture";
 import DashboardInput from "../DashboardInput";
+import {statesArray} from '../SignUpForm/States';
 
 const BasicInfo = ({ myArray, basicInfo, userData }) => {
   console.log(userData);

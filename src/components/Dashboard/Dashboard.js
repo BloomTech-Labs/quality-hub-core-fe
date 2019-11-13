@@ -20,7 +20,7 @@ const GET_USER = gql`
       last_name
       email
       city
-
+      state
       industries {
         id
         name
