@@ -45,7 +45,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
   return (
     <StyledNav>
-      {/* Animated bird flying across the screen */}
+      {/* Animated quailnana flying across the screen */}
       <div className="left">
         <div className="bird"></div>
         <NavLink to="/">
@@ -58,7 +58,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
           className="rotate"
         />
       </div>
-      {/* End animated bird */}
+      {/* End animated quailnana */}
 
       <div className="right">
         {/* If you're not logged in, show sign in and sign up buttons */}
