@@ -1,46 +1,51 @@
-.features-wrapper {
+.carousel {
   display: flex;
   justify-content: space-around;
-  max-width: 1000px;
+  width: 920px;
   margin: 0 auto 10rem;
 }
 
 .scroll-btn {
   background: none;
   border: none;
+  outline: none;
   cursor: pointer;
-}
-
-.left-scroll {
   display: flex;
   align-items: center;
   font-size: 3rem;
+  &:hover {
+    color: gray;
+  }
 }
 
-.card-wrapper {
+.container {
   display: flex;
+  overflow: hidden;
   width: 90%;
-  justify-content: space-evenly;
+  height: 390px;
+  margin: 0 auto;
+  align-items: center;
 }
 
-.right-scroll {
+.content {
   display: flex;
-  align-items: center;
-  font-size: 3rem;
+  position: relative;
 }
 
 .feature-card {
-  width: 250px;
   box-shadow: 1px 1px 2px 2px silver;
+  margin: 0 1%;
+  transition: transform 300ms ease 100ms;
 }
 
 .feature-img {
-  width: 100%;
+  width: 250px;
   height: 180px;
   object-fit: cover;
 }
 
 .feature-txt {
+  height: 180px;
   text-align: left;
   padding-left: 7%;
   padding-right: 7%;
