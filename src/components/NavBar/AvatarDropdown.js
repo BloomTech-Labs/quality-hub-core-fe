@@ -31,7 +31,7 @@ const EDIT_IMG = gql`
 
 const AvatarDropdown = props => {
   const [picture, setPicture] = useState(null);
-  const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
+  const [getUser, { client, data }] = useLazyQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
   const [avatarURL, setAvatarURL] = useState('/blankavatar.svg');
