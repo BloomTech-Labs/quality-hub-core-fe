@@ -82,6 +82,17 @@ const DashboardInput = ({ userKey, userValue }) => {
         return;
       }
     }
+    //Cannot leave state on Select
+    if (userKey == "state") {
+      if (user[userKey] == "Select") {
+        console.log("Must pick a state");
+        setUser({
+          [userKey]: original
+        });
+        setEditing(false);
+        return;
+      }
+    }
 
     //this makes sure any required fields are not submitted as blank strings
     if (
