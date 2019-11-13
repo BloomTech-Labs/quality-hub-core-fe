@@ -46,7 +46,8 @@ const EDIT_USER = gql`
 `;
 
 //Component
-const DashboardInput = ({ userKey, userValue }) => {
+const DashboardInput = ({ userKey, userValue, industryData }) => {
+  
   const [original, setOriginal] = useState(userValue);
   const [editing, setEditing] = useState(false);
   const [user, setUser] = useState({
@@ -168,6 +169,27 @@ if (userKey == "state") {
               ))}
           </select>
       );
+    }
+
+    if(userKey="industries"){
+      return (
+      <select
+        id="sign-up-industry"
+        name="industry"
+        placeholder="Industry"
+        value={ user[userKey][0] ? user[userKey][0].name : ""}
+        onChange={handleChange}
+        required
+      >
+        <option>Select</option>
+        {industryData &&
+          industryData.industries.map(industry => (
+            <option value={industry.id} key={industry.id}>
+              {industry.name}
+            </option>
+          ))}
+      </select>
+      )
     }
 
     return (<input

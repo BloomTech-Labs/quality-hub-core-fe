@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
@@ -9,6 +9,16 @@ import Experience from "./Experience";
 
 import DashboardPicture from "../DashboardPicture";
 import DashboardInput from "../DashboardInput";
+
+//get list of industries
+const GET_INDUSTRIES = gql`
+  query {
+    industries {
+      name
+      id
+    }
+  }
+`;
 
 //GraphQuaiL Query
 const GET_USER = gql`
@@ -46,6 +56,7 @@ const Dashboard = props => {
 
   const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const [editUser, setEditUser] = useState(userData);
+  const { data: industryData } = useQuery(GET_INDUSTRIES);
 
   // const [testEditingValue, setTestEditingValue] = useState({
   //   testname: 'Julie A',
@@ -117,6 +128,7 @@ const Dashboard = props => {
               myArray={myArray}
               basicInfo={basicInfo}
               userData={userData}
+              industryData={industryData}
             />
           )}
         />
