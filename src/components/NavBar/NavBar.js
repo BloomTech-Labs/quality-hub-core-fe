@@ -15,8 +15,8 @@ const GET_USER = gql`
 `;
 
 const NavBar = ({ loggedin, setLoggedin }) => {
-
-  const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
+  const [getUser, { client, loading, error, data }] = useLazyQuery(GET_USER);
+  const [errorCount, setErrorCount] = useState(0);
   const [runCount, setRunCount] = useState(0);
 
   const logout = () => {
@@ -25,29 +25,40 @@ const NavBar = ({ loggedin, setLoggedin }) => {
   };
 
   // On render, pull stored token. If you have a token, log yourself in.
-  useEffect(()=>{
-
+  useEffect(() => {
     //if you have a token, pull some user data to make sure it's valid
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem("token")) {
+      console.log("there is a token");
       getUser();
       setRunCount(1); //run count is used for the second useEffect. It makes sure that logic is run only AFTER data is retrieved.
     }
-  },[])
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
+    // console.log("second UE", data);
+    // //useEffect runs on intialization of component, so runCount makes sure data is first retrieved before we validate the token.
+    // if (runCount > 0) {
+    //   console.log("run count +");
+    //   if (data) {
+    //     setLoggedin(true); //If we pull back any data, we are logged in
+    //   } else {
+    //     //if no data, remove token and id
+    //     localStorage.setItem("token", null);
+    //     localStorage.setItem("id", null);
+    //     // need to push to landing page?
+    //   }
+    // }
+  }, [data, runCount]);
+  if (data) {
+    setLoggedin(true);
+  }
 
-    //useEffect runs on intialization of component, so runCount makes sure data is first retrieved before we validate the token. 
-    if(runCount > 0){
-      if(data){
-        setLoggedin(true); //If we pull back any data, we are logged in
-      } else {//if no data, remove token and id
-        localStorage.setItem('token', null);
-        localStorage.setItem('id', null);
-        // need to push to landing page?
-      }
-    }
-    
-  },[data])
+  if (error && errorCount == 0) {
+    console.log("error");
+    setErrorCount(1);
+    logout();
+    client.clearStore();
+  }
 
   return (
     <StyledNav>
@@ -75,12 +86,17 @@ const NavBar = ({ loggedin, setLoggedin }) => {
           </>
         )}
 
-          {/* Dropdown list of Q services */}
+        {/* Dropdown list of Q services */}
         <GridDropdown />
 
         {/* If you're logged in, show your avatar with a dropdown menu */}
-        {loggedin &&
-        <AvatarDropdown logout={logout} loggedin={loggedin} className="hidden"/>}
+        {loggedin && (
+          <AvatarDropdown
+            logout={logout}
+            loggedin={loggedin}
+            className="hidden"
+          />
+        )}
       </div>
     </StyledNav>
   );

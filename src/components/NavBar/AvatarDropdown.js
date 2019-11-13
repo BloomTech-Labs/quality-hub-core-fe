@@ -34,6 +34,8 @@ const AvatarDropdown = props => {
   const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
   const node = useRef();
   const [open, setOpen] = useState(false);
+  const [avatarURL, setAvatarURL] = useState('/blankavatar.svg');
+  const [runCount, setRunCount] = useState(0);
 
   const [editImage] = useMutation(EDIT_IMG, {
     update(
@@ -96,7 +98,22 @@ const AvatarDropdown = props => {
 
   useEffect(() => {
     getUser();
+    setRunCount(1);
   }, []);
+
+  useEffect(()=>{
+
+    //useEffect runs on intialization of component, so runCount makes sure data is first retrieved
+    if(runCount > 0){
+      if(data){
+        console.log(data);
+        if(data.me.image_url){
+          setAvatarURL(data.me.image_url);
+        }
+      } 
+    }
+    
+  },[data])
 
   useEffect(() => {
     if (open) {
@@ -110,8 +127,8 @@ const AvatarDropdown = props => {
   return (
     <div ref={node}>
       <img
-        src="/blankavatar.svg"
-        alt="Grid Menu"
+        src={avatarURL}
+        alt="Avatar menu"
         className="avatar-menu"
         onClick={e => setOpen(!open)}
       />
@@ -130,6 +147,7 @@ const AvatarDropdown = props => {
                   className="profile-img-dropdown"
                   style={{
                     backgroundImage: `url('${data && data.me.image_url}')`
+                    // backgroundImage: `url('${avatarURL}')`
                   }}
                 >
                   {/* {!data && <p className="add-image">Add Image</p>} */}
