@@ -10,13 +10,9 @@ const GET_USER = gql`
   query dropdownMenu {
     me {
       id
-      first_name
     }
   }
 `;
-
-
-
 
 const NavBar = ({ loggedin, setLoggedin }) => {
 
@@ -30,10 +26,11 @@ const NavBar = ({ loggedin, setLoggedin }) => {
 
   // On render, pull stored token. If you have a token, log yourself in.
   useEffect(()=>{
+
+    //if you have a token, pull some user data to make sure it's valid
     if(localStorage.getItem('token')){
-      console.log('you has token!')
       getUser();
-      setRunCount(1);
+      setRunCount(1); //run count is used for the second useEffect. It makes sure that logic is run only AFTER data is retrieved.
     }
   },[])
 
@@ -60,6 +57,7 @@ const NavBar = ({ loggedin, setLoggedin }) => {
         <NavLink to="/">
           <h2>QualityHub</h2>
         </NavLink>
+        {/* Spinning Quail */}
         <img
           src="http://clipartmag.com/images/quail-clipart-1.jpg"
           alt="quail"
