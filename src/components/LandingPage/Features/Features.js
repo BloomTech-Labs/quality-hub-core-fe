@@ -36,6 +36,7 @@ export default function Features() {
                 imgUrl={feature.imgUrl}
                 title={feature.title}
                 description={feature.description}
+                link={feature.link}
               />
             ))}
           </div>
