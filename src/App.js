@@ -7,6 +7,7 @@ import SignInForm from "./components/SignInForm/index.js";
 import SignUpForm from "./components/SignUpForm/index.js";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 
 import "./global/index.scss";
 
@@ -29,7 +30,8 @@ function App() {
           )}
         />
         <Route path="/signup" component={SignUpForm} />
-        <Route path="/dashboard" component={Dashboard} />
+        {/* <Route path="/dashboard" component={Dashboard} /> */}
+        <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
       <Footer />
     </div>
