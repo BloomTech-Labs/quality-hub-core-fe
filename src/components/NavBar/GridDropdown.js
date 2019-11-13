@@ -22,6 +22,7 @@ const GridDropdown = props => {
 
   return (
     <div ref={node}>
+      {/* Styling here needs to be changed to CSS Grid to make it more stable */}
       <img
         src="/grid.svg"
         alt="Grid Menu"

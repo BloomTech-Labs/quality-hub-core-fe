@@ -134,10 +134,6 @@
 
 .img-wrapper-dropdown {
   margin-top: 10px;
-  // display: flex;
-  // justify-content: center;
-  // align-content: center;
-  // align-items: center;
 }
 
 .profile-img-dropdown {
@@ -193,7 +189,7 @@
 }
 
 /* keyframe animations */
-
+// Quailnana flies in
 @keyframes bird-enter {
   from {
     transform: translateX(100vw);
