@@ -79,7 +79,7 @@ const SignUpForm = props => {
  
   const [signup, error] = useMutation(SIGN_UP);
 
-  console.log(error)
+  // console.log(error)
   //Form management/validation
   useEffect(()=>{
     validateUser();
@@ -104,7 +104,7 @@ const SignUpForm = props => {
 
   const [valError, setValError] = useState();
   const validateUser = () => {
-    console.log(user);
+    // console.log(user);
     userSchema.validate(user, { abortEarly: false })
     .then(res=>{
       console.log("SUCCESS. NO MORE ERRORS", res)
@@ -113,7 +113,7 @@ const SignUpForm = props => {
     .catch(err => {
       
       setValError(err.errors);
-      console.log(err.errors);
+      // console.log(err.errors);
     });
   };
  
@@ -206,7 +206,7 @@ const SignUpForm = props => {
                {error.error ? <p>This email address is already in use- please enter a unique email address</p> : null}
                   {valError
                     ? valError.map(message => {
-                        return <p>{message}</p>;
+                        return <p key={message}>{message}</p>;
                       })
                     : null}
                 </>
