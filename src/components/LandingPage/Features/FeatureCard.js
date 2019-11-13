@@ -8,7 +8,9 @@ export default function FeatureCard(props) {
         <h2>{props.title}</h2>
         <p>{props.description}</p>
         <hr />
-        <p>Learn More &rarr;</p>
+        <a href={props.link} target="_blank" rel="noopener noreferrer">
+          <p>Learn More &rarr;</p>
+        </a>
       </div>
     </div>
   );
