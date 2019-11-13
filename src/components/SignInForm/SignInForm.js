@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 // import styled from "styled-components";
 import Loading from "../Loading";
+import { Link } from "react-router-dom";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
