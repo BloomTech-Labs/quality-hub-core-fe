@@ -33,6 +33,7 @@ export default function Features() {
           >
             {FeaturesInfo.map(feature => (
               <FeatureCard
+                key={feature.imgUrl}
                 imgUrl={feature.imgUrl}
                 title={feature.title}
                 description={feature.description}

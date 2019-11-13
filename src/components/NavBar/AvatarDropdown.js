@@ -28,12 +28,12 @@ const EDIT_IMG = gql`
 
 const AvatarDropdown = props => {
   const [getUser, { client, data }] = useLazyQuery(GET_USER);
-  
+
   const [picture, setPicture] = useState(null);
   const [open, setOpen] = useState(false);
   const [avatarURL, setAvatarURL] = useState("/blankavatar.svg");
   const [runCount, setRunCount] = useState(0);
-  
+
   const node = useRef();
 
   const [editImage] = useMutation(EDIT_IMG, {
@@ -55,9 +55,9 @@ const AvatarDropdown = props => {
 
   const logout = () => {
     client.clearStore(); //remove token from cache
-    setAvatarURL("/blankavatar.svg"); //Make sure avatar reverts back
-    document.removeEventListener("mousedown", handleOutsideClick); 
+    document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
+    props.setLoggedin(false);
     props.logout();
   };
 
@@ -102,7 +102,6 @@ const AvatarDropdown = props => {
     //useEffect runs on intialization of component, so runCount makes sure data is first retrieved
     if (runCount > 0) {
       if (data) {
-        console.log(data);
         if (data.me.image_url) {
           setAvatarURL(data.me.image_url);
         }
@@ -142,24 +141,11 @@ const AvatarDropdown = props => {
                   className="profile-img-dropdown"
                   style={{
                     backgroundImage: `url('${data && data.me.image_url}')`
-                    // backgroundImage: `url('${avatarURL}')`
                   }}
-                >
-                  {/* {!data && <p className="add-image">Add Image</p>} */}
-                </div>
-                {/* <div className="edit-image">
-                <p>Edit Image</p>
-              </div> */}
+                ></div>
               </div>
             </label>
             {/* Avatar image in dropdown menu */}
-            {/* {data && (
-              <img
-                src={data.me.image_url || "avatar.png"}
-                alt="Profile avatar"
-                className="avatar-submenu"
-              />
-            )} */}
             {/* This is the offset camera icon */}
             <label htmlFor="imageInput" className="camera-label">
               <div className="dropdown-camera-icon grey-on-hover">

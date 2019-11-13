@@ -213,3 +213,36 @@
   position: absolute;
   pointer-events: none;
 }
+
+
+.styled-nav{
+  display: flex;
+  justify-content: space-between;
+
+  .left {
+    display: flex;
+    padding-left: 2%;
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    img {
+      width: 5rem;
+    }
+  }
+  .right {
+    display: flex;
+    justify-content: space-evenly;
+    width: 180px;
+    align-items: center;
+
+    a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      width: 80px;
+    }
+  }
+}

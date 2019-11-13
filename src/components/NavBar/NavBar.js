@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import AvatarDropdown from "./AvatarDropdown";
 import GridDropdown from "./GridDropdown";
 import { useLazyQuery } from "@apollo/react-hooks";
@@ -21,7 +20,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
   const logout = () => {
     localStorage.clear();
     setLoggedin(false);
-    history.push('/');
+    history.push("/");
   };
 
   // On render, pull stored token. If you have a token, log yourself in.
@@ -32,19 +31,20 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
     }
   }, []);
 
-
-  if (data) {
+  if (data && localStorage.getItem("token")) {
+    console.log("here");
     setLoggedin(true);
   }
 
   if (error && errorCount == 0) {
     setErrorCount(1);
     client.clearStore();
+    setLoggedin(false);
     logout();
   }
 
   return (
-    <StyledNav>
+    <div className="styled-nav">
       {/* Animated quailnana flying across the screen */}
       <div className="left">
         <div className="bird"></div>
@@ -54,7 +54,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
         {/* Spinning Quail */}
         <img
           src="http://clipartmag.com/images/quail-clipart-1.jpg"
-          alt="quail"
+          alt="spinning quail"
           className="rotate"
         />
       </div>
@@ -77,45 +77,14 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
           <AvatarDropdown
             logout={logout}
             loggedin={loggedin}
+            setLoggedin={setLoggedin}
             className="hidden"
+            history={history}
           />
         )}
       </div>
-    </StyledNav>
+    </div>
   );
 };
-
-const StyledNav = styled.div`
-  //   background-color: red;
-  display: flex;
-  justify-content: space-between;
-
-  .left {
-    display: flex;
-    padding-left: 2%;
-
-    a {
-      color: black;
-      text-decoration: none;
-    }
-
-    img {
-      width: 5rem;
-    }
-  }
-  .right {
-    display: flex;
-    justify-content: space-evenly;
-    width: 180px;
-    align-items: center;
-
-    a {
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      width: 80px;
-    }
-  }
-`;
 
 export default NavBar;
