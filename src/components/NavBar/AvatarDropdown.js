@@ -28,12 +28,12 @@ const EDIT_IMG = gql`
 
 const AvatarDropdown = props => {
   const [getUser, { client, data }] = useLazyQuery(GET_USER);
-  
+
   const [picture, setPicture] = useState(null);
   const [open, setOpen] = useState(false);
   const [avatarURL, setAvatarURL] = useState("/blankavatar.svg");
   const [runCount, setRunCount] = useState(0);
-  
+
   const node = useRef();
 
   const [editImage] = useMutation(EDIT_IMG, {
@@ -56,7 +56,7 @@ const AvatarDropdown = props => {
   const logout = () => {
     client.clearStore(); //remove token from cache
     setAvatarURL("/blankavatar.svg"); //Make sure avatar reverts back
-    document.removeEventListener("mousedown", handleOutsideClick); 
+    document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
     props.logout();
   };
