@@ -142,9 +142,7 @@ const AvatarDropdown = props => {
                   style={{
                     backgroundImage: `url('${data && data.me.image_url}')`
                   }}
-                >
-                </div>
-
+                ></div>
               </div>
             </label>
             {/* Avatar image in dropdown menu */}

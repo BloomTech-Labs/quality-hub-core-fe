@@ -54,7 +54,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
         {/* Spinning Quail */}
         <img
           src="http://clipartmag.com/images/quail-clipart-1.jpg"
-          alt="quail"
+          alt="spinning quail"
           className="rotate"
         />
       </div>
