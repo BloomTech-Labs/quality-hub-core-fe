@@ -5,6 +5,7 @@ import AvatarDropdown from "./AvatarDropdown";
 import GridDropdown from "./GridDropdown";
 import { useLazyQuery, useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import { Redirect } from 'react-router-dom'
 
 const GET_USER = gql`
   query dropdownMenu {
@@ -14,14 +15,16 @@ const GET_USER = gql`
   }
 `;
 
-const NavBar = ({ loggedin, setLoggedin }) => {
+const NavBar = ({ loggedin, setLoggedin, history }) => {
   const [getUser, { client, loading, error, data }] = useLazyQuery(GET_USER);
   const [errorCount, setErrorCount] = useState(0);
   const [runCount, setRunCount] = useState(0);
 
   const logout = () => {
     localStorage.clear();
+    // client.clearStore();
     setLoggedin(false);
+    history.push('/');
   };
 
   // On render, pull stored token. If you have a token, log yourself in.
@@ -54,10 +57,13 @@ const NavBar = ({ loggedin, setLoggedin }) => {
   }
 
   if (error && errorCount == 0) {
-    console.log("error");
     setErrorCount(1);
-    logout();
     client.clearStore();
+    logout();
+    console.log('redirect');
+    return <Redirect to="/" />
+console.log('redirected');
+    // client.clearStore();
   }
 
   return (
