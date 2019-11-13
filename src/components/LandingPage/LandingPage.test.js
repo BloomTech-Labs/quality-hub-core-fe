@@ -10,8 +10,8 @@ test('is rendering', () => {
     )
 })
 
-test('h1 exists and says the right thing', () => {
+test('p exists and says the right thing', () => {
     const { getByText } = render(<LandingPage />)
-    getByText('The best way to assess the quality of')
+    getByText('QualityHub offers the opportunity for anyone to have experienced professionals assess the quality of anything.')
 })
 

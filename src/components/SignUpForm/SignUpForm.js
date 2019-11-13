@@ -207,7 +207,7 @@ const SignUpForm = props => {
                {error.error ? <p>This email address is already in use- please enter a unique email address</p> : null}
                   {valError
                     ? valError.map(message => {
-                        return <p>{message}</p>;
+                        return <p key={message}>{message}</p>;
                       })
                     : null}
                 </>
