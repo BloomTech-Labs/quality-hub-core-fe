@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import "./DashboardInput.scss";
-import {statesArray} from '../SignUpForm/States';
+import { statesArray } from "../SignUpForm/States";
 
 import { capitalize } from "../../utils/capitalize";
 
@@ -45,9 +45,21 @@ const EDIT_USER = gql`
   }
 `;
 
+const POST_INDUSTRY_TO_USER = gql`
+  mutation postIndustryToUser(
+    $industry_id: ID!
+  ) {
+    postIndustryToUser(
+      industry_id: $industry_id
+    ) {
+      id
+      name
+    }
+  }
+`;
+
 //Component
 const DashboardInput = ({ userKey, userValue, industryData }) => {
-  
   const [original, setOriginal] = useState(userValue);
   const [editing, setEditing] = useState(false);
   const [user, setUser] = useState({
@@ -55,6 +67,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   });
 
   const [changeField, changeFieldMutation] = useMutation(EDIT_USER);
+  const [changeIndustry, changeIndustryMutation] = useMutation(POST_INDUSTRY_TO_USER);
   const handleChange = e => {
     setUser({
       [userKey]: e.target.value
@@ -95,6 +108,34 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       }
     }
 
+    if (userKey == "industries") {
+      console.log('it matches')
+      if (user[userKey] == "Select") {
+        console.log("Must pick an industry");
+        setUser({
+          [userKey]: original
+        });
+        setEditing(false);
+        return;
+      } else{
+        console.log('posting')
+        console.log(user)
+        console.log(user.industries);
+        const objectData = {
+          industry_id: user.industries
+        }
+        changeIndustry({variables: { industry_id: user.industries}})
+        .then(res => {
+          console.log(res);
+          setOriginal(industryData[user[userKey]]);
+          setEditing(false);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      }
+    }
+
     //this makes sure any required fields are not submitted as blank strings
     if (
       (userKey == "first_name" ||
@@ -119,7 +160,6 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
         [userKey]: original
       });
       setEditing(false);
-      // alert("This is a required field. It cannot be blank.");
     }
 
     console.log(user);
@@ -149,55 +189,55 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   };
 
   const checkKeyNameForEdit = () => {
-    
-
-if (userKey == "state") {
+    if (userKey == "state") {
       return (
         <select
-              id="sign-up-state"
-              name="state"
-              placeholder="State"
-              value={user[userKey]}
-              onChange={handleChange}
-              required
-            >
-              <option>Select</option>
-            {statesArray.map(state => (
-                <option value={state} key={state}>
-                  {state}
-                </option>
-              ))}
-          </select>
-      );
-    }
-
-    if(userKey="industries"){
-      return (
-      <select
-        id="sign-up-industry"
-        name="industry"
-        placeholder="Industry"
-        value={ user[userKey][0] ? user[userKey][0].name : ""}
-        onChange={handleChange}
-        required
-      >
-        <option>Select</option>
-        {industryData &&
-          industryData.industries.map(industry => (
-            <option value={industry.id} key={industry.id}>
-              {industry.name}
+          id="sign-up-state"
+          name="state"
+          placeholder="State"
+          value={user[userKey]}
+          onChange={handleChange}
+          required
+        >
+          <option>Select</option>
+          {statesArray.map(state => (
+            <option value={state} key={state}>
+              {state}
             </option>
           ))}
-      </select>
-      )
+        </select>
+      );
     }
-
-    return (<input
-      name={userKey}
-      placeholder={original}
-      onChange={handleChange}
-      value={user.userKey}
-    />);
+console.log(userKey);
+    if ((userKey == "industries")) {
+      return (
+        <select
+          id="sign-up-industry"
+          name="industry"
+          placeholder="Industry"
+          value={user[userKey] ? user[userKey][0].name : ""}
+          onChange={handleChange}
+          required
+        >
+          <option>Select</option>
+          {industryData &&
+            industryData.industries.map(industry => (
+              <option value={industry.id} key={industry.id}>
+                {industry.name}
+              </option>
+            ))}
+        </select>
+      );
+    }
+console.log('here?')
+    return (
+      <input
+        name={userKey}
+        placeholder={original}
+        onChange={handleChange}
+        value={user.userKey}
+      />
+    );
   };
 
   return (
@@ -218,15 +258,15 @@ if (userKey == "state") {
             ) : 
             userKey != 'industries' ? (<p>{user[userKey]}</p>) : user[userKey][0] ? <p>{user[userKey][0].name}</p> : <p></p>}
           } */}
-          {editing ? 
-          checkKeyNameForEdit()
+          {editing ? (
+            checkKeyNameForEdit()
+          ) : (
             // <input
             //   name={userKey}
             //   placeholder={original}
             //   onChange={handleChange}
             //   value={user.userKey}
             // />
-           : (
             <p>{checkKeyName()}</p>
           )}
         </div>
