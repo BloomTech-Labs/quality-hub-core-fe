@@ -11,20 +11,6 @@ beforeEach(rtl.cleanup);
 afterEach(rtl.cleanup);
 const container = document.body;
 
-// const originalError = console.error;
-// beforeAll(() => {
-//   console.error = (...args) => {
-//     if (/Warning.*not wrapped in act/.test(args[0])) {
-//       return;
-//     }
-//     // originalError.call(console, ...args)
-//   };
-// });
-
-// afterAll(() => {
-//   console.error = originalError;
-// });
-
 test("is rendering", () => {
   const getToken = () => {
     let token = localStorage.getItem("token");
