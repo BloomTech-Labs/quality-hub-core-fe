@@ -65,7 +65,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
         </div>
         <br />
 
-        <div className="input-label">
+        <div className="input-label" >
           <label htmlFor="sign-up-industry">Industry*</label>
           <br />
           <select
@@ -75,6 +75,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
             value={user.industry}
             onChange={handleChange}
             required
+            role='dropdown1'
           >
             <option>Select</option>
             {data &&
