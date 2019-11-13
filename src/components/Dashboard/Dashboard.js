@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
-
-import DashboardPicture from "../DashboardPicture";
-import DashboardInput from "../DashboardInput";
+import "./Dashboard.scss";
 
 //get list of industries
 const GET_INDUSTRIES = gql`
@@ -83,7 +81,7 @@ const Dashboard = props => {
     "email",
     "city",
     "state",
-    'industries'
+    "industries"
   ];
   const experience = [
     "personal_url",
@@ -97,69 +95,68 @@ const Dashboard = props => {
 
   return (
     <div className="entire-dashboard">
-      
-
-
-      
       {userData &&
         editUser &&
         Object.keys(userData.me).forEach(field => {
           myArray.push(field);
         })}
-        <div className="lower-dashboard">
+      <div className="lower-dashboard">
         <div className="dashboard-left-bar">
-      <Link to="/dashboard">Profile</Link>
-      <Link to="/dashboard">Schedule</Link>
-
-      </div>
+          <Link to="/dashboard">
+            <span className="gray-square"></span> Profile
+          </Link>
+          <Link to="/dashboard">
+            <span className="gray-square"></span> Schedule
+          </Link>
+        </div>
         <div className="dashboard-routes">
-        <div className="dashboard-top-links">
-      <Link to="/dashboard/basicinfo">Basic Info</Link>
-      <Link to="/dashboard/experience">Experience</Link>
-      <Link to="/dashboard/paymentinfo">Payment Info</Link>
-      </div>
-      <Switch>
-        <Route
-          exact
-          path="/dashboard/basicinfo"
-          render={props => (
-            <BasicInfo
-              {...props}
-              myArray={myArray}
-              basicInfo={basicInfo}
-              userData={userData}
-              industryData={industryData}
+          <div className="dashboard-top-links">
+            <Link to="/dashboard">Basic Info</Link>
+            <Link to="/dashboard/experience">Experience</Link>
+            <Link to="/dashboard/paymentinfo">Payment Info</Link>
+          </div>
+          <Switch>
+            <Route
+              exact
+              path="/dashboard"
+              render={props => (
+                <BasicInfo
+                  {...props}
+                  myArray={myArray}
+                  basicInfo={basicInfo}
+                  userData={userData}
+                  industryData={industryData}
+                />
+              )}
             />
-          )}
-        />
-        <Route
-          exact
-          path="/dashboard/experience"
-          render={props => (
-            <Experience
-              {...props}
-              myArray={myArray}
-              experience={experience}
-              userData={userData}
+            <Route
+              exact
+              path="/dashboard/experience"
+              render={props => (
+                <Experience
+                  {...props}
+                  myArray={myArray}
+                  experience={experience}
+                  userData={userData}
+                />
+              )}
             />
-          )}
-        />
-        <Route
-          exact
-          path="/dashboard/paymentinfo"
-          render={props => (
-            <PaymentInfo
-              {...props}
-              myArray={myArray}
-              paymentInfo={paymentInfo}
-              userData={userData}
+            <Route
+              exact
+              path="/dashboard/paymentinfo"
+              render={props => (
+                <PaymentInfo
+                  {...props}
+                  myArray={myArray}
+                  paymentInfo={paymentInfo}
+                  userData={userData}
+                />
+              )}
             />
-          )}
-        />
-      </Switch>
-      </div>
+          </Switch>
+        </div>
 
-      {/* <button className='danger'>Delete MEEEEE</button> */}
+        {/* <button className='danger'>Delete MEEEEE</button> */}
       </div>
     </div>
   );

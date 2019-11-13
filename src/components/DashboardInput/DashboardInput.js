@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import "./DashboardInput.scss";
+
+import Pencil from "../../icons/Pencil";
+
 import { statesArray } from "../SignUpForm/States";
 
 import { capitalize } from "../../utils/capitalize";
@@ -132,13 +135,13 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
 
     //this makes sure any required fields are not submitted as blank strings
     if (
-      (userKey == "first_name" ||
-        userKey == "last_name" ||
+      (userKey === "first_name" ||
+        userKey === "last_name" ||
         userKey ||
         "email" ||
-        userKey == "city" ||
-        userKey == "state") &&
-      user[userKey] != ""
+        userKey === "city" ||
+        userKey === "state") &&
+      user[userKey] !== ""
     ) {
       console.log("submit");
       changeField({ variables: user })
@@ -183,7 +186,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   };
 
   const checkKeyNameForEdit = () => {
-    if (userKey == "state") {
+    if (userKey === "state") {
       return (
         <select
           id="sign-up-state"
@@ -203,7 +206,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       );
     }
     console.log(userKey);
-    if (userKey == "industries") {
+    if (userKey === "industries") {
       return (
         <select
           id="sign-up-industry"
@@ -248,21 +251,24 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
           )}
         </div>
       </div>
-      <div>
+      <div className="update-btns">
         {editing && (
           <button onClick={() => handleCancel()} className="cancel-button">
-            X
+            {/* X */}
+            Cancel
           </button>
         )}
         {editing && (
           <button onClick={e => handleSubmit(e)} className="accept-button">
-            &#x2713;
+            {/* &#x2713; */}
+            Save
           </button>
         )}
       </div>
       {!editing && (
         <button className="edit-button" onClick={() => setEditing(true)}>
-          &#x1F589;
+          {/* &#x1F589; */}
+          <Pencil />
         </button>
       )}
     </div>

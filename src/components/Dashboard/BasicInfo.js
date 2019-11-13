@@ -1,13 +1,12 @@
 import React from "react";
+
 import DashboardPicture from "../DashboardPicture";
 import DashboardInput from "../DashboardInput";
-
 
 const BasicInfo = ({ myArray, basicInfo, userData, industryData }) => {
   return (
     <div className="editform">
       <DashboardPicture />
-
       {myArray.length > 0 &&
         myArray.map(item => {
           if (basicInfo.includes(item)) {

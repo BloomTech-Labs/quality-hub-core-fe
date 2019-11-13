@@ -9,11 +9,11 @@ export default function Features() {
 
   const scrollLength = 275;
 
-  const handleLeftClick = () => {
+  const handleRightClick = () => {
     setPosition(position - scrollLength);
   };
 
-  const handleRightClick = () => {
+  const handleLeftClick = () => {
     setPosition(position + scrollLength);
   };
 
@@ -21,7 +21,7 @@ export default function Features() {
     <div>
       <h2>Features</h2>
       <div className="carousel">
-        {position > -1 * (FeaturesInfo.length - 3) * scrollLength && (
+        {position < 0 && (
           <button className="scroll-btn left-scroll" onClick={handleLeftClick}>
             &lsaquo;
           </button>
@@ -40,7 +40,7 @@ export default function Features() {
             ))}
           </div>
         </div>
-        {position < 0 && (
+        {position > -1 * (FeaturesInfo.length - 3) * scrollLength && (
           <button
             className="scroll-btn right-scroll"
             onClick={handleRightClick}
