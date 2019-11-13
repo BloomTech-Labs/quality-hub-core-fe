@@ -4,7 +4,8 @@ import { gql } from "apollo-boost";
 import axios from "axios";
 import "./Avatar.scss";
 
-const GET_IMG = gql`
+// Remember to export queries for testing
+export const GET_IMG = gql`
   query {
     me {
       id
@@ -78,7 +79,7 @@ export default function Avatar() {
               backgroundImage: `url('${data && data.me.image_url}')`
             }}
           >
-            {!data && <p className="add-image">Add Image</p>}
+            {!data && <p className="add-image">Edit Image</p>}
           </div>
           <div className="edit-image">
             <p>Edit Image</p>
