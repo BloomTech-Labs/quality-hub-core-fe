@@ -23,7 +23,7 @@ const GridDropdown = props => {
   return (
     <div ref={node}>
       <img
-        src="grid.svg"
+        src="/grid.svg"
         alt="Grid Menu"
         className="grid-menu grid-icon"
         onClick={e => setOpen(!open)}
@@ -32,25 +32,25 @@ const GridDropdown = props => {
         <div className="dropdown-grid-content dropdown-icons">
           <div>
             <a href="#">
-              <img src="favicon.svg" height="50px" width="50px" />
+              <img src="/favicon.svg" height="50px" width="50px" />
               <p>ResumeQ</p>
             </a>
           </div>
           <div>
             <a href="#">
-              <img src="sad.svg" height="50px" width="50px" />
+              <img src="/sad.svg" height="50px" width="50px" />
               <p>InterviewQ</p>
             </a>
           </div>
           <div>
             <a href="#">
-              <img src="quailr.svg" height="50px" width="50px" />
+              <img src="/quailr.svg" height="50px" width="50px" />
               <p>QuailR</p>
             </a>
           </div>
           <div>
             <a href="#">
-              <img src="drug.svg" height="50px" width="50px" />
+              <img src="/drug.svg" height="50px" width="50px" />
               <p>DesignQ</p>
             </a>
           </div>

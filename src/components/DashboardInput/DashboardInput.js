@@ -12,14 +12,32 @@ const EDIT_USER = gql`
     $last_name: String
     $email: String
     $city: String
-    $state: String # $blog_url: String, # $image: String, # $gender: String, # $personal_url: String, # $linkedin_url: String, # $github_url: String, # $bio: String,
+    $state: String 
+    $gender: String, 
+    $personal_url: String, 
+    $blog_url: String,
+    $twitter_url: String,
+    $linkedin_url: String, 
+    $github_url: String, 
+    $portfolio_url: String,
+    $bio: String,
+    $payment_info: Boolean,
   ) {
     update(
       first_name: $first_name
       last_name: $last_name
       email: $email
       city: $city
-      state: $state # blog_url: $blog_url, # image: $image, # gender: $gender, # personal_url: $personal_url, # linkedin_url: $linkedin_url, # github_url: $github_url, # bio: $bio
+      state: $state 
+      gender: $gender, 
+      personal_url: $personal_url, 
+      blog_url: $blog_url,
+      twitter_url: $twitter_url,
+      linkedin_url: $linkedin_url, 
+      github_url: $github_url, 
+      portfolio_url: $portfolio_url,
+      bio: $bio,
+      payment_info: $payment_info,
     ) {
       id
     }
@@ -28,7 +46,6 @@ const EDIT_USER = gql`
 
 //Component
 const DashboardInput = ({ userKey, userValue }) => {
-  console.log(userKey);
   const [original, setOriginal] = useState(userValue);
   const [editing, setEditing] = useState(false);
   const [user, setUser] = useState({
@@ -43,15 +60,33 @@ const DashboardInput = ({ userKey, userValue }) => {
   };
 
   const handleSubmit = e => {
-    changeField({ variables: user })
+    e.preventDefault();
+
+    //this checks to see if the user pressed accept, but didn't make any changes.
+    //if so, no mutation request is made
+    if(original == user[userKey]){
+      setEditing(false);
+      return;
+    }
+    
+    //this makes sure any required fields are not submitted as blank strings
+    if((userKey == "first_name" || userKey == "last_name" || userKey || "email" || userKey == "city" || userKey == "state") && user[userKey] != ""){
+      console.log('submit');
+      changeField({ variables: user })
       .then(res => {
         setOriginal(user[userKey]);
-        e.preventDefault();
         setEditing(false);
       })
       .catch(err => {
         console.log(err);
       });
+    } else {
+      setUser({
+        [userKey]: original,
+      });
+      setEditing(false)
+      // alert("This is a required field. It cannot be blank.");
+    }    
 
     console.log(user);
   };

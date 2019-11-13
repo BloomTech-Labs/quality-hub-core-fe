@@ -219,3 +219,34 @@
   position: absolute;
   pointer-events: none;
 }
+
+.dashboard-top-links{
+  width: 500px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+
+  a{
+    text-decoration: none;
+  }
+}
+
+.entire-dashboard{
+}
+
+.dashboard-routes{
+  flex-grow: 2;
+}
+
+.lower-dashboard{
+  display: flex;
+}
+
+.dashboard-left-bar{
+  flex-grow: 1;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+}
