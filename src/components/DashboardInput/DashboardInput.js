@@ -46,12 +46,8 @@ const EDIT_USER = gql`
 `;
 
 const POST_INDUSTRY_TO_USER = gql`
-  mutation postIndustryToUser(
-    $industry_id: ID!
-  ) {
-    postIndustryToUser(
-      industry_id: $industry_id
-    ) {
+  mutation postIndustryToUser($industry_id: ID!) {
+    postIndustryToUser(industry_id: $industry_id) {
       id
       name
     }
@@ -67,7 +63,9 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   });
 
   const [changeField, changeFieldMutation] = useMutation(EDIT_USER);
-  const [changeIndustry, changeIndustryMutation] = useMutation(POST_INDUSTRY_TO_USER);
+  const [changeIndustry, changeIndustryMutation] = useMutation(
+    POST_INDUSTRY_TO_USER
+  );
   const handleChange = e => {
     setUser({
       [userKey]: e.target.value
@@ -109,7 +107,6 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
     }
 
     if (userKey == "industries") {
-      console.log('it matches')
       if (user[userKey] == "Select") {
         console.log("Must pick an industry");
         setUser({
@@ -117,22 +114,19 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
         });
         setEditing(false);
         return;
-      } else{
-        console.log('posting')
-        console.log(user)
-        console.log(user.industries);
+      } else {
         const objectData = {
           industry_id: user.industries
-        }
-        changeIndustry({variables: { industry_id: user.industries}})
-        .then(res => {
-          console.log(res);
-          setOriginal(industryData[user[userKey]]);
-          setEditing(false);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        };
+        changeIndustry({ variables: { industry_id: user.industries } })
+          .then(res => {
+            console.log(res);
+            setOriginal(industryData[user[userKey]]);
+            setEditing(false);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     }
 
@@ -208,8 +202,8 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
         </select>
       );
     }
-console.log(userKey);
-    if ((userKey == "industries")) {
+    console.log(userKey);
+    if (userKey == "industries") {
       return (
         <select
           id="sign-up-industry"
@@ -229,7 +223,7 @@ console.log(userKey);
         </select>
       );
     }
-console.log('here?')
+    console.log("here?");
     return (
       <input
         name={userKey}
@@ -247,27 +241,10 @@ console.log('here?')
           <h2>{capitalize(userKey)}</h2>
         </span>
         <div>
-          {/* { 
-            editing ? (
-              <input
-                name={userKey}
-                placeholder={original}
-                onChange={handleChange}
-                value={user.userKey}
-              />
-            ) : 
-            userKey != 'industries' ? (<p>{user[userKey]}</p>) : user[userKey][0] ? <p>{user[userKey][0].name}</p> : <p></p>}
-          } */}
           {editing ? (
-            checkKeyNameForEdit()
+            checkKeyNameForEdit() //check what kind of input field to return based on key name
           ) : (
-            // <input
-            //   name={userKey}
-            //   placeholder={original}
-            //   onChange={handleChange}
-            //   value={user.userKey}
-            // />
-            <p>{checkKeyName()}</p>
+            <p>{checkKeyName()}</p> //check if value is nested in an object based on key name
           )}
         </div>
       </div>

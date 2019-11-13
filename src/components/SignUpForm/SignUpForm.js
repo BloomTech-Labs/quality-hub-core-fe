@@ -26,7 +26,6 @@ const SIGN_UP = gql`
     $city: String!
     $state: String!
     $industry: ID!
-    # $image: String,
     $personal_url: String
     $portfolio_url: String
     $twitter_url: String
