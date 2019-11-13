@@ -77,7 +77,7 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
             required
             role='dropdown1'
           >
-            <option >Select</option>
+            <option>Select</option>
             {data &&
               data.industries.map(industry => (
                 <option value={industry.id} key={industry.id}>
