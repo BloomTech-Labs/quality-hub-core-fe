@@ -1,22 +1,56 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-// import { printIntrospectionSchema } from "graphql";
 import AvatarDropdown from "./AvatarDropdown";
 import GridDropdown from "./GridDropdown";
+import { useLazyQuery, useQuery, useMutation } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
+const GET_USER = gql`
+  query dropdownMenu {
+    me {
+      id
+      first_name
+    }
+  }
+`;
+
+
 
 
 const NavBar = ({ loggedin, setLoggedin }) => {
+
+  const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
+  const [runCount, setRunCount] = useState(0);
+
   const logout = () => {
     localStorage.clear();
     setLoggedin(false);
   };
 
+  // On render, pull stored token. If you have a token, log yourself in.
   useEffect(()=>{
     if(localStorage.getItem('token')){
-      setLoggedin(true);
+      console.log('you has token!')
+      getUser();
+      setRunCount(1);
     }
   },[])
+
+  useEffect(()=>{
+
+    //useEffect runs on intialization of component, so runCount makes sure data is first retrieved before we validate the token. 
+    if(runCount > 0){
+      if(data){
+        setLoggedin(true); //If we pull back any data, we are logged in
+      } else {//if no data, remove token and id
+        localStorage.setItem('token', null);
+        localStorage.setItem('id', null);
+        // need to push to landing page?
+      }
+    }
+    
+  },[data])
 
   return (
     <StyledNav>
@@ -35,6 +69,7 @@ const NavBar = ({ loggedin, setLoggedin }) => {
       {/* End animated bird */}
 
       <div className="right">
+        {/* If you're not logged in, show sign in and sign up buttons */}
         {!loggedin && (
           <>
             <NavLink to="signin"> Sign In </NavLink>
@@ -42,7 +77,10 @@ const NavBar = ({ loggedin, setLoggedin }) => {
           </>
         )}
 
+          {/* Dropdown list of Q services */}
         <GridDropdown />
+
+        {/* If you're logged in, show your avatar with a dropdown menu */}
         {loggedin &&
         <AvatarDropdown logout={logout} loggedin={loggedin} className="hidden"/>}
       </div>

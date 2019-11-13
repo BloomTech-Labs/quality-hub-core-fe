@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gql } from "apollo-boost";
-import { useLazyQuery } from "@apollo/react-hooks";
 
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useQuery, useMutation, useLazyQuery } from "@apollo/react-hooks";
 
 import axios from "axios";
 
@@ -111,7 +110,7 @@ const AvatarDropdown = props => {
   return (
     <div ref={node}>
       <img
-        src="/avatar.png"
+        src="/blankavatar.svg"
         alt="Grid Menu"
         className="avatar-menu"
         onClick={e => setOpen(!open)}
