@@ -1,6 +1,10 @@
 import React from "react";
 import "./Footer.scss";
 
+import IconFB from "../../icons/IconFB";
+import IconLI from "../../icons/IconLI";
+import IconTwitter from "../../icons/IconTwitter";
+
 export default function Footer() {
   return (
     <div className="footer">
@@ -18,13 +22,13 @@ export default function Footer() {
       <hr className="footer-line" />
       <div className="footer-icons">
         <a href="#">
-          <img src="fb.svg" alt="" />
+          <IconFB />
         </a>
         <a href="#">
-          <img src="linkedin.svg" alt="" />
+          <IconLI />
         </a>
         <a href="#">
-          <img src="twitter.svg" alt="" />
+          <IconTwitter />
         </a>
       </div>
       <p className="copyright"> &#169; QualityHub 2019</p>

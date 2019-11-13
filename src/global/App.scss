@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
 }
 
@@ -29,39 +29,6 @@ a {
   font-size: 1.5rem;
 }
 
-.editform {
-  display: flex;
-  margin: 40px auto;
-  justify-content: space-between;
-  width: 300px;
-  flex-direction: column;
-}
-
-.edit-button {
-  background-color: white;
-  border: none;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-.cancel-button {
-  color: red;
-  font-size: 20px;
-  font-weight: 900px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.accept-button {
-  color: green;
-  font-size: 20px;
-  font-weight: 900px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-}
-
 input,
 option,
 select {
@@ -69,7 +36,7 @@ select {
   border: 1px solid silver;
   font-family: inherit;
   padding: 0.8rem 1%;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
 }
 
 .progressbar {
@@ -103,7 +70,7 @@ select {
 }
 
 .progressbar li:after {
-  content: ' ';
+  content: " ";
   position: absolute;
   z-index: -1;
   height: 3px;
