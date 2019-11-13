@@ -60,7 +60,9 @@ const DashboardInput = ({ userKey, userValue }) => {
   };
 
   const handleSubmit = e => {
+
     e.preventDefault();
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     //this checks to see if the user pressed accept, but didn't make any changes.
     //if so, no mutation request is made
@@ -69,6 +71,21 @@ const DashboardInput = ({ userKey, userValue }) => {
       return;
     }
     
+    //check if valid email
+    if(userKey=='email'){
+      
+      if(user[userKey].match(mailFormat)){
+        //continue
+      } else {
+        console.log('not an email address');
+        setUser({
+          [userKey]: original,
+        });
+        setEditing(false);
+        return;
+      }
+    }
+
     //this makes sure any required fields are not submitted as blank strings
     if((userKey == "first_name" || userKey == "last_name" || userKey || "email" || userKey == "city" || userKey == "state") && user[userKey] != ""){
       console.log('submit');
