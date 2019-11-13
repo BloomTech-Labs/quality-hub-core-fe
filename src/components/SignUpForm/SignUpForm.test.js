@@ -86,9 +86,6 @@ test('form', async () => {
         </ApolloProvider> 
     );
 
-    // console.log(data)
-
-   
     //fill out the form
     rtl.fireEvent.change(rtl.getByPlaceholderText(container,'First Name'), {target: {value: 'chuck'}});
     rtl.fireEvent.change(rtl.getByPlaceholderText(container, 'Last Name'), {target: {value: 'norris'}});
@@ -104,5 +101,4 @@ test('form', async () => {
     rtl.fireEvent.change(rtl.getByLabelText(container, 'LinkedIn'), {target: {value: 'https://www.linkedin.com/in/chuck-norris-90123b179/'}});
 
     rtl.fireEvent.click(rtl.getByText(container, 'Submit'))
-    
 })

@@ -142,7 +142,7 @@ const SignUpForm = props => {
       .catch(err => {
         console.log(err);
       });
-    console.log(user);
+    // console.log(user);
   };
  
   //Set form step
