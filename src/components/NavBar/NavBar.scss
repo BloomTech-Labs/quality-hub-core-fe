@@ -18,13 +18,12 @@
   }
 }
 
-.grid-icon{
+.grid-icon {
   margin-right: 10px;
-  
+  cursor: pointer;
 }
 
 .dropdown-grid-content {
-  
   padding: 30px 30px 10px 30px;
   position: absolute;
   right: 20px;
@@ -32,7 +31,7 @@
   background-color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  width: 250px;
+  width: 240px;
 
   border-radius: 14px;
   border: 1px solid lightgray;
@@ -65,15 +64,15 @@
 }
 .grey-on-hover {
   cursor: pointer;
-  
+
   &:before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    background-color: rgba(0, 0, 0, .3);
-    transition: opacity .3s;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s;
     opacity: 0;
     z-index: 2;
   }
@@ -107,6 +106,7 @@
   border-radius: 100%;
   height: 50px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .avatar-submenu {
@@ -138,7 +138,6 @@
   // justify-content: center;
   // align-content: center;
   // align-items: center;
-
 }
 
 .profile-img-dropdown {
@@ -188,7 +187,7 @@
   /* 0s delay for the entry animation, 6s for the exit  */
   animation-delay: 0s, 2.4s;
 }
- 
+
 .bird {
   animation-fill-mode: forwards;
 }
@@ -212,7 +211,6 @@
     transform: translateX(-10vw); /* exit outside the frame */
   }
 }
- 
 
 .image-input-dropdown {
   opacity: 0;

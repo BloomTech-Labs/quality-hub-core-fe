@@ -111,7 +111,7 @@ const AvatarDropdown = props => {
   return (
     <div ref={node}>
       <img
-        src="avatar.png"
+        src="/avatar.png"
         alt="Grid Menu"
         className="avatar-menu"
         onClick={e => setOpen(!open)}
