@@ -55,9 +55,10 @@ const AvatarDropdown = props => {
   });
 
   const logout = () => {
+    client.clearStore();
+    setAvatarURL('/blankavatar.svg');
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
-    client.clearStore();
     props.logout();
   };
 
@@ -179,7 +180,7 @@ const AvatarDropdown = props => {
 
           {/* Need to link to dashboard */}
           <Link to="/dashboard">
-            <button className="manage-btn">
+            <button className="manage-btn" onClick={()=>setOpen(false)}>
               Manage your Quality Hub account
             </button>
           </Link>
