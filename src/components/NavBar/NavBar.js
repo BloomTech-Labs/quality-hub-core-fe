@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import AvatarDropdown from "./AvatarDropdown";
 import GridDropdown from "./GridDropdown";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import {Redirect} from 'react-router-dom';
 
 const GET_USER = gql`
   query dropdownMenu {
@@ -20,11 +18,9 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
   const [errorCount, setErrorCount] = useState(0);
 
   const logout = () => {
-    // if(client){client.clearStore();}
     localStorage.clear();
     setLoggedin(false);
-    history.push('/');
-    // return <Redirect to="/" />
+    history.push("/");
   };
 
   // On render, pull stored token. If you have a token, log yourself in.
@@ -35,11 +31,9 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
     }
   }, []);
 
-
-  if (data && localStorage.getItem('token')) {
-    console.log('here');
+  if (data && localStorage.getItem("token")) {
+    console.log("here");
     setLoggedin(true);
-    
   }
 
   if (error && errorCount == 0) {
@@ -48,9 +42,9 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
     setLoggedin(false);
     logout();
   }
-console.log(loggedin);
+
   return (
-    <StyledNav>
+    <div className="styled-nav">
       {/* Animated quailnana flying across the screen */}
       <div className="left">
         <div className="bird"></div>
@@ -89,41 +83,8 @@ console.log(loggedin);
           />
         )}
       </div>
-    </StyledNav>
+    </div>
   );
 };
-
-const StyledNav = styled.div`
-  //   background-color: red;
-  display: flex;
-  justify-content: space-between;
-
-  .left {
-    display: flex;
-    padding-left: 2%;
-
-    a {
-      color: black;
-      text-decoration: none;
-    }
-
-    img {
-      width: 5rem;
-    }
-  }
-  .right {
-    display: flex;
-    justify-content: space-evenly;
-    width: 180px;
-    align-items: center;
-
-    a {
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      width: 80px;
-    }
-  }
-`;
 
 export default NavBar;
