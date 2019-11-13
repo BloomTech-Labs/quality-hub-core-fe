@@ -15,7 +15,7 @@ const GET_USER = gql`
 `;
 
 const NavBar = ({ loggedin, setLoggedin, history }) => {
-  const [getUser, { client, loading, error, data }] = useLazyQuery(GET_USER);
+  const [getUser, { client, error, data }] = useLazyQuery(GET_USER);
   const [errorCount, setErrorCount] = useState(0);
 
   const logout = () => {

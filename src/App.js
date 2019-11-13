@@ -30,7 +30,6 @@ function App() {
           )}
         />
         <Route path="/signup" component={SignUpForm} />
-        {/* <Route path="/dashboard" component={Dashboard} /> */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
       <Footer />
