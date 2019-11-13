@@ -55,10 +55,13 @@ const AvatarDropdown = props => {
 
   const logout = () => {
     client.clearStore(); //remove token from cache
-    setAvatarURL("/blankavatar.svg"); //Make sure avatar reverts back
+    // setAvatarURL("/blankavatar.svg"); //Make sure avatar reverts back
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
+    props.setLoggedin(false);
     props.logout();
+    props.history.push('/');
+
   };
 
   //If you click outside the dropdown menu, the menu will close.
@@ -102,7 +105,6 @@ const AvatarDropdown = props => {
     //useEffect runs on intialization of component, so runCount makes sure data is first retrieved
     if (runCount > 0) {
       if (data) {
-        console.log(data);
         if (data.me.image_url) {
           setAvatarURL(data.me.image_url);
         }
@@ -182,7 +184,7 @@ const AvatarDropdown = props => {
           </Link>
           <hr />
           {/* Need to add sign out functionality */}
-          <Link to="/">
+          <Link>
             <button className="signout-btn" onClick={() => logout()}>
               Sign Out
             </button>

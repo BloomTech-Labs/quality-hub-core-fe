@@ -5,6 +5,7 @@ import AvatarDropdown from "./AvatarDropdown";
 import GridDropdown from "./GridDropdown";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import {Redirect} from 'react-router-dom';
 
 const GET_USER = gql`
   query dropdownMenu {
@@ -19,9 +20,11 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
   const [errorCount, setErrorCount] = useState(0);
 
   const logout = () => {
+    // if(client){client.clearStore();}
     localStorage.clear();
     setLoggedin(false);
     history.push('/');
+    // return <Redirect to="/" />
   };
 
   // On render, pull stored token. If you have a token, log yourself in.
@@ -33,16 +36,19 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
   }, []);
 
 
-  if (data) {
+  if (data && localStorage.getItem('token')) {
+    console.log('here');
     setLoggedin(true);
+    
   }
 
   if (error && errorCount == 0) {
     setErrorCount(1);
     client.clearStore();
+    setLoggedin(false);
     logout();
   }
-
+console.log(loggedin);
   return (
     <StyledNav>
       {/* Animated quailnana flying across the screen */}
@@ -77,7 +83,9 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
           <AvatarDropdown
             logout={logout}
             loggedin={loggedin}
+            setLoggedin={setLoggedin}
             className="hidden"
+            history={history}
           />
         )}
       </div>
