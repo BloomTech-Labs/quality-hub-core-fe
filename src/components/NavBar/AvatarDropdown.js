@@ -55,13 +55,10 @@ const AvatarDropdown = props => {
 
   const logout = () => {
     client.clearStore(); //remove token from cache
-    // setAvatarURL("/blankavatar.svg"); //Make sure avatar reverts back
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
     props.setLoggedin(false);
     props.logout();
-    props.history.push('/');
-
   };
 
   //If you click outside the dropdown menu, the menu will close.
@@ -144,24 +141,13 @@ const AvatarDropdown = props => {
                   className="profile-img-dropdown"
                   style={{
                     backgroundImage: `url('${data && data.me.image_url}')`
-                    // backgroundImage: `url('${avatarURL}')`
                   }}
                 >
-                  {/* {!data && <p className="add-image">Add Image</p>} */}
                 </div>
-                {/* <div className="edit-image">
-                <p>Edit Image</p>
-              </div> */}
+
               </div>
             </label>
             {/* Avatar image in dropdown menu */}
-            {/* {data && (
-              <img
-                src={data.me.image_url || "avatar.png"}
-                alt="Profile avatar"
-                className="avatar-submenu"
-              />
-            )} */}
             {/* This is the offset camera icon */}
             <label htmlFor="imageInput" className="camera-label">
               <div className="dropdown-camera-icon grey-on-hover">
@@ -184,7 +170,7 @@ const AvatarDropdown = props => {
           </Link>
           <hr />
           {/* Need to add sign out functionality */}
-          <Link>
+          <Link to="/">
             <button className="signout-btn" onClick={() => logout()}>
               Sign Out
             </button>
