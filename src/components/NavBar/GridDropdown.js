@@ -39,19 +39,19 @@ const GridDropdown = props => {
           </div>
           <div>
             <a href="#">
-              <img src="/sad.svg" height="50px" width="50px" />
+              <img src="/interview.svg" height="50px" width="50px" />
               <p>InterviewQ</p>
             </a>
           </div>
           <div>
             <a href="#">
-              <img src="/quailr.svg" height="50px" width="50px" />
-              <p>QuailR</p>
+              <img src="/resume.svg" height="50px" width="50px" />
+              <p>ResumeQ</p>
             </a>
           </div>
           <div>
             <a href="#">
-              <img src="/drug.svg" height="50px" width="50px" />
+              <img src="/design.svg" height="50px" width="50px" />
               <p>DesignQ</p>
             </a>
           </div>
