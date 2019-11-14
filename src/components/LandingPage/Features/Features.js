@@ -4,9 +4,11 @@ import { FeaturesInfo } from "./FeaturesInfo";
 
 import FeatureCard from "./FeatureCard";
 
+// Code for the Landing Page carousel
 export default function Features() {
   const [position, setPosition] = useState(0);
 
+  // The number of pixels traversed each time the left or right button is clicked; dependent on hard-coded width of the FeatureCard
   const scrollLength = 275;
 
   const handleRightClick = () => {

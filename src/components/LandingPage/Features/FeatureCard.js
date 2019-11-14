@@ -1,5 +1,6 @@
 import React from "react";
 
+// Feature Card for each item in the landing page carousel
 export default function FeatureCard(props) {
   return (
     <div className="feature-card">

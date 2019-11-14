@@ -14,7 +14,7 @@ export const GET_IMG = gql`
   }
 `;
 
-const EDIT_IMG = gql`
+export const EDIT_IMG = gql`
   mutation EditImage($image_url: String) {
     update(image_url: $image_url) {
       image_url
@@ -26,6 +26,8 @@ export default function Avatar() {
   const [picture, setPicture] = useState(null);
 
   const { data } = useQuery(GET_IMG);
+
+  // The editImage mutation sends the profile picture URL to the backend database and also updates the cache (application state)
   const [editImage] = useMutation(EDIT_IMG, {
     update(
       cache,
@@ -43,6 +45,8 @@ export default function Avatar() {
     }
   });
 
+  // Use FormData to upload profile picture to Cloudinary and then send the returned URL to the backend database
+  // Both 'file' and 'upload_preset' are required for Cloudinary!
   useEffect(() => {
     if (picture) {
       const formData = new FormData();

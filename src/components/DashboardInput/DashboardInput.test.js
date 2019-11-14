@@ -3,8 +3,10 @@ import { MockedProvider } from "@apollo/react-testing";
 import { render, fireEvent } from "@testing-library/react";
 import wait from "waait";
 
+// Import component and query for testing
 import DashboardInput, { EDIT_USER } from "./DashboardInput";
 
+// Test React components by mocking calls to the GraphQL endpoint; this allows tests to be run in isolation and removes dependence on remote data
 it("should render without error", () => {
   render(
     <MockedProvider mocks={[]}>
@@ -13,7 +15,7 @@ it("should render without error", () => {
   );
 });
 
-it("should update the dashboard", async () => {
+it("should update individual dashboard user input fields", async () => {
   const update = {
     first_name: "Dan"
     // last_name: "Quail",
