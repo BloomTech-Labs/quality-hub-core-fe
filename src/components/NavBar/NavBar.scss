@@ -19,7 +19,7 @@
 }
 
 .grid-icon {
-  margin-right: 10px;
+  margin-right: 35px;
   cursor: pointer;
 }
 
@@ -235,7 +235,7 @@
   .right {
     display: flex;
     justify-content: space-evenly;
-    width: 180px;
+    width: 280px;
     align-items: center;
 
     a {
@@ -245,4 +245,9 @@
       width: 80px;
     }
   }
+}
+
+
+.signup-link{
+  margin-right: 10px;
 }
