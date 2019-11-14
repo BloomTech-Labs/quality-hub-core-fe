@@ -28,7 +28,7 @@ export default function SignUp({
 
 	return (
 		<div className='sign-up'>
-			<h1>Quality Hub</h1>
+			<h1>QualityHub</h1>
 			<h2>Welcome!</h2>
 			<br />
 			{/* Insert Google Login Button Here */}
