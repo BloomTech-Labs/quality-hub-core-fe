@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
-import { useLazyQuery, useQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import "./Dashboard.scss";
-
-
 
 //GraphQuaiL Query
 const GET_USER = gql`
@@ -41,7 +39,7 @@ const Dashboard = props => {
 
   const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const [editUser, setEditUser] = useState(userData);
-  
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

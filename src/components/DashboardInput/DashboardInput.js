@@ -115,7 +115,8 @@ const DashboardInput = ({ userKey, userValue }) => {
         .catch(err => {
           console.log(err);
         });
-    } else { //If fields are NOT blank...
+    } else {
+      //If fields are NOT blank...
       setUser({
         [userKey]: original
       });
