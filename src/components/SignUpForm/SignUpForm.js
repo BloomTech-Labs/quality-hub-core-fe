@@ -88,11 +88,9 @@ const SignUpForm = props => {
   const validateUser = () => {
     userSchema.validate(user, { abortEarly: false })
     .then(res=>{
-      console.log("SUCCESS. NO MORE ERRORS", res)
       setValError();
     })
     .catch(err => {
-      
       setValError(err.errors);
     });
   };
@@ -105,11 +103,21 @@ const SignUpForm = props => {
       });
   };
 
-  const [gqlErr, setGqlErr] = useState(null)
+  // const [gqlErr, setGqlErr] = useState(null)
   const handleSubmit = e => {
+
+    const urlArray = ['personal_url', 'portfolio_url', 'twitter_url', 'linkedin_url', 'github_url']
+    let submitUser = {...user};
+    
+    urlArray.forEach(item=>{
+      if (submitUser[item]=="http://"){
+        submitUser[item] = "";
+      }
+    })
+
     e.preventDefault();
     validateUser();
-    signup({ variables: user })
+    signup({ variables: submitUser })
       .then(results => {
         console.log(results);
         // let token = results.data.signup.token;
