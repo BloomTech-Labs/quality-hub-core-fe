@@ -31,7 +31,7 @@ const LandingPage = props => {
 			let letter_index = Math.floor(seconds / 1);
 			setText(dataText[wordIndex].substring(0, letter_index + 1));
 			// Add delay when word is completed
-			if (letter_index == dataText[wordIndex].length - 1) {
+			if (letter_index === dataText[wordIndex].length - 1) {
 				setTimeout(() => {
 					setWord(idx => idx + 1);
 					setTime(0);
