@@ -87,7 +87,7 @@ const SignUpForm = props => {
       .email("Please enter a valid email address")
       .required("Please enter your email address"),
     city: string().required("Please enter your city"),
-    state: string().required("Please enter your state"),
+    state: string().max(2, "Please enter your state").required("Please enter your state"),
     password: string()
       .min(6, "Password must be at least 6 characters")
       .required("Please enter a password"),
