@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 // import styled from "styled-components";
-import Loading from '../Loading';
 import { Link } from 'react-router-dom';
 import './SignInForm.scss';
+
+import Loading from '../Loading';
 
 const LOGIN = gql`
 	mutation Login($email: String!, $password: String!) {
@@ -58,7 +59,7 @@ const SignInForm = props => {
 
 	return (
 		<div className='sign-in-form'>
-			<h1>Quality Hub</h1>
+			<h1>QualityHub</h1>
 			<h2>Welcome back!</h2>
 			<br />
 			{/* Insert Google Login Button Here */}
@@ -90,7 +91,7 @@ const SignInForm = props => {
 						value={user.password}
 						onChange={handleChange}
 					/>
-					<p>Forgot password?</p>
+					<p><Link to="/forgotPassword">Forgot password?</Link></p>
 				</div>
 				<br />
 				{!loading &&

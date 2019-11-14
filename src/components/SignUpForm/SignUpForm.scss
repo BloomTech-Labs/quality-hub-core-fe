@@ -1,3 +1,16 @@
-.validation-error-message{
-    color:red !important;
+.sign-up {
+	width: 400px;
+	margin: 0 auto;
+}
+
+button.sign-up-button:disabled {
+	cursor: not-allowed;
+}
+
+.sign-up-button {
+	width: 100%;
+}
+
+.validation-error-message {
+	color: red !important;
 }
