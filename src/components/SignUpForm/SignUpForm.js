@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import GeneralSignUp from './GeneralSignUp.js';
-import ExpSignUp from './ExpSignUp.js';
-import CompletedSignUp from './CompletedSignUp';
 // import * as yup from 'yup';
 import { string, object } from 'yup';
 import './SignUpForm.scss';
+
+import InitialSignUp from './InitialSignUp';
+import GetStarted from './GetStarted';
+import GeneralSignUp from './GeneralSignUp';
+import ExpSignUp from './ExpSignUp';
+import CompletedSignUp from './CompletedSignUp';
 
 const SIGN_UP = gql`
 	mutation signup(
@@ -151,116 +154,167 @@ const SignUpForm = props => {
 	};
 
 	//Set form step
-	const [progress, setProgress] = useState(1);
+	const [progress, setProgress] = useState(-1);
 
 	const handleNext = e => {
 		e.preventDefault();
 		setProgress(progress + 1);
 	};
+
 	const handleBack = e => {
 		e.preventDefault();
 		setProgress(progress - 1);
 	};
 
 	return (
-		<div className='sign-up-form'>
-			<h2>Sign Up</h2>
-			<ul className='progressbar'>
-				<li className={progress >= 2 ? 'active' : null}>Basic Info</li>
-				<li className={progress >= 3 ? 'active' : null}>Experience</li>
-				<li className={progress >= 3 ? 'active' : null}>Success</li>
-			</ul>
+		<div>
+			{progress === -1 && (
+				<InitialSignUp
+					user={user}
+					setUser={setUser}
+					setProgress={setProgress}
+					setEmailTouched={setEmailTouched}
+					setPasswordTouched={setPasswordTouched}
+				/>
+			)}
+			{progress === -1 && valError
+				? valError.map(message => {
+						if (message.includes('email') && !emailTouched) {
+							return null;
+						}
+						if (message.includes('first') && !firstTouched) {
+							return null;
+						}
+						if (message.includes('last') && !lastTouched) {
+							return null;
+						}
+						if (message.includes('city') && !cityTouched) {
+							return null;
+						}
+						if (message.includes('state') && !stateTouched) {
+							return null;
+						}
+						if (
+							(message.includes('password') || message.includes('Password')) &&
+							!passwordTouched
+						) {
+							return null;
+						}
 
-			<form onSubmit={handleSubmit}>
-				{(function() {
-					switch (progress) {
-						case 1:
-							return (
-								<>
-									<GeneralSignUp
-										setEmailTouched={setEmailTouched}
-										setFirstTouched={setFirstTouched}
-										setLastTouched={setLastTouched}
-										setCityTouched={setCityTouched}
-										setStateTouched={setStateTouched}
-										setPasswordTouched={setPasswordTouched}
-										user={user}
-										handleChange={handleChange}
-									/>
-									{valError ? (
-										<button className='form-btn' disabled>
-											Next
-										</button>
-									) : (
-										<button className='form-btn' onClick={handleNext}>
-											Next
-										</button>
-									)}
-									{valError
-										? valError.map(message => {
-												if (message.includes('email') && !emailTouched) {
-													return null;
-												}
-												if (message.includes('first') && !firstTouched) {
-													return null;
-												}
-												if (message.includes('last') && !lastTouched) {
-													return null;
-												}
-												if (message.includes('city') && !cityTouched) {
-													return null;
-												}
-												if (message.includes('state') && !stateTouched) {
-													return null;
-												}
-												if (
-													(message.includes('password') ||
-														message.includes('Password')) &&
-													!passwordTouched
-												) {
-													return null;
-												}
+						return (
+							<p key={message} className='validation-error-message'>
+								{message}
+							</p>
+						);
+				  })
+				: null}
 
-												return (
-													<p key={message} className='validation-error-message'>
-														{message}
-													</p>
-												);
-										  })
-										: null}
-								</>
-							);
-						case 2:
-							return (
-								<>
-									<ExpSignUp user={user} handleChange={handleChange} />
-									<button className='form-btn' onClick={handleBack}>
-										Back
-									</button>
-									<button className='submit-btn' type='submit'>
-										Submit
-									</button>
-									{error.error ? (
-										<p>
-											This email address is already in use- please enter a
-											unique email address
-										</p>
-									) : null}
-								</>
-							);
-						case 3:
-							return (
-								<>
-									<CompletedSignUp />
-								</>
-							);
-						default:
-							return <>Error</>;
-					}
-				})()}
+			{progress === 0 && <GetStarted setProgress={setProgress} />}
 
-				<br />
-			</form>
+			{progress > 0 && (
+				<div className='sign-up-form'>
+					<h2>Sign Up</h2>
+					<ul className='progressbar'>
+						<li className={progress >= 2 ? 'active' : null}>Basic Info</li>
+						<li className={progress >= 3 ? 'active' : null}>Experience</li>
+						<li className={progress >= 3 ? 'active' : null}>Success</li>
+					</ul>
+
+					<form onSubmit={handleSubmit}>
+						{(function() {
+							switch (progress) {
+								case 1:
+									return (
+										<>
+											<GeneralSignUp
+												// setEmailTouched={setEmailTouched}
+												setFirstTouched={setFirstTouched}
+												setLastTouched={setLastTouched}
+												setCityTouched={setCityTouched}
+												setStateTouched={setStateTouched}
+												// setPasswordTouched={setPasswordTouched}
+												user={user}
+												handleChange={handleChange}
+											/>
+											{valError ? (
+												<button className='form-btn' disabled>
+													Next
+												</button>
+											) : (
+												<button className='form-btn' onClick={handleNext}>
+													Next
+												</button>
+											)}
+											{valError
+												? valError.map(message => {
+														// if (message.includes('email') && !emailTouched) {
+														// 	return null;
+														// }
+														if (message.includes('first') && !firstTouched) {
+															return null;
+														}
+														if (message.includes('last') && !lastTouched) {
+															return null;
+														}
+														if (message.includes('city') && !cityTouched) {
+															return null;
+														}
+														if (message.includes('state') && !stateTouched) {
+															return null;
+														}
+														// if (
+														// 	(message.includes('password') ||
+														// 		message.includes('Password')) &&
+														// 	!passwordTouched
+														// ) {
+														// 	return null;
+														// }
+
+														return (
+															<p
+																key={message}
+																className='validation-error-message'>
+																{message}
+															</p>
+														);
+												  })
+												: null}
+										</>
+									);
+								case 2:
+									return (
+										<>
+											<ExpSignUp user={user} handleChange={handleChange} />
+											<button className='form-btn' onClick={handleBack}>
+												Back
+											</button>
+											<button className='submit-btn' type='submit'>
+												Submit
+											</button>
+											{error.error ? (
+												<p>
+													This email address is already in use- please enter a
+													unique email address
+												</p>
+											) : null}
+										</>
+									);
+								case 3:
+									return (
+										<>
+											<CompletedSignUp />
+										</>
+									);
+								default:
+									return;
+								// return <>Error</>;
+							}
+						})()}
+
+						<br />
+					</form>
+				</div>
+			)}
 		</div>
 	);
 };
