@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Pencil() {
+export default function IconPencil() {
   return (
     <svg
       width="24"

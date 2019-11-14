@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import "./DashboardInput.scss";
 
-import Pencil from "../../icons/Pencil";
+import IconPencil from "../../icons/IconPencil";
 
 import { statesArray } from "../SignUpForm/States";
 
@@ -272,7 +272,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
           data-testid="edit-button"
         >
           {/* &#x1F589; */}
-          <Pencil />
+          <IconPencil />
         </button>
       )}
     </div>

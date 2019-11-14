@@ -1,11 +1,9 @@
-import React from 'react'
-import Panels from './Panels'
-import * as rtl from '@testing-library/react'
+import React from "react";
+import Panels from "./Panels";
+import * as rtl from "@testing-library/react";
 
-afterEach(rtl.cleanup)
+afterEach(rtl.cleanup);
 
-test('is rendering', () => {
-    rtl.render(
-        <Panels />
-    )
-})
+test("is rendering", () => {
+  rtl.render(<Panels />);
+});
