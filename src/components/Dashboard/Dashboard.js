@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import "./Dashboard.scss";
+
+export const DELETE_USER = gql`
+  mutation  {
+    deleteUser{
+      first_name
+      last_name
+      id
+    }
+  }
+`;
 
 //GraphQuaiL Query
 const GET_USER = gql`
@@ -37,7 +47,9 @@ const Dashboard = props => {
     id: null
   };
 
-  const [getUser, { data: userData }] = useLazyQuery(GET_USER);
+  const [getUser, {client, data: userData }] = useLazyQuery(GET_USER);
+  
+  const [deleteThatUser, changeDeleteThatUser] = useMutation(DELETE_USER);
   const [editUser, setEditUser] = useState(userData);
   const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
 
@@ -82,9 +94,15 @@ const Dashboard = props => {
   };
 
   const deleteAccount = () =>{
+    console.log(props);
     const answer = window.confirm("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?");
     if(answer){
-      console.log('deleting account');
+      deleteThatUser().then(res=>{
+        client.clearStore();
+        localStorage.clear();
+        props.setLoggedin(false);
+        props.history.push('/');
+      })
     }
   }
 
