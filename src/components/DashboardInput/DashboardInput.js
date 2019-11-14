@@ -77,7 +77,6 @@ const DashboardInput = ({ userKey, userValue }) => {
     const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (userKey === "email") {
       if (!user[userKey].match(mailFormat)) {
-        console.log("not an email address");
         setUser({
           [userKey]: original
         });
@@ -89,7 +88,6 @@ const DashboardInput = ({ userKey, userValue }) => {
     //Cannot leave state on Select
     if (userKey === "state") {
       if (user[userKey] === "Select") {
-        console.log("Must pick a state");
         setUser({
           [userKey]: original
         });
@@ -102,12 +100,28 @@ const DashboardInput = ({ userKey, userValue }) => {
     if (
       (userKey === "first_name" ||
         userKey === "last_name" ||
-        userKey ||
-        "email" ||
+        userKey === "email" ||
         userKey === "city" ||
         userKey === "state") &&
       user[userKey] !== ""
     ) {
+      console.log('success');
+      //if fields are not blank, run mutation to update
+      changeField({ variables: user })
+        .then(res => {
+          setOriginal(user[userKey]);
+          setEditing(false);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else if(!(userKey === "first_name" ||
+    userKey === "last_name" ||
+    userKey === "email" ||
+    userKey === "city" ||
+    userKey === "state")){
+
+      console.log('success');
       //if fields are not blank, run mutation to update
       changeField({ variables: user })
         .then(res => {
@@ -118,6 +132,9 @@ const DashboardInput = ({ userKey, userValue }) => {
           console.log(err);
         });
     } else {
+      console.log('no success');
+      console.log(userKey)
+      console.log(user[userKey]);
       //If fields are blank... cancel edit
       setUser({
         [userKey]: original
@@ -161,9 +178,9 @@ const DashboardInput = ({ userKey, userValue }) => {
       //If it's not a states array, just render a normal input field
       <input
         name={userKey}
-        placeholder={original}
+        // placeholder={original}
         onChange={handleChange}
-        value={user.userKey}
+        value={user[userKey]}
       />
     );
   };
