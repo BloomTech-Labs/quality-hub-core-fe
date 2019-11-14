@@ -86,6 +86,7 @@ const SignUpForm = props => {
 
   const [valError, setValError] = useState();
   const validateUser = () => {
+    
     userSchema.validate(user, { abortEarly: false })
     .then(res=>{
       setValError();
@@ -106,24 +107,28 @@ const SignUpForm = props => {
   // const [gqlErr, setGqlErr] = useState(null)
   const handleSubmit = e => {
 
+    e.preventDefault();
+
+    //if URL is left as default, just remove http:// and submit as empty string
     const urlArray = ['personal_url', 'portfolio_url', 'twitter_url', 'linkedin_url', 'github_url']
     let submitUser = {...user};
-    
     urlArray.forEach(item=>{
       if (submitUser[item]=="http://"){
         submitUser[item] = "";
       }
     })
 
-    e.preventDefault();
+    //Isn't this redundant? You would not be able to submit if it was already validated, right?
     validateUser();
+
     signup({ variables: submitUser })
       .then(results => {
         console.log(results);
         // let token = results.data.signup.token;
-        // localStorage.setItem("token", token);
+        // localStorage.setItem("token", token); //Should probably also set id to localStorage
         setProgress(progress + 1);
         setTimeout(() => {
+          //Do we need to push to dashboard after sign up?
           props.history.push("/signin");
         }, 3000);
       })
