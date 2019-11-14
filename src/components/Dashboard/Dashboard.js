@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import "./Dashboard.scss";
+
+export const DELETE_USER = gql`
+  mutation  {
+    deleteUser{
+      first_name
+      last_name
+      id
+    }
+  }
+`;
 
 //GraphQuaiL Query
 const GET_USER = gql`
@@ -37,8 +47,11 @@ const Dashboard = props => {
     id: null
   };
 
-  const [getUser, { data: userData }] = useLazyQuery(GET_USER);
+  const [getUser, {client, data: userData }] = useLazyQuery(GET_USER);
+  
+  const [deleteThatUser, changeDeleteThatUser] = useMutation(DELETE_USER);
   const [editUser, setEditUser] = useState(userData);
+  const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -75,9 +88,26 @@ const Dashboard = props => {
   ];
   const paymentInfo = ["payment_info"];
 
+  const profileDropdown = () => {
+    console.log("profile dropdown");
+    setProfileDropdownToggle(!profileDropdownToggle);
+  };
+
+  const deleteAccount = () =>{
+    console.log(props);
+    const answer = window.confirm("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?");
+    if(answer){
+      deleteThatUser().then(res=>{
+        client.clearStore();
+        localStorage.clear();
+        props.setLoggedin(false);
+        props.history.push('/');
+      })
+    }
+  }
+
   return (
     <div className="entire-dashboard">
-
       {/* Looping over the userData and pushing to myArray
       This way we can map over the array and render input components later */}
       {userData &&
@@ -87,12 +117,22 @@ const Dashboard = props => {
         })}
       <div className="lower-dashboard">
         <div className="dashboard-left-bar">
-          <Link to="/dashboard">
+          {/* <Link to="/dashboard"> */}
+          <p onClick={() => profileDropdown()}>
             <span className="gray-square"></span> Profile
-          </Link>
-          <Link to="/dashboard">
+          </p>
+          {profileDropdownToggle && <div className="profile-dropdown-links">
+            <Link to="/dashboard">Basic Info</Link>
+            <Link to="/dashboard/experience">Experience</Link>
+            <Link to="/dashboard/paymentinfo">Payment Info</Link>
+            <Link to="#" onClick={()=>deleteAccount()}>Delete Account</Link>
+          </div>}
+          {/* </Link> */}
+          {/* <Link to="/dashboard"> */}
+          <p>
             <span className="gray-square"></span> Schedule
-          </Link>
+          </p>
+          {/* </Link> */}
         </div>
         <div className="dashboard-routes">
           <div className="dashboard-top-links">

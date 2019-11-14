@@ -30,7 +30,7 @@ function App() {
           )}
         />
         <Route path="/signup" component={SignUpForm} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Dashboard} setLoggedin={setLoggedin} />
       </Switch>
       <Footer />
     </div>
