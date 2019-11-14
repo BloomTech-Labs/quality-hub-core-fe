@@ -107,6 +107,7 @@ const DashboardInput = ({ userKey, userValue }) => {
         userKey === "state") &&
       user[userKey] !== ""
     ) {
+      //if fields are not blank, run mutation to update
       changeField({ variables: user })
         .then(res => {
           setOriginal(user[userKey]);
@@ -116,7 +117,7 @@ const DashboardInput = ({ userKey, userValue }) => {
           console.log(err);
         });
     } else {
-      //If fields are NOT blank...
+      //If fields are blank... cancel edit
       setUser({
         [userKey]: original
       });
@@ -174,7 +175,7 @@ const DashboardInput = ({ userKey, userValue }) => {
           {editing ? (
             checkKeyNameForEdit() //check what kind of input field to return based on key name
           ) : (
-            <p>{user[userKey]}</p> //check if value is nested in an object based on key name
+            <p>{user[userKey]}</p>
           )}
         </div>
       </div>
