@@ -1,9 +1,7 @@
 import React from 'react';
 import { statesArray } from './States.js'
 
-const GeneralSignUp = ({ user, handleChange, data }) => {
-
-
+const GeneralSignUp = ({ user, handleChange }) => {
   
     return (
       <div className="general-sign-up">
