@@ -105,7 +105,6 @@ const DashboardInput = ({ userKey, userValue }) => {
         userKey === "state") &&
       user[userKey] !== ""
     ) {
-      console.log('success');
       //if fields are not blank, run mutation to update
       changeField({ variables: user })
         .then(res => {
@@ -115,13 +114,15 @@ const DashboardInput = ({ userKey, userValue }) => {
         .catch(err => {
           console.log(err);
         });
-    } else if(!(userKey === "first_name" ||
-    userKey === "last_name" ||
-    userKey === "email" ||
-    userKey === "city" ||
-    userKey === "state")){
-
-      console.log('success');
+    } else if (
+      !(
+        userKey === "first_name" ||
+        userKey === "last_name" ||
+        userKey === "email" ||
+        userKey === "city" ||
+        userKey === "state"
+      )
+    ) {
       //if fields are not blank, run mutation to update
       changeField({ variables: user })
         .then(res => {
@@ -132,9 +133,6 @@ const DashboardInput = ({ userKey, userValue }) => {
           console.log(err);
         });
     } else {
-      console.log('no success');
-      console.log(userKey)
-      console.log(user[userKey]);
       //If fields are blank... cancel edit
       setUser({
         [userKey]: original
@@ -195,14 +193,14 @@ const DashboardInput = ({ userKey, userValue }) => {
           {editing ? (
             checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
           ) : (
-            <p>{user[userKey]}</p>//When you're not in edit mode, render this
+            <p>{user[userKey]}</p> //When you're not in edit mode, render this
           )}
         </div>
       </div>
       <div className="update-btns">
         {editing && (
           // Cancel out of editing mode
-          <button onClick={() => handleCancel()} className="cancel-button">  
+          <button onClick={() => handleCancel()} className="cancel-button">
             Cancel
           </button>
         )}
