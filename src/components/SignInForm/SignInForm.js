@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 // import styled from "styled-components";
 import Loading from "../Loading";
+import { Link } from "react-router-dom";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -51,6 +52,7 @@ const SignInForm = props => {
       .catch(err => {
         setLoading(false);
       });
+    console.log(user);
   };
 
   return (
@@ -75,7 +77,6 @@ const SignInForm = props => {
             id="email"
           />
         </div>
-
         <br />
         <div className="input-label">
           <label htmlFor="password"> Password </label>
@@ -91,12 +92,12 @@ const SignInForm = props => {
           <p>Forgot password?</p>
         </div>
         <br />
-
         {!loading && (
           <button className="submit-btn sign-in-button">Sign in</button>
         )}
-        {!loading && <p>Don't have an account? Sign up</p>}
-
+        {!loading && (
+          <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+        )}
         {loading && <Loading />}
       </form>
     </div>

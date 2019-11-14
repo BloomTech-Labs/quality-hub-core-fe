@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import "./DashboardInput.scss";
 
-import Pencil from "../../icons/Pencil";
+import IconPencil from "../../icons/IconPencil";
 
 import { statesArray } from "../SignUpForm/States";
-
 import { capitalize } from "../../utils/capitalize";
 
 //GraphQuail Mutation
-const EDIT_USER = gql`
+export const EDIT_USER = gql`
   mutation update(
     $first_name: String
     $last_name: String
@@ -48,27 +47,16 @@ const EDIT_USER = gql`
   }
 `;
 
-const POST_INDUSTRY_TO_USER = gql`
-  mutation postIndustryToUser($industry_id: ID!) {
-    postIndustryToUser(industry_id: $industry_id) {
-      id
-      name
-    }
-  }
-`;
-
-//Component
-const DashboardInput = ({ userKey, userValue, industryData }) => {
+const DashboardInput = ({ userKey, userValue }) => {
   const [original, setOriginal] = useState(userValue);
   const [editing, setEditing] = useState(false);
   const [user, setUser] = useState({
     [userKey]: userValue
   });
 
+  //changeField runs the update mutation
   const [changeField, changeFieldMutation] = useMutation(EDIT_USER);
-  const [changeIndustry, changeIndustryMutation] = useMutation(
-    POST_INDUSTRY_TO_USER
-  );
+
   const handleChange = e => {
     setUser({
       [userKey]: e.target.value
@@ -77,30 +65,18 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     //this checks to see if the user pressed accept, but didn't make any changes.
     //if so, no mutation request is made
-    if (original == user[userKey]) {
+    if (original === user[userKey]) {
       setEditing(false);
       return;
     }
 
     //check if valid email
-    if (userKey == "email") {
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (userKey === "email") {
       if (!user[userKey].match(mailFormat)) {
-        console.log("not an email address");
-        setUser({
-          [userKey]: original
-        });
-        setEditing(false);
-        return;
-      }
-    }
-    //Cannot leave state on Select
-    if (userKey == "state") {
-      if (user[userKey] == "Select") {
-        console.log("Must pick a state");
         setUser({
           [userKey]: original
         });
@@ -109,27 +85,14 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       }
     }
 
-    if (userKey == "industries") {
-      if (user[userKey] == "Select") {
-        console.log("Must pick an industry");
+    //Cannot leave state on Select
+    if (userKey === "state") {
+      if (user[userKey] === "Select") {
         setUser({
           [userKey]: original
         });
         setEditing(false);
         return;
-      } else {
-        const objectData = {
-          industry_id: user.industries
-        };
-        changeIndustry({ variables: { industry_id: user.industries } })
-          .then(res => {
-            console.log(res);
-            setOriginal(industryData[user[userKey]]);
-            setEditing(false);
-          })
-          .catch(err => {
-            console.log(err);
-          });
       }
     }
 
@@ -137,13 +100,30 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
     if (
       (userKey === "first_name" ||
         userKey === "last_name" ||
-        userKey ||
-        "email" ||
+        userKey === "email" ||
         userKey === "city" ||
         userKey === "state") &&
       user[userKey] !== ""
     ) {
-      console.log("submit");
+      //if fields are not blank, run mutation to update
+      changeField({ variables: user })
+        .then(res => {
+          setOriginal(user[userKey]);
+          setEditing(false);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else if (
+      !(
+        userKey === "first_name" ||
+        userKey === "last_name" ||
+        userKey === "email" ||
+        userKey === "city" ||
+        userKey === "state"
+      )
+    ) {
+      //if fields are not blank, run mutation to update
       changeField({ variables: user })
         .then(res => {
           setOriginal(user[userKey]);
@@ -153,15 +133,15 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
           console.log(err);
         });
     } else {
+      //If fields are blank... cancel edit
       setUser({
         [userKey]: original
       });
       setEditing(false);
     }
-
-    console.log(user);
   };
 
+  //if you cancel out of an edit, revert back to the original data
   const handleCancel = () => {
     setUser({
       [userKey]: original
@@ -169,22 +149,8 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
     setEditing(false);
   };
 
-  const checkKeyName = () => {
-    if (userKey == "industries") {
-      if (user[userKey][0]) {
-        return user[userKey][0].name;
-      } else {
-        return;
-      }
-    }
-
-    if (userKey == "state") {
-      return user[userKey];
-    }
-
-    return user[userKey];
-  };
-
+  //when you click edit...
+  //if the key name is state, use a dropdown menu instead of input form
   const checkKeyNameForEdit = () => {
     if (userKey === "state") {
       return (
@@ -205,34 +171,14 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
         </select>
       );
     }
-    console.log(userKey);
-    if (userKey === "industries") {
-      return (
-        <select
-          id="sign-up-industry"
-          name="industry"
-          placeholder="Industry"
-          value={user[userKey] ? user[userKey][0].name : ""}
-          onChange={handleChange}
-          required
-        >
-          <option>Select</option>
-          {industryData &&
-            industryData.industries.map(industry => (
-              <option value={industry.id} key={industry.id}>
-                {industry.name}
-              </option>
-            ))}
-        </select>
-      );
-    }
-    console.log("here?");
+
     return (
+      //If it's not a states array, just render a normal input field
       <input
         name={userKey}
-        placeholder={original}
+        // placeholder={original}
         onChange={handleChange}
-        value={user.userKey}
+        value={user[userKey]}
       />
     );
   };
@@ -241,34 +187,38 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
     <div className="dash-input">
       <div className="dash-row">
         <span className="dash-heading">
-          <h2>{capitalize(userKey)}</h2>
+          <h2>{userKey && capitalize(userKey)}</h2>
         </span>
         <div>
           {editing ? (
-            checkKeyNameForEdit() //check what kind of input field to return based on key name
+            checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
           ) : (
-            <p>{checkKeyName()}</p> //check if value is nested in an object based on key name
+            <p>{user[userKey]}</p> //When you're not in edit mode, render this
           )}
         </div>
       </div>
       <div className="update-btns">
         {editing && (
+          // Cancel out of editing mode
           <button onClick={() => handleCancel()} className="cancel-button">
-            {/* X */}
             Cancel
           </button>
         )}
         {editing && (
+          // Save changes made in editing mode
           <button onClick={e => handleSubmit(e)} className="accept-button">
-            {/* &#x2713; */}
             Save
           </button>
         )}
       </div>
       {!editing && (
-        <button className="edit-button" onClick={() => setEditing(true)}>
-          {/* &#x1F589; */}
-          <Pencil />
+        //button to click on to enter editing mode
+        <button
+          className="edit-button"
+          onClick={() => setEditing(true)}
+          data-testid="edit-button" //data-testid made explicitly for testing-purposes
+        >
+          <IconPencil />
         </button>
       )}
     </div>

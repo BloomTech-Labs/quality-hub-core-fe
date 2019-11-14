@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gql } from "apollo-boost";
-import { useLazyQuery } from "@apollo/react-hooks";
 
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 
 import axios from "axios";
 
@@ -14,10 +13,7 @@ const GET_USER = gql`
       first_name
       last_name
       email
-      city
-      state
       image_url
-      gender
     }
   }
 `;
@@ -31,10 +27,14 @@ const EDIT_IMG = gql`
 `;
 
 const AvatarDropdown = props => {
+  const [getUser, { client, data }] = useLazyQuery(GET_USER);
+
   const [picture, setPicture] = useState(null);
-  const [getUser, { client, loading, data }] = useLazyQuery(GET_USER);
-  const node = useRef();
   const [open, setOpen] = useState(false);
+  const [avatarURL, setAvatarURL] = useState("/blankavatar.svg");
+  const [runCount, setRunCount] = useState(0);
+
+  const node = useRef();
 
   const [editImage] = useMutation(EDIT_IMG, {
     update(
@@ -54,9 +54,10 @@ const AvatarDropdown = props => {
   });
 
   const logout = () => {
+    client.clearStore(); //remove token from cache
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
-    client.clearStore();
+    props.setLoggedin(false);
     props.logout();
   };
 
@@ -76,10 +77,7 @@ const AvatarDropdown = props => {
     if (picture) {
       const formData = new FormData();
       formData.append("file", picture);
-      formData.append(
-        "upload_preset",
-        process.env.REACT_APP_UPLOAD_PRESET
-      );
+      formData.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
 
       axios
         .post(
@@ -97,7 +95,19 @@ const AvatarDropdown = props => {
 
   useEffect(() => {
     getUser();
+    setRunCount(1);
   }, []);
+
+  useEffect(() => {
+    //useEffect runs on intialization of component, so runCount makes sure data is first retrieved
+    if (runCount > 0) {
+      if (data) {
+        if (data.me.image_url) {
+          setAvatarURL(data.me.image_url);
+        }
+      }
+    }
+  }, [data]);
 
   useEffect(() => {
     if (open) {
@@ -111,8 +121,8 @@ const AvatarDropdown = props => {
   return (
     <div ref={node}>
       <img
-        src="/avatar.png"
-        alt="Grid Menu"
+        src={avatarURL}
+        alt="Avatar menu"
         className="avatar-menu"
         onClick={e => setOpen(!open)}
       />
@@ -132,25 +142,15 @@ const AvatarDropdown = props => {
                   style={{
                     backgroundImage: `url('${data && data.me.image_url}')`
                   }}
-                >
-                  {/* {!data && <p className="add-image">Add Image</p>} */}
-                </div>
-                {/* <div className="edit-image">
-                <p>Edit Image</p>
-              </div> */}
+                ></div>
               </div>
             </label>
             {/* Avatar image in dropdown menu */}
-            {/* {data && (
-              <img
-                src={data.me.image_url || "avatar.png"}
-                alt="Profile avatar"
-                className="avatar-submenu"
-              />
-            )} */}
             {/* This is the offset camera icon */}
             <label htmlFor="imageInput" className="camera-label">
-              <div className="dropdown-camera-icon grey-on-hover">&#x1F4F7;</div>
+              <div className="dropdown-camera-icon grey-on-hover">
+                &#x1F4F7;
+              </div>
             </label>
           </div>
           {data && (
@@ -162,7 +162,7 @@ const AvatarDropdown = props => {
 
           {/* Need to link to dashboard */}
           <Link to="/dashboard">
-            <button className="manage-btn">
+            <button className="manage-btn" onClick={() => setOpen(false)}>
               Manage your Quality Hub account
             </button>
           </Link>

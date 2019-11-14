@@ -7,6 +7,7 @@ import SignInForm from "./components/SignInForm/index.js";
 import SignUpForm from "./components/SignUpForm/index.js";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 
 import "./global/index.scss";
 
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar loggedin={loggedin} setLoggedin={setLoggedin} />
+      <Route path ="/" render={props => <NavBar {...props} loggedin={loggedin} setLoggedin={setLoggedin} />} />
       <Switch>
         <Route exact path="/" render={props => <LandingPage {...props} />} />
         <Route
@@ -29,7 +30,7 @@ function App() {
           )}
         />
         <Route path="/signup" component={SignUpForm} />
-        <Route path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Dashboard} setLoggedin={setLoggedin} />
       </Switch>
       <Footer />
     </div>

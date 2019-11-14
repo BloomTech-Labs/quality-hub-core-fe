@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import "./LandingPage.scss";
 
 import Features from "./Features";
@@ -57,7 +59,7 @@ const LandingPage = props => {
           QualityHub offers the opportunity for anyone to have experienced
           professionals assess the quality of anything.
         </p>
-        <button className="start-btn">Get Started</button>
+        <Link to="/signup"><button className="start-btn">Get Started</button></Link>
       </div>
       <Features />
       <Panels />

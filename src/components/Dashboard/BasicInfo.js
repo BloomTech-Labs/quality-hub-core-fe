@@ -3,7 +3,7 @@ import React from "react";
 import DashboardPicture from "../DashboardPicture";
 import DashboardInput from "../DashboardInput";
 
-const BasicInfo = ({ myArray, basicInfo, userData, industryData }) => {
+const BasicInfo = ({ myArray, basicInfo, userData }) => {
   return (
     <div className="editform">
       <DashboardPicture />
@@ -15,7 +15,6 @@ const BasicInfo = ({ myArray, basicInfo, userData, industryData }) => {
                 key={item}
                 userKey={item}
                 userValue={userData.me[item]}
-                industryData={industryData}
               />
             );
           }

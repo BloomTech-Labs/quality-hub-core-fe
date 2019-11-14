@@ -8,14 +8,14 @@ import * as yup from "yup";
 import { string, object, mixed } from "yup";
 
 //GraphQuail Stuff
-const GET_INDUSTRIES = gql`
-  query {
-    industries {
-      name
-      id
-    }
-  }
-`;
+// const GET_INDUSTRIES = gql`
+//   query {
+//     industries {
+//       name
+//       id
+//     }
+//   }
+// `;
 
 const SIGN_UP = gql`
   mutation signup(
@@ -25,7 +25,7 @@ const SIGN_UP = gql`
     $password: String!
     $city: String!
     $state: String!
-    $industry: ID!
+    # $industry: ID!
     $personal_url: String
     $portfolio_url: String
     $twitter_url: String
@@ -42,7 +42,7 @@ const SIGN_UP = gql`
       # image: $image,
       personal_url: $personal_url
       portfolio_url: $portfolio_url
-      industry: $industry
+      # industry: $industry
       twitter_url: $twitter_url
       linkedin_url: $linkedin_url
       github_url: $github_url
@@ -59,7 +59,7 @@ const SIGN_UP = gql`
 //COM-ponent
 const SignUpForm = props => {
   //Get industry list
-  const { data } = useQuery(GET_INDUSTRIES);
+  // const { data } = useQuery(GET_INDUSTRIES);
 
   //Set user object
   const [user, setUser] = useState({
@@ -69,7 +69,7 @@ const SignUpForm = props => {
     password: "",
     city: "",
     state: "",
-    industry: "",
+    // industry: "",
     personal_url: "http://",
     portfolio_url: "http://",
     twitter_url: "http://",
@@ -79,7 +79,7 @@ const SignUpForm = props => {
  
   const [signup, error] = useMutation(SIGN_UP);
 
-  console.log(error)
+  // console.log(error)
   //Form management/validation
   useEffect(()=>{
     validateUser();
@@ -91,7 +91,7 @@ const SignUpForm = props => {
     email: string()
       .email("Please enter a valid email address")
       .required("Please enter your email address"),
-    industry: string().required("Please select your industry"),
+    // industry: string().required("Please select your industry"),
     city: string().required("Please enter your city"),
     state: string().required("Please enter your state"),
     password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password'),
@@ -104,7 +104,7 @@ const SignUpForm = props => {
 
   const [valError, setValError] = useState();
   const validateUser = () => {
-    console.log(user);
+    // console.log(user);
     userSchema.validate(user, { abortEarly: false })
     .then(res=>{
       console.log("SUCCESS. NO MORE ERRORS", res)
@@ -113,7 +113,7 @@ const SignUpForm = props => {
     .catch(err => {
       
       setValError(err.errors);
-      console.log(err.errors);
+      // console.log(err.errors);
     });
   };
  
@@ -142,7 +142,7 @@ const SignUpForm = props => {
       .catch(err => {
         console.log(err);
       });
-    console.log(user);
+    // console.log(user);
   };
  
   //Set form step
@@ -174,7 +174,7 @@ const SignUpForm = props => {
                 <>
                   <GeneralSignUp
                     user={user}
-                    data={data}
+                    // data={data}
                     handleChange={handleChange}
                   />
                   {valError ? (
@@ -206,7 +206,7 @@ const SignUpForm = props => {
                {error.error ? <p>This email address is already in use- please enter a unique email address</p> : null}
                   {valError
                     ? valError.map(message => {
-                        return <p>{message}</p>;
+                        return <p key={message}>{message}</p>;
                       })
                     : null}
                 </>

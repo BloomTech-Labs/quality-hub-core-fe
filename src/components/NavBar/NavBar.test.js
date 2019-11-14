@@ -2,8 +2,7 @@ import React from 'react'
 
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import NavBar from './NavBar'
-import App from '../App'
-// import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+
 import {Router, NavLink, BrowserRouter} from 'react-router-dom'
 import {createMemoryHistory} from 'history'
 
