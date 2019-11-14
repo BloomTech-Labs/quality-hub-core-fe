@@ -6,16 +6,7 @@ import ExpSignUp from "./ExpSignUp.js";
 import CompletedSignUp from "./CompletedSignUp";
 import * as yup from "yup";
 import { string, object, mixed } from "yup";
-
-//GraphQuail Stuff
-// const GET_INDUSTRIES = gql`
-//   query {
-//     industries {
-//       name
-//       id
-//     }
-//   }
-// `;
+import './SignUpForm.scss';
 
 const SIGN_UP = gql`
   mutation signup(
@@ -25,7 +16,6 @@ const SIGN_UP = gql`
     $password: String!
     $city: String!
     $state: String!
-    # $industry: ID!
     $personal_url: String
     $portfolio_url: String
     $twitter_url: String
@@ -39,10 +29,8 @@ const SIGN_UP = gql`
       password: $password
       city: $city
       state: $state
-      # image: $image,
       personal_url: $personal_url
       portfolio_url: $portfolio_url
-      # industry: $industry
       twitter_url: $twitter_url
       linkedin_url: $linkedin_url
       github_url: $github_url
@@ -58,8 +46,12 @@ const SIGN_UP = gql`
 
 //COM-ponent
 const SignUpForm = props => {
-  //Get industry list
-  // const { data } = useQuery(GET_INDUSTRIES);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [firstTouched, setFirstTouched] = useState(false);
+  const [lastTouched, setLastTouched] = useState(false);
+  const [cityTouched, setCityTouched] = useState(false);
+  const [stateTouched, setStateTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   //Set user object
   const [user, setUser] = useState({
@@ -69,7 +61,6 @@ const SignUpForm = props => {
     password: "",
     city: "",
     state: "",
-    // industry: "",
     personal_url: "http://",
     portfolio_url: "http://",
     twitter_url: "http://",
@@ -79,7 +70,6 @@ const SignUpForm = props => {
  
   const [signup, error] = useMutation(SIGN_UP);
 
-  // console.log(error)
   //Form management/validation
   useEffect(()=>{
     validateUser();
@@ -91,7 +81,6 @@ const SignUpForm = props => {
     email: string()
       .email("Please enter a valid email address")
       .required("Please enter your email address"),
-    // industry: string().required("Please select your industry"),
     city: string().required("Please enter your city"),
     state: string().required("Please enter your state"),
     password: string().min(6, 'Password must be at least 6 characters').required('Please enter a password'),
@@ -104,16 +93,13 @@ const SignUpForm = props => {
 
   const [valError, setValError] = useState();
   const validateUser = () => {
-    // console.log(user);
+    
     userSchema.validate(user, { abortEarly: false })
     .then(res=>{
-      console.log("SUCCESS. NO MORE ERRORS", res)
       setValError();
     })
     .catch(err => {
-      
       setValError(err.errors);
-      // console.log(err.errors);
     });
   };
  
@@ -125,24 +111,37 @@ const SignUpForm = props => {
       });
   };
 
-  const [gqlErr, setGqlErr] = useState(null)
+  // const [gqlErr, setGqlErr] = useState(null)
   const handleSubmit = e => {
+
     e.preventDefault();
+
+    //if URL is left as default, just remove http:// and submit as empty string
+    const urlArray = ['personal_url', 'portfolio_url', 'twitter_url', 'linkedin_url', 'github_url']
+    let submitUser = {...user};
+    urlArray.forEach(item=>{
+      if (submitUser[item]=="http://"){
+        submitUser[item] = "";
+      }
+    })
+
+    //Isn't this redundant? You would not be able to submit if it was already validated, right?
     validateUser();
-    signup({ variables: user })
+
+    signup({ variables: submitUser })
       .then(results => {
-        console.log(results);
+        // console.log(results);
         // let token = results.data.signup.token;
-        // localStorage.setItem("token", token);
+        // localStorage.setItem("token", token); //Should probably also set id to localStorage
         setProgress(progress + 1);
         setTimeout(() => {
+          //Do we need to push to dashboard after sign up?
           props.history.push("/signin");
         }, 3000);
       })
       .catch(err => {
         console.log(err);
       });
-    // console.log(user);
   };
  
   //Set form step
@@ -173,8 +172,13 @@ const SignUpForm = props => {
               return (
                 <>
                   <GeneralSignUp
+                    setEmailTouched={setEmailTouched}
+                    setFirstTouched={setFirstTouched}
+                    setLastTouched={setLastTouched}
+                    setCityTouched={setCityTouched}
+                    setStateTouched={setStateTouched}
+                    setPasswordTouched={setPasswordTouched}
                     user={user}
-                    // data={data}
                     handleChange={handleChange}
                   />
                   {valError ? (
@@ -188,7 +192,26 @@ const SignUpForm = props => {
                   )}
                   {valError
                     ? valError.map(message => {
-                        return <p key={message}>{message}</p>;
+                      if(message.includes('email') && !emailTouched){
+                        return null;
+                      }
+                      if(message.includes('first') && !firstTouched){
+                        return null;
+                      }
+                      if(message.includes('last') && !lastTouched){
+                        return null;
+                      }
+                      if(message.includes('city') && !cityTouched){
+                        return null;
+                      }
+                      if(message.includes('state') && !stateTouched){
+                        return null;
+                      }
+                      if((message.includes('password') || message.includes('Password') )&& !passwordTouched){
+                        return null;
+                      }
+                      
+                        return <p key={message} className="validation-error-message">{message}</p>;
                       })
                     : null}
                 </>
@@ -204,11 +227,6 @@ const SignUpForm = props => {
                     Submit
                   </button>
                {error.error ? <p>This email address is already in use- please enter a unique email address</p> : null}
-                  {valError
-                    ? valError.map(message => {
-                        return <p key={message}>{message}</p>;
-                      })
-                    : null}
                 </>
               );
             case 3:
