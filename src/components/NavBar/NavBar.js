@@ -64,7 +64,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
         {!loggedin && (
           <>
             <NavLink to="signin"> Sign In </NavLink>
-            <NavLink to="signup" className="signup-link"> Sign Up</NavLink>
+            <NavLink to="signup" className="signup-link"> Sign Up </NavLink>
           </>
         )}
 
