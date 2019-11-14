@@ -39,6 +39,7 @@ const Dashboard = props => {
 
   const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const [editUser, setEditUser] = useState(userData);
+  const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -75,9 +76,20 @@ const Dashboard = props => {
   ];
   const paymentInfo = ["payment_info"];
 
+  const profileDropdown = () => {
+    console.log("profile dropdown");
+    setProfileDropdownToggle(!profileDropdownToggle);
+  };
+
+  const deleteAccount = () =>{
+    const answer = window.confirm("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?");
+    if(answer){
+      console.log('deleting account');
+    }
+  }
+
   return (
     <div className="entire-dashboard">
-
       {/* Looping over the userData and pushing to myArray
       This way we can map over the array and render input components later */}
       {userData &&
@@ -87,12 +99,22 @@ const Dashboard = props => {
         })}
       <div className="lower-dashboard">
         <div className="dashboard-left-bar">
-          <Link to="/dashboard">
+          {/* <Link to="/dashboard"> */}
+          <p onClick={() => profileDropdown()}>
             <span className="gray-square"></span> Profile
-          </Link>
-          <Link to="/dashboard">
+          </p>
+          {profileDropdownToggle && <div className="profile-dropdown-links">
+            <Link to="/dashboard">Basic Info</Link>
+            <Link to="/dashboard/experience">Experience</Link>
+            <Link to="/dashboard/paymentinfo">Payment Info</Link>
+            <Link to="#" onClick={()=>deleteAccount()}>Delete Account</Link>
+          </div>}
+          {/* </Link> */}
+          {/* <Link to="/dashboard"> */}
+          <p>
             <span className="gray-square"></span> Schedule
-          </Link>
+          </p>
+          {/* </Link> */}
         </div>
         <div className="dashboard-routes">
           <div className="dashboard-top-links">
