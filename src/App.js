@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard/index.js";
 import SignInForm from "./components/SignInForm/index.js";
+import ForgotPassword from "./components/SignInForm/ForgotPassword.js";
 import SignUpForm from "./components/SignUpForm/index.js";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -29,6 +30,7 @@ function App() {
             />
           )}
         />
+        <Route path="/ForgotPassword" component={ForgotPassword}/>
         <Route path="/signup" component={SignUpForm} />
         <PrivateRoute path="/dashboard" component={Dashboard} setLoggedin={setLoggedin} />
       </Switch>

@@ -4,7 +4,6 @@ import { gql } from "apollo-boost";
 // import styled from "styled-components";
 import Loading from "../Loading";
 import { Link } from "react-router-dom";
-import './SignInForm.scss';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -90,13 +89,11 @@ const SignInForm = props => {
             value={user.password}
             onChange={handleChange}
           />
-          <Link to="/signIn-ForgotPassword">Forgot password?</Link>
+          <p><Link to="/ForgotPassword">Forgot password?</Link></p>
         </div>
         <br />
         {!loading && (
-          (user.email != "" && user.password !="") ? 
-          <button className="submit-btn sign-in-button">Sign in</button> : 
-          <button className="submit-btn sign-in-button" disabled>Sign in</button>
+          <button className="submit-btn sign-in-button">Sign in</button>
         )}
         {!loading && (
           <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
