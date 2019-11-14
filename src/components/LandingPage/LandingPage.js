@@ -9,44 +9,36 @@ import Panels from './Panels';
 const LandingPage = props => {
 	// array with texts to type in typewriter
 	let [animatedText, setText] = useState('');
+	let [animationStatus, setStatus] = useState(true);
+	let [seconds, setTime] = useState(0);
+	let [wordIndex, setWord] = useState(0);
 	let dataText = ['Interviews', 'Code', 'Designs', 'Resumes', 'Quailcoin'];
+	let key;
 
 	useEffect(() => {
-		// Creates a word one letter at a time (a, ap, app, appl, apple)
-		// After the word is complete, run a callback function that plays the next word
-		const typeWriter = (text, idx, cb) => {
-			if (idx < text.length) {
-				setText(text.substring(0, idx + 1));
-				// wait for a while and call this function again for next character
-				setTimeout(function() {
-					typeWriter(text, idx + 1, cb);
-				}, 100);
-			} else {
-				// Plays call back after all text has been played
-				// call callback after timeout
-				setTimeout(cb, 1500);
-			}
+		key = setInterval(() => {
+			setTime(seconds => seconds + 1);
+		}, 100);
+		return () => {
+			clearInterval(key);
 		};
-
-		// start a typewriter animation for a text in the dataText array
-		const startTextAnimation = wordIdx => {
-			// Went through all words
-			if (dataText[wordIdx]) {
-				// text exists! start typewriter animation
-				typeWriter(dataText[wordIdx], 0, () => {
-					// after callback (and whole text has been animated), start next text
-					startTextAnimation(wordIdx + 1);
-				});
-			} else {
-				setTimeout(function() {
-					startTextAnimation(0);
-				}, 1500);
-			}
-		};
-
-		// start the text animation
-		startTextAnimation(0);
 	}, []);
+
+	useEffect(() => {
+		if (wordIndex >= dataText.length) {
+			setWord(0);
+		} else {
+			let letter_index = Math.floor(seconds / 1);
+			setText(dataText[wordIndex].substring(0, letter_index + 1));
+			// Add delay when word is completed
+			if (letter_index == dataText[wordIndex].length - 1) {
+				setTimeout(() => {
+					setWord(idx => idx + 1);
+					setTime(0);
+				}, 1000);
+			}
+		}
+	}, [seconds]);
 
 	return (
 		<div>
