@@ -52,7 +52,11 @@ const Dashboard = props => {
     setEditUser(userData);
   }, [userData]);
 
+  //myArray is used to hold the values from the returned userData.
+  //We loop over the keys in the userData object and push them to myArray.
   let myArray = [];
+
+  //basicInfo, experience, and paymentInfo create constraints of which fields go into which are on the dashboard.
   const basicInfo = [
     "bio",
     "first_name",
@@ -73,6 +77,9 @@ const Dashboard = props => {
 
   return (
     <div className="entire-dashboard">
+
+      {/* Looping over the userData and pushing to myArray
+      This way we can map over the array and render input components later */}
       {userData &&
         editUser &&
         Object.keys(userData.me).forEach(field => {
@@ -101,7 +108,7 @@ const Dashboard = props => {
                 <BasicInfo
                   {...props}
                   myArray={myArray}
-                  basicInfo={basicInfo}
+                  basicInfo={basicInfo} //basicInfo is an array that contains the names of all the fields we want to use on this page
                   userData={userData}
                 />
               )}
@@ -113,7 +120,7 @@ const Dashboard = props => {
                 <Experience
                   {...props}
                   myArray={myArray}
-                  experience={experience}
+                  experience={experience} //experience is an array that contains the names of all the fields we want to use on this page
                   userData={userData}
                 />
               )}
@@ -125,7 +132,7 @@ const Dashboard = props => {
                 <PaymentInfo
                   {...props}
                   myArray={myArray}
-                  paymentInfo={paymentInfo}
+                  paymentInfo={paymentInfo} //paymentInfo is an array that contains the names of all the fields we want to use on this page
                   userData={userData}
                 />
               )}
