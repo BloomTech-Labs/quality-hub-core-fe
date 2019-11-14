@@ -19,7 +19,7 @@
 }
 
 .grid-icon {
-  margin-right: 10px;
+  margin-right: 35px;
   cursor: pointer;
 }
 
@@ -214,8 +214,7 @@
   pointer-events: none;
 }
 
-
-.styled-nav{
+.styled-nav {
   display: flex;
   justify-content: space-between;
 
@@ -235,7 +234,7 @@
   .right {
     display: flex;
     justify-content: space-evenly;
-    width: 180px;
+    width: 280px;
     align-items: center;
 
     a {
