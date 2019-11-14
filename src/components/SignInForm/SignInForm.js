@@ -91,7 +91,7 @@ const SignInForm = props => {
 						value={user.password}
 						onChange={handleChange}
 					/>
-					<p>Forgot password?</p>
+					<p><Link to="/forgotPassword">Forgot password?</Link></p>
 				</div>
 				<br />
 				{!loading &&
