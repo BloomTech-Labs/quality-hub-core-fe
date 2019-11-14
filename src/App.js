@@ -1,51 +1,40 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import LandingPage from './components/LandingPage';
-import Dashboard from './components/Dashboard';
-// import GetStarted from './components/SignUpForm/GetStarted';
-import SignInForm from './components/SignInForm';
-import SignUpForm from './components/SignUpForm';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import PrivateRoute from './components/PrivateRoute';
+import LandingPage from "./components/LandingPage";
+import Dashboard from "./components/Dashboard/index.js";
+import SignInForm from "./components/SignInForm/index.js";
+import ForgotPassword from "./components/SignInForm/ForgotPassword.js";
+import SignUpForm from "./components/SignUpForm/index.js";
+import NavBar from "./components/NavBar";
 
-import './global/index.scss';
+import "./global/index.scss";
+import ForgotPassword from "./components/SignInForm/ForgotPassword";
 
 function App() {
 	const [loggedin, setLoggedin] = useState(false);
 
-	return (
-		<div className='App'>
-			<Route
-				path='/'
-				render={props => (
-					<NavBar {...props} loggedin={loggedin} setLoggedin={setLoggedin} />
-				)}
-			/>
-			<Switch>
-				<Route exact path='/' render={props => <LandingPage {...props} />} />
-				<Route
-					path='/signin'
-					render={props => (
-						<SignInForm
-							{...props}
-							loggedin={loggedin}
-							setLoggedin={setLoggedin}
-						/>
-					)}
-				/>
-				{/* <Route path='/getstarted' component={GetStarted} /> */}
-				<Route path='/signup' component={SignUpForm} />
-				<PrivateRoute
-					path='/dashboard'
-					component={Dashboard}
-					setLoggedin={setLoggedin}
-				/>
-			</Switch>
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="App">
+      <NavBar loggedin={loggedin} setLoggedin={setLoggedin} />
+      <Switch>
+        <Route exact path="/" render={props => <LandingPage {...props} />} />
+        <Route
+          path="/signin"
+          render={props => (
+            <SignInForm
+              {...props}
+              loggedin={loggedin}
+              setLoggedin={setLoggedin}
+            />
+          )}
+        />
+        <Route path="/forgotPassword" component={ForgotPassword}/>
+        <Route path="/signup" component={SignUpForm} />
+        <Route path="/dashboard" component={Dashboard} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
