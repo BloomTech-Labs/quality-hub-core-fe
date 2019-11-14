@@ -7,16 +7,14 @@ import Features from "./Features";
 import Panels from "./Panels";
 
 const LandingPage = props => {
-  // array with texts to type in typewriter
   let [animatedText, setText] = useState("");
-  let [animationStatus, setStatus] = useState(true);
   let [seconds, setTime] = useState(0);
   let [wordIndex, setWord] = useState(0);
+  // array with texts to type in typewriter
   let dataText = ["Interviews", "Code", "Designs", "Resumes", "Quailcoin"];
-  let key;
 
   useEffect(() => {
-    key = setInterval(() => {
+    let key = setInterval(() => {
       setTime(seconds => seconds + 1);
     }, 100);
     return () => {
@@ -25,10 +23,11 @@ const LandingPage = props => {
   }, [])
 
   useEffect(() => {
+    // If we completed all words, reset
     if (wordIndex >= dataText.length) {
       setWord(0);
     } else {
-      let letter_index = Math.floor(seconds / 1);
+      let letter_index = Math.floor(seconds);
       setText(dataText[wordIndex].substring(0, letter_index + 1));
       // Add delay when word is completed
       if (letter_index == dataText[wordIndex].length - 1) {
