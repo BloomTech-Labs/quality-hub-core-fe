@@ -28,7 +28,6 @@ const GET_USER = gql`
       gender
       twitter_url
       blog_url
-
       payment_info
     }
   }
@@ -42,12 +41,7 @@ const Dashboard = props => {
 
   const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const [editUser, setEditUser] = useState(userData);
-
-  // const [testEditingValue, setTestEditingValue] = useState({
-  //   testname: 'Julie A',
-  // });
-  // const [testOriginalName, setTestOriginalName] = useState('Julie A');
-
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
