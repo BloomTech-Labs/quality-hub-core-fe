@@ -247,9 +247,9 @@ const SignUpForm = props => {
 											)}
 											{valError
 												? valError.map(message => {
-														if (message.includes('email') && !emailTouched) {
-															return null;
-														}
+														// if (message.includes('email') && !emailTouched) {
+														// 	return null;
+														// }
 														if (message.includes('first') && !firstTouched) {
 															return null;
 														}
@@ -262,13 +262,13 @@ const SignUpForm = props => {
 														if (message.includes('state') && !stateTouched) {
 															return null;
 														}
-														if (
-															(message.includes('password') ||
-																message.includes('Password')) &&
-															!passwordTouched
-														) {
-															return null;
-														}
+														// if (
+														// 	(message.includes('password') ||
+														// 		message.includes('Password')) &&
+														// 	!passwordTouched
+														// ) {
+														// 	return null;
+														// }
 
 														return (
 															<p
