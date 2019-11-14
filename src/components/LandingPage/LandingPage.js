@@ -9,7 +9,7 @@ import Panels from './Panels';
 const LandingPage = props => {
 	// array with texts to type in typewriter
 	let [animatedText, setText] = useState('');
-	let [animationStatus, setStatus] = useState(true);
+	// let [animationStatus, setStatus] = useState(true);
 	let [seconds, setTime] = useState(0);
 	let [wordIndex, setWord] = useState(0);
 	let dataText = ['Interviews', 'Code', 'Designs', 'Resumes', 'Quailcoin'];
