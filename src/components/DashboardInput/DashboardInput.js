@@ -54,6 +54,7 @@ const DashboardInput = ({ userKey, userValue }) => {
     [userKey]: userValue
   });
 
+  //changeField runs the update mutation
   const [changeField, changeFieldMutation] = useMutation(EDIT_USER);
 
   const handleChange = e => {
@@ -133,6 +134,7 @@ const DashboardInput = ({ userKey, userValue }) => {
     setEditing(false);
   };
 
+  //when you click edit...
   //if the key name is state, use a dropdown menu instead of input form
   const checkKeyNameForEdit = () => {
     if (userKey === "state") {
@@ -156,6 +158,7 @@ const DashboardInput = ({ userKey, userValue }) => {
     }
 
     return (
+      //If it's not a states array, just render a normal input field
       <input
         name={userKey}
         placeholder={original}
@@ -173,29 +176,32 @@ const DashboardInput = ({ userKey, userValue }) => {
         </span>
         <div>
           {editing ? (
-            checkKeyNameForEdit() //check what kind of input field to return based on key name
+            checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
           ) : (
-            <p>{user[userKey]}</p>
+            <p>{user[userKey]}</p>//When you're not in edit mode, render this
           )}
         </div>
       </div>
       <div className="update-btns">
         {editing && (
-          <button onClick={() => handleCancel()} className="cancel-button">
+          // Cancel out of editing mode
+          <button onClick={() => handleCancel()} className="cancel-button">  
             Cancel
           </button>
         )}
         {editing && (
+          // Save changes made in editing mode
           <button onClick={e => handleSubmit(e)} className="accept-button">
             Save
           </button>
         )}
       </div>
       {!editing && (
+        //button to click on to enter editing mode
         <button
           className="edit-button"
           onClick={() => setEditing(true)}
-          data-testid="edit-button"
+          data-testid="edit-button" //data-testid made explicitly for testing-purposes
         >
           <IconPencil />
         </button>
