@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 // import styled from "styled-components";
-import Loading from '../Loading';
 import { Link } from 'react-router-dom';
 import './SignInForm.scss';
+
+import Loading from '../Loading';
 
 const LOGIN = gql`
 	mutation Login($email: String!, $password: String!) {

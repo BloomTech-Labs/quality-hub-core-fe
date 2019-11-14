@@ -1,255 +1,247 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  line-height: 1.5;
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.5;
 }
 
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 h1 {
-  font-size: 2.8rem;
+	font-size: 2.8rem;
 }
 
 p {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 a {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 input,
 option,
 select {
-  border-radius: 0.3rem;
-  border: 1px solid silver;
-  font-family: inherit;
-  padding: 0.8rem 1%;
-  // margin-bottom: 1rem;
+	border-radius: 0.3rem;
+	border: 1px solid silver;
+	font-family: inherit;
+	padding: 0.8rem 1%;
+	// margin-bottom: 1rem;
 }
 
 .progressbar {
-  width: 100%;
-  counter-reset: step;
-  margin-bottom: 100px;
-  margin-top: 20px;
+	width: 100%;
+	counter-reset: step;
+	margin-bottom: 100px;
+	margin-top: 20px;
 }
 
 .progressbar li {
-  list-style-type: none;
-  float: left;
-  width: 33.33%;
-  position: relative;
-  text-align: center;
+	list-style-type: none;
+	float: left;
+	width: 33.33%;
+	position: relative;
+	text-align: center;
 }
 
 .progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  text-align: center;
-  margin: 5px auto 5px auto;
-  line-height: 20px;
-  width: 20px;
-  height: 20px;
-  border: 3px solid gainsboro;
-  display: block;
-  margin: 0 auto 10 auto;
-  border-radius: 50%;
-  background-color: white;
+	content: counter(step);
+	counter-increment: step;
+	text-align: center;
+	margin: 5px auto 5px auto;
+	line-height: 20px;
+	width: 20px;
+	height: 20px;
+	border: 3px solid gainsboro;
+	display: block;
+	margin: 0 auto 10 auto;
+	border-radius: 50%;
+	background-color: white;
 }
 
 .progressbar li:after {
-  content: " ";
-  position: absolute;
-  z-index: -1;
-  height: 3px;
-  width: 100%;
-  background-color: gainsboro;
-  top: 15px;
-  left: -50%;
+	content: ' ';
+	position: absolute;
+	z-index: -1;
+	height: 3px;
+	width: 100%;
+	background-color: gainsboro;
+	top: 15px;
+	left: -50%;
 }
 
 .progressbar li:first-child:after {
-  content: none;
+	content: none;
 }
 
 .progressbar li.active {
-  color: purple;
+	color: purple;
 }
 
 .progressbar li.active:before {
-  color: gainsboro;
-  border-color: purple;
-  background-color: purple;
+	color: gainsboro;
+	border-color: purple;
+	background-color: purple;
 }
 
 .progressbar li.active + li:after {
-  background-color: purple;
+	background-color: purple;
 }
 
 .form-btn {
-  background-color: white;
-  font-family: inherit;
-  border: 1px solid silver;
-  border-radius: 0.3rem;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5%;
-  cursor: pointer;
-  margin: 2rem 4rem;
+	background-color: white;
+	font-family: inherit;
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+	padding: 0.8rem 1.5%;
+	cursor: pointer;
+	margin: 2rem 4rem;
 }
 
 .form-btn:disabled {
-  background-color: white;
-  font-family: inherit;
-  color: gray;
-  border: 1px solid silver;
-  border-radius: 0.3rem;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5%;
-  cursor: not-allowed;
-  margin: 2rem 4rem;
+	background-color: white;
+	font-family: inherit;
+	color: gray;
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+	padding: 0.8rem 1.5%;
+	cursor: not-allowed;
+	margin: 2rem 4rem;
 }
 
 .submit-btn {
-  background-color: white;
-  font-family: inherit;
-  border: 1px solid silver;
-  border-radius: 0.3rem;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5%;
-  cursor: pointer;
+	background-color: white;
+	font-family: inherit;
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+	padding: 0.8rem 1.5%;
+	cursor: pointer;
 }
 
 .submit-btn:hover {
-  background-color: silver;
-  color: white;
+	background-color: silver;
+	color: white;
 }
 
 .manage-btn {
-  background-color: white;
-  font-family: inherit;
-  border: 1px solid silver;
-  border-radius: 1.6rem;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5%;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  width: 220px;
-  outline: 0;
+	background-color: white;
+	font-family: inherit;
+	border: 1px solid silver;
+	border-radius: 1.6rem;
+	margin-top: 1rem;
+	padding: 0.8rem 1.5%;
+	cursor: pointer;
+	margin-bottom: 1rem;
+	width: 220px;
+	outline: 0;
 }
 
 .manage-btn:hover {
-  background-color: silver;
-  color: white;
+	background-color: silver;
+	color: white;
 }
 
 .signout-btn {
-  background-color: white;
-  font-family: inherit;
-  border: 1px solid silver;
-  border-radius: 0.3rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.8rem 1.5%;
-  cursor: pointer;
+	background-color: white;
+	font-family: inherit;
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 0.8rem 1.5%;
+	cursor: pointer;
 }
 
 .signout-btn:focus {
-  outline: 0;
+	outline: 0;
 }
 
 .signout-btn:hover {
-  background-color: silver;
-  color: white;
+	background-color: silver;
+	color: white;
 }
 
 .danger {
-  background-color: red;
-  color: white;
-  font-weight: 900;
-  padding: 20px;
+	background-color: red;
+	color: white;
+	font-weight: 900;
+	padding: 20px;
 }
 
 .input-label {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .input-label label {
-  text-align: left;
-  margin-bottom: -14px;
+	text-align: left;
+	margin-bottom: -14px;
 }
+
 .input-label p {
-  align-self: flex-end;
-  margin: 0 0;
+	align-self: flex-end;
+	margin: 0 0;
 }
+
 .sign-in-button,
 .input-label input {
-  width: 100%;
+	width: 100%;
 }
-
-.sign-in-button {
-  margin: 0 0;
-}
-
 
 label {
-  font-size: 1.4rem;
-}
-
-.sign-in-form {
-  width: 400px;
-  margin: 0 auto;
+	font-size: 1.4rem;
 }
 
 .sign-up-form {
-  width: 400px;
-  margin: 0 auto;
+	width: 400px;
+	margin: 0 auto;
 }
 
 .two-inputs {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .two-inputs .input-label {
-  width: 47%;
+	width: 47%;
 }
 
 .sign-in-or {
-  width: 100%;
-  text-align: center;
-  border-bottom: 1px solid #000;
-  line-height: 0.1em;
-  margin: 10px 0 20px;
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #000;
+	line-height: 0.1em;
+	margin: 10px 0 20px;
 }
 
 .sign-in-or span {
-  background: #fff;
-  padding: 0 10px;
+	background: #fff;
+	padding: 0 10px;
 }
 
 @keyframes birdwalk {
-  from {
-    margin-left: -40%;
-  }
-  to {
-    margin-left: 70%;
-  }
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 70%;
+	}
 }
 
 .quail-walk {
-  animation: birdwalk 5s infinite;
-  width: 100px;
+	animation: birdwalk 5s infinite;
+	width: 100px;
 }
