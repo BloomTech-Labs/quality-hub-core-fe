@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
-import { useLazyQuery, useQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import "./Dashboard.scss";
-
-//get list of industries
-const GET_INDUSTRIES = gql`
-  query {
-    industries {
-      name
-      id
-    }
-  }
-`;
 
 //GraphQuaiL Query
 const GET_USER = gql`
@@ -29,10 +19,6 @@ const GET_USER = gql`
       email
       city
       state
-      industries {
-        id
-        name
-      }
       linkedin_url
       github_url
       portfolio_url
@@ -40,7 +26,6 @@ const GET_USER = gql`
       gender
       twitter_url
       blog_url
-
       payment_info
     }
   }
@@ -54,12 +39,6 @@ const Dashboard = props => {
 
   const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const [editUser, setEditUser] = useState(userData);
-  const { data: industryData } = useQuery(GET_INDUSTRIES);
-
-  // const [testEditingValue, setTestEditingValue] = useState({
-  //   testname: 'Julie A',
-  // });
-  // const [testOriginalName, setTestOriginalName] = useState('Julie A');
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -73,15 +52,18 @@ const Dashboard = props => {
     setEditUser(userData);
   }, [userData]);
 
+  //myArray is used to hold the values from the returned userData.
+  //We loop over the keys in the userData object and push them to myArray.
   let myArray = [];
+
+  //basicInfo, experience, and paymentInfo create constraints of which fields go into which are on the dashboard.
   const basicInfo = [
     "bio",
     "first_name",
     "last_name",
     "email",
     "city",
-    "state",
-    "industries"
+    "state"
   ];
   const experience = [
     "personal_url",
@@ -95,6 +77,9 @@ const Dashboard = props => {
 
   return (
     <div className="entire-dashboard">
+
+      {/* Looping over the userData and pushing to myArray
+      This way we can map over the array and render input components later */}
       {userData &&
         editUser &&
         Object.keys(userData.me).forEach(field => {
@@ -123,9 +108,8 @@ const Dashboard = props => {
                 <BasicInfo
                   {...props}
                   myArray={myArray}
-                  basicInfo={basicInfo}
+                  basicInfo={basicInfo} //basicInfo is an array that contains the names of all the fields we want to use on this page
                   userData={userData}
-                  industryData={industryData}
                 />
               )}
             />
@@ -136,7 +120,7 @@ const Dashboard = props => {
                 <Experience
                   {...props}
                   myArray={myArray}
-                  experience={experience}
+                  experience={experience} //experience is an array that contains the names of all the fields we want to use on this page
                   userData={userData}
                 />
               )}
@@ -148,7 +132,7 @@ const Dashboard = props => {
                 <PaymentInfo
                   {...props}
                   myArray={myArray}
-                  paymentInfo={paymentInfo}
+                  paymentInfo={paymentInfo} //paymentInfo is an array that contains the names of all the fields we want to use on this page
                   userData={userData}
                 />
               )}

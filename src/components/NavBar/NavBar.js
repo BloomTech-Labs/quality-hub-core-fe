@@ -32,7 +32,6 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
   }, []);
 
   if (data && localStorage.getItem("token")) {
-    console.log("here");
     setLoggedin(true);
   }
 
