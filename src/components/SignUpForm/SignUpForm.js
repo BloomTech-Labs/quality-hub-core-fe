@@ -45,6 +45,12 @@ const SIGN_UP = gql`
 
 //COM-ponent
 const SignUpForm = props => {
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [firstTouched, setFirstTouched] = useState(false);
+  const [lastTouched, setLastTouched] = useState(false);
+  const [cityTouched, setCityTouched] = useState(false);
+  const [stateTouched, setStateTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   //Set user object
   const [user, setUser] = useState({
@@ -123,7 +129,7 @@ const SignUpForm = props => {
 
     signup({ variables: submitUser })
       .then(results => {
-        console.log(results);
+        // console.log(results);
         // let token = results.data.signup.token;
         // localStorage.setItem("token", token); //Should probably also set id to localStorage
         setProgress(progress + 1);
@@ -165,6 +171,12 @@ const SignUpForm = props => {
               return (
                 <>
                   <GeneralSignUp
+                    setEmailTouched={setEmailTouched}
+                    setFirstTouched={setFirstTouched}
+                    setLastTouched={setLastTouched}
+                    setCityTouched={setCityTouched}
+                    setStateTouched={setStateTouched}
+                    setPasswordTouched={setPasswordTouched}
                     user={user}
                     handleChange={handleChange}
                   />
@@ -179,6 +191,25 @@ const SignUpForm = props => {
                   )}
                   {valError
                     ? valError.map(message => {
+                      if(message.includes('email') && !emailTouched){
+                        return null;
+                      }
+                      if(message.includes('first') && !firstTouched){
+                        return null;
+                      }
+                      if(message.includes('last') && !lastTouched){
+                        return null;
+                      }
+                      if(message.includes('city') && !cityTouched){
+                        return null;
+                      }
+                      if(message.includes('state') && !stateTouched){
+                        return null;
+                      }
+                      if((message.includes('password') || message.includes('Password') )&& !passwordTouched){
+                        return null;
+                      }
+                      
                         return <p key={message}>{message}</p>;
                       })
                     : null}
@@ -195,11 +226,6 @@ const SignUpForm = props => {
                     Submit
                   </button>
                {error.error ? <p>This email address is already in use- please enter a unique email address</p> : null}
-                  {valError
-                    ? valError.map(message => {
-                        return <p key={message}>{message}</p>;
-                      })
-                    : null}
                 </>
               );
             case 3:

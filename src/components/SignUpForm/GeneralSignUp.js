@@ -1,8 +1,16 @@
 import React from 'react';
 import { statesArray } from './States.js'
 
-const GeneralSignUp = ({ user, handleChange }) => {
-  
+const GeneralSignUp = ({ user, 
+  handleChange, 
+  setEmailTouched, 
+  setFirstTouched, 
+  setLastTouched,
+  setCityTouched, 
+  setPasswordTouched, 
+  setStateTouched,
+ }) => {
+
     return (
       <div className="general-sign-up">
         <div className="two-inputs">
@@ -10,6 +18,7 @@ const GeneralSignUp = ({ user, handleChange }) => {
             <label htmlFor="sign-up-first-name">First Name*</label>
             <br />
             <input
+              onBlur={()=>setFirstTouched(true)}
               id="sign-up-first-name"
               name="first_name"
               placeholder="First Name"
@@ -24,6 +33,7 @@ const GeneralSignUp = ({ user, handleChange }) => {
             <label htmlFor="sign-up-first-name">Last Name*</label>
             <br />
             <input
+            onBlur={()=>setLastTouched(true)}
               id="sign-up-last-name"
               name="last_name"
               placeholder="Last Name"
@@ -38,6 +48,7 @@ const GeneralSignUp = ({ user, handleChange }) => {
           <label htmlFor="sign-up-password">Password*</label>
           <br />
           <input
+          onBlur={()=>setPasswordTouched(true)}
             id="sign-up-password"
             type="password"
             name="password"
@@ -52,6 +63,7 @@ const GeneralSignUp = ({ user, handleChange }) => {
           <label htmlFor="sign-up-email">Email*</label>
           <br />
           <input
+          onBlur={()=>setEmailTouched(true)}
             id="sign-up-email"
             name="email"
             type="email"
@@ -68,6 +80,7 @@ const GeneralSignUp = ({ user, handleChange }) => {
             <label htmlFor="sign-up-city">City*</label>
             <br />
             <input
+            onBlur={()=>setCityTouched(true)}
               id="sign-up-city"
               name="city"
               placeholder="City"
@@ -82,6 +95,7 @@ const GeneralSignUp = ({ user, handleChange }) => {
             <label htmlFor="sign-up-state">State/Territory*</label>
             <br />
             <select
+            onBlur={()=>setStateTouched(true)}
               id="sign-up-state"
               name="state"
               placeholder="State"
