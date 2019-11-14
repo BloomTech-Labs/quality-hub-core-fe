@@ -10,7 +10,7 @@ import { statesArray } from "../SignUpForm/States";
 import { capitalize } from "../../utils/capitalize";
 
 //GraphQuail Mutation
-const EDIT_USER = gql`
+export const EDIT_USER = gql`
   mutation update(
     $first_name: String
     $last_name: String
@@ -81,13 +81,13 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
 
     //this checks to see if the user pressed accept, but didn't make any changes.
     //if so, no mutation request is made
-    if (original == user[userKey]) {
+    if (original === user[userKey]) {
       setEditing(false);
       return;
     }
 
     //check if valid email
-    if (userKey == "email") {
+    if (userKey === "email") {
       if (!user[userKey].match(mailFormat)) {
         console.log("not an email address");
         setUser({
@@ -98,8 +98,8 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       }
     }
     //Cannot leave state on Select
-    if (userKey == "state") {
-      if (user[userKey] == "Select") {
+    if (userKey === "state") {
+      if (user[userKey] === "Select") {
         console.log("Must pick a state");
         setUser({
           [userKey]: original
@@ -109,8 +109,8 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       }
     }
 
-    if (userKey == "industries") {
-      if (user[userKey] == "Select") {
+    if (userKey === "industries") {
+      if (user[userKey] === "Select") {
         console.log("Must pick an industry");
         setUser({
           [userKey]: original
@@ -170,7 +170,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   };
 
   const checkKeyName = () => {
-    if (userKey == "industries") {
+    if (userKey === "industries") {
       if (user[userKey][0]) {
         return user[userKey][0].name;
       } else {
@@ -178,7 +178,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       }
     }
 
-    if (userKey == "state") {
+    if (userKey === "state") {
       return user[userKey];
     }
 
@@ -241,7 +241,7 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
     <div className="dash-input">
       <div className="dash-row">
         <span className="dash-heading">
-          <h2>{capitalize(userKey)}</h2>
+          <h2>{userKey && capitalize(userKey)}</h2>
         </span>
         <div>
           {editing ? (
@@ -266,7 +266,11 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
         )}
       </div>
       {!editing && (
-        <button className="edit-button" onClick={() => setEditing(true)}>
+        <button
+          className="edit-button"
+          onClick={() => setEditing(true)}
+          data-testid="edit-button"
+        >
           {/* &#x1F589; */}
           <Pencil />
         </button>
