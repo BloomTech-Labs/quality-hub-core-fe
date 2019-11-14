@@ -126,7 +126,7 @@ const SignUpForm = props => {
 		];
 		let submitUser = { ...user };
 		urlArray.forEach(item => {
-			if (submitUser[item] == 'http://') {
+			if (submitUser[item] === 'http://') {
 				submitUser[item] = '';
 			}
 		});
