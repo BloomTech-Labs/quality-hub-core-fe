@@ -9,7 +9,6 @@ import SignUpForm from "./components/SignUpForm/index.js";
 import NavBar from "./components/NavBar";
 
 import "./global/index.scss";
-import ForgotPassword from "./components/SignInForm/ForgotPassword";
 
 function App() {
 	const [loggedin, setLoggedin] = useState(false);

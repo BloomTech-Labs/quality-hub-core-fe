@@ -59,7 +59,7 @@ const SignInForm = props => {
 
 	return (
 		<div className='sign-in-form'>
-			<h1>Quality Hub</h1>
+			<h1>QualityHub</h1>
 			<h2>Welcome back!</h2>
 			<br />
 			{/* Insert Google Login Button Here */}
