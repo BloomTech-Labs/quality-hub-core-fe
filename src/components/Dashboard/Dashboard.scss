@@ -1,5 +1,5 @@
-.entire-dashboard {
-}
+// .entire-dashboard {
+// }
 
 .lower-dashboard {
 	margin: 5rem auto 0;
@@ -19,7 +19,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	justify-content: start;
+	justify-content: flex-start;
 	.hidden {
 		display: none !important;
 	}
