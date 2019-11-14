@@ -23,12 +23,16 @@ const handleSubmit = e => {
 return (
     <div>
     <h1>Quality Hub</h1>
-    <h3>Welcome Back!</h3>
+    <h2>Welcome Back!</h2>
+    <br></br>
 
  <h1>Reset Your Passsword</h1>
 
- <h3>Enter your email address and we will send you a link to reset your password!</h3>
+ <h2>Enter your email address and we will send you a link to reset your password!</h2>
   <div className="forgotpass-Sub">
+   <div className="inputBox">
+   <label htmlFor="email">Email</label>
+   <br></br>
         <input
             placeholder="Email"
             name="email"
@@ -36,6 +40,7 @@ return (
             onChange={handleChange}
             id="email"
           />
+          </div>
     <button className="forgotPass">Send Request Link</button> 
     <Link to="/signIn">Back to sign in</Link>
     </div>
