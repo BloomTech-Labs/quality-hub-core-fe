@@ -1,3 +1,4 @@
+// This array contains information to be mapped to the Feature Cards
 export const FeaturesInfo = [
   {
     imgUrl: "https://creartfuldodger.files.wordpress.com/2013/07/quails.jpg",

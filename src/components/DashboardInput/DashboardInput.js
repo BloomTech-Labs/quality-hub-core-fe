@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import "./DashboardInput.scss";
 
-import Pencil from "../../icons/Pencil";
+import IconPencil from "../../icons/IconPencil";
 
 import { statesArray } from "../SignUpForm/States";
 import { capitalize } from "../../utils/capitalize";
@@ -195,7 +195,7 @@ const DashboardInput = ({ userKey, userValue }) => {
           onClick={() => setEditing(true)}
           data-testid="edit-button"
         >
-          <Pencil />
+          <IconPencil />
         </button>
       )}
     </div>
