@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard/index.js";
@@ -12,7 +12,7 @@ import "./global/index.scss";
 import ForgotPassword from "./components/SignInForm/ForgotPassword";
 
 function App() {
-  const [loggedin, setLoggedin] = useState(false);
+	const [loggedin, setLoggedin] = useState(false);
 
   return (
     <div className="App">
