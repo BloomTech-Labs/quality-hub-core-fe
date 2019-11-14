@@ -6,6 +6,7 @@ import ExpSignUp from "./ExpSignUp.js";
 import CompletedSignUp from "./CompletedSignUp";
 import * as yup from "yup";
 import { string, object, mixed } from "yup";
+import './SignUpForm.scss';
 
 const SIGN_UP = gql`
   mutation signup(
@@ -210,7 +211,7 @@ const SignUpForm = props => {
                         return null;
                       }
                       
-                        return <p key={message}>{message}</p>;
+                        return <p key={message} className="validation-error-message">{message}</p>;
                       })
                     : null}
                 </>
