@@ -65,29 +65,6 @@ const GeneralSignUp = ({ user, handleChange, data }) => {
         </div>
         <br />
 
-        {/* <div className="input-label" >
-          <label htmlFor="sign-up-industry">Industry*</label>
-          <br />
-          <select
-            id="sign-up-industry"
-            name="industry"
-            placeholder="Industry"
-            value={user.industry}
-            onChange={handleChange}
-            required
-            role='dropdown1'
-          >
-            <option>Select</option>
-            {data &&
-              data.industries.map(industry => (
-                <option value={industry.id} key={industry.id}>
-                  {industry.name}
-                </option>
-              ))}
-          </select>
-        </div> */}
-        <br />
-
         <div className="two-inputs">
           <div className="input-label">
             <label htmlFor="sign-up-city">City*</label>
