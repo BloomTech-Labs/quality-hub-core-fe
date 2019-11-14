@@ -8,15 +8,7 @@ import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import "./Dashboard.scss";
 
-//get list of industries
-const GET_INDUSTRIES = gql`
-  query {
-    industries {
-      name
-      id
-    }
-  }
-`;
+
 
 //GraphQuaiL Query
 const GET_USER = gql`
@@ -29,10 +21,6 @@ const GET_USER = gql`
       email
       city
       state
-      industries {
-        id
-        name
-      }
       linkedin_url
       github_url
       portfolio_url
@@ -54,7 +42,6 @@ const Dashboard = props => {
 
   const [getUser, { data: userData }] = useLazyQuery(GET_USER);
   const [editUser, setEditUser] = useState(userData);
-  const { data: industryData } = useQuery(GET_INDUSTRIES);
 
   // const [testEditingValue, setTestEditingValue] = useState({
   //   testname: 'Julie A',
@@ -80,8 +67,7 @@ const Dashboard = props => {
     "last_name",
     "email",
     "city",
-    "state",
-    "industries"
+    "state"
   ];
   const experience = [
     "personal_url",
@@ -125,7 +111,6 @@ const Dashboard = props => {
                   myArray={myArray}
                   basicInfo={basicInfo}
                   userData={userData}
-                  industryData={industryData}
                 />
               )}
             />

@@ -48,14 +48,14 @@ const EDIT_USER = gql`
   }
 `;
 
-const POST_INDUSTRY_TO_USER = gql`
-  mutation postIndustryToUser($industry_id: ID!) {
-    postIndustryToUser(industry_id: $industry_id) {
-      id
-      name
-    }
-  }
-`;
+// const POST_INDUSTRY_TO_USER = gql`
+//   mutation postIndustryToUser($industry_id: ID!) {
+//     postIndustryToUser(industry_id: $industry_id) {
+//       id
+//       name
+//     }
+//   }
+// `;
 
 //Component
 const DashboardInput = ({ userKey, userValue, industryData }) => {
@@ -66,9 +66,9 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   });
 
   const [changeField, changeFieldMutation] = useMutation(EDIT_USER);
-  const [changeIndustry, changeIndustryMutation] = useMutation(
-    POST_INDUSTRY_TO_USER
-  );
+  // const [changeIndustry, changeIndustryMutation] = useMutation(
+  //   POST_INDUSTRY_TO_USER
+  // );
   const handleChange = e => {
     setUser({
       [userKey]: e.target.value
@@ -109,29 +109,29 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       }
     }
 
-    if (userKey == "industries") {
-      if (user[userKey] == "Select") {
-        console.log("Must pick an industry");
-        setUser({
-          [userKey]: original
-        });
-        setEditing(false);
-        return;
-      } else {
-        const objectData = {
-          industry_id: user.industries
-        };
-        changeIndustry({ variables: { industry_id: user.industries } })
-          .then(res => {
-            console.log(res);
-            setOriginal(industryData[user[userKey]]);
-            setEditing(false);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-    }
+    // if (userKey == "industries") {
+    //   if (user[userKey] == "Select") {
+    //     console.log("Must pick an industry");
+    //     setUser({
+    //       [userKey]: original
+    //     });
+    //     setEditing(false);
+    //     return;
+    //   } else {
+    //     const objectData = {
+    //       industry_id: user.industries
+    //     };
+    //     changeIndustry({ variables: { industry_id: user.industries } })
+    //       .then(res => {
+    //         console.log(res);
+    //         setOriginal(industryData[user[userKey]]);
+    //         setEditing(false);
+    //       })
+    //       .catch(err => {
+    //         console.log(err);
+    //       });
+    //   }
+    // }
 
     //this makes sure any required fields are not submitted as blank strings
     if (
@@ -170,13 +170,13 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
   };
 
   const checkKeyName = () => {
-    if (userKey == "industries") {
-      if (user[userKey][0]) {
-        return user[userKey][0].name;
-      } else {
-        return;
-      }
-    }
+    // if (userKey == "industries") {
+    //   if (user[userKey][0]) {
+    //     return user[userKey][0].name;
+    //   } else {
+    //     return;
+    //   }
+    // }
 
     if (userKey == "state") {
       return user[userKey];
@@ -206,26 +206,26 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
       );
     }
     console.log(userKey);
-    if (userKey === "industries") {
-      return (
-        <select
-          id="sign-up-industry"
-          name="industry"
-          placeholder="Industry"
-          value={user[userKey] ? user[userKey][0].name : ""}
-          onChange={handleChange}
-          required
-        >
-          <option>Select</option>
-          {industryData &&
-            industryData.industries.map(industry => (
-              <option value={industry.id} key={industry.id}>
-                {industry.name}
-              </option>
-            ))}
-        </select>
-      );
-    }
+    // if (userKey === "industries") {
+    //   return (
+    //     <select
+    //       id="sign-up-industry"
+    //       name="industry"
+    //       placeholder="Industry"
+    //       value={user[userKey] ? user[userKey][0].name : ""}
+    //       onChange={handleChange}
+    //       required
+    //     >
+    //       <option>Select</option>
+    //       {industryData &&
+    //         industryData.industries.map(industry => (
+    //           <option value={industry.id} key={industry.id}>
+    //             {industry.name}
+    //           </option>
+    //         ))}
+    //     </select>
+    //   );
+    // }
     console.log("here?");
     return (
       <input
@@ -260,14 +260,12 @@ const DashboardInput = ({ userKey, userValue, industryData }) => {
         )}
         {editing && (
           <button onClick={e => handleSubmit(e)} className="accept-button">
-            {/* &#x2713; */}
             Save
           </button>
         )}
       </div>
       {!editing && (
         <button className="edit-button" onClick={() => setEditing(true)}>
-          {/* &#x1F589; */}
           <Pencil />
         </button>
       )}
