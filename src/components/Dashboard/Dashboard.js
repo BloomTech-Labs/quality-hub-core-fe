@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { gql } from "apollo-boost";
 import { useLazyQuery, useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ import { Route, Switch } from "react-router-dom";
 import PaymentInfo from "./PaymentInfo";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
+import DeleteModal from './DeleteModal';
 import "./Dashboard.scss";
+import useModal from '../../utils/useModal'
 
 export const DELETE_USER = gql`
   mutation  {
@@ -52,6 +54,7 @@ const Dashboard = props => {
   const [deleteThatUser, changeDeleteThatUser] = useMutation(DELETE_USER);
   const [editUser, setEditUser] = useState(userData);
   const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
+  
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -94,17 +97,20 @@ const Dashboard = props => {
   };
 
   const deleteAccount = () =>{
-    console.log(props);
-    const answer = window.confirm("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?");
-    if(answer){
-      deleteThatUser().then(res=>{
-        client.clearStore();
-        localStorage.clear();
-        props.setLoggedin(false);
-        props.history.push('/');
-      })
-    }
-  }
+    deleteThatUser().then(res=>{
+      client.clearStore();
+      localStorage.clear();
+      props.setLoggedin(false);
+      props.history.push('/');
+    })
+    console.log('hello from delete account')
+  };
+  
+  const {isShowing, toggle} = useModal();
+
+
+	
+  
 
   return (
     <div className="entire-dashboard">
@@ -125,8 +131,9 @@ const Dashboard = props => {
             <Link to="/dashboard">Basic Info</Link>
             <Link to="/dashboard/experience">Experience</Link>
             <Link to="/dashboard/paymentinfo">Payment Info</Link>
-            <Link to="#" onClick={()=>deleteAccount()}>Delete Account</Link>
+            <Link to="#" onClick={toggle}>Delete Account</Link>
           </div>}
+          <DeleteModal isShowing={isShowing} hide={toggle} deleteAccount={deleteAccount}/>
           {/* </Link> */}
           {/* <Link to="/dashboard"> */}
           <p>
