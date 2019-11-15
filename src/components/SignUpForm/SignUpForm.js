@@ -148,12 +148,13 @@ const SignUpForm = props => {
 		signup({ variables: submitUser })
 			.then(results => {
 				// console.log(results);
-				// let token = results.data.signup.token;
-				// localStorage.setItem("token", token); //Should probably also set id to localStorage
+				let token = results.data.signup.token;
+				localStorage.setItem('token', token); //Should probably also set id to localStorage
+				localStorage.setItem('id', results.data.signup.user.id);
 				setProgress(progress + 1);
 				setTimeout(() => {
 					//Do we need to push to dashboard after sign up?
-					props.history.push('/signin');
+					props.history.push('/dashboard');
 				}, 3000);
 			})
 			.catch(err => {
