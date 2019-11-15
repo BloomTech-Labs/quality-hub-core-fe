@@ -50,10 +50,10 @@ const Dashboard = props => {
   };
 
   const [getUser, {client, data: userData }] = useLazyQuery(GET_USER);
-  
   const [deleteThatUser, changeDeleteThatUser] = useMutation(DELETE_USER);
   const [editUser, setEditUser] = useState(userData);
   const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
+  const {isShowing, toggle} = useModal();
   
 
   useEffect(() => {
@@ -103,15 +103,9 @@ const Dashboard = props => {
       props.setLoggedin(false);
       props.history.push('/');
     })
-    console.log('hello from delete account')
+    
   };
   
-  const {isShowing, toggle} = useModal();
-
-
-	
-  
-
   return (
     <div className="entire-dashboard">
       {/* Looping over the userData and pushing to myArray
