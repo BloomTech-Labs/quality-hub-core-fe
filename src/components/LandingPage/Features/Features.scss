@@ -1,8 +1,13 @@
+.features {
+	margin-top: 2rem;
+	padding: 0 0 10rem;
+}
+
 .carousel {
 	display: flex;
 	justify-content: space-around;
 	width: 920px;
-	margin: 0 auto 10rem;
+	margin: 2rem auto 0;
 }
 
 .scroll-btn {
@@ -34,28 +39,42 @@
 }
 
 .feature-card {
+	width: 250px;
 	box-shadow: 1px 1px 2px 2px silver;
 	margin: 0 15px;
 }
 
 .feature-img {
-	width: 250px;
+	width: inherit;
 	height: 180px;
 	object-fit: cover;
 }
 
 .feature-txt {
+	width: inherit;
 	height: 180px;
 	text-align: left;
-	padding-left: 7%;
-	padding-right: 7%;
+	padding: 1rem 7%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	h2 {
+		margin-bottom: 0.5rem;
+	}
 
 	p {
 		font-size: 1.2rem;
 	}
 
-	a {
-		color: black;
-		text-decoration: none;
+	.card-footer {
+		hr {
+			margin: 0.5rem 0;
+		}
+
+		a {
+			color: black;
+			text-decoration: none;
+		}
 	}
 }
