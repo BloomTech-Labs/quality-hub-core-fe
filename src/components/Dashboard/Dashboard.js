@@ -45,6 +45,7 @@ const GET_USER = gql`
 
 //COMponent - <Ryan's accent>
 const Dashboard = props => {
+  console.log(props)
   const userID = {
     id: null
   };
