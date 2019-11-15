@@ -22,7 +22,7 @@ const ForgotPassword = () => {
 
 
 return (
-    <div>
+    <div className="forgotPassForm">
     <h1>Quality Hub</h1>
     <h2>Welcome Back!</h2>
     <br></br>
@@ -32,18 +32,19 @@ return (
  <h2>Enter your email address and we will send you a link to reset your password!</h2>
   <div className="forgotpass-Sub">
    <div className="inputBox">
-   <label htmlFor="email">Email</label>
+   <label className="label" htmlFor="email">Email address</label>
    <br></br>
-        <input
+        <input className="Input"
             placeholder="Email"
             name="email"
             value={forgotpass.email}
             onChange={handleChange}
             id="email"
           />
+          <br></br>
           </div>
     <button className="forgotPass">Send reset link</button> 
-    <Link to="/signIn">Back to sign in</Link>
+    <Link to="/signIn">Back</Link>
     </div>
     </div>
 );
