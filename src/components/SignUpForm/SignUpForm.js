@@ -21,6 +21,7 @@ const SIGN_UP = gql`
     $password: String!
     $city: String!
     $state: String!
+	$bio: String
     $personal_url: String
     $portfolio_url: String
     $twitter_url: String
@@ -34,6 +35,7 @@ const SIGN_UP = gql`
       password: $password
       city: $city
       state: $state
+	  bio: $bio
       personal_url: $personal_url
       portfolio_url: $portfolio_url
       twitter_url: $twitter_url
@@ -65,7 +67,8 @@ const SignUpForm = props => {
     email: "",
     password: "",
     city: "",
-    state: "",
+	state: "",
+	bio: "",
     personal_url: "http://",
     portfolio_url: "http://",
     twitter_url: "http://",
@@ -91,7 +94,8 @@ const SignUpForm = props => {
     password: string()
       .min(6, "Password must be at least 6 characters")
       .required("Please enter a password"),
-    linkedin_url: string(),
+	linkedin_url: string(),
+	bio: string(),
     github_url: string(),
     personal_url: string(),
     portfolio_url: string(),
