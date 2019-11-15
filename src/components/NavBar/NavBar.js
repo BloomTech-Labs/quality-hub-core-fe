@@ -45,7 +45,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	return (
 		<div className='styled-nav'>
 			{/* Animated quailnana flying across the screen */}
-			<div className='left'>
+			<div className='nav-left'>
 				{/* <div className="bird"></div> */}
 				<NavLink to='/'>
 					<h2>QualityHub</h2>
@@ -59,7 +59,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			</div>
 			{/* End animated quailnana */}
 
-			<div className='right'>
+			<div className='nav-right'>
 				{/* If you're not logged in, show sign in and sign up buttons */}
 				{!loggedin && (
 					<>

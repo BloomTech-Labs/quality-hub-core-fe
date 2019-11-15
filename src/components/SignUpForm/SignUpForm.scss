@@ -15,6 +15,18 @@ button.sign-up-button:disabled {
 	color: red !important;
 }
 
+.getstarted {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 20vh;
+	justify-content: space-between;
+
+	h2 {
+		margin-top: 2rem;
+	}
+}
+
 .progressbar {
 	width: 100%;
 	counter-reset: step;
@@ -76,4 +88,8 @@ button.sign-up-button:disabled {
 
 .bio-text {
 	height: 100px;
+}
+
+.email-address-taken{
+	color:red;
 }
