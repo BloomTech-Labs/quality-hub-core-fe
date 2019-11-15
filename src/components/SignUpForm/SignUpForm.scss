@@ -27,66 +27,66 @@ button.sign-up-button:disabled {
 	}
 }
 
-.progressbar {
-	width: 100%;
-	counter-reset: step;
-	margin-bottom: 100px;
-	margin-top: 20px;
-	border: 1px solid white;
-}
+// .progressbar {
+// 	width: 100%;
+// 	counter-reset: step;
+// 	margin-bottom: 100px;
+// 	margin-top: 20px;
+// 	border: 1px solid white;
+// }
 
-.progressbar li {
-	list-style-type: none;
-	float: left;
-	width: 33.33%;
-	position: relative;
-	text-align: center;
-	border: 1px solid green;
-}
+// .progressbar li {
+// 	list-style-type: none;
+// 	float: left;
+// 	width: 33.33%;
+// 	position: relative;
+// 	text-align: center;
+// 	border: 1px solid green;
+// }
 
-.progressbar li:before {
-	content: counter(step);
-	counter-increment: step;
-	text-align: center;
-	margin: 5px auto 5px auto;
-	line-height: 20px;
-	width: 20px;
-	height: 20px;
-	border: 3px solid gainsboro;
-	display: block;
-	margin: 0 auto 10 auto;
-	border-radius: 50%;
-	background-color: white;
-}
+// .progressbar li:before {
+// 	content: counter(step);
+// 	counter-increment: step;
+// 	text-align: center;
+// 	margin: 5px auto 5px auto;
+// 	line-height: 20px;
+// 	width: 20px;
+// 	height: 20px;
+// 	border: 3px solid gainsboro;
+// 	display: block;
+// 	margin: 0 auto 10 auto;
+// 	border-radius: 50%;
+// 	background-color: white;
+// }
 
-.progressbar li:after {
-	content: ' ';
-	position: absolute;
-	z-index: -1;
-	height: 3px;
-	width: 100%;
-	background-color: gainsboro;
-	top: 15px;
-	left: -50%;
-}
+// .progressbar li:after {
+// 	content: ' ';
+// 	position: absolute;
+// 	z-index: -1;
+// 	height: 3px;
+// 	width: 100%;
+// 	background-color: gainsboro;
+// 	top: 15px;
+// 	left: -50%;
+// }
 
-.progressbar li:first-child:after {
-	content: none;
-}
+// .progressbar li:first-child:after {
+// 	content: none;
+// }
 
-.progressbar li.active {
-	color: purple;
-}
+// .progressbar li.active {
+// 	color: purple;
+// }
 
-.progressbar li.active:before {
-	color: gainsboro;
-	border-color: purple;
-	background-color: purple;
-}
+// .progressbar li.active:before {
+// 	color: gainsboro;
+// 	border-color: purple;
+// 	background-color: purple;
+// }
 
-.progressbar li.active + li:after {
-	background-color: purple;
-}
+// .progressbar li.active + li:after {
+// 	background-color: purple;
+// }
 
 .bio-text {
 	height: 100px;
