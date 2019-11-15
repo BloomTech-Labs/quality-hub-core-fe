@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-// import { useMutation } from '@apollo/react-hooks';
-// import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import { Link } from 'react-router-dom';
 import './SignUpForm.scss';
 
 import Loading from '../Loading';
+
+const CHECK_EMAIL = gql`
+	mutation checkEmail($email: String!) {
+		checkEmail(email: $email)
+	}
+`;
 
 export default function SignUp({
 	user,
@@ -13,9 +19,14 @@ export default function SignUp({
 	setEmailTouched,
 	setPasswordTouched,
 }) {
+	const [verifyEmail, verifyEmailMutation] = useMutation(CHECK_EMAIL);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 
 	const handleChange = e => {
+		if (e.target.name === 'email') {
+			setError(false);
+		}
 		setUser({
 			...user,
 			[e.target.name]: e.target.value,
@@ -23,7 +34,19 @@ export default function SignUp({
 	};
 
 	const handleSubmit = e => {
-		setProgress(0);
+		e.preventDefault();
+		verifyEmail({ variables: { email: user.email } })
+			.then(res => {
+				setProgress(0);
+			})
+			.catch(err => {
+				setError('Email address unavailable, please try again');
+			});
+
+		//check if email is valid
+		//then setProgress to 0
+		//else show error
+		// setProgress(0);
 	};
 
 	return (
@@ -65,15 +88,19 @@ export default function SignUp({
 						required
 					/>
 				</div>
+				{error && <p className='email-address-taken'>{error}</p>}
 				<br />
 				{!loading &&
-					(user.email !== '' && user.password !== '' ? (
+					(user.email !== '' &&
+					user.password !== '' &&
+					user.password.length >= 6 ? (
 						<button className='submit-btn sign-up-button'>Sign Up</button>
 					) : (
 						<button className='submit-btn sign-up-button' disabled>
 							Sign Up
 						</button>
 					))}
+
 				{!loading && (
 					<p>
 						Already have an account? <Link to='/signin'>Sign In</Link>
