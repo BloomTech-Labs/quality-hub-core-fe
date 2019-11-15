@@ -32,6 +32,7 @@ button.sign-up-button:disabled {
 	counter-reset: step;
 	margin-bottom: 100px;
 	margin-top: 20px;
+	border: 1px solid white;
 }
 
 .progressbar li {
@@ -40,6 +41,7 @@ button.sign-up-button:disabled {
 	width: 33.33%;
 	position: relative;
 	text-align: center;
+	border: 1px solid green;
 }
 
 .progressbar li:before {
@@ -90,6 +92,46 @@ button.sign-up-button:disabled {
 	height: 100px;
 }
 
-.email-address-taken{
-	color:red;
+.email-address-taken {
+	color: red;
+}
+
+.prog-bar-center {
+	width: 200px;
+	margin: 2rem auto;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.prog-bar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.prog-circle {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: 2px solid gray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.prog-line {
+	width: 50px;
+	height: 0px;
+	border: 1px solid gray;
+}
+
+.prog-text {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+
+	p {
+		font-size: 1rem;
+	}
 }
