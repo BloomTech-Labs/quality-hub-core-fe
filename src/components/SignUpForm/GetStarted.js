@@ -7,9 +7,11 @@ export default function GetStarted({ setProgress }) {
 	};
 
 	return (
-		<div>
-			<h1>Welcome to QualityHub!</h1>
-			<h2>We have a couple of questions for you to fill in!</h2>
+		<div className='getstarted'>
+			<div>
+				<h1>Welcome to QualityHub!</h1>
+				<h2>We have a couple of questions for you to fill in!</h2>
+			</div>
 			<button className='submit-btn begin-btn' onClick={handleClick}>
 				Begin
 			</button>
