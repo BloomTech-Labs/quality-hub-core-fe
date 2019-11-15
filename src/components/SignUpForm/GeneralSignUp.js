@@ -116,6 +116,7 @@ const GeneralSignUp = ({
 					<label htmlFor='sign-up-bio'>Bio</label>
 					<br />
 					<textarea className="bio-text" 
+					name="bio"
 					placeholder="Tell us about yourself" 
 					value={user.bio}
 					onChange={handleChange}/>
