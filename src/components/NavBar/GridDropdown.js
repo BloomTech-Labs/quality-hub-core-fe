@@ -21,37 +21,64 @@ const GridDropdown = props => {
 
   return (
     <div ref={node}>
+      {/* Styling here needs to be changed to CSS Grid to make it more stable */}
       <img
-        src="grid.svg"
+        src="/grid.svg"
         alt="Grid Menu"
         className="grid-menu grid-icon"
         onClick={e => setOpen(!open)}
       />
+
       {open && (
         <div className="dropdown-grid-content dropdown-icons">
-          <div>
-            <a href="#">
-              <img src="favicon.svg" height="50px" width="50px" />
-              <p>Resume Q</p>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <img src="sad.svg" height="50px" width="50px" />
-              <p>Interview Q</p>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <img src="quailr.svg" height="50px" width="50px" />
-              <p>QuailR</p>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <img src="drug.svg" height="50px" width="50px" />
-              <p>Design Q</p>
-            </a>
+          <div className="test-css-grid">
+            <div className="box">
+              <a href="/">
+                <img
+                  src="/favicon.svg"
+                  height="50px"
+                  width="50px"
+                  alt="ResumeQ icon"
+                />
+                <p>CodingQ</p>
+              </a>
+            </div>
+
+            <div className="box">
+              <a href="/">
+                <img
+                  src="/interview.svg"
+                  height="50px"
+                  width="50px"
+                  alt="InterviewQ icon"
+                />
+                <p>InterviewQ</p>
+              </a>
+            </div>
+
+            <div className="box">
+              <a href="/">
+                <img
+                  src="/resume.svg"
+                  height="50px"
+                  width="50px"
+                  alt="ResumeQ icon"
+                />
+                <p>ResumeQ</p>
+              </a>
+            </div>
+
+            <div className="box">
+              <a href="/">
+                <img
+                  src="/design.svg"
+                  height="50px"
+                  width="50px"
+                  alt="DesignQ icon"
+                />
+                <p>DesignQ</p>
+              </a>
+            </div>
           </div>
         </div>
       )}
