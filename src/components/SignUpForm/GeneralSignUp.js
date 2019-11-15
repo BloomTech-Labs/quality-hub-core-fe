@@ -115,7 +115,10 @@ const GeneralSignUp = ({
 			<div className='input-label'>
 					<label htmlFor='sign-up-bio'>Bio</label>
 					<br />
-					<textarea className="bio-text" placeholder="Tell us about yourself" />
+					<textarea className="bio-text" 
+					placeholder="Tell us about yourself" 
+					value={user.bio}
+					onChange={handleChange}/>
 				</div>
 		</div>
 	);
