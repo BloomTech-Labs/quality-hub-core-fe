@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './SignInForm.scss';
+// import './SignInForm.scss';
+import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
     const [forgotpass, setForgotPass ] = useState({
@@ -15,9 +16,9 @@ const ForgotPassword = () => {
       };
 
 
-const handleSubmit = e => {
-    e.preventDefault();
-};
+// const handleSubmit = e => {
+//     e.preventDefault();
+// };
 
 
 return (
@@ -41,7 +42,7 @@ return (
             id="email"
           />
           </div>
-    <button className="forgotPass">Send Request Link</button> 
+    <button className="forgotPass">Send reset link</button> 
     <Link to="/signIn">Back to sign in</Link>
     </div>
     </div>
