@@ -69,10 +69,10 @@ export default function SignUp({
 				{!loading &&
 					(user.email !== '' && user.password !== '' && user.password.length >= 6 ? (
 						
-						<button className='submit-btn sign-up-button'>Sign Up enabled</button>
+						<button className='submit-btn sign-up-button'>Sign Up</button>
 					) : (
 						<button className='submit-btn sign-up-button' disabled>
-							Sign Up disabled
+							Sign Up
 						</button>
 					))}
 				{!loading && (
