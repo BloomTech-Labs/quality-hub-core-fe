@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
@@ -6,7 +5,6 @@ import GeneralSignUp from "./GeneralSignUp.js";
 import ExpSignUp from "./ExpSignUp.js";
 import CompletedSignUp from "./CompletedSignUp";
 
-// import * as yup from 'yup';
 import { string, object } from "yup";
 import "./SignUpForm.scss";
 
@@ -115,6 +113,7 @@ const SignUpForm = props => {
   };
 
   const handleChange = e => {
+	  console.log(e.target.value)
     setUser({
       ...user,
       [e.target.name]: e.target.value
