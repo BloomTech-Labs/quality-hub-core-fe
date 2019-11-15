@@ -25,7 +25,7 @@ export default function SignUp({
 	const handleSubmit = e => {
 		setProgress(0);
 	};
-
+	
 	return (
 		<div className='sign-up'>
 			<h1>QualityHub</h1>
@@ -67,11 +67,12 @@ export default function SignUp({
 				</div>
 				<br />
 				{!loading &&
-					(user.email !== '' && user.password !== '' ? (
-						<button className='submit-btn sign-up-button'>Sign Up</button>
+					(user.email !== '' && user.password !== '' && user.password.length >= 6 ? (
+						
+						<button className='submit-btn sign-up-button'>Sign Up enabled</button>
 					) : (
 						<button className='submit-btn sign-up-button' disabled>
-							Sign Up
+							Sign Up disabled
 						</button>
 					))}
 				{!loading && (
