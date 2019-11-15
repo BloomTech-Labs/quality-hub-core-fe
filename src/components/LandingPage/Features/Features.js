@@ -20,7 +20,7 @@ export default function Features() {
 	};
 
 	return (
-		<div>
+		<div className='features'>
 			<h2>Features</h2>
 			<div className='carousel'>
 				{position < 0 && (
