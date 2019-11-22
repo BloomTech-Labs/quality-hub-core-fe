@@ -13,15 +13,19 @@ const GET_INDUSTRIES = gql`
 `;
 
 
-export default function Search({fields, setFields}) {
+export default function Search({ fields, setFields, refetch }) {
 	const { loading, error, data } = useQuery(GET_INDUSTRIES);
 	const [company, setCompany] = useState();
 	
 	const handleChange = (e) => {
-		console.log(fields);
 		e.preventDefault();
 		setFields({ ...fields, [e.target.name]: e.target.value });
 	};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    refetch(fields);
+  }
 
 	return (
 		<div className='search-dropdowns'>
@@ -62,21 +66,21 @@ export default function Search({fields, setFields}) {
 					placeholder='Order By'
 					onChange={handleChange}
 					required>
-          <option value="">None</option>
-					<option value="">Most reviews</option>
-          <option value="">Least reviews</option>
+          <option value="id_ASC">None</option>
+					<option value="id_ASC">Most reviews</option>
+          <option value="id_ASC">Least reviews</option>
           <option value="price_ASC">Price, low to high</option>
           <option value="price_DESC">Price, high to low</option>
-          <option value="">Newest</option>
-          <option value="">Oldest</option>
+          <option value="id_ASC">Newest</option>
+          <option value="id_ASC">Oldest</option>
 				</select>
 			</div>
 			<div className='search-field-keyword'>
 				<label>Keywords</label>
-				<input type='text' name="tag" onChange={handleChange} placeholder='Search by Keyword' />
+				<input type='text' name="tags" onChange={handleChange} placeholder='Search by Keyword' />
 			</div>
 			<button className='search-reset'>Reset Filters</button>
-			<button className='search-apply'>Apply</button>
+			<button className='search-apply' onClick={(e) => handleSubmit(e)}>Apply</button>
 		</div>
 	);
 }

@@ -22,10 +22,7 @@ export default function InterviewLandingPage() {
 				<QNav />
 
 				<div className='landingpage-container'>
-					<Search setFields={setFields} fields={fields} />
-					<div className='Coach-List'>
-						<CoachList />
-					</div>
+					<CoachList />
 				</div>
 			</div>
 		</div>
