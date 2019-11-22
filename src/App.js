@@ -22,28 +22,30 @@ function App() {
 					<NavBar {...props} loggedin={loggedin} setLoggedin={setLoggedin} />
 				)}
 			/>
-			<Switch>
-				<Route exact path='/' render={props => <LandingPage {...props} />} />
-				<Route
-					path='/signin'
-					render={props => (
-						<SignInForm
-							{...props}
-							loggedin={loggedin}
-							setLoggedin={setLoggedin}
-						/>
-					)}
-				/>
-				<Route path='/forgotPassword' component={ForgotPassword} />
-				<Route path='/signup' component={SignUpForm} />
-				<PrivateRoute
-					path='/dashboard'
-					component={Dashboard}
-					setLoggedin={setLoggedin}
-				/>
-			</Switch>
-			<InterviewQ />
-			{/* <Footer /> */}
+			<div className='not-nav'>
+				<Switch>
+					<Route exact path='/' render={props => <LandingPage {...props} />} />
+					<Route
+						path='/signin'
+						render={props => (
+							<SignInForm
+								{...props}
+								loggedin={loggedin}
+								setLoggedin={setLoggedin}
+							/>
+						)}
+					/>
+					<Route path='/forgotPassword' component={ForgotPassword} />
+					<Route path='/signup' component={SignUpForm} />
+					<PrivateRoute
+						path='/dashboard'
+						component={Dashboard}
+						setLoggedin={setLoggedin}
+					/>
+				</Switch>
+				<InterviewQ />
+				{/* <Footer /> */}
+			</div>
 		</div>
 	);
 }
