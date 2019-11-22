@@ -1,0 +1,64 @@
+@import '../../../globalStyles/variables';
+
+.search-dropdowns {
+	// margin-left: 8%;
+	border: 1px solid silver;
+	border-radius: 1rem;
+	padding: 2rem 2%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 3rem;
+}
+
+.search-field {
+	width: 30%;
+	text-align: left;
+	margin-bottom: 2rem;
+
+	select {
+		width: 100%;
+	}
+}
+
+.search-field-keyword {
+	width: 65%;
+	text-align: left;
+}
+
+.search-reset {
+	width: 15%;
+	font-size: 1.4rem;
+	text-align: center;
+	border: 1px solid silver;
+	border-radius: 1rem;
+	cursor: pointer;
+	height: 4rem;
+	align-self: flex-end;
+}
+
+.search-apply {
+	width: 15%;
+	font-size: 1.4rem;
+	text-align: center;
+	background-color: $main-blue;
+	color: white;
+	border-radius: 1rem;
+	cursor: pointer;
+	height: 4rem;
+	align-self: flex-end;
+}
+// .input-label {
+// 	display: flex;
+// 	flex-direction: column;
+// }
+
+// .input-label label {
+// 	text-align: left;
+// 	margin-bottom: -14px;
+// }
+
+// .input-label p {
+// 	align-self: flex-end;
+// 	margin: 0 0;
+// }
