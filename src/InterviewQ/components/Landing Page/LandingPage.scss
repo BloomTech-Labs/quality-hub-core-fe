@@ -1,0 +1,73 @@
+@import '../../../globalStyles/variables';
+
+.interview-container {
+	margin-top: 70px;
+}
+
+.interview-landing-page {
+	width: 80%;
+	margin-left: 150px;
+	max-width: 1000px;
+
+	@media screen and (min-width: 1200px) {
+		margin: 0 auto;
+	}
+}
+
+.interview-cta {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	background-color: $main-blue;
+	// border: 1px solid grey;
+	padding: 1.8rem;
+
+	.interview-cta-center {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+
+		h4,
+		a {
+			font-size: 1.4rem;
+			font-weight: normal;
+			color: white;
+		}
+	}
+
+	.interview-cta-x {
+		color: white;
+		cursor: pointer;
+	}
+}
+
+.interview-header {
+	// width: 100%;
+	// background-color: lightgray;
+	margin: 3rem 0 5rem;
+	text-align: left;
+	// border: 1px solid lightgray;
+	// padding: 2% 10%;
+
+	h1 {
+		display: flex;
+		flex-wrap: wrap;
+		width: 50%;
+		color: $main-blue;
+	}
+}
+
+button {
+	padding: 0;
+	border: none;
+	font: inherit;
+	color: inherit;
+	background-color: transparent;
+	text-align: left;
+}
+
+.landingpage-content {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}

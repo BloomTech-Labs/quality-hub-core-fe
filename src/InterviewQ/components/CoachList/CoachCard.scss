@@ -1,0 +1,37 @@
+@import '../../../globalStyles/variables';
+
+.coach-card {
+	display: flex;
+	width: 30%;
+	padding: 1%;
+	box-shadow: 2px 2px 5px gray;
+	border: 1px solid gray;
+	margin: 1% auto;
+	.coach-photo {
+		img {
+			clip-path: circle(50% at 50% 50%);
+			width: 150px;
+		}
+	}
+	.coach-text {
+		width: 100%;
+		.flex-sect {
+			display: flex;
+			.left-side {
+				width: 70%;
+			}
+		}
+		.interview-button {
+			padding: 5px 10px;
+			background-color: $main-blue;
+			text-align: center;
+			color: white;
+			border-radius: 15px;
+		}
+		.footer {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+		}
+	}
+}
