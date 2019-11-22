@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from 'react-router-dom';
 
 const GridDropdown = props => {
   const node = useRef();
@@ -32,8 +33,7 @@ const GridDropdown = props => {
       {open && (
         <div className="dropdown-grid-content dropdown-icons">
           <div className="test-css-grid">
-            <div className="box">
-              <a href="/">
+          <Link to='/' className="box">
                 <img
                   src="/favicon.svg"
                   height="50px"
@@ -41,11 +41,10 @@ const GridDropdown = props => {
                   alt="ResumeQ icon"
                 />
                 <p>CodingQ</p>
-              </a>
-            </div>
+            </Link>
 
-            <div className="box">
-              <a href="/">
+          
+              <Link to='/interviewq' className="box">
                 <img
                   src="/interview.svg"
                   height="50px"
@@ -53,11 +52,9 @@ const GridDropdown = props => {
                   alt="InterviewQ icon"
                 />
                 <p>InterviewQ</p>
-              </a>
-            </div>
+              </Link>
 
-            <div className="box">
-              <a href="/">
+              <Link to='/' className="box">
                 <img
                   src="/resume.svg"
                   height="50px"
@@ -65,11 +62,9 @@ const GridDropdown = props => {
                   alt="ResumeQ icon"
                 />
                 <p>ResumeQ</p>
-              </a>
-            </div>
+            </Link>
 
-            <div className="box">
-              <a href="/">
+            <Link to='/' className="box">
                 <img
                   src="/design.svg"
                   height="50px"
@@ -77,8 +72,7 @@ const GridDropdown = props => {
                   alt="DesignQ icon"
                 />
                 <p>DesignQ</p>
-              </a>
-            </div>
+              </Link>
           </div>
         </div>
       )}
