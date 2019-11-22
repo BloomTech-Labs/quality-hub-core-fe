@@ -120,12 +120,13 @@ const AvatarDropdown = props => {
 
 	return (
 		<div ref={node}>
-			<img
-				src={avatarURL}
-				alt='Avatar menu'
+			<div
+				style={{
+					backgroundImage: `url('${data && data.me.image_url}')`,
+				}}
+				// alt='Avatar menu'
 				className='avatar-menu'
-				onClick={e => setOpen(!open)}
-			/>
+				onClick={e => setOpen(!open)}></div>
 			{open && (
 				<div className='dropdown-content'>
 					<div className='dropdown-avatar-camera'>
