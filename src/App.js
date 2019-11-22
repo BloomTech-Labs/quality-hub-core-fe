@@ -7,7 +7,7 @@ import ForgotPassword from './Core/components/SignInForm/ForgotPassword';
 import SignUpForm from './Core/components/SignUpForm/';
 import NavBar from './global/components/NavBar';
 import PrivateRoute from './global/components/PrivateRoute';
-import Footer from './Core/components/Footer';
+// import Footer from './Core/components/Footer';
 import './globalStyles/index.scss';
 import InterviewQ from './InterviewQ/InterviewQ';
 
@@ -41,10 +41,9 @@ function App() {
 					component={Dashboard}
 					setLoggedin={setLoggedin}
 				/>
-				
 			</Switch>
 			<InterviewQ />
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }
