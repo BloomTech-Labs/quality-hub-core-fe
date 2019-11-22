@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import Dashboard from './components/Dashboard/index.js';
-import SignInForm from './components/SignInForm/index.js';
-import ForgotPassword from './components/SignInForm/ForgotPassword.js';
-import SignUpForm from './components/SignUpForm/index.js';
-import NavBar from './components/NavBar';
-import PrivateRoute from './components/PrivateRoute';
-import Footer from './components/Footer/';
-import './global/index.scss';
+import LandingPage from './Core/components/LandingPage';
+import Dashboard from './Core/components/Dashboard';
+import SignInForm from './Core/components/SignInForm';
+import ForgotPassword from './Core/components/SignInForm/ForgotPassword';
+import SignUpForm from './Core/components/SignUpForm/';
+import NavBar from './global/components/NavBar';
+import PrivateRoute from './global/components/PrivateRoute';
+import Footer from './Core/components/Footer';
+import './globalStyles/index.scss';
+import InterviewQ from './InterviewQ/InterviewQ';
 
 function App() {
 	const [loggedin, setLoggedin] = useState(false);
@@ -40,7 +41,9 @@ function App() {
 					component={Dashboard}
 					setLoggedin={setLoggedin}
 				/>
+				
 			</Switch>
+			<InterviewQ />
 			<Footer />
 		</div>
 	);

@@ -1,0 +1,96 @@
+.CoachForm03-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    margin: auto;
+    margin-top: 10rem;
+    margin-bottom: 8rem;
+    @media only screen and (max-width: 1000px) {
+        width: 100%;
+    }
+    
+}
+
+.CoachForm03-header {
+    text-align: center;
+    margin-top: 4rem;
+    h3 {
+        font-size: 2rem;
+    }
+    p {
+        width: 29rem;
+        margin-top: 4rem;
+    }
+}
+
+.CoachForm03-form-section {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin-top: 8rem;
+}
+
+.CoachForm03-row-gray {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #E8E8E8;
+    justify-content: space-around;
+    input {
+        width:30%;
+    }
+}
+
+.CoachForm03-row-white {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #F5F5F5;
+    justify-content: space-around;
+    input {
+        width:30%;
+    }
+}
+
+.CoachForm03-icon-name {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    max-width: 5rem;
+    p {
+        padding: 0 .5rem;
+    }
+}
+
+
+.CoachForm03-button-group {
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+
+    .CoachForm03-back-button {
+        border: 1px solid #8C8C8C;
+        color: #8C8C8C;
+        padding: 1rem 4rem;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 0 4rem
+    }
+
+    .CoachForm03-next-button {
+        border: 1px solid ;
+        padding: 1rem 2.5rem;
+        cursor: pointer;
+        border-radius: 4px;
+        color: #FFFFFF;
+        background-color: #096DD9;
+    }
+
+}
+
+.react-toggle {
+    width: 4rem;
+}
