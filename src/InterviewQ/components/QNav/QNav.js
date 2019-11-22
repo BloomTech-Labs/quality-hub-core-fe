@@ -1,9 +1,9 @@
 import React from 'react';
 import './QNav.scss';
 
-import interviewQ from '../../icons/interviewQ.svg';
-import resumeQ from '../../icons/resumeQ.svg';
-import designQ from '../../icons/designQ.svg';
+import interviewQ from '../../../globalIcons/interviewQ.svg';
+import resumeQ from '../../../globalIcons/resumeQ.svg';
+import designQ from '../../../globalIcons/designQ.svg';
 
 export default function QNav() {
 	return (
