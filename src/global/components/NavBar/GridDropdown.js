@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 import grid from '../../../globalIcons/grid.svg';
-import interviewQblack from '../../../globalIcons/interviewQblack.svg';
+import favicon from '../../../globalIcons/favicon.svg';
+import interviewQ from '../../../globalIcons/interviewQ.svg';
+import resumeQ from '../../../globalIcons/resumeQ.svg';
+import designQ from '../../../globalIcons/designQ.svg';
 
 const GridDropdown = props => {
 	const node = useRef();
@@ -38,7 +41,7 @@ const GridDropdown = props => {
 						<div className='box'>
 							<a href='/'>
 								<img
-									src='/favicon.svg'
+									src={favicon}
 									height='50px'
 									width='50px'
 									alt='ResumeQ icon'
@@ -50,7 +53,7 @@ const GridDropdown = props => {
 						<div className='box'>
 							<a href='/'>
 								<img
-									src={interviewQblack}
+									src={interviewQ}
 									height='50px'
 									width='50px'
 									alt='InterviewQ icon'
@@ -62,7 +65,7 @@ const GridDropdown = props => {
 						<div className='box'>
 							<a href='/'>
 								<img
-									src='/resume.svg'
+									src={resumeQ}
 									height='50px'
 									width='50px'
 									alt='ResumeQ icon'
@@ -74,7 +77,7 @@ const GridDropdown = props => {
 						<div className='box'>
 							<a href='/'>
 								<img
-									src='/design.svg'
+									src={designQ}
 									height='50px'
 									width='50px'
 									alt='DesignQ icon'
