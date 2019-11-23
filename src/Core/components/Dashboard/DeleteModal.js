@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import './DeleteModal.scss';
-import questionIcon from '../../../icons/questionmark.svg';
+import questionIcon from '../../../globalIcons/questionmark.svg';
 
 const DeleteModal = ({ isShowing, hide, deleteAccount }) =>
 	isShowing

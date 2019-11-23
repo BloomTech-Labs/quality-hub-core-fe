@@ -5,6 +5,7 @@ import './LandingPage.scss';
 
 import Features from './Features';
 import Panels from './Panels';
+import Footer from '../Footer';
 
 const LandingPage = props => {
 	let [animatedText, setText] = useState('');
@@ -64,6 +65,7 @@ const LandingPage = props => {
 			</div>
 			<Features />
 			<Panels />
+			<Footer />
 		</div>
 	);
 };

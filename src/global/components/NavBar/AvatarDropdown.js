@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
-
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
-
 import axios from 'axios';
+
+import blankavatar from '../../../globalIcons/blankavatar.svg';
 
 const GET_USER = gql`
 	query dropdownMenu {
@@ -31,7 +31,7 @@ const AvatarDropdown = props => {
 
 	const [picture, setPicture] = useState(null);
 	const [open, setOpen] = useState(false);
-	const [avatarURL, setAvatarURL] = useState('/blankavatar.svg');
+	const [avatarURL, setAvatarURL] = useState(blankavatar);
 	const [runCount, setRunCount] = useState(0);
 
 	const node = useRef();
@@ -120,12 +120,13 @@ const AvatarDropdown = props => {
 
 	return (
 		<div ref={node}>
-			<img
-				src={avatarURL}
-				alt='Avatar menu'
+			<div
+				style={{
+					backgroundImage: `url('${data && data.me.image_url}')`,
+				}}
+				// alt='Avatar menu'
 				className='avatar-menu'
-				onClick={e => setOpen(!open)}
-			/>
+				onClick={e => setOpen(!open)}></div>
 			{open && (
 				<div className='dropdown-content'>
 					<div className='dropdown-avatar-camera'>
