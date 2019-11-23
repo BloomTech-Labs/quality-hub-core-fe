@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from "react";
+import { Link } from 'react-router-dom';
 
 import grid from '../../../globalIcons/grid.svg';
 import favicon from '../../../globalIcons/favicon.svg';
@@ -35,61 +36,54 @@ const GridDropdown = props => {
 				onClick={e => setOpen(!open)}
 			/>
 
-			{open && (
-				<div className='dropdown-grid-content dropdown-icons'>
-					<div className='test-css-grid'>
-						<div className='box'>
-							<a href='/'>
-								<img
-									src={favicon}
-									height='50px'
-									width='50px'
-									alt='ResumeQ icon'
-								/>
-								<p>CodingQ</p>
-							</a>
-						</div>
+      {open && (
+        <div className="dropdown-grid-content dropdown-icons">
+          <div className="test-css-grid">
+          <Link to='/' className="box">
+                <img
+                  src={favicon}
+                  height="50px"
+                  width="50px"
+                  alt="ResumeQ icon"
+                />
+                <p>CodingQ</p>
+            </Link>
 
-						<div className='box'>
-							<a href='/'>
-								<img
-									src={interviewQ}
-									height='50px'
-									width='50px'
-									alt='InterviewQ icon'
-								/>
-								<p>InterviewQ</p>
-							</a>
-						</div>
+          
+              <Link to='/interviewq' className="box">
+                <img
+                  src={interviewQ}
+                  height="50px"
+                  width="50px"
+                  alt="InterviewQ icon"
+                />
+                <p>InterviewQ</p>
+              </Link>
 
-						<div className='box'>
-							<a href='/'>
-								<img
-									src={resumeQ}
-									height='50px'
-									width='50px'
-									alt='ResumeQ icon'
-								/>
-								<p>ResumeQ</p>
-							</a>
-						</div>
+              <Link to='/' className="box">
+                <img
+                  src={resumeQ}
+                  height="50px"
+                  width="50px"
+                  alt="ResumeQ icon"
+                />
+                <p>ResumeQ</p>
+            </Link>
 
-						<div className='box'>
-							<a href='/'>
-								<img
-									src={designQ}
-									height='50px'
-									width='50px'
-									alt='DesignQ icon'
-								/>
-								<p>DesignQ</p>
-							</a>
-						</div>
-					</div>
-				</div>
-			)}
-		</div>
-	);
+            <Link to='/' className="box">
+                <img
+                  src={designQ}
+                  height="50px"
+                  width="50px"
+                  alt="DesignQ icon"
+                />
+                <p>DesignQ</p>
+              </Link>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default GridDropdown;
