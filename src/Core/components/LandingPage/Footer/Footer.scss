@@ -1,6 +1,10 @@
 .footer {
 	margin-top: 10rem;
 
+	@media screen and (max-width: 600px) {
+		margin-top: 1rem;
+	}
+
 	a {
 		color: black;
 		text-decoration: none;

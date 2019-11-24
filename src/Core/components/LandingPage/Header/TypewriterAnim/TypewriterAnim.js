@@ -38,7 +38,7 @@ export default function Typewriter() {
 	}, [seconds]);
 
 	return (
-		<div>
+		<div className='typewriter-text'>
 			<h1>
 				The best way to assess the quality of {animatedText}
 				<span className='blinking-cursor'>|</span>
