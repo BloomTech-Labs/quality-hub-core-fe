@@ -28,13 +28,13 @@ export default function Footer() {
 				</span>
 				<div className='footer-icons'>
 					<a href='/'>
-						<Icon icon={ICONS.FACEBOOK} width='26' height='26' />
+						<Icon icon={ICONS.FACEBOOK} width={26} height={26} />
 					</a>
 					<a href='/'>
-						<Icon icon={ICONS.LINKEDIN} width='22' height='24' />
+						<Icon icon={ICONS.LINKEDIN} width={22} height={24} />
 					</a>
 					<a href='/'>
-						<Icon icon={ICONS.TWITTER} width='22' height='24' />
+						<Icon icon={ICONS.TWITTER} width={22} height={24} />
 					</a>
 				</div>
 			</div>

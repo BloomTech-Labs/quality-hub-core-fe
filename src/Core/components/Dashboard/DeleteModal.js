@@ -1,7 +1,13 @@
+// Libraries
 import React from 'react';
 import { createPortal } from 'react-dom';
+
+// Styles
 import './DeleteModal.scss';
-import questionIcon from '../../../globalIcons/questionmark.svg';
+
+// Icons
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 const DeleteModal = ({ isShowing, hide, deleteAccount }) =>
 	isShowing
@@ -9,7 +15,12 @@ const DeleteModal = ({ isShowing, hide, deleteAccount }) =>
 				<div className='modal-container'>
 					<div className='modal-wrapper' aria-modal aria-hidden role='dialog'>
 						<div className='modal-header'>
-							<img src={questionIcon} alt='question icon' />{' '}
+							<Icon
+								icon={ICONS.QUESTIONMARK}
+								width={24}
+								height={24}
+								color='#FAAD14'
+							/>
 							<h2> Do you want to delete your account?</h2>
 						</div>
 						<p>

@@ -1,12 +1,20 @@
+// Libraries
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+
+// Utils
+import { capitalize } from '../../../utils/capitalize';
+
+// Styles
 import './DashboardInput.scss';
 
-import pencil from '../../../globalIcons/pencil.svg';
+// Icons
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
+// Data
 import { statesArray } from '../SignUpForm/States';
-import { capitalize } from '../../../utils/capitalize';
 
 //GraphQuail Mutation
 export const EDIT_USER = gql`
@@ -217,7 +225,7 @@ const DashboardInput = ({ userKey, userValue }) => {
 					onClick={() => setEditing(true)}
 					data-testid='edit-button' //data-testid made explicitly for testing-purposes
 				>
-					<img src={pencil} alt='pencil icon' />
+					<Icon icon={ICONS.PENCIL} width={24} height={24} />
 				</button>
 			)}
 		</div>
