@@ -6,8 +6,16 @@
 .carousel {
 	display: flex;
 	justify-content: space-around;
-	width: 920px;
+	width: 900px;
 	margin: 2rem auto 0;
+
+	@media screen and (max-width: 920px) {
+		width: 600px;
+	}
+
+	@media screen and (max-width: 640px) {
+		width: 300px;
+	}
 }
 
 .scroll-btn {
@@ -30,6 +38,14 @@
 	height: 390px;
 	margin: 0 auto;
 	align-items: center;
+
+	@media screen and (max-width: 920px) {
+		width: 560px;
+	}
+
+	@media screen and (max-width: 640px) {
+		width: 280px;
+	}
 }
 
 .content {
