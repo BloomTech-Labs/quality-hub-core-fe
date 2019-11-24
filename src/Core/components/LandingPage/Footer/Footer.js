@@ -5,9 +5,8 @@ import React from 'react';
 import './Footer.scss';
 
 // Icons
-import fb from '../../../../globalIcons/fb.svg';
-import linkedin from '../../../../globalIcons/linkedin.svg';
-import twitter from '../../../../globalIcons/twitter.svg';
+import Icon from '../../../../globalIcons/Icon';
+import { ICONS } from '../../../../globalIcons/iconConstants';
 
 export default function Footer() {
 	return (
@@ -29,13 +28,13 @@ export default function Footer() {
 				</span>
 				<div className='footer-icons'>
 					<a href='/'>
-						<img src={fb} alt='facebook icon' />
+						<Icon icon={ICONS.FACEBOOK} width='26' height='26' />
 					</a>
 					<a href='/'>
-						<img src={linkedin} alt='linkedin icon' />
+						<Icon icon={ICONS.LINKEDIN} width='22' height='24' />
 					</a>
 					<a href='/'>
-						<img src={twitter} alt='twitter icon' />
+						<Icon icon={ICONS.TWITTER} width='22' height='24' />
 					</a>
 				</div>
 			</div>
