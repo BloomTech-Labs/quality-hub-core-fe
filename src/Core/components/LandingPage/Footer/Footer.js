@@ -1,9 +1,13 @@
+// Libraries
 import React from 'react';
+
+// Styles
 import './Footer.scss';
 
-import fb from '../../../globalIcons/fb.svg';
-import linkedin from '../../../globalIcons/linkedin.svg';
-import twitter from '../../../globalIcons/twitter.svg';
+// Icons
+import fb from '../../../../globalIcons/fb.svg';
+import linkedin from '../../../../globalIcons/linkedin.svg';
+import twitter from '../../../../globalIcons/twitter.svg';
 
 export default function Footer() {
 	return (

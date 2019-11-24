@@ -1,11 +1,16 @@
+// Libraries
 import React, { useState } from 'react';
-import './Features.scss';
+
+// Styles
+import './Carousel.scss';
+
+// Data
 import { FeaturesInfo } from './FeaturesInfo';
 
+// Components
 import FeatureCard from './FeatureCard';
 
-// Code for the Landing Page carousel
-export default function Features() {
+export default function Carousel() {
 	const [position, setPosition] = useState(0);
 
 	// The number of pixels traversed each time the left or right button is clicked; dependent on hard-coded width of the FeatureCard
