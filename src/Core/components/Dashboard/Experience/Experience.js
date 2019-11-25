@@ -1,7 +1,19 @@
+// Libraries
 import React from 'react';
+
+// Components
 import DashboardInput from '../DashboardInput';
 
-const Experience = ({ myArray, experience, userData }) => {
+const Experience = ({ myArray, userData }) => {
+	const experience = [
+		'personal_url',
+		'blog_url',
+		'linkedin_url',
+		'github_url',
+		'twitter_url',
+		'portfolio_url',
+	];
+
 	return (
 		<div className='editform'>
 			{myArray.length > 0 &&

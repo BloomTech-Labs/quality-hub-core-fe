@@ -1,26 +1,20 @@
+// Libraries
 import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
-import { useLazyQuery, useMutation } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
+
+// Styles
+import './Dashboard.scss';
+
+// Components
+import LeftNavBar from './LeftNavBar';
 import PaymentInfo from './PaymentInfo';
 import BasicInfo from './BasicInfo';
 import Experience from './Experience';
-import DeleteModal from './DeleteModal';
-import './Dashboard.scss';
-import useModal from '../../../utils/useModal';
 
-export const DELETE_USER = gql`
-	mutation {
-		deleteUser {
-			first_name
-			last_name
-			id
-		}
-	}
-`;
-
-//GraphQuaiL Query
+// GraphQuaiL Query
 const GET_USER = gql`
 	query {
 		me {
@@ -44,16 +38,13 @@ const GET_USER = gql`
 `;
 
 //COMponent - <Ryan's accent>
-const Dashboard = props => {
+const Dashboard = ({ setLoggedin }) => {
 	const userID = {
 		id: null,
 	};
 
-	const [getUser, { client, data: userData }] = useLazyQuery(GET_USER);
-	const [deleteThatUser, changeDeleteThatUser] = useMutation(DELETE_USER);
+	const [getUser, { data: userData }] = useLazyQuery(GET_USER);
 	const [editUser, setEditUser] = useState(userData);
-	const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
-	const { isShowing, toggle } = useModal();
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -71,38 +62,6 @@ const Dashboard = props => {
 	//We loop over the keys in the userData object and push them to myArray.
 	let myArray = [];
 
-	//basicInfo, experience, and paymentInfo create constraints of which fields go into which are on the dashboard.
-	const basicInfo = [
-		'bio',
-		'first_name',
-		'last_name',
-		'email',
-		'city',
-		'state',
-	];
-	const experience = [
-		'personal_url',
-		'blog_url',
-		'linkedin_url',
-		'github_url',
-		'twitter_url',
-		'portfolio_url',
-	];
-	const paymentInfo = ['payment_info'];
-
-	const profileDropdown = () => {
-		setProfileDropdownToggle(!profileDropdownToggle);
-	};
-
-	const deleteAccount = () => {
-		deleteThatUser().then(res => {
-			client.clearStore();
-			localStorage.clear();
-			props.setLoggedin(false);
-			props.history.push('/');
-		});
-	};
-
 	return (
 		<div className='entire-dashboard'>
 			{/* Looping over the userData and pushing to myArray
@@ -113,33 +72,7 @@ const Dashboard = props => {
 					myArray.push(field);
 				})}
 			<div className='lower-dashboard'>
-				<div className='dashboard-left-bar'>
-					{/* <Link to="/dashboard"> */}
-					<p onClick={() => profileDropdown()}>
-						<span className='gray-square'></span> Profile
-					</p>
-					{profileDropdownToggle && (
-						<div className='profile-dropdown-links'>
-							<Link to='/dashboard'>Basic Info</Link>
-							<Link to='/dashboard/experience'>Experience</Link>
-							<Link to='/dashboard/paymentinfo'>Payment Info</Link>
-							<Link to='#' onClick={toggle}>
-								Delete Account
-							</Link>
-						</div>
-					)}
-					<DeleteModal
-						isShowing={isShowing}
-						hide={toggle}
-						deleteAccount={deleteAccount}
-					/>
-					{/* </Link> */}
-					{/* <Link to="/dashboard"> */}
-					<p>
-						<span className='gray-square'></span> Schedule
-					</p>
-					{/* </Link> */}
-				</div>
+				<LeftNavBar setLoggedin={setLoggedin} />
 				<div className='dashboard-routes'>
 					<div className='dashboard-top-links'>
 						<Link to='/dashboard'>Basic Info</Link>
@@ -151,42 +84,25 @@ const Dashboard = props => {
 							exact
 							path='/dashboard'
 							render={props => (
-								<BasicInfo
-									{...props}
-									myArray={myArray}
-									basicInfo={basicInfo} //basicInfo is an array that contains the names of all the fields we want to use on this page
-									userData={userData}
-								/>
+								<BasicInfo {...props} myArray={myArray} userData={userData} />
 							)}
 						/>
 						<Route
 							exact
 							path='/dashboard/experience'
 							render={props => (
-								<Experience
-									{...props}
-									myArray={myArray}
-									experience={experience} //experience is an array that contains the names of all the fields we want to use on this page
-									userData={userData}
-								/>
+								<Experience {...props} myArray={myArray} userData={userData} />
 							)}
 						/>
 						<Route
 							exact
 							path='/dashboard/paymentinfo'
 							render={props => (
-								<PaymentInfo
-									{...props}
-									myArray={myArray}
-									paymentInfo={paymentInfo} //paymentInfo is an array that contains the names of all the fields we want to use on this page
-									userData={userData}
-								/>
+								<PaymentInfo {...props} myArray={myArray} userData={userData} />
 							)}
 						/>
 					</Switch>
 				</div>
-
-				{/* <button className='danger'>Delete MEEEEE</button> */}
 			</div>
 		</div>
 	);

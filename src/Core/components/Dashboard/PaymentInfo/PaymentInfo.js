@@ -1,7 +1,12 @@
+// Libraries
 import React from 'react';
+
+// Components
 import DashboardInput from '../DashboardInput';
 
-const PaymentInfo = ({ myArray, paymentInfo, userData }) => {
+const PaymentInfo = ({ myArray, userData }) => {
+	const paymentInfo = ['payment_info'];
+
 	return (
 		<div className='editform'>
 			{myArray.length > 0 &&

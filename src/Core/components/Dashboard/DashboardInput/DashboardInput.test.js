@@ -4,7 +4,8 @@ import { render, fireEvent } from '@testing-library/react';
 import wait from 'waait';
 
 // Import component and query for testing
-import DashboardInput, { EDIT_USER } from './DashboardInput';
+import DashboardInput from './DashboardInput';
+import { EDIT_USER } from './Mutation';
 
 // Test React components by mocking calls to the GraphQL endpoint; this allows tests to be run in isolation and removes dependence on remote data
 it('should render without error', () => {
