@@ -2,8 +2,9 @@
 
 .search-dropdowns {
 	// margin-left: 8%;
-	border: 1px solid silver;
-	border-radius: 1rem;
+	// border: 1px solid silver;
+	// border-radius: 1rem;
+	border-top: 1px solid silver;
 	padding: 2rem 2%;
 	display: flex;
 	flex-wrap: wrap;
@@ -75,8 +76,8 @@
 	margin-left: 1rem;
 	font-size: 1.4rem;
 	text-align: center;
-	background-color: $main-blue;
-	color: white;
+	border: 1px solid $main-blue;
+	color: $main-blue;
 	border-radius: 1rem;
 	cursor: pointer;
 	height: 4rem;

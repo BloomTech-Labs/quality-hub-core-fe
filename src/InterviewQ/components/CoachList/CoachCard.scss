@@ -2,9 +2,9 @@
 
 .coach-card {
 	display: flex;
-	width: 313px;
-	height: 421px;
-	padding: 3%;
+	width: 31.3rem;
+	height: 42.1rem;
+	padding: 3rem;
 	// box-shadow: 2px 2px 5px gray;
 	border: 1px solid silver;
 	border-radius: 1rem;
@@ -24,11 +24,11 @@
 			text-align: left;
 
 			h3 {
-				font-size: 20px;
+				font-size: 2rem;
 			}
 
 			h4 {
-				font-size: 16px;
+				font-size: 1.6rem;
 				font-weight: normal;
 			}
 		}
@@ -36,7 +36,7 @@
 		.coach-photo {
 			img {
 				clip-path: circle(50% at 50% 50%);
-				width: 83px;
+				width: 8.3rem;
 			}
 		}
 	}

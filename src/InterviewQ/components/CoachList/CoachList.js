@@ -63,7 +63,7 @@ const CoachList = () => {
             Search Information
             <FilterList fields={fields} setFields={setFields}/>
           </div> */}
-			<hr />
+			{/* <hr /> */}
 			{data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (

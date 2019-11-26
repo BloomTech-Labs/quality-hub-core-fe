@@ -83,12 +83,12 @@ export default function Search({ fields, setFields }) {
 					type='text'
 					name='tag'
 					onChange={handleChange}
-					placeholder='Search by Keyword'
+					placeholder='Search by keyword...'
 				/>
 			</div>
 			<div className='search-buttons'>
 				<button className='search-reset'>Reset Filters</button>
-				<button className='search-apply'>Apply</button>
+				<button className='search-apply'>Search</button>
 			</div>
 		</div>
 	);
