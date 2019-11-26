@@ -1,0 +1,69 @@
+.editform {
+	display: flex;
+	margin: 40px auto;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 500px;
+	flex-direction: column;
+}
+
+.dash-input {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 5rem;
+
+	@media screen and (max-width: 380px) {
+		flex-direction: column;
+		height: 8rem;
+		margin-bottom: 1rem;
+		align-items: flex-start;
+	}
+}
+
+.dash-row {
+	display: flex;
+	align-items: center;
+	height: 5rem;
+}
+
+.dash-heading {
+	width: 100px;
+	text-align: left;
+}
+
+.edit-button {
+	background-color: white;
+	border: none;
+	font-size: 26px;
+	cursor: pointer;
+}
+
+.update-btns {
+	display: flex;
+	// margin-left: 6%;
+	flex-direction: row-reverse;
+
+	@media screen and (max-width: 380px) {
+		align-self: center;
+	}
+}
+
+.cancel-button {
+	// color: red;
+	font-size: 1.2rem;
+	font-weight: 900px;
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.accept-button {
+	// color: green;
+	font-size: 1.2rem;
+	font-weight: 900px;
+	background-color: white;
+	border: none;
+	cursor: pointer;
+	margin-right: 2rem;
+}

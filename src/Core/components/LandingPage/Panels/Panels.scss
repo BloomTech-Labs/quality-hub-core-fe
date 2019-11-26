@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	text-align: left;
+	align-items: center;
 
 	h2 {
 		font-size: 2.4rem;
@@ -18,14 +19,23 @@
 	display: flex;
 	justify-content: center;
 	margin-bottom: 8rem;
+
+	@media screen and (max-width: 600px) {
+		flex-direction: column-reverse;
+		align-items: center;
+	}
 }
 
 .panel-even {
 	flex-direction: row-reverse;
+
+	@media screen and (max-width: 600px) {
+		flex-direction: column-reverse;
+	}
 }
 
 .panel-section {
-	width: 300px;
+	width: 320px;
 	height: 200px;
 	margin-left: 2%;
 	margin-right: 2%;
@@ -34,6 +44,10 @@
 .panel-text {
 	padding-left: 2%;
 	padding-right: 2%;
+
+	@media screen and (max-width: 600px) {
+		height: auto;
+	}
 }
 
 .panel-img {
