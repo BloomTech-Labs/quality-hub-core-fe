@@ -1,10 +1,13 @@
+// Libraries
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-// import styled from "styled-components";
 import { Link } from 'react-router-dom';
+
+// Styles
 import './SignInForm.scss';
 
+// Components
 import Loading from '../Loading';
 
 const LOGIN = gql`
@@ -91,7 +94,9 @@ const SignInForm = props => {
 						value={user.password}
 						onChange={handleChange}
 					/>
-					<p><Link to="/forgotPassword">Forgot password?</Link></p>
+					<p>
+						<Link to='/forgotPassword'>Forgot password?</Link>
+					</p>
 				</div>
 				<br />
 				{!loading &&
