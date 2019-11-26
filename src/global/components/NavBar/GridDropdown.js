@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+// Libraries
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+//Icons
 import grid from '../../../globalIcons/grid.svg';
 import favicon from '../../../globalIcons/favicon.svg';
-import interviewQ from '../../../globalIcons/interviewQ.svg';
-import resumeQ from '../../../globalIcons/resumeQ.svg';
-import designQ from '../../../globalIcons/designQ.svg';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 const GridDropdown = props => {
 	const node = useRef();
@@ -33,57 +34,59 @@ const GridDropdown = props => {
 				src={grid}
 				alt='Grid Menu'
 				className='grid-menu grid-icon'
-				onClick={e => setOpen(!open)}
+				onClick={() => setOpen(!open)}
 			/>
 
-      {open && (
-        <div className="dropdown-grid-content dropdown-icons">
-          <div className="test-css-grid">
-          <Link to='/' className="box">
-                <img
-                  src={favicon}
-                  height="50px"
-                  width="50px"
-                  alt="ResumeQ icon"
-                />
-                <p>CodingQ</p>
-            </Link>
+			{open && (
+				<div className='dropdown-grid-content dropdown-icons'>
+					<div className='test-css-grid'>
+						<Link to='/' className='box'>
+							<img
+								src={favicon}
+								height='50px'
+								width='50px'
+								alt='ResumeQ icon'
+							/>
+							<p>CodingQ</p>
+						</Link>
 
-          
-              <Link to='/interviewq' className="box">
-                <img
-                  src={interviewQ}
-                  height="50px"
-                  width="50px"
-                  alt="InterviewQ icon"
-                />
-                <p>InterviewQ</p>
-              </Link>
+						<Link to='/interviewq' className='box'>
+							{/* <img
+								src={interviewQ}
+								height='50px'
+								width='50px'
+								alt='InterviewQ icon'
+							/> */}
+							<Icon icon={ICONS.INTERVIEWQ} width={24} height={16} />
+							<p>InterviewQ</p>
+						</Link>
 
-              <Link to='/' className="box">
-                <img
-                  src={resumeQ}
-                  height="50px"
-                  width="50px"
-                  alt="ResumeQ icon"
-                />
-                <p>ResumeQ</p>
-            </Link>
+						<Link to='/' className='box'>
+							{/* <img
+								src={resumeQ}
+								height='50px'
+								width='50px'
+								alt='ResumeQ icon'
+							/> */}
+							<Icon icon={ICONS.RESUMEQ} width={18} height={20} />
+							<p>ResumeQ</p>
+						</Link>
 
-            <Link to='/' className="box">
-                <img
-                  src={designQ}
-                  height="50px"
-                  width="50px"
-                  alt="DesignQ icon"
-                />
-                <p>DesignQ</p>
-              </Link>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+						<Link to='/' className='box'>
+							{/* <img
+								src={designQ}
+								height='50px'
+								width='50px'
+								alt='DesignQ icon'
+							/> */}
+							<Icon icon={ICONS.DESIGNQ} width={20} height={20} />
+							<p>DesignQ</p>
+						</Link>
+					</div>
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default GridDropdown;
