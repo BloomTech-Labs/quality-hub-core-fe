@@ -2,14 +2,14 @@
 
 .interview-landing-page {
 	width: 80%;
-	margin-left: 150px;
+	margin-left: 30rem;
 	max-width: 1000px;
 
-	@media screen and (min-width: 1200px) {
+	@media screen and (min-width: 1600px) {
 		margin: 0 auto;
 	}
 
-	@media screen and (max-width: 800px) {
+	@media screen and (max-width: 1330px) {
 		width: 94%;
 		margin: 0 auto;
 	}
@@ -45,7 +45,7 @@
 .interview-header {
 	// width: 100%;
 	// background-color: lightgray;
-	margin: 3rem 0 5rem;
+	margin: 10rem 0 3rem;
 	text-align: left;
 	// border: 1px solid lightgray;
 	// padding: 2% 10%;
