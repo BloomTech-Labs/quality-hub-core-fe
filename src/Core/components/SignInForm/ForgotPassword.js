@@ -1,6 +1,8 @@
+// Libraries
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import './SignInForm.scss';
+
+// Styles
 import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
@@ -21,7 +23,7 @@ const ForgotPassword = () => {
 
 	return (
 		<div className='forgotPassForm'>
-			<h1>Quality Hub</h1>
+			<h1>QualityHub</h1>
 			<h2>Welcome Back!</h2>
 			<br></br>
 
@@ -54,4 +56,5 @@ const ForgotPassword = () => {
 		</div>
 	);
 };
+
 export default ForgotPassword;
