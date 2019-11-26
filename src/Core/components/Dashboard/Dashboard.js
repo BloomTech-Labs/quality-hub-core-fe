@@ -13,6 +13,7 @@ import LeftNavBar from './LeftNavBar';
 import PaymentInfo from './PaymentInfo';
 import BasicInfo from './BasicInfo';
 import Experience from './Experience';
+import Schedule from './Schedule';
 
 // GraphQuaiL Query
 const GET_USER = gql`
@@ -99,6 +100,13 @@ const Dashboard = ({ setLoggedin }) => {
 							path='/dashboard/paymentinfo'
 							render={props => (
 								<PaymentInfo {...props} myArray={myArray} userData={userData} />
+							)}
+						/>
+						<Route
+							exact
+							path='/dashboard/schedule'
+							render={props => (
+								<Schedule {...props} myArray={myArray} userData={userData} />
 							)}
 						/>
 					</Switch>
