@@ -23,6 +23,7 @@
 			margin: 0rem 0.5rem;
 		}
 	}
+
 	.search-button {
 		background-color: $main-blue;
 		color: white;
@@ -38,6 +39,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
+	justify-content: center;
 }
 
 .coach-list-container {

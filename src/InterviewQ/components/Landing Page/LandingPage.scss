@@ -8,6 +8,11 @@
 	@media screen and (min-width: 1200px) {
 		margin: 0 auto;
 	}
+
+	@media screen and (max-width: 800px) {
+		width: 94%;
+		margin: 0 auto;
+	}
 }
 
 .interview-cta {
@@ -66,4 +71,5 @@ button {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	border: 1px solid red;
 }

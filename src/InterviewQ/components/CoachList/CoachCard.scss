@@ -2,11 +2,16 @@
 
 .coach-card {
 	display: flex;
-	width: 30%;
-	padding: 1%;
+	// width: 30%;
+	width: 240px;
+	// padding: 1%;
+	padding: 2%;
 	box-shadow: 2px 2px 5px gray;
-	border: 1px solid gray;
-	margin: 1% auto;
+	border: 1px solid silver;
+	border-radius: 1rem;
+	// margin: 1% auto;
+	margin: 2rem 2%;
+
 	.coach-photo {
 		img {
 			clip-path: circle(50% at 50% 50%);
