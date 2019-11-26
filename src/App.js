@@ -19,10 +19,9 @@ function App() {
 				)}
 			/>
 			<div className='not-nav'>
-		<Core loggedin={loggedin} setLoggedin={setLoggedin}/>
+			<Core loggedin={loggedin} setLoggedin={setLoggedin}/>
 			<InterviewQ loggedin={loggedin} setLoggedin={setLoggedin}/>
 			</div>
-
 		</div>
 	);
 }
