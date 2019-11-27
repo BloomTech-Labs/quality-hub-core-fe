@@ -5,7 +5,7 @@ export const FeaturesInfo = [
 		title: 'InterviewQ',
 		description:
 			'Get mock interviewed by experienced professionals in your field. Become confident in your ability to ace real job interviews.',
-		link: 'https://interviewq-staging.netlify.com/',
+		link: 'https://qualityhub-staging.netlify.com/interviewq',
 	},
 	{
 		imgUrl:
@@ -70,5 +70,12 @@ export const FeaturesInfo = [
 		title: 'Qtin Tarantino',
 		description: `Quentin Jerome Tarantino is an American filmmaker, actor, film programmer, and cinema owner.`,
 		link: 'https://www.tarantino.info/',
+	},
+	{
+		imgUrl:
+			'https://pmcdeadline2.files.wordpress.com/2019/08/maggie-q.jpeg?w=432',
+		title: 'MaggieQ',
+		description: `Margaret Denise Quigley, professionally known as Maggie Q, is a American actress, model and animal rights activist.`,
+		link: 'https://www.imdb.com/name/nm0702572/',
 	},
 ];
