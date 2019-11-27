@@ -10,7 +10,7 @@ import './DeletePost.scss';
 import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 
-// GraphQL Query & Mutation
+// GraphQL Query to get posts to update cache
 export const GET_POSTS = gql`
 	query {
 		posts {
@@ -19,6 +19,7 @@ export const GET_POSTS = gql`
 	}
 `;
 
+// GraphQL Mutation to delete post associated with user
 export const DELETE_POST = gql`
 	mutation {
 		deletePost {
