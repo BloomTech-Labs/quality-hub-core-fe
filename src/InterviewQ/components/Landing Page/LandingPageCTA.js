@@ -1,11 +1,12 @@
+// Libaries
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
 export default function LandingPageCTA() {
 	const [ctaShow, setCtaShow] = useState(true);
-	const [loggedin, setLoggedin] = useState(false);
-	const [iscoach, setIscoach] = useState(false);
+	const [loggedin, setLoggedin] = useState(false); // GOAL: Replace with Apollo Client cache state
+	const [iscoach, setIscoach] = useState(false); // GOAL: Replace with Apollo Client cache state
 
 	const IS_LOGGED_IN = gql`
   query isLoggedIn {

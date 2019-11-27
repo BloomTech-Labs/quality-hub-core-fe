@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 //Icons
-import grid from '../../../globalIcons/grid.svg';
+// import grid from '../../../globalIcons/grid.svg';
 import favicon from '../../../globalIcons/favicon.svg';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
@@ -30,12 +30,15 @@ const GridDropdown = props => {
 	return (
 		<div ref={node}>
 			{/* Styling here needs to be changed to CSS Grid to make it more stable */}
-			<img
+			{/* <img
 				src={grid}
 				alt='Grid Menu'
 				className='grid-menu grid-icon'
 				onClick={() => setOpen(!open)}
-			/>
+			/> */}
+			<div className='grid-menu grid-icon' onClick={() => setOpen(!open)}>
+				<Icon icon={ICONS.GRID} width={24} height={24} />
+			</div>
 
 			{open && (
 				<div className='dropdown-grid-content dropdown-icons'>
