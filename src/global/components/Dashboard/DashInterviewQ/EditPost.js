@@ -4,7 +4,7 @@ import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // ID needs to be removed. Backend should pull user ID from token, find current post, then use that to edit post. 
-export const EDIT_POST = gql`
+export const UPDATE_POST = gql`
 	mutation updatePost(
 		$id: ID! 
 		$price: Int
@@ -17,7 +17,8 @@ export const EDIT_POST = gql`
 			id: $id
 			price: $price
 			position: $position
-			$industryName: $industryName
+			industryName: $industryName
+			description: $description
 			tagString: $tagString
 		) {
 			id
