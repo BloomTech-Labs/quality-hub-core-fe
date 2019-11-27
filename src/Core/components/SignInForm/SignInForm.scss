@@ -1,0 +1,13 @@
+.sign-in-form {
+	width: 92%;
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+button.sign-in-button:disabled {
+	cursor: not-allowed;
+}
+
+.sign-in-button {
+	margin: 0 0;
+}

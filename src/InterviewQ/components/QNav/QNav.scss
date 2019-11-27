@@ -1,0 +1,55 @@
+@import '../../../globalStyles/variables';
+
+.QNav {
+	z-index: 900;
+	position: fixed;
+	top: 50%;
+	left: 0;
+	transform: translate(0%, -50%);
+	width: 22rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	a {
+		text-decoration: none;
+	}
+
+	@media screen and (max-width: 1330px) {
+		margin-top: 10rem;
+		position: static;
+		flex-direction: row;
+		justify-content: space-around;
+		width: auto;
+		height: auto;
+	}
+}
+
+.QNav-row {
+	display: flex;
+	width: 20rem;
+	height: 4.5rem;
+	margin: 0 0 3rem 1rem;
+	padding-left: 3rem;
+	align-items: center;
+
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: center;
+
+}
+
+.QNav-row-highlight {
+	background-color: #e6f0fb;
+	border-radius: 0.5rem;
+}
+
+.QNav-btn {
+	color: black;
+	margin-left: 2rem;
+}
+
+.QNav-main {
+	color: $main-blue;
+	margin-left: 2rem;
+}
