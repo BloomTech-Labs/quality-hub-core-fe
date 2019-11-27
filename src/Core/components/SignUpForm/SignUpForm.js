@@ -111,7 +111,8 @@ const SignUpForm = props => {
 	};
 
 	//Set form step
-	const [progress, setProgress] = useState(-1);
+	// const [progress, setProgress] = useState(-1);
+	const [progress, setProgress] = useState(0);
 
 	const handleNext = e => {
 		e.preventDefault();

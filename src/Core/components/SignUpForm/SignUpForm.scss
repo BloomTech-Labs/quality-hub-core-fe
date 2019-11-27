@@ -1,10 +1,12 @@
+@import '../../../globalStyles/variables';
+
 .sign-up,
 .general-sign-up,
 .getstarted,
 .exp-sign-up,
 .completed-sign-up {
 	width: 92%;
-	max-width: 400px;
+	max-width: 500px;
 	margin: 0 auto;
 }
 
@@ -21,14 +23,39 @@ button.sign-up-button:disabled {
 }
 
 .getstarted {
+	width: 100%;
+	max-width: 44.8rem;
+	height: 15rem;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 20vh;
 	justify-content: space-between;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
-	h2 {
-		margin-top: 2rem;
+	.getstarted-txt {
+		font-size: 2.4rem;
+		line-height: 3.2rem;
+	}
+
+	.begin-btn {
+		width: 14rem;
+		height: 5.4rem;
+		border-radius: 0.5rem;
+		background-color: $main-blue;
+		color: white;
+		text-align: center;
+		font-size: 2rem;
+		line-height: 2.8rem;
+		font-weight: medium;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $hover-blue;
+		}
 	}
 }
 
