@@ -39,6 +39,10 @@ export default function LeftNavBar({ setLoggedin }) {
 			<p>
 				<span className='gray-square'></span> Schedule
 			</p>
+			<p>
+				<span className='gray-square'></span>{' '}
+				<Link to='/dashboard/interviewq'>InterviewQ</Link>
+			</p>
 		</div>
 	);
 }
