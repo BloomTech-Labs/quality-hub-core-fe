@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 // Styles & Icons
 import './DashboardInput.scss';
-import Icon from '../../../../globalIcons/Icon';
+import Icon from '../../../../globalIcons/Icon'
 import { ICONS } from '../../../../globalIcons/iconConstants';
 
 //GraphQuail Mutation
@@ -14,7 +14,7 @@ import { EDIT_USER } from './Mutation';
 import { capitalize } from '../../../../utils/capitalize';
 
 // Data
-import { statesArray } from '../../SignUpForm/States';
+import { statesArray } from '../../../../Core/components/SignUpForm/States';
 
 const DashboardInput = ({ userKey, userValue }) => {
 	const [original, setOriginal] = useState(userValue);

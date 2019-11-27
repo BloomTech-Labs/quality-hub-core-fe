@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from '../../Core/components/LandingPage'
-import Dashboard from '../../Core/components/Dashboard';
+import LandingPage from '../../Core/components/LandingPage';
+import Dashboard from '../components/Dashboard';
 import SignInForm from '../../Core/components/SignInForm';
 import SignUpForm from '../../Core/components/SignUpForm';
 import ForgotPassword from '../../Core/components/SignInForm/ForgotPassword';
