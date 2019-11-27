@@ -49,6 +49,19 @@
 	text-align: left;
 	// border: 1px solid lightgray;
 	// padding: 2% 10%;
+	display: flex;
+	align-items: center;
+
+	.red-circle {
+		background-color: #cf1322;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 1.8rem;
+	}
 
 	h1 {
 		display: flex;
