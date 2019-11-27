@@ -1,7 +1,9 @@
+// Library
 import React, { useState } from 'react';
 import './LandingPage.scss';
 
-import LandingPageCTA from './LandingPageCTA';
+// Components
+// import LandingPageCTA from './LandingPageCTA';
 import LandingPageHeader from './LandingPageHeader';
 import QNav from '../QNav';
 import Search from '../Search';
@@ -14,9 +16,10 @@ export default function InterviewLandingPage() {
 		industry: '',
 		orderBy: '',
 	});
+
 	return (
 		<div className='interview-container'>
-			<LandingPageCTA />
+			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				<LandingPageHeader />
 				<QNav />
