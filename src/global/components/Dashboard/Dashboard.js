@@ -13,7 +13,11 @@ import LeftNavBar from './LeftNavBar';
 import PaymentInfo from './PaymentInfo';
 import BasicInfo from './BasicInfo';
 import Experience from './Experience';
+<<<<<<< HEAD:src/Core/components/Dashboard/Dashboard.js
 import Schedule from './Schedule';
+=======
+import DashInterviewQ from './DashInterviewQ';
+>>>>>>> 0fdc5d8611deaf143ce6cd03a6080d8c7d9b98dc:src/global/components/Dashboard/Dashboard.js
 
 // GraphQuaiL Query
 const GET_USER = gql`
@@ -104,10 +108,15 @@ const Dashboard = ({ setLoggedin }) => {
 						/>
 						<Route
 							exact
+<<<<<<< HEAD:src/Core/components/Dashboard/Dashboard.js
 							path='/dashboard/schedule'
 							render={props => (
 								<Schedule {...props} myArray={myArray} userData={userData} />
 							)}
+=======
+							path='/dashboard/interviewq'
+							render={props => <DashInterviewQ {...props} />}
+>>>>>>> 0fdc5d8611deaf143ce6cd03a6080d8c7d9b98dc:src/global/components/Dashboard/Dashboard.js
 						/>
 					</Switch>
 				</div>

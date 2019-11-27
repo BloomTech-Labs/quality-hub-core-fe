@@ -1,5 +1,15 @@
 import React from 'react';
-import { format, isSameMonth, isSameDay, toDate, endOfMonth, startOfWeek, endOfWeek, addDays, startOfMonth } from 'date-fns';
+import {
+	format,
+	isSameMonth,
+	isSameDay,
+	toDate,
+	endOfMonth,
+	startOfWeek,
+	endOfWeek,
+	addDays,
+	startOfMonth,
+} from 'date-fns';
 
 const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	const monthStart = startOfMonth(currentMonth);
@@ -11,12 +21,15 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	let days = [];
 	let day = startDate;
 	let formattedDate = '';
+	let cellId = '';
 	while (day <= endDate) {
 		for (let i = 0; i < 7; i++) {
 			formattedDate = format(day, dateFormat);
+			cellId = format(day, 'Md');
 			const cloneDay = day;
 			days.push(
 				<div
+					id={cellId}
 					className={`col cell ${
 						!isSameMonth(day, monthStart)
 							? 'disabled'
@@ -38,7 +51,11 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			</div>,
 		);
 		days = [];
-	}
+  }
+  
+  const addAppt = (date) => {
+
+  }
 
 	return <div className='body'>{rows}</div>;
 };

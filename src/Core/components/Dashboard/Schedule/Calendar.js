@@ -36,7 +36,8 @@ const Calendar = () => {
 	// let startDate = startOfWeek(currentMonth);
 
 	const onDateClick = day => {
-		setSelectedDate(day);
+    setSelectedDate(day);
+    console.log(day)
 	};
 
 	const onMonthChange = e => {

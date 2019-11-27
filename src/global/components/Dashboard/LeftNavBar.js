@@ -36,6 +36,7 @@ export default function LeftNavBar({ setLoggedin }) {
 				hide={toggle}
 				setLoggedin={setLoggedin} // GOAL: Have this be a state variable held in Apollo Client cache
 			/>
+<<<<<<< HEAD:src/Core/components/Dashboard/LeftNavBar.js
 
 			<Link to='/dashboard/schedule'>
 				<p>
@@ -43,6 +44,15 @@ export default function LeftNavBar({ setLoggedin }) {
 					Schedule
 				</p>
 			</Link>
+=======
+			<p>
+				<span className='gray-square'></span> Schedule
+			</p>
+			<p>
+				<span className='gray-square'></span>{' '}
+				<Link to='/dashboard/interviewq'>InterviewQ</Link>
+			</p>
+>>>>>>> 0fdc5d8611deaf143ce6cd03a6080d8c7d9b98dc:src/global/components/Dashboard/LeftNavBar.js
 		</div>
 	);
 }
