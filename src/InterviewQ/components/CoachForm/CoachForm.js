@@ -176,7 +176,6 @@ const CoachForm = props => {
 						$50.
 					</p>
 					<div className="slider">
-						{/* <label> */}
 						<div className="slider-inner-boxes">
 							<div className="slider-dollar-amounts">
 								<p>$0</p>
@@ -191,18 +190,16 @@ const CoachForm = props => {
 								step="1"
 							/>
 						</div>
-						{/* </label> */}
 					</div>
 					<div className="add-coach-form-range-input">
-					<input
-						
-						type="text"
-						name="hourlyrate"
-						placeholder="$"
-						value="$"
-						// value={formState.company}
-						// onChange={event => setFormState({...formState, company: event.target.value})}
-					/>
+						<input
+							type="text"
+							name="hourlyrate"
+							placeholder="$"
+							value="$"
+							// value={formState.company}
+							// onChange={event => setFormState({...formState, company: event.target.value})}
+						/>
 					</div>
 
 					{/* <img src="../../../globalIcons/close.svg" /> */}
@@ -218,14 +215,57 @@ const CoachForm = props => {
 						parameters. Review the information, and click "Publish" for your
 						profile to go live!
 					</p>
-					<br />
-					<br />
+					<div className="add-coach-form-preview-container">
+						{/* <button> */}
+						{/* // className="close-coach-form-button" */}
+
+						<div className="add-coach-form-preview-close">
+							<Icon icon={ICONS.CLOSE} width={24} height={24} />
+						</div>
+						<p className="add-coach-form-preview-name">Nicholas Gonzalez</p>
+						<p className="add-coach-form-preview-amount">$40 per hour</p>
+						{/* </button> */}
+						<div className="coachcard-info">
+							<p>
+								<span className="coachcard-icon">
+									<Icon
+										icon={ICONS.BAG}
+										width={24}
+										height={24}
+										color="#595959"
+									/>
+								</span>
+								Software Engineer
+								{/* {post.industry.name} */}
+							</p>
+							<p>
+								<span className="coachcard-icon">
+									<Icon
+										icon={ICONS.LOCATION}
+										width={24}
+										height={24}
+										color="#595959"
+									/>
+								</span>
+								Google - Mountain View, California
+								{/* {post.position} - {coach.city}, {coach.state} */}
+							</p>
+							<p>
+								<span className="coachcard-icon">
+									<Icon
+										icon={ICONS.STAR}
+										width={24}
+										height={24}
+										color="#595959"
+									/>
+								</span>
+								4.2
+							</p>
+						</div>
+					</div>
+
 					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
-					<br />
-					<br />
-					<hr />
-					<br />
-					<br />
+
 					{/* <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/> */}
 				</div>
 			)}

@@ -199,6 +199,64 @@
 	width: 183px !important;
 }
 
+.add-coach-form-preview-container {
+	padding-left: 54px;
+	padding-right: 54px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 64px;
+	margin-bottom: 80px;
+	width: 410px;
+	min-height: 670px;
+	border-radius: 8px;
+	border: 1px solid #d4d4d4;
+}
+
+.add-coach-form-preview-close {
+	position: relative;
+	left: 313px;
+	top: 21px;
+}
+.add-coach-form-preview-name {
+	margin-top: 79px;
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 28px;
+	color: #096dd9;
+}
+
+.add-coach-form-preview-amount {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 24px;
+	color: #262626;
+}
+
+.coachcard-info {
+	margin-top: 41px;
+	p {
+		display: flex;
+		// align-items: center;
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 24px;
+
+		color: #595959;
+
+		.coachcard-icon {
+			// width: 2.8rem;
+			margin-right: 9px;
+			// display: inline-block;
+		}
+	}
+}
+
 // I don't know what the following does:
 
 // $main-color: rgb(0, 0, 204);
