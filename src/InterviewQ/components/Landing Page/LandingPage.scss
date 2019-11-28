@@ -15,37 +15,47 @@
 	}
 }
 
-.interview-cta {
+// .interview-cta {
+// 	display: flex;
+// 	width: 100%;
+// 	justify-content: space-between;
+// 	background-color: $main-blue;
+// 	// border: 1px solid grey;
+// 	padding: 1.8rem;
+
+// 	.interview-cta-center {
+// 		display: flex;
+// 		width: 100%;
+// 		justify-content: center;
+
+// 		h4,
+// 		a {
+// 			font-size: 1.4rem;
+// 			font-weight: normal;
+// 			color: white;
+// 		}
+// 	}
+
+// 	.interview-cta-x {
+// 		color: white;
+// 		cursor: pointer;
+// 	}
+// }
+
+.interviewq-header-container {
 	display: flex;
-	width: 100%;
 	justify-content: space-between;
-	background-color: $main-blue;
-	// border: 1px solid grey;
-	padding: 1.8rem;
+	align-items: flex-end;
+	margin: 10rem 0 3rem;
 
-	.interview-cta-center {
-		display: flex;
-		width: 100%;
-		justify-content: center;
-
-		h4,
-		a {
-			font-size: 1.4rem;
-			font-weight: normal;
-			color: white;
-		}
-	}
-
-	.interview-cta-x {
-		color: white;
-		cursor: pointer;
+	@media screen and (max-width: 1330px) {
+		margin-top: 3rem;
 	}
 }
 
 .interview-header {
 	// width: 100%;
 	// background-color: lightgray;
-	margin: 10rem 0 3rem;
 	text-align: left;
 	// border: 1px solid lightgray;
 	// padding: 2% 10%;
@@ -72,7 +82,7 @@
 }
 
 button {
-	padding: 0;
+	// padding: 0;
 	border: none;
 	font: inherit;
 	color: inherit;
@@ -80,9 +90,31 @@ button {
 	text-align: left;
 }
 
-.landingpage-content {
+.interviewq-header-btns {
 	display: flex;
-	flex-direction: column;
-	width: 100%;
-	border: 1px solid red;
+	justify-content: space-between;
+
+	button {
+		border: 1px solid silver;
+		border-radius: 0.3rem;
+		font-size: 1.4rem;
+		height: 3.4rem;
+		padding: 0 2rem;
+		margin: 0.5rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		.becomecoach-btn {
+			display: inline-block;
+			margin-left: 1rem;
+			width: 11rem;
+		}
+
+		.filters-btn {
+			display: inline-block;
+			margin-left: 1rem;
+		}
+	}
 }

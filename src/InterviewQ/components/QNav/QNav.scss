@@ -37,6 +37,9 @@
 	font-weight: bold;
 	text-align: center;
 
+	@media screen and (max-width: 1330px) {
+		margin: 0;
+	}
 }
 
 .QNav-row-highlight {
