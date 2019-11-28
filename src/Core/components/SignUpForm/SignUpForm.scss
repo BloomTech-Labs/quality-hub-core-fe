@@ -1,11 +1,14 @@
+@import '../../../globalStyles/variables';
+
 .sign-up,
 .general-sign-up,
 .getstarted,
 .exp-sign-up,
 .completed-sign-up {
 	width: 92%;
-	max-width: 400px;
+	max-width: 500px;
 	margin: 0 auto;
+	border: 1px solid orange;
 }
 
 button.sign-up-button:disabled {
@@ -21,14 +24,85 @@ button.sign-up-button:disabled {
 }
 
 .getstarted {
+	width: 100%;
+	max-width: 44.8rem;
+	height: 15rem;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 20vh;
 	justify-content: space-between;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
-	h2 {
-		margin-top: 2rem;
+	.getstarted-txt {
+		font-size: 2.4rem;
+		line-height: 3.2rem;
+	}
+
+	.begin-btn {
+		width: 14rem;
+		height: 5.4rem;
+		border-radius: 0.5rem;
+		background-color: $main-blue;
+		color: white;
+		text-align: center;
+		font-size: 2rem;
+		line-height: 2.8rem;
+		font-weight: medium;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $hover-blue;
+		}
+	}
+}
+
+.bio-text {
+	height: 100px;
+}
+
+.email-address-taken {
+	color: red;
+}
+
+.prog-bar {
+	width: 92%;
+	max-width: 83.8rem;
+	height: 3.2rem;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.prog-circle {
+		width: 3.2rem;
+		height: 3.2rem;
+		border-radius: 50%;
+		border: 1px solid #bfbfbf;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.6rem;
+		color: #bfbfbf;
+		margin: 0 0.3rem;
+		flex-shrink: 0;
+		// NEEDS SF PRO FONT
+	}
+
+	p {
+		font-size: 1.6rem;
+		color: #8c8c8c;
+		margin: 0 0.3rem;
+		// NEEDS SF PRO FONT
+	}
+
+	.prog-line {
+		width: 23rem;
+		border: 0.05rem solid #bfbfbf;
+		margin: 0 0.3rem;
 	}
 }
 
@@ -92,51 +166,3 @@ button.sign-up-button:disabled {
 // .progressbar li.active + li:after {
 // 	background-color: purple;
 // }
-
-.bio-text {
-	height: 100px;
-}
-
-.email-address-taken {
-	color: red;
-}
-
-.prog-bar-center {
-	width: 200px;
-	margin: 2rem auto;
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-}
-
-.prog-bar {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.prog-circle {
-	width: 25px;
-	height: 25px;
-	border-radius: 50%;
-	border: 2px solid gray;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.prog-line {
-	width: 50px;
-	height: 0px;
-	border: 1px solid gray;
-}
-
-.prog-text {
-	display: flex;
-	width: 100%;
-	justify-content: space-between;
-
-	p {
-		font-size: 1rem;
-	}
-}

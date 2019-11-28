@@ -111,7 +111,8 @@ const SignUpForm = props => {
 	};
 
 	//Set form step
-	const [progress, setProgress] = useState(-1);
+	// const [progress, setProgress] = useState(-1);
+	const [progress, setProgress] = useState(3);
 
 	const handleNext = e => {
 		e.preventDefault();
@@ -170,7 +171,7 @@ const SignUpForm = props => {
 
 			{progress > 0 && (
 				<div className='sign-up-form'>
-					<h2>Sign Up</h2>
+					{/* <h2>Sign Up</h2> */}
 					<ProgressBar progress={progress} />
 
 					<form onSubmit={handleSubmit}>

@@ -10,24 +10,40 @@ import './DeletePost.scss';
 import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 
-// GraphQL Mutation
+// GraphQL Query to get posts to update cache
+export const GET_POSTS = gql`
+	query {
+		posts {
+			id
+		}
+	}
+`;
+
+// GraphQL Mutation to delete post associated with user
 export const DELETE_POST = gql`
-	mutation DeletePost($postId: String!) {
-		deletePost(id: $postId) {
+	mutation {
+		deletePost {
 			id
 		}
 	}
 `;
 
 export default function DeletePost({ isShowing, hide }) {
-	const [deletePostMutation] = useMutation(DELETE_POST);
 	const history = useHistory();
+	const [deleteCoachPost] = useMutation(DELETE_POST, {
+		update(cache, { data }) {
+			const { posts } = cache.readQuery({ query: GET_POSTS });
+			cache.writeQuery({
+				query: GET_POSTS,
+				data: { posts: posts.filter(post => post.id !== data.deletePost.id) },
+			});
+		},
+	});
 
 	const deletePost = () => {
-		// deletePostMutation().then(res => {
-		// 	history.pushState('/dashboard');
-		// });
-		history.push('/dashboard');
+		deleteCoachPost().then(res => {
+			history.push('/dashboard');
+		});
 	};
 
 	return (
