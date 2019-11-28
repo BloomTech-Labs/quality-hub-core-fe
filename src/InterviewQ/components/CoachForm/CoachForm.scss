@@ -2,17 +2,53 @@
     width:80%;
 }
 
+.button {
+    border: 1px solid silver;
+    border-radius: 0.3rem;
+    font-size: 1.4rem;
+    height: 3.4rem;
+    padding: 0 2rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .add-coach-form-button {
+        display: inline-block;
+        margin-left: 1rem;
+        width: 11rem;
+    }
+
+}
+
+
+
  .add-coach-form{
-    // position: absolute;
-    margin: 144px auto; //214px - 70px (for top navbar)
+    position: absolute;
+    // margin: 144px auto; //214px - 70px (for top navbar)
     width: 850px;
+    // margin: 0 auto;
+    // left: auto;
+    // right: auto;
     // min-height: 80%;
-    height: 100vh;
+    // height: 100vh;
     overflow: auto;
-    // left: 297px;
+
+    left: 50%;
+    transform: translate(-50%);
+    // right: 50%;
     // top: 214px;
     padding-top: 120px;
     padding-left: 91px;
     padding-right: 91px;
-    background: green;
+    background: lightgrey;
+    text-align: left;
+    input{
+        width: 100%;
+    }
+    select{
+        width: 100%;
+    }
+    z-index: 1000;
  }

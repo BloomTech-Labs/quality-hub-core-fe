@@ -12,6 +12,7 @@ import LandingPageHeader from './LandingPageHeader';
 import QNav from '../QNav';
 import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
+import CoachForm from '../CoachForm/CoachForm';
 
 export default function InterviewLandingPage() {
 	const [fields, setFields] = useState({
@@ -22,17 +23,18 @@ export default function InterviewLandingPage() {
 	});
 
 	return (
-		<div className='interview-container'>
+		<div className='interview-container' id="interview-container">
 			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				<QNav />
 				<div className='interviewq-header-container'>
 					<LandingPageHeader />
 					<div className='interviewq-header-btns'>
-						<button>
+						{/* <button>
 							<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
 							<span className='becomecoach-btn'>Become a coach</span>
-						</button>
+						</button> */}
+						<CoachForm />
 						<button>
 							<Icon icon={ICONS.FILTER} width={20} height={18} />
 							<span className='filters-btn'>Filters </span>
