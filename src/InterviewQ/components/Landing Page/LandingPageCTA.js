@@ -1,11 +1,20 @@
 // Libaries
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { gql } from 'apollo-boost';
+import { useLazyQuery } from '@apollo/react-hooks';
 export default function LandingPageCTA() {
 	const [ctaShow, setCtaShow] = useState(true);
 	const [loggedin, setLoggedin] = useState(false); // GOAL: Replace with Apollo Client cache state
 	const [iscoach, setIscoach] = useState(false); // GOAL: Replace with Apollo Client cache state
+
+	const IS_LOGGED_IN = gql`
+  query isLoggedIn {
+    isLoggedIn @client
+  }
+`;
+
+const { data } = useLazyQuery(IS_LOGGED_IN);
 
 	return (
 		<div>
@@ -20,10 +29,10 @@ export default function LandingPageCTA() {
 						) : (
 							<h4>
 								Are you interested in becoming a coach?{' '}
-								{loggedin ? (
+								{data && data.isLoggedIn ? (
 									<Link to='/addcoach'>Click here</Link>
 								) : (
-									<a href='https://qualityhub.netlify.com/signin'>Click here</a>
+									<Link to='/signin'>Click here</Link>
 								)}
 							</h4>
 						)}

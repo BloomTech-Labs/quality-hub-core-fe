@@ -13,6 +13,7 @@ import LeftNavBar from './LeftNavBar';
 import PaymentInfo from './PaymentInfo';
 import BasicInfo from './BasicInfo';
 import Experience from './Experience';
+import Schedule from './Schedule';
 import DashInterviewQ from './DashInterviewQ';
 
 // GraphQuaiL Query
@@ -103,6 +104,13 @@ const Dashboard = ({ setLoggedin }) => {
 							)}
 						/>
 						<Route
+							exact
+							path='/dashboard/schedule'
+							render={props => (
+								<Schedule {...props} myArray={myArray} userData={userData} />
+							)}
+							/>
+							<Route
 							exact
 							path='/dashboard/interviewq'
 							render={props => <DashInterviewQ {...props} />}
