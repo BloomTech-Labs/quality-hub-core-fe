@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, {useRef} from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -32,8 +32,9 @@ export const UPDATE_POST = gql`
 `;
 
 export default function EditPost() {
+	
 	return (
-		<div>
+		<div id="test-1234">
 			<h3>Edit Post</h3>
 		</div>
 	);
