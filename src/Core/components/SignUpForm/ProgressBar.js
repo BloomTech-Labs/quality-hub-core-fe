@@ -9,6 +9,7 @@ export default function ProgressBar({ progress }) {
 	const mainBlue = `#096dd9`;
 	const darkGrey = `#595959`;
 
+	// Dynamic styles for progress bar circles depending on progress
 	const circleStyle = prog => {
 		return {
 			border: progress >= prog && `1px solid ${mainBlue}`,
@@ -18,6 +19,7 @@ export default function ProgressBar({ progress }) {
 		};
 	};
 
+	// Dynamic styles for progress bar text depending on progress
 	const textStyle = prog => {
 		return {
 			color:
@@ -31,6 +33,7 @@ export default function ProgressBar({ progress }) {
 		};
 	};
 
+	// Dynamic styles for progress bar lines depending on progress
 	const lineStyle = prog => {
 		return { border: progress >= prog && `0.5px solid ${mainBlue}` };
 	};

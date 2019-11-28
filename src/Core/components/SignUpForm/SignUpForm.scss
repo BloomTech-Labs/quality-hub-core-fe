@@ -1,14 +1,9 @@
 @import '../../../globalStyles/variables';
 
-.sign-up,
-.general-sign-up,
-.getstarted,
-.exp-sign-up,
-.completed-sign-up {
+.sign-up {
 	width: 92%;
 	max-width: 500px;
 	margin: 0 auto;
-	border: 1px solid orange;
 }
 
 button.sign-up-button:disabled {
@@ -41,38 +36,30 @@ button.sign-up-button:disabled {
 		font-size: 2.4rem;
 		line-height: 3.2rem;
 	}
+}
 
-	.begin-btn {
-		width: 14rem;
-		height: 5.4rem;
-		border-radius: 0.5rem;
-		background-color: $main-blue;
-		color: white;
-		text-align: center;
-		font-size: 2rem;
-		line-height: 2.8rem;
-		font-weight: medium;
-		cursor: pointer;
+.signup-btn {
+	width: 14rem;
+	height: 5.4rem;
+	border-radius: 0.5rem;
+	background-color: $main-blue;
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	line-height: 2.8rem;
+	font-weight: medium;
+	cursor: pointer;
 
-		&:hover {
-			background-color: $hover-blue;
-		}
+	&:hover {
+		background-color: $hover-blue;
 	}
-}
-
-.bio-text {
-	height: 100px;
-}
-
-.email-address-taken {
-	color: red;
 }
 
 .prog-bar {
 	width: 92%;
 	max-width: 83.8rem;
 	height: 3.2rem;
-	margin: 0 auto;
+	margin: 24rem auto 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -106,63 +93,102 @@ button.sign-up-button:disabled {
 	}
 }
 
-// .progressbar {
-// 	width: 100%;
-// 	counter-reset: step;
-// 	margin-bottom: 100px;
-// 	margin-top: 20px;
-// 	border: 1px solid white;
-// }
+label {
+	font-size: 1.4rem;
+	// NEED SF PRO FONT
+	line-height: 2.2rem;
+}
 
-// .progressbar li {
-// 	list-style-type: none;
-// 	float: left;
-// 	width: 33.33%;
-// 	position: relative;
-// 	text-align: center;
-// 	border: 1px solid green;
-// }
+input,
+select {
+	height: 4rem;
+	border: 1px solid $input-border;
+	border-radius: 0.4rem;
+}
 
-// .progressbar li:before {
-// 	content: counter(step);
-// 	counter-increment: step;
-// 	text-align: center;
-// 	margin: 5px auto 5px auto;
-// 	line-height: 20px;
-// 	width: 20px;
-// 	height: 20px;
-// 	border: 3px solid gainsboro;
-// 	display: block;
-// 	margin: 0 auto 10 auto;
-// 	border-radius: 50%;
-// 	background-color: white;
-// }
+.signup-nav {
+	width: 35.4rem;
+	margin: 6.4rem auto 2rem;
+	display: flex;
+	justify-content: space-between;
 
-// .progressbar li:after {
-// 	content: ' ';
-// 	position: absolute;
-// 	z-index: -1;
-// 	height: 3px;
-// 	width: 100%;
-// 	background-color: gainsboro;
-// 	top: 15px;
-// 	left: -50%;
-// }
+	.signup-back {
+		width: 14rem;
+		height: 5.4rem;
+		border: 1px solid #8c8c8c;
+		border-radius: 0.5rem;
+		color: #8c8c8c;
+		text-align: center;
+		font-size: 2rem;
+		line-height: 2.8rem;
+		font-weight: medium;
+		cursor: pointer;
 
-// .progressbar li:first-child:after {
-// 	content: none;
-// }
+		// &:hover {
+		// background-color: $hover-blue;
+		// }
+	}
+}
 
-// .progressbar li.active {
-// 	color: purple;
-// }
+.general-signup {
+	width: 92%;
+	max-width: 44.8rem;
+	margin: 9.6rem auto 0;
 
-// .progressbar li.active:before {
-// 	color: gainsboro;
-// 	border-color: purple;
-// 	background-color: purple;
-// }
+	.required {
+		font-size: 1.2rem;
+		// NEED SF PRO FONT
+		line-height: 2rem;
+		text-align: right;
+		margin-bottom: 0.8rem;
+	}
 
-// .progressbar li.active + li:after {
-// 	background-color: purple;
-// }
+	span {
+		color: #cf1322;
+	}
+
+	.two-inputs {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.two-inputs .input-label {
+		width: 48%;
+	}
+
+	.bio-text {
+		height: 14.7rem;
+		border: 1px solid $input-border;
+		border-radius: 0.6rem;
+	}
+}
+
+.exp-signup {
+	width: 92%;
+	max-width: 44.8rem;
+	margin: 9.6rem auto;
+}
+
+.email-address-taken {
+	color: red;
+}
+
+.completed-signup {
+	width: 37.8rem;
+	height: 15rem;
+	margin: 16.5rem auto 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	p {
+		font-size: 2.2rem;
+		// font-size: 2.4rem;
+		// NEEDS SF PRO FONT
+	}
+}
+
+.gotit-btn {
+	font-size: 1.4rem;
+}
