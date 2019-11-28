@@ -262,6 +262,26 @@ const CoachForm = props => {
 								4.2
 							</p>
 						</div>
+						<p className="add-coach-form-preview-description">
+							I'm a seasoned software engineer who has worked at and made an
+							impact at some of the biggest companies in the industry. I am
+							currently a technical lead/senior software engineer at Google
+							where I work on the API, backend and data infrastructure for an
+							enterprise product called Talent Insights.
+						</p>
+						<div className="coachcard-footer">
+							<div className="coachcard-links">
+								<div className="icon1">
+								<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+								</div>
+								<div>
+								<Icon icon={ICONS.TWITTER} width={24} height={24} />
+								</div>
+							</div>
+						</div>
+						<button className="interview-button" disabled>
+							Request Interview
+						</button>
 					</div>
 
 					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
