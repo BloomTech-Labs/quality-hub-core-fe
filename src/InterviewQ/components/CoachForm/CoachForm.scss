@@ -2,4 +2,17 @@
     width:80%;
 }
 
- 
+ .add-coach-form{
+    // position: absolute;
+    margin: 144px auto; //214px - 70px (for top navbar)
+    width: 850px;
+    // min-height: 80%;
+    height: 100vh;
+    overflow: auto;
+    // left: 297px;
+    // top: 214px;
+    padding-top: 120px;
+    padding-left: 91px;
+    padding-right: 91px;
+    background: green;
+ }

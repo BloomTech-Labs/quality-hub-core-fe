@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
+import './CoachForm.scss';
 
 import ProgressBar from './ProgressBar'
 import CoachForm01 from './CoachForm01'
@@ -34,11 +35,11 @@ const INDUSTRIES = gql`
 `;
 
 
-const CoachForm00 = () => {
+const CoachForm00 = (props) => {
 
     // for sure take this out soon // like as soon as auth0 happens
     useEffect(() => {
-        localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrMnMxZmIydTAwNnYwNzczdjI4MmIza20iLCJlbWFpbCI6ImRhbkBxdWFpbC5jb20iLCJpYXQiOjE1NzQzNjM5NzUsImV4cCI6MTU3NDQwNzE3NX0.Ay63IqaVSQZmLgEjOEMOvb_NBQ0vLNepzn_NbaDsaMQ')
+        // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrMnMxZmIydTAwNnYwNzczdjI4MmIza20iLCJlbWFpbCI6ImRhbkBxdWFpbC5jb20iLCJpYXQiOjE1NzQzNjM5NzUsImV4cCI6MTU3NDQwNzE3NX0.Ay63IqaVSQZmLgEjOEMOvb_NBQ0vLNepzn_NbaDsaMQ')
     })
 
     const {data, error} = useQuery(GET_USER)
@@ -85,33 +86,35 @@ const CoachForm00 = () => {
     }
 
     return (
-        <div>
-            <ProgressBar progress={progress} />
+        <div className="add-coach-form">
+            <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/>
+            <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/>
+            <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/>
+            <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/>
+            {/* <ProgressBar progress={progress} />
+            <CoachForm03 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/>
+            <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/>
             <Route exact path="/addcoach"
                 render={props => (
-                    <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/>
-                )} 
-            />
+                    )} 
+                    />
             <Route path="/addcoach/02"
                 render={props => (
-                    <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/>
                 )} 
             />
             <Route path="/addcoach/03"
                 render={props => (
-                    <CoachForm03 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/>
                 )} 
             />
             <Route path="/addcoach/04"
                 render={props => (
-                    <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/>
                 )} 
             />
             <Route path="/addcoach/05"
                 render={props => (
                     <CoachForm05 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/>
                 )} 
-            />
+            /> */}
         </div>
     )
 };
