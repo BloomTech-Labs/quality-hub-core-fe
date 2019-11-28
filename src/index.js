@@ -3,15 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 require('dotenv').config();
+
+
+// const checkLogin = () => {
+//   if(localStorage.getItem('token')) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
 
 
 const getToken = () => {
   let token = localStorage.getItem('token');
   return token ? `Bearer ${token}` : '';
 };
+const cache = new InMemoryCache({});
 
 const client = new ApolloClient({
   uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
@@ -21,6 +31,18 @@ const client = new ApolloClient({
         Authorization: getToken(),
       },
     });
+  },
+   cache,
+   resolvers: {},
+//  cache: cache,
+//  clientState: {
+//    isLoggedIn: !!localStorage.getItem("token")
+//  }
+});
+
+cache.writeData({
+  data: {
+    isLoggedIn: !!localStorage.getItem("token"),
   },
 });
 
