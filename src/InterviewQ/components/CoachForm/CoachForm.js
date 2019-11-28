@@ -14,9 +14,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
-import {lightbulb} from '../../../globalIcons/lightbulb';
-
-
+import { lightbulb } from '../../../globalIcons/lightbulb';
 
 const GET_USER = gql`
 	query {
@@ -47,14 +45,13 @@ const CoachForm = props => {
 	// for sure take this out soon // like as soon as auth0 happens
 	useEffect(() => {
 		// localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrMnMxZmIydTAwNnYwNzczdjI4MmIza20iLCJlbWFpbCI6ImRhbkBxdWFpbC5jb20iLCJpYXQiOjE1NzQzNjM5NzUsImV4cCI6MTU3NDQwNzE3NX0.Ay63IqaVSQZmLgEjOEMOvb_NBQ0vLNepzn_NbaDsaMQ')
-    });
+	});
 
-    
 	useEffect(() => {
 		if (open) {
-            document.getElementById("overlay").style.display = "block";
+			document.getElementById('overlay').style.display = 'block';
 		} else {
-            document.getElementById("overlay").style.display = "none";
+			document.getElementById('overlay').style.display = 'none';
 		}
 	}, [open]);
 
@@ -99,38 +96,59 @@ const CoachForm = props => {
 
 	return (
 		<div ref={node}>
-            {/* <p onClick={() => setOpen(!open)}>
+			{/* <p onClick={() => setOpen(!open)}>
 				CREATE A COACH POSTING
 			</p> */}
-            <button onClick={() => setOpen(!open)}>
-							<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
-							<span className='add-coach-form-button'>Become a coach</span>
-						</button>
+			<button onClick={() => setOpen(!open)}>
+				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+				<span className="add-coach-form-button">Become a coach</span>
+			</button>
 			{open && (
-            <div className="add-coach-form">
-                <button className="close-coach-form-button" onClick={()=>setOpen(false)}>
-                <Icon icon={ICONS.CLOSE} width={24} height={24}  />
-                </button>
-                <div className="add-coach-form-row-1">
-                <div>{lightbulb()}</div> <div className="add-coach-form-header">Create your coach posting here!</div>
-                </div>
-                {/* <img src="../../../globalIcons/close.svg" /> */}
-                
-				{/* <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/> */}
-				<br />
-				<br />
-				<hr />
-				<br />
-				<br />
-				{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
-				<br />
-				<br />
-				<hr />
-				<br />
-				<br />
-				{/* <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/> */}
-			</div>
-            )}
+				<div className="add-coach-form">
+					<button
+						className="close-coach-form-button"
+						onClick={() => setOpen(false)}>
+						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+					</button>
+					<div className="add-coach-form-row-1">
+						<div>{lightbulb()}</div>{' '}
+						<div className="add-coach-form-header">
+							Create your coach posting here!
+						</div>
+					</div>
+					<p className="add-coach-form-row-2">
+						Please fill the following fields to be listed as a coach on
+						InterviewQ. 
+                        <br />This information will help seekers decide which coaches
+						to select, so be sure to sell yourself well!
+					</p>
+                    <p className="add-coach-form-row-3">
+                        STEP 1
+                    </p>
+                    <p className="add-coach-form-row-4">
+                        Profile
+                    </p>
+                    <p className="add-coach-form-row-5">
+                        Please tell us about your career so far and your accomplishments
+                    </p>
+
+					{/* <img src="../../../globalIcons/close.svg" /> */}
+
+					{/* <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/> */}
+					<br />
+					<br />
+					<hr />
+					<br />
+					<br />
+					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
+					<br />
+					<br />
+					<hr />
+					<br />
+					<br />
+					{/* <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/> */}
+				</div>
+			)}
 		</div>
 	);
 };
