@@ -1,120 +1,297 @@
-.slider{
-    width:80%;
+.slider {
+	// width:100%;
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+
+	// margin: 0 auto !important;
+	// border: 1px solid black !important;
+
+	input {
+		width: 465px !important;
+		margin: 0px !important;
+		// display: none !important;
+		// margin: 0 auto;
+		// margin-left: 20px;
+		// margin-left: auto !important;
+		// margin-right: auto !important;
+		// border: 1px solid red !important;
+		padding: 0px !important;
+	}
+
+	.slider-dollar-amounts {
+		width: 465px;
+		display: flex;
+		justify-content: space-between;
+		align-content: center;
+		align-items: center;
+		// border: 1px solid black;
+		padding: 0px !important;
+		p {
+			font-family: SF Pro Display;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 28px;
+			color: #3c4043;
+		}
+	}
+
+	.slider-inner-boxes {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		// border: 1px solid green;
+		// justify-content: center;
+		// align-content: center;
+	}
 }
 
 .button {
-    border: 1px solid silver;
-    border-radius: 0.3rem;
-    font-size: 1.4rem;
-    height: 3.4rem;
-    padding: 0 2rem;
-    margin: 0.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	font-size: 1.4rem;
+	height: 3.4rem;
+	padding: 0 2rem;
+	margin: 0.5rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 
-    .add-coach-form-button {
-        display: inline-block;
-        margin-left: 1rem;
-        width: 11rem;
-    }
-
+	.add-coach-form-button {
+		display: inline-block;
+		margin-left: 1rem;
+		width: 11rem;
+	}
 }
 
+.add-coach-form {
+	position: absolute;
+	// margin: 144px auto; //214px - 70px (for top navbar)
+	width: 850px;
+	// margin: 0 auto;
+	// left: auto;
+	// right: auto;
+	// min-height: 80%;
+	// height: 100vh;
+	height: 80%;
+	overflow: auto;
 
+	left: 50%;
+	transform: translate(-50%);
+	// right: 50%;
+	// top: 214px;
+	padding-top: 120px;
+	padding-left: 91px;
+	padding-right: 91px;
+	background: white;
+	border-radius: 10px;
+	text-align: left;
+	input {
+		width: 100%;
+	}
+	select {
+		width: 100%;
+	}
+	z-index: 1000;
+}
 
- .add-coach-form{
-    position: absolute;
-    // margin: 144px auto; //214px - 70px (for top navbar)
-    width: 850px;
-    // margin: 0 auto;
-    // left: auto;
-    // right: auto;
-    // min-height: 80%;
-    // height: 100vh;
-    overflow: auto;
+.close-coach-form-button {
+	position: absolute;
+	top: 40px;
+	right: 30px;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	width: 24px !important;
+	height: 24px !important;
+	color: black;
+	outline: none;
+}
 
-    left: 50%;
-    transform: translate(-50%);
-    // right: 50%;
-    // top: 214px;
-    padding-top: 120px;
-    padding-left: 91px;
-    padding-right: 91px;
-    background: white;
-    border-radius: 10px;
-    text-align: left;
-    input{
-        width: 100%;
-    }
-    select{
-        width: 100%;
-    }
-    z-index: 1000;
- }
+.add-coach-form-header {
+	color: #096dd9;
+	font-size: 3rem;
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	margin-left: 10px;
+}
 
- .close-coach-form-button{
-     position: absolute;
-     top: 40px;
-     right: 30px;
-     margin: 0 !important;
-     padding: 0 !important;
-     border: none !important;
-     width: 24px !important;
-     height: 24px !important;
-     color: black;
-     outline: none;
- }
+.add-coach-form-row-1 {
+	display: flex;
+}
 
- .add-coach-form-header{
-    color: #096DD9;
-    font-size: 3.0rem;
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: 600;
-    margin-left: 10px;
- }
+.add-coach-form-row-2 {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 28px;
+	margin-top: 15px;
+}
 
- .add-coach-form-row-1{
-     display:flex;
- }
+.add-coach-form-step-title {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 28px;
+	color: #5f6368;
+	margin-top: 72px;
+}
 
- .add-coach-form-row-2{
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 28px;
-    margin-top: 15px;
- }
+.add-coach-form-sub-title {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 38px;
+	color: #3c4043;
+	margin-top: 16px;
+}
 
- .add-coach-form-row-3{
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-    color: #5F6368;
-    margin-top: 72px;
- }
+.add-coach-form-description {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 28px;
+	color: #3c4043;
+	margin-top: 3px;
+}
 
- .add-coach-form-row-4{
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 30px;
-    line-height: 38px;
-    color: #3C4043;
-    margin-top: 16px;
- }
+.add-coach-form-row-6 {
+	margin-top: 24px;
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	color: #3c4043;
+}
 
- .add-coach-form-row-5{
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 28px;
-    color: #3C4043;
-    margin-top: 3px;
- }
+.add-coach-form-row-6 {
+	margin-top: 24px;
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	color: #3c4043;
+}
+
+.add-coach-form-row-7 {
+	margin-top: 1px;
+	border: 1px solid #dadce0;
+	box-sizing: border-box;
+	border-radius: 6px;
+}
+.add-coach-form-hr-1 {
+	margin: 72px 0;
+	border: 1px solid #dadce0;
+}
+
+.add-coach-form-range-input {
+	margin: 0 auto;
+	margin-top: 64px;
+	width: 183px !important;
+}
+
+// I don't know what the following does:
+
+// $main-color: rgb(0, 0, 204);
+// $dot-color: rgb(0, 0, 204);
+
+// input[type=range] {
+//   -webkit-appearance: none;
+//   margin: 18px 20px;
+//   width: 70%;
+//   border: none;
+// }
+// input[type=range]:focus {
+//   outline: none;
+// }
+
+// input[type=range]::-webkit-slider-runnable-track {
+//   width: 100%;
+//   height: 8.4px;
+//   cursor: pointer;
+//   animate: 0.2s;
+//   background: $main-color;
+//   border-radius: 10px;
+// }
+
+// input[type=range]::-webkit-slider-thumb {
+//  // box-shadow: 0px 0px 4px #888888 ;
+
+//   height: 25px;
+//   width: 25px;
+//   border-radius: 100%;
+//   background: $dot-color;
+//   cursor: pointer;
+//   -webkit-appearance: none;
+//   margin-top: -8px;
+// }
+// input[type=range]:focus::-webkit-slider-runnable-track {
+//   background:  $main-color;
+// }
+// input[type=range]::-moz-range-track {
+//   width: 100%;
+//   height: 8.4px;
+//   cursor: pointer;
+//   animate: 0.2s;
+//   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+//   background: $main-color;
+//   border-radius: 1.3px;
+//   border: 0.2px solid #010101;
+// }
+// input[type=range]::-moz-range-thumb {
+//   //box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+//   border: 1px solid #000000;
+//   height: 36px;
+//   width: 16px;
+//   border-radius: 3px;
+//   background: $dot-color;
+//   cursor: pointer;
+// }
+// input[type=range]::-ms-track {
+//   width: 100%;
+//   height: 8.4px;
+//   cursor: pointer;
+//   animate: 0.2s;
+//   background: transparent;
+//   border-color: transparent;
+//   border-width: 16px 0;
+//   color: transparent;
+// }
+// input[type=range]::-ms-fill-lower {
+//   background: $main-color;
+//   border: 0.2px solid #010101;
+//   border-radius: 2.6px;
+//   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+// }
+// input[type=range]::-ms-fill-upper {
+//   background:  $main-color;
+//   border: 0.2px solid #010101;
+//   border-radius: 2.6px;
+//   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+// }
+// input[type=range]::-ms-thumb {
+//   //box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+//   border: 1px solid #000000;
+//   height: 36px;
+//   width: 16px;
+//   border-radius: 3px;
+//   background: $dot-color;
+//   cursor: pointer;
+// }
+// input[type=range]:focus::-ms-fill-lower {
+//   background:  $main-color;
+// }
+// input[type=range]:focus::-ms-fill-upper {
+//   background:  $main-color;
+// }
+
+// //End copied code

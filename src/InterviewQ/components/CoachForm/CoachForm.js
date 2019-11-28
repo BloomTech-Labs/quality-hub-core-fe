@@ -118,26 +118,106 @@ const CoachForm = props => {
 					</div>
 					<p className="add-coach-form-row-2">
 						Please fill the following fields to be listed as a coach on
-						InterviewQ. 
-                        <br />This information will help seekers decide which coaches
-						to select, so be sure to sell yourself well!
+						InterviewQ.
+						<br />
+						This information will help seekers decide which coaches to select,
+						so be sure to sell yourself well!
 					</p>
-                    <p className="add-coach-form-row-3">
-                        STEP 1
-                    </p>
-                    <p className="add-coach-form-row-4">
-                        Profile
-                    </p>
-                    <p className="add-coach-form-row-5">
-                        Please tell us about your career so far and your accomplishments
-                    </p>
+					<p className="add-coach-form-step-title">STEP 1</p>
+					<p className="add-coach-form-sub-title">Profile</p>
+					<p className="add-coach-form-description">
+						Please tell us about your career so far and your accomplishments.
+					</p>
+					{/* Should be changed to a label */}
+					<p className="add-coach-form-row-6">Company</p>
+					<input
+						className="add-coach-form-row-7"
+						type="text"
+						name="company"
+						placeholder="e.g Google, Facebook..."
+						// value={formState.company}
+						// onChange={event => setFormState({...formState, company: event.target.value})}
+					/>
+					<p className="add-coach-form-row-6">Position</p>
+					<input
+						className="add-coach-form-row-7"
+						type="text"
+						name="position"
+						placeholder="e.g UX Designer, Software Engineer..."
+						// value={formState.company}
+						// onChange={event => setFormState({...formState, company: event.target.value})}
+					/>
+					<p className="add-coach-form-row-6">Industry</p>
+					<input
+						className="add-coach-form-row-7"
+						type="text"
+						name="industry"
+						placeholder="Select"
+						// value={formState.company}
+						// onChange={event => setFormState({...formState, company: event.target.value})}
+					/>
+					<p className="add-coach-form-row-6">Bio</p>
+					<input
+						className="add-coach-form-row-7"
+						type="text"
+						name="bio"
+						placeholder="eg. I am a software developer at Google with 12 years of experience under my belt..."
+						// value={formState.company}
+						// onChange={event => setFormState({...formState, company: event.target.value})}
+					/>
+
+					<hr className="add-coach-form-hr-1" />
+
+					<p className="add-coach-form-step-title">STEP 2</p>
+					<p className="add-coach-form-sub-title">Hourly Rate</p>
+					<p className="add-coach-form-description">
+						Please set a price per session. Usually a session is 1 hour long. To
+						get the most clients, we recomment setting your rate between $20 and
+						$50.
+					</p>
+					<div className="slider">
+						{/* <label> */}
+						<div className="slider-inner-boxes">
+							<div className="slider-dollar-amounts">
+								<p>$0</p>
+								<p>$200</p>
+							</div>
+							<input
+								type="range"
+								min="0"
+								max="200"
+								//   value={value}
+								//   onChange={handleChange}
+								step="1"
+							/>
+						</div>
+						{/* </label> */}
+					</div>
+					<div className="add-coach-form-range-input">
+					<input
+						
+						type="text"
+						name="hourlyrate"
+						placeholder="$"
+						value="$"
+						// value={formState.company}
+						// onChange={event => setFormState({...formState, company: event.target.value})}
+					/>
+					</div>
 
 					{/* <img src="../../../globalIcons/close.svg" /> */}
 
 					{/* <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/> */}
-					<br />
-					<br />
-					<hr />
+
+					<hr className="add-coach-form-hr-1" />
+
+					<p className="add-coach-form-step-title">STEP 3</p>
+					<p className="add-coach-form-sub-title">Preview</p>
+					<p className="add-coach-form-description">
+						This is what seekers will see when your profile matches their search
+						parameters. Review the information, and click "Publish" for your
+						profile to go live!
+					</p>
 					<br />
 					<br />
 					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
