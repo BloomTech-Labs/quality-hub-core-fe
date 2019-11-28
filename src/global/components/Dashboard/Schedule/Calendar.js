@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Calendar.scss';
 import {
 	setMonth,
 	getMonth,
 	getYear,
+	format
 } from 'date-fns';
 
-import Cells from './Cells.js';
+import Cells from './Cells';
+import CalendarDetail from './CalendarDetail';
+
+
+import { days, months, years } from './TimeArrays'
 
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -14,30 +19,31 @@ const Calendar = () => {
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
-	const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
-	const months = [
-		{ name: 'January', num: 0 },
-		{ name: 'February', num: 1 },
-		{ name: 'March', num: 2 },
-		{ name: 'April', num: 3 },
-		{ name: 'May', num: 4 },
-		{ name: 'June', num: 5 },
-		{ name: 'July', num: 6 },
-		{ name: 'August', num: 7 },
-		{ name: 'September', num: 8 },
-		{ name: 'October', num: 9 },
-		{ name: 'November', num: 10 },
-		{ name: 'December', num: 11 },
-	];
-
-	const years = [2019, 2020, 2021, 2022, 2023];
+	
 
 	// let startDate = startOfWeek(currentMonth);
+	const node = useRef();
+	const [open, setOpen] = useState(false);
+	const handleOutsideClick = e => {
+		if (node.current.contains(e.target)) {
+			return;
+		}
+		setOpen(false);
+		console.log(open)
+	};
 
+	useEffect(() => {
+		if (open) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [open]);
 	const onDateClick = day => {
-    setSelectedDate(day);
-    console.log(day)
+		setSelectedDate(day);
+		setOpen(true)
+		console.log(day)
+		console.log(open)
 	};
 
 	const onMonthChange = e => {
@@ -50,9 +56,9 @@ const Calendar = () => {
 		const month = getMonth(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 	};
-
+	
 	return (
-		<div className='calendar'>
+		<div className='calendar' ref={node}>
 			<header className='calendar-header'>
 				<div className='header row flex-middle'>
 					<div className='col col-start'></div>
@@ -100,7 +106,15 @@ const Calendar = () => {
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
+				open = {open}
 			/>
+				{open && (
+				<div className='calendar-detail'>
+					<CalendarDetail setOpen={setOpen} handleOutsideClick={handleOutsideClick} selectedDate={selectedDate}/>
+					</div>
+				
+			)}
+			{/* <Booking /> */}
 		</div>
 	);
 };

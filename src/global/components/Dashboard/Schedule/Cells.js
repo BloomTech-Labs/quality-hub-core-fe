@@ -1,4 +1,6 @@
 import React from 'react';
+import CoachBooking from './CoachBooking';
+import SeekerBooking from './SeekerBooking'
 import {
 	format,
 	isSameMonth,
@@ -39,8 +41,10 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 					}`}
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
+						
 					<span className='number'>{formattedDate}</span>
 					<span className='bg'>{formattedDate}</span>
+					
 				</div>,
 			);
 			day = addDays(day, 1);
@@ -52,12 +56,15 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		);
 		days = [];
   }
-  
-  const addAppt = (date) => {
 
-  }
-
-	return <div className='body'>{rows}</div>;
+	
+	return( 
+	<>
+	<div className='body'>{rows}</div>
+	<CoachBooking />
+	<SeekerBooking />
+	</>
+	);
 };
 
 export default Cells;

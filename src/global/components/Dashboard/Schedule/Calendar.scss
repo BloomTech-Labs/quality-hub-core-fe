@@ -236,3 +236,40 @@ main {
   border-top: 1px solid var(--border-color);
   margin: 0 1%;
 }
+
+.coach-booking{
+  color: rgb(179, 99, 2);
+  background-color: rgb(255, 183, 154);
+  border: rgb(179, 99, 2);
+  border-radius: 5px;
+  font-size: 7px;
+  margin-top: 30%;
+}
+
+.seeker-booking{
+  color: rgb(1, 87, 44);
+  background-color: rgb(192, 250, 221);
+  border: rgb(1, 87, 44);
+  border-radius: 5px;
+  font-size: 7px;
+  margin-top: 30%;
+}
+
+.calendar-detail {
+	padding: 30px;
+	position: absolute;
+	right: 20%;
+	top: 20%;
+	background-color: white;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	width: 280px;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	border-radius: 14px;
+	border: 1px solid lightgray;
+}
