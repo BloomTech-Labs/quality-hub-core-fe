@@ -45,39 +45,13 @@ const CoachForm = props => {
 	useEffect(() => {
 		// localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrMnMxZmIydTAwNnYwNzczdjI4MmIza20iLCJlbWFpbCI6ImRhbkBxdWFpbC5jb20iLCJpYXQiOjE1NzQzNjM5NzUsImV4cCI6MTU3NDQwNzE3NX0.Ay63IqaVSQZmLgEjOEMOvb_NBQ0vLNepzn_NbaDsaMQ')
     });
-    
-    // const parentElement = document.getElementById('interview-container');
-    // const navbar = document.getElementById('main-navbar');
-    
-// console.log(parentElement);
-	const handleOutsideClick = e => {
-		if (node.current.contains(e.target)) {
-            // node.current.style.pointerEvents = "auto";
-			return;
-        }
-        // navbar.style.filter = "blur(5px)";
-        // parentElement.style.filter = "blur(5px)";
-        // document.getElementById("overlay").style.display = "block";
-        // parentElement.style.pointerEvents="none";
-        // navbar.style.pointerEvents="none";
-        // node.current.style.zIndex = "-99999";
-        // node.current.style.filter = "none";
-        
-        
-		// setOpen(false);
-    };
+
     
 	useEffect(() => {
 		if (open) {
-            document.addEventListener('mousedown', handleOutsideClick);
             document.getElementById("overlay").style.display = "block";
-        document.getElementById('interview-container').style.pointerEvents="none";
-        document.getElementById('main-navbar').style.pointerEvents="none";
 		} else {
-            document.removeEventListener('mousedown', handleOutsideClick);
             document.getElementById("overlay").style.display = "none";
-        document.getElementById('interview-container').style.pointerEvents="auto";
-        document.getElementById('main-navbar').style.pointerEvents="auto";
 		}
 	}, [open]);
 
@@ -111,10 +85,6 @@ const CoachForm = props => {
 
 	const [progress, setProgress] = useState(1);
 
-	useEffect(() => {
-		console.log(formState);
-	}, [formState]);
-
 	const handleProgress = e => {
 		e.preventDefault();
 		if (e.target.value) {
@@ -135,6 +105,10 @@ const CoachForm = props => {
 						</button>
 			{open && (
             <div className="add-coach-form">
+                <button className="close-coach-form-button" onClick={()=>setOpen(false)}>
+                <Icon icon={ICONS.CLOSE} width={24} height={24}  />
+                </button>
+                {/* <img src="../../../globalIcons/close.svg" /> */}
                 
 				{/* <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/> */}
 				<br />
