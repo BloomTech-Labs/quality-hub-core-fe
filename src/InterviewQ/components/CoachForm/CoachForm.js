@@ -14,6 +14,9 @@ import { useQuery } from '@apollo/react-hooks';
 
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
+import {lightbulb} from '../../../globalIcons/lightbulb';
+
+
 
 const GET_USER = gql`
 	query {
@@ -39,7 +42,7 @@ const INDUSTRIES = gql`
 
 const CoachForm = props => {
 	const node = useRef();
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 
 	// for sure take this out soon // like as soon as auth0 happens
 	useEffect(() => {
@@ -108,6 +111,9 @@ const CoachForm = props => {
                 <button className="close-coach-form-button" onClick={()=>setOpen(false)}>
                 <Icon icon={ICONS.CLOSE} width={24} height={24}  />
                 </button>
+                <div className="add-coach-form-row-1">
+                <div>{lightbulb()}</div> <div className="add-coach-form-header">Create your coach posting here!</div>
+                </div>
                 {/* <img src="../../../globalIcons/close.svg" /> */}
                 
 				{/* <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/> */}
