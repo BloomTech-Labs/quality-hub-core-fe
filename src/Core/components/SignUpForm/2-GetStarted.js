@@ -1,4 +1,7 @@
+// Libraries
 import React from 'react';
+
+// Styles
 import './SignUpForm.scss';
 
 export default function GetStarted({ setProgress }) {
