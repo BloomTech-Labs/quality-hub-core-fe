@@ -1,14 +1,13 @@
 
 /* VARIABLES */
 
-:root {
-  --main-color: #1a8fff;
-  --text-color: #777;
-  --text-color-light: #ccc;
-  --border-color: #eee;
-  --bg-color: #f9f9f9;
-  --neutral-color: #fff;
-}
+  $main-cal-color: #1a8fff;
+  $text-cal-color: #777;
+  $text-cal-color-light: #ccc;
+  $border-cal-color: #eee;
+  $bg-cal-color: #f9f9f9;
+  $neutral-cal-color: #fff;
+
 
 
 /* GENERAL */
@@ -19,7 +18,7 @@
   width: 100%;
   padding: 1.75em 0;
   //border-bottom: 1px solid var(--border-color);
-  background: var(--neutral-color);
+  background: $neutral-cal-color;
 }
 
 /* GRID */
@@ -66,7 +65,7 @@
   display: block;
   position: relative;
   width: 100%;
-  background: var(--neutral-color);
+  background: $neutral-cal-color;
   //border: 1px solid var(--border-color);
 }
 
@@ -83,7 +82,7 @@
   font-size: 20px;
   text-transform: uppercase;
   font-weight: 400;
-  color: var(--text-color-light);
+  color: $text-cal-color-light;
   font-size: 70%;
   padding: .75em 0;
   // border-bottom: 1px solid var(--border-color);
@@ -95,14 +94,14 @@
   //border-right: 1px solid var(--border-color);
   overflow: hidden;
   cursor: pointer;
-  background: var(--neutral-color);
+  background: $neutral-cal-color;
   transition: 0.25s ease-out;
   //border-bottom: 1px solid var(--border-color);
   margin-bottom: 0 3px;
 }
 
 .calendar .calendar-body .cell:hover {
-  background: var(--bg-color);
+  background: $bg-cal-color;
   transition: 0.5s ease-out;
 }
 
@@ -134,14 +133,14 @@
 }
 
 .calendar .calendar-body .disabled {
-  color: var(--text-color-light);
+  color: $text-cal-color-light;
   pointer-events: none;
 }
 
 .calendar .calendar-body .cell .bg {
   font-weight: 700;
   line-height: 1;
-  color: var(--main-color);
+  color: $main-cal-color;
   opacity: 0;
   font-size: 8em;
   position: absolute;
@@ -160,7 +159,7 @@
   flex-grow: 0;
   flex-basis: 12.2%;
   width: 14%;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid $border-cal-color;
   margin: 0 1%;
 }
 

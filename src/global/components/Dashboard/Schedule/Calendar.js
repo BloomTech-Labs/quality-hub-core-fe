@@ -16,6 +16,7 @@ import { days, months, years } from './TimeArrays'
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [selectedDate, setSelectedDate] = useState(new Date());
+	
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
@@ -111,6 +112,7 @@ const Calendar = () => {
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
 				open = {open}
+				
 			/>
 				{open && (
 				<div className='calendar-detail'>

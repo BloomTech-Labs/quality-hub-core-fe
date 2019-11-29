@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import {  SEEKER_BOOKINGS } from './Queries'
 
-const SeekerBookings = () => {
+export const SeekerBooking = (currentMonth) => {
+
 const { data: bookingsBySeeker } = useQuery(SEEKER_BOOKINGS, {variables: {seekerId: localStorage.getItem('id')}});
 
-const [counter, setCounter] = useState(0);
 
-const seekerAppts = () => bookingsBySeeker && bookingsBySeeker.bookingsBySeeker.map(appt => {
+useEffect(() => {
+  bookingsBySeeker && bookingsBySeeker.bookingsBySeeker.map(appt => {
   const apptId = `${appt.month}${appt.day}`;
   const booking = document.getElementById(apptId);
   
-  if (booking && counter === 0) {
-    setCounter(1);
+  if (booking) {
     const div = document.createElement('div');
     div.setAttribute('class', 'seeker-booking');
     div.textContent = `InterviewQ ${appt.hour}:${appt.minute}`;
     return booking.appendChild(div);
   }
 });
+}, [currentMonth, bookingsBySeeker]);
 
-seekerAppts();
-
-return(<></>)
 }
-
-export default SeekerBookings;
