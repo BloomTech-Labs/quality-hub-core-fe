@@ -16,6 +16,7 @@ import { days, months, years } from './TimeArrays'
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [selectedDate, setSelectedDate] = useState(new Date());
+	
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
@@ -25,11 +26,15 @@ const Calendar = () => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
 	const handleOutsideClick = e => {
-		if (node.current.contains(e.target)) {
-			return;
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				setOpen(false);
+			}
+		} else {
+			setOpen(false);
 		}
-		setOpen(false);
-		console.log(open)
 	};
 
 	useEffect(() => {
@@ -60,7 +65,7 @@ const Calendar = () => {
 	return (
 		<div className='calendar' ref={node}>
 			<header className='calendar-header'>
-				<div className='header row flex-middle'>
+				<div className='cal-header row flex-middle'>
 					<div className='col col-start'></div>
 					<div className='col col-center'>
 						<select
@@ -107,6 +112,7 @@ const Calendar = () => {
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
 				open = {open}
+				
 			/>
 				{open && (
 				<div className='calendar-detail'>

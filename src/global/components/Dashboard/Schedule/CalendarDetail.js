@@ -23,10 +23,10 @@ return(
       <p>{info.seeker.email}</p>
       <p>Coach: {info.coach.first_name} {info.coach.last_name}</p>
       <p>{info.coach.email}</p>
-      <button onClick={() => setOpen(false)}>done</button>
+      <button className='default-btn' onClick={() => setOpen(false)}>done</button>
       </div>
 })}</div> : <div><h3>No bookings</h3>
-<button onClick={() => setOpen(false)}>done</button></div>}</>
+<button className='default-btn' onClick={() => setOpen(false)}>done</button></div>}</>
 )
 
 }
