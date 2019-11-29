@@ -60,7 +60,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	
 	return( 
 	<>
-	<div className='body'>{rows}</div>
+	<div className='calendar-body'>{rows}</div>
 	<CoachBooking />
 	<SeekerBooking />
 	</>

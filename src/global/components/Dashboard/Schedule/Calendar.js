@@ -25,11 +25,15 @@ const Calendar = () => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
 	const handleOutsideClick = e => {
-		if (node.current.contains(e.target)) {
-			return;
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				setOpen(false);
+			}
+		} else {
+			setOpen(false);
 		}
-		setOpen(false);
-		console.log(open)
 	};
 
 	useEffect(() => {
