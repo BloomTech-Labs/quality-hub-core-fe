@@ -64,7 +64,7 @@ const Calendar = () => {
 	return (
 		<div className='calendar' ref={node}>
 			<header className='calendar-header'>
-				<div className='header row flex-middle'>
+				<div className='cal-header row flex-middle'>
 					<div className='col col-start'></div>
 					<div className='col col-center'>
 						<select

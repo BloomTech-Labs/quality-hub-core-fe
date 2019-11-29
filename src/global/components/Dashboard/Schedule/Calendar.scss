@@ -1,26 +1,3 @@
-/* FONT IMPORTS */
-
-// @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-
-.icon {
-  font-family: 'Material Icons', serif;
-  font-style: normal;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'liga';
-}
-
 
 /* VARIABLES */
 
@@ -36,46 +13,14 @@
 
 /* GENERAL */
 
-* {
-  box-sizing: border-box;
-}
 
-body {
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: 1em;
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--text-color);
-    background: var(--bg-color);
-    position: relative;
-}
-
-header {
+.calendar-header{
   display: block;
   width: 100%;
   padding: 1.75em 0;
   //border-bottom: 1px solid var(--border-color);
   background: var(--neutral-color);
 }
-
-header #logo {
-  font-size: 175%;
-  text-align: center;
-  color: var(--main-color);
-  line-height: 1;
-}
-
-header #logo .icon {
-  padding-right: .25em;
-}
-
-main {
-  display: block;
-  margin: 0 auto;
-  margin-top: 5em;
-  max-width: 50em;
-}
-
 
 /* GRID */
 
@@ -125,7 +70,7 @@ main {
   //border: 1px solid var(--border-color);
 }
 
-.calendar .header {
+.calendar .cal-header {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 115%;
@@ -133,24 +78,6 @@ main {
  // border-bottom: 1px solid var(--border-color);
 }
 
-.calendar .header .icon {
-  cursor: pointer;
-  transition: .15s ease-out;
-}
-
-.calendar .header .icon:hover {
-  transform: scale(1.75);
-  transition: .25s ease-out;
-  color: var(--main-color);
-}
-
-.calendar .header .icon:first-of-type {
-  margin-left: 1em;
-}
-
-.calendar .header .icon:last-of-type {
-  margin-right: 1em;
-}
 
 .calendar .days {
   font-size: 20px;
