@@ -209,8 +209,8 @@
 	width: 410px;
 	min-height: 670px;
 	border-radius: 8px;
-    border: 1px solid #d4d4d4;
-    box-shadow: 4px 4px 25px #D4D4D4;
+	border: 1px solid #d4d4d4;
+	box-shadow: 4px 4px 25px #d4d4d4;
 }
 
 .add-coach-form-preview-close {
@@ -273,32 +273,35 @@
 }
 
 .coachcard-footer {
-    margin-top: 21px;
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
+	margin-top: 21px;
+	// display: flex;
+	// justify-content: space-between;
+	// align-items: center;
 
-    .coachcard-links {
-        .icon1{
-            margin-right: 21px;
-        }
-        display: flex;
-        
-    }
-
-    
+	.coachcard-links {
+		.icon1 {
+			margin-right: 21px;
+		}
+		display: flex;
+	}
 }
 .interview-button {
-    width: 296px;
-    margin-top: 33px;
-    height: 45px;
-    padding: 1.4rem 2rem;
-    font-size: 1.4rem;
-    background-color: #096DD9;
-    text-align: center;
-    color: white;
-    border-radius: 1rem;
-    border-radius: 8px;
+	width: 100%;
+	margin-top: 33px !important;
+	height: 45px;
+	padding: 1.4rem 2rem;
+	font-size: 1.4rem;
+	background-color: #096dd9;
+	text-align: center;
+	color: white;
+	border-radius: 1rem;
+	border-radius: 8px;
+
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
 }
 
 // I don't know what the following does:
