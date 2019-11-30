@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Calendar.scss';
-import {
-	setMonth,
-	getMonth,
-	getYear,
-	format
-} from 'date-fns';
+import { setMonth, getMonth, getYear, format } from 'date-fns';
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
 
-
-import { days, months, years } from './TimeArrays'
+import { days, months, years } from './TimeArrays';
 
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -19,7 +13,6 @@ const Calendar = () => {
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
-	
 
 	// let startDate = startOfWeek(currentMonth);
 	const node = useRef();
@@ -29,7 +22,7 @@ const Calendar = () => {
 			return;
 		}
 		setOpen(false);
-		console.log(open)
+		console.log(open);
 	};
 
 	useEffect(() => {
@@ -41,9 +34,9 @@ const Calendar = () => {
 	}, [open]);
 	const onDateClick = day => {
 		setSelectedDate(day);
-		setOpen(true)
-		console.log(day)
-		console.log(open)
+		setOpen(true);
+		console.log(day);
+		console.log(open);
 	};
 
 	const onMonthChange = e => {
@@ -56,7 +49,7 @@ const Calendar = () => {
 		const month = getMonth(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 	};
-	
+
 	return (
 		<div className='calendar' ref={node}>
 			<header className='calendar-header'>
@@ -106,13 +99,16 @@ const Calendar = () => {
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
-				open = {open}
+				open={open}
 			/>
-				{open && (
+			{open && (
 				<div className='calendar-detail'>
-					<CalendarDetail setOpen={setOpen} handleOutsideClick={handleOutsideClick} selectedDate={selectedDate}/>
-					</div>
-				
+					<CalendarDetail
+						setOpen={setOpen}
+						handleOutsideClick={handleOutsideClick}
+						selectedDate={selectedDate}
+					/>
+				</div>
 			)}
 			{/* <Booking /> */}
 		</div>
