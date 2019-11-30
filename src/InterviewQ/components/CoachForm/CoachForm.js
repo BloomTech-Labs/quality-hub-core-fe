@@ -283,7 +283,14 @@ const CoachForm = props => {
 							Request Interview
 						</button>
 					</div>
-
+					<div className="add-coach-form-bottom-buttons">
+					<button className="add-coach-form-save-and-exit">
+						Save and exit
+					</button>
+					<button className="add-coach-form-publish">
+						Publish
+					</button>
+					</div>
 					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
 
 					{/* <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/> */}

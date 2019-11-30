@@ -85,6 +85,7 @@
 	padding-top: 120px;
 	padding-left: 91px;
 	padding-right: 91px;
+	// padding-bottom: 66px;
 	background: white;
 	border-radius: 10px;
 	text-align: left;
@@ -202,6 +203,7 @@
 .add-coach-form-preview-container {
 	padding-left: 54px;
 	padding-right: 54px;
+	padding-bottom: 66px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 64px;
@@ -296,6 +298,8 @@
 	color: white;
 	border-radius: 1rem;
 	border-radius: 8px;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
 
 	font-family: SF Pro Display;
 	font-style: normal;
@@ -400,3 +404,31 @@
 // }
 
 // //End copied code
+
+
+.add-coach-form-save-and-exit {
+	border-radius: 4px;
+	width: 140px;
+	height: 54px;
+	color: #8C8C8C;
+}
+
+.add-coach-form-publish{
+	border-radius: 5px;
+	width: 140px;
+	height: 54px;
+	background-color: #096dd9;
+	color: #FFF;
+	font-family: Roboto;
+font-style: Medium;
+font-size: 16px;
+line-height: 24px;
+line-height: 128%;
+}
+
+.add-coach-form-bottom-buttons{
+	display: flex;
+	width: 354px;
+	margin: 0 auto;
+	justify-content: space-between;
+}
