@@ -10,6 +10,7 @@ import { days, months, years } from './TimeArrays';
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [selectedDate, setSelectedDate] = useState(new Date());
+	
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
@@ -55,11 +56,11 @@ const Calendar = () => {
 	};
 
 	return (
-		<div className="calendar" ref={node}>
-			<header className="calendar-header">
-				<div className="header row flex-middle">
-					<div className="col col-start"></div>
-					<div className="col col-center">
+		<div className='calendar' ref={node}>
+			<header className='calendar-header'>
+				<div className='cal-header row flex-middle'>
+					<div className='col col-start'></div>
+					<div className='col col-center'>
 						<select
 							onChange={onMonthChange}
 							value={getMonth(new Date(currentMonth))}>
@@ -103,7 +104,8 @@ const Calendar = () => {
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
-				open={open}
+				open = {open}
+				
 			/>
 			{open && (
 				<div className="calendar-detail">

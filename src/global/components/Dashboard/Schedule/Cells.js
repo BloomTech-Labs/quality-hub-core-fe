@@ -1,6 +1,6 @@
-import React from 'react';
-import CoachBooking from './CoachBooking';
-import SeekerBooking from './SeekerBooking'
+import React, { useState, useEffect } from 'react';
+import { CoachBooking } from './CoachBooking';
+import { SeekerBooking } from './SeekerBooking';
 import {
 	format,
 	isSameMonth,
@@ -56,13 +56,12 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		);
 		days = [];
   }
-
 	
+ CoachBooking(currentMonth);
+ SeekerBooking(currentMonth);
 	return( 
 	<>
-	<div className='body'>{rows}</div>
-	<CoachBooking />
-	<SeekerBooking />
+	<div className='calendar-body'>{rows}</div>
 	</>
 	);
 };
