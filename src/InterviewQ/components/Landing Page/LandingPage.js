@@ -35,7 +35,7 @@ export default function InterviewLandingPage() {
 							<span className='becomecoach-btn'>Become a coach</span>
 						</button> */}
 						<CoachForm />
-						<button>
+						<button className="interviewq-filter-btn">
 							<Icon icon={ICONS.FILTER} width={20} height={18} />
 							<span className='filters-btn'>Filters </span>
 						</button>
