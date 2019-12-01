@@ -8,8 +8,7 @@
 	// box-shadow: 2px 2px 5px gray;
 	border: 1px solid silver;
 	border-radius: 1rem;
-	// margin: 1% auto;
-	margin: 2rem 1%;
+	margin-bottom: 1.3rem;
 	flex-direction: column;
 	justify-content: space-between;
 
@@ -25,11 +24,16 @@
 
 			h3 {
 				font-size: 2rem;
+				font-weight: 600;
+				font-style: normal;
+				line-height: 2.8rem;
+				color: #262626;
 			}
 
 			h4 {
 				font-size: 1.6rem;
 				font-weight: normal;
+				line-height: 2.4rem;
 			}
 		}
 
@@ -66,6 +70,11 @@
 		p {
 			display: flex;
 			align-items: center;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+			color: #595959;
 
 			.coachcard-icon {
 				width: 2.8rem;
@@ -75,6 +84,13 @@
 	}
 
 	.coachcard-description {
+		p {
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+			color: #3c4043;
+		}
 	}
 
 	.coachcard-footer {
@@ -89,12 +105,16 @@
 		}
 
 		.interview-button {
-			padding: 1.4rem 2rem;
 			font-size: 1.4rem;
+			font-style: normal;
+			// font-weight: 600;
+			line-height: 2.2rem;
 			background-color: $main-blue;
 			text-align: center;
 			color: white;
-			border-radius: 1rem;
+			border-radius: 0.5rem;
+			width: 13.23rem;
+			height: 4.2rem;
 		}
 	}
 }

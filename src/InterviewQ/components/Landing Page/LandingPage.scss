@@ -1,9 +1,13 @@
 @import '../../../globalStyles/variables';
 
+.interview-container {
+	margin-top: 13.9rem;
+}
+
 .interview-landing-page {
-	width: 80%;
-	margin-left: 30rem;
-	max-width: 1000px;
+	width: 94%;
+	// margin-left: 30rem;
+	max-width: 97.8rem;
 
 	@media screen and (min-width: 1600px) {
 		margin: 0 auto;
@@ -46,7 +50,11 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	margin: 10rem 0 3rem;
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid #dadce0;
+	margin-bottom: 2.019rem;
+	width: 100%;
+	max-width: 97.4rem;
 
 	@media screen and (max-width: 1330px) {
 		margin-top: 3rem;
