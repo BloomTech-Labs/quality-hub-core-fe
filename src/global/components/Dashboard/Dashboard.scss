@@ -6,6 +6,31 @@
 	display: flex;
 	width: 100%;
 
+	.personalinfo-header {
+		display: flex;
+		align-items: center;
+		padding: 1.6rem 0;
+		border-bottom: 1px solid #dadce0;
+
+		.circle-blue {
+			width: 5.6rem;
+			height: 5.6rem;
+			border-radius: 50%;
+			background-color: #096dd9;
+			margin-right: 2.7rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		h1 {
+			text-align: left;
+			font-weight: 600;
+			font-size: 3rem;
+			color: #262626;
+		}
+	}
+
 	@media screen and (min-width: 1100px) {
 		width: 1100px;
 	}
@@ -17,7 +42,7 @@
 	top: 50%;
 	left: 0;
 	transform: translate(0%, -50%);
-	padding-left: 1rem;
+	width: 23.3rem;
 
 	// flex-grow: 1;
 	// height: 40vh;
@@ -37,16 +62,54 @@
 		display: none !important;
 	}
 
-	p {
-		margin-bottom: 1rem;
+	a {
+		text-decoration: none;
+		width: 100%;
+		margin-bottom: 3.3rem;
+		border-radius: 0.3rem;
 	}
 
-	.gray-square {
-		display: inline-block;
-		width: 15px;
-		height: 15px;
-		background-color: silver;
+	a:last-of-type {
+		margin-bottom: 0rem;
 	}
+
+	.dash-left-menu-btn {
+		// font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+		color: #3c4043;
+		padding: 1rem 3.9rem 1.1rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		margin-bottom: 3.3rem;
+	}
+
+	.dash-left-menu-btn:last-of-type {
+		margin-bottom: 0rem;
+	}
+
+	.dashnav-txt {
+		margin-left: 2rem;
+	}
+
+	.dashnavactive {
+		background: rgba(9, 109, 217, 0.1);
+
+		.dash-left-menu-btn {
+			color: #096dd9;
+		}
+	}
+
+	// .gray-square {
+	// 	display: inline-block;
+	// 	width: 15px;
+	// 	height: 15px;
+	// 	background-color: silver;
+	// }
 
 	.profile-dropdown-links {
 		display: flex;
@@ -54,32 +117,23 @@
 		align-items: flex-start;
 		margin-left: 2rem;
 		padding-top: 2rem;
-
-		a {
-			color: gray;
-		}
 	}
 
 	p:hover {
 		cursor: pointer;
 	}
-
-	a {
-		color: black;
-		text-decoration: none;
-		margin-bottom: 3rem;
-	}
 }
 
 .dashboard-routes {
 	flex-grow: 2;
-	max-width: 70%;
-	margin-left: 150px;
+	width: 92%;
+	max-width: 96.4rem;
+	margin: 0 auto;
 
-	@media screen and (max-width: 660px) {
-		margin: 0 auto;
-		max-width: 92%;
-	}
+	// @media screen and (max-width: 660px) {
+	// 	margin: 0 auto;
+	// 	max-width: 92%;
+	// }
 }
 
 .dashboard-top-links {

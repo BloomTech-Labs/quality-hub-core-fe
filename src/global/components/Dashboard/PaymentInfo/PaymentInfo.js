@@ -9,6 +9,7 @@ const PaymentInfo = ({ myArray, userData }) => {
 
 	return (
 		<div className='editform'>
+			<h2>Payment Info</h2>
 			{myArray.length > 0 &&
 				myArray.map(item => {
 					if (paymentInfo.includes(item)) {

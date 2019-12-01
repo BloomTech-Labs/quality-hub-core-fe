@@ -17,6 +17,7 @@ const BasicInfo = ({ myArray, userData }) => {
 
 	return (
 		<div className='editform'>
+			<h2>Basic Info</h2>
 			<DashboardAvatar />
 			{myArray.length > 0 &&
 				myArray.map(item => {

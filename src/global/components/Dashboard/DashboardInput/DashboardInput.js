@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 // Styles & Icons
 import './DashboardInput.scss';
-import Icon from '../../../../globalIcons/Icon'
+import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 
 //GraphQuail Mutation
@@ -155,7 +155,7 @@ const DashboardInput = ({ userKey, userValue }) => {
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					<h2>{userKey && capitalize(userKey)}</h2>
+					<h3>{userKey && capitalize(userKey)}</h3>
 				</span>
 				<div>
 					{editing ? (
@@ -186,7 +186,8 @@ const DashboardInput = ({ userKey, userValue }) => {
 					onClick={() => setEditing(true)}
 					data-testid='edit-button' //data-testid made explicitly for testing-purposes
 				>
-					<Icon icon={ICONS.PENCIL} width={24} height={24} />
+					Edit
+					{/* <Icon icon={ICONS.PENCIL} width={24} height={24} /> */}
 				</button>
 			)}
 		</div>
