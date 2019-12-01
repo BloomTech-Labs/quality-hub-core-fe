@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 
 // Styles
@@ -10,11 +10,12 @@ import './Dashboard.scss';
 
 // Components
 import LeftNavBar from './LeftNavBar';
+import PersonalInfo from './PersonalInfo';
 import PaymentInfo from './PaymentInfo';
 import BasicInfo from './BasicInfo';
 import Experience from './Experience';
 import Schedule from './Schedule';
-import DashInterviewQ from './DashInterviewQ';
+// import DashInterviewQ from './DashInterviewQ';
 
 // GraphQuaiL Query
 const GET_USER = gql`
@@ -87,6 +88,7 @@ const Dashboard = ({ setLoggedin }) => {
 							path='/dashboard'
 							render={props => (
 								<div>
+									<PersonalInfo />
 									<BasicInfo {...props} myArray={myArray} userData={userData} />
 									<Experience
 										{...props}
