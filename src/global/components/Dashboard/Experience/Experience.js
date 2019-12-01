@@ -16,6 +16,7 @@ const Experience = ({ myArray, userData }) => {
 
 	return (
 		<div className='editform'>
+			<h2>Linked Accounts</h2>
 			{myArray.length > 0 &&
 				myArray.map(item => {
 					if (experience.includes(item)) {

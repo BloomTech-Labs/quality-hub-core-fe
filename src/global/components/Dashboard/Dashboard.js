@@ -76,31 +76,29 @@ const Dashboard = ({ setLoggedin }) => {
 			<div className='lower-dashboard'>
 				<LeftNavBar setLoggedin={setLoggedin} />
 				<div className='dashboard-routes'>
-					<div className='dashboard-top-links'>
+					{/* <div className='dashboard-top-links'>
 						<Link to='/dashboard'>Basic Info</Link>
 						<Link to='/dashboard/experience'>Experience</Link>
 						<Link to='/dashboard/paymentinfo'>Payment Info</Link>
-					</div>
+					</div> */}
 					<Switch>
 						<Route
 							exact
 							path='/dashboard'
 							render={props => (
-								<BasicInfo {...props} myArray={myArray} userData={userData} />
-							)}
-						/>
-						<Route
-							exact
-							path='/dashboard/experience'
-							render={props => (
-								<Experience {...props} myArray={myArray} userData={userData} />
-							)}
-						/>
-						<Route
-							exact
-							path='/dashboard/paymentinfo'
-							render={props => (
-								<PaymentInfo {...props} myArray={myArray} userData={userData} />
+								<div>
+									<BasicInfo {...props} myArray={myArray} userData={userData} />
+									<Experience
+										{...props}
+										myArray={myArray}
+										userData={userData}
+									/>
+									<PaymentInfo
+										{...props}
+										myArray={myArray}
+										userData={userData}
+									/>
+								</div>
 							)}
 						/>
 						<Route
@@ -109,12 +107,12 @@ const Dashboard = ({ setLoggedin }) => {
 							render={props => (
 								<Schedule {...props} myArray={myArray} userData={userData} />
 							)}
-							/>
-							<Route
+						/>
+						{/* <Route
 							exact
 							path='/dashboard/interviewq'
 							render={props => <DashInterviewQ {...props} />}
-						/>
+						/> */}
 					</Switch>
 				</div>
 			</div>
