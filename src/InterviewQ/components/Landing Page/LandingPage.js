@@ -15,6 +15,7 @@ import CoachList from '../CoachList/CoachList';
 import CoachForm from '../CoachForm/CoachForm';
 
 export default function InterviewLandingPage() {
+	const [toggleFilter, setToggleFilter] = useState(true);
 	const [fields, setFields] = useState({
 		tag: '',
 		price: '',
@@ -35,17 +36,36 @@ export default function InterviewLandingPage() {
 							<span className='becomecoach-btn'>Become a coach</span>
 						</button> */}
 						<CoachForm />
-						<button className="interviewq-filter-btn">
-							<Icon icon={ICONS.FILTER} width={20} height={18} />
+						{/* <button className="interviewq-filter-btn">
+							<Icon icon={ICONS.FILTER} width={20} height={18} /> */}
+						{/* <button>
+							<Icon
+								icon={ICONS.LIGHTBULB}
+								width={16}
+								height={22}
+								color='#5f6368'
+							/>
+							<span className='becomecoach-btn'>Become a coach</span>
+						</button> */}
+						<button
+							onClick={() => setToggleFilter(!toggleFilter)}
+							style={{
+								background: toggleFilter && 'rgba(9, 109, 217, 0.1)',
+								color: toggleFilter && '#096dd9',
+								border: toggleFilter && '1px solid #096dd9',
+							}}>
+							<Icon
+								icon={ICONS.FILTER}
+								width={20}
+								height={18}
+								color={toggleFilter ? '#096dd9' : '#5f6368'}
+							/>
 							<span className='filters-btn'>Filters </span>
 						</button>
 					</div>
 				</div>
 				<div className='landingpage-container'>
-					<Search setFields={setFields} fields={fields} />
-					<div className='Coach-List'>
-						<CoachList />
-					</div>
+					<CoachList toggleFilter={toggleFilter}/>
 				</div>
 			</div>
 		</div>
