@@ -1,54 +1,24 @@
+// Libraries
 import React, { useState, useEffect } from 'react';
-import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import GeneralSignUp from './GeneralSignUp';
-import ExpSignUp from './ExpSignUp';
-import CompletedSignUp from './CompletedSignUp';
 
-import { string, object } from 'yup';
+// Styles
 import './SignUpForm.scss';
 
-import InitialSignUp from './InitialSignUp';
-import GetStarted from './GetStarted';
+// Components
 import ProgressBar from './ProgressBar';
+import InitialSignUp from './1-InitialSignUp';
+import GetStarted from './2-GetStarted';
+import SignUpNav from './SignUpNav';
+import GeneralSignUp from './3-GeneralSignUp';
+import ExpSignUp from './4-ExpSignUp';
+import CompletedSignUp from './5-CompletedSignUp';
 
-const SIGN_UP = gql`
-	mutation signup(
-		$first_name: String!
-		$last_name: String!
-		$email: String!
-		$password: String!
-		$city: String!
-		$state: String!
-		$bio: String
-		$personal_url: String
-		$portfolio_url: String
-		$twitter_url: String
-		$linkedin_url: String
-		$github_url: String
-	) {
-		signup(
-			first_name: $first_name
-			last_name: $last_name
-			email: $email
-			password: $password
-			city: $city
-			state: $state
-			bio: $bio
-			personal_url: $personal_url
-			portfolio_url: $portfolio_url
-			twitter_url: $twitter_url
-			linkedin_url: $linkedin_url
-			github_url: $github_url
-		) {
-			token
-			user {
-				first_name
-				id
-			}
-		}
-	}
-`;
+// Mutation
+import { SIGN_UP } from './Mutation';
+
+// User Schema
+import { userSchema } from './UserSchema';
 
 //COM-ponent
 const SignUpForm = props => {
@@ -76,34 +46,13 @@ const SignUpForm = props => {
 	});
 
 	const [signup, error] = useMutation(SIGN_UP);
+	const [valError, setValError] = useState();
 
 	//Form management/validation
 	useEffect(() => {
 		validateUser();
 	}, [user]);
 
-	const userSchema = object({
-		first_name: string().required('Please enter your first name'),
-		last_name: string().required('Please enter your last name'),
-		email: string()
-			.email('Please enter a valid email address')
-			.required('Please enter your email address'),
-		city: string().required('Please enter your city'),
-		state: string()
-			.max(2, 'Please enter your state')
-			.required('Please enter your state'),
-		password: string()
-			.min(6, 'Password must be at least 6 characters')
-			.required('Please enter a password'),
-		linkedin_url: string(),
-		bio: string(),
-		github_url: string(),
-		personal_url: string(),
-		portfolio_url: string(),
-		twitter_url: string(),
-	});
-
-	const [valError, setValError] = useState();
 	const validateUser = () => {
 		userSchema
 			.validate(user, { abortEarly: false })
@@ -123,7 +72,6 @@ const SignUpForm = props => {
 		});
 	};
 
-	// const [gqlErr, setGqlErr] = useState(null)
 	const handleSubmit = e => {
 		e.preventDefault();
 
@@ -135,7 +83,9 @@ const SignUpForm = props => {
 			'linkedin_url',
 			'github_url',
 		];
+
 		let submitUser = { ...user };
+
 		urlArray.forEach(item => {
 			if (submitUser[item] === 'http://') {
 				submitUser[item] = '';
@@ -153,7 +103,6 @@ const SignUpForm = props => {
 				localStorage.setItem('id', results.data.signup.user.id);
 				setProgress(progress + 1);
 				setTimeout(() => {
-					//Do we need to push to dashboard after sign up?
 					props.history.push('/dashboard');
 				}, 3000);
 			})
@@ -222,15 +171,11 @@ const SignUpForm = props => {
 
 			{progress > 0 && (
 				<div className='sign-up-form'>
-					<h2>Sign Up</h2>
+					{/* <h2>Sign Up</h2> */}
 					<ProgressBar progress={progress} />
-					{/* <ul className='progressbar'>
-						<li className={progress >= 2 ? 'active' : null}>Basic Info</li>
-						<li className={progress >= 3 ? 'active' : null}>Experience</li>
-						<li className={progress >= 3 ? 'active' : null}>Success</li>
-					</ul> */}
 
-					<form onSubmit={handleSubmit}>
+					<form>
+						{/* <form onSubmit={handleSubmit}> */}
 						{(function() {
 							switch (progress) {
 								case 1:
@@ -246,7 +191,7 @@ const SignUpForm = props => {
 												user={user}
 												handleChange={handleChange}
 											/>
-											{valError ? (
+											{/* {valError ? (
 												<button className='form-btn' disabled>
 													Next
 												</button>
@@ -254,7 +199,11 @@ const SignUpForm = props => {
 												<button className='form-btn' onClick={handleNext}>
 													Next
 												</button>
-											)}
+											)} */}
+											<SignUpNav
+												handleBack={handleBack}
+												handleNext={handleNext}
+											/>
 											{valError
 												? valError.map(message => {
 														// if (message.includes('email') && !emailTouched) {
@@ -295,12 +244,16 @@ const SignUpForm = props => {
 									return (
 										<>
 											<ExpSignUp user={user} handleChange={handleChange} />
-											<button className='form-btn' onClick={handleBack}>
+											{/* <button className='form-btn' onClick={handleBack}>
 												Back
 											</button>
 											<button className='submit-btn' type='submit'>
 												Submit
-											</button>
+											</button> */}
+											<SignUpNav
+												handleBack={handleBack}
+												handleNext={handleSubmit}
+											/>
 											{error.error ? (
 												<p>
 													This email address is already in use- please enter a
@@ -310,14 +263,9 @@ const SignUpForm = props => {
 										</>
 									);
 								case 3:
-									return (
-										<>
-											<CompletedSignUp />
-										</>
-									);
+									return <CompletedSignUp />;
 								default:
 									return;
-								// return <>Error</>;
 							}
 						})()}
 

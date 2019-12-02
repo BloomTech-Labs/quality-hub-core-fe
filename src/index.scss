@@ -7,7 +7,6 @@
 	padding: 0;
 	box-sizing: border-box;
 	max-width: 100%;
-	// border: 1px solid grey;
 }
 
 html {
@@ -17,6 +16,7 @@ html {
 body {
 	font-family: 'Roboto', sans-serif;
 	line-height: 1.5;
+	overflow-x: hidden;
 }
 
 .App {
@@ -43,11 +43,10 @@ input,
 option,
 select,
 textarea {
-	border-radius: 0.3rem;
+	border-radius: 0.4rem;
 	border: 1px solid silver;
 	font-family: inherit;
-	padding: 0.8rem 1%;
-	// margin-bottom: 1rem;
+	padding: 0.8rem 1rem;
 }
 
 .form-btn {
@@ -153,23 +152,9 @@ textarea {
 	width: 100%;
 }
 
-label {
-	font-size: 1.4rem;
-}
-
-.sign-up-form {
-	width: 400px;
-	margin: 0 auto;
-}
-
-.two-inputs {
-	display: flex;
-	justify-content: space-between;
-}
-
-.two-inputs .input-label {
-	width: 47%;
-}
+// label {
+// 	font-size: 1.4rem;
+// }
 
 .sign-in-or {
 	width: 100%;
@@ -196,4 +181,20 @@ label {
 .quail-walk {
 	animation: birdwalk 5s infinite;
 	width: 100px;
+}
+
+
+.default-btn {
+	background-color: white;
+	font-family: inherit;
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+	padding: 0.8rem 1.5%;
+	cursor: pointer;
+}
+
+.default-btn:hover {
+	background-color: silver;
+	color: white;
 }

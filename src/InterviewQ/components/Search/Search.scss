@@ -2,13 +2,18 @@
 
 .search-dropdowns {
 	// margin-left: 8%;
-	border: 1px solid silver;
-	border-radius: 1rem;
+	// border: 1px solid silver;
+	// border-radius: 1rem;
+	border-top: 1px solid silver;
 	padding: 2rem 2%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-bottom: 3rem;
+
+	@media screen and (max-width: 600px) {
+		justify-content: space-around;
+	}
 }
 
 .search-field {
@@ -19,34 +24,62 @@
 	select {
 		width: 100%;
 	}
+
+	@media screen and (max-width: 600px) {
+		width: 48%;
+	}
 }
 
 .search-field-keyword {
-	width: 65%;
 	text-align: left;
+	flex-grow: 1;
+
+	input {
+		width: 93%;
+	}
+
+	@media screen and (max-width: 600px) {
+		width: 100%;
+	}
+}
+
+.search-buttons {
+	width: 30%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-self: flex-end;
+
+	@media screen and (max-width: 600px) {
+		margin-top: 2rem;
+		width: auto;
+	}
 }
 
 .search-reset {
-	width: 15%;
+	// width: 15%;
+	flex-grow: 1;
 	font-size: 1.4rem;
 	text-align: center;
-	border: 1px solid silver;
-	border-radius: 1rem;
+	// border: 1px solid silver;
+	// border-radius: 1rem;
 	cursor: pointer;
-	height: 4rem;
-	align-self: flex-end;
+	height: 3.4rem;
+	padding: 0 1rem;
 }
 
 .search-apply {
-	width: 15%;
+	// width: 15%;
+	flex-grow: 1;
+	margin-left: 1rem;
 	font-size: 1.4rem;
 	text-align: center;
-	background-color: $main-blue;
-	color: white;
-	border-radius: 1rem;
+	border: 1px solid $main-blue;
+	color: $main-blue;
+	border-radius: 0.3rem;
 	cursor: pointer;
-	height: 4rem;
-	align-self: flex-end;
+	height: 3.4rem;
+	padding: 0 1rem;
 }
 // .input-label {
 // 	display: flex;
@@ -62,3 +95,7 @@
 // 	align-self: flex-end;
 // 	margin: 0 0;
 // }
+
+label {
+	font-weight: bold;
+}
