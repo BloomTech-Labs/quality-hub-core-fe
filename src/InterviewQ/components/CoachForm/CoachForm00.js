@@ -84,6 +84,7 @@ const CoachForm00 = (props) => {
         setProgress(prog => prog - 1)
       }
     }
+    
 
     return (
         <div className="add-coach-form">
