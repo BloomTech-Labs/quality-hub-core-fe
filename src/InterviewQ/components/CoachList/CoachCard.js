@@ -8,11 +8,11 @@ import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
 //component
-import './CoachCardModal.js';
+import CoachModal from './CoachCardModal.js';
 
 const CoachCard = ({ post }) => {
 	let { coach } = post;
-	const [open, setOpen ] = useState(false);
+	
 
 	
 
@@ -62,7 +62,7 @@ const CoachCard = ({ post }) => {
 				</p>
 			</div>
 			<div className='coachcard-description'>
-				<p>{post.description}</p>
+				<p>{post.description}</p><CoachModal/>
 				{/* {post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
 					))} */}

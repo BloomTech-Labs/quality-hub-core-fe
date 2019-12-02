@@ -1,5 +1,5 @@
-import react, { useState, useEffect } from 'react';
-
+import React , { useState, useEffect } from 'react';
+import CoachCard from "./CoachCard";
 
 
 const CoachCardModal = () => {
@@ -18,14 +18,14 @@ const CoachCardModal = () => {
 
     return (
         <div>
-            <p className='coachcard-seemore' onClick={() => setOpen(!open)}>See more </p>
+            <button onClick={() => setOpen(!open)}> <p className='coachcard-seemore'>See more </p></button>
             {open && (
-                
+                <CoachCard />
             )}
         </div>
 
     )
-}
+};
 
 
 export default CoachCardModal;
