@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './CoachForm.scss';
 
 import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
@@ -32,9 +32,35 @@ const INDUSTRIES = gql`
 	}
 `;
 
+const ADD_POST = gql`
+	mutation createPost(
+		$price: Int!
+		$position: String!
+		$industryName: String!
+		$description: String!
+		$tagString: String
+	) {
+		createPost(
+			price: $price
+			position: $position
+			industryName: $industryName
+			description: $description
+			tagString: $tagString
+		) {
+			id
+			price
+			position
+			industryName
+			description
+			tagString
+		}
+	}
+`;
+
 const CoachForm = props => {
 	const node = useRef();
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
+	const [addPost] = useMutation(ADD_POST);
 
 	// for sure take this out soon // like as soon as auth0 happens
 	useEffect(() => {
@@ -76,7 +102,7 @@ const CoachForm = props => {
 				let newPrice = e.target.value.split('$');
 				setFormState({
 					...formState,
-					[e.target.name]: newPrice[1],
+					[e.target.name]: parseInt(newPrice[1]),
 				});
 				return;
 			} else {
@@ -86,7 +112,7 @@ const CoachForm = props => {
 		if (e.target.name === 'price-slider') {
 			setFormState({
 				...formState,
-				price: e.target.value,
+				price: parseInt(e.target.value),
 			});
 			return;
 		}
@@ -99,6 +125,15 @@ const CoachForm = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		console.log(formState);
+
+		addPost({ variables: formState })
+			.then(res => {
+				alert('you did it!');
+				setOpen(false);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 	return (
 		<div ref={node}>
@@ -293,14 +328,16 @@ const CoachForm = props => {
 						</p>
 						<div className="coachcard-footer">
 							<div className="coachcard-links">
-							{(data && data.me.linkedin_url) && 
-								<div className="icon1">
-									<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
-								</div>}
-								{(data && data.me.twitter_url) && 
-								<div>
-									<Icon icon={ICONS.TWITTER} width={24} height={24} />
-								</div>}
+								{data && data.me.linkedin_url && (
+									<div className="icon1">
+										<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+									</div>
+								)}
+								{data && data.me.twitter_url && (
+									<div>
+										<Icon icon={ICONS.TWITTER} width={24} height={24} />
+									</div>
+								)}
 							</div>
 						</div>
 						<button className="interview-button" disabled>
