@@ -65,7 +65,7 @@ const CoachForm = props => {
 		if(data.me.image_url){
 			image = data.me.image_url;
 		} else{
-			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png';
+			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; //Need to add a default image here if user hasn't uploaded anything yet
 		}
 	}
 
@@ -169,8 +169,9 @@ const CoachForm = props => {
 						type="text"
 						name="company"
 						placeholder="e.g Google, Facebook..."
-						// value={formState.company}
+						value={formState.company}
 						// onChange={event => setFormState({...formState, company: event.target.value})}
+						onChange={e=>handleChange(e)}
 					/>
 					<p className="add-coach-form-row-6">Position</p>
 					<input
@@ -178,7 +179,8 @@ const CoachForm = props => {
 						type="text"
 						name="position"
 						placeholder="e.g UX Designer, Software Engineer..."
-						// value={formState.company}
+						value={formState.position}
+						onChange={e=>handleChange(e)}
 						// onChange={event => setFormState({...formState, company: event.target.value})}
 					/>
 					<p className="add-coach-form-row-6">Industry</p>
@@ -290,7 +292,7 @@ const CoachForm = props => {
 									/>
 								</span>
 								{/* Software Engineer */}
-								{formState.position}
+					{formState.company}{formState.company !== '' && formState.position !== '' ? ' - ' : null}{formState.position}
 								{/* {post.industry.name} */}
 							</p>
 							<p>
@@ -303,7 +305,8 @@ const CoachForm = props => {
 									/>
 								</span>
 								{/* Google - Mountain View, California */}
-								{formState.company}
+								{/* {formState.company} */}
+								{data && `${data.me.city}, ${data.me.state}`}
 								{/* {post.position} - {coach.city}, {coach.state} */}
 							</p>
 							<p>
