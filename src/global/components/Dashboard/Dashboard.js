@@ -15,6 +15,7 @@ import BasicInfo from './BasicInfo';
 import Experience from './Experience';
 import Schedule from './Schedule';
 import DashInterviewQ from './DashInterviewQ';
+import WeekView from './Schedule/WeekView';
 
 // GraphQuaiL Query
 const GET_USER = gql`
@@ -104,17 +105,19 @@ const Dashboard = ({ setLoggedin }) => {
 							)}
 						/>
 						<Route
-							exact
+							
 							path='/dashboard/schedule'
 							render={props => (
 								<Schedule {...props} myArray={myArray} userData={userData} />
 							)}
 							/>
+							
 							<Route
 							exact
 							path='/dashboard/interviewq'
 							render={props => <DashInterviewQ {...props} />}
 						/>
+						
 					</Switch>
 				</div>
 			</div>

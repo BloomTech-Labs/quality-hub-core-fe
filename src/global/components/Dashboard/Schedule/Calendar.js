@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 import './Calendar.scss';
 import {
 	setMonth,
@@ -12,10 +13,11 @@ import CalendarDetail from './CalendarDetail';
 
 
 import { days, months, years } from './TimeArrays'
+import WeekView from './WeekView';
 
-const Calendar = () => {
+const Calendar = ({ selectedDate, setSelectedDate }) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	const [selectedDate, setSelectedDate] = useState(new Date());
+	// const [selectedDate, setSelectedDate] = useState(new Date());
 	
 
 	// const headerDateFormat = "MMMM yyyy";
@@ -63,11 +65,13 @@ const Calendar = () => {
 	};
 	
 	return (
+	
 		<div className='calendar' ref={node}>
 			<header className='calendar-header'>
 				<div className='cal-header row flex-middle'>
 					<div className='col col-start'></div>
 					<div className='col col-center'>
+						
 						<select
 							onChange={onMonthChange}
 							value={getMonth(new Date(currentMonth))}>
@@ -90,6 +94,7 @@ const Calendar = () => {
 								);
 							})}
 						</select>
+						<Link to='/dashboard/schedule/week'>Week</Link>
 					</div>
 				</div>
 			</header>
@@ -121,7 +126,10 @@ const Calendar = () => {
 				
 			)}
 			{/* <Booking /> */}
+			{/* <WeekView selectedDate={selectedDate} /> */}
+		
 		</div>
+		
 	);
 };
 
