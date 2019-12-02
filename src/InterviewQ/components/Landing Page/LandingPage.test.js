@@ -7,8 +7,16 @@ import { createMemoryHistory } from "history";
 
 afterEach(rtl.cleanup)
 
-it('renders w/o crashing', () => {
-    const history = createMemoryHistory({ initialEntries: ["/"] });
+async function wait(ms = 0) {
+  await rtl.act(() => {
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
+    });
+  });
+}
+
+it('renders w/o crashing', async () => {
+    const history = createMemoryHistory({ initialEntries: ["/interviewq"] });
     rtl.render(
         <Router history={history}>
             <MockedProvider>
@@ -16,5 +24,6 @@ it('renders w/o crashing', () => {
             </MockedProvider>
         </Router>
     )
+    await wait();
 })
 
