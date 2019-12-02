@@ -60,7 +60,7 @@ const GridDropdown = props => {
 								width='50px'
 								alt='InterviewQ icon'
 							/> */}
-							<Icon icon={ICONS.INTERVIEWQ} width={24} height={16} />
+							<Icon icon={ICONS.INTERVIEWQ} width={24} height={24} />
 							<p>InterviewQ</p>
 						</Link>
 
@@ -71,7 +71,7 @@ const GridDropdown = props => {
 								width='50px'
 								alt='ResumeQ icon'
 							/> */}
-							<Icon icon={ICONS.RESUMEQ} width={18} height={20} />
+							<Icon icon={ICONS.RESUMEQ} width={24} height={22} />
 							<p>ResumeQ</p>
 						</Link>
 
@@ -82,7 +82,7 @@ const GridDropdown = props => {
 								width='50px'
 								alt='DesignQ icon'
 							/> */}
-							<Icon icon={ICONS.DESIGNQ} width={20} height={20} />
+							<Icon icon={ICONS.DESIGNQ} width={24} height={20} />
 							<p>DesignQ</p>
 						</Link>
 					</div>

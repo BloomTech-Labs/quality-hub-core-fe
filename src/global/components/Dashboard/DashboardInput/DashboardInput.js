@@ -14,7 +14,7 @@ import { EDIT_USER } from './Mutation';
 import { capitalize } from '../../../../utils/capitalize';
 
 // Data
-import { statesArray } from '../../SignUpForm/States';
+import { statesArray } from '../../../../Core/components/SignUpForm/States';
 
 const DashboardInput = ({ userKey, userValue }) => {
 	const [original, setOriginal] = useState(userValue);
@@ -155,7 +155,7 @@ const DashboardInput = ({ userKey, userValue }) => {
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					<h2>{userKey && capitalize(userKey)}</h2>
+					<h3>{userKey && capitalize(userKey)}</h3>
 				</span>
 				<div>
 					{editing ? (
@@ -186,7 +186,8 @@ const DashboardInput = ({ userKey, userValue }) => {
 					onClick={() => setEditing(true)}
 					data-testid='edit-button' //data-testid made explicitly for testing-purposes
 				>
-					<Icon icon={ICONS.PENCIL} width={24} height={24} />
+					Edit
+					{/* <Icon icon={ICONS.PENCIL} width={24} height={24} /> */}
 				</button>
 			)}
 		</div>

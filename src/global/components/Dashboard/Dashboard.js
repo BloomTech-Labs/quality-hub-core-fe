@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 
 // Styles
@@ -10,9 +10,12 @@ import './Dashboard.scss';
 
 // Components
 import LeftNavBar from './LeftNavBar';
+import PersonalInfo from './PersonalInfo';
 import PaymentInfo from './PaymentInfo';
 import BasicInfo from './BasicInfo';
 import Experience from './Experience';
+import Schedule from './Schedule';
+// import DashInterviewQ from './DashInterviewQ';
 
 // GraphQuaiL Query
 const GET_USER = gql`
@@ -74,33 +77,44 @@ const Dashboard = ({ setLoggedin }) => {
 			<div className='lower-dashboard'>
 				<LeftNavBar setLoggedin={setLoggedin} />
 				<div className='dashboard-routes'>
-					<div className='dashboard-top-links'>
+					{/* <div className='dashboard-top-links'>
 						<Link to='/dashboard'>Basic Info</Link>
 						<Link to='/dashboard/experience'>Experience</Link>
 						<Link to='/dashboard/paymentinfo'>Payment Info</Link>
-					</div>
+					</div> */}
 					<Switch>
 						<Route
 							exact
 							path='/dashboard'
 							render={props => (
-								<BasicInfo {...props} myArray={myArray} userData={userData} />
+								<div>
+									<PersonalInfo />
+									<BasicInfo {...props} myArray={myArray} userData={userData} />
+									<Experience
+										{...props}
+										myArray={myArray}
+										userData={userData}
+									/>
+									<PaymentInfo
+										{...props}
+										myArray={myArray}
+										userData={userData}
+									/>
+								</div>
 							)}
 						/>
 						<Route
 							exact
-							path='/dashboard/experience'
+							path='/dashboard/schedule'
 							render={props => (
-								<Experience {...props} myArray={myArray} userData={userData} />
+								<Schedule {...props} myArray={myArray} userData={userData} />
 							)}
 						/>
-						<Route
+						{/* <Route
 							exact
-							path='/dashboard/paymentinfo'
-							render={props => (
-								<PaymentInfo {...props} myArray={myArray} userData={userData} />
-							)}
-						/>
+							path='/dashboard/interviewq'
+							render={props => <DashInterviewQ {...props} />}
+						/> */}
 					</Switch>
 				</div>
 			</div>

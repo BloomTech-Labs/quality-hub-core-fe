@@ -4,21 +4,15 @@ import React from 'react';
 // Components
 import DashboardInput from '../DashboardInput';
 
-const Experience = ({ myArray, userData }) => {
-	const experience = [
-		'personal_url',
-		'blog_url',
-		'linkedin_url',
-		'github_url',
-		'twitter_url',
-		'portfolio_url',
-	];
+const PaymentInfo = ({ myArray, userData }) => {
+	const paymentInfo = ['payment_info'];
 
 	return (
 		<div className='editform'>
+			<h2>Payment Info</h2>
 			{myArray.length > 0 &&
 				myArray.map(item => {
-					if (experience.includes(item)) {
+					if (paymentInfo.includes(item)) {
 						return (
 							<DashboardInput
 								key={item}
@@ -34,4 +28,4 @@ const Experience = ({ myArray, userData }) => {
 	);
 };
 
-export default Experience;
+export default PaymentInfo;

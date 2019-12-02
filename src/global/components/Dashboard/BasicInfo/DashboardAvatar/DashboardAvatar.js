@@ -5,12 +5,12 @@ import React from 'react';
 import './DashboardAvatar.scss';
 
 // Components
-import Avatar from '../../../../../global/components/Avatar';
+import Avatar from '../../../Avatar';
 
 export default function DashboardAvatar() {
 	return (
 		<div className='dash-avatar-wrapper'>
-			<h2 className='dash-avatar-heading'>Avatar</h2>
+			<h3 className='dash-heading'>Photo</h3>
 			<Avatar />
 		</div>
 	);

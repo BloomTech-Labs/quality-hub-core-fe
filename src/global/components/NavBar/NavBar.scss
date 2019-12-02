@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 7rem;
+	height: 7.65rem;
 	background-color: white;
 	padding: 0 1rem;
 	border-bottom: 1px solid silver;
@@ -65,6 +65,9 @@
 .grid-icon {
 	cursor: pointer;
 	margin-left: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .dropdown-grid-content {
@@ -160,7 +163,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-color: black;
-	margin-left: 2rem;
+	margin-left: 1.8rem;
 }
 
 .avatar-submenu {

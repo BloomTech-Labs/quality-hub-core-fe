@@ -1,4 +1,7 @@
+// Libraries
 import React from 'react';
+
+// Styles
 import './SignUpForm.scss';
 
 export default function GetStarted({ setProgress }) {
@@ -8,11 +11,10 @@ export default function GetStarted({ setProgress }) {
 
 	return (
 		<div className='getstarted'>
-			<div>
-				<h1>Welcome to QualityHub!</h1>
-				<h2>We have a couple of questions for you to fill in!</h2>
-			</div>
-			<button className='submit-btn begin-btn' onClick={handleClick}>
+			<p className='getstarted-txt'>
+				We have a couple questions for you to fill in to complete your profile!
+			</p>
+			<button className='signup-btn' onClick={handleClick}>
 				Begin
 			</button>
 		</div>

@@ -9,6 +9,7 @@ import './SignUpForm.scss';
 import ProgressBar from './ProgressBar';
 import InitialSignUp from './1-InitialSignUp';
 import GetStarted from './2-GetStarted';
+import SignUpNav from './SignUpNav';
 import GeneralSignUp from './3-GeneralSignUp';
 import ExpSignUp from './4-ExpSignUp';
 import CompletedSignUp from './5-CompletedSignUp';
@@ -170,10 +171,11 @@ const SignUpForm = props => {
 
 			{progress > 0 && (
 				<div className='sign-up-form'>
-					<h2>Sign Up</h2>
+					{/* <h2>Sign Up</h2> */}
 					<ProgressBar progress={progress} />
 
-					<form onSubmit={handleSubmit}>
+					<form>
+						{/* <form onSubmit={handleSubmit}> */}
 						{(function() {
 							switch (progress) {
 								case 1:
@@ -189,7 +191,7 @@ const SignUpForm = props => {
 												user={user}
 												handleChange={handleChange}
 											/>
-											{valError ? (
+											{/* {valError ? (
 												<button className='form-btn' disabled>
 													Next
 												</button>
@@ -197,7 +199,11 @@ const SignUpForm = props => {
 												<button className='form-btn' onClick={handleNext}>
 													Next
 												</button>
-											)}
+											)} */}
+											<SignUpNav
+												handleBack={handleBack}
+												handleNext={handleNext}
+											/>
 											{valError
 												? valError.map(message => {
 														// if (message.includes('email') && !emailTouched) {
@@ -238,12 +244,16 @@ const SignUpForm = props => {
 									return (
 										<>
 											<ExpSignUp user={user} handleChange={handleChange} />
-											<button className='form-btn' onClick={handleBack}>
+											{/* <button className='form-btn' onClick={handleBack}>
 												Back
 											</button>
 											<button className='submit-btn' type='submit'>
 												Submit
-											</button>
+											</button> */}
+											<SignUpNav
+												handleBack={handleBack}
+												handleNext={handleSubmit}
+											/>
 											{error.error ? (
 												<p>
 													This email address is already in use- please enter a
