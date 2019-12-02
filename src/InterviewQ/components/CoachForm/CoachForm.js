@@ -222,8 +222,12 @@ const CoachForm = props => {
 						<div className="add-coach-form-preview-close">
 							<Icon icon={ICONS.CLOSE} width={24} height={24} />
 						</div>
-						<p className="add-coach-form-preview-name">Nicholas Gonzalez</p>
-						<p className="add-coach-form-preview-amount">$40 per hour</p>
+						<div className="add-coach-form-preview-top">
+							<div>
+								<p className="add-coach-form-preview-name">Nicholas Gonzalez</p>
+								<p className="add-coach-form-preview-amount">$40 per hour</p>
+							</div>
+						</div>
 						{/* </button> */}
 						<div className="coachcard-info">
 							<p>
@@ -272,10 +276,10 @@ const CoachForm = props => {
 						<div className="coachcard-footer">
 							<div className="coachcard-links">
 								<div className="icon1">
-								<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+									<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
 								</div>
 								<div>
-								<Icon icon={ICONS.TWITTER} width={24} height={24} />
+									<Icon icon={ICONS.TWITTER} width={24} height={24} />
 								</div>
 							</div>
 						</div>
@@ -284,12 +288,10 @@ const CoachForm = props => {
 						</button>
 					</div>
 					<div className="add-coach-form-bottom-buttons">
-					<button className="add-coach-form-save-and-exit">
-						Save and exit
-					</button>
-					<button className="add-coach-form-publish">
-						Publish
-					</button>
+						<button className="add-coach-form-save-and-exit">
+							Save and exit
+						</button>
+						<button className="add-coach-form-publish">Publish</button>
 					</div>
 					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
 
