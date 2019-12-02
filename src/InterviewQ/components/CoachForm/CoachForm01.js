@@ -68,8 +68,8 @@ const CoachForm = ({setFormState, formState, history, setProgress, industriesDat
                 <div className="coach-form-buttons">
                     {/* <div onClick={handleProgress}>Back</div> */}
                     {/* <button type="submit" value="next" onClick={handleProgress}>Save and next</button> */}
-                    <button onClick={backHandler} >Back</button>
-                    <button onClick={submitHandler} value="next">Save and next</button>
+                    {/* <button onClick={backHandler} >Back</button>
+                    <button onClick={submitHandler} value="next">Save and next</button> */}
                 </div>
             </form>
         </div>

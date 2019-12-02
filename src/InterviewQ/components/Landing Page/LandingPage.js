@@ -1,5 +1,6 @@
 // Library
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 // Styles & Icons
 import './LandingPage.scss';
@@ -12,6 +13,7 @@ import LandingPageHeader from './LandingPageHeader';
 import QNav from '../QNav';
 import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
+import CoachForm from '../CoachForm/CoachForm';
 
 export default function InterviewLandingPage() {
 	const [toggleFilter, setToggleFilter] = useState(true);
@@ -23,22 +25,17 @@ export default function InterviewLandingPage() {
 	});
 
 	return (
-		<div className='interview-container'>
+		<div className='interview-container' id="interview-container">
 			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				<QNav />
 				<div className='interviewq-header-container'>
 					<LandingPageHeader />
 					<div className='interviewq-header-btns'>
-						<button>
-							<Icon
-								icon={ICONS.LIGHTBULB}
-								width={16}
-								height={22}
-								color='#5f6368'
-							/>
-							<span className='becomecoach-btn'>Become a coach</span>
-						</button>
+						{localStorage.getItem('token') ? <CoachForm /> : <Link to="/signin" className="become-a-coach-reroute-to-signin"><button>
+				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+				<span className="add-coach-form-button">Become a coach</span>
+			</button></Link>}
 						<button
 							onClick={() => setToggleFilter(!toggleFilter)}
 							style={{

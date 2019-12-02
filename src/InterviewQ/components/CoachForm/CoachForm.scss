@@ -1,5 +1,464 @@
-.slider{
-    width:80%;
+.slider {
+	// width:100%;
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+
+	// margin: 0 auto !important;
+	// border: 1px solid black !important;
+
+	input {
+		width: 465px !important;
+		margin: 0px !important;
+		// display: none !important;
+		// margin: 0 auto;
+		// margin-left: 20px;
+		// margin-left: auto !important;
+		// margin-right: auto !important;
+		// border: 1px solid red !important;
+		padding: 0px !important;
+	}
+
+	.slider-dollar-amounts {
+		width: 465px;
+		display: flex;
+		justify-content: space-between;
+		align-content: center;
+		align-items: center;
+		// border: 1px solid black;
+		padding: 0px !important;
+		p {
+			font-family: "SF Pro Display";
+			font-style: normal;
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 28px;
+			color: #3c4043;
+		}
+	}
+
+	.slider-inner-boxes {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		// border: 1px solid green;
+		// justify-content: center;
+		// align-content: center;
+	}
 }
 
- 
+.button {
+	border: 1px solid silver;
+	border-radius: 0.3rem;
+	font-size: 1.4rem;
+	height: 3.4rem;
+	padding: 0 2rem;
+	margin: 0.5rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+
+	.add-coach-form-button {
+		display: inline-block;
+		margin-left: 1rem;
+		width: 11rem;
+	}
+}
+
+.add-coach-form {
+	
+	position: absolute;
+	// margin: 144px auto; //214px - 70px (for top navbar)
+	width: 850px;
+	// margin: 0 auto;
+	// left: auto;
+	// right: auto;
+	// min-height: 80%;
+	// height: 100vh;
+	height: 80%;
+	overflow: auto;
+	overflow-x: hidden;
+
+	left: 50%;
+	transform: translate(-50%);
+	// right: 50%;
+	// top: 214px;
+	padding-top: 120px;
+	padding-left: 91px;
+	padding-right: 91px;
+	// padding-bottom: 66px;
+	background: white;
+	border-radius: 10px;
+	text-align: left;
+	input {
+		width: 100%;
+	}
+	select {
+		width: 100%;
+	}
+	z-index: 1000;
+}
+
+.close-coach-form-button {
+	position: absolute;
+	top: 40px;
+	right: 30px;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	width: 24px !important;
+	height: 24px !important;
+	color: black;
+	outline: none;
+}
+
+.add-coach-form-header {
+	color: #096dd9;
+	font-size: 3rem;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	margin-left: 10px;
+}
+
+.add-coach-form-row-1 {
+	display: flex;
+}
+
+.add-coach-form-row-2 {
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 28px;
+	margin-top: 15px;
+}
+
+.add-coach-form-step-title {
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 28px;
+	color: #5f6368;
+	margin-top: 72px;
+}
+
+.add-coach-form-sub-title {
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 38px;
+	color: #3c4043;
+	margin-top: 16px;
+}
+
+.add-coach-form-description {
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 28px;
+	color: #3c4043;
+	margin-top: 3px;
+}
+
+.add-coach-form-row-6 {
+	margin-top: 24px;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	color: #3c4043;
+}
+
+.add-coach-form-row-6 {
+	margin-top: 24px;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	color: #3c4043;
+}
+
+.add-coach-form-row-7 {
+	margin-top: 1px;
+	border: 1px solid #dadce0;
+	box-sizing: border-box;
+	border-radius: 6px;
+}
+.add-coach-form-hr-1 {
+	margin: 72px 0;
+	border: 1px solid #dadce0;
+}
+
+.add-coach-form-range-input {
+	margin: 0 auto;
+	margin-top: 64px;
+	width: 183px !important;
+}
+
+.add-coach-form-preview-container {
+	// padding-top: 0px !important;
+	padding-left: 54px;
+	padding-right: 54px;
+	padding-bottom: 66px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 64px;
+	margin-bottom: 80px;
+	width: 410px;
+	// min-height: 670px;
+	border-radius: 8px;
+	border: 1px solid #d4d4d4;
+	box-shadow: 4px 4px 25px #d4d4d4;
+}
+
+.add-coach-form-preview-close {
+	position: relative;
+	left: 313px;
+	top: 21px;
+}
+.add-coach-form-preview-name {
+	// margin-top: 79px;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 28px;
+	color: #096dd9;
+}
+
+.add-coach-form-preview-amount {
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 24px;
+	color: #262626;
+}
+
+.coachcard-info {
+	margin-top: 41px;
+	p {
+		display: flex;
+		// align-items: center;
+		font-family: "SF Pro Display";
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 24px;
+
+		color: #595959;
+
+		.coachcard-icon {
+			// width: 2.8rem;
+			margin-right: 9px;
+			// display: inline-block;
+		}
+	}
+}
+
+.add-coach-form-preview-description {
+	margin-top: 17px;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 30px;
+
+	display: flex;
+	align-items: center;
+
+	color: #3c4043;
+}
+
+.coachcard-footer {
+	margin-top: 21px;
+	// display: flex;
+	// justify-content: space-between;
+	// align-items: center;
+
+	.coachcard-links {
+		.icon1 {
+			margin-right: 21px;
+		}
+		display: flex;
+	}
+}
+.interview-button {
+	width: 100%;
+	margin-top: 33px !important;
+	height: 45px;
+	padding: 1.4rem 2rem;
+	font-size: 1.4rem;
+	background-color: #096dd9;
+	text-align: center;
+	color: white !important;
+	border-radius: 1rem;
+	border-radius: 8px;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+// I don't know what the following does:
+
+$main-color: #C4C4C4;
+$dot-color: #096DD9;
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 20px;
+  width: 70%;
+  border: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: $main-color;
+  border-radius: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+ // box-shadow: 0px 0px 4px #888888 ;
+
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  background: $dot-color;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background:  $main-color;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: $main-color;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  //box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: $dot-color;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: $main-color;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background:  $main-color;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  //box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: $dot-color;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background:  $main-color;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background:  $main-color;
+}
+
+// //End copied code
+
+.add-coach-form-preview-top{
+	margin-top: 20px;
+	display:flex;
+	// border: 1px solid green;
+	justify-content: space-between;
+	align-items: center;
+	align-content: center;
+	// margin-top: 61px;
+}
+
+.add-coach-form-preview-top-text{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+	align-content: center;
+	// border: 1px solid blue;
+}
+
+.add-coach-form-preview-coach-photo{
+	border-radius: 100%;
+	height: 90px;
+	width: 90px;
+	// border: 1px solid red;
+}
+
+
+.add-coach-form-save-and-exit {
+	border-radius: 4px;
+	width: 140px;
+	height: 54px;
+	color: #8C8C8C;
+}
+
+.add-coach-form-publish{
+	border-radius: 5px;
+	width: 140px;
+	height: 54px;
+	background-color: #096dd9;
+	color: #FFF !important;
+	font-family: Roboto;
+font-style: Medium;
+font-size: 16px;
+line-height: 24px;
+line-height: 128%;
+}
+
+.add-coach-form-bottom-buttons{
+	display: flex;
+	width: 354px;
+	margin: 0 auto;
+	justify-content: space-between;
+	margin-bottom: 99px;
+}

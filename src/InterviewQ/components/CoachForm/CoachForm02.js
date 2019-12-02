@@ -52,6 +52,7 @@ function CoachFormTwo ({ history, progress, setProgress, formState, setFormState
           step="1"
           />
         </label>
+        <input placeholder="$" className="hourly-rate-input" value={`$${value}`}/>
         {/* <Slider
           min={0}
           max={200}
@@ -63,9 +64,9 @@ function CoachFormTwo ({ history, progress, setProgress, formState, setFormState
       </div>
       {/* <div className='value'>{value}</div> */}
       <div className="HourlyRate-buttons">
-        <button onClick={backHandler} >Back</button>
+        {/* <button onClick={backHandler} >Back</button>
         <br/>
-        <button onClick={submitHandler} >Save and next</button>
+        <button onClick={submitHandler} >Save and next</button> */}
       </div>
     </div>
   )
