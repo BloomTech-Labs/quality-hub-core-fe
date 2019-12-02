@@ -62,8 +62,10 @@ const SignInForm = props => {
 
 	return (
 		<div className='sign-in-form'>
-			<h1>QualityHub</h1>
-			<h2>Welcome back!</h2>
+			<div>
+				<h1>QualityHub</h1>
+				<h2>Welcome back!</h2>
+			</div>
 			<br />
 			{/* Insert Google Login Button Here */}
 			{/* <h2 className="sign-in-or">
@@ -72,10 +74,10 @@ const SignInForm = props => {
 
 			<form onSubmit={handleSubmit}>
 				<div className='input-label'>
-					<label htmlFor='email'>Email</label>
+					<label htmlFor='email'>Email address</label>
 					<br />
 					<input
-						placeholder='Email'
+						// placeholder='Email'
 						name='email'
 						value={user.email}
 						onChange={handleChange}
@@ -87,7 +89,7 @@ const SignInForm = props => {
 					<label htmlFor='password'> Password </label>
 					<br />
 					<input
-						placeholder='Password'
+						// placeholder='Password'
 						name='password'
 						type='password'
 						id='password'
@@ -108,7 +110,7 @@ const SignInForm = props => {
 						</button>
 					))}
 				{!loading && (
-					<p>
+					<p className='signup-link'>
 						Don't have an account? <Link to='/signup'>Sign up</Link>
 					</p>
 				)}
