@@ -37,7 +37,7 @@ it("Dashboard renders", () => {
   );
 });
 
-it("renders w/ Basic Info, Experience Payment Info", () => {
+it("renders w/ side bar options", () => {
   const getToken = () => {
     let token = localStorage.getItem("token");
     return token ? `Bearer ${token}` : "";
@@ -62,7 +62,7 @@ it("renders w/ Basic Info, Experience Payment Info", () => {
     </ApolloProvider>
   );
   rtl.getByText(container, "Basic Info");
-  rtl.getByText(container, "Experience");
+  rtl.getByText(container, "Linked Accounts");
   rtl.getByText(container, "Payment Info");
 });
 
@@ -90,10 +90,10 @@ it("router works", () => {
       </Router>
     </ApolloProvider>
   );
-  rtl.fireEvent.click(rtl.getByText(container, "Experience"));
-  expect(history.location.pathname).toBe("/dashboard/experience");
-  rtl.fireEvent.click(rtl.getByText(container, "Experience"));
-  expect(history.location.pathname).toBe("/dashboard/experience");
-  rtl.fireEvent.click(rtl.getByText(container, "Payment Info"));
-  expect(history.location.pathname).toBe("/dashboard/paymentinfo");
+  rtl.fireEvent.click(rtl.getByText(container, "Coach Info"));
+  expect(history.location.pathname).toBe("/dashboard/coachinfo");
+  rtl.fireEvent.click(rtl.getByText(container, "Schedule"));
+  expect(history.location.pathname).toBe("/dashboard/schedule");
+  rtl.fireEvent.click(rtl.getByText(container, "Setting"));
+  expect(history.location.pathname).toBe("/dashboard/setting");
 });
