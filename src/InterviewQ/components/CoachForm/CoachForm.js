@@ -67,7 +67,7 @@ const CoachForm = props => {
 		description: '',
 		city: '',
 		state: '',
-		price: '',
+		price: 100,
 	});
 
 	const [accounts, setAccounts] = useState({
@@ -194,7 +194,7 @@ const CoachForm = props => {
 								type="range"
 								min="0"
 								max="200"
-								//   value={value}
+								  value={formState.price <= 200 ? formState.price: 200}
 								//   onChange={handleChange}
 								step="1"
 							/>
@@ -205,7 +205,7 @@ const CoachForm = props => {
 							type="text"
 							name="hourlyrate"
 							placeholder="$"
-							value="$"
+							value={`$${formState.price}`}
 							// value={formState.company}
 							// onChange={event => setFormState({...formState, company: event.target.value})}
 						/>
