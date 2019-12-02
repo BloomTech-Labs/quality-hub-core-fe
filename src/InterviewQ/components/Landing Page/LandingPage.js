@@ -14,8 +14,6 @@ import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
 
 export default function InterviewLandingPage() {
-<<<<<<< HEAD
-=======
 	const [fields, setFields] = useState({
 		tag: '',
 		price: '',
@@ -23,7 +21,6 @@ export default function InterviewLandingPage() {
 		orderBy: '',
 	});
 
->>>>>>> 672bb36ecfcf1dbe82dc352e241743acb29ed7ad
 	return (
 		<div className='interview-container'>
 			{/* <LandingPageCTA /> */}
