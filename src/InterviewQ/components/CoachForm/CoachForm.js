@@ -64,9 +64,10 @@ const CoachForm = props => {
 	const [formState, setFormState] = useState({
 		company: '',
 		position: '',
-		industry: '',
+		industryName: '',
 		description: '',
 		price: 30,
+		tagString: '',
 	});
 
 	const handleChange = e => {
@@ -151,8 +152,8 @@ const CoachForm = props => {
 					/>
 					<p className="add-coach-form-row-6">Industry</p>
 					<select
-						name="industry"
-						value={formState.industry}
+						name="industryName"
+						value={formState.industryName}
 						onChange={handleChange}>
 						{industriesData &&
 							industriesData.industries.map(industries => {
@@ -163,6 +164,7 @@ const CoachForm = props => {
 								);
 							})}
 					</select>
+					{/* Needs to be textarea */}
 					<p className="add-coach-form-row-6">Description</p>
 					<input
 						className="add-coach-form-row-7"
@@ -170,6 +172,15 @@ const CoachForm = props => {
 						name="description"
 						placeholder="eg. I am a software developer at Google with 12 years of experience under my belt..."
 						value={formState.description}
+						onChange={handleChange}
+					/>
+					<p className="add-coach-form-row-6">Keywords</p>
+					<input
+						className="add-coach-form-row-7"
+						type="text"
+						name="tagString"
+						placeholder="e.g Java, C++, Figma..."
+						value={formState.tagString}
 						onChange={handleChange}
 					/>
 
@@ -282,12 +293,14 @@ const CoachForm = props => {
 						</p>
 						<div className="coachcard-footer">
 							<div className="coachcard-links">
+							{(data && data.me.linkedin_url) && 
 								<div className="icon1">
 									<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
-								</div>
+								</div>}
+								{(data && data.me.twitter_url) && 
 								<div>
 									<Icon icon={ICONS.TWITTER} width={24} height={24} />
-								</div>
+								</div>}
 							</div>
 						</div>
 						<button className="interview-button" disabled>
