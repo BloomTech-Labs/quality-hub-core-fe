@@ -57,10 +57,7 @@ export default function InterviewLandingPage() {
 					</div>
 				</div>
 				<div className='landingpage-container'>
-					{toggleFilter && <Search setFields={setFields} fields={fields} />}
-					<div className='Coach-List'>
-						<CoachList />
-					</div>
+					<CoachList toggleFilter={toggleFilter}/>
 				</div>
 			</div>
 		</div>
