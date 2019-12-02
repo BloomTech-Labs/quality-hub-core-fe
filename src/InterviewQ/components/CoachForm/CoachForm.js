@@ -70,30 +70,37 @@ const CoachForm = props => {
 		price: 100,
 	});
 
-	const [accounts, setAccounts] = useState({
-		linkedin_url: '',
-		linkedin_switch: false,
-		github_url: '',
-		github_switch: false,
-		website_url: '',
-		website_switch: false,
-		portfolio_url: '',
-		portfolio_switch: false,
-		twitter_url: '',
-		twitter_switch: false,
-	});
+	const handleChange = e =>{
+		// console.log(e.target.name);
+		// console.log(e.target.value);
+		setFormState({
+			...formState,
+			[e.target.name]: e.target.value
+		})
+	}
+	// const [accounts, setAccounts] = useState({
+	// 	linkedin_url: '',
+	// 	linkedin_switch: false,
+	// 	github_url: '',
+	// 	github_switch: false,
+	// 	website_url: '',
+	// 	website_switch: false,
+	// 	portfolio_url: '',
+	// 	portfolio_switch: false,
+	// 	twitter_url: '',
+	// 	twitter_switch: false,
+	// });
 
-	const [progress, setProgress] = useState(1);
+	// const [progress, setProgress] = useState(1);
 
-	const handleProgress = e => {
-		e.preventDefault();
-		if (e.target.value) {
-			setProgress(prog => prog + 1);
-		} else {
-			setProgress(prog => prog - 1);
-		}
-	};
-	console.log(industriesData);
+	// const handleProgress = e => {
+	// 	e.preventDefault();
+	// 	if (e.target.value) {
+	// 		setProgress(prog => prog + 1);
+	// 	} else {
+	// 		setProgress(prog => prog - 1);
+	// 	}
+	// };
 	return (
 		<div ref={node}>
 			{/* <p onClick={() => setOpen(!open)}>
@@ -191,11 +198,12 @@ const CoachForm = props => {
 								<p>$200</p>
 							</div>
 							<input
+								name="price"
 								type="range"
 								min="0"
 								max="200"
 								  value={formState.price <= 200 ? formState.price: 200}
-								//   onChange={handleChange}
+								  onChange={(e)=>handleChange(e)}
 								step="1"
 							/>
 						</div>
@@ -203,9 +211,10 @@ const CoachForm = props => {
 					<div className="add-coach-form-range-input">
 						<input
 							type="text"
-							name="hourlyrate"
+							name="price"
 							placeholder="$"
-							value={`$${formState.price}`}
+							value={`${formState.price}`}
+							onChange={e=>handleChange(e)}
 							// value={formState.company}
 							// onChange={event => setFormState({...formState, company: event.target.value})}
 						/>
