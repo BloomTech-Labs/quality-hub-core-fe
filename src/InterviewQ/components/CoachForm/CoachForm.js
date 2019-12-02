@@ -223,10 +223,15 @@ const CoachForm = props => {
 							<Icon icon={ICONS.CLOSE} width={24} height={24} />
 						</div>
 						<div className="add-coach-form-preview-top">
-							<div>
+							<div className="add-coach-form-preview-top-text">
 								<p className="add-coach-form-preview-name">Nicholas Gonzalez</p>
 								<p className="add-coach-form-preview-amount">$40 per hour</p>
 							</div>
+							<img
+							className="add-coach-form-preview-coach-photo"
+								src="https://www.birdorable.com/img/bird/th440/california-quail.png"
+								alt="Coach Profile Pic"
+							/>
 						</div>
 						{/* </button> */}
 						<div className="coachcard-info">

@@ -203,6 +203,7 @@
 }
 
 .add-coach-form-preview-container {
+	// padding-top: 0px !important;
 	padding-left: 54px;
 	padding-right: 54px;
 	padding-bottom: 66px;
@@ -223,7 +224,7 @@
 	top: 21px;
 }
 .add-coach-form-preview-name {
-	margin-top: 79px;
+	// margin-top: 79px;
 	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
@@ -406,6 +407,32 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 // //End copied code
+
+.add-coach-form-preview-top{
+	margin-top: 20px;
+	display:flex;
+	// border: 1px solid green;
+	justify-content: space-between;
+	align-items: center;
+	align-content: center;
+	// margin-top: 61px;
+}
+
+.add-coach-form-preview-top-text{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+	align-content: center;
+	// border: 1px solid blue;
+}
+
+.add-coach-form-preview-coach-photo{
+	border-radius: 100%;
+	height: 90px;
+	width: 90px;
+	// border: 1px solid red;
+}
 
 
 .add-coach-form-save-and-exit {
