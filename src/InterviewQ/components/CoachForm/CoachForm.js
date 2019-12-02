@@ -99,7 +99,7 @@ const CoachForm = props => {
 	const [formState, setFormState] = useState({
 		company: '',
 		position: '',
-		industryName: '',
+		industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
 		tagString: '',
@@ -138,6 +138,7 @@ const CoachForm = props => {
 		addPost({ variables: formState })
 			.then(res => {
 				alert('you did it!');
+				props.refetch();
 				setOpen(false);
 			})
 			.catch(err => {

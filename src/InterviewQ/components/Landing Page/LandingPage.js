@@ -1,5 +1,5 @@
 // Library
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -31,6 +31,7 @@ const GET_USER = gql`
 
 export default function InterviewLandingPage() {
 	const [toggleFilter, setToggleFilter] = useState(true);
+	const [hasPost, setHasPost] = useState();
 	const [fields, setFields] = useState({
 		tag: '',
 		price: '',
@@ -39,10 +40,13 @@ export default function InterviewLandingPage() {
 	});
 
 	const { refetch, loading, error, data: userData } = useQuery(GET_USER);
-	let user;
-	if(userData){
-		user = userData.me.post;
-	}
+
+	useEffect(()=>{
+		if(userData){
+			setHasPost(userData.me.post);
+		}
+	},[userData]);
+	
 
 	return (
 		<div className='interview-container' id="interview-container">
@@ -54,14 +58,25 @@ export default function InterviewLandingPage() {
 					<div className='interviewq-header-btns'>
 						{
 						localStorage.getItem('token') ? 
-						user ?
+						
+						//if user data is done loading...
+						!loading ?
+						hasPost ? 
+
+						//if you have a post made, show edit
 						<Link to="/dashboard/coachinfo" className="become-a-coach-reroute-to-signin">
 							<button>
 								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
 								<span className="add-coach-form-button">Edit Post</span>
 							</button>
-						</Link> :
-						<CoachForm /> : 
+						</Link> :  
+						
+						//if no post made, allow to create a post
+						<CoachForm refetch={refetch}/>:  
+
+						null:
+						
+						//if no token link to signin
 						<Link to="/signin" className="become-a-coach-reroute-to-signin">
 							<button>
 								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
