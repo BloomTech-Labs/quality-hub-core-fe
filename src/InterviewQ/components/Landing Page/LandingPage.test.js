@@ -9,21 +9,7 @@ afterEach(rtl.cleanup);
 afterEach(rtl.cleanup);
 const container = document.body;
 
-//get rid of act() warning
-// const originalError = console.error;
-// beforeAll(() => {
-//   console.error = (...args) => {
-//     if (/Warning.*not wrapped in act/.test(args[0])) {
-//       return;
-//     }
-//     // originalError.call(console, ...args)
-//   };
-// });
-
-// afterAll(() => {
-//   console.error = originalError;
-// });
-
+// gets rid of act() warning when called after render
 async function wait(ms = 0) {
   await rtl.act(() => {
     return new Promise(resolve => {
@@ -69,6 +55,7 @@ it('buttons show', async () => {
     await wait();
     rtl.getByText(container, "Become a coach")
     rtl.getByText(container, "Filters")
+    rtl.fireEvent.click(rtl.getByText(container, "Become a coach"))
 })
 
 it('filter works', async () => {
@@ -81,5 +68,7 @@ it('filter works', async () => {
         </Router>
     )
     await wait();
+    // testing filter functionality 
     rtl.fireEvent.click(rtl.getByText(container, "Filters"))
+    // waiting for more code to test here
 })
