@@ -103,16 +103,20 @@ button {
 	justify-content: space-between;
 
 	button {
-		border: 1px solid silver;
-		border-radius: 0.3rem;
-		font-size: 1.4rem;
-		height: 3.4rem;
+		border: 1px solid #5f6368;
+		border-radius: 0.6rem;
+		height: 3.6rem;
 		padding: 0 2rem;
 		margin: 0.5rem;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+		color: #5f6368;
 
 		.becomecoach-btn {
 			display: inline-block;
