@@ -86,11 +86,11 @@ const Calendar = () => {
 				</div>
 			</header>
 
-			<div className='calendar-days'>
-				<div className='days row'>
+			<div className="calendar-days">
+				<div className="days row">
 					{days.map(day => {
 						return (
-							<div className='col col-center' key={day}>
+							<div className="col col-center" key={day}>
 								{day}
 							</div>
 						);
@@ -98,7 +98,7 @@ const Calendar = () => {
 				</div>
 			</div>
 
-			<div className='calendar-cells'></div>
+			<div className="calendar-cells"></div>
 			<Cells
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
