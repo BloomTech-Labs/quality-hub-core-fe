@@ -39,6 +39,7 @@ const ADD_POST = gql`
 		$industryName: String!
 		$description: String!
 		$tagString: String
+		$company: String!
 	) {
 		createPost(
 			price: $price
@@ -46,13 +47,21 @@ const ADD_POST = gql`
 			industryName: $industryName
 			description: $description
 			tagString: $tagString
+			company: $company
 		) {
 			id
 			price
 			position
-			industryName
+			industry {
+				id
+				name
+			}
 			description
-			tagString
+			tags {
+				id
+				name
+			}
+			company
 		}
 	}
 `;
