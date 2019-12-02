@@ -1,5 +1,6 @@
 // Library
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 // Styles & Icons
 import './LandingPage.scss';
@@ -31,22 +32,10 @@ export default function InterviewLandingPage() {
 				<div className='interviewq-header-container'>
 					<LandingPageHeader />
 					<div className='interviewq-header-btns'>
-						{/* <button>
-							<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
-							<span className='becomecoach-btn'>Become a coach</span>
-						</button> */}
-						<CoachForm />
-						{/* <button className="interviewq-filter-btn">
-							<Icon icon={ICONS.FILTER} width={20} height={18} /> */}
-						{/* <button>
-							<Icon
-								icon={ICONS.LIGHTBULB}
-								width={16}
-								height={22}
-								color='#5f6368'
-							/>
-							<span className='becomecoach-btn'>Become a coach</span>
-						</button> */}
+						{localStorage.getItem('token') ? <CoachForm /> : <Link to="/signin" className="become-a-coach-reroute-to-signin"><button>
+				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+				<span className="add-coach-form-button">Become a coach</span>
+			</button></Link>}
 						<button
 							onClick={() => setToggleFilter(!toggleFilter)}
 							style={{
