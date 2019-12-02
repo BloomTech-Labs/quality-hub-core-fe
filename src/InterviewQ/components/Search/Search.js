@@ -82,8 +82,8 @@ export default function Search({ fields, setFields, refetch }) {
           <option value="fasdfasdf">Least reviews</option> */}
           <option value="price_ASC">Price, low to high</option>
           <option value="price_DESC">Price, high to low</option>
-          {/* <option value="asdfasdf">Newest</option>
-          <option value="asdfasdf">Oldest</option> */}
+          <option value="lastUpdated_DESC">Newest</option>
+          <option value="lastUpdated_ASC">Oldest</option>
 				</select>
 			</div>
 			<div className='search-field-keyword'>
