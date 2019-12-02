@@ -19,13 +19,14 @@ import { lightbulb } from '../../../globalIcons/lightbulb';
 const GET_USER = gql`
 	query {
 		me {
+			id
+			first_name
+			last_name
 			linkedin_url
-			github_url
-			personal_url
-			portfolio_url
 			twitter_url
 			city
 			state
+			image_url
 		}
 	}
 `;
@@ -58,7 +59,15 @@ const CoachForm = props => {
 	const { data, error } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
 
-	// console.log(data);
+	console.log(data);
+	let image;
+	if(data){
+		if(data.me.image_url){
+			image = data.me.image_url;
+		} else{
+			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png';
+		}
+	}
 
 	const [formState, setFormState] = useState({
 		company: '',
@@ -67,9 +76,9 @@ const CoachForm = props => {
 		description: '',
 		city: '',
 		state: '',
-		price: 100,
+		price: 30,
 	});
-	
+
 	const handleChange = e =>{
 		if(e.target.name ==="price"){
 			if(/^\$[0-9]*$/gm.test(e.target.value)){
@@ -260,12 +269,12 @@ const CoachForm = props => {
 						</div>
 						<div className="add-coach-form-preview-top">
 							<div className="add-coach-form-preview-top-text">
-								<p className="add-coach-form-preview-name">Nicholas Gonzalez</p>
-								<p className="add-coach-form-preview-amount">$40 per hour</p>
+								<p className="add-coach-form-preview-name">{data && `${data.me.first_name} ${data.me.last_name}`}</p>
+								<p className="add-coach-form-preview-amount">${formState.price} per hour</p>
 							</div>
 							<img
 							className="add-coach-form-preview-coach-photo"
-								src="https://www.birdorable.com/img/bird/th440/california-quail.png"
+								src={image}
 								alt="Coach Profile Pic"
 							/>
 						</div>
@@ -280,7 +289,8 @@ const CoachForm = props => {
 										color="#595959"
 									/>
 								</span>
-								Software Engineer
+								{/* Software Engineer */}
+								{formState.position}
 								{/* {post.industry.name} */}
 							</p>
 							<p>
@@ -292,7 +302,8 @@ const CoachForm = props => {
 										color="#595959"
 									/>
 								</span>
-								Google - Mountain View, California
+								{/* Google - Mountain View, California */}
+								{formState.company}
 								{/* {post.position} - {coach.city}, {coach.state} */}
 							</p>
 							<p>
@@ -308,11 +319,12 @@ const CoachForm = props => {
 							</p>
 						</div>
 						<p className="add-coach-form-preview-description">
-							I'm a seasoned software engineer who has worked at and made an
+							{formState.description}
+							{/* I'm a seasoned software engineer who has worked at and made an
 							impact at some of the biggest companies in the industry. I am
 							currently a technical lead/senior software engineer at Google
 							where I work on the API, backend and data infrastructure for an
-							enterprise product called Talent Insights.
+							enterprise product called Talent Insights. */}
 						</p>
 						<div className="coachcard-footer">
 							<div className="coachcard-links">
