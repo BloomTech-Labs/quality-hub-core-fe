@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import './Calendar.scss';
-import {
-	setMonth,
-	getMonth,
-	getYear,
-	format
-} from 'date-fns';
+import { setMonth, getMonth, getYear, format } from 'date-fns';
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
@@ -22,7 +17,6 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
-	
 
 	// let startDate = startOfWeek(currentMonth);
 	const node = useRef();
@@ -48,9 +42,9 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 	}, [open]);
 	const onDateClick = day => {
 		setSelectedDate(day);
-		setOpen(true)
-		console.log(day)
-		console.log(open)
+		setOpen(true);
+		console.log(day);
+		console.log(open);
 	};
 
 	const onMonthChange = e => {
@@ -63,7 +57,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		const month = getMonth(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 	};
-	
+
 	return (
 	
 		<div className='calendar' ref={node}>
@@ -99,11 +93,11 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				</div>
 			</header>
 
-			<div className='calendar-days'>
-				<div className='days row'>
+			<div className="calendar-days">
+				<div className="days row">
 					{days.map(day => {
 						return (
-							<div className='col col-center' key={day}>
+							<div className="col col-center" key={day}>
 								{day}
 							</div>
 						);
@@ -111,19 +105,21 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				</div>
 			</div>
 
-			<div className='calendar-cells'></div>
+			<div className="calendar-cells"></div>
 			<Cells
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
-				open = {open}
-				
+				open={open}
 			/>
-				{open && (
+			{open && (
 				<div className='calendar-detail'>
-					<CalendarDetail setOpen={setOpen} handleOutsideClick={handleOutsideClick} selectedDate={selectedDate}/>
-					</div>
-				
+					<CalendarDetail
+						setOpen={setOpen}
+						handleOutsideClick={handleOutsideClick}
+						selectedDate={selectedDate}
+					/>
+				</div>
 			)}
 			{/* <Booking /> */}
 			{/* <WeekView selectedDate={selectedDate} /> */}
