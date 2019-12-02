@@ -58,7 +58,7 @@ const CoachForm = props => {
 	const { data, error } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
 
-	console.log(data);
+	// console.log(data);
 
 	const [formState, setFormState] = useState({
 		company: '',
@@ -69,10 +69,28 @@ const CoachForm = props => {
 		state: '',
 		price: 100,
 	});
-
+	
 	const handleChange = e =>{
-		// console.log(e.target.name);
-		// console.log(e.target.value);
+		if(e.target.name ==="price"){
+			if(/^\$[0-9]*$/gm.test(e.target.value)){
+				let newPrice = e.target.value.split('$');
+				setFormState({
+					...formState,
+					[e.target.name]: newPrice[1]
+				})
+				return;
+			}else{
+				return;
+			}
+		}
+		if(e.target.name ==="price-slider"){
+			
+				setFormState({
+					...formState,
+					price: e.target.value
+				})
+				return;
+		}
 		setFormState({
 			...formState,
 			[e.target.name]: e.target.value
@@ -198,7 +216,7 @@ const CoachForm = props => {
 								<p>$200</p>
 							</div>
 							<input
-								name="price"
+								name="price-slider"
 								type="range"
 								min="0"
 								max="200"
@@ -213,7 +231,7 @@ const CoachForm = props => {
 							type="text"
 							name="price"
 							placeholder="$"
-							value={`${formState.price}`}
+							value={`$${formState.price}`}
 							onChange={e=>handleChange(e)}
 							// value={formState.company}
 							// onChange={event => setFormState({...formState, company: event.target.value})}
