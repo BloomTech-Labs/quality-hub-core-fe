@@ -51,8 +51,10 @@ export default function SignUp({
 
 	return (
 		<div className='sign-up'>
-			<h1>QualityHub</h1>
-			<h2>Welcome!</h2>
+			<div>
+				<h1>QualityHub</h1>
+				<h2>Welcome!</h2>
+			</div>
 			<br />
 			{/* Insert Google Login Button Here */}
 			{/* <h2 className="sign-up-or">
@@ -60,14 +62,14 @@ export default function SignUp({
       </h2> */}
 			<form onSubmit={handleSubmit}>
 				<div className='input-label'>
-					<label htmlFor='sign-up-email'>Email</label>
+					<label htmlFor='sign-up-email'>Email address</label>
 					<br />
 					<input
 						onBlur={() => setEmailTouched(true)}
 						id='sign-up-email'
 						name='email'
 						type='email'
-						placeholder='Email'
+						// placeholder='Email'
 						value={user.email}
 						onChange={handleChange}
 						required
@@ -82,7 +84,7 @@ export default function SignUp({
 						id='sign-up-password'
 						type='password'
 						name='password'
-						placeholder='Password'
+						// placeholder='Password'
 						value={user.password}
 						onChange={handleChange}
 						required
@@ -102,7 +104,7 @@ export default function SignUp({
 					))}
 
 				{!loading && (
-					<p>
+					<p className='signin-link'>
 						Already have an account? <Link to='/signin'>Sign In</Link>
 					</p>
 				)}
