@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import './CoachForm.scss';
 
-import ProgressBar from './ProgressBar';
-import CoachForm01 from './CoachForm01';
-import CoachForm02 from './CoachForm02';
-import CoachForm03 from './CoachForm03';
-import CoachForm04 from './CoachForm04';
-import CoachForm05 from './CoachForm05';
+// import ProgressBar from './ProgressBar';
+// import CoachForm01 from './CoachForm01';
+// import CoachForm02 from './CoachForm02';
+// import CoachForm03 from './CoachForm03';
+// import CoachForm04 from './CoachForm04';
+// import CoachForm05 from './CoachForm05';
 
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -40,7 +40,7 @@ const INDUSTRIES = gql`
 
 const CoachForm = props => {
 	const node = useRef();
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 
 	// for sure take this out soon // like as soon as auth0 happens
 	useEffect(() => {
