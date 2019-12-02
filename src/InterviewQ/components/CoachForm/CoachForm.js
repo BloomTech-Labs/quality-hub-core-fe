@@ -40,7 +40,7 @@ const INDUSTRIES = gql`
 
 const CoachForm = props => {
 	const node = useRef();
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 
 	// for sure take this out soon // like as soon as auth0 happens
 	useEffect(() => {
@@ -156,7 +156,7 @@ const CoachForm = props => {
 						// value={formState.company}
 						// onChange={event => setFormState({...formState, company: event.target.value})}
 					/>
-					<p className="add-coach-form-row-6">Bio</p>
+					<p className="add-coach-form-row-6">Description</p>
 					<input
 						className="add-coach-form-row-7"
 						type="text"

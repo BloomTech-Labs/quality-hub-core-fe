@@ -28,7 +28,7 @@
 		// border: 1px solid black;
 		padding: 0px !important;
 		p {
-			font-family: SF Pro Display;
+			font-family: "SF Pro Display";
 			font-style: normal;
 			font-weight: 600;
 			font-size: 20px;
@@ -116,7 +116,7 @@
 .add-coach-form-header {
 	color: #096dd9;
 	font-size: 3rem;
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	margin-left: 10px;
@@ -127,7 +127,7 @@
 }
 
 .add-coach-form-row-2 {
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: normal;
 	font-size: 20px;
@@ -136,7 +136,7 @@
 }
 
 .add-coach-form-step-title {
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	font-size: 20px;
@@ -146,7 +146,7 @@
 }
 
 .add-coach-form-sub-title {
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	font-size: 30px;
@@ -156,7 +156,7 @@
 }
 
 .add-coach-form-description {
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: normal;
 	font-size: 20px;
@@ -167,7 +167,7 @@
 
 .add-coach-form-row-6 {
 	margin-top: 24px;
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -177,7 +177,7 @@
 
 .add-coach-form-row-6 {
 	margin-top: 24px;
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -224,7 +224,7 @@
 }
 .add-coach-form-preview-name {
 	margin-top: 79px;
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	font-size: 20px;
@@ -233,7 +233,7 @@
 }
 
 .add-coach-form-preview-amount {
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: normal;
 	font-size: 16px;
@@ -246,7 +246,7 @@
 	p {
 		display: flex;
 		// align-items: center;
-		font-family: SF Pro Display;
+		font-family: "SF Pro Display";
 		font-style: normal;
 		font-weight: normal;
 		font-size: 16px;
@@ -264,7 +264,7 @@
 
 .add-coach-form-preview-description {
 	margin-top: 17px;
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: normal;
 	font-size: 16px;
@@ -297,13 +297,13 @@
 	font-size: 1.4rem;
 	background-color: #096dd9;
 	text-align: center;
-	color: white;
+	color: white !important;
 	border-radius: 1rem;
 	border-radius: 8px;
 	margin-left: 0 !important;
 	margin-right: 0 !important;
 
-	font-family: SF Pro Display;
+	font-family: "SF Pro Display";
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -420,7 +420,7 @@
 	width: 140px;
 	height: 54px;
 	background-color: #096dd9;
-	color: #FFF;
+	color: #FFF !important;
 	font-family: Roboto;
 font-style: Medium;
 font-size: 16px;
