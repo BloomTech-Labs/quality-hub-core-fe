@@ -93,7 +93,7 @@ const CoachForm = props => {
 			setProgress(prog => prog - 1);
 		}
 	};
-
+	console.log(industriesData);
 	return (
 		<div ref={node}>
 			{/* <p onClick={() => setOpen(!open)}>
@@ -148,14 +148,23 @@ const CoachForm = props => {
 						// onChange={event => setFormState({...formState, company: event.target.value})}
 					/>
 					<p className="add-coach-form-row-6">Industry</p>
-					<input
+					{/* <input
 						className="add-coach-form-row-7"
 						type="text"
 						name="industry"
 						placeholder="Select"
 						// value={formState.company}
 						// onChange={event => setFormState({...formState, company: event.target.value})}
-					/>
+					/> */}
+					<select>
+                        {industriesData &&
+                               industriesData.industries.map(industries => {
+                                   return (
+                                       <option value={industries.name} key={industries.name}>{industries.name}</option>
+                                   )
+                               }) 
+                        }
+                    </select>
 					<p className="add-coach-form-row-6">Description</p>
 					<input
 						className="add-coach-form-row-7"
