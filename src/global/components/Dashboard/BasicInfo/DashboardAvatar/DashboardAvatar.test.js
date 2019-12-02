@@ -2,6 +2,23 @@ import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
 import { render } from '@testing-library/react';
 
+
+// removes act warning
+const originalError = console.error;
+beforeAll(() => {
+  console.error = (...args) => {
+    if (/Warning.*not wrapped in act/.test(args[0])) {
+      return;
+    }
+    // originalError.call(console, ...args)
+  };
+});
+
+afterAll(() => {
+  console.error = originalError;
+});
+
+
 // Import component for testing
 import DashboardAvatar from './DashboardAvatar';
 
@@ -21,5 +38,5 @@ it('should display Avatar heading', () => {
 		</MockedProvider>,
 	);
 
-	expect(display.getByText('Avatar'));
+	expect(display.getByText('Photo'));
 });

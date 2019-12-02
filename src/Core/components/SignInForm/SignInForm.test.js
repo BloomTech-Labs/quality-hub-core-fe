@@ -41,10 +41,12 @@ test("is rendering", () => {
       });
     }
   });
-
+  const history = createMemoryHistory({ initialEntries: ["/signin"] });
   rtl.render(
     <ApolloProvider client={client}>
-      <SignInForm />
+      <Router history={history}>
+        <SignInForm />
+      </Router>
     </ApolloProvider>
   );
 });
@@ -74,12 +76,8 @@ test("form", () => {
     </ApolloProvider>
   );
   //fills out the form and clicks Sign in button
-  rtl.fireEvent.change(rtl.getByPlaceholderText(container, "Email"), {
-    target: { value: "dan@quail.com" }
-  });
-  rtl.fireEvent.change(rtl.getByPlaceholderText(container, "Password"), {
-    target: { value: "danquail" }
-  });
+  rtl.fireEvent.change(rtl.getByPlaceholderText(container, "Email"), {target: { value: "dan@quail.com" }});
+  rtl.fireEvent.change(rtl.getByPlaceholderText(container, "Password"), {target: { value: "danquail" }});
   rtl.fireEvent.click(rtl.getByText(container, "Sign in"));
   // Forgot password and Sign up links not working yet will add tests for those when they are active
 });
