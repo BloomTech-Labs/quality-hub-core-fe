@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+// import { Route, Switch, Link } from 'react-router-dom';
 import './CoachForm.scss';
-
-// import ProgressBar from './ProgressBar';
-// import CoachForm01 from './CoachForm01';
-// import CoachForm02 from './CoachForm02';
-// import CoachForm03 from './CoachForm03';
-// import CoachForm04 from './CoachForm04';
-// import CoachForm05 from './CoachForm05';
 
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -59,12 +52,11 @@ const CoachForm = props => {
 	const { data, error } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
 
-	console.log(data);
 	let image;
-	if(data){
-		if(data.me.image_url){
+	if (data) {
+		if (data.me.image_url) {
 			image = data.me.image_url;
-		} else{
+		} else {
 			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; //Need to add a default image here if user hasn't uploaded anything yet
 		}
 	}
@@ -74,65 +66,41 @@ const CoachForm = props => {
 		position: '',
 		industry: '',
 		description: '',
-		city: '',
-		state: '',
 		price: 30,
 	});
 
-	const handleChange = e =>{
-		if(e.target.name ==="price"){
-			if(/^\$[0-9]*$/gm.test(e.target.value)){
+	const handleChange = e => {
+		if (e.target.name === 'price') {
+			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
 				setFormState({
 					...formState,
-					[e.target.name]: newPrice[1]
-				})
+					[e.target.name]: newPrice[1],
+				});
 				return;
-			}else{
+			} else {
 				return;
 			}
 		}
-		if(e.target.name ==="price-slider"){
-			
-				setFormState({
-					...formState,
-					price: e.target.value
-				})
-				return;
+		if (e.target.name === 'price-slider') {
+			setFormState({
+				...formState,
+				price: e.target.value,
+			});
+			return;
 		}
 		setFormState({
 			...formState,
-			[e.target.name]: e.target.value
-		})
-	}
-	// const [accounts, setAccounts] = useState({
-	// 	linkedin_url: '',
-	// 	linkedin_switch: false,
-	// 	github_url: '',
-	// 	github_switch: false,
-	// 	website_url: '',
-	// 	website_switch: false,
-	// 	portfolio_url: '',
-	// 	portfolio_switch: false,
-	// 	twitter_url: '',
-	// 	twitter_switch: false,
-	// });
+			[e.target.name]: e.target.value,
+		});
+	};
 
-	// const [progress, setProgress] = useState(1);
-
-	// const handleProgress = e => {
-	// 	e.preventDefault();
-	// 	if (e.target.value) {
-	// 		setProgress(prog => prog + 1);
-	// 	} else {
-	// 		setProgress(prog => prog - 1);
-	// 	}
-	// };
+	const handleSubmit = e => {
+		e.preventDefault();
+		console.log(formState);
+	};
 	return (
 		<div ref={node}>
-			{/* <p onClick={() => setOpen(!open)}>
-				CREATE A COACH POSTING
-			</p> */}
 			<button onClick={() => setOpen(!open)}>
 				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
 				<span className="add-coach-form-button">Become a coach</span>
@@ -170,8 +138,7 @@ const CoachForm = props => {
 						name="company"
 						placeholder="e.g Google, Facebook..."
 						value={formState.company}
-						// onChange={event => setFormState({...formState, company: event.target.value})}
-						onChange={e=>handleChange(e)}
+						onChange={handleChange}
 					/>
 					<p className="add-coach-form-row-6">Position</p>
 					<input
@@ -180,35 +147,30 @@ const CoachForm = props => {
 						name="position"
 						placeholder="e.g UX Designer, Software Engineer..."
 						value={formState.position}
-						onChange={e=>handleChange(e)}
-						// onChange={event => setFormState({...formState, company: event.target.value})}
+						onChange={handleChange}
 					/>
 					<p className="add-coach-form-row-6">Industry</p>
-					{/* <input
-						className="add-coach-form-row-7"
-						type="text"
+					<select
 						name="industry"
-						placeholder="Select"
-						// value={formState.company}
-						// onChange={event => setFormState({...formState, company: event.target.value})}
-					/> */}
-					<select>
-                        {industriesData &&
-                               industriesData.industries.map(industries => {
-                                   return (
-                                       <option value={industries.name} key={industries.name}>{industries.name}</option>
-                                   )
-                               }) 
-                        }
-                    </select>
+						value={formState.industry}
+						onChange={handleChange}>
+						{industriesData &&
+							industriesData.industries.map(industries => {
+								return (
+									<option value={industries.name} key={industries.name}>
+										{industries.name}
+									</option>
+								);
+							})}
+					</select>
 					<p className="add-coach-form-row-6">Description</p>
 					<input
 						className="add-coach-form-row-7"
 						type="text"
-						name="bio"
+						name="description"
 						placeholder="eg. I am a software developer at Google with 12 years of experience under my belt..."
-						// value={formState.company}
-						// onChange={event => setFormState({...formState, company: event.target.value})}
+						value={formState.description}
+						onChange={handleChange}
 					/>
 
 					<hr className="add-coach-form-hr-1" />
@@ -231,8 +193,8 @@ const CoachForm = props => {
 								type="range"
 								min="0"
 								max="200"
-								  value={formState.price <= 200 ? formState.price: 200}
-								  onChange={(e)=>handleChange(e)}
+								value={formState.price <= 200 ? formState.price : 200}
+								onChange={handleChange}
 								step="1"
 							/>
 						</div>
@@ -243,15 +205,9 @@ const CoachForm = props => {
 							name="price"
 							placeholder="$"
 							value={`$${formState.price}`}
-							onChange={e=>handleChange(e)}
-							// value={formState.company}
-							// onChange={event => setFormState({...formState, company: event.target.value})}
+							onChange={handleChange}
 						/>
 					</div>
-
-					{/* <img src="../../../globalIcons/close.svg" /> */}
-
-					{/* <CoachForm01 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress} industriesData={industriesData}/> */}
 
 					<hr className="add-coach-form-hr-1" />
 
@@ -263,19 +219,20 @@ const CoachForm = props => {
 						profile to go live!
 					</p>
 					<div className="add-coach-form-preview-container">
-						{/* <button> */}
-						{/* // className="close-coach-form-button" */}
-
 						<div className="add-coach-form-preview-close">
 							<Icon icon={ICONS.CLOSE} width={24} height={24} />
 						</div>
 						<div className="add-coach-form-preview-top">
 							<div className="add-coach-form-preview-top-text">
-								<p className="add-coach-form-preview-name">{data && `${data.me.first_name} ${data.me.last_name}`}</p>
-								<p className="add-coach-form-preview-amount">${formState.price} per hour</p>
+								<p className="add-coach-form-preview-name">
+									{data && `${data.me.first_name} ${data.me.last_name}`}
+								</p>
+								<p className="add-coach-form-preview-amount">
+									${formState.price} per hour
+								</p>
 							</div>
 							<img
-							className="add-coach-form-preview-coach-photo"
+								className="add-coach-form-preview-coach-photo"
 								src={image}
 								alt="Coach Profile Pic"
 							/>
@@ -291,9 +248,11 @@ const CoachForm = props => {
 										color="#595959"
 									/>
 								</span>
-								{/* Software Engineer */}
-					{formState.company}{formState.company !== '' && formState.position !== '' ? ' - ' : null}{formState.position}
-								{/* {post.industry.name} */}
+								{formState.company}
+								{formState.company !== '' && formState.position !== ''
+									? ' - '
+									: null}
+								{formState.position}
 							</p>
 							<p>
 								<span className="coachcard-icon">
@@ -304,10 +263,7 @@ const CoachForm = props => {
 										color="#595959"
 									/>
 								</span>
-								{/* Google - Mountain View, California */}
-								{/* {formState.company} */}
 								{data && `${data.me.city}, ${data.me.state}`}
-								{/* {post.position} - {coach.city}, {coach.state} */}
 							</p>
 							<p>
 								<span className="coachcard-icon">
@@ -323,11 +279,6 @@ const CoachForm = props => {
 						</div>
 						<p className="add-coach-form-preview-description">
 							{formState.description}
-							{/* I'm a seasoned software engineer who has worked at and made an
-							impact at some of the biggest companies in the industry. I am
-							currently a technical lead/senior software engineer at Google
-							where I work on the API, backend and data infrastructure for an
-							enterprise product called Talent Insights. */}
 						</p>
 						<div className="coachcard-footer">
 							<div className="coachcard-links">
@@ -347,11 +298,12 @@ const CoachForm = props => {
 						<button className="add-coach-form-save-and-exit">
 							Save and exit
 						</button>
-						<button className="add-coach-form-publish">Publish</button>
+						<button
+							className="add-coach-form-publish"
+							onClick={e => handleSubmit(e)}>
+							Publish
+						</button>
 					</div>
-					{/* <CoachForm02 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} setProgress={setProgress}/> */}
-
-					{/* <CoachForm04 {...props} formState={formState} setFormState={setFormState} handleProgress={handleProgress} accounts={accounts} setAccounts={setAccounts} setProgress={setProgress}/> */}
 				</div>
 			)}
 		</div>
