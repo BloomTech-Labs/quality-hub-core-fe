@@ -35,6 +35,20 @@ export const EDIT_USER = gql`
 			payment_info: $payment_info
 		) {
 			id
+			first_name
+			last_name
+			email
+			city
+			state
+			gender
+			personal_url
+			blog_url
+			twitter_url
+			linkedin_url
+			github_url
+			portfolio_url
+			bio
+			payment_info
 		}
 	}
 `;

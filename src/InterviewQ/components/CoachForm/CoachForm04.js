@@ -31,25 +31,27 @@ const CoachForm = ({setFormState, formState, history, accounts, setAccounts, pro
     const [addPost, error] = useMutation(ADD_POST);
 
     function submitHandler () {
-        setProgress(4)
+        // setProgress(4)
 
-        addPost({ formState })
-        .then(results => {
-            console.log(results)
-            setTimeout(() => {
+        // addPost({ formState })
+        // .then(results => {
+        //     console.log(results)
+        //     setTimeout(() => {
 
-                history.push("/addcoach/05")
-            }, 3000);
-        })
-        .catch(err => {
-            console.log(err)
-            console.log(error)
-        })
+        //         history.push("/addcoach/05")
+        //     }, 3000);
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        //     console.log(error)
+        // })
+        console.log('submit handler');
     }
     
     function backHandler () {
-        setProgress(2)
-        history.push("/addcoach/02")
+        console.log('back handler')
+        // setProgress(2)
+        // history.push("/addcoach/02")
     }
      
     return(

@@ -43,7 +43,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	}
 
 	return (
-		<div className='styled-nav'>
+		<div className='styled-nav' id="main-navbar">
 			{/* Animated quailnana flying across the screen */}
 			<div className='nav-left'>
 				{/* <div className="bird"></div> */}
