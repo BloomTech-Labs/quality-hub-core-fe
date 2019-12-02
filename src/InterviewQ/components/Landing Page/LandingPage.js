@@ -38,6 +38,7 @@ export default function InterviewLandingPage() {
 		industry: '',
 		orderBy: '',
 	});
+	
 
 	const { refetch, loading, error, data: userData } = useQuery(GET_USER);
 
@@ -74,6 +75,7 @@ export default function InterviewLandingPage() {
 						//if no post made, allow to create a post
 						<CoachForm refetch={refetch}/>:  
 
+						//while checking if user has a post, leave button off page
 						null:
 						
 						//if no token link to signin

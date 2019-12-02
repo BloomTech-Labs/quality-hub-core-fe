@@ -8,19 +8,24 @@ import Search from '../Search';
 
 import './CoachList.scss'
 
-const GET_POSTS = gql`
+export const GET_POSTS = gql`
   query GET_POSTS($industry: String, $price: String, $orderBy: String, $tags: String){
     posts (industry: $industry, price: $price, orderBy: $orderBy, tags: $tags) {
+      id
       price
       position
       description
+      company
       industry {
+        id
         name
       }
       tags {
+        id
         name
       }
       coach {
+        id
         first_name
         last_name
         city
