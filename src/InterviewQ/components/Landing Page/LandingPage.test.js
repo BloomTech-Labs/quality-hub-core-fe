@@ -10,22 +10,29 @@ afterEach(rtl.cleanup);
 const container = document.body;
 
 //get rid of act() warning
-const originalError = console.error;
-beforeAll(() => {
-  console.error = (...args) => {
-    if (/Warning.*not wrapped in act/.test(args[0])) {
-      return;
-    }
-    // originalError.call(console, ...args)
-  };
-});
+// const originalError = console.error;
+// beforeAll(() => {
+//   console.error = (...args) => {
+//     if (/Warning.*not wrapped in act/.test(args[0])) {
+//       return;
+//     }
+//     // originalError.call(console, ...args)
+//   };
+// });
 
-afterAll(() => {
-  console.error = originalError;
-});
+// afterAll(() => {
+//   console.error = originalError;
+// });
 
+async function wait(ms = 0) {
+  await rtl.act(() => {
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
+    });
+  });
+} 
 
-it('renders w/o crashing', () => {
+it('renders w/o crashing', async () => {
     const history = createMemoryHistory({ initialEntries: ["/interviewq"] });
     rtl.render(
         <Router history={history}>
@@ -33,11 +40,11 @@ it('renders w/o crashing', () => {
                 <LandingPage />
             </MockedProvider>
         </Router>
-    )
-    
+    ) 
+    await wait();
 })
 
-it('renders header', () => {
+it('renders header', async () => {
     const history = createMemoryHistory({ initialEntries: ["/interviewq"] });
     rtl.render(
         <Router history={history}>
@@ -46,11 +53,11 @@ it('renders header', () => {
             </MockedProvider>
         </Router>
     )
-    
+    await wait();
     rtl.getAllByText(container, "InterviewQ")
 })
 
-it('buttons show', () => {
+it('buttons show', async () => {
     const history = createMemoryHistory({ initialEntries: ["/interviewq"] });
     rtl.render(
         <Router history={history}>
@@ -59,9 +66,20 @@ it('buttons show', () => {
             </MockedProvider>
         </Router>
     )
-    
+    await wait();
     rtl.getByText(container, "Become a coach")
     rtl.getByText(container, "Filters")
-    
 })
 
+it('filter works', async () => {
+    const history = createMemoryHistory({ initialEntries: ["/interviewq"] });
+    rtl.render(
+        <Router history={history}>
+            <MockedProvider>
+                <LandingPage />
+            </MockedProvider>
+        </Router>
+    )
+    await wait();
+    rtl.fireEvent.click(rtl.getByText(container, "Filters"))
+})
