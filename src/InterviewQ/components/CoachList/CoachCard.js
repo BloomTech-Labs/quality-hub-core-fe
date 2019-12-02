@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { tag } from 'postcss-selector-parser';
 
 // Styles & Icons
@@ -7,8 +7,14 @@ import './CoachCard.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
+//component
+import './CoachCardModal.js';
+
 const CoachCard = ({ post }) => {
 	let { coach } = post;
+	const [open, setOpen ] = useState(false);
+
+	
 
 	return (
 		<div className='coach-card'>
@@ -71,6 +77,7 @@ const CoachCard = ({ post }) => {
 				</button>
 			</div>
 		</div>
+		
 	);
 };
 

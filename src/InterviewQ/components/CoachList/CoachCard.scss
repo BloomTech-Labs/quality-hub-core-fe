@@ -90,6 +90,13 @@
 			font-size: 1.6rem;
 			line-height: 2.4rem;
 			color: #3c4043;
+			white-space: nowrap; 
+			width: 150px; 
+			overflow: hidden;
+			text-overflow: ellipsis; 
+		}
+		.coachcard-seemore {
+			color: #096DD9;
 		}
 	}
 
@@ -118,3 +125,6 @@
 		}
 	}
 }
+
+
+

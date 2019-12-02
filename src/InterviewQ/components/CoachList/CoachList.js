@@ -40,15 +40,17 @@ const GET_POSTS = gql`
 const CoachList = ({ toggleFilter, setToggleFilter }) => {
   const [fields, setFields] = useState({tags:"", price: "", industry: "", orderBy: "id_ASC"});
   const { refetch, loading, error, data } = useQuery(GET_POSTS);
+
+
+  
     return(
       <div className="coach-list-container">
         {toggleFilter && <Search setFields={setFields} fields={fields} refetch={refetch} toggleFilter={toggleFilter} setToggleFilter={setToggleFilter}/> }
         <hr />
         { !loading && data && <div className="coach-list">
           {data.posts.map(post => 
-            <CoachCard post={post} />
+          <CoachCard post={post} /> 
           )}
-
         </div>
       }
       </div>
