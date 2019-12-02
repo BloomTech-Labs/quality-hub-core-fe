@@ -25,6 +25,7 @@ const GET_POSTS = gql`
 				name
 			}
 			coach {
+				id
 				first_name
 				last_name
 				city
@@ -56,6 +57,8 @@ const CoachList = () => {
 		fetchPosts();
 	}, []);
 
+	error && console.log(error);
+
 	return (
 		<div className='coach-list-container'>
 			{/* <h1>Interview Q</h1>
@@ -64,6 +67,7 @@ const CoachList = () => {
             <FilterList fields={fields} setFields={setFields}/>
           </div> */}
 			{/* <hr /> */}
+			{loading && <p>Loading...</p>}
 			{data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (

@@ -25,6 +25,15 @@ export default function Search({ fields, setFields }) {
 		setFields({ ...fields, [e.target.name]: e.target.value });
 	};
 
+	const handleReset = () => {
+		setFields({
+			tag: '',
+			price: '',
+			industry: '',
+			orderBy: '',
+		});
+	};
+
 	return (
 		<div>
 			<div className='search-dropdowns'>
@@ -85,11 +94,14 @@ export default function Search({ fields, setFields }) {
 						type='text'
 						name='tag'
 						onChange={handleChange}
+						value={fields.tag}
 						placeholder='&#128269; Search by keyword...'
 					/>
 				</div>
 				<div className='search-buttons'>
-					<button className='search-reset'>Reset Filters</button>
+					<button className='search-reset' onClick={handleReset}>
+						Reset Filters
+					</button>
 					<button className='search-apply'>Search</button>
 				</div>
 			</div>
