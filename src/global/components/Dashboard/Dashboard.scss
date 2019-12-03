@@ -41,6 +41,12 @@
 	}
 }
 
+.dash-personalinfo {
+	flex-grow: 2;
+	width: 100%;
+	margin: 0 auto;
+}
+
 .dashboard-left-bar {
 	z-index: 910;
 	position: fixed;
@@ -140,12 +146,6 @@
 	p:hover {
 		cursor: pointer;
 	}
-}
-
-.dashboard-routes {
-	flex-grow: 2;
-	width: 100%;
-	margin: 0 auto;
 }
 
 // .dashboard-top-links {

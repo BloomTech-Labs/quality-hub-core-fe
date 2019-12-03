@@ -4,26 +4,25 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Components
-import DashboardAvatar from './DashboardAvatar';
 import DashboardInput from '../DashboardInput';
 
 // Query
-const GET_BASICINFO = gql`
+const GET_ACCOUNTS = gql`
 	query {
 		me {
 			id
-			bio
-			first_name
-			last_name
-			email
-			city
-			state
+			linkedin_url
+			github_url
+			personal_url
+			twitter_url
+			portfolio_url
+			blog_url
 		}
 	}
 `;
 
-const BasicInfo = () => {
-	const { data, loading, error } = useQuery(GET_BASICINFO);
+const Experience = () => {
+	const { data, loading, error } = useQuery(GET_ACCOUNTS);
 
 	error && console.log(error);
 
@@ -33,8 +32,7 @@ const BasicInfo = () => {
 
 	return (
 		<div className='editform'>
-			<h2>Basic Info</h2>
-			<DashboardAvatar />
+			<h2>Linked Accounts</h2>
 			{loading && <p>Loading...</p>}
 			{data &&
 				keys.map(item => (
@@ -44,4 +42,4 @@ const BasicInfo = () => {
 	);
 };
 
-export default BasicInfo;
+export default Experience;
