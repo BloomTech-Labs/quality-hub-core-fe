@@ -2,6 +2,33 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+@font-face {
+	font-family: 'SFProDisplay';
+	src: local('SFProDisplay'),
+		url(./fonts/SFProDisplay/SF-Pro-Display-Regular.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'SFProDisplay';
+	font-weight: 600;
+	src: local('SFProDisplay'),
+		url(./fonts/SFProDisplay/SF-Pro-Display-Semibold.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'SFProDisplay';
+	font-weight: 900;
+	src: local('SFProDisplay'),
+		url(./fonts/SFProDisplay/SF-Pro-Display-Heavy.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'SFProDisplay';
+	font-weight: 700;
+	src: local('SFProDisplay'),
+		url(./fonts/SFProDisplay/SF-Pro-Display-Bold.otf) format('opentype');
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -14,7 +41,7 @@ html {
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'SFProDisplay', 'Roboto', sans-serif;
 	line-height: 1.5;
 	overflow-x: hidden;
 }
@@ -184,18 +211,18 @@ textarea {
 }
 
 #overlay {
-    position: fixed;
-    display: none;
-    width: 100%; 
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(72, 72, 72, 0.4);
-    z-index: 999;
-    cursor: not-allowed;
-  }
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(72, 72, 72, 0.4);
+	z-index: 999;
+	cursor: not-allowed;
+}
 
 .default-btn {
 	background-color: white;
