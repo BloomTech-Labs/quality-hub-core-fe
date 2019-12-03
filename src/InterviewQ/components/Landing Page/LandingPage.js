@@ -8,6 +8,7 @@ import { gql } from 'apollo-boost';
 import './LandingPage.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
+import { lightbulb2 } from '../../../globalIcons/lightbulb2';
 
 // Components
 // import LandingPageCTA from './LandingPageCTA';
@@ -50,7 +51,6 @@ export default function InterviewLandingPage() {
 		}
 	}, [userData]);
 
-	// console.log(userData);
 	return (
 		<div className='interview-container' id='interview-container'>
 			{/* <LandingPageCTA /> */}
@@ -67,8 +67,9 @@ export default function InterviewLandingPage() {
 									<Link
 										to='/dashboard/coachinfo'
 										className='become-a-coach-reroute-to-signin'>
-										<button>
-											<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+										<button className='become-a-coach-btn'>
+											{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
+											{lightbulb2()}
 											<span className='add-coach-form-button'>Edit Post</span>
 										</button>
 									</Link>
@@ -80,9 +81,10 @@ export default function InterviewLandingPage() {
 							null
 						) : (
 							//if no token link to signin
-							<Link to='/signin' className='become-a-coach-reroute-to-signin'>
-								<button>
-									<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+							<Link to='/signup' className='become-a-coach-reroute-to-signin'>
+								<button className='become-a-coach-btn'>
+									{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
+									{lightbulb2()}
 									<span className='add-coach-form-button'>Become a coach</span>
 								</button>
 							</Link>
