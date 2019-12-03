@@ -344,6 +344,7 @@ $main-font-family: 'SF Pro Display';
 	}
 }
 .interview-button {
+	border: none !important;
 	width: 100%;
 	margin-top: 33px !important;
 	height: 45px;
@@ -403,6 +404,7 @@ $main-font-family: 'SF Pro Display';
 	font-size: 16px;
 	line-height: 24px;
 	line-height: 128%;
+	border: none !important;
 }
 
 .add-coach-form-bottom-buttons {

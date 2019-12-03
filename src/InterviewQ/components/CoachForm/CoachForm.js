@@ -264,7 +264,7 @@ const CoachForm = props => {
 					<button
 						className="close-coach-form-button"
 						onClick={() => closeWindow()}>
-						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+						<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 					</button>
 					<div className="add-coach-form-row-1">
 						<div>{lightbulb()}</div>{' '}
@@ -384,7 +384,7 @@ const CoachForm = props => {
 					</p>
 					<div className="add-coach-form-preview-container">
 						<div className="add-coach-form-preview-close">
-							<Icon icon={ICONS.CLOSE} width={24} height={24} />
+							<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 						</div>
 						<div className="add-coach-form-preview-top">
 							<div className="add-coach-form-preview-top-text">
