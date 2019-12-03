@@ -74,8 +74,8 @@ const Dashboard = ({ setLoggedin }) => {
 				Object.keys(userData.me).forEach(field => {
 					myArray.push(field);
 				})}
+			<LeftNavBar setLoggedin={setLoggedin} />
 			<div className='lower-dashboard'>
-				<LeftNavBar setLoggedin={setLoggedin} />
 				<div className='dashboard-routes'>
 					{/* <div className='dashboard-top-links'>
 						<Link to='/dashboard'>Basic Info</Link>
