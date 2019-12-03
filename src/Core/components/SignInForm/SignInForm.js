@@ -58,7 +58,7 @@ const SignInForm = props => {
 			.catch(err => {
 				setLoading(false);
 			});
-		console.log(user);
+		// console.log(user);
 	};
 
 	return (

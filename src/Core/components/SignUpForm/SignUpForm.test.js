@@ -90,8 +90,8 @@ test("form", async () => {
   );
 
   //fill out the form
-  rtl.fireEvent.change(rtl.getByPlaceholderText(container, "Email"), {target: { value: "justintesting@live.com" }});
-  rtl.fireEvent.change(rtl.getByPlaceholderText(container, "Password"), {target: { value: "justin" }});
+  rtl.fireEvent.change(rtl.getByLabelText(container, "Email address"), {target: { value: "justintesting@live.com" }});
+  // rtl.fireEvent.change(rtl.getByLabelText(container, " Password "), {target: { value: "justin" }});
   
   rtl.fireEvent.click(rtl.getByText(container, "Sign Up"))
 });

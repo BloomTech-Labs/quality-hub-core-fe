@@ -17,13 +17,13 @@ import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
 import CoachForm from '../CoachForm/CoachForm';
 
-const GET_USER = gql`
+export const GET_USER = gql`
 	query {
 		me {
 			id
-			post{
-        id
-      }
+			post {
+        		id
+      		}
 		}
 	}
 `;
@@ -52,7 +52,7 @@ export default function InterviewLandingPage() {
 		}
 	},[userData]);
 	
-console.log(userData);
+// console.log(userData);
 	return (
 		<div className='interview-container' id="interview-container">
 			{/* <LandingPageCTA /> */}
