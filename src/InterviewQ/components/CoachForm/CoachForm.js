@@ -8,6 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 import { lightbulb } from '../../../globalIcons/lightbulb';
+import { lightbulb2 } from '../../../globalIcons/lightbulb2';
 import { checkcircle } from '../../../globalIcons/checkcircle';
 
 import { GET_POSTS } from '../CoachList/CoachList';
@@ -224,8 +225,9 @@ const CoachForm = props => {
 	};
 	return (
 		<div ref={node}>
-			<button onClick={() => setOpen(!open)}>
-				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+			<button onClick={() => setOpen(!open)} className="become-a-coach-btn">
+				{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
+				{lightbulb2()}
 				<span className="add-coach-form-button">Become a coach</span>
 			</button>
 			{/* This is the 2nd modal that pops up after you publish a post */}
