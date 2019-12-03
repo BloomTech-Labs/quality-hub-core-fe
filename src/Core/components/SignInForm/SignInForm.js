@@ -4,8 +4,10 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Link } from 'react-router-dom';
 
-// Styles
+// Styles & Icons
 import './SignInForm.scss';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 // Components
 import Loading from '../Loading';
@@ -27,10 +29,9 @@ const SignInForm = props => {
 		email: '',
 		password: '',
 	});
-
+	const [showPassword, setShowPassword] = useState(true);
 	const [loading, setLoading] = useState(false);
-
-	const [login, loginStatus] = useMutation(LOGIN);
+	const [login] = useMutation(LOGIN);
 
 	const handleChange = e => {
 		setUser({
@@ -62,8 +63,10 @@ const SignInForm = props => {
 
 	return (
 		<div className='sign-in-form'>
-			<h1>QualityHub</h1>
-			<h2>Welcome back!</h2>
+			<div>
+				<h1>QualityHub</h1>
+				<h2>Welcome back!</h2>
+			</div>
 			<br />
 			{/* Insert Google Login Button Here */}
 			{/* <h2 className="sign-in-or">
@@ -72,28 +75,52 @@ const SignInForm = props => {
 
 			<form onSubmit={handleSubmit}>
 				<div className='input-label'>
-					<label htmlFor='email'>Email</label>
+					<label htmlFor='email'>Email address</label>
 					<br />
 					<input
-						placeholder='Email'
+						// placeholder='Email'
 						name='email'
 						value={user.email}
 						onChange={handleChange}
 						id='email'
 					/>
+					<div className='signin-icon'>
+						<Icon icon={ICONS.EMAIL} width={22} height={18} color='#5f6368' />
+					</div>
 				</div>
 				<br />
 				<div className='input-label'>
 					<label htmlFor='password'> Password </label>
 					<br />
 					<input
-						placeholder='Password'
+						// placeholder='Password'
 						name='password'
-						type='password'
+						type={showPassword ? 'password' : 'text'}
 						id='password'
 						value={user.password}
 						onChange={handleChange}
 					/>
+					<div
+						className='signin-icon'
+						style={{ cursor: 'pointer' }}
+						onClick={() => setShowPassword(!showPassword)}>
+						{showPassword && (
+							<Icon
+								icon={ICONS.PASSWORD_Y}
+								width={22}
+								height={19}
+								color='#5f6368'
+							/>
+						)}
+						{!showPassword && (
+							<Icon
+								icon={ICONS.PASSWORD_N}
+								width={22}
+								height={19}
+								color='#5f6368'
+							/>
+						)}
+					</div>
 					<p>
 						<Link to='/forgotPassword'>Forgot password?</Link>
 					</p>
@@ -108,7 +135,7 @@ const SignInForm = props => {
 						</button>
 					))}
 				{!loading && (
-					<p>
+					<p className='signup-link'>
 						Don't have an account? <Link to='/signup'>Sign up</Link>
 					</p>
 				)}
