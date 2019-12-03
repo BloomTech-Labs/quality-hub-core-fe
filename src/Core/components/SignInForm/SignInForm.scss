@@ -49,6 +49,15 @@
 			width: 3rem;
 		}
 
+		.signin-icon-pw {
+			display: flex;
+			justify-content: flex-end;
+			position: relative;
+			left: calc(100% - 4.5rem);
+			bottom: 5rem;
+			width: 3rem;
+		}
+
 		input {
 			height: 4rem;
 			width: 100%;

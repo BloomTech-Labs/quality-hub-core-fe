@@ -100,8 +100,11 @@ const SignInForm = props => {
 						value={user.password}
 						onChange={handleChange}
 					/>
+					<p>
+						<Link to='/forgotPassword'>Forgot password?</Link>
+					</p>
 					<div
-						className='signin-icon'
+						className='signin-icon-pw'
 						style={{ cursor: 'pointer' }}
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword && (
@@ -121,9 +124,6 @@ const SignInForm = props => {
 							/>
 						)}
 					</div>
-					<p>
-						<Link to='/forgotPassword'>Forgot password?</Link>
-					</p>
 				</div>
 				<br />
 				{!loading &&

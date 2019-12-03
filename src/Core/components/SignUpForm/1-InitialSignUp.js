@@ -94,23 +94,24 @@ export default function SignUp({
 						onChange={handleChange}
 						required
 					/>
+					<p className='password-minlength'>Minimum length is 6 characters</p>
 					<div
-						className='signup-icon'
+						className='signup-icon-pw'
 						style={{ cursor: 'pointer' }}
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword && (
 							<Icon
 								icon={ICONS.PASSWORD_Y}
-								width={22}
-								height={19}
+								width={24}
+								height={24}
 								color='#5f6368'
 							/>
 						)}
 						{!showPassword && (
 							<Icon
 								icon={ICONS.PASSWORD_N}
-								width={22}
-								height={19}
+								width={24}
+								height={24}
 								color='#5f6368'
 							/>
 						)}
