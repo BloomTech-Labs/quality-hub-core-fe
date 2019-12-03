@@ -41,8 +41,9 @@
 	}
 }
 
-.dash-personalinfo {
-	flex-grow: 2;
+.dash-personalinfo,
+.schedule {
+	// flex-grow: 2;
 	width: 100%;
 	margin: 0 auto;
 }
