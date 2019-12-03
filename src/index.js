@@ -7,50 +7,38 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 require('dotenv').config();
 
-
-// const checkLogin = () => {
-//   if(localStorage.getItem('token')) {
-//     return true
-//   } else {
-//     return false
-//   }
-// }
-
-
 const getToken = () => {
-  let token = localStorage.getItem('token');
-  return token ? `Bearer ${token}` : '';
+	let token = localStorage.getItem('token');
+	return token ? `Bearer ${token}` : '';
 };
-const cache = new InMemoryCache({});
+
+const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
-  request: operation => {
-    operation.setContext({
-      headers: {
-        Authorization: getToken(),
-      },
-    });
-  },
-   cache,
-   resolvers: {},
-//  cache: cache,
-//  clientState: {
-//    isLoggedIn: !!localStorage.getItem("token")
-//  }
+	uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
+	request: operation => {
+		operation.setContext({
+			headers: {
+				Authorization: getToken(),
+			},
+		});
+	},
+	cache,
+	resolvers: {},
 });
 
 cache.writeData({
-  data: {
-    isLoggedIn: !!localStorage.getItem("token"),
-  },
+	data: {
+		isLoggedIn: !!localStorage.getItem('token'), // Logic needs update
+		isCoach: false, // Needs update
+	},
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Router>
-      <App />
-    </Router>
-  </ApolloProvider>,
-  document.getElementById('root'),
+	<ApolloProvider client={client}>
+		<Router>
+			<App />
+		</Router>
+	</ApolloProvider>,
+	document.getElementById('root'),
 );
