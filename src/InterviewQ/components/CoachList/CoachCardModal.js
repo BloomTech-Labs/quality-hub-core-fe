@@ -2,6 +2,7 @@ import React , { useState, useEffect } from 'react';
 import CoachCard from "./CoachCardExpand.js";
 
 
+
 const CoachCardModal = ({post}) => {
 // let { coach } = post;
     const [open, setOpen ] = useState(false);
@@ -23,9 +24,8 @@ const CoachCardModal = ({post}) => {
             <p className='coachcard-seemore'>See more </p>
             </button>
             {open && (
-                // <div className='coachcard-expand'>
                   <CoachCard post={post}/>
-                 // </div> 
+            
             )}
         </div>
 

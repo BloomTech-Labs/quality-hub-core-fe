@@ -7,6 +7,7 @@ import './CoachCard.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
+//Component 
 import CoachModal from "./CoachCardModal.js"
 
 const CoachCard = ({ post }) => {
@@ -60,7 +61,7 @@ const CoachCard = ({ post }) => {
 				</p>
 			</div>
 			<div className='coachcard-description'>
-				<p>{post.description}</p><CoachModal post={post}/>
+				<p>{post.description}</p> <CoachModal post={post}/>
 				{/* {post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
 					))} */}

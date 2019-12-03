@@ -126,127 +126,55 @@
 	}
 }
 
-.coachcard-expand {
-	position: absolute;
-	width: 416px;
-	height: 80%;
-	overflow: auto;
-	overflow-x: hidden;
-	left: 50%;
-	transform: translate(-50%);
-	padding-top: 120px;
-	padding-left: 91px;
-	padding-right: 91px;
-	background: white;
-	border-radius: 10px;
-	text-align: left;
-	z-index: 1000;
-	.coachcard-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+// .coachcard-expand {
+// 	position: absolute;
+// 	width: 416px;
+// 	height: 80%;
+// 	overflow: auto;
+// 	overflow-x: hidden;
+// 	left: 50%;
+// 	transform: translate(-50%);
+// 	padding-top: 120px;
+// 	padding-left: 91px;
+// 	padding-right: 91px;
+// 	background: white;
+// 	border-radius: 10px;
+// 	text-align: left;
+// 	z-index: 1000;
+// 	.coachcard-header {
+// 		display: flex;
+// 		justify-content: space-between;
+// 		align-items: center;
 
-		.coachcard-header-txt {
-			text-align: left;
+// 		.coachcard-header-txt {
+// 			text-align: left;
 
-			h3 {
-				font-size: 2rem;
-				font-weight: 600;
-				font-style: normal;
-				line-height: 2.8rem;
-				color: #262626;
-			}
+// 			h3 {
+// 				font-size: 2rem;
+// 				font-weight: 600;
+// 				font-style: normal;
+// 				line-height: 2.8rem;
+// 				color: #262626;
+// 			}
 
-			h4 {
-				font-size: 1.6rem;
-				font-weight: normal;
-				line-height: 2.4rem;
-			}
-		}
+// 			h4 {
+// 				font-size: 1.6rem;
+// 				font-weight: normal;
+// 				line-height: 2.4rem;
+// 			}
+// 		}
 
-		.coach-photo {
-			width: 8.3rem;
-			height: 8.3rem;
-			border-radius: 50%;
-			overflow: hidden;
-			// img {
-			// 	// clip-path: circle(50% at 50% 50%);
-			// }
-		}
-	}
+// 		.coach-photo {
+// 			width: 8.3rem;
+// 			height: 8.3rem;
+// 			border-radius: 50%;
+// 			overflow: hidden;
+// 			// img {
+// 			// 	// clip-path: circle(50% at 50% 50%);
+// 			// }
+// 		}
+// 	}
 
-	// .coach-text {
-	// width: 100%;
-	// .flex-sect {
-	// 	display: flex;
-	// 	.left-side {
-	// 		width: 70%;
-	// 	}
-	// }
 
-	// 		text-align: left;
-
-	// 		.coachcard-footer {
-	// 			display: flex;
-	// 			width: 100%;
-	// 			justify-content: space-between;
-	// 		}
-	// 	}
-
-	.coachcard-info {
-		p {
-			display: flex;
-			align-items: center;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 1.6rem;
-			line-height: 2.4rem;
-			color: #595959;
-
-			.coachcard-icon {
-				width: 2.8rem;
-				display: inline-block;
-			}
-		}
-	}
-
-	.coachcard-description-expand {
-		p {
-			font-style: normal;
-			font-weight: normal;
-			font-size: 1.6rem;
-			line-height: 2.4rem;
-			color: #3c4043;
-			
-		}
-		
-	}
-
-	.coachcard-footer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		.coachcard-links {
-			width: 6.2rem;
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.interview-button {
-			font-size: 1.4rem;
-			font-style: normal;
-			// font-weight: 600;
-			line-height: 2.2rem;
-			background-color: $main-blue;
-			text-align: center;
-			color: white;
-			border-radius: 0.5rem;
-			width: 50.23rem;
-			height: 4.2rem;
-		}
-	}
-
-}
 
 

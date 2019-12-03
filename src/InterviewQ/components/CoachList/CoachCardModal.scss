@@ -1,0 +1,128 @@
+@import '../../../globalStyles/variables';
+
+
+
+
+.coachcard-expand {
+		display: flex;
+		// width: 31.3rem;
+		// height: 50.1rem;
+		padding: 3rem;
+		// box-shadow: 2px 2px 5px gray;
+		border: 1px solid silver;
+		border-radius: 1rem;
+		margin-bottom: 1.3rem;
+		flex-direction: column;
+		justify-content: space-between;
+	
+		text-align: left;
+
+		position: absolute;
+		width: 416px;
+		height: 70%;
+		overflow: auto;
+
+		// overflow-x: hidden;
+
+		left: 50%;
+		top: 75%;
+
+		transform: translate(-50%);
+		padding-top: 120px;
+		padding-left: 91px;
+		padding-right: 91px;
+		background: white;
+		border-radius: 10px;
+		text-align: left;
+		z-index: 1000;
+
+	.coachcard-header-expand {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 350px;
+
+			.coachcard-header-txt-expand {
+					text-align: left;
+					
+					h3 {
+						font-size: 2rem;
+						font-weight: 600;
+						font-style: normal;
+						line-height: 2.8rem;
+						color: #262626;
+					}
+					h4 {
+						font-size: 1.6rem;
+						font-weight: normal;
+						line-height: 2.4rem;
+					}
+			}
+
+			.coach-photo-expand {
+				width: 8.3rem;
+				height: 8.3rem;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+	}
+	.coachcard-info-expand {
+		p {
+			display: flex;
+			align-items: center;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+			color: #595959;
+			
+
+			.coachcard-icon-expand {
+				width: 4.8rem;
+				display: inline-block;
+			}
+		}
+	}
+
+.coachcard-description-expand {
+    p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+		color: #3c4043;
+		overflow: visible;
+		white-space: nowrap;
+		width:400px;
+		text-overflow: none; 
+		overflow-wrap: break-word;
+    }
+    
+}
+
+.coachcard-footer-expand {
+    display: flex;
+    justify-content: space-between;
+	align-items: center;
+	width: 300px;
+
+    .coachcard-links-expand {
+        width: 6.2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .interview-button-expand {
+        font-size: 1.4rem;
+        font-style: normal;
+        // font-weight: 600;
+        line-height: 2.2rem;
+        background-color: $main-blue;
+        text-align: center;
+        color: white;
+        border-radius: 0.5rem;
+        width: 80.23rem;
+        height: 4.2rem;
+      }
+    }
+}
