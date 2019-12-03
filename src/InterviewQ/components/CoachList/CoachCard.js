@@ -56,7 +56,7 @@ const CoachCard = ({ post }) => {
 				</p>
 			</div>
 			<div className='coachcard-description'>
-				<p>{post.description.substring(0,40)}</p>
+				<p>{post.description}</p>
 				{/* {post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
 					))} */}
