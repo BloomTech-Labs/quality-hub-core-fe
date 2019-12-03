@@ -52,7 +52,6 @@ export default function InterviewLandingPage() {
 		}
 	},[userData]);
 	
-console.log(userData);
 	return (
 		<div className='interview-container' id="interview-container">
 			{/* <LandingPageCTA /> */}

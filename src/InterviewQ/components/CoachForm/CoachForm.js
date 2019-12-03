@@ -194,7 +194,6 @@ const CoachForm = props => {
 	}
 
 	const closeWindow = e => {
-		console.log('close')
 		props.refetch();
 		setFormState({
 			company: '',
@@ -204,7 +203,7 @@ const CoachForm = props => {
 			price: 30,
 			tagString: '',
 			isPublished: true
-		}, console.log(formState));
+		});
 		setOpen(false);
 		setDone(false);
 	};
