@@ -88,11 +88,12 @@
         font-size: 1.6rem;
         line-height: 3.4rem;
 		color: #3c4043;
-		// overflow: none;
-		white-space: nowrap;
+		// overflow: visible;
+		overflow-wrap: break-word;
+  		word-wrap: break-word;
+		// white-space: nowrap;
 		width:400px;
-		text-overflow: none; 
-		display: flex-wrap;
+		// text-overflow: none; 
     }
     
 }
@@ -101,7 +102,7 @@
 		display: flex-wrap;
 		justify-content: space-between;
 		align-items: center;
-		width: 90%;
+		width: 300px;
 	
     .coachcard-links-expand {
 		margin-left: 10px;
@@ -119,7 +120,7 @@
         text-align: center;
         color: white;
         border-radius: 0.5rem;
-        width: 90%;
+        width: 100%;
 		height: 4.2rem;
 		// margin: 10px;
       }

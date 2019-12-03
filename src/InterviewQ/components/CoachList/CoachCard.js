@@ -61,7 +61,7 @@ const CoachCard = ({ post }) => {
 				</p>
 			</div>
 			<div className='coachcard-description'>
-				<p>{post.description}</p> <CoachModal post={post}/>
+				<p className='ellipsis'>{post.description}</p> <CoachModal post={post}/>
 				{/* {post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
 					))} */}
