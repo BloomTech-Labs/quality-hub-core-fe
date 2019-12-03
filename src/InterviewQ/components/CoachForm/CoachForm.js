@@ -263,6 +263,8 @@ const CoachForm = props => {
 			)}
 			{/* The create post form */}
 			{open && (
+				<>
+				<div className="add-coach-form-background">
 				<div className="add-coach-form">
 					<button
 						className="close-coach-form-button"
@@ -477,6 +479,8 @@ const CoachForm = props => {
 						</button>
 					</div>
 				</div>
+				</div>
+				</>
 			)}
 		</div>
 	);

@@ -69,16 +69,17 @@ $main-font-family: 'SFProDisplay';
 }
 
 .add-coach-form {
-	position: absolute;
-	width: 850px;
-	height: 80%;
+	// position: absolute;
+	width: 790px;
+	height: 90%;
 	overflow: auto;
 	overflow-x: hidden;
-	left: 50%;
-	transform: translate(-50%);
-	padding-top: 120px;
-	padding-left: 91px;
-	padding-right: 91px;
+	// left: 50%;
+	// transform: translate(-50%);
+	// top: 260px;
+	// padding-top: 120px;
+	padding-left: 61px;
+	padding-right: 61px;
 	background: white;
 	border-radius: 10px;
 	text-align: left;
@@ -88,20 +89,51 @@ $main-font-family: 'SFProDisplay';
 	select {
 		width: 100%;
 	}
+	z-index: 1001;
+	// border: 1px solid red;
+	margin-bottom: 1px;
+}
+
+.add-coach-form-background{
+	position: absolute;
+	display:flex;
+	justify-content: center;
+	align-content: flex-end;
+	align-items: flex-end;
+	width: 850px;
+	height: 817px;
+	// overflow: auto;
+	// overflow-x: hidden;
+	left: 50%;
+	transform: translate(-50%);
+	// padding-top: 120px;
+	// padding-left: 91px;
+	// padding-right: 91px;
+	background: white;
+	border-radius: 10px;
+	// text-align: left;
 	z-index: 1000;
-	// 	::-webkit-scrollbar {
-	// 		width: 11px;
-	// 	  }
-	// 	  scrollbar-width: thin;
-	//   scrollbar-color: var(#90A4AE) var(#CFD8DC);
-	//   ::-webkit-scrollbar-track {
-	// 	background: var(#CFD8DC);
-	//   }
-	//   ::-webkit-scrollbar-thumb {
-	// 	background-color: var(#90A4AE) ;
-	// 	border-radius: 6px;
-	// 	border: 3px solid var(#CFD8DC);
-	//   }
+}
+body{
+	::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 7px;
+		height: 7px;
+	}
+	::-webkit-scrollbar-corner {
+		background: rgba(0, 0, 0, 0);
+	}
+	::-webkit-scrollbar-thumb {
+		max-height: 100px;
+		background-color: rgba(1, 1, 1, 0.23);
+		border-radius: 3px;
+	}
+	::-webkit-scrollbar-track {
+		background-color: inherit;
+	}
+	::-webkit-scrollbar-track-piece {
+		background-color: rgba(255, 255, 255, 0);
+	}
 }
 
 .done-modal {
@@ -176,8 +208,8 @@ $main-font-family: 'SFProDisplay';
 
 .close-coach-form-button {
 	position: absolute;
-	top: 40px;
-	right: 30px;
+	top: 26px;
+	right: 22px;
 	margin: 0 !important;
 	padding: 0 !important;
 	border: none !important;
