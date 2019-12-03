@@ -40,7 +40,7 @@ const INDUSTRIES = gql`
 	}
 `;
 
-const ADD_POST = gql`
+export const ADD_POST = gql`
 	mutation createPost(
 		$price: Int!
 		$position: String!

@@ -37,8 +37,8 @@
 .search-field-keyword {
 	text-align: left;
 	// flex-grow: 1;
-  width: 66%;
-  margin-bottom: 1.2rem;
+	width: 66%;
+	// margin-bottom: 1.2rem;
 	input {
 		width: 100%;
 		border: 1px solid #dadce0;
@@ -48,6 +48,13 @@
 	@media screen and (max-width: 600px) {
 		width: 100%;
 	}
+}
+.search-field-bottom {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding-bottom: 1.2rem;
 }
 
 .search-buttons {
@@ -71,16 +78,16 @@
 	// border: 1px solid silver;
 	// border-radius: 1rem;
 	cursor: pointer;
-	height: 3.4rem;
+	height: 3.6rem;
 	padding: 0 1rem;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 1.4rem;
 	line-height: 2.2rem;
-  color: #5f6368;
-  margin: auto 1rem;
-  border: 1px solid;
-  border-radius: 0.5rem;
+	color: #5f6368;
+	margin: auto 1rem;
+	// border: 1px solid;
+	border-radius: 0.5rem;
 }
 
 .search-apply {
@@ -92,13 +99,14 @@
 	color: $main-blue;
 	border-radius: 0.5rem;
 	cursor: pointer;
-	height: 3.4rem;
+	height: 3.6rem;
 	padding: 0 1rem;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 1.4rem;
-  line-height: 2.2rem;
-  margin: auto;
+	line-height: 2.2rem;
+	// margin: auto;
+	// align-self: flex-end;
 }
 // .input-label {
 // 	display: flex;
