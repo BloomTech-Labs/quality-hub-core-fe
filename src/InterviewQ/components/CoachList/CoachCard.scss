@@ -90,7 +90,10 @@
 			font-size: 1.6rem;
 			line-height: 2.4rem;
 			color: #3c4043;
-		}
+    }
+    .see-more {
+      color:blue;
+    }
 	}
 
 	.coachcard-footer {
@@ -105,16 +108,22 @@
 		}
 
 		.interview-button {
-			font-size: 1.4rem;
-			font-style: normal;
+      display:flex;
+			border-radius: 0.5rem;
+      font-size: 1.2rem;
+      font-family: 'Arial';
+      font-style: normal;
+      justify-content: center;
 			// font-weight: 600;
 			line-height: 2.2rem;
 			background-color: $main-blue;
 			text-align: center;
-			color: white;
-			border-radius: 0.5rem;
+      color: white;
+      align-items:center;
 			width: 13.23rem;
-			height: 4.2rem;
+      height: 4.2rem;
+      overflow: hidden;
+      white-space: nowrap;
 		}
 	}
 }
