@@ -9,6 +9,8 @@ import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 import { lightbulb } from '../../../globalIcons/lightbulb';
 
+import { GET_POSTS } from '../CoachList/CoachList';
+
 const GET_USER = gql`
 	query {
 		me {
@@ -62,6 +64,20 @@ const ADD_POST = gql`
 				name
 			}
 			company
+			coach {
+				id
+				first_name
+				last_name
+				city
+				state
+				image_url
+				personal_url
+				blog_url
+				twitter_url
+				portfolio_url
+				linkedin_url
+				github_url
+			}
 		}
 	}
 `;
@@ -69,7 +85,15 @@ const ADD_POST = gql`
 const CoachForm = props => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
-	const [addPost] = useMutation(ADD_POST);
+	const [addPost] = useMutation(ADD_POST, {
+		update(cache, {data}  ) {
+			const { posts } = cache.readQuery({ query: GET_POSTS });
+			cache.writeQuery({
+				query: GET_POSTS,
+				data: { posts: posts.concat([data.createPost]) },
+			});
+		},
+	});
 
 	// for sure take this out soon // like as soon as auth0 happens
 	useEffect(() => {
@@ -99,7 +123,7 @@ const CoachForm = props => {
 	const [formState, setFormState] = useState({
 		company: '',
 		position: '',
-		industryName: '',
+		industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
 		tagString: '',
@@ -133,11 +157,11 @@ const CoachForm = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log(formState);
-
+		
 		addPost({ variables: formState })
 			.then(res => {
 				alert('you did it!');
+				props.refetch();
 				setOpen(false);
 			})
 			.catch(err => {
