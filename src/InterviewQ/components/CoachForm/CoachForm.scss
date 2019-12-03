@@ -76,6 +76,19 @@ $main-font-family: 'SF Pro Display';
 		width: 100%;
 	}
 	z-index: 1000;
+	// 	::-webkit-scrollbar {
+	// 		width: 11px;
+	// 	  }
+	// 	  scrollbar-width: thin;
+	//   scrollbar-color: var(#90A4AE) var(#CFD8DC);
+	//   ::-webkit-scrollbar-track {
+	// 	background: var(#CFD8DC);
+	//   }
+	//   ::-webkit-scrollbar-thumb {
+	// 	background-color: var(#90A4AE) ;
+	// 	border-radius: 6px;
+	// 	border: 3px solid var(#CFD8DC);
+	//   }
 }
 
 .done-modal {

@@ -92,21 +92,19 @@ const ADD_POST = gql`
 
 const CoachForm = props => {
 	const node = useRef();
+
+	//false sets the default to closed
 	const [open, setOpen] = useState(false);
-	const [done, setDone] = useState(false);
+	const [done, setDone] = useState(true);
 	const [addPost] = useMutation(ADD_POST, {
 		update(cache, { data }) {
 			const { posts } = cache.readQuery({ query: GET_POSTS });
+			// Here we write the data to the query so the coachlist automatically gets updated.
 			cache.writeQuery({
 				query: GET_POSTS,
 				data: { posts: posts.concat([data.createPost]) },
 			});
 		},
-	});
-
-	// for sure take this out soon // like as soon as auth0 happens
-	useEffect(() => {
-		// localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrMnMxZmIydTAwNnYwNzczdjI4MmIza20iLCJlbWFpbCI6ImRhbkBxdWFpbC5jb20iLCJpYXQiOjE1NzQzNjM5NzUsImV4cCI6MTU3NDQwNzE3NX0.Ay63IqaVSQZmLgEjOEMOvb_NBQ0vLNepzn_NbaDsaMQ')
 	});
 
 	useEffect(() => {
@@ -230,6 +228,7 @@ const CoachForm = props => {
 				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
 				<span className="add-coach-form-button">Become a coach</span>
 			</button>
+			{/* This is the 2nd modal that pops up after you publish a post */}
 			{done && (
 				<div className="done-modal">
 					<button
@@ -257,6 +256,7 @@ const CoachForm = props => {
 					</div>
 				</div>
 			)}
+			{/* The create post form */}
 			{open && (
 				<div className="add-coach-form">
 					<button
