@@ -114,11 +114,11 @@ const Dashboard = ({ setLoggedin }) => {
 							
 							<Route
 							exact
-							path='/dashboard/interviewq'
+							path='/dashboard/coachinfo'
 							render={props => <DashInterviewQ {...props} />}
 						/>
 						
-						/>
+					
 						{/* <Route
 							exact
 							path='/dashboard/interviewq'
