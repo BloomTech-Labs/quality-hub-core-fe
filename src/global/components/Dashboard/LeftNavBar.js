@@ -61,7 +61,8 @@ export default function LeftNavBar({ setLoggedin }) {
 					<div className='dashnav-txt'>Coach Info</div>
 				</div>
 			</NavLink>
-			<NavLink activeClassName='dashnavactive' to='/dashboard/schedule'>
+			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/schedule'> */}
+			<NavLink activeClassName='dashnavactive' to='/dashboard/schedules'>
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.SCHEDULE}
