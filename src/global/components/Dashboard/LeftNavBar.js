@@ -81,7 +81,7 @@ export default function LeftNavBar({ setLoggedin }) {
 						height={24}
 						color={pathname === '/dashboard/setting' ? '#096dd9' : '#3c4043'}
 					/>
-					<div className='dashnav-txt'>Setting</div>
+					<div className='dashnav-txt'>Settings</div>
 				</div>
 			</NavLink>
 		</div>
