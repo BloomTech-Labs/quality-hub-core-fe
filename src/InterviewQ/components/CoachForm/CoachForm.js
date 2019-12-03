@@ -8,6 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 import { lightbulb } from '../../../globalIcons/lightbulb';
+import { lightbulb2 } from '../../../globalIcons/lightbulb2';
 import { checkcircle } from '../../../globalIcons/checkcircle';
 
 import { GET_POSTS } from '../CoachList/CoachList';
@@ -23,7 +24,7 @@ const GET_USER = gql`
 			city
 			state
 			image_url
-			post{
+			post {
 				id
 				description
 			}
@@ -47,6 +48,7 @@ const ADD_POST = gql`
 		$description: String!
 		$tagString: String
 		$company: String!
+		$isPublished: Boolean!
 	) {
 		createPost(
 			price: $price
@@ -55,6 +57,7 @@ const ADD_POST = gql`
 			description: $description
 			tagString: $tagString
 			company: $company
+			isPublished: $isPublished
 		) {
 			id
 			price
@@ -69,6 +72,7 @@ const ADD_POST = gql`
 				name
 			}
 			company
+			isPublished
 			coach {
 				id
 				first_name
@@ -89,49 +93,33 @@ const ADD_POST = gql`
 
 const CoachForm = props => {
 	const node = useRef();
+
+	//false sets the default to closed
 	const [open, setOpen] = useState(false);
 	const [done, setDone] = useState(false);
 	const [addPost] = useMutation(ADD_POST, {
 		update(cache, { data }) {
 			const { posts } = cache.readQuery({ query: GET_POSTS });
-			// const { me } = cache.readQuery({query: GET_USER});
-			// console.log(me);
-			// console.log(data);
-			// console.log(cache)
-			// console.log(data.createPost);
+			// Here we write the data to the query so the coachlist automatically gets updated.
 			cache.writeQuery({
 				query: GET_POSTS,
 				data: { posts: posts.concat([data.createPost]) },
-
 			});
-			// console.log('1')
-			// cache.writeQuery({
-			// 	query: GET_USER,
-			// 	data: { me: {...me, post: data.createPost} },
-			// });
-			// console.log('2');
-			// setDone(true);
 		},
-	});
-
-	// for sure take this out soon // like as soon as auth0 happens
-	useEffect(() => {
-		// localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrMnMxZmIydTAwNnYwNzczdjI4MmIza20iLCJlbWFpbCI6ImRhbkBxdWFpbC5jb20iLCJpYXQiOjE1NzQzNjM5NzUsImV4cCI6MTU3NDQwNzE3NX0.Ay63IqaVSQZmLgEjOEMOvb_NBQ0vLNepzn_NbaDsaMQ')
 	});
 
 	useEffect(() => {
 		if (open) {
-			document.getElementById('overlay').style.display = 'block';
+			document.getElementById('overlay-coach-form').style.display = 'block';
 		} else if (done) {
-			document.getElementById('overlay').style.display = 'block';
+			document.getElementById('overlay-coach-form').style.display = 'block';
 		} else {
-			document.getElementById('overlay').style.display = 'none';
+			document.getElementById('overlay-coach-form').style.display = 'none';
 		}
 	}, [open, done]);
 
 	const { data, error } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
-	
 
 	let image;
 	if (data) {
@@ -149,10 +137,18 @@ const CoachForm = props => {
 		description: '',
 		price: 30,
 		tagString: '',
+		isPublished: true,
 	});
 
 	const handleChange = e => {
 		if (e.target.name === 'price') {
+			if (e.target.value.length < 2) {
+				setFormState({
+					...formState,
+					[e.target.name]: 0,
+				});
+				return;
+			}
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
 				setFormState({
@@ -182,13 +178,25 @@ const CoachForm = props => {
 
 		addPost({ variables: formState })
 			.then(res => {
-				// alert('you did it!');
-				// props.refetch();
-				console.log('3')
 				setDone(true);
-				console.log('4')
 				setOpen(false);
-				console.log('5');
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
+	const handleSave = e => {
+		e.preventDefault();
+		console.log('save');
+		console.log(formState);
+		let newFormState = { ...formState, isPublished: false };
+		console.log(newFormState);
+		addPost({ variables: newFormState })
+			.then(res => {
+				// setDone(true);
+				// setOpen(false);
+				closeWindow();
 			})
 			.catch(err => {
 				console.log(err);
@@ -197,38 +205,55 @@ const CoachForm = props => {
 
 	const closeWindow = e => {
 		props.refetch();
+		setFormState({
+			company: '',
+			position: '',
+			industryName: 'Architecture and Construction',
+			description: '',
+			price: 30,
+			tagString: '',
+			isPublished: true,
+		});
+		setOpen(false);
 		setDone(false);
 	};
 
 	const setAvailability = e => {
 		props.refetch();
-		document.getElementById('overlay').style.display = 'none';
+		document.getElementById('overlay-coach-form').style.display = 'none';
 		setDone(false);
 	};
 	return (
 		<div ref={node}>
-			<button onClick={() => setOpen(!open)}>
-				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+			<div id="overlay-coach-form"></div>
+			<button onClick={() => setOpen(!open)} className="become-a-coach-btn">
+				{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
+				{lightbulb2()}
 				<span className="add-coach-form-button">Become a coach</span>
 			</button>
+			{/* This is the 2nd modal that pops up after you publish a post */}
 			{done && (
 				<div className="done-modal">
 					<button
 						className="close-coach-form-button"
 						onClick={() => closeWindow()}>
-						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+						<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 					</button>
 					<div className="done-modal-content">
-						{checkcircle()}
-						<p>Your coach post is live!</p>
-						<p>
+						<div className="done-modal-checkcircle">{checkcircle()}</div>
+						<div className="done-modal-all-text">
+						<p className="done-modal-text-1">Your coach post is live!</p>
+						<p className="done-modal-text-2">
 							You can edit your coach post and set your availability in your
 							dashboard.
 						</p>
+						</div>
 						<div className="done-modal-buttons">
 							<button onClick={() => closeWindow()}>Skip for now</button>
-							<Link to="/dashboard/schedule" className="add-coach-set-availability-link">
-								<button onClick={() => setAvailability()}>
+							<Link
+								to="/dashboard/schedule"
+								className="add-coach-set-availability-link">
+								<button onClick={() => setAvailability()} className="done-modal-set-availability-btn">
 									Set Availability
 								</button>
 							</Link>
@@ -236,12 +261,13 @@ const CoachForm = props => {
 					</div>
 				</div>
 			)}
+			{/* The create post form */}
 			{open && (
 				<div className="add-coach-form">
 					<button
 						className="close-coach-form-button"
-						onClick={() => setOpen(false)}>
-						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+						onClick={() => closeWindow()}>
+						<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 					</button>
 					<div className="add-coach-form-row-1">
 						<div>{lightbulb()}</div>{' '}
@@ -361,7 +387,7 @@ const CoachForm = props => {
 					</p>
 					<div className="add-coach-form-preview-container">
 						<div className="add-coach-form-preview-close">
-							<Icon icon={ICONS.CLOSE} width={24} height={24} />
+							<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 						</div>
 						<div className="add-coach-form-preview-top">
 							<div className="add-coach-form-preview-top-text">
@@ -378,7 +404,6 @@ const CoachForm = props => {
 								alt="Coach Profile Pic"
 							/>
 						</div>
-						{/* </button> */}
 						<div className="coachcard-info">
 							<p>
 								<span className="coachcard-icon">
@@ -440,7 +465,9 @@ const CoachForm = props => {
 						</button>
 					</div>
 					<div className="add-coach-form-bottom-buttons">
-						<button className="add-coach-form-save-and-exit">
+						<button
+							className="add-coach-form-save-and-exit"
+							onClick={e => handleSave(e)}>
 							Save and exit
 						</button>
 						<button
