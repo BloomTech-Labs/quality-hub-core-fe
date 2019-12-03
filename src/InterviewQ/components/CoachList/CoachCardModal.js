@@ -4,9 +4,7 @@ import CoachCard from "./CoachCardExpand.js";
 
 
 const CoachCardModal = ({post}) => {
-// let { coach } = post;
     const [open, setOpen ] = useState(false);
-
 
     useEffect(() => {
 		if (open) {
@@ -17,7 +15,6 @@ const CoachCardModal = ({post}) => {
 	}, [open]);
 
 
-
     return (
         <div>
             <button onClick={() => setOpen(!open)}> 
@@ -25,10 +22,8 @@ const CoachCardModal = ({post}) => {
             </button>
             {open && (
                   <CoachCard post={post}/>
-            
             )}
         </div>
-
     )
 };
 

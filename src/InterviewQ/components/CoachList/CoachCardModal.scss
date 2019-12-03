@@ -7,30 +7,25 @@
 		display: flex;
 		// width: 31.3rem;
 		// height: 50.1rem;
-		padding: 3rem;
+		// padding: 3rem;
 		// box-shadow: 2px 2px 5px gray;
 		border: 1px solid silver;
 		border-radius: 1rem;
 		margin-bottom: 1.3rem;
 		flex-direction: column;
 		justify-content: space-between;
-	
 		text-align: left;
-
 		position: absolute;
-		width: 416px;
-		height: 70%;
+		width: 366px;
+		height: 560px;
 		overflow: auto;
-
-		// overflow-x: hidden;
-
 		left: 50%;
 		top: 75%;
-
 		transform: translate(-50%);
-		padding-top: 120px;
-		padding-left: 91px;
-		padding-right: 91px;
+		padding-top: 8rem;
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-bottom: 30px;
 		background: white;
 		border-radius: 10px;
 		text-align: left;
@@ -40,7 +35,6 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			width: 350px;
 
 			.coachcard-header-txt-expand {
 					text-align: left;
@@ -56,6 +50,7 @@
 						font-size: 1.6rem;
 						font-weight: normal;
 						line-height: 2.4rem;
+						color: #096DD9;
 					}
 			}
 
@@ -75,6 +70,7 @@
 			font-size: 1.6rem;
 			line-height: 2.4rem;
 			color: #595959;
+			width: 40rem;
 			
 
 			.coachcard-icon-expand {
@@ -86,30 +82,32 @@
 
 .coachcard-description-expand {
     p {
+		// position: absolute;
         font-style: normal;
         font-weight: normal;
         font-size: 1.6rem;
-        line-height: 2.4rem;
+        line-height: 3.4rem;
 		color: #3c4043;
-		overflow: visible;
+		// overflow: none;
 		white-space: nowrap;
 		width:400px;
 		text-overflow: none; 
-		overflow-wrap: break-word;
+		display: flex-wrap;
     }
     
 }
 
 .coachcard-footer-expand {
-    display: flex;
-    justify-content: space-between;
-	align-items: center;
-	width: 300px;
-
+		display: flex-wrap;
+		justify-content: space-between;
+		align-items: center;
+		width: 90%;
+	
     .coachcard-links-expand {
+		margin-left: 10px;
         width: 6.2rem;
         display: flex;
-        justify-content: space-between;
+		justify-content: space-between;
     }
 
     .interview-button-expand {
@@ -121,8 +119,9 @@
         text-align: center;
         color: white;
         border-radius: 0.5rem;
-        width: 80.23rem;
-        height: 4.2rem;
+        width: 90%;
+		height: 4.2rem;
+		// margin: 10px;
       }
     }
 }
