@@ -42,6 +42,15 @@
 			color: #3c4043;
 		}
 
+		.signup-icon {
+			display: flex;
+			justify-content: flex-end;
+			position: relative;
+			left: calc(100% - 4.5rem);
+			bottom: 2.8rem;
+			width: 3rem;
+		}
+
 		input {
 			height: 4rem;
 			border: 1px solid #dadce0;
