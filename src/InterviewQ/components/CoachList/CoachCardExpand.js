@@ -8,15 +8,17 @@ import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
 
-const CoachCard = ({ post }) => {
+const CoachCard = ({ post, setOpen }) => {
 	let { coach } = post;
 
 
 	return (
-		<div className='coachcard-expand'>
+	<div>
+		<div id="overlay-coachcard-expand"></div>
+			<div className='coachcard-expand'>
 					<button
 						className="close-coachcard-expand"
-						// onClick={() => closeModal()}
+						onClick={() => setOpen(false)}
 						>
 						<Icon icon={ICONS.CLOSE} width={24} height={24} />
 					</button>
@@ -79,7 +81,7 @@ const CoachCard = ({ post }) => {
 				</button>
 			</div>
 		</div>
-
+	</div>
 	);
 };
 
