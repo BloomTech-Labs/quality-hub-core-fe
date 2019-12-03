@@ -7,7 +7,8 @@ import './CoachCard.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
-import CoachModal from "./CoachCardModal.js"
+import CoachModal from "./CoachCardModal.js";
+
 
 const CoachCard = ({ post }) => {
 	let { coach } = post;
@@ -15,7 +16,7 @@ const CoachCard = ({ post }) => {
 
 
 	return (
-		<div className='coach-card'>
+		<div className='coachcard-expand'>
 			<div className='coachcard-header'>
 				<div className='coachcard-header-txt'>
 					<h3>
@@ -59,8 +60,8 @@ const CoachCard = ({ post }) => {
 					4.9
 				</p>
 			</div>
-			<div className='coachcard-description'>
-				<p>{post.description}</p><CoachModal post={post}/>
+			<div className='coachcard-description-expand'>
+				<p>{post.description}</p>
 				{/* {post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
 					))} */}
