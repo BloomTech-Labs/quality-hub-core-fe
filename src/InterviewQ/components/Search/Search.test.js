@@ -1,8 +1,13 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
-import { render } from '@testing-library/react';
+import * as rtl from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
-import { GET_INDUSTRIES } from './Search';
+import Search, { GET_INDUSTRIES } from './Search';
+
+afterEach(rtl.cleanup);
+const container = document.body;
 
 const mocks = [
 	{
@@ -11,29 +16,139 @@ const mocks = [
 		},
 		result: {
 			data: {
-				industries: {
-					industry: {
-						id: '1',
+				industries: [
+					{
 						name: 'test industry',
 					},
-				},
+				],
 			},
 		},
 	},
 ];
 
-it('should render Industry label', () => {
-	render(<label>Industry</label>);
+async function wait(ms = 0) {
+	await rtl.act(() => {
+		return new Promise(resolve => {
+			setTimeout(resolve, ms);
+		});
+	});
+}
+
+it('renders w/o crashing', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
 });
 
-it('should render Price label', () => {
-	render(<label>Price</label>);
+it('renders Industry label', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'Industry');
 });
 
-it('should render Sorts label', () => {
-	render(<label>Sort results By</label>);
+it('renders Price label', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'Price');
 });
 
-it('should render Keywords label', () => {
-	render(<label>Keywordzz</label>);
+it('renders Sort label', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'Sort results by');
+});
+
+it('renders Keywords label', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'Keywords');
+});
+
+it('renders Reset Filters button', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'Reset Filters');
+});
+
+it('renders Apply button', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'Apply');
+});
+
+it('renders Industries array', async () => {
+	const history = createMemoryHistory({ initialEntries: ['/interviewq'] });
+	rtl.render(
+		<Router history={history}>
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<Search
+					fields={{ tags: '', price: '', industry: '', orderBy: 'id_ASC' }}
+				/>
+			</MockedProvider>
+		</Router>,
+	);
+	await wait();
+	rtl.getAllByText(container, 'test industry');
 });

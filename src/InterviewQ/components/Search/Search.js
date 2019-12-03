@@ -48,7 +48,9 @@ export default function Search({ fields, setFields, refetch }) {
 					<option value=''>All</option>
 					{data &&
 						data.industries.map(({ name }) => (
-							<option value={name}>{name}</option>
+							<option key={name} value={name}>
+								{name}
+							</option>
 						))}
 				</select>
 			</div>
