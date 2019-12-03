@@ -100,18 +100,54 @@
 	z-index: 1000;
 }
 
-// .close-coach-form-button {
-// 	position: absolute;
-// 	top: 40px;
-// 	right: 30px;
-// 	margin: 0 !important;
-// 	padding: 0 !important;
-// 	border: none !important;
-// 	width: 24px !important;
-// 	height: 24px !important;
-// 	color: black;
-// 	outline: none;
-// }
+.done-modal {
+	
+	position: absolute;
+	width: 850px;
+	height: 577px;
+	overflow: auto;
+	overflow-x: hidden;
+
+	left: 50%;
+	transform: translate(-50%);
+	padding-top: 120px;
+	padding-left: 91px;
+	padding-right: 91px;
+	background: white;
+	border-radius: 10px;
+	text-align: left;
+
+	z-index: 1000;
+}
+.done-modal-content{
+	height: 282px;
+	// border: 1px solid red;
+	display: flex;
+	flex-direction: column;
+	// justify-content: center;
+	justify-content: space-between;
+	align-items: center;
+}
+.done-modal-buttons{
+	display:flex;
+}
+
+.add-coach-set-availability-link{
+	text-decoration: none;
+}
+
+.close-coach-form-button {
+	position: absolute;
+	top: 40px;
+	right: 30px;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	width: 24px !important;
+	height: 24px !important;
+	color: black;
+	outline: none;
+}
 
 .add-coach-form-header {
 	color: #096dd9;
