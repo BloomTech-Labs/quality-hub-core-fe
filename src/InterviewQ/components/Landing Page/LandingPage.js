@@ -1,7 +1,7 @@
 // Library
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Styles & Icons
@@ -13,7 +13,7 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 // import LandingPageCTA from './LandingPageCTA';
 import LandingPageHeader from './LandingPageHeader';
 import QNav from '../QNav';
-import Search from '../Search';
+// import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
 import CoachForm from '../CoachForm/CoachForm';
 
@@ -22,12 +22,11 @@ export const GET_USER = gql`
 		me {
 			id
 			post {
-        		id
-      		}
+				id
+			}
 		}
 	}
 `;
-
 
 export default function InterviewLandingPage() {
 	const [toggleFilter, setToggleFilter] = useState(true);
@@ -38,58 +37,56 @@ export default function InterviewLandingPage() {
 		industry: '',
 		orderBy: '',
 	});
-	
 
 	const { refetch, loading, error, data: userData } = useQuery(GET_USER);
 
-	useEffect(()=>{
+	useEffect(() => {
 		refetch();
-	},[])
+	}, []);
 
-	useEffect(()=>{
-		if(userData){
+	useEffect(() => {
+		if (userData) {
 			setHasPost(userData.me.post);
 		}
-	},[userData]);
-	
-// console.log(userData);
+	}, [userData]);
+
+	// console.log(userData);
 	return (
-		<div className='interview-container' id="interview-container">
+		<div className='interview-container' id='interview-container'>
 			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				<QNav />
 				<div className='interviewq-header-container'>
 					<LandingPageHeader />
 					<div className='interviewq-header-btns'>
-						{
-						localStorage.getItem('token') ? 
-						
-						//if user data is done loading...
-						!loading ?
-						hasPost ? 
-
-						//if you have a post made, show edit
-						<Link to="/dashboard/coachinfo" className="become-a-coach-reroute-to-signin">
-							<button>
-								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
-								<span className="add-coach-form-button">Edit Post</span>
-							</button>
-						</Link> :  
-						
-						//if no post made, allow to create a post
-						<CoachForm refetch={refetch}/>:  
-
-						//while checking if user has a post, leave button off page
-						null:
-						
-						//if no token link to signin
-						<Link to="/signin" className="become-a-coach-reroute-to-signin">
-							<button>
-								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
-								<span className="add-coach-form-button">Become a coach</span>
-							</button>
-						</Link>
-						}
+						{localStorage.getItem('token') ? (
+							//if user data is done loading...
+							!loading ? (
+								hasPost ? (
+									//if you have a post made, show edit
+									<Link
+										to='/dashboard/coachinfo'
+										className='become-a-coach-reroute-to-signin'>
+										<button>
+											<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+											<span className='add-coach-form-button'>Edit Post</span>
+										</button>
+									</Link>
+								) : (
+									//if no post made, allow to create a post
+									<CoachForm refetch={refetch} />
+								)
+							) : //while checking if user has a post, leave button off page
+							null
+						) : (
+							//if no token link to signin
+							<Link to='/signin' className='become-a-coach-reroute-to-signin'>
+								<button>
+									<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+									<span className='add-coach-form-button'>Become a coach</span>
+								</button>
+							</Link>
+						)}
 						<button
 							onClick={() => setToggleFilter(!toggleFilter)}
 							style={{
@@ -108,7 +105,7 @@ export default function InterviewLandingPage() {
 					</div>
 				</div>
 				<div className='landingpage-container'>
-					<CoachList toggleFilter={toggleFilter}/>
+					<CoachList toggleFilter={toggleFilter} />
 				</div>
 			</div>
 		</div>
