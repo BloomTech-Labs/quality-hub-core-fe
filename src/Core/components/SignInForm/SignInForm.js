@@ -105,7 +105,10 @@ const SignInForm = props => {
 					</p>
 					<div
 						className='signin-icon-pw'
-						style={{ cursor: 'pointer' }}
+						style={{
+							bottom: !showPassword && '5.4rem',
+							left: !showPassword && 'calc(100% - 4.6rem)',
+						}}
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword && (
 							<Icon
