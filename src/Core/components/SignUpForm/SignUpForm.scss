@@ -51,6 +51,25 @@
 			width: 3rem;
 		}
 
+		.signup-icon-pw {
+			display: flex;
+			justify-content: flex-end;
+			position: relative;
+			left: calc(100% - 4.5rem);
+			bottom: 5rem;
+			width: 3rem;
+			cursor: pointer;
+		}
+
+		.password-minlength {
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.4rem;
+			line-height: 2.2rem;
+			color: #5f6368;
+			align-self: flex-start;
+		}
+
 		input {
 			height: 4rem;
 			border: 1px solid #dadce0;
