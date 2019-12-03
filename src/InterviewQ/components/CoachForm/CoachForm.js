@@ -95,7 +95,7 @@ const CoachForm = props => {
 
 	//false sets the default to closed
 	const [open, setOpen] = useState(false);
-	const [done, setDone] = useState(true);
+	const [done, setDone] = useState(false);
 	const [addPost] = useMutation(ADD_POST, {
 		update(cache, { data }) {
 			const { posts } = cache.readQuery({ query: GET_POSTS });
@@ -234,21 +234,23 @@ const CoachForm = props => {
 					<button
 						className="close-coach-form-button"
 						onClick={() => closeWindow()}>
-						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+						<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 					</button>
 					<div className="done-modal-content">
-						{checkcircle()}
-						<p>Your coach post is live!</p>
-						<p>
+						<div className="done-modal-checkcircle">{checkcircle()}</div>
+						<div className="done-modal-all-text">
+						<p className="done-modal-text-1">Your coach post is live!</p>
+						<p className="done-modal-text-2">
 							You can edit your coach post and set your availability in your
 							dashboard.
 						</p>
+						</div>
 						<div className="done-modal-buttons">
 							<button onClick={() => closeWindow()}>Skip for now</button>
 							<Link
 								to="/dashboard/schedule"
 								className="add-coach-set-availability-link">
-								<button onClick={() => setAvailability()}>
+								<button onClick={() => setAvailability()} className="done-modal-set-availability-btn">
 									Set Availability
 								</button>
 							</Link>

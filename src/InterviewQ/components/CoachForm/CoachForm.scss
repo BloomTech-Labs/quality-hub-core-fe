@@ -100,7 +100,7 @@ $main-font-family: 'SF Pro Display';
 
 	left: 50%;
 	transform: translate(-50%);
-	padding-top: 120px;
+	padding-top: 149px;
 	padding-left: 91px;
 	padding-right: 91px;
 	background: white;
@@ -109,15 +109,52 @@ $main-font-family: 'SF Pro Display';
 
 	z-index: 1000;
 }
+.done-modal-buttons{
+	button{
+		border-radius: 5px;
+	width: 140px;
+	height: 54px;
+	
+	
+	font-family: $main-font-family;
+	font-style: Medium;
+	font-size: 16px;
+	line-height: 24px;
+	line-height: 128%;
+	padding: 0px;
+	color: #8C8C8C;
+	border: 1px solid #8C8C8C;
+	
+	}
+	
+}
+.done-modal-set-availability-btn{
+	border: none !important;
+	color: #fff !important;
+	background-color: #096dd9;
+}
+
+.done-modal-checkcircle{
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+.done-modal-all-text{
+	margin-top: 29px;
+	margin-bottom: 93px;
+	text-align: center;
+	color: #3C4043;
+	
+}
+
 .done-modal-content {
 	height: 282px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
 }
 .done-modal-buttons {
 	display: flex;
+	justify-content: space-between;
+	width: 354px;
+	margin: 0 auto;
 }
 
 .add-coach-set-availability-link {
