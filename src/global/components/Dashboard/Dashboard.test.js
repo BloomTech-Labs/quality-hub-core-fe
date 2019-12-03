@@ -94,6 +94,6 @@ it("router works", () => {
   expect(history.location.pathname).toBe("/dashboard/coachinfo");
   rtl.fireEvent.click(rtl.getByText(container, "Schedule"));
   expect(history.location.pathname).toBe("/dashboard/schedules");
-  rtl.fireEvent.click(rtl.getByText(container, "Setting"));
-  expect(history.location.pathname).toBe("/dashboard/setting");
+  rtl.fireEvent.click(rtl.getByText(container, "Settings"));
+  expect(history.location.pathname).toBe("/dashboard/settings");
 });
