@@ -89,22 +89,26 @@ export default function Search({ fields, setFields, refetch }) {
 					<option value='lastUpdated_ASC'>Oldest</option>
 				</select>
 			</div>
-			<div className='search-field-keyword'>
-				<label>Keywords</label>
-				<input
-					type='text'
-					name='tags'
-					value={fields.tags}
-					onChange={handleChange}
-					placeholder='Search by Keyword'
-				/>
+			<div className='search-field-bottom'>
+				<div className='search-field-keyword'>
+					<label>Keywords</label>
+					<input
+						type='text'
+						name='tags'
+						value={fields.tags}
+						onChange={handleChange}
+						placeholder='Search by Keyword'
+					/>
+				</div>
+				<div className='search-buttons'>
+					<button className='search-reset' onClick={handleReset}>
+						Reset Filters
+					</button>
+					<button className='search-apply' onClick={e => handleSubmit(e)}>
+						Search
+					</button>
+				</div>
 			</div>
-			<button className='search-reset' onClick={handleReset}>
-				Reset Filters
-			</button>
-			<button className='search-apply' onClick={e => handleSubmit(e)}>
-				Apply
-			</button>
 		</div>
 	);
 }
