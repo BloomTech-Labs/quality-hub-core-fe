@@ -8,7 +8,7 @@ import Search from '../Search';
 
 import './CoachList.scss'
 
-const GET_POSTS = gql`
+export const GET_POSTS = gql`
   query GET_POSTS($industry: String, $price: String, $orderBy: String, $tags: String){
     posts (industry: $industry, price: $price, orderBy: $orderBy, tags: $tags) {
       price
