@@ -314,32 +314,25 @@ $main-font-family: 'SF Pro Display';
 	line-height: 24px;
 }
 
-
-
 .add-coach-form-preview-top {
 	margin-top: 20px;
 	display: flex;
-	// border: 1px solid green;
 	justify-content: space-between;
 	align-items: center;
 	align-content: center;
-	// margin-top: 61px;
 }
 
 .add-coach-form-preview-top-text {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	// align-items: center;
 	align-content: center;
-	// border: 1px solid blue;
 }
 
 .add-coach-form-preview-coach-photo {
 	border-radius: 100%;
 	height: 90px;
 	width: 90px;
-	// border: 1px solid red;
 }
 
 .add-coach-form-save-and-exit {
@@ -389,13 +382,11 @@ input[type='range']::-webkit-slider-runnable-track {
 	width: 100%;
 	height: 8.4px;
 	cursor: pointer;
-	// animate: 0.2s;
 	background: $main-color;
 	border-radius: 10px;
 }
 
 input[type='range']::-webkit-slider-thumb {
-
 	height: 25px;
 	width: 25px;
 	border-radius: 100%;
@@ -411,7 +402,6 @@ input[type='range']::-moz-range-track {
 	width: 100%;
 	height: 8.4px;
 	cursor: pointer;
-	// animate: 0.2s;
 	box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 	background: $main-color;
 	border-radius: 1.3px;
@@ -429,7 +419,6 @@ input[type='range']::-ms-track {
 	width: 100%;
 	height: 8.4px;
 	cursor: pointer;
-	// animate: 0.2s;
 	background: transparent;
 	border-color: transparent;
 	border-width: 16px 0;
