@@ -47,7 +47,7 @@ const ADD_POST = gql`
 		$description: String!
 		$tagString: String
 		$company: String!
-		$isPublished: Boolean
+		$isPublished: Boolean!
 	) {
 		createPost(
 			price: $price
@@ -138,15 +138,15 @@ const CoachForm = props => {
 		description: '',
 		price: 30,
 		tagString: '',
-		isPublished: true
+		isPublished: true,
 	});
 
 	const handleChange = e => {
 		if (e.target.name === 'price') {
-			if(e.target.value.length <2){
+			if (e.target.value.length < 2) {
 				setFormState({
 					...formState,
-					[e.target.name]: 0
+					[e.target.name]: 0,
 				});
 				return;
 			}
@@ -187,11 +187,22 @@ const CoachForm = props => {
 			});
 	};
 
-	const handleSave = e =>{
+	const handleSave = e => {
 		e.preventDefault();
 		console.log('save');
-
-	}
+		console.log(formState);
+		let newFormState = { ...formState, isPublished: false };
+		console.log(newFormState);
+		addPost({ variables: newFormState })
+			.then(res => {
+				// setDone(true);
+				// setOpen(false);
+				closeWindow();
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
 
 	const closeWindow = e => {
 		props.refetch();
@@ -202,7 +213,7 @@ const CoachForm = props => {
 			description: '',
 			price: 30,
 			tagString: '',
-			isPublished: true
+			isPublished: true,
 		});
 		setOpen(false);
 		setDone(false);
@@ -449,7 +460,9 @@ const CoachForm = props => {
 						</button>
 					</div>
 					<div className="add-coach-form-bottom-buttons">
-						<button className="add-coach-form-save-and-exit" onClick={e=>handleSave(e)}>
+						<button
+							className="add-coach-form-save-and-exit"
+							onClick={e => handleSave(e)}>
 							Save and exit
 						</button>
 						<button

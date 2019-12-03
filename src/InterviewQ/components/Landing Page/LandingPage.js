@@ -82,7 +82,7 @@ export default function InterviewLandingPage() {
 						null:
 						
 						//if no token link to signin
-						<Link to="/signin" className="become-a-coach-reroute-to-signin">
+						<Link to="/signup" className="become-a-coach-reroute-to-signin">
 							<button>
 								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
 								<span className="add-coach-form-button">Become a coach</span>
