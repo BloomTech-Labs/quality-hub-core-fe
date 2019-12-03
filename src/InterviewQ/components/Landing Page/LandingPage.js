@@ -70,7 +70,7 @@ export default function InterviewLandingPage() {
 
 						//if you have a post made, show edit
 						<Link to="/dashboard/coachinfo" className="become-a-coach-reroute-to-signin">
-							<button>
+							<button className="become-a-coach-btn">
 								{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
 								{lightbulb2()}
 								<span className="add-coach-form-button">Edit Post</span>
