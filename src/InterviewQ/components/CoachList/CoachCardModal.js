@@ -1,10 +1,12 @@
 import React , { useState, useEffect } from 'react';
 import CoachCard from "./CoachCardExpand.js";
 
-
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 const CoachCardModal = ({post}) => {
-    const [open, setOpen ] = useState(false);
+	const [open, setOpen] = useState(false);
+    
 
     useEffect(() => {
 		if (open) {

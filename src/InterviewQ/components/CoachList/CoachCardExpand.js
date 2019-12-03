@@ -7,8 +7,6 @@ import './CoachCardModal.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
-// import CoachModal from "./CoachCardModal.js";
-
 
 const CoachCard = ({ post }) => {
 	let { coach } = post;
@@ -16,11 +14,12 @@ const CoachCard = ({ post }) => {
 
 	return (
 		<div className='coachcard-expand'>
-				{/* <button
-						className="close-coach-card-button"
-						onClick={() => setOpen(false)}>
+					<button
+						className="close-coachcard-expand"
+						// onClick={() => closeModal()}
+						>
 						<Icon icon={ICONS.CLOSE} width={24} height={24} />
-					</button> */}
+					</button>
 			<div className='coachcard-header-expand'>
 				<div className='coachcard-header-txt-expand'>
 					<h3>
@@ -80,7 +79,7 @@ const CoachCard = ({ post }) => {
 				</button>
 			</div>
 		</div>
-		
+
 	);
 };
 
