@@ -1,76 +1,58 @@
 import React from 'react';
-import { MockedProvider, ApolloProvider } from '@apollo/react-testing';
-import { render, fireEvent, getByText } from '@testing-library/react';
+import { MockedProvider } from '@apollo/react-testing';
+import * as rtl from "@testing-library/react";
 // import wait from 'waait';
 
 // Import component and query for testing
-import App from '../../../App'
 import CoachCard from './CoachCard';
-import { act } from 'react-dom/test-utils';
-import { GET_USER } from './CoachForm';
+import { GET_POSTS } from '../CoachList/CoachList';
+
+// gets rid of act() warning when called after render
+async function wait(ms = 0) {
+    await rtl.act(() => {
+      return new Promise(resolve => {
+        setTimeout(resolve, ms);
+      });
+    });
+  } 
 
 // Test React components by mocking calls to the GraphQL endpoint; this allows tests to be run in isolation and removes dependence on remote data
-it('coach cards should render without error', () => {
-     render(
-        <MockedProvider mocks={[
-            {
-                request: {
-                    query: GET_USER,
-                },
-                result: {
-                    data: {
-                        me: {
-                            id: '1',
-                            image_url: 'test',
-                        },
-                    },
+it('coach cards should render without error', async () => {
+
+    const mocks = [
+        {
+            request: {
+                query: GET_POSTS,
+            },
+            result: {
+                data: {
+                    posts: [
+                        {
+                            coach: {
+                                first_name: "Ryan",
+                                last_name: "Ziegenfus",
+                                image_url: "srthggssnrtfgh",
+                                city: "Fort Myers",
+                                state: "Florida"
+                            },
+                            price: 12.67,
+                            position: "TL",
+                            description: "A little bit of this. A little bit of that.",
+                            company: "Lambda",
+                            industry: {
+                                name: "Tech"
+                            }
+                        }
+                    ],
                 },
             },
-        ]}>
-            <CoachCard />
+        },
+    ];
+
+     rtl.render(
+        <MockedProvider mocks={mocks}>
+            <CoachCard post={mocks[0].result.data.posts[0]}/>
         </MockedProvider>
     )
+    await wait();
 });
-
-// it('should succesfully post a new coach listing', async () => {
-// 	const add = {
-// 		company: 'Lambda',
-// 		position: "TL",
-// 		industry: "tech",
-// 		description: "qwerty",
-//         keywords: [],
-//         price: 99,
-// 	};
-// 	const mocks = [
-// 		{
-// 			request: {
-// 				query: ADD_USER,
-// 				variables: {
-//                     company: 'Lambda',
-//                     position: "TL",
-//                     industry: "tech",
-//                     description: "qwerty",
-//                     keywords: [],
-//                     price: 99,
-// 				},
-// 			},
-// 			result: { data: { add } },
-// 		},
-// 	];
-
-// 	const component = render(
-// 		<MockedProvider mocks={mocks} addTypename={false}>
-// 			<CoachForm userKey={'id'} postrValue={add.first_name} />
-// 		</MockedProvider>,
-// 	);
-
-// 	const editbutton = component.getByTestId('edit-button');
-// 	fireEvent.click(editbutton);
-
-// 	const savebutton = component.getByText(/save/i);
-// 	fireEvent.click(savebutton);
-
-// 	await wait(0);
-
-// 	component.getByText('Dan');
-// });
