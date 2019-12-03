@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
@@ -51,11 +51,9 @@ const CoachList = ({ toggleFilter, setToggleFilter }) => {
         {toggleFilter && <Search setFields={setFields} fields={fields} refetch={refetch} toggleFilter={toggleFilter} setToggleFilter={setToggleFilter}/> }
         <hr />
         { !loading && data && <div className="coach-list">
-          {data.posts.map(post => {
-            console.log(data)
-            return <CoachCard post={post} />
-        })}
-
+          {data.posts.map(post => 
+          <CoachCard post={post} /> 
+          )}
         </div>
       }
       </div>
