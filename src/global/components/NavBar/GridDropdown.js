@@ -29,7 +29,6 @@ const GridDropdown = props => {
 
 	return (
 		<div ref={node}>
-			{/* Styling here needs to be changed to CSS Grid to make it more stable */}
 			{/* <img
 				src={grid}
 				alt='Grid Menu'
@@ -43,7 +42,7 @@ const GridDropdown = props => {
 			{open && (
 				<div className='dropdown-grid-content dropdown-icons'>
 					<div className='test-css-grid'>
-						<Link to='/' className='box'>
+						<Link to='/' className='box' onClick={() => setOpen(false)}>
 							<img
 								src={favicon}
 								height='50px'
@@ -53,7 +52,7 @@ const GridDropdown = props => {
 							<p>CodingQ</p>
 						</Link>
 
-						<Link to='/interviewq' className='box'>
+						<Link to='/interviewq' className='box' onClick={() => setOpen(false)}>
 							{/* <img
 								src={interviewQ}
 								height='50px'
@@ -64,7 +63,7 @@ const GridDropdown = props => {
 							<p>InterviewQ</p>
 						</Link>
 
-						<Link to='/' className='box'>
+						<Link to='/' className='box' onClick={() => setOpen(false)}>
 							{/* <img
 								src={resumeQ}
 								height='50px'
@@ -75,7 +74,7 @@ const GridDropdown = props => {
 							<p>ResumeQ</p>
 						</Link>
 
-						<Link to='/' className='box'>
+						<Link to='/' className='box' onClick={() => setOpen(false)}>
 							{/* <img
 								src={designQ}
 								height='50px'

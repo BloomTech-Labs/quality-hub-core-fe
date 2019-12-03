@@ -43,21 +43,12 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	}
 
 	return (
-		<div className='styled-nav'>
-			{/* Animated quailnana flying across the screen */}
+		<div className='styled-nav' id="main-navbar">
 			<div className='nav-left'>
-				{/* <div className="bird"></div> */}
 				<NavLink to='/'>
 					<h2>QualityHub</h2>
 				</NavLink>
-				{/* Spinning Quail */}
-				{/* <img
-          src="http://clipartmag.com/images/quail-clipart-1.jpg"
-          alt="spinning quail"
-          className="rotate"
-        /> */}
 			</div>
-			{/* End animated quailnana */}
 
 			<div className='nav-right'>
 				{/* If you're not logged in, show sign in and sign up buttons */}
@@ -80,7 +71,6 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 						logout={logout}
 						loggedin={loggedin}
 						setLoggedin={setLoggedin}
-						// className="hidden"
 						history={history}
 					/>
 				)}

@@ -1,5 +1,8 @@
 // Library
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 // Styles & Icons
 import './LandingPage.scss';
@@ -12,33 +15,81 @@ import LandingPageHeader from './LandingPageHeader';
 import QNav from '../QNav';
 import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
+import CoachForm from '../CoachForm/CoachForm';
+
+const GET_USER = gql`
+	query {
+		me {
+			id
+			post{
+        id
+      }
+		}
+	}
+`;
+
 
 export default function InterviewLandingPage() {
 	const [toggleFilter, setToggleFilter] = useState(true);
+	const [hasPost, setHasPost] = useState();
 	const [fields, setFields] = useState({
 		tag: '',
 		price: '',
 		industry: '',
 		orderBy: '',
 	});
+	
 
+	const { refetch, loading, error, data: userData } = useQuery(GET_USER);
+
+	useEffect(()=>{
+		refetch();
+	},[])
+
+	useEffect(()=>{
+		if(userData){
+			setHasPost(userData.me.post);
+		}
+	},[userData]);
+	
+console.log(userData);
 	return (
-		<div className='interview-container'>
+		<div className='interview-container' id="interview-container">
 			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				<QNav />
 				<div className='interviewq-header-container'>
 					<LandingPageHeader />
 					<div className='interviewq-header-btns'>
-						<button>
-							<Icon
-								icon={ICONS.LIGHTBULB}
-								width={16}
-								height={22}
-								color='#5f6368'
-							/>
-							<span className='becomecoach-btn'>Become a coach</span>
-						</button>
+						{
+						localStorage.getItem('token') ? 
+						
+						//if user data is done loading...
+						!loading ?
+						hasPost ? 
+
+						//if you have a post made, show edit
+						<Link to="/dashboard/coachinfo" className="become-a-coach-reroute-to-signin">
+							<button>
+								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+								<span className="add-coach-form-button">Edit Post</span>
+							</button>
+						</Link> :  
+						
+						//if no post made, allow to create a post
+						<CoachForm refetch={refetch}/>:  
+
+						//while checking if user has a post, leave button off page
+						null:
+						
+						//if no token link to signin
+						<Link to="/signin" className="become-a-coach-reroute-to-signin">
+							<button>
+								<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
+								<span className="add-coach-form-button">Become a coach</span>
+							</button>
+						</Link>
+						}
 						<button
 							onClick={() => setToggleFilter(!toggleFilter)}
 							style={{
