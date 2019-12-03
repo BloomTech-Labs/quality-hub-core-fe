@@ -18,13 +18,13 @@ import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
 import CoachForm from '../CoachForm/CoachForm';
 
-const GET_USER = gql`
+export const GET_USER = gql`
 	query {
 		me {
 			id
-			post{
-        id
-      }
+			post {
+        		id
+      		}
 		}
 	}
 `;
