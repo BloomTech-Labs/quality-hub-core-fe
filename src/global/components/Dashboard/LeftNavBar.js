@@ -17,16 +17,16 @@ export default function LeftNavBar({ setLoggedin }) {
 	const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
 	const { isShowing, toggle } = useModal();
 
-	const profileDropdown = () => {
-		setProfileDropdownToggle(!profileDropdownToggle);
-	};
+	// const profileDropdown = () => {
+	// 	setProfileDropdownToggle(!profileDropdownToggle);
+	// };
 
 	return (
 		<div className='dashboard-left-bar'>
-			<div className='dash-left-menu-btn' onClick={() => profileDropdown()}>
+			{/* <div className='dash-left-menu-btn' onClick={() => profileDropdown()}>
 				<Icon icon={ICONS.DASHBOARD} width={24} height={24} color='#3c4043' />
 				<div className='dashnav-txt'>Dashboard</div>
-			</div>
+			</div> */}
 			{profileDropdownToggle && (
 				<div className='profile-dropdown-links'>
 					<NavLink to='#' onClick={toggle}>

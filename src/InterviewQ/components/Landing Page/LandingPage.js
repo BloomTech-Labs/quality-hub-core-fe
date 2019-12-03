@@ -43,12 +43,16 @@ export default function InterviewLandingPage() {
 	const { refetch, loading, error, data: userData } = useQuery(GET_USER);
 
 	useEffect(()=>{
+		refetch();
+	},[])
+
+	useEffect(()=>{
 		if(userData){
 			setHasPost(userData.me.post);
 		}
 	},[userData]);
 	
-
+console.log(userData);
 	return (
 		<div className='interview-container' id="interview-container">
 			{/* <LandingPageCTA /> */}

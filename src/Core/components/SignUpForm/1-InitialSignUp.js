@@ -1,9 +1,15 @@
+// Libraries
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Link } from 'react-router-dom';
-import './SignUpForm.scss';
 
+// Styles & Icons
+import './SignUpForm.scss';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
+
+// Components
 import Loading from '../Loading';
 
 const CHECK_EMAIL = gql`
@@ -19,9 +25,10 @@ export default function SignUp({
 	setEmailTouched,
 	setPasswordTouched,
 }) {
-	const [verifyEmail, verifyEmailMutation] = useMutation(CHECK_EMAIL);
+	const [verifyEmail] = useMutation(CHECK_EMAIL);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
+	const [showPassword, setShowPassword] = useState(true);
 
 	const handleChange = e => {
 		if (e.target.name === 'email') {
@@ -42,17 +49,14 @@ export default function SignUp({
 			.catch(err => {
 				setError('Email address unavailable, please try again');
 			});
-
-		//check if email is valid
-		//then setProgress to 0
-		//else show error
-		// setProgress(0);
 	};
 
 	return (
 		<div className='sign-up'>
-			<h1>QualityHub</h1>
-			<h2>Welcome!</h2>
+			<div>
+				<h1>QualityHub</h1>
+				<h2>Welcome!</h2>
+			</div>
 			<br />
 			{/* Insert Google Login Button Here */}
 			{/* <h2 className="sign-up-or">
@@ -60,18 +64,21 @@ export default function SignUp({
       </h2> */}
 			<form onSubmit={handleSubmit}>
 				<div className='input-label'>
-					<label htmlFor='sign-up-email'>Email</label>
+					<label htmlFor='sign-up-email'>Email address</label>
 					<br />
 					<input
 						onBlur={() => setEmailTouched(true)}
 						id='sign-up-email'
 						name='email'
 						type='email'
-						placeholder='Email'
+						// placeholder='Email'
 						value={user.email}
 						onChange={handleChange}
 						required
 					/>
+					<div className='signup-icon'>
+						<Icon icon={ICONS.EMAIL} width={22} height={18} color='#5f6368' />
+					</div>
 				</div>
 				<br />
 				<div className='input-label'>
@@ -80,13 +87,34 @@ export default function SignUp({
 					<input
 						onBlur={() => setPasswordTouched(true)}
 						id='sign-up-password'
-						type='password'
+						type={showPassword ? 'password' : 'text'}
 						name='password'
-						placeholder='Password'
+						// placeholder='Password'
 						value={user.password}
 						onChange={handleChange}
 						required
 					/>
+					<div
+						className='signup-icon'
+						style={{ cursor: 'pointer' }}
+						onClick={() => setShowPassword(!showPassword)}>
+						{showPassword && (
+							<Icon
+								icon={ICONS.PASSWORD_Y}
+								width={22}
+								height={19}
+								color='#5f6368'
+							/>
+						)}
+						{!showPassword && (
+							<Icon
+								icon={ICONS.PASSWORD_N}
+								width={22}
+								height={19}
+								color='#5f6368'
+							/>
+						)}
+					</div>
 				</div>
 				{error && <p className='email-address-taken'>{error}</p>}
 				<br />
@@ -102,7 +130,7 @@ export default function SignUp({
 					))}
 
 				{!loading && (
-					<p>
+					<p className='signin-link'>
 						Already have an account? <Link to='/signin'>Sign In</Link>
 					</p>
 				)}

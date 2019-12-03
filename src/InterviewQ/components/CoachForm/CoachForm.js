@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import './CoachForm.scss';
 
 import { gql } from 'apollo-boost';
@@ -8,6 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 import { lightbulb } from '../../../globalIcons/lightbulb';
+import { checkcircle } from '../../../globalIcons/checkcircle';
 
 import { GET_POSTS } from '../CoachList/CoachList';
 
@@ -22,6 +23,10 @@ const GET_USER = gql`
 			city
 			state
 			image_url
+			post{
+				id
+				description
+			}
 		}
 	}
 `;
@@ -85,13 +90,27 @@ const ADD_POST = gql`
 const CoachForm = props => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
+	const [done, setDone] = useState(false);
 	const [addPost] = useMutation(ADD_POST, {
-		update(cache, {data}  ) {
+		update(cache, { data }) {
 			const { posts } = cache.readQuery({ query: GET_POSTS });
+			// const { me } = cache.readQuery({query: GET_USER});
+			// console.log(me);
+			// console.log(data);
+			// console.log(cache)
+			// console.log(data.createPost);
 			cache.writeQuery({
 				query: GET_POSTS,
 				data: { posts: posts.concat([data.createPost]) },
+
 			});
+			// console.log('1')
+			// cache.writeQuery({
+			// 	query: GET_USER,
+			// 	data: { me: {...me, post: data.createPost} },
+			// });
+			// console.log('2');
+			// setDone(true);
 		},
 	});
 
@@ -103,13 +122,16 @@ const CoachForm = props => {
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay').style.display = 'block';
+		} else if (done) {
+			document.getElementById('overlay').style.display = 'block';
 		} else {
 			document.getElementById('overlay').style.display = 'none';
 		}
-	}, [open]);
+	}, [open, done]);
 
 	const { data, error } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
+	
 
 	let image;
 	if (data) {
@@ -157,16 +179,31 @@ const CoachForm = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		
+
 		addPost({ variables: formState })
 			.then(res => {
-				alert('you did it!');
-				props.refetch();
+				// alert('you did it!');
+				// props.refetch();
+				console.log('3')
+				setDone(true);
+				console.log('4')
 				setOpen(false);
+				console.log('5');
 			})
 			.catch(err => {
 				console.log(err);
 			});
+	};
+
+	const closeWindow = e => {
+		props.refetch();
+		setDone(false);
+	};
+
+	const setAvailability = e => {
+		props.refetch();
+		document.getElementById('overlay').style.display = 'none';
+		setDone(false);
 	};
 	return (
 		<div ref={node}>
@@ -174,6 +211,31 @@ const CoachForm = props => {
 				<Icon icon={ICONS.LIGHTBULB} width={16} height={22} />
 				<span className="add-coach-form-button">Become a coach</span>
 			</button>
+			{done && (
+				<div className="done-modal">
+					<button
+						className="close-coach-form-button"
+						onClick={() => closeWindow()}>
+						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+					</button>
+					<div className="done-modal-content">
+						{checkcircle()}
+						<p>Your coach post is live!</p>
+						<p>
+							You can edit your coach post and set your availability in your
+							dashboard.
+						</p>
+						<div className="done-modal-buttons">
+							<button onClick={() => closeWindow()}>Skip for now</button>
+							<Link to="/dashboard/schedule" className="add-coach-set-availability-link">
+								<button onClick={() => setAvailability()}>
+									Set Availability
+								</button>
+							</Link>
+						</div>
+					</div>
+				</div>
+			)}
 			{open && (
 				<div className="add-coach-form">
 					<button
