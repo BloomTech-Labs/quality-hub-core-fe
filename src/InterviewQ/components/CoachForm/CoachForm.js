@@ -23,7 +23,7 @@ const GET_USER = gql`
 			city
 			state
 			image_url
-			post{
+			post {
 				id
 				description
 			}
@@ -94,23 +94,10 @@ const CoachForm = props => {
 	const [addPost] = useMutation(ADD_POST, {
 		update(cache, { data }) {
 			const { posts } = cache.readQuery({ query: GET_POSTS });
-			// const { me } = cache.readQuery({query: GET_USER});
-			// console.log(me);
-			// console.log(data);
-			// console.log(cache)
-			// console.log(data.createPost);
 			cache.writeQuery({
 				query: GET_POSTS,
 				data: { posts: posts.concat([data.createPost]) },
-
 			});
-			// console.log('1')
-			// cache.writeQuery({
-			// 	query: GET_USER,
-			// 	data: { me: {...me, post: data.createPost} },
-			// });
-			// console.log('2');
-			// setDone(true);
 		},
 	});
 
@@ -131,7 +118,6 @@ const CoachForm = props => {
 
 	const { data, error } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
-	
 
 	let image;
 	if (data) {
@@ -153,6 +139,13 @@ const CoachForm = props => {
 
 	const handleChange = e => {
 		if (e.target.name === 'price') {
+			if(e.target.value.length <2){
+				setFormState({
+					...formState,
+					[e.target.name]: 0
+				});
+				return;
+			}
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
 				setFormState({
@@ -182,13 +175,8 @@ const CoachForm = props => {
 
 		addPost({ variables: formState })
 			.then(res => {
-				// alert('you did it!');
-				// props.refetch();
-				console.log('3')
 				setDone(true);
-				console.log('4')
 				setOpen(false);
-				console.log('5');
 			})
 			.catch(err => {
 				console.log(err);
@@ -227,7 +215,9 @@ const CoachForm = props => {
 						</p>
 						<div className="done-modal-buttons">
 							<button onClick={() => closeWindow()}>Skip for now</button>
-							<Link to="/dashboard/schedule" className="add-coach-set-availability-link">
+							<Link
+								to="/dashboard/schedule"
+								className="add-coach-set-availability-link">
 								<button onClick={() => setAvailability()}>
 									Set Availability
 								</button>
@@ -378,7 +368,6 @@ const CoachForm = props => {
 								alt="Coach Profile Pic"
 							/>
 						</div>
-						{/* </button> */}
 						<div className="coachcard-info">
 							<p>
 								<span className="coachcard-icon">
