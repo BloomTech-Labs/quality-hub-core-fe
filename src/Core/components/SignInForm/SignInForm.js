@@ -58,7 +58,7 @@ const SignInForm = props => {
 			.catch(err => {
 				setLoading(false);
 			});
-		console.log(user);
+		// console.log(user);
 	};
 
 	return (
@@ -100,9 +100,15 @@ const SignInForm = props => {
 						value={user.password}
 						onChange={handleChange}
 					/>
+					<p>
+						<Link to='/forgotPassword'>Forgot password?</Link>
+					</p>
 					<div
-						className='signin-icon'
-						style={{ cursor: 'pointer' }}
+						className='signin-icon-pw'
+						style={{
+							bottom: !showPassword && '5.4rem',
+							left: !showPassword && 'calc(100% - 4.6rem)',
+						}}
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword && (
 							<Icon
@@ -121,9 +127,6 @@ const SignInForm = props => {
 							/>
 						)}
 					</div>
-					<p>
-						<Link to='/forgotPassword'>Forgot password?</Link>
-					</p>
 				</div>
 				<br />
 				{!loading &&
