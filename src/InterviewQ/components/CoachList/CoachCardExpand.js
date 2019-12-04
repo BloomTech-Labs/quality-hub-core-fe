@@ -76,8 +76,16 @@ const CoachCard = ({ post, setOpen }) => {
 				</div>
 				<div className='coachcard-footer-expand'>
 					<div className='coachcard-links-exand'>
+					{post.coach.twitter_url && (
+						<a href={post.coach.linkedin_url} target="_blank">
 						<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+						</a>
+						)}
+						{post.coach.twitter_url && (
+						<a href={post.coach.twitter_url} target="_blank">
 						<Icon icon={ICONS.TWITTER} width={24} height={24} />
+						</a>
+						)}
 					</div>
 					<button className='interview-button-expand' disabled>
 						Request Interview
