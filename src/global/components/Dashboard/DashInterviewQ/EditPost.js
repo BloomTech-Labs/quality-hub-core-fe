@@ -1,32 +1,34 @@
 // Libraries
 import React, { useState, useEffect } from 'react';
-// import DashboardInput from '../DashboardInput';
+
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js';
 
 const CoachBasicInfo = ({ myArray, userData }) => {
+
+	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	console.log(industries);
 	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
-	console.log(coachPost);
+	// console.log(coachPost);
 
 	const [changeField] = useMutation(UPDATE_POST);
 
+	//Component State
 	let coachObj = coachPost && coachPost.postByCoach;
-	// const postKeys = original && Object.keys(original);
-
 	const [original, setOriginal] = useState(coachObj);
-	// // const original = coachPost && coachPost
+
 	useEffect(() => {
 		if (coachPost) {
 			setOriginal(coachPost.postByCoach);
 		}
 	}, [coachPost]);
 
-	console.log('orig', original);
+	// console.log('orig', original);
+
 	const [editing, setEditing] = useState([
 		false,
 		false,
@@ -36,13 +38,9 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		false,
 	]);
 
-	// useEffect(() => {
-	// 	if (editing) {
-	// 		document.querySelector('input').focus();
-	// 	}
-	// }, [editing]);
 	const [post, setPost] = useState({});
 
+	//Handler Functions
 	const handleChange = e => {
 		if (e.target.name === 'price') {
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
@@ -68,7 +66,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 				[e.target.name]: e.target.value,
 			});
 		}
-		console.log(post);
+		// console.log(post);
 	};
 
 	const handleCancel = index => {
@@ -83,18 +81,13 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 
 	const handleSubmit = (e, index) => {
 		let keyval = Object.keys(post);
-		console.log('key', keyval);
-
+		// console.log('key', keyval);
 		e.preventDefault();
 		changeField({ variables: post })
 			.then(res => {
-				// if([keyval[1]] === 'industryName'){
-				// 	setOriginal({...original, industry: {name: post[keyval[1]]}})
-				// }else {
 				setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
-				// }
-				console.log('post', post);
-				console.log(original);
+				// console.log('post', post);
+				// console.log(original);
 				let newEditting = [...editing];
 				newEditting[index] = false;
 				setEditing(newEditting);
@@ -107,11 +100,12 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 	const tagArray =
 		coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
 
-	console.log(tagArray);
+	//console.log(tagArray);
 
 	return (
 		<>
 			<div className='editform'>
+				{/* START BASIC INFO */}
 				<h2>Basic Info</h2>
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
@@ -125,7 +119,6 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 									defaultValue={original && original.company}
 									name='company'
 									value={post.company}
-									// placeholder={coachPost && coachPost.postByCoach.company}
 									onChange={handleChange}
 								/>
 							</div>
@@ -143,6 +136,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
+
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
@@ -218,14 +212,15 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
+
+				<div className='post-input'>
+					<div className='post-row'>
 						<span className='dash-heading'>
 							<h3>DESCRIPTION</h3>
 						</span>
 						{editing[3] ? (
 							<div>
-								<input
+								<textarea
 									id='edit-post-3'
 									type='textarea'
 									name='description'
@@ -235,7 +230,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 								/>
 							</div>
 						) : (
-							<div>
+							<div className='post-desc'>
 								<p>{original && original.description}</p>
 							</div>
 						)}
@@ -250,8 +245,9 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 						/>
 					</div>
 				</div>
+
 				<div className='dash-input'>
-					<div className='dash-row post-row'>
+					<div className='dash-row post-row .post-tag'>
 						<span className='dash-heading'>
 							<h3>TAGS</h3>
 						</span>
@@ -292,6 +288,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 				</div>
 			</div>
 
+			{/* START HOURLY RATE */}
 			<div className='editform'>
 				<h2>Hourly Rate</h2>
 				<div className='dash-input'>
