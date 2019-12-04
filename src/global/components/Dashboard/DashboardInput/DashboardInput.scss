@@ -102,3 +102,47 @@
 	cursor: pointer;
 	margin-right: 2rem;
 }
+
+
+#dashboard-input-bio{
+	display: flex;
+	overflow-wrap: break-word;
+	max-width: 50rem;
+	text-align: left;
+	min-height: 7rem;
+	align-items: center;
+	overflow-wrap: break-word;
+	width: 50rem;
+	// height: 7rem;
+	text-align: left;
+	display: flex;
+	align-items: flex-start;
+}
+
+.basiceditform{
+.dash-input:nth-child(3){
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 7.5rem;
+	border-bottom: 1px solid #dadce0;
+	padding: 1.7rem 3.2rem;
+
+	@media screen and (max-width: 380px) {
+		flex-direction: column;
+		height: 8rem;
+		margin-bottom: 1rem;
+		align-items: flex-start;
+	}
+	:nth-child(1){
+		display: flex;
+		overflow-wrap: break-word;
+		text-align: left;
+		min-height: 7rem;
+		align-items: center;
+		:nth-child(2){
+			max-width: 50rem;
+		}
+	}
+}
+}
