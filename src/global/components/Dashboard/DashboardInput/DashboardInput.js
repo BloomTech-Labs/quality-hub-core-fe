@@ -125,6 +125,7 @@ const DashboardInput = ({ userKey, userValue }) => {
 	//when you click edit...
 	//if the key name is state, use a dropdown menu instead of input form
 	const checkKeyNameForEdit = () => {
+		console.log(userKey);
 		if (userKey === 'state') {
 			return (
 				<select
@@ -142,7 +143,18 @@ const DashboardInput = ({ userKey, userValue }) => {
 					))}
 				</select>
 			);
-		}
+		} 
+		// else if(userKey==='bio'){
+		// 	return (
+		// 		<textarea
+		// 		name={userKey}
+		// 		id={`dashboard-input-${userKey}`}
+		// 		// placeholder={original}
+		// 		onChange={handleChange}
+		// 		value={user[userKey]}
+		// 	/>
+		// 	);
+		// }
 
 		return (
 			//If it's not a states array, just render a normal input field

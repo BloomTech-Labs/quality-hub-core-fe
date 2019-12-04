@@ -12,7 +12,7 @@
 	width: 416px;
 	height: 188px;
 	background-color: #fff;
-	border-radius: 14px;
+	border-radius: 5px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	padding: 1rem;
 
@@ -26,9 +26,13 @@
 .modal-header {
 	display: flex;
 	padding: 1rem;
-	img {
-		padding: 0 1rem;
+	h2{
+		margin-left: 1.7rem;
 	}
+	// img {
+	// 	padding: 0 1rem;
+	// 	color: green;
+	// }
 }
 
 .modal-button-cont {
@@ -37,7 +41,10 @@
 	margin-top: 1rem;
 	padding: 1rem;
 	.cancel {
-		padding: 1.2rem 2rem;
+		width: 7.5rem;
+		height: 3rem;
+		padding: 0;
+		text-align: center;
 		background-color: #fff;
 		color: gray;
 		border: 1px solid #d9d9d9;
@@ -47,9 +54,12 @@
 		}
 	}
 	.ok-button {
-		margin: 0 1rem;
-		padding: 1.2rem 2rem;
-		background-color: #18a0fb;
+		width: 7.5rem;
+		height: 3rem;
+		// margin: 0 1rem;
+		padding: 0;
+		text-align: center;
+		background-color: #D4380D;
 		border-style: none;
 		color: #fff;
 		border-radius: 4px;

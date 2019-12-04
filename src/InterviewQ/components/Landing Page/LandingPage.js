@@ -32,14 +32,14 @@ export const GET_USER = gql`
 export default function InterviewLandingPage() {
 	const [toggleFilter, setToggleFilter] = useState(true);
 	const [hasPost, setHasPost] = useState();
-	const [fields, setFields] = useState({
-		tag: '',
-		price: '',
-		industry: '',
-		orderBy: '',
-	});
+	// const [fields, setFields] = useState({
+	// 	tag: '',
+	// 	price: '',
+	// 	industry: '',
+	// 	orderBy: '',
+	// });
 
-	const { refetch, loading, error, data: userData } = useQuery(GET_USER);
+	const { refetch, loading, data: userData } = useQuery(GET_USER);
 
 	useEffect(() => {
 		refetch();

@@ -29,12 +29,6 @@ const GridDropdown = props => {
 
 	return (
 		<div ref={node}>
-			{/* <img
-				src={grid}
-				alt='Grid Menu'
-				className='grid-menu grid-icon'
-				onClick={() => setOpen(!open)}
-			/> */}
 			<div className='grid-menu grid-icon' onClick={() => setOpen(!open)}>
 				<Icon icon={ICONS.GRID} width={24} height={24} />
 			</div>
@@ -45,42 +39,24 @@ const GridDropdown = props => {
 						<Link to='/' className='box' onClick={() => setOpen(false)}>
 							<img
 								src={favicon}
-								height='50px'
-								width='50px'
+								height='24px'
+								width='24px'
 								alt='ResumeQ icon'
 							/>
 							<p>CodingQ</p>
 						</Link>
 
 						<Link to='/interviewq' className='box' onClick={() => setOpen(false)}>
-							{/* <img
-								src={interviewQ}
-								height='50px'
-								width='50px'
-								alt='InterviewQ icon'
-							/> */}
 							<Icon icon={ICONS.INTERVIEWQ} width={24} height={24} />
 							<p>InterviewQ</p>
 						</Link>
 
 						<Link to='/' className='box' onClick={() => setOpen(false)}>
-							{/* <img
-								src={resumeQ}
-								height='50px'
-								width='50px'
-								alt='ResumeQ icon'
-							/> */}
 							<Icon icon={ICONS.RESUMEQ} width={24} height={22} />
 							<p>ResumeQ</p>
 						</Link>
 
 						<Link to='/' className='box' onClick={() => setOpen(false)}>
-							{/* <img
-								src={designQ}
-								height='50px'
-								width='50px'
-								alt='DesignQ icon'
-							/> */}
 							<Icon icon={ICONS.DESIGNQ} width={24} height={20} />
 							<p>DesignQ</p>
 						</Link>
