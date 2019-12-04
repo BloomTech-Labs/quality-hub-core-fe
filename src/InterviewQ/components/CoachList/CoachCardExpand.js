@@ -9,6 +9,7 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 
 const CoachCard = ({ post, setOpen }) => {
 	let { coach } = post;
+	console.log(post);
 
 	return (
 		<div>
@@ -17,7 +18,7 @@ const CoachCard = ({ post, setOpen }) => {
 				<button
 					className='close-coachcard-expand'
 					onClick={() => setOpen(false)}>
-					<Icon icon={ICONS.CLOSE} width={24} height={24} />
+					<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 				</button>
 				<div
 					className={
@@ -29,7 +30,7 @@ const CoachCard = ({ post, setOpen }) => {
 						<h3>
 							{coach.first_name} {coach.last_name}
 						</h3>
-						<h4>${post.price} per hour</h4>
+						<h4>{post.price == 0 ? "Free" : `$${post.price} per hour`}</h4>
 					</div>
 					<div className='coach-photo-expand'>
 						{coach.image_url ? (
