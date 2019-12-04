@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js';
-// import { useQuery, useMutation } from '@apollo/react-hooks';
-// import { capitalize } from '../../../../utils/capitalize';
 
 const PostButtons = ({
 	editing,
@@ -10,8 +7,6 @@ const PostButtons = ({
 	handleSubmit,
 	index,
 }) => {
-	// const [changeField] = useMutation(UPDATE_POST);
-	// const [index, set]
 
 	const [focusvar, setFocusvar] = useState(false);
 	const handleEdit = () => {
@@ -21,15 +16,11 @@ const PostButtons = ({
 		newArr[index] = true;
 		setEditing(newArr);
 		setFocusvar(!focusvar);
-		// document.getElementsById(`edit-post-${index}`).focus();
 	};
 
 	useEffect(() => {
 		if (editing[index]) {
-			//   document.querySelector('input').focus();
-			// }
 			document.getElementById(`edit-post-${index}`).focus();
-			console.log('a word', index);
 		}
 	}, [focusvar]);
 
@@ -37,7 +28,7 @@ const PostButtons = ({
 
 	return (
 		<>
-			<div className='edit-btn'>
+			<div className='update-btns edit-btn'>
 				{editing[index] && (
 					// Cancel out of editing mode
 					<button onClick={() => handleCancel(index)} className='cancel-button'>
