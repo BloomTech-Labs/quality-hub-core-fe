@@ -13,14 +13,17 @@ const CoachCard = ({ post, setOpen }) => {
 
 
 	return (
-  <div>
+  <div> 
 		<div id="overlay-coachcard-expand"></div>
 			<div className='coachcard-expand'>
 					<button
 						className="close-coachcard-expand"
-						onClick={() => setOpen(false)}
-						>
-						<Icon icon={ICONS.CLOSE} width={24} height={24} />
+						onClick={() => setOpen(false)}>
+						<Icon icon={ICONS.CLOSE} 
+								width={24} 
+								height={24} 
+								color="rgba(0, 0, 0, 0.54)"
+								 />
 					</button>
 			<div className='coachcard-header-expand'>
 				<div className='coachcard-header-txt-expand'>
@@ -82,7 +85,7 @@ const CoachCard = ({ post, setOpen }) => {
 			</div>
 			</div>
 		</div>		
-
+		
 	);
 };
 
