@@ -8,10 +8,10 @@ import CoachDash from './CoachDash';
 
 export default function DashInterviewQ() {
 	return (
-		<div>
+		<>
 			<CoachDash />
 			{/* <Reviews /> */}
 			{/* <Video /> */}
-		</div>
+		</>
 	);
 }

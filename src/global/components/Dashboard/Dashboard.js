@@ -11,7 +11,7 @@ import './Dashboard.scss';
 import LeftNavBar from './LeftNavBar';
 import PersonalInfo from './PersonalInfo';
 import Schedule from './Schedule';
-
+import DashInterviewQ from './DashInterviewQ';
 // GraphQuaiL Query
 const GET_USER = gql`
 	query {
@@ -49,6 +49,9 @@ const Dashboard = ({ setLoggedin }) => {
 					</Route>
 					<Route exact path='/dashboard/schedule'>
 						<Schedule />
+					</Route>
+					<Route exact path='/dashboard/coachinfo'>
+						<DashInterviewQ />
 					</Route>
 				</Switch>
 			</div>
