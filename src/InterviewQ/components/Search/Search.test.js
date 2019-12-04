@@ -135,7 +135,7 @@ it('renders Apply button', async () => {
 		</Router>,
 	);
 	await wait();
-	rtl.getAllByText(container, 'Apply');
+	rtl.getAllByText(container, 'Search');
 });
 
 it('renders Industries array', async () => {

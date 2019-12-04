@@ -18,6 +18,7 @@ async function wait(ms = 0) {
 
 // Test React components by mocking calls to the GraphQL endpoint; this allows tests to be run in isolation and removes dependence on remote data
 it('coach cards should render without error', async () => {
+    document.createElement('div').setAttribute('id', 'overlay')
 
     const mocks = [
         {

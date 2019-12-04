@@ -21,10 +21,10 @@ const CoachCardModal = ({post}) => {
 
 
     return (
-        <div>
+        <div className="coach-card-modal-text">
             <div id="overlay-coachcard-expand"></div>
-            <button onClick={() => setOpen(!open)}> 
-            <p className='coachcard-seemore'>See more </p>
+            <button className="coach-card-modal-text" onClick={() => setOpen(!open)}> 
+              <p className='coach-card-modal-text coachcard-seemore'>See more </p>
             </button>
             {open && (
                   <CoachCard setOpen={setOpen} post={post}/>
