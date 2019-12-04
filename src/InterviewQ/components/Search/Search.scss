@@ -18,6 +18,19 @@
 	}
 }
 
+
+.search-input-search-icon{
+	margin-bottom: -56px;
+	padding-left: 10px;
+	// z-index: 30000;
+}
+.search-by-keyword-input{
+	padding-left: 40px;
+	background: none;
+	// height: 1000px;
+	// background-image: url('https://www.birds.cornell.edu/home/wp-content/uploads/2019/05/IBunting-Kinderman-58737651-FI.gif');
+}
+
 .search-field {
 	width: 32%;
 	text-align: left;
@@ -50,6 +63,7 @@
 	}
 }
 .search-field-bottom {
+	margin-top: 20px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
