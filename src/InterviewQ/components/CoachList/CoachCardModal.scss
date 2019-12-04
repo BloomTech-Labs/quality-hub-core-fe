@@ -16,8 +16,11 @@
 	cursor: not-allowed;
 }
 
+
+
 .coachcard-expand {
 		display: flex;
+		display: block !important;
 		// width: 31.3rem;
 		// height: 50.1rem;
 		// padding: 3rem;
@@ -44,6 +47,13 @@
 		text-align: left;
 		z-index: 1000;
 
+		.modal-dialog{
+			overflow-y: initial !important;
+			overflow-y: scroll; 
+			max-height:85%;  
+			margin-top: 50px; 
+			margin-bottom:50px;
+		}
 
 		.close-coachcard-expand {
 			position: absolute;

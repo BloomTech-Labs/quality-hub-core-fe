@@ -13,7 +13,7 @@ const CoachCard = ({ post, setOpen }) => {
 
 
 	return (
-	<div>
+  <div>
 		<div id="overlay-coachcard-expand"></div>
 			<div className='coachcard-expand'>
 					<button
@@ -80,8 +80,9 @@ const CoachCard = ({ post, setOpen }) => {
 					Request Interview
 				</button>
 			</div>
-		</div>
-	</div>
+			</div>
+		</div>		
+
 	);
 };
 
