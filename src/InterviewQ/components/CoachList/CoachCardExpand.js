@@ -19,7 +19,12 @@ const CoachCard = ({ post, setOpen }) => {
 					onClick={() => setOpen(false)}>
 					<Icon icon={ICONS.CLOSE} width={24} height={24} />
 				</button>
-				<div className='coachcard-header-expand'>
+				<div
+					className={
+						coach.first_name.length > 25 || coach.last_name.length > 25
+							? 'coachcard-header-expand coachcard-header-expand-longname'
+							: 'coachcard-header-expand'
+					}>
 					<div className='coachcard-header-txt-expand'>
 						<h3>
 							{coach.first_name} {coach.last_name}
