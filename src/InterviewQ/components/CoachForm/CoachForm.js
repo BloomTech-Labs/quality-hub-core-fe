@@ -358,6 +358,7 @@ const CoachForm = props => {
 								<p>$200</p>
 							</div>
 							<input
+							id="coach-form-price-slider"
 								name="price-slider"
 								type="range"
 								min="0"

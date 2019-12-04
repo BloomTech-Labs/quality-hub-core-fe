@@ -433,6 +433,11 @@ $main-font-family: 'SFProDisplay';
 	line-height: 128%;
 	border: none !important;
 }
+input:focus#coach-form-price-slider{
+	// :focus{
+		border: none !important;
+	// }
+}
 
 .add-coach-form-bottom-buttons {
 	display: flex;
