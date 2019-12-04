@@ -48,7 +48,7 @@ const CoachCard = ({ post, setOpen }) => {
 						<span className='coachcard-icon-expand'>
 							<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 						</span>
-						{post.industry.name}
+						{post.company} - {post.position}
 					</p>
 					<p>
 						<span className='coachcard-icon-expand'>
@@ -59,7 +59,7 @@ const CoachCard = ({ post, setOpen }) => {
 								color='#595959'
 							/>
 						</span>
-						{post.position} - {coach.city}, {coach.state}
+						{coach.city}, {coach.state}
 					</p>
 					<p>
 						<span className='coachcard-icon-expand'>
