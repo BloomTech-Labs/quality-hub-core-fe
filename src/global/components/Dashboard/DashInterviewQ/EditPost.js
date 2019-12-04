@@ -2,7 +2,7 @@
 import React, {useRef, useState, useEffect } from 'react';
 import DashboardInput from '../DashboardInput';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import PostInput from './PostInput';
+import PostButtons from './PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js'
 
 const CoachBasicInfo = ({ myArray, userData }) => {
@@ -17,6 +17,8 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 
  
 let coachObj = coachPost && coachPost.postByCoach;
+// const postKeys = original && Object.keys(original);
+
 
 const [original, setOriginal] = useState(coachObj);
 	// // const original = coachPost && coachPost
@@ -28,6 +30,11 @@ const [original, setOriginal] = useState(coachObj);
 	 console.log("orig", original);
 	const [editing, setEditing] = useState([false, false, false, false, false, false]);
 
+	// useEffect(() => {
+	// 	if (editing) {
+	// 		document.querySelector('input').focus();
+	// 	}
+	// }, [editing]);
 	const [post, setPost] = useState({});
 
 	const handleChange = e => {
@@ -55,18 +62,20 @@ const [original, setOriginal] = useState(coachObj);
 		console.log(post);
 	};
 
-	const handleCancel = e => {
+	const handleCancel = index => {
 		// setOriginal(coachPost && coachPost.postByCoach)
 		setPost({
 			id: coachPost.postByCoach.id,
 		});
-		setEditing([false, false, false, false, false]);
+		let newEditting = [...editing]
+					newEditting[index] = false;
+					setEditing(newEditting);
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = (e, index) => {
 		let keyval = Object.keys(post);
 		console.log('key', keyval)
-		console.log(post);
+		
     e.preventDefault();
     changeField({ variables: post })
 				.then(res => {
@@ -75,19 +84,19 @@ const [original, setOriginal] = useState(coachObj);
 						// }else {
 						setOriginal({...original, [keyval[1]]: post[keyval[1]]});
 						// }
+						console.log('post', post);
 					console.log(original)
-					setEditing([false, false, false, false, false]);
+					let newEditting = [...editing]
+					newEditting[index] = false;
+					setEditing(newEditting);
 					
 				})
 				.catch(err => {
 					console.log(err);
 				});
-
 	};
-	
 
-
-	const tagArray = coachPost && coachPost.postByCoach.tags.map(tag => tag.name).toString();
+	const tagArray = coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(", ");
 
 	console.log(tagArray)
 	
@@ -104,6 +113,7 @@ const [original, setOriginal] = useState(coachObj);
 						{editing[0] ? (
 							<div>
 								<input
+									id='edit-post-0'
 									defaultValue={original && original.company}
 									name='company'
 									value={post.company}
@@ -117,7 +127,7 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						)}
 						</div>
-						<PostInput
+						<PostButtons
 							index={0}
 							editing={editing}
 							setEditing={setEditing}
@@ -129,11 +139,12 @@ const [original, setOriginal] = useState(coachObj);
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 					<span className="dash-heading">
-						<h3>POSTION</h3>
+						<h3>POSITION</h3>
 						</span>
 						{editing[1] ? (
 							<div>
 								<input
+									id='edit-post-1'
 									name='position'
 									value={post.position}
 									defaultValue={original && original.position}
@@ -146,7 +157,7 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						)}
 </div>
-						<PostInput
+						<PostButtons
 							index={1}
 							editing={editing}
 							setEditing={setEditing}
@@ -164,6 +175,7 @@ const [original, setOriginal] = useState(coachObj);
 						{editing[2] ? (
 							<div>
 								<select
+								id='edit-post-2'
 									name='industryName'
 									value={post.industryName}
 									onChange={handleChange}>
@@ -189,7 +201,7 @@ const [original, setOriginal] = useState(coachObj);
 						)}
 						</div>
 						<div className='edit-btns'></div>
-						<PostInput
+						<PostButtons
 							index={2}
 							editing={editing}
 							setEditing={setEditing}
@@ -206,6 +218,7 @@ const [original, setOriginal] = useState(coachObj);
 						{editing[3] ? (
 							<div>
 								<input
+								id='edit-post-3'
 									type='textarea'
 									name='description'
 									value={post.description}
@@ -220,7 +233,7 @@ const [original, setOriginal] = useState(coachObj);
 						)}
 						</div>
 						<div className='edit-btns'>
-							<PostInput
+							<PostButtons
 								index={3}
 								editing={editing}
 								setEditing={setEditing}
@@ -237,17 +250,14 @@ const [original, setOriginal] = useState(coachObj);
 							</span>
 							{editing[5] ? (
 								<div>
-								
 												<input
-												
+												id='edit-post-5'
 													type='text'
 													name='tagString'
 													value={post.tagString}
 													defaultValue={original && original.tagString ? original && original.tagString : original && tagArray}
 													onChange={handleChange}
 												/>
-											
-									
 								</div>
 							) : (
 								<div>
@@ -256,7 +266,7 @@ const [original, setOriginal] = useState(coachObj);
 							)}
 								</div> 
 							<div className='edit-btns'>
-								<PostInput
+								<PostButtons
 									index={5}
 									editing={editing}
 									setEditing={setEditing}
@@ -277,13 +287,15 @@ const [original, setOriginal] = useState(coachObj);
 						</span>
 						{editing[4] ? (
 							<div>
-								<div className='slider'>
-									<div className='slider-inner-boxes'>
-										<div className='slider-dollar-amounts'>
+								<div className='slider-post'>
+									<div className='slider-inner-boxes-post'>
+										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
+											<p>{post.price ? post.price : original && original.price}</p>
 											<p>$200</p>
 										</div>
 										<input
+										id='edit-post-4'
 											name='price-slider'
 											type='range'
 											min='0'
@@ -293,7 +305,8 @@ const [original, setOriginal] = useState(coachObj);
 											onChange={handleChange}
 											step='1'
 										/>
-										<input
+										</div>
+										{/* <input
 											type='number'
 											name='price'
 											placeholder='$'
@@ -301,7 +314,7 @@ const [original, setOriginal] = useState(coachObj);
 											value={post.price}
 											onChange={handleChange}
 										/>
-									</div>
+									 */}
 								</div>
 								{/* <h4>${original && original.price}</h4> */}
 							</div>
@@ -313,7 +326,7 @@ const [original, setOriginal] = useState(coachObj);
 						</div>
 						<div className='edit-btns'>
 						
-							<PostInput
+							<PostButtons
 								index={4}
 								editing={editing}
 								setEditing={setEditing}

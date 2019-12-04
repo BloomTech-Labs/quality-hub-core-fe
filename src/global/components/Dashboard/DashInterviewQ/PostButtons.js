@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { capitalize } from '../../../../utils/capitalize';
 
-const PostInput = ({ editing, setEditing, handleCancel, handleSubmit, index }) => {
+const PostButtons = ({ editing, setEditing, handleCancel, handleSubmit, index }) => {
 
   // const [changeField] = useMutation(UPDATE_POST);
   // const [index, set]
 
+	const [focusvar, setFocusvar] = useState(false);
 const handleEdit = () =>{
   // console.log('running', editing)
   let newArr = [];
   newArr= [...editing];
   newArr[index] = true;
-  setEditing(newArr)
+	setEditing(newArr)
+	setFocusvar(!focusvar);
+	// document.getElementsById(`edit-post-${index}`).focus();
 }
 
+useEffect(() => {
+   if (editing[index]) {
+  //   document.querySelector('input').focus();
+	// }
+	document.getElementById(`edit-post-${index}`).focus();
+	console.log('a word', index);
+	 }
+}, [focusvar]);
 
 // console.log(editing);
 
@@ -25,13 +36,13 @@ const handleEdit = () =>{
 			<div className='edit-btn'>
 				{editing[index] && (
 					// Cancel out of editing mode
-					<button onClick={() => handleCancel()} className='cancel-button'>
+					<button onClick={() => handleCancel(index)} className='cancel-button'>
 						Cancel
 					</button>
 				)}
 				{editing[index] && (
 					// Save changes made in editing mode
-					<button onClick={e => handleSubmit(e)} className='accept-button'>
+					<button onClick={e => handleSubmit(e, index)} className='accept-button'>
 						Save
 					</button>
 				)}
@@ -50,4 +61,4 @@ const handleEdit = () =>{
 	);
 };
 
-export default PostInput;
+export default PostButtons;
