@@ -93,7 +93,7 @@ it("router works", () => {
   rtl.fireEvent.click(rtl.getByText(container, "Coach Info"));
   expect(history.location.pathname).toBe("/dashboard/coachinfo");
   rtl.fireEvent.click(rtl.getByText(container, "Schedule"));
-  expect(history.location.pathname).toBe("/dashboard/schedule");
-  rtl.fireEvent.click(rtl.getByText(container, "Setting"));
-  expect(history.location.pathname).toBe("/dashboard/setting");
+  expect(history.location.pathname).toBe("/dashboard/schedules");
+  rtl.fireEvent.click(rtl.getByText(container, "Settings"));
+  expect(history.location.pathname).toBe("/dashboard/settings");
 });
