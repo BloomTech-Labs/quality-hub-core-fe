@@ -17,7 +17,6 @@ const CoachCard = ({ post, setOpen }) => {
 
 	return (
 		<div className="coach-card">
-			{/* <div> */}
 			<div className="coachcard-header">
 				<div className="coachcard-header-txt">
 					<h3>
@@ -41,7 +40,6 @@ const CoachCard = ({ post, setOpen }) => {
 					<span className="coachcard-icon">
 						<Icon icon={ICONS.BAG} width={16} height={20} color="#595959" />
 					</span>
-					{/* {post.industry.name} */}
 					{`${post.company} - ${post.position}`}
 				</p>
 				<p>
@@ -73,7 +71,6 @@ const CoachCard = ({ post, setOpen }) => {
 					</span>
 				</p>
 			</div>
-			{/* </div> */}
 			<div className="coachcard-footer">
 				<div className="coachcard-links">
 					{post.coach.linkedin_url && (
