@@ -73,15 +73,15 @@ export default function LeftNavBar({ setLoggedin }) {
 					<div className='dashnav-txt'> Schedule</div>
 				</div>
 			</NavLink>
-			<NavLink activeClassName='dashnavactive' to='/dashboard/setting'>
+			<NavLink activeClassName='dashnavactive' to='/dashboard/settings'>
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.SETTING}
 						width={24}
 						height={24}
-						color={pathname === '/dashboard/setting' ? '#096dd9' : '#3c4043'}
+						color={pathname === '/dashboard/settings' ? '#096dd9' : '#3c4043'}
 					/>
-					<div className='dashnav-txt'>Setting</div>
+					<div className='dashnav-txt'>Settings</div>
 				</div>
 			</NavLink>
 		</div>

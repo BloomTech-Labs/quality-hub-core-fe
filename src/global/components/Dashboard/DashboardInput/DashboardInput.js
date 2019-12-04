@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 // Styles & Icons
@@ -29,6 +29,12 @@ const DashboardInput = ({ userKey, userValue }) => {
 			[userKey]: e.target.value,
 		});
 	};
+
+	useEffect(() => {
+		if (editing) {
+			document.getElementById(`dashboard-input-${userKey}`).focus();
+		}
+	}, [editing]);
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -119,12 +125,13 @@ const DashboardInput = ({ userKey, userValue }) => {
 	//when you click edit...
 	//if the key name is state, use a dropdown menu instead of input form
 	const checkKeyNameForEdit = () => {
+		console.log(userKey);
 		if (userKey === 'state') {
 			return (
 				<select
-					id='sign-up-state'
-					name='state'
-					placeholder='State'
+					id="sign-up-state"
+					name="state"
+					placeholder="State"
 					value={user[userKey]}
 					onChange={handleChange}
 					required>
@@ -136,12 +143,24 @@ const DashboardInput = ({ userKey, userValue }) => {
 					))}
 				</select>
 			);
-		}
+		} 
+		// else if(userKey==='bio'){
+		// 	return (
+		// 		<textarea
+		// 		name={userKey}
+		// 		id={`dashboard-input-${userKey}`}
+		// 		// placeholder={original}
+		// 		onChange={handleChange}
+		// 		value={user[userKey]}
+		// 	/>
+		// 	);
+		// }
 
 		return (
 			//If it's not a states array, just render a normal input field
 			<input
 				name={userKey}
+				id={`dashboard-input-${userKey}`}
 				// placeholder={original}
 				onChange={handleChange}
 				value={user[userKey]}
@@ -150,9 +169,9 @@ const DashboardInput = ({ userKey, userValue }) => {
 	};
 
 	return (
-		<div className='dash-input'>
-			<div className='dash-row'>
-				<span className='dash-heading'>
+		<div className="dash-input">
+			<div className="dash-row">
+				<span className="dash-heading">
 					<h3>{userKey && capitalize(userKey)}</h3>
 				</span>
 				<div>
@@ -163,16 +182,16 @@ const DashboardInput = ({ userKey, userValue }) => {
 					)}
 				</div>
 			</div>
-			<div className='update-btns'>
+			<div className="update-btns">
 				{editing && (
 					// Cancel out of editing mode
-					<button onClick={() => handleCancel()} className='cancel-button'>
+					<button onClick={() => handleCancel()} className="cancel-button">
 						Cancel
 					</button>
 				)}
 				{editing && (
 					// Save changes made in editing mode
-					<button onClick={e => handleSubmit(e)} className='accept-button'>
+					<button onClick={e => handleSubmit(e)} className="accept-button">
 						Save
 					</button>
 				)}
@@ -180,9 +199,9 @@ const DashboardInput = ({ userKey, userValue }) => {
 			{!editing && (
 				//button to click on to enter editing mode
 				<button
-					className='edit-button'
+					className="edit-button"
 					onClick={() => setEditing(true)}
-					data-testid='edit-button' //data-testid made explicitly for testing-purposes
+					data-testid="edit-button" //data-testid made explicitly for testing-purposes
 				>
 					Edit
 					{/* <Icon icon={ICONS.PENCIL} width={24} height={24} /> */}

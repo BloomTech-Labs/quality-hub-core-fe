@@ -4,21 +4,18 @@
 	display: flex;
 	width: 31.3rem;
 	height: 42.1rem;
-	padding: 3rem;
+	padding: 0.9rem 3rem 3rem 3rem;
 	// box-shadow: 2px 2px 5px gray;
 	border: 1px solid silver;
 	border-radius: 1rem;
 	margin-bottom: 1.3rem;
-	flex-direction: column;
-	justify-content: space-between;
-
-	text-align: left;
-
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
 	.coachcard-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
 		.coachcard-header-txt {
 			text-align: left;
 
@@ -34,6 +31,7 @@
 				font-size: 1.6rem;
 				font-weight: normal;
 				line-height: 2.4rem;
+				color: #096DD9;
 			}
 		}
 
@@ -42,65 +40,79 @@
 			height: 8.3rem;
 			border-radius: 50%;
 			overflow: hidden;
-			// img {
-			// 	// clip-path: circle(50% at 50% 50%);
-			// }
+		
 		}
 	}
 
-	// .coach-text {
-	// width: 100%;
-	// .flex-sect {
-	// 	display: flex;
-	// 	.left-side {
-	// 		width: 70%;
-	// 	}
-	// }
-
-	// 		text-align: left;
-
-	// 		.coachcard-footer {
-	// 			display: flex;
-	// 			width: 100%;
-	// 			justify-content: space-between;
-	// 		}
-	// 	}
 
 	.coachcard-info {
+    margin-top: 1.2rem;
 		p {
-			display: flex;
-			align-items: center;
 			font-style: normal;
 			font-weight: normal;
 			font-size: 1.6rem;
 			line-height: 2.4rem;
 			color: #595959;
 
+      margin: 0.2rem 0;
 			.coachcard-icon {
-				width: 2.8rem;
-				display: inline-block;
+        display: inline-block;
+        width: 1.8em;
+        margin-top: 0.2rem;
 			}
-		}
+    }
+
+    .location {
+
+    }
+
+    .star {
+
+    }
 	}
 
 	.coachcard-description {
+    margin-top: 0.4rem;
 		p {
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.6rem;
+      line-height: 2.4rem;
+      overflow: hidden;
+      height: 12.5rem;
+      color: #3c4043;
+    }
+    .see-more {
+      color:blue;
+    }
+		.p-ellipsis {
 			font-style: normal;
 			font-weight: normal;
 			font-size: 1.6rem;
 			line-height: 2.4rem;
 			color: #3c4043;
-    }
-    .see-more {
-      color:blue;
-    }
+			overflow: hidden;
+      text-overflow: ellipsis;
+      span {
+        display: inline;
+        .coach-card-modal-text {
+          display: inline;
+          > * {
+            display: inline;
+          }
+        }
+      }
+		}
+		.coachcard-seemore {
+			color: #096DD9;
+		}
 	}
 
 	.coachcard-footer {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 2.0rem;
 		.coachcard-links {
 			width: 6.2rem;
 			display: flex;
@@ -108,22 +120,21 @@
 		}
 
 		.interview-button {
-      display:flex;
+      		display:flex;
 			border-radius: 0.5rem;
       font-size: 1.2rem;
-      font-family: 'Arial';
       font-style: normal;
       justify-content: center;
 			// font-weight: 600;
 			line-height: 2.2rem;
 			background-color: $main-blue;
 			text-align: center;
-      color: white;
-      align-items:center;
+			color: white;
+			align-items:center;
 			width: 13.23rem;
-      height: 4.2rem;
-      overflow: hidden;
-      white-space: nowrap;
+			height: 4.2rem;
+			overflow: hidden;
+			white-space: nowrap;
 		}
 	}
 }
