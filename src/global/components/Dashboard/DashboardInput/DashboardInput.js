@@ -129,7 +129,7 @@ const DashboardInput = ({ userKey, userValue }) => {
 		if (userKey === 'state') {
 			return (
 				<select
-					id="sign-up-state"
+					id={`dashboard-input-${userKey}`}
 					name="state"
 					placeholder="State"
 					value={user[userKey]}
