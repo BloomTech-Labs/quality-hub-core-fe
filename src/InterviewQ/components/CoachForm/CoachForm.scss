@@ -1,5 +1,3 @@
-$main-font-family: 'SFProDisplay';
-
 #overlay-coach-form {
 	position: fixed;
 	display: none;
@@ -33,7 +31,6 @@ $main-font-family: 'SFProDisplay';
 		align-items: center;
 		padding: 0px !important;
 		p {
-			font-family: $main-font-family;
 			font-style: normal;
 			font-weight: 600;
 			font-size: 20px;
@@ -69,17 +66,17 @@ $main-font-family: 'SFProDisplay';
 }
 
 .add-coach-form {
-	position: absolute;
-	width: 850px;
-	height: 80%;
+	// position: absolute;
+	width: 790px;
+	height: 90%;
 	overflow: auto;
 	overflow-x: hidden;
-
-	left: 50%;
-	transform: translate(-50%);
-	padding-top: 120px;
-	padding-left: 91px;
-	padding-right: 91px;
+	// left: 50%;
+	// transform: translate(-50%);
+	// top: 260px;
+	// padding-top: 120px;
+	padding-left: 61px;
+	padding-right: 61px;
 	background: white;
 	border-radius: 10px;
 	text-align: left;
@@ -89,20 +86,42 @@ $main-font-family: 'SFProDisplay';
 	select {
 		width: 100%;
 	}
+	z-index: 1001;
+	margin-bottom: 1px;
+}
+
+.add-coach-form-top-fixed{
+	// position: fixed;
+	// border: 1px solid red;
+	// background: white;
+	// width: 100%;
+	// width: inherit;
+	// border: 1px solid red;
+	// height: 200px;
+	// width: 719px;
+	// margin-bottom: 200px;
+	// padding-right: 61px;
+}
+
+.add-coach-form-background {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-content: flex-end;
+	align-items: flex-end;
+	width: 850px;
+	height: 817px;
+	// overflow: auto;
+	// overflow-x: hidden;
+	left: 50%;
+	transform: translate(-50%);
+	// padding-top: 120px;
+	// padding-left: 91px;
+	// padding-right: 91px;
+	background: white;
+	border-radius: 10px;
+	// text-align: left;
 	z-index: 1000;
-	// 	::-webkit-scrollbar {
-	// 		width: 11px;
-	// 	  }
-	// 	  scrollbar-width: thin;
-	//   scrollbar-color: var(#90A4AE) var(#CFD8DC);
-	//   ::-webkit-scrollbar-track {
-	// 	background: var(#CFD8DC);
-	//   }
-	//   ::-webkit-scrollbar-thumb {
-	// 	background-color: var(#90A4AE) ;
-	// 	border-radius: 6px;
-	// 	border: 3px solid var(#CFD8DC);
-	//   }
 }
 
 .done-modal {
@@ -123,42 +142,36 @@ $main-font-family: 'SFProDisplay';
 
 	z-index: 1000;
 }
-.done-modal-buttons{
-	button{
+.done-modal-buttons {
+	button {
 		border-radius: 5px;
-	width: 140px;
-	height: 54px;
-	
-	
-	font-family: $main-font-family;
-	font-style: Medium;
-	font-size: 16px;
-	line-height: 24px;
-	line-height: 128%;
-	padding: 0px;
-	color: #8C8C8C;
-	border: 1px solid #8C8C8C;
-	
+		width: 140px;
+		height: 54px;
+		font-style: Medium;
+		font-size: 16px;
+		line-height: 24px;
+		line-height: 128%;
+		padding: 0px;
+		color: #8c8c8c;
+		border: 1px solid #8c8c8c;
 	}
-	
 }
-.done-modal-set-availability-btn{
+.done-modal-set-availability-btn {
 	border: none !important;
 	color: #fff !important;
 	background-color: #096dd9;
 }
 
-.done-modal-checkcircle{
+.done-modal-checkcircle {
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 }
-.done-modal-all-text{
+.done-modal-all-text {
 	margin-top: 29px;
 	margin-bottom: 93px;
 	text-align: center;
-	color: #3C4043;
-	
+	color: #3c4043;
 }
 
 .done-modal-content {
@@ -177,8 +190,8 @@ $main-font-family: 'SFProDisplay';
 
 .close-coach-form-button {
 	position: absolute;
-	top: 40px;
-	right: 30px;
+	top: 26px;
+	right: 24px;
 	margin: 0 !important;
 	padding: 0 !important;
 	border: none !important;
@@ -191,7 +204,6 @@ $main-font-family: 'SFProDisplay';
 .add-coach-form-header {
 	color: #096dd9;
 	font-size: 3rem;
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	margin-left: 10px;
@@ -202,7 +214,6 @@ $main-font-family: 'SFProDisplay';
 }
 
 .add-coach-form-row-2 {
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 20px;
@@ -211,17 +222,16 @@ $main-font-family: 'SFProDisplay';
 }
 
 .add-coach-form-step-title {
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 28px;
 	color: #5f6368;
-	margin-top: 72px;
+	// margin-top: 72px;
+	margin-top: 40px;
 }
 
 .add-coach-form-sub-title {
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 30px;
@@ -231,7 +241,6 @@ $main-font-family: 'SFProDisplay';
 }
 
 .add-coach-form-description {
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 20px;
@@ -242,7 +251,6 @@ $main-font-family: 'SFProDisplay';
 
 .add-coach-form-row-6 {
 	margin-top: 24px;
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -252,7 +260,6 @@ $main-font-family: 'SFProDisplay';
 
 .add-coach-form-row-6 {
 	margin-top: 24px;
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -265,6 +272,16 @@ $main-font-family: 'SFProDisplay';
 	border: 1px solid #dadce0;
 	box-sizing: border-box;
 	border-radius: 6px;
+	width: 100%;
+}
+
+textarea.add-coach-form-row-7 {
+	margin-top: 1px;
+	border: 1px solid #dadce0;
+	box-sizing: border-box;
+	border-radius: 6px;
+	width: 100%;
+	min-height: 60px;
 }
 .add-coach-form-hr-1 {
 	margin: 72px 0;
@@ -298,7 +315,6 @@ $main-font-family: 'SFProDisplay';
 	top: 21px;
 }
 .add-coach-form-preview-name {
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 20px;
@@ -307,7 +323,6 @@ $main-font-family: 'SFProDisplay';
 }
 
 .add-coach-form-preview-amount {
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 16px;
@@ -319,7 +334,6 @@ $main-font-family: 'SFProDisplay';
 	margin-top: 41px;
 	p {
 		display: flex;
-		font-family: $main-font-family;
 		font-style: normal;
 		font-weight: normal;
 		font-size: 16px;
@@ -335,7 +349,6 @@ $main-font-family: 'SFProDisplay';
 
 .add-coach-form-preview-description {
 	margin-top: 17px;
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 16px;
@@ -357,8 +370,8 @@ $main-font-family: 'SFProDisplay';
 		display: flex;
 	}
 }
-.become-a-coach-btn{
-	background-color: #EFEFEF;
+.become-a-coach-btn {
+	background-color: #efefef;
 }
 .interview-button {
 	border: none !important;
@@ -374,7 +387,6 @@ $main-font-family: 'SFProDisplay';
 	margin-left: 0 !important;
 	margin-right: 0 !important;
 
-	font-family: $main-font-family;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -415,12 +427,16 @@ $main-font-family: 'SFProDisplay';
 	height: 54px;
 	background-color: #096dd9;
 	color: #fff !important;
-	font-family: $main-font-family;
 	font-style: Medium;
 	font-size: 16px;
 	line-height: 24px;
 	line-height: 128%;
 	border: none !important;
+}
+input:focus#coach-form-price-slider {
+	// :focus{
+	border: none !important;
+	// }
 }
 
 .add-coach-form-bottom-buttons {
