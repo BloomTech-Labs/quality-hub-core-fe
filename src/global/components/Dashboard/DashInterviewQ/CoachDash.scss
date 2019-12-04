@@ -1,0 +1,184 @@
+.delete-post-btn {
+	color: white;
+	display: flex;
+	align-items: center;
+	line-height: 24px;
+	cursor: pointer;
+	font-size: 1.6rem;
+	text-align: center;
+	justify-content: center;
+	// padding: 1rem 2rem;
+	border-radius: 4px;
+	width: 148px;
+	height: 36px;
+	background-color: #096dd9;
+}
+
+.dash-coachinfo {
+	width: 100%;
+}
+
+.delete-post {
+	display: flex;
+	justify-content: space-between;
+	padding: 1.7rem 3.2rem;
+}
+
+.delete-warning {
+	display: flex;
+	justify-content: flex-start;
+	width: 80rem;
+	font-size: 16px;
+}
+
+.coachinfo-header {
+	display: flex;
+	align-items: center;
+	padding: 1.6rem 0;
+	border-bottom: 1px solid #dadce0;
+
+	.circle-blue {
+		width: 5.6rem;
+		height: 5.6rem;
+		border-radius: 50%;
+		background-color: #096dd9;
+		margin-right: 2.7rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	h1 {
+		text-align: left;
+		font-weight: 600;
+		font-size: 3rem;
+		color: #262626;
+	}
+}
+
+.not-a-coach-header {
+	display: flex;
+	align-items: center;
+	padding: 1.6rem 0;
+	// border-bottom: 1px solid #dadce0;
+	.circle-blue {
+		width: 5.6rem;
+		height: 5.6rem;
+		border-radius: 50%;
+		background-color: #096dd9;
+		margin-right: 2.7rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	h1 {
+		text-align: left;
+		font-weight: 600;
+		font-size: 3rem;
+		color: #262626;
+	}
+}
+
+.edit-post-slider {
+	width: 300px;
+}
+
+input:focus#edit-post-4 {
+	// :focus{
+	border: none !important;
+	// }
+}
+
+.slider-post {
+	margin-left: 35px;
+	margin-top: -20px;
+	display: flex;
+	justify-content: center;
+
+	input {
+		width: 300px !important;
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+
+	.slider-dollar-amounts-post {
+		width: 300px;
+		display: flex;
+		justify-content: space-between;
+		align-content: center;
+		align-items: center;
+		padding: 0px !important;
+		p {
+			font-style: normal;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 28px;
+			color: #3c4043;
+		}
+	}
+
+	.slider-inner-boxes-post {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.not-a-coach {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.post-desc{
+	display: flex;
+	overflow-wrap: break-word;
+	max-width: 50rem;
+	text-align: left;
+	min-height: 7rem;
+	align-items: center;
+}
+
+.post-row {
+	display: flex;
+	align-items: center;
+	min-height: 5rem;
+}
+
+.post-input {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 5rem;
+	border-bottom: 1px solid #dadce0;
+	padding: 1.7rem 3.2rem;
+
+	@media screen and (max-width: 380px) {
+		flex-direction: column;
+		height: 8rem;
+		margin-bottom: 1rem;
+		align-items: flex-start;
+	}
+}
+
+#edit-post-3, #edit-post-5{
+	overflow-wrap: break-word;
+	width: 50rem;
+	height: 7rem;
+	text-align: left;
+	display: flex;
+	align-items: flex-start;
+}
+
+#edit-post-5{
+	overflow-wrap: break-word;
+	width: 50rem;
+	height: 4rem;
+	text-align: left;
+	display: flex;
+	align-items: flex-start;
+	margin-top: .5rem;
+}
+
