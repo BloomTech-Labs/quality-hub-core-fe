@@ -276,6 +276,17 @@ $main-font-family: 'SFProDisplay';
 	border: 1px solid #dadce0;
 	box-sizing: border-box;
 	border-radius: 6px;
+	width: 100%;
+	// min-height: 166px;
+}
+
+textarea.add-coach-form-row-7{
+	margin-top: 1px;
+	border: 1px solid #dadce0;
+	box-sizing: border-box;
+	border-radius: 6px;
+	width: 100%;
+	min-height: 60px;
 }
 .add-coach-form-hr-1 {
 	margin: 72px 0;

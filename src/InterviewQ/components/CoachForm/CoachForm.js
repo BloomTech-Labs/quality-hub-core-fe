@@ -324,7 +324,7 @@ const CoachForm = props => {
 					</select>
 					{/* Needs to be textarea */}
 					<p className="add-coach-form-row-6">Description</p>
-					<input
+					<textarea
 						className="add-coach-form-row-7"
 						type="text"
 						name="description"
