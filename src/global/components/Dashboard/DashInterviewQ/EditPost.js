@@ -1,9 +1,9 @@
 // Libraries
-import React, {useRef, useState, useEffect } from 'react';
-import DashboardInput from '../DashboardInput';
+import React, { useState, useEffect } from 'react';
+// import DashboardInput from '../DashboardInput';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js'
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js';
 
 const CoachBasicInfo = ({ myArray, userData }) => {
 	const { data: industries } = useQuery(GET_INDUSTRIES);
@@ -13,22 +13,28 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 	});
 	console.log(coachPost);
 
-	 const [changeField] = useMutation(UPDATE_POST);
+	const [changeField] = useMutation(UPDATE_POST);
 
- 
-let coachObj = coachPost && coachPost.postByCoach;
-// const postKeys = original && Object.keys(original);
+	let coachObj = coachPost && coachPost.postByCoach;
+	// const postKeys = original && Object.keys(original);
 
-
-const [original, setOriginal] = useState(coachObj);
+	const [original, setOriginal] = useState(coachObj);
 	// // const original = coachPost && coachPost
 	useEffect(() => {
-		if(coachPost){
-		setOriginal(coachPost.postByCoach)
-		}}, [coachPost])
+		if (coachPost) {
+			setOriginal(coachPost.postByCoach);
+		}
+	}, [coachPost]);
 
-	 console.log("orig", original);
-	const [editing, setEditing] = useState([false, false, false, false, false, false]);
+	console.log('orig', original);
+	const [editing, setEditing] = useState([
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+	]);
 
 	// useEffect(() => {
 	// 	if (editing) {
@@ -57,7 +63,10 @@ const [original, setOriginal] = useState(coachObj);
 			});
 			return;
 		} else {
-			setPost({ id: coachPost.postByCoach.id, [e.target.name]: e.target.value });
+			setPost({
+				id: coachPost.postByCoach.id,
+				[e.target.name]: e.target.value,
+			});
 		}
 		console.log(post);
 	};
@@ -67,48 +76,47 @@ const [original, setOriginal] = useState(coachObj);
 		setPost({
 			id: coachPost.postByCoach.id,
 		});
-		let newEditting = [...editing]
-					newEditting[index] = false;
-					setEditing(newEditting);
+		let newEditting = [...editing];
+		newEditting[index] = false;
+		setEditing(newEditting);
 	};
 
 	const handleSubmit = (e, index) => {
 		let keyval = Object.keys(post);
-		console.log('key', keyval)
-		
-    e.preventDefault();
-    changeField({ variables: post })
-				.then(res => {
-						// if([keyval[1]] === 'industryName'){
-						// 	setOriginal({...original, industry: {name: post[keyval[1]]}})
-						// }else {
-						setOriginal({...original, [keyval[1]]: post[keyval[1]]});
-						// }
-						console.log('post', post);
-					console.log(original)
-					let newEditting = [...editing]
-					newEditting[index] = false;
-					setEditing(newEditting);
-					
-				})
-				.catch(err => {
-					console.log(err);
-				});
+		console.log('key', keyval);
+
+		e.preventDefault();
+		changeField({ variables: post })
+			.then(res => {
+				// if([keyval[1]] === 'industryName'){
+				// 	setOriginal({...original, industry: {name: post[keyval[1]]}})
+				// }else {
+				setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
+				// }
+				console.log('post', post);
+				console.log(original);
+				let newEditting = [...editing];
+				newEditting[index] = false;
+				setEditing(newEditting);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
-	const tagArray = coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(", ");
+	const tagArray =
+		coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
 
-	console.log(tagArray)
-	
-	
+	console.log(tagArray);
+
 	return (
 		<>
 			<div className='editform'>
 				<h2>Basic Info</h2>
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
-					<span className="dash-heading">
-						<h3>COMPANY</h3>
+						<span className='dash-heading'>
+							<h3>COMPANY</h3>
 						</span>
 						{editing[0] ? (
 							<div>
@@ -123,23 +131,22 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						) : (
 							<div>
-							<p>{original && original.company}</p>
+								<p>{original && original.company}</p>
 							</div>
 						)}
-						</div>
-						<PostButtons
-							index={0}
-							editing={editing}
-							setEditing={setEditing}
-							handleCancel={handleCancel}
-							handleSubmit={handleSubmit}
-						/>
-					
+					</div>
+					<PostButtons
+						index={0}
+						editing={editing}
+						setEditing={setEditing}
+						handleCancel={handleCancel}
+						handleSubmit={handleSubmit}
+					/>
 				</div>
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
-					<span className="dash-heading">
-						<h3>POSITION</h3>
+						<span className='dash-heading'>
+							<h3>POSITION</h3>
 						</span>
 						{editing[1] ? (
 							<div>
@@ -153,35 +160,37 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						) : (
 							<div>
-							<p>{original && original.position}</p>
+								<p>{original && original.position}</p>
 							</div>
 						)}
-</div>
-						<PostButtons
-							index={1}
-							editing={editing}
-							setEditing={setEditing}
-							handleCancel={handleCancel}
-							handleSubmit={handleSubmit}
-						/>
-					
+					</div>
+					<PostButtons
+						index={1}
+						editing={editing}
+						setEditing={setEditing}
+						handleCancel={handleCancel}
+						handleSubmit={handleSubmit}
+					/>
 				</div>
-				
+
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
-					<span className="dash-heading">
-						<h3>INDUSTRY</h3>
+						<span className='dash-heading'>
+							<h3>INDUSTRY</h3>
 						</span>
 						{editing[2] ? (
 							<div>
 								<select
-								id='edit-post-2'
+									id='edit-post-2'
 									name='industryName'
 									value={post.industryName}
 									onChange={handleChange}>
-									<option>	{original && original.industryName
-									? original && original.industryName
-									: original && original.industry.name}</option>
+									<option>
+										{' '}
+										{original && original.industryName
+											? original && original.industryName
+											: original && original.industry.name}
+									</option>
 									{industries &&
 										industries.industries.map(industry => (
 											<option value={industry.name} key={industry.id}>
@@ -192,33 +201,32 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						) : (
 							<div>
-							<p>
-								{original && original.industryName
-									? original && original.industryName
-									: original && original.industry.name}
-							</p>
+								<p>
+									{original && original.industryName
+										? original && original.industryName
+										: original && original.industry.name}
+								</p>
 							</div>
 						)}
-						</div>
-						<div className='edit-btns'></div>
-						<PostButtons
-							index={2}
-							editing={editing}
-							setEditing={setEditing}
-							handleCancel={handleCancel}
-							handleSubmit={handleSubmit}
-						/>
-					
+					</div>
+					<div className='edit-btns'></div>
+					<PostButtons
+						index={2}
+						editing={editing}
+						setEditing={setEditing}
+						handleCancel={handleCancel}
+						handleSubmit={handleSubmit}
+					/>
 				</div>
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
-					<span className="dash-heading">
-						<h3>DESCRIPTION</h3>
+						<span className='dash-heading'>
+							<h3>DESCRIPTION</h3>
 						</span>
 						{editing[3] ? (
 							<div>
 								<input
-								id='edit-post-3'
+									id='edit-post-3'
 									type='textarea'
 									name='description'
 									value={post.description}
@@ -228,62 +236,68 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						) : (
 							<div>
-							<p>{original && original.description}</p>
+								<p>{original && original.description}</p>
 							</div>
 						)}
-						</div>
-						<div className='edit-btns'>
-							<PostButtons
-								index={3}
-								editing={editing}
-								setEditing={setEditing}
-								handleCancel={handleCancel}
-								handleSubmit={handleSubmit}
-							/>
-						</div>
-					
+					</div>
+					<div className='edit-btns'>
+						<PostButtons
+							index={3}
+							editing={editing}
+							setEditing={setEditing}
+							handleCancel={handleCancel}
+							handleSubmit={handleSubmit}
+						/>
+					</div>
 				</div>
 				<div className='dash-input'>
-						<div className='dash-row post-row'>
-							<span className="dash-heading">
+					<div className='dash-row post-row'>
+						<span className='dash-heading'>
 							<h3>TAGS</h3>
-							</span>
-							{editing[5] ? (
-								<div>
-												<input
-												id='edit-post-5'
-													type='text'
-													name='tagString'
-													value={post.tagString}
-													defaultValue={original && original.tagString ? original && original.tagString : original && tagArray}
-													onChange={handleChange}
-												/>
-								</div>
-							) : (
-								<div>
-									<p>{original && original.tagString ? original && original.tagString : original && tagArray}</p>
-								</div>
-							)}
-								</div> 
-							<div className='edit-btns'>
-								<PostButtons
-									index={5}
-									editing={editing}
-									setEditing={setEditing}
-									handleCancel={handleCancel}
-									handleSubmit={handleSubmit}
+						</span>
+						{editing[5] ? (
+							<div>
+								<input
+									id='edit-post-5'
+									type='text'
+									name='tagString'
+									value={post.tagString}
+									defaultValue={
+										original && original.tagString
+											? original && original.tagString
+											: original && tagArray
+									}
+									onChange={handleChange}
 								/>
-							</div> 
-					
-					</div> 
+							</div>
+						) : (
+							<div>
+								<p>
+									{original && original.tagString
+										? original && original.tagString
+										: original && tagArray}
+								</p>
+							</div>
+						)}
+					</div>
+					<div className='edit-btns'>
+						<PostButtons
+							index={5}
+							editing={editing}
+							setEditing={setEditing}
+							handleCancel={handleCancel}
+							handleSubmit={handleSubmit}
+						/>
+					</div>
+				</div>
 			</div>
 
 			<div className='editform'>
 				<h2>Hourly Rate</h2>
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
-					<span className="dash-heading">
-						<h3>PRICE PER SESSION</h3>
+						<span className='dash-heading'>
+							<h3>PRICE PER SESSION</h3>
 						</span>
 						{editing[4] ? (
 							<div>
@@ -291,11 +305,13 @@ const [original, setOriginal] = useState(coachObj);
 									<div className='slider-inner-boxes-post'>
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
-											<p>{post.price ? post.price : original && original.price}</p>
+											<p>
+												{post.price ? post.price : original && original.price}
+											</p>
 											<p>$200</p>
 										</div>
 										<input
-										id='edit-post-4'
+											id='edit-post-4'
 											name='price-slider'
 											type='range'
 											min='0'
@@ -305,8 +321,8 @@ const [original, setOriginal] = useState(coachObj);
 											onChange={handleChange}
 											step='1'
 										/>
-										</div>
-										{/* <input
+									</div>
+									{/* <input
 											type='number'
 											name='price'
 											placeholder='$'
@@ -320,27 +336,22 @@ const [original, setOriginal] = useState(coachObj);
 							</div>
 						) : (
 							<div>
-							<p>${original && original.price}</p>
+								<p>${original && original.price}</p>
 							</div>
 						)}
-						</div>
-						<div className='edit-btns'>
-						
-							<PostButtons
-								index={4}
-								editing={editing}
-								setEditing={setEditing}
-								handleCancel={handleCancel}
-								handleSubmit={handleSubmit}
-							/>
-						</div>
-					
 					</div>
+					<div className='edit-btns'>
+						<PostButtons
+							index={4}
+							editing={editing}
+							setEditing={setEditing}
+							handleCancel={handleCancel}
+							handleSubmit={handleSubmit}
+						/>
 					</div>
-				 
-				</>
-		
-
+				</div>
+			</div>
+		</>
 	);
 };
 
