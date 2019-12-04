@@ -129,7 +129,7 @@ const DashboardInput = ({ userKey, userValue }) => {
 		if (userKey === 'state') {
 			return (
 				<select
-					id="sign-up-state"
+					id={`dashboard-input-${userKey}`}
 					name="state"
 					placeholder="State"
 					value={user[userKey]}
@@ -144,17 +144,18 @@ const DashboardInput = ({ userKey, userValue }) => {
 				</select>
 			);
 		} 
-		// else if(userKey==='bio'){
-		// 	return (
-		// 		<textarea
-		// 		name={userKey}
-		// 		id={`dashboard-input-${userKey}`}
-		// 		// placeholder={original}
-		// 		onChange={handleChange}
-		// 		value={user[userKey]}
-		// 	/>
-		// 	);
-		// }
+		else if(userKey==='bio'){
+			return (
+				<textarea
+				className='post-desc'
+				name={userKey}
+				id={`dashboard-input-${userKey}`}
+				// placeholder={original}
+				onChange={handleChange}
+				value={user[userKey]}
+			/>
+			);
+		}
 
 		return (
 			//If it's not a states array, just render a normal input field

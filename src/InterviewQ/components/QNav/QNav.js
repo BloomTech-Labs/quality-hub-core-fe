@@ -22,13 +22,13 @@ export default function QNav() {
 					<div className='QNav-main'>InterviewQ</div>
 				</div>
 			</>
-			<a href='/'>
+			<a href='#'>
 				<div className='QNav-row'>
 					<Icon icon={ICONS.RESUMEQ} width={24} height={22} />
 					<div className='QNav-btn'>ResumeQ</div>
 				</div>
 			</a>
-			<a href='/'>
+			<a href='#'>
 				<div className='QNav-row'>
 					<Icon icon={ICONS.DESIGNQ} width={24} height={20} />
 					<div className='QNav-btn'>DesignQ</div>

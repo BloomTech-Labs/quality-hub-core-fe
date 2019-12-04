@@ -175,7 +175,6 @@ const CoachForm = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-
 		addPost({ variables: formState })
 			.then(res => {
 				setDone(true);

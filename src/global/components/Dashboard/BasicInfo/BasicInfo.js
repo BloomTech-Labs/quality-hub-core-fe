@@ -32,7 +32,7 @@ const BasicInfo = () => {
 		Object.keys(data.me).filter(item => item !== 'id' && item !== '__typename');
 
 	return (
-		<div className='editform'>
+		<div className='editform basiceditform'>
 			<h2>Basic Info</h2>
 			<DashboardAvatar />
 			{loading && <p>Loading...</p>}

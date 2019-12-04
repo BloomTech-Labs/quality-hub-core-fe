@@ -27,8 +27,8 @@
 	justify-content: space-between;
 	text-align: left;
 	position: fixed;
-	width: 416px;
-	height: 560px;
+	width: 41.6rem;
+	height: 56rem;
 	overflow: auto;
 	left: 50%;
 	top: 50%;
@@ -87,6 +87,12 @@
 			overflow: hidden;
 		}
 	}
+
+	.coachcard-header-expand-longname {
+		flex-wrap: wrap;
+		flex-direction: column-reverse;
+	}
+
 	.coachcard-info-expand {
 		margin-bottom: 1.28rem;
 		p {

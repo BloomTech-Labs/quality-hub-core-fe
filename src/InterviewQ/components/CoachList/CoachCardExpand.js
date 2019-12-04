@@ -9,6 +9,7 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 
 const CoachCard = ({ post, setOpen }) => {
 	let { coach } = post;
+	console.log(post);
 
 	return (
 		<div>
@@ -17,14 +18,19 @@ const CoachCard = ({ post, setOpen }) => {
 				<button
 					className='close-coachcard-expand'
 					onClick={() => setOpen(false)}>
-					<Icon icon={ICONS.CLOSE} width={24} height={24} />
+					<Icon icon={ICONS.CLOSE} width={24} height={24} color="rgba(0, 0, 0, 0.54)"/>
 				</button>
-				<div className='coachcard-header-expand'>
+				<div
+					className={
+						coach.first_name.length > 25 || coach.last_name.length > 25
+							? 'coachcard-header-expand coachcard-header-expand-longname'
+							: 'coachcard-header-expand'
+					}>
 					<div className='coachcard-header-txt-expand'>
 						<h3>
 							{coach.first_name} {coach.last_name}
 						</h3>
-						<h4>${post.price} per hour</h4>
+						<h4>{post.price == 0 ? "Free" : `$${post.price} per hour`}</h4>
 					</div>
 					<div className='coach-photo-expand'>
 						{coach.image_url ? (
@@ -42,7 +48,7 @@ const CoachCard = ({ post, setOpen }) => {
 						<span className='coachcard-icon-expand'>
 							<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 						</span>
-						{post.industry.name}
+						{post.company} - {post.position}
 					</p>
 					<p>
 						<span className='coachcard-icon-expand'>
@@ -53,7 +59,7 @@ const CoachCard = ({ post, setOpen }) => {
 								color='#595959'
 							/>
 						</span>
-						{post.position} - {coach.city}, {coach.state}
+						{coach.city}, {coach.state}
 					</p>
 					<p>
 						<span className='coachcard-icon-expand'>
@@ -70,8 +76,16 @@ const CoachCard = ({ post, setOpen }) => {
 				</div>
 				<div className='coachcard-footer-expand'>
 					<div className='coachcard-links-exand'>
+					{post.coach.twitter_url && (
+						<a href={post.coach.linkedin_url} target="_blank">
 						<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+						</a>
+						)}
+						{post.coach.twitter_url && (
+						<a href={post.coach.twitter_url} target="_blank">
 						<Icon icon={ICONS.TWITTER} width={24} height={24} />
+						</a>
+						)}
 					</div>
 					<button className='interview-button-expand' disabled>
 						Request Interview

@@ -15,14 +15,14 @@ import { spacecoach } from '../../../../globalIcons/SpaceCoach.js'
 
 export default function DashInterviewQ() {
 
-	const { data: coachPost } = useQuery(GET_COACH_POST, {
+	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	console.log(coachPost);
 
 	return (
 		<>
-		{coachPost && coachPost.postByCoach ? <CoachDash /> : (
+		{loading ? null : coachPost && coachPost.postByCoach ? <CoachDash /> : (
 			<div className='not-a-coach'>
 							<div className='not-a-coach-header'>
 				<div className='circle-blue'>
