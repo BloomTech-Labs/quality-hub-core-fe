@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './CoachForm.scss';
 
 import { gql } from 'apollo-boost';
@@ -118,7 +118,7 @@ const CoachForm = props => {
 		}
 	}, [open, done]);
 
-	const { data, error } = useQuery(GET_USER);
+	const { data } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
 
 	let image;

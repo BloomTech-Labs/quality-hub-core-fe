@@ -1,6 +1,6 @@
 // Libraries
-import React, { useState, useEffect } from 'react';
-import { tag } from 'postcss-selector-parser';
+import React from 'react';
+// import { tag } from 'postcss-selector-parser';
 
 // Styles & Icons
 import './CoachCard.scss';

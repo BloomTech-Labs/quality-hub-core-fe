@@ -1,6 +1,6 @@
 // Libraries
 import React, { useState } from 'react';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import CoachCard from './CoachCard';
@@ -54,7 +54,8 @@ const CoachList = ({ toggleFilter, setToggleFilter }) => {
 		industry: '',
 		orderBy: 'id_ASC',
 	});
-	const { refetch, loading, error, data } = useQuery(GET_POSTS);
+
+	const { refetch, loading, data } = useQuery(GET_POSTS);
 
 	return (
 		<div className='coach-list-container'>

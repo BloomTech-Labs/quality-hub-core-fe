@@ -5,11 +5,13 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 // import { ApolloClient as client } from 'apollo-boost';
+
 // Styles & Icons
 import './DeletePost.scss';
 import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 import { GET_COACH_POST } from './Resolvers.js';
+
 // GraphQL Query to get posts to update cache
 export const GET_POSTS = gql`
 	query {
@@ -45,9 +47,9 @@ export default function DeletePost({ isShowing, hide }) {
 	const [deleteCoachPost, { client }] = useMutation(DELETE_POST, {
 		update(cache, { data }) {
 			const { posts } = cache.readQuery({ query: GET_COACH_POST });
-			
+
 			// cache.writeQuery({
-				
+
 			// 	data: postByCoach ,
 			// });
 		},
@@ -77,18 +79,15 @@ export default function DeletePost({ isShowing, hide }) {
 								<h2> Do you want to delete your coach post?</h2>
 							</div>
 							<p>
-								Deleting your post will remove all of the contents of the post and data associated with it.
+								Deleting your post will remove all of the contents of the post
+								and data associated with it.
 							</p>
 							<div className='modal-button-cont'>
 								<button className='cancel' onClick={hide}>
-									<span>
-									Cancel
-									</span>
+									<span>Cancel</span>
 								</button>
 								<button className='ok-button' onClick={deletePost}>
-									<span>
-									Delete
-									</span>
+									<span>Delete</span>
 								</button>
 							</div>
 						</div>
