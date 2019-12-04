@@ -48,7 +48,10 @@ export default function Panels() {
 				</div>
 				<img
 					className='panel-section panel-img'
-					src={'http://cattell.net/devon/Quail/small_0029%20adult.jpg'}
+					src={
+						'https://farm5.static.flickr.com/4891/45821591595_616b6fed4b_b.jpg'
+					}
+					style={{ transform: 'scaleX(-1)' }}
 					alt=''
 				/>
 			</div>
