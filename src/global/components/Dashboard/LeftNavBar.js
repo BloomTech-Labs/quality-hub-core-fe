@@ -14,7 +14,7 @@ import useModal from '../../../utils/useModal';
 
 export default function LeftNavBar({ setLoggedin }) {
 	let { pathname } = useLocation();
-	const [profileDropdownToggle, setProfileDropdownToggle] = useState(false);
+	const [profileDropdownToggle] = useState(false);
 	const { isShowing, toggle } = useModal();
 
 	// const profileDropdown = () => {

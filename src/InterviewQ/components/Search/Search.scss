@@ -18,15 +18,15 @@
 	}
 }
 
-
-.search-input-search-icon{
+.search-input-search-icon {
 	margin-bottom: -56px;
 	padding-left: 10px;
 	// z-index: 30000;
 }
-.search-by-keyword-input{
+.search-by-keyword-input {
 	padding-left: 40px;
 	background: none;
+
 	// height: 1000px;
 	// background-image: url('https://www.birds.cornell.edu/home/wp-content/uploads/2019/05/IBunting-Kinderman-58737651-FI.gif');
 }
@@ -56,6 +56,10 @@
 		width: 100%;
 		border: 1px solid #dadce0;
 		border-radius: 0.6rem;
+
+		// @media screen and (max-width: 680px) {
+
+		// }
 	}
 
 	@media screen and (max-width: 600px) {
@@ -69,6 +73,10 @@
 	justify-content: space-between;
 	align-items: flex-end;
 	padding-bottom: 1.2rem;
+
+	@media screen and (max-width: 600px) {
+		margin-top: 0;
+	}
 }
 
 .search-buttons {

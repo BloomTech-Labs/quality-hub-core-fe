@@ -5,7 +5,6 @@ import React from 'react';
 import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 
-
 // Styles
 import './CoachDash.scss';
 
@@ -15,8 +14,8 @@ import DeletePost from './DeletePost';
 
 // Hooks
 import useModal from '../../../../utils/useModal';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_COACH_POST } from './Resolvers.js';
+// import { useQuery } from '@apollo/react-hooks';
+// import { GET_COACH_POST } from './Resolvers.js';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();
@@ -28,33 +27,27 @@ export default function CoachDash() {
 
 	return (
 		<div className='dash-coachinfo'>
-					<div className='coachinfo-header'>
+			<div className='coachinfo-header'>
 				<div className='circle-blue'>
-					<Icon
-						icon={ICONS.COACHINFO}
-						width={26}
-						height={28}
-						color='white'
-					/>
+					<Icon icon={ICONS.COACHINFO} width={26} height={28} color='white' />
 				</div>
 				<h1>Coach Info</h1>
 			</div>
-			<EditPost 
+			<EditPost
 			// coachPost={coachPost && coachPost}
 			/>
 			<div className='editform'>
-			<h2>Delete Coach Post</h2>
-			<div className='delete-post'>
-				<span className='delete-warning'>
-					<p>If you delete your post, you can't reverse this action</p>
+				<h2>Delete Coach Post</h2>
+				<div className='delete-post'>
+					<span className='delete-warning'>
+						<p>If you delete your post, you can't reverse this action</p>
 					</span>
-			<button className='delete-post-btn' onClick={toggle}>
-				<p>Delete Post</p>
-			</button>
-			</div>
+					<button className='delete-post-btn' onClick={toggle}>
+						<p>Delete Post</p>
+					</button>
+				</div>
 			</div>
 			<DeletePost isShowing={isShowing} hide={toggle} />
-			
 		</div>
 	);
 }
