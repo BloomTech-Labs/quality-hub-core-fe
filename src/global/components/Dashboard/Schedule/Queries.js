@@ -15,6 +15,7 @@ export const COACH_BOOKINGS = gql`
      }
      seeker{
        first_name
+       last_name
        email
        id
      }
@@ -55,7 +56,8 @@ export const COACH_BOOKINGS = gql`
 								hour
 								minute
 								coach {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
@@ -72,7 +74,8 @@ export const COACH_BOOKINGS = gql`
 								hour
 								minute
 								coach {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
