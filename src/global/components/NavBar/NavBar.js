@@ -22,8 +22,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const navtitle =
 		title && title[1].charAt(0).toUpperCase() + title[1].substring(1);
 
+
 	const logout = () => {
-		console.log('logout function');
 		localStorage.clear();
 		setLoggedin(false);
 		history.push('/');
@@ -37,44 +37,36 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		}
 	}, []);
 
+	//If user query came back with data and you have a token in localStorage, log in.
 	if (data && localStorage.getItem('token')) {
 		setLoggedin(true);
 	}
 
-	useEffect(()=>{
-		// console.log(error);
-		// alert(error);
-	},[error]);
 
 	if (error && errorCount === 0) {
-		// alert(error);
-		// console.log('error function')
-		if(error == "Error: Network error: Failed to fetch"){
-			
-		} else{
+		if (error == 'Error: Network error: Failed to fetch') {
+		} else {
 			setErrorCount(1);
 			client.clearStore();
 			setLoggedin(false);
 			logout();
 		}
-
-		
 	}
 
 	return (
-		<div className='styled-nav' id='main-navbar'>
-			<div className='nav-left'>
-				<NavLink to='/'>
+		<div className="styled-nav" id="main-navbar">
+			<div className="nav-left">
+				<NavLink to="/">
 					<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
 				</NavLink>
 			</div>
 
-			<div className='nav-right'>
-				{/* If you're not logged in, show sign in and sign up buttons */}
-				{(!loggedin && !loading) && (
+			<div className="nav-right">
+				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
+				{!loggedin && !loading && (
 					<>
-						<NavLink to='signin'> Sign In </NavLink>
-						<NavLink to='signup' className='signup-link'>
+						<NavLink to="signin"> Sign In </NavLink>
+						<NavLink to="signup" className="signup-link">
 							{' '}
 							Sign Up{' '}
 						</NavLink>
