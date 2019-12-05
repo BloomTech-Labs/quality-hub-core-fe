@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 //Icons
-// import grid from '../../../globalIcons/grid.svg';
 import favicon from '../../../globalIcons/favicon.svg';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
