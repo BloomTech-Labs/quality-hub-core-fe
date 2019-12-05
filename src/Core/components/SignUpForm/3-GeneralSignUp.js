@@ -98,7 +98,7 @@ const GeneralSignUp = ({
 				<textarea
 					className='bio-text'
 					name='bio'
-					// placeholder="Tell us about yourself"
+					placeholder="E.g. I'm learning UX design at Lambda School."
 					value={user.bio}
 					onChange={handleChange}
 				/>

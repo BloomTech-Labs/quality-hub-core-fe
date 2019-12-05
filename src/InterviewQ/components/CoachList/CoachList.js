@@ -72,7 +72,7 @@ const CoachList = ({ toggleFilter, setToggleFilter }) => {
 			{!loading && data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (
-						<CoachCard post={post} />
+						<CoachCard key={post.id} post={post} />
 					))}
 				</div>
 			)}
