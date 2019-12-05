@@ -10,7 +10,6 @@ function App() {
 
 	return (
 		<div className='App'>
-			<div id="overlay"></div>
 			<Route
 				path='/'
 				render={props => (
