@@ -43,7 +43,6 @@ const Schedule = () => {
 						/>
 					)}
 				/>
-				<SmallCalendar />
 			{/* </Switch> */}
 		</div>
 	);

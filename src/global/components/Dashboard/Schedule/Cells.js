@@ -40,11 +40,8 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 							: ''
 					}`}
 					key={day}
-					onClick={() => onDateClick(toDate(cloneDay))}>
-						
-					<span className='number'>{formattedDate}</span>
-					{/* <span className='bg'>{formattedDate}</span> */}
-					
+					onClick={() => onDateClick(toDate(cloneDay))}>					
+					<span className='number'>{formattedDate}</span>					
 				</div>,
 			);
 			day = addDays(day, 1);
@@ -59,6 +56,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	
  CoachBooking(currentMonth);
  SeekerBooking(currentMonth);
+ 
 	return( 
 	<>
 	<div className='calendar-body'>{rows}</div>

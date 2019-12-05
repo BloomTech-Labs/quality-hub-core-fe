@@ -2,6 +2,7 @@ import React from 'react';
 import SmallCalendar from '../../../global/components/Calendar/SmallCalendar';
 import { times } from '../../../global/components/Dashboard/Schedule/TimeArrays';
 import './Availability.scss';
+import { gql } from 'apollo-boost'
 
 const Availability =() => {
 
