@@ -199,7 +199,19 @@
 	height: 100px;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-color: black;
+	// background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.profile-img-dropdown2 {
+	// border: 1px solid red;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	// background-color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
