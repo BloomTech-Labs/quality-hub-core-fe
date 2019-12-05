@@ -9,23 +9,23 @@ import './CoachCardModal.scss';
 const CoachCardModal = ({ post }) => {
 	const [open, setOpen] = useState(false);
 
-	useEffect(() => {
-		if (open) {
-			document.getElementById('overlay-coachcard-expand').style.display =
-				'block';
-		} else {
-			document.getElementById('overlay-coachcard-expand').style.display =
-				'none';
-		}
-	}, [open]);
+	// useEffect(() => {
+	// 	if (open) {
+	// 		document.getElementById('overlay-coachcard-expand').style.display =
+	// 			'block';
+	// 	} else {
+	// 		document.getElementById('overlay-coachcard-expand').style.display =
+	// 			'none';
+	// 	}
+	// }, [open]);
 
 	return (
 		<div className='coach-card-modal-text'>
-			<div id='overlay-coachcard-expand'></div>
+			{/* <div id='overlay-coachcard-expand' onClick={() => setOpen(!open)}></div> */}
 			<button className='coach-card-modal-text' onClick={() => setOpen(!open)}>
 				<p className='coach-card-modal-text coachcard-seemore'>See more </p>
 			</button>
-			{open && <CoachCard setOpen={setOpen} post={post} />}
+			{open && <CoachCard setOpen={setOpen} open={open} post={post} />}
 		</div>
 	);
 };
