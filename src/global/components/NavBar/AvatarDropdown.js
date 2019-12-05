@@ -6,7 +6,7 @@ import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 import axios from 'axios';
 
 // Icons
-import blankavatar from '../../../globalIcons/blankavatar.svg';
+import { blankavatar } from '../../../globalIcons/blankavatar';
 
 const GET_USER = gql`
 	query dropdownMenu {
@@ -126,9 +126,10 @@ const AvatarDropdown = props => {
 				style={{
 					backgroundImage: `url('${data && data.me.image_url}')`,
 				}}
-				// alt='Avatar menu'
 				className='avatar-menu'
-				onClick={e => setOpen(!open)}></div>
+				onClick={e => setOpen(!open)}>
+				{data && !data.me.image_url && blankavatar()}
+			</div>
 			{open && (
 				<div className='dropdown-content'>
 					<div className='dropdown-avatar-camera'>
