@@ -15,7 +15,7 @@ const GET_USER = gql`
 
 const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const location = useLocation();
-	const [getUser, { client, error, data }] = useLazyQuery(GET_USER);
+	const [getUser, { client, error, data, loading }] = useLazyQuery(GET_USER);
 	const [errorCount, setErrorCount] = useState(0);
 
 	const title = location.pathname.match(/\/(.*)q/);
@@ -23,6 +23,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		title && title[1].charAt(0).toUpperCase() + title[1].substring(1);
 
 	const logout = () => {
+		console.log('logout function');
 		localStorage.clear();
 		setLoggedin(false);
 		history.push('/');
@@ -40,11 +41,24 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		setLoggedin(true);
 	}
 
+	useEffect(()=>{
+		// console.log(error);
+		// alert(error);
+	},[error]);
+
 	if (error && errorCount === 0) {
-		setErrorCount(1);
-		client.clearStore();
-		setLoggedin(false);
-		logout();
+		// alert(error);
+		// console.log('error function')
+		if(error == "Error: Network error: Failed to fetch"){
+			
+		} else{
+			setErrorCount(1);
+			client.clearStore();
+			setLoggedin(false);
+			logout();
+		}
+
+		
 	}
 
 	return (
@@ -57,7 +71,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 			<div className='nav-right'>
 				{/* If you're not logged in, show sign in and sign up buttons */}
-				{!loggedin && (
+				{(!loggedin && !loading) && (
 					<>
 						<NavLink to='signin'> Sign In </NavLink>
 						<NavLink to='signup' className='signup-link'>
