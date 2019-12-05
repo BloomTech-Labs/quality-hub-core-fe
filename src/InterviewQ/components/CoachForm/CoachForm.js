@@ -222,9 +222,10 @@ const CoachForm = props => {
 		document.getElementById('overlay-coach-form').style.display = 'none';
 		setDone(false);
 	};
+
 	return (
 		<div ref={node}>
-			<div id='overlay-coach-form'></div>
+			<div id='overlay-coach-form' onClick={() => closeWindow()}></div>
 			<button onClick={() => setOpen(!open)} className='become-a-coach-btn'>
 				{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
 				{lightbulb2()}
