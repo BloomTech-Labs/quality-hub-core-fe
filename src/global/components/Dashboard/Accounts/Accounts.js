@@ -36,7 +36,12 @@ const Experience = () => {
 			{loading && <p>Loading...</p>}
 			{data &&
 				keys.map(item => (
-					<DashboardInput key={item} userKey={item} userValue={data.me[item]} />
+					<DashboardInput
+						key={item}
+						userKey={item}
+						userValue={data.me[item]}
+						isLink={true}
+					/>
 				))}
 		</div>
 	);

@@ -14,7 +14,7 @@ import { capitalize } from '../../../../utils/capitalize';
 // Data
 import { statesArray } from '../../../../Core/components/SignUpForm/States';
 
-const DashboardInput = ({ userKey, userValue }) => {
+const DashboardInput = ({ userKey, userValue, isLink }) => {
 	const [original, setOriginal] = useState(userValue);
 	const [editing, setEditing] = useState(false);
 	const [user, setUser] = useState({
@@ -130,8 +130,8 @@ const DashboardInput = ({ userKey, userValue }) => {
 			return (
 				<select
 					id={`dashboard-input-${userKey}`}
-					name="state"
-					placeholder="State"
+					name='state'
+					placeholder='State'
 					value={user[userKey]}
 					onChange={handleChange}
 					required>
@@ -143,17 +143,16 @@ const DashboardInput = ({ userKey, userValue }) => {
 					))}
 				</select>
 			);
-		} 
-		else if(userKey==='bio'){
+		} else if (userKey === 'bio') {
 			return (
 				<textarea
-				className='post-desc'
-				name={userKey}
-				id={`dashboard-input-${userKey}`}
-				// placeholder={original}
-				onChange={handleChange}
-				value={user[userKey]}
-			/>
+					className='post-desc'
+					name={userKey}
+					id={`dashboard-input-${userKey}`}
+					// placeholder={original}
+					onChange={handleChange}
+					value={user[userKey]}
+				/>
 			);
 		}
 
@@ -170,29 +169,36 @@ const DashboardInput = ({ userKey, userValue }) => {
 	};
 
 	return (
-		<div className="dash-input">
-			<div className="dash-row">
-				<span className="dash-heading">
+		<div className='dash-input'>
+			<div className='dash-row'>
+				<span className='dash-heading'>
 					<h3>{userKey && capitalize(userKey)}</h3>
 				</span>
-				<div>
-					{editing ? (
-						checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
-					) : (
-						<p>{user[userKey]}</p> //When you're not in edit mode, render this
-					)}
-				</div>
+				{/* <div> */}
+				{editing ? (
+					checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
+				) : //When you're not in edit mode, render this
+				isLink ? (
+					<p>
+						<a href={user[userKey]} target='_blank'>
+							{user[userKey]}
+						</a>
+					</p>
+				) : (
+					<p>{user[userKey]}</p>
+				)}
+				{/* </div> */}
 			</div>
-			<div className="update-btns">
+			<div className='update-btns'>
 				{editing && (
 					// Cancel out of editing mode
-					<button onClick={() => handleCancel()} className="cancel-button">
+					<button onClick={() => handleCancel()} className='cancel-button'>
 						Cancel
 					</button>
 				)}
 				{editing && (
 					// Save changes made in editing mode
-					<button onClick={e => handleSubmit(e)} className="accept-button">
+					<button onClick={e => handleSubmit(e)} className='accept-button'>
 						Save
 					</button>
 				)}
@@ -200,9 +206,9 @@ const DashboardInput = ({ userKey, userValue }) => {
 			{!editing && (
 				//button to click on to enter editing mode
 				<button
-					className="edit-button"
+					className='edit-button'
 					onClick={() => setEditing(true)}
-					data-testid="edit-button" //data-testid made explicitly for testing-purposes
+					data-testid='edit-button' //data-testid made explicitly for testing-purposes
 				>
 					Edit
 					{/* <Icon icon={ICONS.PENCIL} width={24} height={24} /> */}
