@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import AvatarDropdown from './AvatarDropdown';
 import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
@@ -14,8 +14,13 @@ const GET_USER = gql`
 `;
 
 const NavBar = ({ loggedin, setLoggedin, history }) => {
+	const location = useLocation();
 	const [getUser, { client, error, data }] = useLazyQuery(GET_USER);
 	const [errorCount, setErrorCount] = useState(0);
+
+	const title = location.pathname.match(/\/(.*)q/);
+	const navtitle =
+		title && title[1].charAt(0).toUpperCase() + title[1].substring(1);
 
 	const logout = () => {
 		localStorage.clear();
@@ -43,10 +48,10 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	}
 
 	return (
-		<div className='styled-nav' id="main-navbar">
+		<div className='styled-nav' id='main-navbar'>
 			<div className='nav-left'>
 				<NavLink to='/'>
-					<h2>QualityHub</h2>
+					<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
 				</NavLink>
 			</div>
 
