@@ -63,8 +63,10 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		<div className='calendar' ref={node}>
 			<header className='calendar-header'>
 				<div className='cal-header row flex-middle'>
-					<div className='col col-start'></div>
-					<div className='col col-center'>
+					<div className='col col-start'>
+						<h2>{format(currentMonth, "MMMM")}</h2>
+					</div>
+					<div className='col calendar-select'>
 						
 						<select
 							onChange={onMonthChange}
@@ -98,7 +100,9 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 					{days.map(day => {
 						return (
 							<div className="col col-center" key={day}>
+								<p>
 								{day}
+								</p>
 							</div>
 						);
 					})}

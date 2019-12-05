@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const blankavatar = () => (
+export const blankavatar = (x=33, y=35) => (
 	<svg
-		width='33'
-		height='35'
-		viewBox='0 0 33 35'
+		width={x}
+		height={y}
+		viewBox='0 0 32 35'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'>
 		<path

@@ -9,7 +9,6 @@
 	bottom: 0;
 	background-color: rgba(72, 72, 72, 0.4);
 	z-index: 999;
-	// cursor: not-allowed;
 }
 
 .slider {
@@ -66,15 +65,10 @@
 }
 
 .add-coach-form {
-	// position: absolute;
 	width: 790px;
 	height: 90%;
 	overflow: auto;
 	overflow-x: hidden;
-	// left: 50%;
-	// transform: translate(-50%);
-	// top: 260px;
-	// padding-top: 120px;
 	padding-left: 61px;
 	padding-right: 61px;
 	background: white;
@@ -90,19 +84,6 @@
 	margin-bottom: 1px;
 }
 
-.add-coach-form-top-fixed {
-	// position: fixed;
-	// border: 1px solid red;
-	// background: white;
-	// width: 100%;
-	// width: inherit;
-	// border: 1px solid red;
-	// height: 200px;
-	// width: 719px;
-	// margin-bottom: 200px;
-	// padding-right: 61px;
-}
-
 .add-coach-form-background {
 	position: absolute;
 	display: flex;
@@ -111,17 +92,11 @@
 	align-items: flex-end;
 	width: 85rem;
 	height: 81.7rem;
-	// overflow: auto;
-	// overflow-x: hidden;
 	left: 50%;
 	top: 7.5rem;
 	transform: translate(-50%);
-	// padding-top: 120px;
-	// padding-left: 91px;
-	// padding-right: 91px;
 	background: white;
 	border-radius: 10px;
-	// text-align: left;
 	z-index: 1000;
 }
 
@@ -228,7 +203,6 @@
 	font-size: 20px;
 	line-height: 28px;
 	color: #5f6368;
-	// margin-top: 72px;
 	margin-top: 40px;
 }
 
@@ -296,7 +270,6 @@ textarea.add-coach-form-row-7 {
 }
 
 .add-coach-form-preview-container {
-	// padding-top: 0px !important;
 	padding-left: 54px;
 	padding-right: 54px;
 	padding-bottom: 66px;
@@ -435,9 +408,7 @@ textarea.add-coach-form-row-7 {
 	border: none !important;
 }
 input:focus#coach-form-price-slider {
-	// :focus{
 	border: none !important;
-	// }
 }
 
 .add-coach-form-bottom-buttons {

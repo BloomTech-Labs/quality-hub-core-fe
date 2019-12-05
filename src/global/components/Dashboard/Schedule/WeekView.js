@@ -88,6 +88,7 @@ return (
       {days}
       </div>
       {data && filterBookings.map(booking => <WeekBooking booking={booking} key={booking}/>)}
+      <div className='start1230'></div>
     </div>
   </>
 );

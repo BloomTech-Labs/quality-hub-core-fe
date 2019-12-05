@@ -33,8 +33,6 @@ const AvatarDropdown = props => {
 
 	const [picture, setPicture] = useState(null);
 	const [open, setOpen] = useState(false);
-	const [avatarURL, setAvatarURL] = useState(blankavatar);
-	const [runCount, setRunCount] = useState(0);
 
 	const node = useRef();
 
@@ -97,19 +95,7 @@ const AvatarDropdown = props => {
 
 	useEffect(() => {
 		getUser();
-		setRunCount(1);
 	}, []);
-
-	useEffect(() => {
-		//useEffect runs on intialization of component, so runCount makes sure data is first retrieved
-		if (runCount > 0) {
-			if (data) {
-				if (data.me.image_url) {
-					setAvatarURL(data.me.image_url);
-				}
-			}
-		}
-	}, [data]);
 
 	useEffect(() => {
 		if (open) {
@@ -141,11 +127,15 @@ const AvatarDropdown = props => {
 						/>
 						<label htmlFor='imageInput-2'>
 							<div className='img-wrapper-dropdown'>
+								{data ? //ternary 1
+								data.me.image_url ? //ternary 2
 								<div
 									className='profile-img-dropdown'
 									style={{
-										backgroundImage: `url('${data && data.me.image_url}')`,
-									}}></div>
+										backgroundImage: `url('${data.me.image_url}')`,
+									}}></div> : //ternary 2
+									<div className='profile-img-dropdown2'>{blankavatar(100,100)}</div>: //ternary 1
+									<div className='profile-img-dropdown3'>{blankavatar(100,100)}</div>}
 							</div>
 						</label>
 						{/* Avatar image in dropdown menu */}
@@ -164,15 +154,12 @@ const AvatarDropdown = props => {
 						</p>
 					)}
 					{data && <p className='dropdown-menu-email'>{data.me.email}</p>}
-
-					{/* Need to link to dashboard */}
 					<Link to='/dashboard'>
 						<button className='manage-btn' onClick={() => setOpen(false)}>
 							Manage your Quality Hub account
 						</button>
 					</Link>
 					<hr />
-					{/* Need to add sign out functionality */}
 					<Link to='/'>
 						<button className='signout-btn' onClick={() => logout()}>
 							Sign Out

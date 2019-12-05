@@ -15,12 +15,13 @@ const GET_USER = gql`
 
 const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const location = useLocation();
-	const [getUser, { client, error, data }] = useLazyQuery(GET_USER);
+	const [getUser, { client, error, data, loading }] = useLazyQuery(GET_USER);
 	const [errorCount, setErrorCount] = useState(0);
 
 	const title = location.pathname.match(/\/(.*)q/);
 	const navtitle =
 		title && title[1].charAt(0).toUpperCase() + title[1].substring(1);
+
 
 	const logout = () => {
 		localStorage.clear();
@@ -36,31 +37,36 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		}
 	}, []);
 
+	//If user query came back with data and you have a token in localStorage, log in.
 	if (data && localStorage.getItem('token')) {
 		setLoggedin(true);
 	}
 
+
 	if (error && errorCount === 0) {
-		setErrorCount(1);
-		client.clearStore();
-		setLoggedin(false);
-		logout();
+		if (error == 'Error: Network error: Failed to fetch') {
+		} else {
+			setErrorCount(1);
+			client.clearStore();
+			setLoggedin(false);
+			logout();
+		}
 	}
 
 	return (
-		<div className='styled-nav' id='main-navbar'>
-			<div className='nav-left'>
-				<NavLink to='/'>
+		<div className="styled-nav" id="main-navbar">
+			<div className="nav-left">
+				<NavLink to="/">
 					<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
 				</NavLink>
 			</div>
 
-			<div className='nav-right'>
-				{/* If you're not logged in, show sign in and sign up buttons */}
-				{!loggedin && (
+			<div className="nav-right">
+				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
+				{!loggedin && !loading && (
 					<>
-						<NavLink to='signin'> Sign In </NavLink>
-						<NavLink to='signup' className='signup-link'>
+						<NavLink to="signin"> Sign In </NavLink>
+						<NavLink to="signup" className="signup-link">
 							{' '}
 							Sign Up{' '}
 						</NavLink>

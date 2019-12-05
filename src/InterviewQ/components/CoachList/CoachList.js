@@ -8,6 +8,8 @@ import Search from '../Search';
 
 import './CoachList.scss';
 
+import Loading from '../../../Core/components/Loading';
+
 export const GET_POSTS = gql`
 	query GET_POSTS(
 		$industry: String
@@ -69,6 +71,7 @@ const CoachList = ({ toggleFilter, setToggleFilter }) => {
 				/>
 			)}
 			{/* <hr /> */}
+			{loading && <Loading />}
 			{!loading && data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (
