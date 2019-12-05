@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import './CoachForm.scss';
-
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
+// Styles && Icons
+import './CoachForm.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 import { lightbulb } from '../../../globalIcons/lightbulb';
 import { lightbulb2 } from '../../../globalIcons/lightbulb2';
 import { checkcircle } from '../../../globalIcons/checkcircle';
 
+// Query
 import { GET_POSTS } from '../CoachList/CoachList';
 
 const GET_USER = gql`
@@ -40,7 +41,7 @@ const INDUSTRIES = gql`
 	}
 `;
 
-export const ADD_POST = gql`
+const ADD_POST = gql`
 	mutation createPost(
 		$price: Int!
 		$position: String!
