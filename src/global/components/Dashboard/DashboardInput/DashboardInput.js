@@ -14,7 +14,7 @@ import { capitalize } from '../../../../utils/capitalize';
 // Data
 import { statesArray } from '../../../../Core/components/SignUpForm/States';
 
-const DashboardInput = ({ userKey, userValue }) => {
+const DashboardInput = ({ userKey, userValue, isLink }) => {
 	const [original, setOriginal] = useState(userValue);
 	const [editing, setEditing] = useState(false);
 	const [user, setUser] = useState({
@@ -177,8 +177,15 @@ const DashboardInput = ({ userKey, userValue }) => {
 				{/* <div> */}
 				{editing ? (
 					checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
+				) : //When you're not in edit mode, render this
+				isLink ? (
+					<p>
+						<a href={user[userKey]} target='_blank'>
+							{user[userKey]}
+						</a>
+					</p>
 				) : (
-					<p>{user[userKey]}</p> //When you're not in edit mode, render this
+					<p>{user[userKey]}</p>
 				)}
 				{/* </div> */}
 			</div>
