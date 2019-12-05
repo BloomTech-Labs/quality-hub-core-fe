@@ -1,6 +1,5 @@
 // Libraries
 import React, { useEffect, useRef } from 'react';
-// import { tag } from 'postcss-selector-parser';
 
 // Styles & Icons
 import './CoachCardModal.scss';
@@ -10,7 +9,6 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 const CoachCard = ({ post, setOpen, open }) => {
 	const node = useRef();
 	let { coach } = post;
-	// console.log(post);
 
 	useEffect(() => {
 		if (open) {
