@@ -47,7 +47,7 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route exact path='/dashboard'>
 						<PersonalInfo />
 					</Route>
-					<Route exact path='/dashboard/schedule'>
+					<Route  path='/dashboard/schedule'>
 						<Schedule />
 					</Route>
 					<Route exact path='/dashboard/coachinfo'>

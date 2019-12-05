@@ -43,7 +43,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 					onClick={() => onDateClick(toDate(cloneDay))}>
 						
 					<span className='number'>{formattedDate}</span>
-					<span className='bg'>{formattedDate}</span>
+					{/* <span className='bg'>{formattedDate}</span> */}
 					
 				</div>,
 			);
