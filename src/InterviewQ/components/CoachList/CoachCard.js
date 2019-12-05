@@ -21,7 +21,7 @@ const CoachCard = ({ post, setOpen }) => {
 					<h3>
 						{coach.first_name} {coach.last_name}
 					</h3>
-					<h4>{post.price == 0 ? 'Free' : `$${post.price} per hour`}</h4>
+					<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
 				</div>
 				<div className='coach-photo'>
 					{coach.image_url ? (
