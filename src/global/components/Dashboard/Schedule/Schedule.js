@@ -4,8 +4,9 @@ import Calendar from './Calendar.js'
 import WeekView from './WeekView.js';
 import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
+import SmallCalendar from '../../Calendar/SmallCalendar';
 
-const Schedule = ({ myArray, userData }) => {
+const Schedule = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
   return (
 		<div className='schedule'>
@@ -42,6 +43,7 @@ const Schedule = ({ myArray, userData }) => {
 						/>
 					)}
 				/>
+				<SmallCalendar />
 			{/* </Switch> */}
 		</div>
 	);
