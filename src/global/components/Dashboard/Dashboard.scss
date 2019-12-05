@@ -11,7 +11,7 @@
 		margin-left: 27rem;
 	}
 
-	@media screen and (max-width: 1280px) {
+	@media screen and (max-width: 1270px) {
 		margin: 0 auto;
 	}
 
@@ -60,7 +60,7 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 
-	@media screen and (max-width: 1280px) {
+	@media screen and (max-width: 1270px) {
 		margin-top: 12rem;
 		position: static;
 		flex-direction: row;
@@ -97,7 +97,7 @@
 		cursor: pointer;
 		margin-bottom: 3.3rem;
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (max-width: 1270px) {
 			flex-shrink: 1;
 			padding: 1rem 0;
 			justify-content: center;
@@ -111,7 +111,7 @@
 	.dashnav-txt {
 		margin-left: 2rem;
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (max-width: 1270px) {
 			margin-left: 0.5rem;
 		}
 
