@@ -136,8 +136,8 @@ const AvatarDropdown = props => {
 									style={{
 										backgroundImage: `url('${data.me.image_url}')`,
 									}}></div> : //ternary 2
-									<div className='profile-img-dropdown2'>{blankavatar(100,100)}</div>: //ternary 1
-									<div className='profile-img-dropdown3'>{blankavatar(100,100)}</div>}
+									<div className='profile-img-dropdown2'>{blankavatar(81.25,81.25)}</div>: //ternary 1
+									<div className='profile-img-dropdown3'>{blankavatar(81.25,81.25)}</div>}
 							</div>
 						</label>
 						{/* Avatar image in dropdown menu */}
@@ -159,29 +159,15 @@ const AvatarDropdown = props => {
 					<hr className="hr-below-email" />
 					<div className="avatar-dropdown-dashboard-link">
 					<Link to='/dashboard' onClick={()=> setOpen(false)} >
-						{/* <button className='manage-btn' onClick={() => setOpen(false)}> */}
 							<div className="avatar-dropdown-lower-icons">{Gear()}</div> <div>QualityHub account</div>
-						{/* </button> */}
 					</Link>
 					</div>
 					<hr />
 					<div className="avatar-dropdown-signout-link">
 					<Link to='/' onClick={()=>logout()} >
-						{/* <button className='signout-btn' onClick={() => logout()}> */}
 							<div className="avatar-dropdown-lower-icons">{Signout()}</div> <div>Sign Out</div>
-						{/* </button> */}
 					</Link>
 					</div>
-					{/* <hr /> */}
-					{/* <div className='dropdown-menu-links-div'>
-						<a href='/' className='dropdown-menu-links'>
-							Privacy Policy
-						</a>
-						&#8226;
-						<a href='/' className='dropdown-menu-links'>
-							Terms of Service
-						</a>
-					</div> */}
 				</div>
 			)}
 		</div>
