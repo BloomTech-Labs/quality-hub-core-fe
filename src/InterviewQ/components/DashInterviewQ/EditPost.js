@@ -16,18 +16,6 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 	// console.log(coachPost);
   const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
-
-	//Component State
-	let coachObj = coachPost && coachPost.postByCoach;
-	const [original, setOriginal] = useState(coachObj);
-	useEffect(() => {
-		if (coachPost) {
-			setOriginal(coachPost.postByCoach);
-		}
-	}, [coachPost]);
-
-	// console.log('orig', original);
-
 	const [editing, setEditing] = useState([
 		false,
 		false,
@@ -36,7 +24,22 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		false,
 		false,
 	]);
-	const [post, setPost] = useState({});
+  const [post, setPost] = useState({id: coachPost.postByCoach.id, tagString: ""});
+  
+	//Component State
+  let coachObj = coachPost && coachPost.postByCoach;
+  let tagArray = 
+    coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
+	const [original, setOriginal] = useState(coachObj);
+	useEffect(() => {
+		if (coachPost) {
+      setOriginal({...coachPost['postByCoach']});
+		}
+	}, [coachPost]);
+
+	// console.log('orig', original);
+
+
 
 	//Handler Functions
 	const handleChange = e => {
@@ -74,15 +77,21 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		});
 		let newEditing = [...editing];
     newEditing[index] = false;
-		setEditing(newEditing, () => {
-      if (index === 5) {
-        setOriginal(original => {console.log(original)})
-      }
-    });
+		setEditing(newEditing);
 	};
 
+  useEffect(() => {
+    console.log(original.tagString);
+    if (original.tagString) {
+      let tags = original.tags;
+      let newTags = tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
+      setOriginal({...original, tagString: newTags})
+    }
+  }, [editing[5], original.tags])
+
 	const handleSubmit = (e, index) => {
-		let keyval = Object.keys(post);
+    let keyval = Object.keys(post);
+    console.log(keyval);
 		// console.log('key', keyval);
 		e.preventDefault();
 		changeField({ variables: post })
@@ -90,39 +99,39 @@ const CoachBasicInfo = ({ myArray, userData }) => {
         if(keyval[1] === 'tagString') {
           // let newLength = res.data.updatePost.tags.length;
           let tags = res.data.updatePost.tags;
-          let newEditing = [...editing];
-          newEditing[index] = false;
-          setEditing(newEditing, () => {
-            let newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
-            setOriginal({...original, tagString: newTags})
-            setPost({id: coachPost.postByCoach.id});
-          });
+          let newTags;
+          tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+          // setEditing(newEditing, () => {
+          //   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+          // });
+          setOriginal({...original, tags: tags})
+          setPost({id: coachPost.postByCoach.id});
 
         } else {
           setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
-          let newEditing = [...editing];
-          newEditing[index] = false;
-          setEditing(newEditing);
         }
+        let newEditing = [...editing];
+        newEditing[index] = false;
+        setEditing(newEditing);
 			})
 			.catch(err => {
 				console.log(err);
 			});
   };
   
-  const handleTagRemove = (e) => {
+  function handleTagRemove(e) {
     let tagID = e.target.id;
     removeTag({ variables: { id: coachObj.id, tagID }})
       .then(res => {
-        let newArray = tagArray.filter(tag => tagID !== tag.key)
-        tagArray = newArray;
-        setOriginal({...original, tagString: newArray})
+        let newArray = original.tags.filter(tag => tagID !== tag.id)
+        let newNodes = tagArray.filter(tag => tag.key !== tagID )
+        tagArray = newNodes;
+        setOriginal({...original, tags: newArray, tagString: tagArray})
       })
   }
 	// const tagArray =
   // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
-  let tagArray = 
-    coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
+
 	return (
 		<>
 			<div className='editform'>

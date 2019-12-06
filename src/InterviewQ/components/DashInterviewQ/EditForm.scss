@@ -3,22 +3,22 @@
   .post-input.last {
     border-bottom: none;
   }
+  .post-row.post-tag {
+    width: 100%;
+  }
   .hidden {
     display: none;
   }
   .tag-form {
     display: flex;
     flex-direction: column;
-    overflow-wrap: break-word;
-    max-width: 90%;
-    
+    width: 90%;
     .tag-input {
       margin-bottom: 1.0rem;
     }
   }
   
   .tags-container {
-    width: 100%;
     > p {
       display: flex;
       flex-wrap: wrap;
