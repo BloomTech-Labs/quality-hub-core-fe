@@ -1,0 +1,63 @@
+/* VARIABLES */
+
+$main-cal-color: #096DD9;
+$text-cal-color: #777;
+$text-cal-color-light: #ccc;
+$border-cal-color: #eee;
+$bg-cal-color: #f9f9f9;
+$neutral-cal-color: #fff;
+
+.availability-container{
+  padding: 1.7rem 3.2rem;
+  display: flex;
+  flex-direction: column;;
+}
+// .coach-availability{
+//   display: flex;
+// }
+.interview-slot{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px 2rem;
+  width: 220px;
+  height: 64px;
+  border: 1px solid $main-cal-color;
+  border-radius: 4px;
+  color: $main-cal-color;
+  font-size: 1.6rem;
+}
+
+.interview-slot:hover{
+  border: 1px solid $main-cal-color;
+  color: white;
+  background-color: $main-cal-color;
+}
+
+.interview-slot-list{
+  margin-top: 20px;
+  height:350px;
+  overflow:scroll;
+  overflow-x:hidden;
+}
+
+.coach-availability{
+  display: flex;
+  justify-content: space-around;
+}
+
+.sub-header{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  text-align: left;
+  margin: 2rem 0;
+  padding: 0;
+  h2{
+    padding: 0;
+    margin: 0;
+  }
+  p{
+    margin: 1rem 0;
+  }
+}

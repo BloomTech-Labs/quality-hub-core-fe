@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_COACH_POST } from './Resolvers'
 // Icons
-import Icon from '../../../../globalIcons/Icon';
-import { ICONS } from '../../../../globalIcons/iconConstants';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 // Components
+import QNav from '../QNav/QNav'
 import CoachDash from './CoachDash';
-import { spacecoach } from '../../../../globalIcons/SpaceCoach.js'
+import { spacecoach } from '../../../globalIcons/SpaceCoach.js'
 // import Reviews from './Reviews';
 // import Video from './Video';
 
@@ -21,7 +22,8 @@ export default function DashInterviewQ() {
 	console.log(coachPost);
 
 	return (
-		<>
+		<div className='lower-dashboard'>
+		<QNav />
 		{loading ? null : coachPost && coachPost.postByCoach ? <CoachDash /> : (
 			<div className='not-a-coach'>
 							<div className='not-a-coach-header'>
@@ -46,6 +48,6 @@ export default function DashInterviewQ() {
 			
 			{/* <Reviews /> */}
 			{/* <Video /> */}
-		</>
+		</div>
 	);
 }

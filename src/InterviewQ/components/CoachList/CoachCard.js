@@ -1,5 +1,6 @@
 // Libraries
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import { tag } from 'postcss-selector-parser';
 
 // Styles & Icons
@@ -84,7 +85,9 @@ const CoachCard = ({ post, setOpen }) => {
 					)}
 				</div>
 				<button className='interview-button' disabled>
+					<Link to='interviewq/booking'>
 					Request Interview
+					</Link>
 				</button>
 			</div>
 		</div>
