@@ -8,6 +8,13 @@ import favicon from '../../../globalIcons/favicon.svg';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
+import {Interviewqicon} from '../../../globalIcons/interviewqicon';
+import {Resumeq} from '../../../globalIcons/resumeqicon';
+import {Designqicon} from '../../../globalIcons/designqicon';
+import {Codeqicon} from '../../../globalIcons/codeqicon';
+import {Recruiterqicon} from '../../../globalIcons/recruiterqicon';
+import {Networkqicon} from '../../../globalIcons/networkqicon';
+
 const GridDropdown = props => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
@@ -36,30 +43,40 @@ const GridDropdown = props => {
 			{open && (
 				<div className='dropdown-grid-content dropdown-icons'>
 					<div className='test-css-grid'>
-						<Link to='/' className='box' onClick={() => setOpen(false)}>
-							<img
-								src={favicon}
-								height='24px'
-								width='24px'
-								alt='ResumeQ icon'
-							/>
-							<p>CodingQ</p>
-						</Link>
-
 						<Link to='/interviewq' className='box' onClick={() => setOpen(false)}>
-							<Icon icon={ICONS.INTERVIEWQ} width={24} height={24} />
+		
+							{Interviewqicon()}
 							<p>InterviewQ</p>
 						</Link>
 
-						<Link to='/' className='box' onClick={() => setOpen(false)}>
-							<Icon icon={ICONS.RESUMEQ} width={24} height={22} />
+						<Link to='#' className='box' onClick={() => setOpen(false)}>
+							{Resumeq()}
 							<p>ResumeQ</p>
 						</Link>
 
-						<Link to='/' className='box' onClick={() => setOpen(false)}>
-							<Icon icon={ICONS.DESIGNQ} width={24} height={20} />
+						<Link to='#' className='box' onClick={() => setOpen(false)}>
+							 {Designqicon()}
 							<p>DesignQ</p>
 						</Link>
+
+						<Link to='#' className='box' onClick={() => setOpen(false)}>
+							{Codeqicon()}
+							<p>CodeQ</p>
+						</Link>
+
+						<Link to='#' className='box' onClick={() => setOpen(false)}>
+							{Networkqicon()}
+							<p>NetworkQ</p>
+						</Link>
+
+						<Link to='#' className='box' onClick={() => setOpen(false)}>
+							{Recruiterqicon()}
+							<p>Recruiterqicon</p>
+						</Link>
+					</div>
+					<div className="grid-dropdown-bottom-content">
+					<hr className="grid-dropdown-bottom-hr" />
+					<p className="grid-dropdown-more">More</p>
 					</div>
 				</div>
 			)}
