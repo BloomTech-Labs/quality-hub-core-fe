@@ -25,7 +25,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		false,
 	]);
   const [post, setPost] = useState({id: coachPost.postByCoach.id, tagString: ""});
-  
+  const [deleteTags, setDelete] = useState([]);
 	//Component State
   let coachObj = coachPost && coachPost.postByCoach;
   let tagArray = 
@@ -77,11 +77,14 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		});
 		let newEditing = [...editing];
     newEditing[index] = false;
-		setEditing(newEditing);
+    setEditing(newEditing);
+    if (index === 5) {
+      setOriginal({...original, tags: coachPost.postByCoach.tags})
+      setDelete([]);
+    }
 	};
 
   useEffect(() => {
-    console.log(original.tagString);
     if (original.tagString) {
       let tags = original.tags;
       let newTags = tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
@@ -91,9 +94,11 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 
 	const handleSubmit = (e, index) => {
     let keyval = Object.keys(post);
-    console.log(keyval);
 		// console.log('key', keyval);
-		e.preventDefault();
+    e.preventDefault();
+    deleteTags.forEach(tag => {
+      removeTag({ variables: { id: post.id, tagID: tag.id}})
+    });
 		changeField({ variables: post })
 			.then(res => {
         if(keyval[1] === 'tagString') {
@@ -121,13 +126,12 @@ const CoachBasicInfo = ({ myArray, userData }) => {
   
   function handleTagRemove(e) {
     let tagID = e.target.id;
-    removeTag({ variables: { id: coachObj.id, tagID }})
-      .then(res => {
-        let newArray = original.tags.filter(tag => tagID !== tag.id)
-        let newNodes = tagArray.filter(tag => tag.key !== tagID )
-        tagArray = newNodes;
-        setOriginal({...original, tags: newArray, tagString: tagArray})
-      })
+    let newArray = original.tags.filter(tag => tagID !== tag.id)
+    let newNodes = tagArray.filter(tag => tag.key !== tagID )
+    tagArray = newNodes;
+    setOriginal({...original, tags: newArray, tagString: tagArray})
+    setDelete(arr => [...arr, {id: tagID}])
+    console.log(deleteTags);
   }
 	// const tagArray =
   // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
