@@ -1,0 +1,39 @@
+.editform {
+
+  .post-input.last {
+    border-bottom: none;
+  }
+  .post-row.post-tag {
+    width: 100%;
+  }
+  .hidden {
+    display: none;
+  }
+  .tag-form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    .tag-input {
+      margin-bottom: 1.0rem;
+    }
+  }
+  
+  .tags-container {
+    > p {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .tag-button {
+      background-color: lightgray;
+      margin: 0.5% 0.5%;
+      padding: 0% 0.5%;
+
+      span {
+        color: gray;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+}
