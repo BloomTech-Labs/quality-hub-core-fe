@@ -20,18 +20,18 @@ export default function QNav() {
 					<div className='QNav-btn'>InterviewQ</div>
 				</div>
 			</Link>
-			<Link to='/interviewq/availability'>
+			{/* <Link to='/interviewq/availability'>
 				<div className='QNav-row'>
 					{/* <Icon
 						icon={ICONS.EMAIL}
 						width={24}
 						height={24}
 						color='#096dd9'
-					/> */}
+					/> 
 					{clock()}
 					<div className='QNav-btn'>Availabilty</div>
 				</div>
-				</Link>
+				</Link> */}
 			
 			<Link to='/interviewq/settings'>
 				<div className='QNav-row'>

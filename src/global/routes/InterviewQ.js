@@ -8,7 +8,7 @@ import CoachList from '../../InterviewQ/components/CoachList';
 import RequestInterview from '../../InterviewQ/components/RequestInterview/RequestInterview'
 import DashInterviewQ from '../../InterviewQ/components/DashInterviewQ/DashInterviewQ';
 import InterviewQContainer from '../../InterviewQ/InterviewQ';
-import Availability from '../../InterviewQ/components/Availability/Availability';
+import Availability from '../../InterviewQ/components/DashInterviewQ/Availability/Availability';
 
 
 function InterviewQ({ loggedin, setLoggedin }) {
