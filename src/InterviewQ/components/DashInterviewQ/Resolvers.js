@@ -63,3 +63,14 @@ query coachPost ($coach_id: String!){
   }
 }
 `
+
+export const REMOVE_TAG = gql`
+  mutation ($id: ID!, $tagID: String!) {
+    removeTagFromPost(id: $id, tagID: $tagID) {
+      tags {
+        id
+        name
+      }
+    }
+  }
+`

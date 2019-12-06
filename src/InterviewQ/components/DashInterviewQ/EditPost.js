@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
+
+import './EditForm.scss';
 
 const CoachBasicInfo = ({ myArray, userData }) => {
-
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	console.log(industries);
@@ -14,13 +15,12 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	// console.log(coachPost);
-
+  const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
 
 	//Component State
 	let coachObj = coachPost && coachPost.postByCoach;
 	const [original, setOriginal] = useState(coachObj);
-
 	useEffect(() => {
 		if (coachPost) {
 			setOriginal(coachPost.postByCoach);
@@ -88,19 +88,23 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 				setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
 				// console.log('post', post);
 				// console.log(original);
-				let newEditting = [...editing];
-				newEditting[index] = false;
-				setEditing(newEditting);
+				let newEditing = [...editing];
+				newEditing[index] = false;
+				setEditing(newEditing);
 			})
 			.catch(err => {
 				console.log(err);
 			});
-	};
-
-	const tagArray =
-		coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
-
-	//console.log(tagArray);
+  };
+  
+  const handleTagRemove = (e) => {
+    let tagID = e.target.id;
+    removeTag({ variables: { id: coachObj.id, tagID }})
+  }
+	// const tagArray =
+  // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
+  const tagArray = 
+    coachPost && coachPost.postByCoach.tags.map(tag => <button className="tag-button">#{tag.name}<span id={tag.id} onClick={handleTagRemove} > x </span></button>);
 
 	return (
 		<>
@@ -258,16 +262,16 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 									type='text'
 									name='tagString'
 									value={post.tagString}
-									defaultValue={
-										original && original.tagString
-											? original && original.tagString
-											: original && tagArray
-									}
+									// defaultValue={
+									// 	original && original.tagString
+									// 		? original && original.tagString
+									// 		: original && tagArray
+									// }
 									onChange={handleChange}
 								/>
 							</div>
 						) : (
-							<div>
+							<div className="tags-container">
 								<p>
 									{original && original.tagString
 										? original && original.tagString

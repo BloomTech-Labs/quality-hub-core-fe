@@ -1,0 +1,21 @@
+.editform {
+  .tags-container {
+    width: 100%;
+    > p {
+      display: flex;
+    }
+    .tag-button {
+      background-color: lightgray;
+      margin: 0% 0.5%;
+      padding: 0% 0.5%;
+
+      span {
+        color: gray;
+        font-size: 2.5rem;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+}
