@@ -29,6 +29,7 @@ mutation updatePost(
     }
     description
     tags{
+      id
       name
     }
   }

@@ -10,7 +10,6 @@ import './EditForm.scss';
 const CoachBasicInfo = ({ myArray, userData }) => {
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
-	console.log(industries);
 	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
@@ -37,7 +36,6 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		false,
 		false,
 	]);
-
 	const [post, setPost] = useState({});
 
 	//Handler Functions
@@ -74,9 +72,13 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		setPost({
 			id: coachPost.postByCoach.id,
 		});
-		let newEditting = [...editing];
-		newEditting[index] = false;
-		setEditing(newEditting);
+		let newEditing = [...editing];
+    newEditing[index] = false;
+		setEditing(newEditing, () => {
+      if (index === 5) {
+        setOriginal(original => {console.log(original)})
+      }
+    });
 	};
 
 	const handleSubmit = (e, index) => {
@@ -85,12 +87,23 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		e.preventDefault();
 		changeField({ variables: post })
 			.then(res => {
-				setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
-				// console.log('post', post);
-				// console.log(original);
-				let newEditing = [...editing];
-				newEditing[index] = false;
-				setEditing(newEditing);
+        if(keyval[1] === 'tagString') {
+          // let newLength = res.data.updatePost.tags.length;
+          let tags = res.data.updatePost.tags;
+          let newEditing = [...editing];
+          newEditing[index] = false;
+          setEditing(newEditing, () => {
+            let newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+            setOriginal({...original, tagString: newTags})
+            setPost({id: coachPost.postByCoach.id});
+          });
+
+        } else {
+          setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
+          let newEditing = [...editing];
+          newEditing[index] = false;
+          setEditing(newEditing);
+        }
 			})
 			.catch(err => {
 				console.log(err);
@@ -100,12 +113,16 @@ const CoachBasicInfo = ({ myArray, userData }) => {
   const handleTagRemove = (e) => {
     let tagID = e.target.id;
     removeTag({ variables: { id: coachObj.id, tagID }})
+      .then(res => {
+        let newArray = tagArray.filter(tag => tagID !== tag.key)
+        tagArray = newArray;
+        setOriginal({...original, tagString: newArray})
+      })
   }
 	// const tagArray =
   // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
-  const tagArray = 
-    coachPost && coachPost.postByCoach.tags.map(tag => <button className="tag-button">#{tag.name}<span id={tag.id} onClick={handleTagRemove} > x </span></button>);
-
+  let tagArray = 
+    coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
 	return (
 		<>
 			<div className='editform'>
@@ -250,35 +267,32 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 					</div>
 				</div>
 
-				<div className='dash-input'>
-					<div className='dash-row post-row .post-tag'>
+				<div className='post-input last'>
+					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>TAGS</h3>
 						</span>
-						{editing[5] ? (
-							<div>
-								<input
-									id='edit-post-5'
-									type='text'
-									name='tagString'
-									value={post.tagString}
-									// defaultValue={
-									// 	original && original.tagString
-									// 		? original && original.tagString
-									// 		: original && tagArray
-									// }
-									onChange={handleChange}
-								/>
+            <div className="tag-form">
+              {editing[5] &&
+                <div className="tag-input">
+                  <input
+                    id='edit-post-5'
+                    type='text'
+                    name='tagString'
+                    placeholder="Add tags here (separate with commas)"
+                    value={post.tagString}
+                    onChange={handleChange}
+                  />
+                </div>
+                }
+                <div className="tags-container">
+                  <p>
+                    {original && original.tagString
+                      ? original && original.tagString
+                      : original && tagArray}
+                  </p>
 							</div>
-						) : (
-							<div className="tags-container">
-								<p>
-									{original && original.tagString
-										? original && original.tagString
-										: original && tagArray}
-								</p>
-							</div>
-						)}
+              </div>
 					</div>
 					<div className='edit-btns'>
 						<PostButtons
