@@ -5,6 +5,8 @@ import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
+import {Hamburger} from '../../../globalIcons/hamburger';
+
 const GET_USER = gql`
 	query dropdownMenu {
 		me {
@@ -57,7 +59,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		<div className="styled-nav" id="main-navbar">
 			<div className="nav-left">
 				<NavLink to="/">
-					<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
+					<div className="navbar-hamburger-and-title"><div className="navbar-hamburger-icon">{Hamburger()}</div><h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2></div>
 				</NavLink>
 			</div>
 

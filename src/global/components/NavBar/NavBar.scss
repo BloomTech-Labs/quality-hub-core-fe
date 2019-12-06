@@ -22,10 +22,6 @@
 			text-decoration: none;
 			text-align: left;
 		}
-
-		// img {
-		// 	 width: 5rem;
-		// }
 	}
 
 	.nav-right {
@@ -40,6 +36,18 @@
 			margin: 0 1rem;
 		}
 	}
+}
+.navbar-hamburger-and-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 24px;
+}
+
+.navbar-hamburger-icon {
+	// background-color: red;
+	display: flex;
+	margin-right: 12px;
 }
 
 .dropdown-content {
@@ -91,7 +99,7 @@
 	}
 }
 
-.avatar-dropdown-lower-icons{
+.avatar-dropdown-lower-icons {
 	margin-right: 16px;
 }
 
