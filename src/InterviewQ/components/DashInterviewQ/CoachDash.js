@@ -2,8 +2,8 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../../globalIcons/Icon';
-import { ICONS } from '../../../../globalIcons/iconConstants';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 // Styles
 import './CoachDash.scss';
@@ -13,7 +13,8 @@ import EditPost from './EditPost';
 import DeletePost from './DeletePost';
 
 // Hooks
-import useModal from '../../../../utils/useModal';
+import useModal from '../../../utils/useModal';
+import Availability from './Availability/Availability';
 // import { useQuery } from '@apollo/react-hooks';
 // import { GET_COACH_POST } from './Resolvers.js';
 
@@ -36,6 +37,10 @@ export default function CoachDash() {
 			<EditPost
 			// coachPost={coachPost && coachPost}
 			/>
+			<div className='editform'>
+				<h2>Availability</h2>
+				<Availability />
+			</div>
 			<div className='editform'>
 				<h2>Delete Coach Post</h2>
 				<div className='delete-post'>

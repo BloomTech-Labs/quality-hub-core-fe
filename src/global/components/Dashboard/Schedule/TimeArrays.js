@@ -1,4 +1,4 @@
-export const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export const months = [
 	{ name: 'January', num: 0 },

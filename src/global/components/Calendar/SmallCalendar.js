@@ -1,43 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import './Calendar.scss';
+import '../Dashboard/Schedule/Calendar.scss';
 import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
 
-import Cells from './Cells';
-import CalendarDetail from './CalendarDetail';
+import SmallCells from './SmallCells';
 
-import { days, months, years } from './TimeArrays'
+import { days, months, years } from '../Dashboard/Schedule/TimeArrays'
 
-const Calendar = ({ selectedDate, setSelectedDate }) => {
+const SmallCalendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	// const [selectedDate, setSelectedDate] = useState(new Date());
+	const [selectedCell, setSelectedCell] = useState(new Date());
 	
 
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
 
 	// let startDate = startOfWeek(currentMonth);
-	const node = useRef();
-	const [open, setOpen] = useState(false);
-	const handleOutsideClick = e => {
-		if (node.current) {
-			if (node.current.contains(e.target)) {
-				return;
-			} else {
-				setOpen(false);
-			}
-		} else {
-			setOpen(false);
-		}
-	};
-
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
-		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		}
-	}, [open]);
 
 	const nextMonth = () => {
 		setCurrentMonth(addMonths(currentMonth, 1))
@@ -46,10 +24,8 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCurrentMonth(subMonths(currentMonth, 1))
 	}
 	const onDateClick = day => {
-		setSelectedDate(day);
-		setOpen(true);
+		setSelectedCell(day);
 		console.log(day);
-		console.log(open);
 	};
 
 	const onMonthChange = e => {
@@ -64,13 +40,14 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 	};
 
 	return (	
-		<div className='calendar' ref={node}>
+		<div className='small-calendar-container'>
+		<div className='calendar'>
 			<header className='calendar-header'>
 				<div className='cal-header row flex-middle'>
 					<div className='col col-start'>
-						<h2>{format(currentMonth, "MMMM")}</h2>
+					
 					</div>
-					<div className='col calendar-select'>
+					<div className='col small-calendar-select'>
 						<button onClick={lastMonth}>&#x00AB;</button>
 						<select
 							onChange={onMonthChange}
@@ -95,16 +72,15 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 							})}
 						</select>
 						<button onClick={nextMonth}>&#x00BB;</button>
-						<Link to='/dashboard/schedule/week'>Week</Link>
 					</div>
 				</div>
 			</header>
 
 			<div className="calendar-days">
-				<div className="days row">
+				<div className="small-days row">
 					{days.map(day => {
 						return (
-							<div className="col col-center" key={day}>
+							<div className="col small-col-center small-cal" key={day}>
 								<p>
 								{day}
 								</p>
@@ -115,23 +91,14 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 			</div>
 
 			<div className="calendar-cells"></div>
-			<Cells
+			<SmallCells
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
-				selectedDate={selectedDate}
-				open={open}
-			/>
-			{open && (
-				<div className='calendar-detail'>
-					<CalendarDetail
-						setOpen={setOpen}
-						handleOutsideClick={handleOutsideClick}
-						selectedDate={selectedDate}
-					/>
-				</div>
-			)}		
-		</div>		
+				selectedDate={selectedCell}
+			/>	
+		</div>	
+		</div>	
 	);
 };
 
-export default Calendar;
+export default SmallCalendar;

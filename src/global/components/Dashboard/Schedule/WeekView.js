@@ -64,23 +64,22 @@ let times = [];
 		    {time}
 		  </div>,
     ));
-
-
   }
+
+  const scheduleBody = document.getElementsByName('weekContainer');
+  console.log(scheduleBody);
+  useEffect(() => {
+    scheduleBody[0].scrollTo(0, 900)
+  })
   
-  //Looping scroll
-
-  const scheduleBody = document.getElementsByClassName('week-container');
-
 
 return (
   <>
   <Link to='/dashboard/schedule'>Month</Link>
-    <div className='week-container'>
+    <div className='week-container' name='weekContainer'>
       <div className='time-column'>
         {times}
-        </div>
-        
+        </div>      
     <div className='top-row'>
       <div className='week-day-header time'>
         

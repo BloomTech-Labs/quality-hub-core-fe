@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers.js';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers';
 
 const CoachBasicInfo = ({ myArray, userData }) => {
 
