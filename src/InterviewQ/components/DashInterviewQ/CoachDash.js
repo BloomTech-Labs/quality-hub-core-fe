@@ -2,8 +2,8 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../../globalIcons/Icon';
-import { ICONS } from '../../../../globalIcons/iconConstants';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 
 // Styles
 import './CoachDash.scss';
@@ -13,7 +13,7 @@ import EditPost from './EditPost';
 import DeletePost from './DeletePost';
 
 // Hooks
-import useModal from '../../../../utils/useModal';
+import useModal from '../../../utils/useModal';
 // import { useQuery } from '@apollo/react-hooks';
 // import { GET_COACH_POST } from './Resolvers.js';
 
