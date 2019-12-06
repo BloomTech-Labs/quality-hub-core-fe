@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 import axios from 'axios';
+import {Gear} from '../../../globalIcons/gear';
+import {Signout} from '../../../globalIcons/signout';
 
 // Icons
 import { blankavatar } from '../../../globalIcons/blankavatar';
@@ -154,20 +156,24 @@ const AvatarDropdown = props => {
 						</p>
 					)}
 					{data && <p className='dropdown-menu-email'>{data.me.email}</p>}
-					<Link to='/dashboard'>
-						<button className='manage-btn' onClick={() => setOpen(false)}>
-							Manage your Quality Hub account
-						</button>
+					<hr className="hr-below-email" />
+					<div className="avatar-dropdown-dashboard-link">
+					<Link to='/dashboard' onClick={()=> setOpen(false)} >
+						{/* <button className='manage-btn' onClick={() => setOpen(false)}> */}
+							<div className="avatar-dropdown-lower-icons">{Gear()}</div> <div>QualityHub account</div>
+						{/* </button> */}
 					</Link>
+					</div>
 					<hr />
-					<Link to='/'>
-						<button className='signout-btn' onClick={() => logout()}>
-							Sign Out
-						</button>
+					<div className="avatar-dropdown-signout-link">
+					<Link to='/' onClick={()=>logout()} >
+						{/* <button className='signout-btn' onClick={() => logout()}> */}
+							<div className="avatar-dropdown-lower-icons">{Signout()}</div> <div>Sign Out</div>
+						{/* </button> */}
 					</Link>
-					<hr />
-					<div className='dropdown-menu-links-div'>
-						{/* Need to link to policy and TOS eventually */}
+					</div>
+					{/* <hr /> */}
+					{/* <div className='dropdown-menu-links-div'>
 						<a href='/' className='dropdown-menu-links'>
 							Privacy Policy
 						</a>
@@ -175,7 +181,7 @@ const AvatarDropdown = props => {
 						<a href='/' className='dropdown-menu-links'>
 							Terms of Service
 						</a>
-					</div>
+					</div> */}
 				</div>
 			)}
 		</div>
