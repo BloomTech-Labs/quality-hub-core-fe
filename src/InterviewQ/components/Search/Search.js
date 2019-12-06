@@ -1,6 +1,6 @@
 // Libraries
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Styles
@@ -17,20 +17,50 @@ export const GET_INDUSTRIES = gql`
 	}
 `;
 
+const GET_USERS = gql` 
+  query ($tags: String) {
+    users (keywords: $tags) {
+      id
+    }
+  }
+`
+
 export default function Search({ fields, setFields, refetch }) {
-	const { data } = useQuery(GET_INDUSTRIES);
-	const [company, setCompany] = useState();
+  const { data: ind_data } = useQuery(GET_INDUSTRIES);
+  const [getUsers, { data: user_data }] = useLazyQuery(GET_USERS);
+  const [company, setCompany] = useState();
+
+  const makeArray = (data) => {
+    let ids = data.users.map(user=> user.id);
+    refetch({...fields, ids})
+  }
 
 	const handleChange = e => {
-		console.log(fields);
 		e.preventDefault();
 		setFields({ ...fields, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		refetch(fields);
-	};
+	useEffect(()=>{
+		const checkUser = async() => {
+      if (user_data) {
+        makeArray(user_data)
+      }
+    }
+    checkUser(); 
+	},[user_data])
+
+	const handleSubmit = async e => {
+    e.preventDefault();
+    if (fields.tags) {
+      getUsers({variables: {tags: fields.tags}});
+      if (user_data) {
+        makeArray(user_data)
+      }
+    } else {
+      refetch(fields);
+    }
+  };
+  
 	const handleReset = e => {
 		e.preventDefault();
 		setFields({ tags: '', price: '', industry: '', orderBy: 'id_ASC' });
@@ -48,8 +78,8 @@ export default function Search({ fields, setFields, refetch }) {
 					value={fields.industry}
 					required>
 					<option value="">All</option>
-					{data &&
-						data.industries.map(({ name }) => (
+					{ind_data &&
+						ind_data.industries.map(({ name }) => (
 							<option key={name} value={name}>
 								{name}
 							</option>
