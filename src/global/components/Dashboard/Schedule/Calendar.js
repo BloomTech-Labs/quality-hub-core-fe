@@ -48,14 +48,14 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 	const onDateClick = day => {
 		setSelectedDate(day);
 		setOpen(true);
-		console.log(day);
-		console.log(open);
+		// console.log(day);
+		// console.log(open);
 	};
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		console.log(currentMonth);
+		// console.log(currentMonth);
 	};
 
 	const onYearChange = e => {
