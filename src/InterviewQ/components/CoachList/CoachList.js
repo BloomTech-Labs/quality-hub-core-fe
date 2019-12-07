@@ -50,7 +50,7 @@ export const GET_POSTS = gql`
 	}
 `;
 
-const CoachList = ({ toggleFilter, setToggleFilter }) => {
+const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 	const [fields, setFields] = useState({
 		tags: '',
 		price: '',
@@ -76,7 +76,7 @@ const CoachList = ({ toggleFilter, setToggleFilter }) => {
 			{!loading && data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (
-						<CoachCard key={post.id} post={post} />
+						<CoachCard key={post.id} post={post} history={history}/>
 					))}
 				</div>
 			)}
