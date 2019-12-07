@@ -63,21 +63,21 @@ const GridDropdown = props => {
 							<p>DesignQ</p>
 						</Link>
 						</div>
-						<div className="grid-dropdown-top-row-1">
+						<div className="grid-dropdown-top-row-2">
 
 						<Link to="#" className="box" onClick={() => setOpen(false)}>
 							{Codeqicon()}
 							<p>CodeQ</p>
 						</Link>
 
-						<Link to="#" className="box" onClick={() => setOpen(false)}>
-							{Networkqicon()}
-							<p>NetworkQ</p>
-						</Link>
 
 						<Link to="#" className="box" onClick={() => setOpen(false)}>
 							{Recruiterqicon()}
-							<p>Recruiterqicon</p>
+							<p>RecruiterQ</p>
+						</Link>
+						<Link to="#" className="box" onClick={() => setOpen(false)}>
+							{Networkqicon()}
+							<p>NetworkQ</p>
 						</Link>
 						</div>
 						</div>
