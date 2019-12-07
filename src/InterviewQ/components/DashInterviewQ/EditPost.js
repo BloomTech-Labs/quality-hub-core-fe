@@ -9,7 +9,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
-	console.log(industries);
+	// console.log(industries);
 	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});

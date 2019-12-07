@@ -7,9 +7,9 @@ import SmallCells from './SmallCells';
 
 import { days, months, years } from '../Dashboard/Schedule/TimeArrays'
 
-const SmallCalendar = () => {
+const SmallCalendar = ({ selectedCell, setSelectedCell }) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	const [selectedCell, setSelectedCell] = useState(new Date());
+	// const [selectedCell, setSelectedCell] = useState(new Date());
 	
 
 	// const headerDateFormat = "MMMM yyyy";

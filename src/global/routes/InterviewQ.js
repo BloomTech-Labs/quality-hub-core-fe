@@ -7,7 +7,6 @@ import CoachForm from '../../InterviewQ/components/CoachForm/CoachForm';
 import CoachList from '../../InterviewQ/components/CoachList';
 import RequestInterview from '../../InterviewQ/components/RequestInterview/RequestInterview'
 import DashInterviewQ from '../../InterviewQ/components/DashInterviewQ/DashInterviewQ';
-import InterviewQContainer from '../../InterviewQ/InterviewQ';
 import Availability from '../../InterviewQ/components/DashInterviewQ/Availability/Availability';
 
 
@@ -19,9 +18,9 @@ function InterviewQ({ loggedin, setLoggedin }) {
 				<Route path='/interviewq/addcoach' component={CoachForm} />
 				{/* <PrivateRoute path='/addcoach' component={CoachForm00} /> */}
 				<Route path='/interviewq/coachlist' component={CoachList} />
-				<Route path='/interviewq/booking' component={RequestInterview} />
+				<Route path='/interviewq/booking/:coach_id' component={RequestInterview} />
 				<Route path='/interviewq/availability' component={Availability} />
-				<Route path='/interviewq/settings' component={DashInterviewQ} />
+				<Route exact path='/interviewq/settings' component={DashInterviewQ} />
 			</Switch>
 	);
 }

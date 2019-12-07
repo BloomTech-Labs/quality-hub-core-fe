@@ -1,6 +1,6 @@
 // Libraries
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 // import { tag } from 'postcss-selector-parser';
 
 // Styles & Icons
@@ -10,8 +10,9 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 
 //Component
 import CoachModal from './CoachCardModal.js';
+import RequestInterview from '../RequestInterview/RequestInterview';
 
-const CoachCard = ({ post, setOpen }) => {
+const CoachCard = ({ history, post, setOpen }) => {
 	let { coach } = post;
 	let maxWidth = 100;
 
@@ -85,7 +86,7 @@ const CoachCard = ({ post, setOpen }) => {
 					)}
 				</div>
 				<button className='interview-button' disabled>
-					<Link to='interviewq/booking'>
+					<Link to={`interviewq/booking/${coach.id}`}>
 					Request Interview
 					</Link>
 				</button>
