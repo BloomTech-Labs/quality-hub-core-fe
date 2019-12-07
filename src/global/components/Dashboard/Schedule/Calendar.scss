@@ -493,9 +493,74 @@ $neutral-cal-color: #fff;
 }
 
 .selected  {
-	// 	border-left: 10px solid transparent;
-	// 	border-image: linear-gradient(45deg, #1a8fff 0%, #53cbf1 40%);
-	// 	border-image-slice: 1;
 border: 2px solid $main-cal-color !important;
-		// border-top: 5px solid $main-cal-color;
 	 }
+
+// Small Calendar
+.small-calendar-container{
+	width: 500px;
+}
+
+.calendar .calendar-body .small-cell {
+	position: relative;
+	height: 50px;
+	//border-right: 1px solid var(--border-color);
+	overflow: hidden;
+	cursor: pointer;
+	background: $neutral-cal-color;
+	transition: 0.25s ease-out;
+	//border-bottom: 1px solid var(--border-color);
+	margin-bottom: 0 3px;
+}
+
+.small-col {
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
+	flex-basis: 0;
+	max-width: 100%;
+}
+
+.small-col-center {
+	// margin: 0 1rem;
+	display: flex;
+	font-size: 14px;
+	font-weight: 600;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	//text-align: right;
+}
+
+.small-days{
+		display: flex;
+		align-items: center;
+		height: 50px;
+		font-size: 20px;
+		text-transform: uppercase;
+		font-weight: 400;
+		background-color: $neutral-cal-color;
+		color: $main-cal-color;
+		font-size: 70%;
+		text-align: center;
+		// border-bottom: 1px solid var(--border-color);
+	}
+
+	.small-selected{
+		justify-content: center;
+		height: 50px;
+		width: 50px;
+		color: white;
+		background-color: $main-cal-color;
+		border-radius: 50%;
+	}
+
+	.number{
+		display: flex;
+		align-items: center;
+	}
+	.small-calendar-select{
+		display: flex;
+		justify-content: space-between;
+		padding: 0 40px;
+	}

@@ -49,10 +49,11 @@
 }
 
 .QNav-row-highlight {
+	margin: 0 0 3rem 0;
+	height: 4.5rem;
 	background: rgba(9, 109, 217, 0.1);
 	border-radius: 0.3rem;
 	width: 20rem;
-
 	@media screen and (max-width: 700px) {
 		display: none;
 	}

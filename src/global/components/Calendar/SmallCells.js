@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { CoachBooking } from './CoachBooking';
-import { SeekerBooking } from './SeekerBooking';
+import React from 'react';
 import {
 	format,
 	isSameMonth,
@@ -13,7 +11,7 @@ import {
 	startOfMonth,
 } from 'date-fns';
 
-const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
+const SmallCells = ({ onDateClick, currentMonth, selectedDate }) => {
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
 	const startDate = startOfWeek(monthStart);
@@ -32,16 +30,19 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			days.push(
 				<div
 					id={cellId}
-					className={`col cell ${
+					className={`small-col small-cell `}
+					key={day}
+					onClick={() => onDateClick(toDate(cloneDay))}>
+						
+					<div className={`number ${
 						!isSameMonth(day, monthStart)
 							? 'disabled'
 							: isSameDay(day, selectedDate)
-							? 'selected'
+							? 'small-selected'
 							: ''
-					}`}
-					key={day}
-					onClick={() => onDateClick(toDate(cloneDay))}>					
-					<span className='number'>{formattedDate}</span>					
+					}`}><p>{formattedDate}</p></div>
+					{/* <span className='bg'>{formattedDate}</span> */}
+					
 				</div>,
 			);
 			day = addDays(day, 1);
@@ -54,9 +55,6 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		days = [];
   }
 	
- CoachBooking(currentMonth);
- SeekerBooking(currentMonth);
- 
 	return( 
 	<>
 	<div className='calendar-body'>{rows}</div>
@@ -64,4 +62,4 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	);
 };
 
-export default Cells;
+export default SmallCells;

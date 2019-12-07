@@ -4,11 +4,14 @@ import './CoachForm.scss';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
+// Styles && Icons
+import './CoachForm.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 import { lightbulb } from '../../../globalIcons/lightbulb';
 import { lightbulb2 } from '../../../globalIcons/lightbulb2';
 
+// Query
 import { GET_POSTS } from '../CoachList/CoachList';
 import { GET_USER, INDUSTRIES, ADD_POST } from './CoachFormQueries';
 

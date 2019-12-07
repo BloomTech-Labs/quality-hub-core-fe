@@ -8,8 +8,8 @@ import { useHistory } from 'react-router-dom';
 
 // Styles & Icons
 import './DeletePost.scss';
-import Icon from '../../../../globalIcons/Icon';
-import { ICONS } from '../../../../globalIcons/iconConstants';
+import Icon from '../../../globalIcons/Icon';
+import { ICONS } from '../../../globalIcons/iconConstants';
 import { GET_COACH_POST } from './Resolvers.js';
 
 // GraphQL Query to get posts to update cache

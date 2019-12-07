@@ -15,9 +15,10 @@ export const GET_POSTS = gql`
 		$industry: String
 		$price: String
 		$orderBy: String
-		$tags: String
+    $tags: String
+    $ids: [String]
 	) {
-		posts(industry: $industry, price: $price, orderBy: $orderBy, tags: $tags) {
+		posts(industry: $industry, price: $price, orderBy: $orderBy, tags: $tags, ids: $ids) {
 			id
 			price
 			position
@@ -49,7 +50,7 @@ export const GET_POSTS = gql`
 	}
 `;
 
-const CoachList = ({ toggleFilter, setToggleFilter }) => {
+const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 	const [fields, setFields] = useState({
 		tags: '',
 		price: '',
@@ -75,7 +76,7 @@ const CoachList = ({ toggleFilter, setToggleFilter }) => {
 			{!loading && data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (
-						<CoachCard key={post.id} post={post} />
+						<CoachCard key={post.id} post={post} history={history}/>
 					))}
 				</div>
 			)}
