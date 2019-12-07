@@ -14,6 +14,7 @@ import { Designqicon } from '../../../globalIcons/designqicon';
 import { Codeqicon } from '../../../globalIcons/codeqicon';
 import { Recruiterqicon } from '../../../globalIcons/recruiterqicon';
 import { Networkqicon } from '../../../globalIcons/networkqicon';
+import { Gridicon } from '../../../globalIcons/gridicon';
 
 const GridDropdown = props => {
 	const node = useRef();
@@ -37,7 +38,8 @@ const GridDropdown = props => {
 	return (
 		<div ref={node}>
 			<div className="grid-menu grid-icon" onClick={() => setOpen(!open)}>
-				<Icon icon={ICONS.GRID} width={24} height={24} />
+				{/* <Icon icon={ICONS.GRID} width={24} height={24} /> */}
+				{Gridicon()}
 			</div>
 
 			{open && (

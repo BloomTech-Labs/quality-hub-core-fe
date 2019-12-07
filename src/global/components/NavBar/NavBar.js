@@ -4,6 +4,7 @@ import AvatarDropdown from './AvatarDropdown';
 import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import {Bellicon} from '../../../globalIcons/bellicon';
 
 import {Hamburger} from '../../../globalIcons/hamburger';
 
@@ -75,6 +76,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 					</>
 				)}
 
+				{Bellicon()}
 				{/* Dropdown list of Q services */}
 				<GridDropdown />
 
