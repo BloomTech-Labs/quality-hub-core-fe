@@ -29,9 +29,10 @@ $neutral-cal-color: #fff;
 }
 
 .interview-slot:hover{
-  border: 1px solid $main-cal-color;
+  border: 1px solid lighten($main-cal-color, 10%);
+  cursor: pointer;
   color: white;
-  background-color: $main-cal-color;
+  background-color: lighten($main-cal-color, 10%);
 }
 
 .interview-slot-list{
@@ -60,4 +61,9 @@ $neutral-cal-color: #fff;
   p{
     margin: 1rem 0;
   }
+}
+
+.available-slot{
+  background-color: $main-cal-color;
+  color: white
 }
