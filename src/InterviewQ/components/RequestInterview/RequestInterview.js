@@ -129,14 +129,14 @@ useEffect(() => {
 				})
 		  )
 		: setDateObjs([]);
-	setOhlawdanotherone(dateObjs ? dateObjs.map((date, index) => {
-    // console.log(getHours(date.startTime))
-    // console.log(getMinutes(date.startTime))
+	// setOhlawdanotherone(dateObjs ? dateObjs.map((date, index) => {
+  //   // console.log(getHours(date.startTime))
+  //   // console.log(getMinutes(date.startTime))
     
     
-    return diff_hours(date.endingtime, date.startTime)}
-    ) : []
- )
+  //   return diff_hours(date.endingtime, date.startTime)}
+    // ) : []
+ 
  let bookingArray = []; //this will hold all potential 1 hour blocks
 for(let x = 0; x < dateObjs.length-1; x++){
     for (let y = x+1; y < dateObjs.length; y++) {
@@ -164,25 +164,9 @@ for(let x = 0; x < dateObjs.length-1; x++){
         }
     }
 }
-console.log(bookingArray)
+//console.log(bookingArray)
 }, [dateAvails]);
 
-function diff_hours(dt2, dt1) {
-  // console.log(dt2)
-  var diff =getTime(dt2) - getTime(dt1) / 1000;
-  diff /= (60 * 60);
-  return Math.abs(Math.round(diff)); 
- }
-// console.log(getTime(new Date(2019, 12, 7, 12, 30)))
-// console.log(diff_hours(new Date(2018, 12, 7, 1, 30), new Date(2018, 12, 7, 12, 30)))
-
-useEffect(() => {
-  // if(availabilities && dateAvails != []){
-  // let timeDiffs = dateAvails.map((date) => diff_hours(date.startTime, date.endingtime))
-  // console.log(timeDiffs)
-  // }
-  console.log(dateObjs.slice().sort())
-}, [dateObjs])
 
 
 return(

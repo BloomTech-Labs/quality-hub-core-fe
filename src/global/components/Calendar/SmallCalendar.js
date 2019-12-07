@@ -25,13 +25,13 @@ const SmallCalendar = ({ selectedCell, setSelectedCell }) => {
 	}
 	const onDateClick = day => {
 		setSelectedCell(day);
-		console.log(day);
+		// console.log(day);
 	};
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		console.log(currentMonth);
+		// console.log(currentMonth);
 	};
 
 	const onYearChange = e => {
