@@ -3,32 +3,19 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from './Resolvers';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
+
+import './EditForm.scss';
 
 const CoachBasicInfo = ({ myArray, userData }) => {
-
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
-	console.log(industries);
 	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	// console.log(coachPost);
-
+  const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
-
-	//Component State
-	let coachObj = coachPost && coachPost.postByCoach;
-	const [original, setOriginal] = useState(coachObj);
-
-	useEffect(() => {
-		if (coachPost) {
-			setOriginal(coachPost.postByCoach);
-		}
-	}, [coachPost]);
-
-	// console.log('orig', original);
-
 	const [editing, setEditing] = useState([
 		false,
 		false,
@@ -37,8 +24,22 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		false,
 		false,
 	]);
+  const [post, setPost] = useState({id: coachPost.postByCoach.id, tagString: ""});
+  const [deleteTags, setDelete] = useState([]);
+	//Component State
+  let coachObj = coachPost && coachPost.postByCoach;
+  let tagArray = 
+    coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
+	const [original, setOriginal] = useState(coachObj);
+	useEffect(() => {
+		if (coachPost) {
+      setOriginal({...coachPost['postByCoach']});
+		}
+	}, [coachPost]);
 
-	const [post, setPost] = useState({});
+	// console.log('orig', original);
+
+
 
 	//Handler Functions
 	const handleChange = e => {
@@ -74,33 +75,66 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 		setPost({
 			id: coachPost.postByCoach.id,
 		});
-		let newEditting = [...editing];
-		newEditting[index] = false;
-		setEditing(newEditting);
+		let newEditing = [...editing];
+    newEditing[index] = false;
+    setEditing(newEditing);
+    if (index === 5) {
+      setOriginal({...original, tags: coachPost.postByCoach.tags})
+      setDelete([]);
+    }
 	};
 
+  useEffect(() => {
+    if (original.tagString) {
+      let tags = original.tags;
+      let newTags = tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
+      setOriginal({...original, tagString: newTags})
+    }
+  }, [editing[5], original.tags])
+
 	const handleSubmit = (e, index) => {
-		let keyval = Object.keys(post);
+    let keyval = Object.keys(post);
 		// console.log('key', keyval);
-		e.preventDefault();
+    e.preventDefault();
+    deleteTags.forEach(tag => {
+      removeTag({ variables: { id: post.id, tagID: tag.id}})
+    });
 		changeField({ variables: post })
 			.then(res => {
-				setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
-				// console.log('post', post);
-				// console.log(original);
-				let newEditting = [...editing];
-				newEditting[index] = false;
-				setEditing(newEditting);
+        if(keyval[1] === 'tagString') {
+          // let newLength = res.data.updatePost.tags.length;
+          let tags = res.data.updatePost.tags;
+          let newTags;
+          tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+          // setEditing(newEditing, () => {
+          //   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+          // });
+          setOriginal({...original, tags: tags})
+          setPost({id: coachPost.postByCoach.id});
+
+        } else {
+          setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
+        }
+        let newEditing = [...editing];
+        newEditing[index] = false;
+        setEditing(newEditing);
 			})
 			.catch(err => {
 				console.log(err);
 			});
-	};
-
-	const tagArray =
-		coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
-
-	//console.log(tagArray);
+  };
+  
+  function handleTagRemove(e) {
+    let tagID = e.target.id;
+    let newArray = original.tags.filter(tag => tagID !== tag.id)
+    let newNodes = tagArray.filter(tag => tag.key !== tagID )
+    tagArray = newNodes;
+    setOriginal({...original, tags: newArray, tagString: tagArray})
+    setDelete(arr => [...arr, {id: tagID}])
+    console.log(deleteTags);
+  }
+	// const tagArray =
+  // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
 
 	return (
 		<>
@@ -246,35 +280,32 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 					</div>
 				</div>
 
-				<div className='dash-input'>
-					<div className='dash-row post-row .post-tag'>
+				<div className='post-input last'>
+					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>TAGS</h3>
 						</span>
-						{editing[5] ? (
-							<div>
-								<input
-									id='edit-post-5'
-									type='text'
-									name='tagString'
-									value={post.tagString}
-									defaultValue={
-										original && original.tagString
-											? original && original.tagString
-											: original && tagArray
-									}
-									onChange={handleChange}
-								/>
+            <div className="tag-form">
+              {editing[5] &&
+                <div className="tag-input">
+                  <input
+                    id='edit-post-5'
+                    type='text'
+                    name='tagString'
+                    placeholder="Add tags here (separate with commas)"
+                    value={post.tagString}
+                    onChange={handleChange}
+                  />
+                </div>
+                }
+                <div className="tags-container">
+                  <p>
+                    {original && original.tagString
+                      ? original && original.tagString
+                      : original && tagArray}
+                  </p>
 							</div>
-						) : (
-							<div>
-								<p>
-									{original && original.tagString
-										? original && original.tagString
-										: original && tagArray}
-								</p>
-							</div>
-						)}
+              </div>
 					</div>
 					<div className='edit-btns'>
 						<PostButtons
