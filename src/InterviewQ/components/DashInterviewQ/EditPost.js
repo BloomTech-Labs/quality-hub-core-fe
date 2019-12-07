@@ -92,6 +92,8 @@ const CoachBasicInfo = ({ myArray, userData }) => {
     }
   }, [editing[5], original.tags])
 
+
+  
 	const handleSubmit = (e, index) => {
     let keyval = Object.keys(post);
 		// console.log('key', keyval);
@@ -292,7 +294,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
                     id='edit-post-5'
                     type='text'
                     name='tagString'
-                    placeholder="Add tags here (separate with commas)"
+                    placeholder="Add tags here (i.e Javascript, Node ..)"
                     value={post.tagString}
                     onChange={handleChange}
                   />

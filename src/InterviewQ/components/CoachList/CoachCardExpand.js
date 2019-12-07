@@ -34,6 +34,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						color='rgba(0, 0, 0, 0.54)'
 					/>
 				</button>
+				<div className="coachcard-expand-inner">
 				<div
 					className={
 						coach.first_name.length > 25 || coach.last_name.length > 25
@@ -111,6 +112,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						Request Interview
 					</button>
 				</div>
+			</div>
 			</div>
 		</div>
 
