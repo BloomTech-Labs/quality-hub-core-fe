@@ -22,10 +22,6 @@
 			text-decoration: none;
 			text-align: left;
 		}
-
-		// img {
-		// 	 width: 5rem;
-		// }
 	}
 
 	.nav-right {
@@ -41,6 +37,17 @@
 		}
 	}
 }
+.navbar-hamburger-and-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 24px;
+}
+
+.navbar-hamburger-icon {
+	display: flex;
+	margin-right: 12px;
+}
 
 .dropdown-content {
 	position: absolute;
@@ -50,9 +57,9 @@
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	width: 300px;
-	height: 360px;
-	border-radius: 14px;
+	width: 350px;
+	height: 315px;
+	border-radius: 4px;
 	border: 1px solid lightgray;
 	hr {
 		height: 1px;
@@ -62,40 +69,74 @@
 	}
 }
 
+.avatar-dropdown-dashboard-link,
+.avatar-dropdown-signout-link {
+	margin: 17.75px 0 17.25px 0 !important;
+	a {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 24px;
+		color: #3c4043;
+		display: flex;
+		align-items: center;
+		align-content: center;
+		margin-left: 24px !important;
+		div {
+			display: flex;
+		}
+	}
+}
+
+.avatar-dropdown-lower-icons {
+	margin-right: 16px;
+}
+
 .grid-icon {
 	cursor: pointer;
-	margin-left: 1rem;
+	margin-left: 16px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
+.grid-dropdown-more {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 22px;
+	color: #3c4043;
+	margin-top: 16px;
+}
+
 .dropdown-grid-content {
-	padding: 30px;
 	position: absolute;
 	right: 20px;
 	top: 70px;
 	background-color: white;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	width: 280px;
-	height: 250px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-
-	border-radius: 14px;
+	width: 352px;
+	height: 332px;
+	border-radius: 4px;
 	border: 1px solid lightgray;
+	hr {
+		border: 1px solid #dadce0;
+	}
 }
 
-.dropdown-icons {
-	justify-content: space-around;
-	display: flex;
-	flex-wrap: wrap;
+.grid-dropdown-bottom-hr {
+	width: 100%;
+	margin-top: 32px;
+}
+.grid-dropdown-bottom-content {
+	width: 100%;
+	justify-content: center;
 	p {
-		margin-top: -10px;
-		margin-bottom: 20px;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 22px;
+		color: #3c4043;
 	}
 }
 
@@ -110,9 +151,9 @@
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	background-color: white;
-	right: 100px;
-	top: 85px;
+	background-color: rgba(0, 0, 0, 0.3);
+	right: 130px;
+	top: 80px;
 }
 .grey-on-hover {
 	cursor: pointer;
@@ -144,13 +185,21 @@
 .dropdown-menu-links-div {
 	margin-top: 14px;
 }
+.hr-below-email {
+	margin-top: 24.25px;
+}
 
 .dropdown-menu-name {
 	margin: 15px 0 0 0;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 28px;
+	color: #202124;
 }
 
 .dropdown-menu-email {
-	color: grey;
+	color: #5f6368;
 	margin-top: 0px;
 }
 
@@ -162,7 +211,6 @@
 	cursor: pointer;
 	background-size: cover;
 	background-repeat: no-repeat;
-	// background-color: rgba(0, 0, 0, 0.54);
 	margin-left: 1.8rem;
 }
 
@@ -194,87 +242,25 @@
 }
 
 .profile-img-dropdown {
+	margin-top: 24px;
 	border-radius: 50%;
-	width: 100px;
-	height: 100px;
+	width: 81.25px;
+	height: 81.25px;
 	background-size: cover;
 	background-repeat: no-repeat;
-	// background-color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .profile-img-dropdown2 {
-	// border: 1px solid red;
 	border-radius: 50%;
 	width: 100px;
 	height: 100px;
 	background-size: cover;
 	background-repeat: no-repeat;
-	// background-color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-/* Spinning logo - Delete later */
-.rotate {
-	animation: rotation 10s infinite linear;
-}
-
-@keyframes rotation {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(359deg);
-	}
-}
-/* End of spinning logo - delete later */
-
-.bird {
-	background-image: url('/avatar.png');
-}
-
-/* common styles for pirate and bird */
-.bird {
-	position: absolute;
-	width: 50px;
-	height: 50px;
-	background-repeat: no-repeat;
-	background-size: contain;
-	border-radius: 100%;
-}
-
-.bird {
-	/*         ↓ enter animation       ↓ exit animation   */
-	animation: bird-enter 2s ease-out, bird-exit 1s ease-in;
-	/* 0s delay for the entry animation, 6s for the exit  */
-	animation-delay: 0s, 2.4s;
-}
-
-.bird {
-	animation-fill-mode: forwards;
-}
-
-/* keyframe animations */
-// Quailnana flies in
-@keyframes bird-enter {
-	from {
-		transform: translateX(100vw);
-	}
-	to {
-		transform: translateX(50vw); /* half way */
-	}
-}
-
-@keyframes bird-exit {
-	from {
-		transform: translateX(50vw);
-	}
-	to {
-		transform: translateX(-10vw); /* exit outside the frame */
-	}
 }
 
 .image-input-dropdown {
@@ -283,24 +269,30 @@
 	pointer-events: none;
 }
 
-.test-css-grid {
-	background-color: #fff;
+.grid-dropdown-top-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.grid-dropdown-top-row-1,
+.grid-dropdown-top-row-2 {
 	display: grid;
-	grid-template-columns: 100px 100px;
-	grid-row: auto auto;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-	.box {
-		flex-direction: column;
-		border-radius: 10px;
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 40px;
-		font-family: sans-serif;
-		p {
-			margin: 1rem 0;
-		}
+	grid-template-columns: 100px 100px 100px;
+	margin: 0 auto;
+	margin-top: 32px;
+}
+
+.box {
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	width: 100px;
+	text-align: center;
+	margin: 0 auto !important;
+	p {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 22px;
 	}
 }
