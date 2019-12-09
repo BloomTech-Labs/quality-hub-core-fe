@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CoachCard from './CoachCardExpand.js';
 
 //Styles
@@ -9,15 +9,7 @@ import './CoachCardModal.scss';
 const CoachCardModal = ({ post }) => {
 	const [open, setOpen] = useState(false);
 
-	// useEffect(() => {
-	// 	if (open) {
-	// 		document.getElementById('overlay-coachcard-expand').style.display =
-	// 			'block';
-	// 	} else {
-	// 		document.getElementById('overlay-coachcard-expand').style.display =
-	// 			'none';
-	// 	}
-	// }, [open]);
+
 
 	return (
 		<div className='coach-card-modal-text'>

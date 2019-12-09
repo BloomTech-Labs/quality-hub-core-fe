@@ -4,6 +4,9 @@ import AvatarDropdown from './AvatarDropdown';
 import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import {Bellicon} from '../../../globalIcons/bellicon';
+
+import {Hamburger} from '../../../globalIcons/hamburger';
 
 const GET_USER = gql`
 	query dropdownMenu {
@@ -35,6 +38,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		if (localStorage.getItem('token')) {
 			getUser();
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	//If user query came back with data and you have a token in localStorage, log in.
@@ -44,7 +48,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 
 	if (error && errorCount === 0) {
-		if (error == 'Error: Network error: Failed to fetch') {
+		if (error === 'Error: Network error: Failed to fetch') {
 		} else {
 			setErrorCount(1);
 			client.clearStore();
@@ -57,7 +61,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		<div className="styled-nav" id="main-navbar">
 			<div className="nav-left">
 				<NavLink to="/">
-					<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
+					<div className="navbar-hamburger-and-title"><div className="navbar-hamburger-icon">{Hamburger()}</div><h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2></div>
 				</NavLink>
 			</div>
 
@@ -73,6 +77,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 					</>
 				)}
 
+				{Bellicon()}
 				{/* Dropdown list of Q services */}
 				<GridDropdown />
 

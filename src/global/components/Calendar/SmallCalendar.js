@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import '../Dashboard/Schedule/Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths } from 'date-fns';
 
 import SmallCells from './SmallCells';
 
 import { days, months, years } from '../Dashboard/Schedule/TimeArrays'
 
-const SmallCalendar = () => {
+const SmallCalendar = ({ selectedCell, setSelectedCell }) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	const [selectedCell, setSelectedCell] = useState(new Date());
+	// const [selectedCell, setSelectedCell] = useState(new Date());
 	
 
 	// const headerDateFormat = "MMMM yyyy";
@@ -25,13 +24,13 @@ const SmallCalendar = () => {
 	}
 	const onDateClick = day => {
 		setSelectedCell(day);
-		console.log(day);
+		// console.log(day);
 	};
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		console.log(currentMonth);
+		// console.log(currentMonth);
 	};
 
 	const onYearChange = e => {

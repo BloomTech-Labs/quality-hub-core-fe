@@ -22,6 +22,7 @@ const PostButtons = ({
 		if (editing[index]) {
 			document.getElementById(`edit-post-${index}`).focus();
 		}
+		// eslint-disable-next-line
 	}, [focusvar]);
 
 	// console.log(editing);

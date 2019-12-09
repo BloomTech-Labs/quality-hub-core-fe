@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { tag } from 'postcss-selector-parser';
+
 
 // Styles & Icons
 import './CoachCard.scss';
@@ -11,7 +11,7 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 //Component
 import CoachModal from './CoachCardModal.js';
 
-const CoachCard = ({ post, setOpen }) => {
+const CoachCard = ({ history, post, setOpen }) => {
 	let { coach } = post;
 	let maxWidth = 100;
 
@@ -74,18 +74,18 @@ const CoachCard = ({ post, setOpen }) => {
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
 					{post.coach.linkedin_url && (
-						<a href={post.coach.linkedin_url} target='_blank'>
+						<a href={post.coach.linkedin_url} target='_blank' rel="noopener noreferrer">
 							<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
 						</a>
 					)}
 					{post.coach.twitter_url && (
-						<a href={post.coach.twitter_url} target='_blank'>
+						<a href={post.coach.twitter_url} target='_blank' rel="noopener noreferrer">
 							<Icon icon={ICONS.TWITTER} width={24} height={24} />
 						</a>
 					)}
 				</div>
 				<button className='interview-button' disabled>
-					<Link to='interviewq/booking'>
+					<Link to={`interviewq/booking/${coach.id}`}>
 					Request Interview
 					</Link>
 				</button>

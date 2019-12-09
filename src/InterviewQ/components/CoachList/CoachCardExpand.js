@@ -1,6 +1,5 @@
 // Libraries
 import React, { useEffect, useRef } from 'react';
-// import { tag } from 'postcss-selector-parser';
 
 // Styles & Icons
 import './CoachCardModal.scss';
@@ -10,7 +9,6 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 const CoachCard = ({ post, setOpen, open }) => {
 	const node = useRef();
 	let { coach } = post;
-	// console.log(post);
 
 	useEffect(() => {
 		if (open) {
@@ -36,6 +34,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						color='rgba(0, 0, 0, 0.54)'
 					/>
 				</button>
+				<div className="coachcard-expand-inner">
 				<div
 					className={
 						coach.first_name.length > 25 || coach.last_name.length > 25
@@ -114,7 +113,9 @@ const CoachCard = ({ post, setOpen, open }) => {
 					</button>
 				</div>
 			</div>
+			</div>
 		</div>
+
 	);
 };
 

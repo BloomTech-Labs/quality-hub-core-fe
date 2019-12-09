@@ -34,6 +34,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		if (editing) {
 			document.getElementById(`dashboard-input-${userKey}`).focus();
 		}
+		// eslint-disable-next-line
 	}, [editing]);
 
 	const handleSubmit = e => {
@@ -47,7 +48,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		}
 
 		//check if valid email
-		const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 		if (userKey === 'email') {
 			if (!user[userKey].match(mailFormat)) {
 				setUser({
@@ -180,7 +181,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 				) : //When you're not in edit mode, render this
 				isLink ? (
 					<p>
-						<a href={user[userKey]} target='_blank'>
+						<a href={user[userKey]} target='_blank' rel="noopener noreferrer">
 							{user[userKey]}
 						</a>
 					</p>

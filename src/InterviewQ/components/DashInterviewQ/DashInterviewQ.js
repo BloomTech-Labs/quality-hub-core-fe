@@ -8,7 +8,6 @@ import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
 // Components
-import QNav from '../QNav/QNav'
 import CoachDash from './CoachDash';
 import { spacecoach } from '../../../globalIcons/SpaceCoach.js'
 // import Reviews from './Reviews';
@@ -19,11 +18,11 @@ export default function DashInterviewQ() {
 	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
-	console.log(coachPost);
+	// console.log(coachPost);
 
 	return (
 		<div className='lower-dashboard'>
-		<QNav />
+		
 		{loading ? null : coachPost && coachPost.postByCoach ? <CoachDash /> : (
 			<div className='not-a-coach'>
 							<div className='not-a-coach-header'>
@@ -41,7 +40,7 @@ export default function DashInterviewQ() {
 				{spacecoach()}
 				</div>
 				<p>
-				You aren't currently a coach! To become a coach, click <Link to='/interviewq'>here</Link>.
+				You aren't currently a coach! To become a coach, click <Link className='not-a-coach-here' to='/interviewq'>here</Link>.
 				</p>
 			</div>
 		)}

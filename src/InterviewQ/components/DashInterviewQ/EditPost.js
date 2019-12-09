@@ -10,6 +10,7 @@ import './EditForm.scss';
 const CoachBasicInfo = ({ myArray, userData }) => {
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
+	// console.log(industries);
 	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
@@ -89,9 +90,12 @@ const CoachBasicInfo = ({ myArray, userData }) => {
       let tags = original.tags;
       let newTags = tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
       setOriginal({...original, tagString: newTags})
-    }
+		}
+		// eslint-disable-next-line
   }, [editing[5], original.tags])
 
+
+  
 	const handleSubmit = (e, index) => {
     let keyval = Object.keys(post);
 		// console.log('key', keyval);
@@ -104,7 +108,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
         if(keyval[1] === 'tagString') {
           // let newLength = res.data.updatePost.tags.length;
           let tags = res.data.updatePost.tags;
-          let newTags;
+          // let newTags;
           tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
           // setEditing(newEditing, () => {
           //   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
@@ -292,7 +296,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
                     id='edit-post-5'
                     type='text'
                     name='tagString'
-                    placeholder="Add tags here (separate with commas)"
+                    placeholder="Add tags here (i.e Javascript, Node ..)"
                     value={post.tagString}
                     onChange={handleChange}
                   />

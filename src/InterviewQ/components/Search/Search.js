@@ -27,7 +27,8 @@ const GET_USERS = gql`
 
 export default function Search({ fields, setFields, refetch }) {
   const { data: ind_data } = useQuery(GET_INDUSTRIES);
-  const [getUsers, { data: user_data }] = useLazyQuery(GET_USERS);
+	const [getUsers, { data: user_data }] = useLazyQuery(GET_USERS);
+	// eslint-disable-next-line
   const [company, setCompany] = useState();
   const [lastChanged, setChanged] = useState();
 
@@ -56,7 +57,8 @@ export default function Search({ fields, setFields, refetch }) {
         makeArray(user_data)
       }
     }
-    checkUser(); 
+		checkUser(); 
+		// eslint-disable-next-line
   },[user_data])
   
   const handlePress = (e) => {
@@ -88,7 +90,7 @@ export default function Search({ fields, setFields, refetch }) {
 				{/* <label htmlFor='sign-up-state'>Company*</label> */}
 				<label>Industry</label>
 				<select
-					onBlur={() => setCompany(true)}
+					// onBlur={() => setCompany(true)}
 					name="industry"
 					placeholder="Industry"
 					onChange={handleChange}
@@ -106,7 +108,7 @@ export default function Search({ fields, setFields, refetch }) {
 			<div className="search-field">
 				<label>Price</label>
 				<select
-					onBlur={() => setCompany(true)}
+					// onBlur={() => setCompany(true)}
 					name="price"
 					placeholder="Price"
 					onChange={handleChange}
@@ -123,7 +125,7 @@ export default function Search({ fields, setFields, refetch }) {
 			<div className="search-field">
 				<label>Sort results by</label>
 				<select
-					onBlur={() => setCompany(true)}
+					// onBlur={() => setCompany(true)}
 					name="orderBy"
 					placeholder="Order By"
 					onChange={handleChange}
