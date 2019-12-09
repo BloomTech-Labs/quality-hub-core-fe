@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Calendar from './Calendar.js'
 import WeekView from './WeekView.js';
 import Icon from '../../../../globalIcons/Icon';
 import { ICONS } from '../../../../globalIcons/iconConstants';
-import SmallCalendar from '../../Calendar/SmallCalendar';
 
 const Schedule = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());

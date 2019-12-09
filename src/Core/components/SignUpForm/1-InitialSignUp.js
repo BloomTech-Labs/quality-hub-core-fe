@@ -26,6 +26,7 @@ export default function SignUp({
 	setPasswordTouched,
 }) {
 	const [verifyEmail] = useMutation(CHECK_EMAIL);
+
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [showPassword, setShowPassword] = useState(true);

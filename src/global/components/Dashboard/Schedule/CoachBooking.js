@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import { COACH_BOOKINGS } from './Queries'
 
@@ -16,6 +16,7 @@ const { data: bookingsByCoach } = useQuery(COACH_BOOKINGS, {variables: {coachId:
 			div.textContent = `InterviewQ ${appt.hour}:${appt.minute}`;
 			return booking.appendChild(div);
     }
+    return null
   });
 }, [currentMonth, bookingsByCoach])
 

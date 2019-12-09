@@ -6,14 +6,14 @@ import { clock } from '../../../../globalIcons/Clock.js';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 import Icon from '../../../../globalIcons/Icon';
 
-const CalendarDetail = ({ selectedDate, handleOutsideClick, setOpen }) => {
+const CalendarDetail = ({ selectedDate,  setOpen }) => { //handleOutsideClick,
 const { data } = useQuery(ALL_BOOKINGS, {variables: {seekerId: localStorage.getItem('id'), coachId: localStorage.getItem('id')}});
 
 const allBookings = data.bookingsByCoach.concat(data.bookingsBySeeker);
 
 
 console.log(data)
-const selectedMonth = format(selectedDate, 'M');
+// const selectedMonth = format(selectedDate, 'M');
   const selectedDay = format(selectedDate, 'd');
 
 const booking = data && allBookings.filter(month => {return month.day === Number(selectedDay)});
@@ -63,7 +63,7 @@ return (
 								/>
 								{info.coach.first_name} {info.coach.last_name}
 							</p>
-							<p> 	&#x2709;{info.coach.email}</p>
+							<p>&#x2709;{info.coach.email}</p>
 							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
 							{/* <button className='default-btn' }>
 								done

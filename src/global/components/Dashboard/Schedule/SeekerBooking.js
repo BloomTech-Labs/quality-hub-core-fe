@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import {  SEEKER_BOOKINGS } from './Queries'
 
@@ -18,7 +18,8 @@ useEffect(() => {
     div.textContent = `InterviewQ ${appt.hour}:${appt.minute}`;
     return booking.appendChild(div);
   }
+  return null
 });
-}, [currentMonth, bookingsBySeeker]);
 
+}, [currentMonth, bookingsBySeeker]);
 }

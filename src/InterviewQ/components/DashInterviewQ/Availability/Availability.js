@@ -3,7 +3,7 @@ import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar'
 import { timeObjs } from '../../../../global/components/Dashboard/Schedule/TimeArrays';
 import './Availability.scss';
 import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY, AVAIL_BY_UNIQUE } from './Resolvers';
-import QNav from '../../QNav';
+
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, getMonth } from 'date-fns';
 
@@ -104,7 +104,7 @@ const Availability =() => {
 
   return(
     <>
-    <QNav />
+    
     <div className=' availability-container'>
    
     <div className='coach-availability'>

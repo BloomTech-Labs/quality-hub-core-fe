@@ -11,7 +11,7 @@ $neutral-cal-color: #fff;
 
 .calendar-header {
 	display: flex;
-	align-items: end;
+	align-items: flex-end;
 	width: 100%;
 	// padding: 1.75em 0;
 	//border-bottom: 1px solid var(--border-color);
@@ -252,7 +252,7 @@ $neutral-cal-color: #fff;
 //Week View
 
 .week-container {
-  width: 100%;
+  width: 700px;
   margin-top: 6rem;
   display: grid;
   grid-gap: 10px;
@@ -264,11 +264,12 @@ $neutral-cal-color: #fff;
 }
 
 .top-row {
-  width: 68%;
-  background-color: $bg-cal-color;
+  width: 700px;
+	background-color: $main-cal-color;
+	color: white;
   position: fixed;
   display: grid;
-  grid-column: 1 / 9;
+  // grid-column: 1 / 9;
   grid-gap: 10px;
   grid-template-columns: 50px repeat(7, auto);
   margin-bottom: 10px;
