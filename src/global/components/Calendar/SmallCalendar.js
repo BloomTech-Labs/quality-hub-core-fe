@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import '../Dashboard/Schedule/Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths } from 'date-fns';
 
 import SmallCells from './SmallCells';
 

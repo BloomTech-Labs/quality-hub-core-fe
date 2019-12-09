@@ -1,6 +1,6 @@
 // Libraries
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 // Styles & Icons
@@ -10,7 +10,6 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 
 //Component
 import CoachModal from './CoachCardModal.js';
-import RequestInterview from '../RequestInterview/RequestInterview';
 
 const CoachCard = ({ history, post, setOpen }) => {
 	let { coach } = post;
@@ -75,12 +74,12 @@ const CoachCard = ({ history, post, setOpen }) => {
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
 					{post.coach.linkedin_url && (
-						<a href={post.coach.linkedin_url} target='_blank'>
+						<a href={post.coach.linkedin_url} target='_blank' rel="noopener noreferrer">
 							<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
 						</a>
 					)}
 					{post.coach.twitter_url && (
-						<a href={post.coach.twitter_url} target='_blank'>
+						<a href={post.coach.twitter_url} target='_blank' rel="noopener noreferrer">
 							<Icon icon={ICONS.TWITTER} width={24} height={24} />
 						</a>
 					)}
