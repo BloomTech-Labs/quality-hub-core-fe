@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../global/components/Calendar/SmallCalendar';
-import ConfirmInterview from './ConfirmInterview';
-import { Route, Link } from 'react-router-dom';
-import { format, getMonth, getTime, getHours, getMinutes } from 'date-fns';
+import { Link } from 'react-router-dom';
+import { format, getMonth } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_AVAILABILITIES, CREATE_BOOKING } from './Resolvers';
+import { GET_AVAILABILITIES } from './Resolvers';
 import './RequestInterview.scss';
 
 const RequestInteview =(props) => {
@@ -30,6 +29,7 @@ useEffect(() => {
     month: (Number(format(selectedCell, 'M'))),
     day: Number(format(selectedCell, 'd')),
   })
+  // eslint-disable-next-line
 }, [selectedCell]);
 
 const createBooking = (e, slot) => {
@@ -49,15 +49,18 @@ const createBooking = (e, slot) => {
 
 useEffect(()=> {
   refetch()
+// eslint-disable-next-line
 }, []
 )
  
 useEffect(() => {
   availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth && avail.isOpen === true)) : setDateAvails([])
+  // eslint-disable-next-line
 }, [setter || availabilities])
 
 useEffect(()=>{
   if(dateAvails){getAvailableSlots()}
+  // eslint-disable-next-line
 },[dateAvails])
 
 //this will hold all potential 1 hour blocks
@@ -65,22 +68,22 @@ let bookingArray = [];
 const getAvailableSlots = () => {
   for(let x = 0; x < dateAvails.length-1; x++){
       for (let y = x+1; y < dateAvails.length; y++) {
-          if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) == 0) { //if it's the same hour
+          if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) === 0) { //if it's the same hour
               if (dateAvails[x].start_minute < dateAvails[y].start_minute) {
                   bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
               } else {
               bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
               }   
 
-          } else if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) == 1) { //if the difference between the two is 1, then they are next to each other
+          } else if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) === 1) { //if the difference between the two is 1, then they are next to each other
             if (dateAvails[x].start_hour < dateAvails[y].start_hour) { //if the first date is lower...
 
-                  if (dateAvails[y].start_minute - dateAvails[x].start_minute == -30) { //if the difference is -30, then the numbers are next to each other
+                  if (dateAvails[y].start_minute - dateAvails[x].start_minute === -30) { //if the difference is -30, then the numbers are next to each other
                     bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
                   } else{ //if the difference is anything but -30, then they are more than an hour apart
                   }
               } else{ //if the second date is lower....
-                  if(dateAvails[x].start_minute - dateAvails[y].start_minute == -30){ //if the difference is -30, then you know the numbers are next to each other 
+                  if(dateAvails[x].start_minute - dateAvails[y].start_minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
                     bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
                   } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
                   }
@@ -118,7 +121,7 @@ return (
 									</div>
 								);
 							}
-							return;
+							return null;
 						})
 					) : (
 						<p>No availabile bookings today</p>

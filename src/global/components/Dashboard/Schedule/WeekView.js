@@ -43,6 +43,7 @@ let times = [];
    
   while (day <= lastDay) {
 		for (let i = 0; i < 7; i++) {
+      // eslint-disable-next-line
       let cellId = '';
 			let formattedDate = format(day, dateFormat);
 			let dayName = format(day, 'EEEE');
