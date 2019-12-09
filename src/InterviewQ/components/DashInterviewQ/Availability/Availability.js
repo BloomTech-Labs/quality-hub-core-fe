@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { timeObjs } from '../../../../global/components/Dashboard/Schedule/TimeArrays';
 import './Availability.scss';
-import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY, AVAIL_BY_UNIQUE } from './Resolvers';
-import QNav from '../../QNav';
+import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY } from './Resolvers';
+
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, getMonth } from 'date-fns';
 
@@ -27,6 +27,7 @@ const Availability =() => {
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
     setCurrentDate(Number(format(selectedCell, 'd')));
     setSetter(!setter)
+   // eslint-disable-next-line
   }, [selectedCell]);
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const Availability =() => {
       month: (Number(format(selectedCell, 'M'))),
       day: Number(format(selectedCell, 'd')),
     })
+    // eslint-disable-next-line
   }, [selectedCell]);
 
 
@@ -98,13 +100,14 @@ const Availability =() => {
   useEffect(() => {
     availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth)) : setDateAvails([]);
     // console.log('maybe a thing', dateAvails, currentDate, currentMonth)
+    // eslint-disable-next-line
   }, [setter || availabilities])
 
   console.log(dateAvails);
 
   return(
     <>
-    <QNav />
+    
     <div className=' availability-container'>
    
     <div className='coach-availability'>

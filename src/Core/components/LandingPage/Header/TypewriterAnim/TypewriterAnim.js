@@ -35,6 +35,7 @@ export default function Typewriter() {
 				}, 1000);
 			}
 		}
+		// eslint-disable-next-line
 	}, [seconds]);
 
 	return (

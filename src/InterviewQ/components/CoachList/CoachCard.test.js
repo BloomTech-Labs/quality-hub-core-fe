@@ -1,6 +1,8 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
 import * as rtl from "@testing-library/react";
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
 // import wait from 'waait';
 
 // Import component and query for testing
@@ -49,10 +51,12 @@ it('coach cards should render without error', async () => {
             },
         },
     ];
-
+     const history = createMemoryHistory({ initialEntries: ["/interviewq"] });
      rtl.render(
         <MockedProvider mocks={mocks}>
-            <CoachCard post={mocks[0].result.data.posts[0]}/>
+            <Router history={history}>
+                <CoachCard post={mocks[0].result.data.posts[0]}/>
+            </Router>
         </MockedProvider>
     )
     await wait();

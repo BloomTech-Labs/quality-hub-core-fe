@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import { times as timeArray } from './TimeArrays'
 
 import { useQuery } from "@apollo/react-hooks";
@@ -34,7 +34,7 @@ console.log('bookings', allBookings);
 	const firstDay = startOfWeek(selectedDate);
 	const lastDay = endOfWeek(selectedDate);
   const dateFormat = 'd';
-  let cellId = '';
+  
 	let day = firstDay;
 	let days = [];
 	console.log(firstDay, lastDay);
@@ -43,6 +43,8 @@ let times = [];
    
   while (day <= lastDay) {
 		for (let i = 0; i < 7; i++) {
+      // eslint-disable-next-line
+      let cellId = '';
 			let formattedDate = format(day, dateFormat);
 			let dayName = format(day, 'EEEE');
       cellId = format(day, 'Md');

@@ -17,3 +17,46 @@ query availabilities ($coach_id: String!){
   }
   }
   `
+
+export const CREATE_BOOKING = gql`
+  mutation createBooking (
+    $year: Int!
+    $month: Int!
+    $day: Int!
+    $hour: Int!
+    $minute: Int!
+    $coach: String!
+    $availabilityA: String!
+    $availabilityB: String!
+    $pending: Boolean
+    $confirmed: Boolean
+  ) {
+    createBooking(
+      year: $year
+      month:  $month
+      day: $day
+      hour: $hour
+      minute: $minute
+      coach: $coach
+      availabilityA: $availabilityA
+      availabilityB: $availabilityB
+      pending: $pending
+      confirmed: $confirmed
+    ) {
+      id
+      year
+      month
+      day
+      hour
+      minute
+      coach{
+        id
+      }
+      seeker{
+        id
+      }
+      pending
+      confirmed
+    }
+  }
+`

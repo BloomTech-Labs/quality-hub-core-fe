@@ -16,7 +16,6 @@ import { GET_POSTS } from '../CoachList/CoachList';
 import { GET_USER, INDUSTRIES, ADD_POST } from './CoachFormQueries';
 
 import DoneModal from './DoneModal';
-import { set } from 'date-fns';
 
 const CoachForm = props => {
 	const node = useRef();
