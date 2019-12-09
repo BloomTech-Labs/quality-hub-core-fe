@@ -29,6 +29,7 @@ export default function Search({ fields, setFields, refetch }) {
   const { data: ind_data } = useQuery(GET_INDUSTRIES);
   const [getUsers, { data: user_data }] = useLazyQuery(GET_USERS);
   const [company, setCompany] = useState();
+  const [lastChanged, setChanged] = useState();
 
   const makeArray = (data) => {
     let ids = data.users.map(user=> user.id);
@@ -36,9 +37,18 @@ export default function Search({ fields, setFields, refetch }) {
   }
 
 	const handleChange = e => {
-		e.preventDefault();
-		setFields({ ...fields, [e.target.name]: e.target.value });
-	};
+    e.preventDefault();
+    setFields({...fields, [e.target.name]: e.target.value})
+    setChanged(e.target.name);
+  };
+  
+  useEffect(() => {
+    if (lastChanged === "industry" || lastChanged === "orderBy" || lastChanged === "price" || !lastChanged) {
+      getUsers({variables: {tags: fields.tags}});
+      let ids = user_data && user_data.users.map(user => user.id);
+      refetch({...fields, ids})
+    }
+  }, [fields])
 
 	useEffect(()=>{
 		const checkUser = async() => {
@@ -47,7 +57,13 @@ export default function Search({ fields, setFields, refetch }) {
       }
     }
     checkUser(); 
-	},[user_data])
+  },[user_data])
+  
+  const handlePress = (e) => {
+    if (e.keyCode === 13) {
+      handleSubmit(e);
+    }
+  }
 
 	const handleSubmit = async e => {
     e.preventDefault();
@@ -63,7 +79,8 @@ export default function Search({ fields, setFields, refetch }) {
   
 	const handleReset = e => {
 		e.preventDefault();
-		setFields({ tags: '', price: '', industry: '', orderBy: 'id_ASC' });
+    setFields({ tags: '', price: '', industry: '', orderBy: 'id_ASC' });
+    setChanged("");
 	};
 	return (
 		<div className="search-dropdowns">
@@ -132,15 +149,16 @@ export default function Search({ fields, setFields, refetch }) {
 						name="tags"
 						value={fields.tags}
 						onChange={handleChange}
-						placeholder={`Search by Keyword`}
+            placeholder={`Search by Keyword`}
+            onKeyDown={handlePress}
 					/>
 				</div>
 				<div className="search-buttons">
-					<button className="search-reset" onClick={handleReset}>
-						Reset Filters
-					</button>
 					<button className="search-apply" onClick={e => handleSubmit(e)}>
 						Search
+					</button>
+          <button className="search-reset" onClick={handleReset}>
+						Reset Filters
 					</button>
 				</div>
 			</div>
