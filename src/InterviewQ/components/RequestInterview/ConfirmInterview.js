@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { CREATE_BOOKING } from './Resolvers.js';
 import { format } from 'date-fns';
 
-const ConfirmInterview = ({ booking }) => {
+const ConfirmInterview = ({ booking, history }) => {
 
 
   const [newBooking] = useMutation(CREATE_BOOKING);
@@ -13,6 +13,7 @@ const ConfirmInterview = ({ booking }) => {
   .then(res => {
     // setDateAvails([...dateAvails, availability])
     console.log('successful post')
+    history.push('/interviewq/interviewconfirmed')
   })
   .catch(err => console.log(err))
   }
@@ -27,11 +28,25 @@ const ConfirmInterview = ({ booking }) => {
   }
 }
   return(
-    <div className='confirm-interview-booking formsection'>
-   <h3>Your booking is scheduled for {bookingDate}</h3>
-   <button onClick={submitBooking}>Submit</button>
-
-    </div>
+    <div className='booking-content-section'>
+    <div className='formsection'>
+    <div className='interviewq-header-container'>
+      <h2>Interview Appointment Confirmation</h2>
+      </div>
+      <div className='interviewq-booking-input'>
+      
+   <h3>Your booking will be scheduled for {bookingDate}</h3>
+   </div>
+   <div className='interviewq-booking-input'>
+   <h3>What do you want to get out of mock interviews?</h3>
+   </div>
+   <div className='interviewq-booking-input'>
+   <h3>What kind of interview questions do you want to focus on?</h3>
+   </div>
+   <button className='interview-button' onClick={submitBooking}>Submit</button>
+   </div>
+</div>
+    
   )
 }
 

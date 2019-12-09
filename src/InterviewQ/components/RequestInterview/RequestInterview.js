@@ -22,18 +22,26 @@ useEffect(() => {
   setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
   setCurrentDate(Number(format(selectedCell, 'd')));
   setSetter(!setter)
-  props.setBooking({
-    ...props.booking,
-    coach: coachId,
-    year: Number(format(selectedCell, 'yyyy')),
-    month: (Number(format(selectedCell, 'M'))),
-    day: Number(format(selectedCell, 'd')),
-  })
+  // props.setBooking({
+  //   ...props.booking,
+  //   coach: coachId,
+  //   year: Number(format(selectedCell, 'yyyy')),
+  //   month: (Number(format(selectedCell, 'M'))),
+  //   day: Number(format(selectedCell, 'd')),
+  // })
   // eslint-disable-next-line
 }, [selectedCell]);
-
+const [prevId, setPrevId] = useState();
 const createBooking = (e, slot) => {
-  e.target.className = 'selected-slot interview-slot'
+  setPrevId(e.target.id)
+  if (prevId){
+    console.log(prevId)
+    
+  let prevSlot = document.getElementById(prevId)
+  prevSlot.className = 'interview-slot'
+}
+  e.target.className = 'available-slot interview-slot'
+  
   const availA = `${coachId}-${slot.year}-${slot.month}-${slot.day}-${slot.start_hour}-${slot.start_minute}`
   const availBMin = slot.minute === 30 ? 0 : 30;
   const availB = `${coachId}-${slot.year}-${slot.month}-${slot.day}-${slot.start_hour}-${availBMin}`
@@ -44,6 +52,10 @@ const createBooking = (e, slot) => {
       minute: slot.start_minute,
       availabilityA: availA,
       availabilityB: availB,
+      coach: coachId,
+      year: Number(format(selectedCell, 'yyyy')),
+      month: (Number(format(selectedCell, 'M'))),
+      day: Number(format(selectedCell, 'd')),
   })
 }
 
@@ -94,11 +106,14 @@ const getAvailableSlots = () => {
   }
 setCurrentSlots(bookingArray);
 }
-
+console.log(currentSlots);
 return (
-	<>
-		<div className='availability-container formsection'>
+	<div className='booking-content-section'>
+		<div className='formsection'>
+    <div className='interviewq-header-container'>
       <h2>Select a Date</h2>
+      </div>
+      <div className='interviewq-content-container'>
 			<div className='coach-availability'>
 				<SmallCalendar
 					selectedCell={selectedCell}
@@ -110,8 +125,9 @@ return (
 							if (time.isOpen === true) {
 								return (
 									<div
-										key={time.id}
-										className='available-slot interview-slot'
+                    key={time.id}
+                    id={time.id}
+										className='interview-slot'
 										onClick={e => createBooking(e, time)}>
 										{time.start_hour > 12
 											? time.start_hour - 12
@@ -130,27 +146,49 @@ return (
 			</div>
 
 			{props.booking && props.booking.hour ? (
-				<Link to={`/interviewq/booking/${coachId}/confirm`}>
-					<button>Next</button>
-				</Link>
+				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
 			) : (
 				<p> Please select a time slot</p>
 			)}
 		</div>
+    </div>
     <div className="formsection">
+    <div className='interviewq-header-container'>
       <h2>Additional Information</h2>
+      </div>
+      <div className='interviewq-content-container'>
+        <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
-
+        </div>
+        <div className='interviewq-booking-input'>
       <h3>What do you want to get out of mock interviews?</h3>
       <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' />
-
+</div>
+<div className='interviewq-booking-input'>
       <h3>What kind of interview questions do you want to focus on?</h3>
-      <textarea placeholder='e.g. Technical questions, soft skill questions etc' />
+      <textarea 
+      placeholder='e.g. Technical questions, soft skill questions etc' />
+    </div>
+    </div>
     </div>
     <div className='formsection'>
+    <div className='interviewq-header-container'>
+   
       <h2>Payment Info</h2>
+      <div className='interviewq-content-container'>
+      </div>
+      </div>
     </div>
-	</>
+    <div className='formsection'>
+    {props.booking && props.booking.hour ? (
+				<Link to={`/interviewq/booking/${coachId}/confirm`}>
+					<button className='interview-button'>Next</button>
+				</Link>
+			) : (
+				<p> Please select a time slot</p>
+			)}
+      </div>
+	</div>
 );
 };
 

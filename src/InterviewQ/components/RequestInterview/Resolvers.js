@@ -11,6 +11,7 @@ query availabilities ($coach_id: String!){
     start_minute
     isOpen
     recurring
+    uniquecheck
     coach{
       id
     }

@@ -5,7 +5,8 @@ import './Availability.scss';
 import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY } from './Resolvers';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { format, getMonth } from 'date-fns';
+import { format, getMonth,  } from 'date-fns';
+import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz'
 
 const Availability =() => {
 
@@ -22,6 +23,8 @@ const Availability =() => {
   const [removeAvail] = useMutation(DELETE_AVAILABILITY);
   const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variables: {coach_id: localStorage.getItem('id')}});
    console.log(availabilities);
+
+   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   useEffect(() => {
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
@@ -54,6 +57,7 @@ const Availability =() => {
   };
 
   const createAvail = (hour, minute) => {
+    // let localAvail = 
     setAvailability({
      ...availability,
       start_hour: hour,
