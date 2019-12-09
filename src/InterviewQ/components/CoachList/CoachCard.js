@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
-// import { tag } from 'postcss-selector-parser';
+
 
 // Styles & Icons
 import './CoachCard.scss';

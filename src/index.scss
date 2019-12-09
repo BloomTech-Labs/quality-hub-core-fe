@@ -54,11 +54,11 @@ html {
 	::-webkit-scrollbar-thumb {
 		max-height: 100px;
 		background-color: rgba(0, 0, 0, 0.3);
-		// background-color: black;
 		border-radius: 100px;
 	}
 	::-webkit-scrollbar-track {
 		background-color: inherit;
+		border-radius: 100px;
 	}
 	::-webkit-scrollbar-track-piece {
 		background-color: rgba(255, 255, 255, 0);
@@ -69,9 +69,6 @@ body {
 	font-family: 'SFProDisplay', 'Roboto', sans-serif;
 	line-height: 1.5;
 	overflow-x: hidden;
-	// body{
-		
-	// }
 }
 
 .App {

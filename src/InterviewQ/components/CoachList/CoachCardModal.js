@@ -9,15 +9,7 @@ import './CoachCardModal.scss';
 const CoachCardModal = ({ post }) => {
 	const [open, setOpen] = useState(false);
 
-	// useEffect(() => {
-	// 	if (open) {
-	// 		document.getElementById('overlay-coachcard-expand').style.display =
-	// 			'block';
-	// 	} else {
-	// 		document.getElementById('overlay-coachcard-expand').style.display =
-	// 			'none';
-	// 	}
-	// }, [open]);
+
 
 	return (
 		<div className='coach-card-modal-text'>
