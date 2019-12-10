@@ -32,56 +32,57 @@ const GridDropdown = props => {
 
 	return (
 		<div ref={node}>
-			<div className="grid-menu grid-icon" onClick={() => setOpen(!open)}>
+			<div className='grid-menu grid-icon' onClick={() => setOpen(!open)}>
 				{/* <Icon icon={ICONS.GRID} width={24} height={24} /> */}
 				{Gridicon()}
 			</div>
 
 			{open && (
-				<div className="dropdown-grid-content dropdown-icons">
+				<div className='dropdown-grid-content dropdown-icons'>
 					{/* <div className="test-css-grid"> */}
-					<div className="grid-dropdown-top-content">
-					<div className="grid-dropdown-top-row-1">
-						<Link
-							to="/interviewq"
-							className="box"
-							onClick={() => setOpen(false)}>
-							{Interviewqicon()}
-							<p>InterviewQ</p>
-						</Link>
+					<div className='grid-dropdown-top-content'>
+						<div className='grid-dropdown-top-row-1'>
+							<Link
+								to='/interviewq'
+								className='box'
+								onClick={() => setOpen(false)}>
+								{Interviewqicon()}
+								<p>InterviewQ</p>
+							</Link>
 
-						<Link to="#" className="box" onClick={() => setOpen(false)}>
-							{Resumeq()}
-							<p>ResumeQ</p>
-						</Link>
+							<Link
+								to='/resumeq'
+								className='box'
+								onClick={() => setOpen(false)}>
+								{Resumeq()}
+								<p>ResumeQ</p>
+							</Link>
 
-						<Link to="#" className="box" onClick={() => setOpen(false)}>
-							{Designqicon()}
-							<p>DesignQ</p>
-						</Link>
+							<Link to='#' className='box' onClick={() => setOpen(false)}>
+								{Designqicon()}
+								<p>DesignQ</p>
+							</Link>
 						</div>
-						<div className="grid-dropdown-top-row-2">
+						<div className='grid-dropdown-top-row-2'>
+							<Link to='#' className='box' onClick={() => setOpen(false)}>
+								{Codeqicon()}
+								<p>CodeQ</p>
+							</Link>
 
-						<Link to="#" className="box" onClick={() => setOpen(false)}>
-							{Codeqicon()}
-							<p>CodeQ</p>
-						</Link>
-
-
-						<Link to="#" className="box" onClick={() => setOpen(false)}>
-							{Recruiterqicon()}
-							<p>RecruiterQ</p>
-						</Link>
-						<Link to="#" className="box" onClick={() => setOpen(false)}>
-							{Networkqicon()}
-							<p>NetworkQ</p>
-						</Link>
+							<Link to='#' className='box' onClick={() => setOpen(false)}>
+								{Recruiterqicon()}
+								<p>RecruiterQ</p>
+							</Link>
+							<Link to='#' className='box' onClick={() => setOpen(false)}>
+								{Networkqicon()}
+								<p>NetworkQ</p>
+							</Link>
 						</div>
-						</div>
+					</div>
 					{/* </div> */}
-						<hr className="grid-dropdown-bottom-hr" />
-					<div className="grid-dropdown-bottom-content">
-						<p className="grid-dropdown-more">More</p>
+					<hr className='grid-dropdown-bottom-hr' />
+					<div className='grid-dropdown-bottom-content'>
+						<p className='grid-dropdown-more'>More</p>
 					</div>
 				</div>
 			)}
