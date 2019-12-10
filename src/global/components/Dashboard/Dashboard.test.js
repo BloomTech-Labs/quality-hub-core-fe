@@ -37,7 +37,7 @@ it("Dashboard renders", () => {
   );
 });
 
-it("renders w/ side bar options", () => {
+it("renders showing basic info, linkedaccoutns, payment info", () => {
   const getToken = () => {
     let token = localStorage.getItem("token");
     return token ? `Bearer ${token}` : "";
@@ -90,10 +90,8 @@ it("router works", () => {
       </Router>
     </ApolloProvider>
   );
-  rtl.fireEvent.click(rtl.getByText(container, "Coach Info"));
-  expect(history.location.pathname).toBe("/dashboard/coachinfo");
   rtl.fireEvent.click(rtl.getByText(container, "Schedule"));
-  expect(history.location.pathname).toBe("/dashboard/schedules");
+  expect(history.location.pathname).toBe("/dashboard/schedule");
   rtl.fireEvent.click(rtl.getByText(container, "Settings"));
   expect(history.location.pathname).toBe("/dashboard/settings");
 });

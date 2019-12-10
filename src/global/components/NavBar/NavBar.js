@@ -38,6 +38,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		if (localStorage.getItem('token')) {
 			getUser();
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	//If user query came back with data and you have a token in localStorage, log in.
@@ -47,7 +48,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 
 	if (error && errorCount === 0) {
-		if (error == 'Error: Network error: Failed to fetch') {
+		if (error === 'Error: Network error: Failed to fetch') {
 		} else {
 			setErrorCount(1);
 			client.clearStore();

@@ -51,6 +51,7 @@ const SignUpForm = props => {
 	//Form management/validation
 	useEffect(() => {
 		validateUser();
+		// eslint-disable-next-line
 	}, [user]);
 
 	const validateUser = () => {

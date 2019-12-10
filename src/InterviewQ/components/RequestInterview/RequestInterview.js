@@ -1,28 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../global/components/Calendar/SmallCalendar';
-import { gql } from 'apollo-boost';
-import { format, getMonth, getTime, getHours, getMinutes } from 'date-fns';
+import { Link } from 'react-router-dom';
+import { format, getMonth } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
-import { timeObjs } from '../../../global/components/Dashboard/Schedule/TimeArrays';
+import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 
 const RequestInteview =(props) => {
 
-const coachId = props.match.params.coach_id
+const coachId = props.match.params.coachId
 const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variables: {coach_id: coachId}});
-  // console.log(availabilities);
-  // console.log(coachId)
-const [ohlawdanotherone, setOhlawdanotherone] = useState();
+
+const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+const [currentSlots, setCurrentSlots] = useState();
 const [setter, setSetter] = useState(true);
 const [selectedCell, setSelectedCell] = useState(new Date());
 const [dateAvails, setDateAvails] = useState();
-const [dateObjs, setDateObjs] = useState([]);
 const [currentMonth, setCurrentMonth] = useState();
 const [currentDate, setCurrentDate] = useState();
-const [booking, setBooking] = useState({
-    recurring: false,
-  });
+
+const convertToLocal = (obj) => {
+  // console.log(obj)
+  let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
+  let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
+  let localAvailMin = obj.start_minute === 0 ? '00' : '30'
+  let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let zoned = utcToZonedTime(localAvail, localTime);
+  // console.log(zoned)
+  let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
+  // console.log(zonedArr)
+  let zonedDate = {
+    ...obj,
+    year: Number(zonedArr[0]),
+    month: Number(zonedArr[1]),
+    day: Number(zonedArr[2]),
+    start_hour: Number(zonedArr[3]),
+    start_minute: Number(zonedArr[4])
+    
+  }
+  return zonedDate
+}
 
 
 
@@ -30,166 +49,195 @@ useEffect(() => {
   setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
   setCurrentDate(Number(format(selectedCell, 'd')));
   setSetter(!setter)
+  // eslint-disable-next-line
 }, [selectedCell]);
 
-useEffect(() => {
-  setBooking({
-    ...booking,
-    year: Number(format(selectedCell, 'yyyy')),
-    month: (Number(format(selectedCell, 'M'))),
-    day: Number(format(selectedCell, 'd')),
+const [prevId, setPrevId] = useState();
+
+const handleChange = (e) => {
+  props.setBooking({
+    ...props.booking,
+    [e.target.name]: e.target.value
   })
-}, [selectedCell]);
-
-
-
-const timeFilter = (hour, min) => {
-  let returnvar = false;
-  (availabilities && dateAvails) &&
-    dateAvails.forEach(({ start_hour, start_minute }) => {
-      if (start_hour === hour && start_minute === min) {
-        returnvar = true;
-      }
-    });
-  return returnvar;
-};
-
-const createAvail = (hour, minute) => {
-  setBooking({
-   ...booking,
-    start_hour: hour,
-    start_minute: minute,
-  })
+}
+const createBooking = (e, slot) => {
+  setPrevId(e.target.id)
+  if (prevId){
+    // console.log(prevId)
+    
+  let prevSlot = document.getElementById(prevId)
+  prevSlot.className = 'interview-slot'
+}
+  e.target.className = 'available-slot interview-slot'
   
-  let newObj= {...booking,
-    start_hour: hour,
-    start_minute: minute,
-  };
-  // console.log(newObj)
-  // console.log(dateAvails)
-  // newAvail({ variables: newObj })
-  //   .then(res => {
-  //     refetch();
-  //     // setDateAvails([...dateAvails, availability])
-  //     console.log('successful post')
-  //   })
-  //   .catch(err => console.log(err))
+
+  props.setBooking({
+    ...props.booking,
+      hour: slot.start_hour,
+      minute: slot.start_minute,
+      // availabilityA: availA,
+      // availabilityB: availB,
+      // interviewGoals: e.value.interviewGoals,
+      // interviewQuestions: e.target.value,
+      coach: coachId,
+      year: Number(format(selectedCell, 'yyyy')),
+      month: (Number(format(selectedCell, 'M'))),
+      day: Number(format(selectedCell, 'd')),
+  })
+  console.log(props.booking)
 }
 
-const deleteAvail = (h, m) => {
-  let checkvar = {
-    uniquecheck: `${localStorage.getItem('id')}-${format(selectedCell, 'yyyy')}-${currentMonth}-${currentDate}-${h}-${m}`
-  };
-  // removeAvail({ variables: checkvar })
-  // .then(res => {
-  //   refetch();
-  //   console.log('deleted', checkvar)
-  // })
-  // .catch(err => console.log(err))
-}
-
-const toggleAvail = (e, h, m) => {
-  if(e.target.className === 'available-slot interview-slot'){
-    deleteAvail(h, m)
-    e.target.className = 'unavailable-to-book';
-    return
-  }
-  createAvail(h, m)
-  e.target.className = 'available-slot interview-slot';     
-};
-
-
+useEffect(()=> {
+  refetch()
+// eslint-disable-next-line
+}, []
+)
+ 
 useEffect(() => {
-  availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth)) : setDateAvails([])
-  //  console.log('maybe a thing', dateAvails, currentDate, currentMonth)
+  availabilities ? setDateAvails(availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.day === currentDate && avail.month === currentMonth && avail.isOpen === true)) : setDateAvails([])
+  // eslint-disable-next-line
 }, [setter || availabilities])
 
-useEffect(() => {
-	availabilities && dateAvails
-		? setDateObjs(
-				dateAvails.map(avail => {
-					return {
-						startTime: new Date(
-							avail.year,
-							avail.month - 1,
-							avail.day,
-							avail.start_hour,
-							avail.start_minute,
-						),
-						endingtime: new Date(
-							avail.year,
-							avail.month - 1,
-							avail.day,
-							avail.start_minute === 30
-								? avail.start_hour + 1
-								: avail.start_hour,
-							avail.start_minute === 30 ? 0 : 30,
-						),
-					};
-				})
-		  )
-		: setDateObjs([]);
-	// setOhlawdanotherone(dateObjs ? dateObjs.map((date, index) => {
-  //   // console.log(getHours(date.startTime))
-  //   // console.log(getMinutes(date.startTime))
-    
-    
-  //   return diff_hours(date.endingtime, date.startTime)}
-    // ) : []
- 
- let bookingArray = []; //this will hold all potential 1 hour blocks
-for(let x = 0; x < dateObjs.length-1; x++){
-    for (let y = x+1; y < dateObjs.length; y++) {
-        if (Math.abs(getHours(dateObjs[x].startTime) - getHours(dateObjs[y].startTime)) == 0) { //if it's the same hour
-            if (getMinutes(dateObjs[x].startTime) < getMinutes(dateObjs[y].startTime)) {
-                bookingArray.push(dateObjs[x].startTime); //if the first date is lower, push that, because it has a full hour availabile
-            } else {
-            bookingArray.push(dateObjs[y].startTime); //if the second date is lower, push that, because it has a full hour available
-            }
-           
-        } else if (Math.abs(getHours(dateObjs[x].startTime) - getHours(dateObjs[y].startTime)) == 1) { //if the difference between the two is 1, then they are next to each other
-          if (getHours(dateObjs[x].startTime) < getHours(dateObjs[y].startTime)) { //if the first date is lower...
+useEffect(()=>{
+  if(dateAvails){getAvailableSlots()}
+  // eslint-disable-next-line
+},[dateAvails])
 
-                if (getMinutes(dateObjs[y].startTime) - getMinutes(dateObjs[x].startTime) == -30) { //if the difference is -30, then the numbers are next to each other
-                  bookingArray.push(dateObjs[x].startTime); //push the first date to the bookingArray, because it is lower and has an hour block available
-                } else{ //if the difference is anything but -30, then they are more than an hour apart
-                }
-            } else{ //if the second date is lower....
-                if(getMinutes(dateObjs[x].startTime) - getMinutes(dateObjs[y].startTime) == -30){ //if the difference is -30, then you know the numbers are next to each other 
-                  bookingArray.push(dateObjs[y].startTime) //push second date, because it is lower and has the hour block
-                } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
-                }
-            }
-        } else { //the hours are not equal or next to each other, so we skip to the next date object
-        }
-    }
+//this will hold all potential 1 hour blocks
+let bookingArray = [];
+const getAvailableSlots = () => {
+  for(let x = 0; x < dateAvails.length-1; x++){
+      for (let y = x+1; y < dateAvails.length; y++) {
+          if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) === 0) { //if it's the same hour
+              if (dateAvails[x].start_minute < dateAvails[y].start_minute) {
+                  bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
+              } else {
+              bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
+              }   
+
+          } else if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) === 1) { //if the difference between the two is 1, then they are next to each other
+            if (dateAvails[x].start_hour < dateAvails[y].start_hour) { //if the first date is lower...
+
+                  if (dateAvails[y].start_minute - dateAvails[x].start_minute === -30) { //if the difference is -30, then the numbers are next to each other
+                    bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
+                  } else{ //if the difference is anything but -30, then they are more than an hour apart
+                  }
+              } else{ //if the second date is lower....
+                  if(dateAvails[x].start_minute - dateAvails[y].start_minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
+                    bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
+                  } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
+                  }
+              }
+          } else { //the hours are not equal or next to each other, so we skip to the next date object
+          }
+      }
+  }
+  // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
+setCurrentSlots(bookingArray);
 }
-//console.log(bookingArray)
-}, [dateAvails]);
+// console.log(dateAvails)
+// console.log(currentSlots)
+if(currentSlots){
+  // let test = [...currentSlots];
+ currentSlots.sort((a,b)=>{
+  
+  if(a.start_hour > b.start_hour){
+    return 1;
+  } else if(b.start_hour  > a.start_hour){
+    return -1;
+  } 
+  else if(a.start_minute > b.start_minute){
+    return 1;
+  } else{
+    return -1;
+  }
 
+  });
+  // console.log(test);
+}
+return (
+	<div className='booking-content-section'>
+		<div className='formsection'>
+    <div className='interviewq-header-container'>
+      <h2>Select a Date</h2>
+      </div>
+      <div className='interviewq-content-container'>
+			<div className='coach-availability'>
+				<SmallCalendar
+					selectedCell={selectedCell}
+					setSelectedCell={setSelectedCell}
+				/>
+				<div className='interview-slot-list'>
+					{currentSlots ? (
+						currentSlots.map(time => {
+							if (time.isOpen === true) {
+								return (
+									<div
+                    key={time.id}
+                    id={time.id}
+										className='interview-slot'
+										onClick={e => createBooking(e, time)}>
+										{time.start_hour === 0 ? 12 : (time.start_hour > 12
+											? time.start_hour - 12
+											: time.start_hour)}
+										:{time.start_minute === 0 ? '00' : '30'}{' '}
+										{time.start_hour >= 12 ? 'PM' : 'AM'}
+									</div>
+								);
+							}
+							return null;
+						})
+					) : (
+						<p>No availabile bookings today</p>
+					)}
+				</div>
+			</div>
 
-
-return(
-  <>
-  {/* <QNav /> */}
-  <div className=' availability-container'>
- 
-  <div className='coach-availability'>
-    <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} />
-    <div className='interview-slot-list'>
-      {timeObjs.map(time => {
-        // console.log('map running')
-        return(
-          <div key={time.display}  className={`${timeFilter(time.hour, time.minute) ? 'available-slot interview-slot' : 'unavailable-to-book'}`} onClick={e => toggleAvail(e, time.hour, time.minute)}>
-            {time.display}
-          </div>
-        )
-      })}
+			{props.booking && props.booking.minute !== undefined ? (
+				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
+			) : (
+				<p> Please select a time slot</p>
+			)}
+		</div>
+    </div>
+    <div className="formsection">
+    <div className='interviewq-header-container'>
+      <h2>Additional Information</h2>
+      </div>
+      <div className='interviewq-content-container'>
+        <div className='interviewq-booking-input'>
+      <h3>Resume Upload</h3>
+        </div>
+        <div className='interviewq-booking-input'>
+      <h3>What do you want to get out of mock interviews?</h3>
+      <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' name='interviewGoals' value={props.booking.interviewGoals} onChange={handleChange} />
+</div>
+<div className='interviewq-booking-input'>
+      <h3>What kind of interview questions do you want to focus on?</h3>
+      <textarea 
+      placeholder='e.g. Technical questions, soft skill questions etc' name='interviewQuestions' value={props.booking.interviewQuestions} onChange={handleChange}/>
     </div>
     </div>
-  </div>
-  </>
-)
+    </div>
+    <div className='formsection'>
+    <div className='interviewq-header-container'>
+   
+      <h2>Payment Info</h2>
+      <div className='interviewq-content-container'>
+      </div>
+      </div>
+    </div>
+    <div className='formsection'>
+    {props.booking && props.booking.minute !== undefined ? (
+				<Link to={`/interviewq/booking/${coachId}/confirm`}>
+					<button className='interview-button'>Next</button>
+				</Link>
+			) : (
+				<p> Please select a time slot</p>
+			)}
+      </div>
+	</div>
+);
 };
 
 export default RequestInteview;

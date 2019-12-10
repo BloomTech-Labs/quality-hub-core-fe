@@ -93,10 +93,12 @@ const AvatarDropdown = props => {
 					console.log(err);
 				});
 		}
+		// eslint-disable-next-line
 	}, [picture]);
 
 	useEffect(() => {
 		getUser();
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -106,6 +108,7 @@ const AvatarDropdown = props => {
 			document.removeEventListener('mousedown', handleOutsideClick);
 		}
 		getUser();
+		// eslint-disable-next-line
 	}, [open]);
 
 	return (

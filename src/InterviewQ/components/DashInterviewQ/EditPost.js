@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
+import PreviewCard from './CoachDashPreviewModal.js';
 
 import './EditForm.scss';
 
-const CoachBasicInfo = ({ myArray, userData }) => {
+const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	// console.log(industries);
@@ -90,7 +91,8 @@ const CoachBasicInfo = ({ myArray, userData }) => {
       let tags = original.tags;
       let newTags = tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
       setOriginal({...original, tagString: newTags})
-    }
+		}
+		// eslint-disable-next-line
   }, [editing[5], original.tags])
 
 
@@ -107,7 +109,7 @@ const CoachBasicInfo = ({ myArray, userData }) => {
         if(keyval[1] === 'tagString') {
           // let newLength = res.data.updatePost.tags.length;
           let tags = res.data.updatePost.tags;
-          let newTags;
+          // let newTags;
           tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
           // setEditing(newEditing, () => {
           //   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
@@ -381,6 +383,10 @@ const CoachBasicInfo = ({ myArray, userData }) => {
 						/>
 					</div>
 				</div>
+			</div>
+			<div className='editform'>
+				<PreviewCard setOpen={setOpen} open={open} post={original} />
+				<button className='update-post-btn'> Update </button>
 			</div>
 		</>
 	);

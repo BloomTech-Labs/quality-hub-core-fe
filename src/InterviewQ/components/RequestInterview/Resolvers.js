@@ -11,9 +11,59 @@ query availabilities ($coach_id: String!){
     start_minute
     isOpen
     recurring
+    uniquecheck
     coach{
       id
     }
   }
   }
   `
+
+export const CREATE_BOOKING = gql`
+  mutation createBooking (
+    $year: Int!
+    $month: Int!
+    $day: Int!
+    $hour: Int!
+    $minute: Int!
+    $coach: String!
+    $availabilityA: String!
+    $availabilityB: String!
+    $pending: Boolean
+    $confirmed: Boolean
+    $interviewQuestions: String
+    $interviewGoals: String
+    $resumeURL: String
+  ) {
+    createBooking(
+      year: $year
+      month:  $month
+      day: $day
+      hour: $hour
+      minute: $minute
+      coach: $coach
+      availabilityA: $availabilityA
+      availabilityB: $availabilityB
+      pending: $pending
+      confirmed: $confirmed
+      interviewQuestions: $interviewQuestions
+      interviewGoals: $interviewGoals
+      resumeURL : $resumeURL
+    ) {
+      id
+      year
+      month
+      day
+      hour
+      minute
+      coach{
+        id
+      }
+      seeker{
+        id
+      }
+      pending
+      confirmed
+    }
+  }
+`

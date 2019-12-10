@@ -8,7 +8,7 @@ import './QNav.scss';
 // Icons
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
-import { clock } from '../../../globalIcons/Clock'
+// import { clock } from '../../../globalIcons/Clock'
 
 export default function QNav() {
 	return (

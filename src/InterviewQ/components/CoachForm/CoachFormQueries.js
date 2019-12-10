@@ -1,4 +1,3 @@
-import React from 'react';
 import { gql } from 'apollo-boost';
 
 export const GET_USER = gql`
