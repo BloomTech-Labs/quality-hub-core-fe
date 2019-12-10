@@ -41,6 +41,10 @@ export default function CoachDash() {
 				<h2>Availability</h2>
 				<Availability />
 			</div>
+			{/* <div className='editform'>
+				<PreviewCard setOpen={setOpen} open={open} post={post} />
+				<button className='update-post-btn'> Update </button>
+			</div> */}
 			<div className='editform'>
 				<h2>Delete Coach Post</h2>
 				<div className='delete-post'>
