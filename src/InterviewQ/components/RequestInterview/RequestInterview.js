@@ -24,7 +24,7 @@ const [currentDate, setCurrentDate] = useState();
 const convertToLocal = (obj) => {
   console.log(obj)
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
-  let localAvailHour = obj.start_hour < 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
+  let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
   let localAvailMin = obj.start_minute === 0 ? '00' : '30'
   let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
   let zoned = utcToZonedTime(localAvail, localTime);
@@ -84,7 +84,7 @@ useEffect(()=> {
 )
  
 useEffect(() => {
-  availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth && avail.isOpen === true)) : setDateAvails([])
+  availabilities ? setDateAvails(availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.day === currentDate && avail.month === currentMonth && avail.isOpen === true)) : setDateAvails([])
   // eslint-disable-next-line
 }, [setter || availabilities])
 
@@ -122,10 +122,29 @@ const getAvailableSlots = () => {
           }
       }
   }
-  let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
-setCurrentSlots(localTimeArray);
+  // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
+setCurrentSlots(bookingArray);
 }
+console.log(dateAvails)
+console.log(currentSlots)
+if(currentSlots){
+  // let test = [...currentSlots];
+ currentSlots.sort((a,b)=>{
+  
+  if(a.start_hour > b.start_hour){
+    return 1;
+  } else if(b.start_hour  > a.start_hour){
+    return -1;
+  } 
+  else if(a.start_minute > b.start_minute){
+    return 1;
+  } else{
+    return -1;
+  }
 
+  });
+  // console.log(test);
+}
 return (
 	<div className='booking-content-section'>
 		<div className='formsection'>
