@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import { format, getMonth } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
+import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 
 const RequestInteview =(props) => {
 
 const coachId = props.match.params.coachId
 const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variables: {coach_id: coachId}});
+
+const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const [currentSlots, setCurrentSlots] = useState();
 const [setter, setSetter] = useState(true);
@@ -18,33 +21,70 @@ const [dateAvails, setDateAvails] = useState();
 const [currentMonth, setCurrentMonth] = useState();
 const [currentDate, setCurrentDate] = useState();
 
+const convertToLocal = (obj) => {
+  // console.log(obj)
+  let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
+  let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
+  let localAvailMin = obj.start_minute === 0 ? '00' : '30'
+  let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let zoned = utcToZonedTime(localAvail, localTime);
+  // console.log(zoned)
+  let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
+  // console.log(zonedArr)
+  let zonedDate = {
+    ...obj,
+    year: Number(zonedArr[0]),
+    month: Number(zonedArr[1]),
+    day: Number(zonedArr[2]),
+    start_hour: Number(zonedArr[3]),
+    start_minute: Number(zonedArr[4])
+    
+  }
+  return zonedDate
+}
+
+
+
 useEffect(() => {
   setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
   setCurrentDate(Number(format(selectedCell, 'd')));
   setSetter(!setter)
-  props.setBooking({
-    ...props.booking,
-    coach: coachId,
-    year: Number(format(selectedCell, 'yyyy')),
-    month: (Number(format(selectedCell, 'M'))),
-    day: Number(format(selectedCell, 'd')),
-  })
   // eslint-disable-next-line
 }, [selectedCell]);
 
+const [prevId, setPrevId] = useState();
+
+const handleChange = (e) => {
+  props.setBooking({
+    ...props.booking,
+    [e.target.name]: e.target.value
+  })
+}
 const createBooking = (e, slot) => {
-  e.target.className = 'selected-slot interview-slot'
-  const availA = `${coachId}-${slot.year}-${slot.month}-${slot.day}-${slot.start_hour}-${slot.start_minute}`
-  const availBMin = slot.minute === 30 ? 0 : 30;
-  const availB = `${coachId}-${slot.year}-${slot.month}-${slot.day}-${slot.start_hour}-${availBMin}`
+  setPrevId(e.target.id)
+  if (prevId){
+    // console.log(prevId)
+    
+  let prevSlot = document.getElementById(prevId)
+  prevSlot.className = 'interview-slot'
+}
+  e.target.className = 'available-slot interview-slot'
+  
 
   props.setBooking({
     ...props.booking,
       hour: slot.start_hour,
       minute: slot.start_minute,
-      availabilityA: availA,
-      availabilityB: availB,
+      // availabilityA: availA,
+      // availabilityB: availB,
+      // interviewGoals: e.value.interviewGoals,
+      // interviewQuestions: e.target.value,
+      coach: coachId,
+      year: Number(format(selectedCell, 'yyyy')),
+      month: (Number(format(selectedCell, 'M'))),
+      day: Number(format(selectedCell, 'd')),
   })
+  console.log(props.booking)
 }
 
 useEffect(()=> {
@@ -54,7 +94,7 @@ useEffect(()=> {
 )
  
 useEffect(() => {
-  availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth && avail.isOpen === true)) : setDateAvails([])
+  availabilities ? setDateAvails(availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.day === currentDate && avail.month === currentMonth && avail.isOpen === true)) : setDateAvails([])
   // eslint-disable-next-line
 }, [setter || availabilities])
 
@@ -92,13 +132,36 @@ const getAvailableSlots = () => {
           }
       }
   }
+  // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
 setCurrentSlots(bookingArray);
 }
+// console.log(dateAvails)
+// console.log(currentSlots)
+if(currentSlots){
+  // let test = [...currentSlots];
+ currentSlots.sort((a,b)=>{
+  
+  if(a.start_hour > b.start_hour){
+    return 1;
+  } else if(b.start_hour  > a.start_hour){
+    return -1;
+  } 
+  else if(a.start_minute > b.start_minute){
+    return 1;
+  } else{
+    return -1;
+  }
 
+  });
+  // console.log(test);
+}
 return (
-	<>
-		<div className='availability-container formsection'>
+	<div className='booking-content-section'>
+		<div className='formsection'>
+    <div className='interviewq-header-container'>
       <h2>Select a Date</h2>
+      </div>
+      <div className='interviewq-content-container'>
 			<div className='coach-availability'>
 				<SmallCalendar
 					selectedCell={selectedCell}
@@ -110,12 +173,13 @@ return (
 							if (time.isOpen === true) {
 								return (
 									<div
-										key={time.id}
-										className='available-slot interview-slot'
+                    key={time.id}
+                    id={time.id}
+										className='interview-slot'
 										onClick={e => createBooking(e, time)}>
-										{time.start_hour > 12
+										{time.start_hour === 0 ? 12 : (time.start_hour > 12
 											? time.start_hour - 12
-											: time.start_hour}
+											: time.start_hour)}
 										:{time.start_minute === 0 ? '00' : '30'}{' '}
 										{time.start_hour >= 12 ? 'PM' : 'AM'}
 									</div>
@@ -129,28 +193,50 @@ return (
 				</div>
 			</div>
 
-			{props.booking && props.booking.hour ? (
-				<Link to={`/interviewq/booking/${coachId}/confirm`}>
-					<button>Next</button>
-				</Link>
+			{props.booking && props.booking.minute !== undefined ? (
+				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
 			) : (
 				<p> Please select a time slot</p>
 			)}
 		</div>
+    </div>
     <div className="formsection">
+    <div className='interviewq-header-container'>
       <h2>Additional Information</h2>
+      </div>
+      <div className='interviewq-content-container'>
+        <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
-
+        </div>
+        <div className='interviewq-booking-input'>
       <h3>What do you want to get out of mock interviews?</h3>
-      <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' />
-
+      <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' name='interviewGoals' value={props.booking.interviewGoals} onChange={handleChange} />
+</div>
+<div className='interviewq-booking-input'>
       <h3>What kind of interview questions do you want to focus on?</h3>
-      <textarea placeholder='e.g. Technical questions, soft skill questions etc' />
+      <textarea 
+      placeholder='e.g. Technical questions, soft skill questions etc' name='interviewQuestions' value={props.booking.interviewQuestions} onChange={handleChange}/>
+    </div>
+    </div>
     </div>
     <div className='formsection'>
+    <div className='interviewq-header-container'>
+   
       <h2>Payment Info</h2>
+      <div className='interviewq-content-container'>
+      </div>
+      </div>
     </div>
-	</>
+    <div className='formsection'>
+    {props.booking && props.booking.minute !== undefined ? (
+				<Link to={`/interviewq/booking/${coachId}/confirm`}>
+					<button className='interview-button'>Next</button>
+				</Link>
+			) : (
+				<p> Please select a time slot</p>
+			)}
+      </div>
+	</div>
 );
 };
 
