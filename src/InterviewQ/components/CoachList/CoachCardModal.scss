@@ -146,8 +146,17 @@ body{
 			width: 400px;
 			margin-bottom: 10px;
 		}
+		
 	}
 
+.tags{
+	p{
+	display: flex-wrap;
+	padding: none;
+	margin:none;
+	}
+}
+	
 	.coachcard-footer-expand {
 		display: flex-wrap;
 		justify-content: space-between;
