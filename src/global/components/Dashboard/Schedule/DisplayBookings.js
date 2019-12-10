@@ -9,15 +9,13 @@ export const DisplayBookings = (currentMonth) => {
     const { data: bookingsByCoach, refetch } = useQuery(COACH_BOOKINGS, {variables: {coachId: localStorage.getItem('id')}});
     const { data: bookingsBySeeker } = useQuery(SEEKER_BOOKINGS, {variables: {seekerId: localStorage.getItem('id')}});
 
-    // const [counter, setCounter] = useState(0);
-    
     const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
     
     const convertToLocal = (obj) => {
-      let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
-      let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
-      let localAvailMin = obj.minute === 0 ? '00' : '30'
-        let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+      let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`;
+      let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`;
+      let localAvailMin = obj.minute === 0 ? '00' : '30';
+      let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
       let zoned = utcToZonedTime(localAvail, localTime);
       let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
     
@@ -33,6 +31,14 @@ export const DisplayBookings = (currentMonth) => {
     
       return zonedDate
     }
+
+    useEffect(()=>{
+      if(bookingsbySeeker){
+        
+        console.log(bookingsByCoach);
+        console.log(bookingsBySeeker);
+      }
+    },[bookingsByCoach, bookingsBySeeker]);
     
       useEffect(() => {
        bookingsByCoach && bookingsByCoach.bookingsByCoach.map((appt, index) => {
@@ -48,7 +54,6 @@ export const DisplayBookings = (currentMonth) => {
           const div = document.createElement('div');
           div.setAttribute('class', 'seeker-booking');
           div.textContent = `...`;
-        //   setCounter(counter + 1);
           return booking.appendChild(div);
         }
         return null
