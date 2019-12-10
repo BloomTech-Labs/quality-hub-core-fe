@@ -6,6 +6,7 @@ import CoachList from './components/CoachList';
 import QNav from './components/QNav';
 import { Route } from 'react-router-dom';
 import BookingContainer from './components/RequestInterview/BookingContainer';
+import ConfirmedInterview from './components/RequestInterview/ConfirmedInterview';
 
 const InterviewQContainer = () => {
 
@@ -18,6 +19,7 @@ const InterviewQContainer = () => {
 				<Route path='/interviewq/coachlist' component={CoachList} />
 				 <Route path='/interviewq/booking' component={BookingContainer} />
         <Route path='/interviewq/settings' component={DashInterviewQ} />
+        <Route path='/interviewq/interviewconfirmed' component={ConfirmedInterview} />
       </div>
 		</>
 	);
