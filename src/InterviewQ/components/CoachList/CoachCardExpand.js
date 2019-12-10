@@ -85,9 +85,10 @@ const CoachCard = ({ post, setOpen, open }) => {
 				</div>
 				<div className='coachcard-description-expand'>
 					<p>{post.description}</p>
-					{/* {post.tags.map(tag => (
+					{/* {need to style the tags here} */}
+					{post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
-					))} */}
+					))}
 				</div>
 				<div className='coachcard-footer-expand'>
 					<div className='coachcard-links-exand'>
