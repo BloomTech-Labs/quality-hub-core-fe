@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import { CREATE_REVIEW } from './Resolvers.js';
-
+import Rating from './Rating';
 import './CoachReview.scss';
 
 const CoachReview = props => {
   const [fields, setFields] = useState({rating: 0, review: ""})
   const [fieldsError, setError] = useState({rating: "", review: ""})
-
+  useEffect(() => {
+    
+  })
   const [submitReview, { called, error }] = useMutation(CREATE_REVIEW);
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const CoachReview = props => {
 		<form onChange={handleChange} onSubmit={handleSubmit}>
       <div>
         <label>Rating </label>
+        <Rating />
         <input name='rating' type="number" value={fields.rating} />
       </div>
       <div>

@@ -4,7 +4,7 @@ import RequestInteview from './RequestInterview';
 import ConfirmInterview from './ConfirmInterview';
 
 const BookingContainer = () => {
-	const [booking, setBooking] = useState();
+	const [booking, setBooking] = useState({});
 	return (
 		<>
 			<Route

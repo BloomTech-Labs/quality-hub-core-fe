@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import {  SEEKER_BOOKINGS } from './Queries'
+import { format } from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
 
 export const SeekerBooking = (currentMonth) => {
 
@@ -8,16 +10,43 @@ const { data: bookingsBySeeker } = useQuery(SEEKER_BOOKINGS, {variables: {seeker
 
 const [counter, setCounter] = useState(0);
 
+const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+const convertToLocal = (obj) => {
+  console.log(obj)
+  let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
+  let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
+  let localAvailMin = obj.minute === 0 ? '00' : '30'
+	let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+	console.log(localAvail)
+  let zoned = utcToZonedTime(localAvail, localTime);
+  console.log(zoned)
+  let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
+
+  let zonedDate = {
+    ...obj,
+    year: Number(zonedArr[0]),
+    month: Number(zonedArr[1]),
+    day: Number(zonedArr[2]),
+    hour: Number(zonedArr[3]),
+    minute: Number(zonedArr[4])
+    
+  }
+
+  return zonedDate
+}
+
 useEffect(() => {
 	bookingsBySeeker &&
 		bookingsBySeeker.bookingsBySeeker.map((appt, index) => {
 			const apptId = `${appt.month}${appt.day}`;
 			const booking = document.getElementById(apptId);
 
+			const localAppt = convertToLocal(appt)
 			if (booking && index <= 2) {
 				const div = document.createElement('div');
 				div.setAttribute('class', 'seeker-booking');
-				div.textContent = `InterviewQ ${appt.hour}:${appt.minute}`;
+				div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;
 				setCounter(counter + 1);
 				return booking.appendChild(div);
 			} else if (booking && index === 3) {
