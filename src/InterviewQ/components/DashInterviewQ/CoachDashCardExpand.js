@@ -2,14 +2,16 @@
 import React, { useEffect, useRef } from 'react';
 
 // Styles & Icons
-import './CoachCardModal.scss';
+import '../CoachList/CoachCardModal.scss';
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
-const CoachCard = ({ post, setOpen, open }) => {
+const CoachPreviewCard = ({ post, setOpen, open }) => {
 	const node = useRef();
 	let { coach } = post;
-
+	// let { coach } = original;
+console.log('here', post.tags
+)
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -36,17 +38,18 @@ const CoachCard = ({ post, setOpen, open }) => {
 				</button>
 				<div className="coachcard-expand-inner">
 				<div
-					className={
+					 className={
 						coach.first_name.length > 25 || coach.last_name.length > 25
 							? 'coachcard-header-expand coachcard-header-expand-longname'
 							: 'coachcard-header-expand'
-					}>
+					 }>
 					<div className='coachcard-header-txt-expand'>
 						<h3>
 							{coach.first_name} {coach.last_name}
 						</h3>
 						<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
-					</div>
+
+				 </div>
 					<div className='coach-photo-expand'>
 						{coach.image_url ? (
 							<img src={coach.image_url} alt='Coach Profile Pic' />
@@ -85,11 +88,15 @@ const CoachCard = ({ post, setOpen, open }) => {
 				</div>
 				<div className='coachcard-description-expand'>
 					<p>{post.description}</p>
-					{/* {need to style the tags here} */}
+				{/* {need to style the tags here} */}
+					<p className='tags' >
 					{post.tags.map(tag => (
 						<p key={tag.id}>{tag.name}</p>
 					))}
+					</p>
+				
 				</div>
+				
 				<div className='coachcard-footer-expand'>
 					<div className='coachcard-links-exand'>
 						{post.coach.twitter_url && (
@@ -120,4 +127,4 @@ const CoachCard = ({ post, setOpen, open }) => {
 	);
 };
 
-export default CoachCard;
+export default CoachPreviewCard;
