@@ -69,8 +69,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>
-						<NavLink to="signin"> Sign In </NavLink>
-						<NavLink to="signup" className="signup-link">
+						<NavLink to="/signin"> Sign In </NavLink>
+						<NavLink to="/signup" className="signup-link">
 							{' '}
 							Sign Up{' '}
 						</NavLink>

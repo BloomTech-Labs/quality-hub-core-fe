@@ -14,6 +14,8 @@ query availabilities ($coach_id: String!){
     uniquecheck
     coach{
       id
+      first_name
+      last_name
     }
   }
   }

@@ -35,7 +35,10 @@
 		line-height: 2rem;
 		color: #5f6368;
 		text-transform: uppercase;
-	}
+  }
+  p{
+    text-align: left;
+  }
 }
 
 
@@ -89,4 +92,34 @@ margin: 20px 90px;
       font-size: 16px;
       margin-bottom: 25px;
     }
+}
+
+.interviewq-conf-container{
+  margin: 80px 0;
+  padding: 40px 50px;
+}
+.interviewq-conf-section{
+  padding: 15px 0;
+  border-bottom: 1px solid #D4D4D4;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  h3{
+    width: 450px;
+    text-transform: none;
+    font-size: 14px;
+  }
+  p{
+    width: 300px;
+    font-size: 16px;
+  }
+}
+
+.interviewq-conf-heading{
+  border-bottom: 1px solid #D4D4D4;
+  padding-bottom: 10px;
+  margin-bottom: 34px;
+  h2{
+    margin-bottom: 0;
+  }
 }

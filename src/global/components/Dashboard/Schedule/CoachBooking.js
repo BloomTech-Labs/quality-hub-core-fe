@@ -6,7 +6,7 @@ import { utcToZonedTime } from 'date-fns-tz';
 
 export const CoachBooking = (currentMonth) => {
 
-const { data: bookingsByCoach } = useQuery(COACH_BOOKINGS, {variables: {coachId: localStorage.getItem('id')}});
+const { data: bookingsByCoach, refetch } = useQuery(COACH_BOOKINGS, {variables: {coachId: localStorage.getItem('id')}});
 
 const [counter, setCounter] = useState(0);
 
@@ -41,7 +41,7 @@ const convertToLocal = (obj) => {
      const localAppt = convertToLocal(appt);
     const apptId = `${appt.month}${appt.day}`;
     const booking = document.getElementById(apptId);
-		if (booking && index <= 2) {
+		if (booking && index <= 32) {
 			const div = document.createElement('div');
 			div.setAttribute('class', 'coach-booking');
 			div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;

@@ -13,14 +13,11 @@ const [counter, setCounter] = useState(0);
 const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const convertToLocal = (obj) => {
-  console.log(obj)
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
   let localAvailMin = obj.minute === 0 ? '00' : '30'
 	let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-	console.log(localAvail)
   let zoned = utcToZonedTime(localAvail, localTime);
-  console.log(zoned)
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
 
   let zonedDate = {
@@ -43,7 +40,7 @@ useEffect(() => {
 			const booking = document.getElementById(apptId);
 
 			const localAppt = convertToLocal(appt)
-			if (booking && index <= 2) {
+			if (booking && index <= 32) {
 				const div = document.createElement('div');
 				div.setAttribute('class', 'seeker-booking');
 				div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;
