@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
+import axios from 'axios';
+import Dropzone from 'react-dropzone';
 
 const RequestInteview =(props) => {
 
@@ -14,6 +16,8 @@ const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variable
 
 const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+const [resumeURL, setResumeURL] = useState(null);
+const [resume, setResume] = useState(null);
 const [currentSlots, setCurrentSlots] = useState();
 const [setter, setSetter] = useState(true);
 const [selectedCell, setSelectedCell] = useState(new Date());
@@ -22,15 +26,12 @@ const [currentMonth, setCurrentMonth] = useState();
 const [currentDate, setCurrentDate] = useState();
 
 const convertToLocal = (obj) => {
-  // console.log(obj)
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
   let localAvailMin = obj.start_minute === 0 ? '00' : '30'
   let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
   let zoned = utcToZonedTime(localAvail, localTime);
-  // console.log(zoned)
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-  // console.log(zonedArr)
   let zonedDate = {
     ...obj,
     year: Number(zonedArr[0]),
@@ -42,6 +43,42 @@ const convertToLocal = (obj) => {
   }
   return zonedDate
 }
+
+const validateFile = checkFile =>{
+  if (checkFile.type == "application/pdf") {
+      return true;
+  } else{
+    return false;
+  }
+}
+
+useEffect(() => {
+  if (resume) {
+
+if(validateFile(resume)){
+
+  console.log(validateFile(resume))
+  let formData = new FormData();
+  formData.append('file', resume);
+  formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+  
+  axios
+  .post(
+    `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+    formData,
+    )
+    .then(res => {
+      console.log('successful post')
+      setResumeURL(res.data.secure_url)
+    })
+    .catch(err => {
+      console.log(err);
+      });
+    }
+  }
+  console.log('end useEffect');
+  // eslint-disable-next-line
+}, [resume]);
 
 
 
@@ -75,6 +112,7 @@ const createBooking = (e, slot) => {
     ...props.booking,
       hour: slot.start_hour,
       minute: slot.start_minute,
+       coachName: `${availabilities.availabilitiesByCoach[0].coach.first_name} ${availabilities.availabilitiesByCoach[0].coach.last_name}`,
       // availabilityA: availA,
       // availabilityB: availB,
       // interviewGoals: e.value.interviewGoals,
@@ -207,6 +245,19 @@ return (
       <div className='interviewq-content-container'>
         <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
+      <Dropzone> {({getRootProps, getInputProps}) => (
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              Click me to upload a file!
+            </div>
+          )}</Dropzone>
+      <input
+							className=''
+							type='file'
+              id='resumeInput'
+              accept="application/pdf"
+							onChange={e => setResume(e.target.files[0])}
+						/>
         </div>
         <div className='interviewq-booking-input'>
       <h3>What do you want to get out of mock interviews?</h3>

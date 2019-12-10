@@ -1,6 +1,7 @@
 import React from 'react';
 import { CoachBooking } from './CoachBooking';
 import { SeekerBooking } from './SeekerBooking';
+import {DisplayBookings} from './DisplayBookings';
 import {
 	format,
 	isSameMonth,
@@ -54,8 +55,9 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		days = [];
   }
 	
- CoachBooking(currentMonth);
- SeekerBooking(currentMonth);
+//  CoachBooking(currentMonth);
+//  SeekerBooking(currentMonth);
+ DisplayBookings(currentMonth);
  
 	return( 
 	<>

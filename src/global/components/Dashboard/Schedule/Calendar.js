@@ -1,21 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from "@apollo/react-hooks";
 import './Calendar.scss';
 import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
+import { ALL_BOOKINGS } from './Queries';
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
 
+// import { nextArrow }
 import { days, months, years } from './TimeArrays'
 
 const Calendar = ({ selectedDate, setSelectedDate }) => {
+	// const { data, refetch } = useQuery(ALL_BOOKINGS, {variables: {seekerId: localStorage.getItem('id'), coachId: localStorage.getItem('id')}});
 	const [currentMonth, setCurrentMonth] = useState(new Date());
+	const [counter, setCounter] = useState(0);
 	// const [selectedDate, setSelectedDate] = useState(new Date());
 	
-
+	
 	// const headerDateFormat = "MMMM yyyy";
 	// const dateFormat = 'dd';
-
+	
 	// let startDate = startOfWeek(currentMonth);
 	const node = useRef();
 	const [open, setOpen] = useState(false);
@@ -30,7 +35,14 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 			setOpen(false);
 		}
 	};
+	
 
+	// useEffect(()=>{
+	// 	// console.log('selectedDate');
+	// 	setOpen(false);
+	// },[selectedDate]);
+	
+	
 	useEffect(() => {
 		if (open) {
 			document.addEventListener('mousedown', handleOutsideClick);
@@ -46,11 +58,24 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCurrentMonth(subMonths(currentMonth, 1))
 	}
 	const onDateClick = day => {
+		// refetch();
+		console.log('clicked!')
+		setOpen(false);
 		setSelectedDate(day);
-		setOpen(true);
 		// console.log(day);
 		// console.log(open);
 	};
+
+	useEffect(()=>{
+		if(counter > 0){
+			setOpen(true);
+		}
+	},[selectedDate])
+
+	useEffect(()=>{
+		setOpen(false);
+		setCounter(1);
+	},[])
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
@@ -125,8 +150,10 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				<div className='calendar-detail'>
 					<CalendarDetail
 						setOpen={setOpen}
-						handleOutsideClick={handleOutsideClick}
+						// handleOutsideClick={handleOutsideClick}
 						selectedDate={selectedDate}
+						// data={data}
+						// refetch={refetch}
 					/>
 				</div>
 			)}		
