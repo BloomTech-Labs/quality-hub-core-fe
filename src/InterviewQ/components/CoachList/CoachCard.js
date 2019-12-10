@@ -14,6 +14,7 @@ import CoachModal from './CoachCardModal.js';
 const CoachCard = ({ post }) => {
 	let { coach } = post;
 	let maxWidth = 100;
+	console.log( 'need this', post);
 
 	return (
 		<div className='coach-card'>
