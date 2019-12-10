@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, ADD_POST, REMOVE_TAG } from './Resolvers';
 import PreviewCard from './CoachDashPreviewModal.js';
 
 import './EditForm.scss';
@@ -15,9 +15,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
-	// console.log(coachPost);
-  const [removeTag] = useMutation(REMOVE_TAG)
+	// console.log('coachpost',coachPost);
+  	const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
+	// const [addPost] = useMutation(ADD_POST);
+
 	const [editing, setEditing] = useState([
 		false,
 		false,
@@ -33,14 +35,17 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
   let tagArray = 
     coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
 	const [original, setOriginal] = useState(coachObj);
+
 	useEffect(() => {
 		if (coachPost) {
       setOriginal({...coachPost['postByCoach']});
 		}
 	}, [coachPost]);
 
-	// console.log('orig', original);
+	console.log('orig', post.id);
+	// console.log('coach', coachObj)
 
+	
 
 
 	//Handler Functions
@@ -69,7 +74,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				[e.target.name]: e.target.value,
 			});
 		}
-		// console.log(post);
 	};
 
 	const handleCancel = index => {
@@ -136,10 +140,19 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
     tagArray = newNodes;
     setOriginal({...original, tags: newArray, tagString: tagArray})
     setDelete(arr => [...arr, {id: tagID}])
-    console.log(deleteTags);
   }
-	// const tagArray =
-  // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
+
+
+  const handleSubmitPost = e => {
+	e.preventDefault();
+	changeField({ variables: { id: post.id, isPublished:true}})
+		.then(res => {
+		})
+		.catch(err => {
+			console.log(err);
+		});
+};
+
 
 	return (
 		<>
@@ -384,9 +397,9 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-			<div className='editform'>
+			<div className='editform'> Click 'Publish' to advertise your service!
 				<PreviewCard setOpen={setOpen} open={open} post={original} />
-				<button className='update-post-btn'> Update </button>
+				<button className='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
 			</div>
 		</>
 	);
