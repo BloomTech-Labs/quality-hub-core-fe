@@ -54,7 +54,9 @@ export const COACH_BOOKINGS = gql`
 								month
 								day
 								hour
-								minute
+                minute
+                interviewQuestions
+                
 								coach {
                   first_name
                   last_name

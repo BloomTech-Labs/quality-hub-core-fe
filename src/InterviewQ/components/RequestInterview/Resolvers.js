@@ -11,8 +11,11 @@ query availabilities ($coach_id: String!){
     start_minute
     isOpen
     recurring
+    uniquecheck
     coach{
       id
+      first_name
+      last_name
     }
   }
   }
@@ -30,6 +33,9 @@ export const CREATE_BOOKING = gql`
     $availabilityB: String!
     $pending: Boolean
     $confirmed: Boolean
+    $interviewQuestions: String
+    $interviewGoals: String
+    $resumeURL: String
   ) {
     createBooking(
       year: $year
@@ -42,6 +48,9 @@ export const CREATE_BOOKING = gql`
       availabilityB: $availabilityB
       pending: $pending
       confirmed: $confirmed
+      interviewQuestions: $interviewQuestions
+      interviewGoals: $interviewGoals
+      resumeURL : $resumeURL
     ) {
       id
       year

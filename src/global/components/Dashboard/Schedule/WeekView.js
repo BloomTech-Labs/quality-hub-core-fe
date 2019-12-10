@@ -1,5 +1,5 @@
 import React, {  useEffect } from 'react';
-import { times as timeArray } from './TimeArrays'
+import { times as timeArray, months, years } from './TimeArrays'
 
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from 'react-router-dom';
@@ -7,13 +7,21 @@ import { ALL_BOOKINGS } from './Queries';
 import {
   format,
   getWeek,
+  getDate,
+  getYear,
+  getMonth,
 	startOfWeek,
 	endOfWeek,
-	addDays,
+  addDays,
+  addWeeks,
+  subWeeks
 } from 'date-fns';
 import WeekBooking from './WeekBooking';
 
-const WeekView = ({ onDateClick, currentMonth, selectedDate }) => {
+import { nextArrow } from '../../../../globalIcons/nextArrow';
+import { backArrow } from '../../../../globalIcons/backArrow';
+
+const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
   console.log('is rendering')
    const currentWeek = getWeek(selectedDate);
    
@@ -60,38 +68,81 @@ let times = [];
 			);
 			day = addDays(day, 1);
     }
-    timeArray.forEach(time =>
+    timeArray.forEach((time, index) =>
 		times.push(
-		  <div className='time-block'>
+		  <div className='time-block' key={index}>
 		    {time}
 		  </div>,
     ));
   }
 
+  const onMonthChange = (e) => {
+    const year = getYear(selectedDate);
+    const month = e.target.value;
+    const day = getDate(selectedDate);
+    setSelectedDate(new Date(year, month, day))
+  }
+
+  const onYearChange = (e) => {
+    const year = e.target.value;
+    const month = getMonth(selectedDate);
+    const day = getDate(selectedDate);
+    setSelectedDate(new Date(year, month, day))
+  }
+
+  const handleNext = (e) => {
+    setSelectedDate(addWeeks(selectedDate, 1))
+  }
+
+  const handleBack = (e) => {
+    setSelectedDate(subWeeks(selectedDate, 1))
+  }
+
   const scheduleBody = document.getElementsByName('weekContainer');
   console.log(scheduleBody);
   useEffect(() => {
-    scheduleBody[0].scrollTo(0, 900)
+    scheduleBody[0].scrollTo(0, 500)
   })
   
 
 return (
-  <>
-  <Link to='/dashboard/schedule'>Month</Link>
-    <div className='week-container' name='weekContainer'>
-      <div className='time-column'>
-        {times}
-        </div>      
-    <div className='top-row'>
-      <div className='week-day-header time'>
-        
-      </div>
-      {days}
-      </div>
-      {data && filterBookings.map(booking => <WeekBooking booking={booking} key={booking}/>)}
-      <div className='start1230'></div>
+	<>
+  <div className = 'week-header'>
+		<button onClick={handleBack}>{backArrow()}</button>
+		<button onClick={handleNext}>{nextArrow()}</button>
+		<select onChange={onMonthChange} value={getMonth(selectedDate)}>
+			{months.map(month => {
+				return (
+					<option key={month.num} value={month.num}>
+						{month.name}
+					</option>
+				);
+			})}
+		</select>
+		<select onChange={onYearChange} value={getYear(selectedDate)}>
+			{years.map(year => {
+				return (
+					<option key={year} value={year}>
+						{year}
+					</option>
+				);
+			})}
+		</select>
+		<Link to='/dashboard/schedule'>Month</Link>
     </div>
-  </>
+		<div className='week-container weekview-border' name='weekContainer'>
+			<div className='time-column'>{times}</div>
+			<div className='top-row'>
+				<div className='week-day-header time'></div>
+				{days}
+			</div>
+
+			{data &&
+				filterBookings.map(booking => (
+					<WeekBooking booking={booking} key={booking} />
+				))}
+		</div>
+	</>
 );
 };
 
