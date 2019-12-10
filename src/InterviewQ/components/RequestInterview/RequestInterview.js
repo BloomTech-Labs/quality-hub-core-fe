@@ -51,7 +51,9 @@ useEffect(() => {
   setSetter(!setter)
   // eslint-disable-next-line
 }, [selectedCell]);
+
 const [prevId, setPrevId] = useState();
+
 const createBooking = (e, slot) => {
   setPrevId(e.target.id)
   if (prevId){
@@ -69,6 +71,8 @@ const createBooking = (e, slot) => {
       minute: slot.start_minute,
       // availabilityA: availA,
       // availabilityB: availB,
+      // interviewGoals: e.value.interviewGoals,
+      // interviewQuestions: e.target.value,
       coach: coachId,
       year: Number(format(selectedCell, 'yyyy')),
       month: (Number(format(selectedCell, 'M'))),
