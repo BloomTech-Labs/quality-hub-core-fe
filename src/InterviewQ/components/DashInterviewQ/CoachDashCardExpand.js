@@ -10,8 +10,8 @@ const CoachPreviewCard = ({ post, setOpen, open }) => {
 	const node = useRef();
 	let { coach } = post;
 	// let { coach } = original;
-console.log('here', post.tags
-)
+// console.log('here', post.tags
+// )
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -89,11 +89,11 @@ console.log('here', post.tags
 				<div className='coachcard-description-expand'>
 					<p>{post.description}</p>
 				{/* {need to style the tags here} */}
-					<p className='tags' >
+				<div className='coachcard-tags-container-expand'>
 					{post.tags.map(tag => (
-						<p key={tag.id}>{tag.name}</p>
+						<p className="coachcard-tag-button-expand" key={tag.id}>{tag.name}</p>
 					))}
-					</p>
+				</div>
 				
 				</div>
 				
