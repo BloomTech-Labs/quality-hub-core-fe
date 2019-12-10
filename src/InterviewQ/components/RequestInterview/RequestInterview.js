@@ -22,15 +22,15 @@ const [currentMonth, setCurrentMonth] = useState();
 const [currentDate, setCurrentDate] = useState();
 
 const convertToLocal = (obj) => {
-  console.log(obj)
+  // console.log(obj)
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
   let localAvailMin = obj.start_minute === 0 ? '00' : '30'
   let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
   let zoned = utcToZonedTime(localAvail, localTime);
-  console.log(zoned)
+  // console.log(zoned)
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-  console.log(zonedArr)
+  // console.log(zonedArr)
   let zonedDate = {
     ...obj,
     year: Number(zonedArr[0]),
@@ -54,10 +54,16 @@ useEffect(() => {
 
 const [prevId, setPrevId] = useState();
 
+const handleChange = (e) => {
+  props.setBooking({
+    ...props.booking,
+    [e.target.name]: e.target.value
+  })
+}
 const createBooking = (e, slot) => {
   setPrevId(e.target.id)
   if (prevId){
-    console.log(prevId)
+    // console.log(prevId)
     
   let prevSlot = document.getElementById(prevId)
   prevSlot.className = 'interview-slot'
@@ -129,8 +135,8 @@ const getAvailableSlots = () => {
   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
 setCurrentSlots(bookingArray);
 }
-console.log(dateAvails)
-console.log(currentSlots)
+// console.log(dateAvails)
+// console.log(currentSlots)
 if(currentSlots){
   // let test = [...currentSlots];
  currentSlots.sort((a,b)=>{
@@ -204,12 +210,12 @@ return (
         </div>
         <div className='interviewq-booking-input'>
       <h3>What do you want to get out of mock interviews?</h3>
-      <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' />
+      <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' name='interviewGoals' value={props.booking.interviewGoals} onChange={handleChange} />
 </div>
 <div className='interviewq-booking-input'>
       <h3>What kind of interview questions do you want to focus on?</h3>
       <textarea 
-      placeholder='e.g. Technical questions, soft skill questions etc' />
+      placeholder='e.g. Technical questions, soft skill questions etc' name='interviewQuestions' value={props.booking.interviewQuestions} onChange={handleChange}/>
     </div>
     </div>
     </div>
