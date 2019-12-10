@@ -1,13 +1,15 @@
+// Libraries
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import axios from 'axios';
 import './Avatar.scss';
 
+// Icons
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
 
-// Remember to export queries for testing
+// Queries/Mutations: Remember to export for testing
 export const GET_IMG = gql`
 	query {
 		me {
@@ -68,7 +70,6 @@ export default function Avatar() {
 					console.log(err);
 				});
 		}
-	// eslint-disable-next-line
 	}, [picture]);
 
 	return (
