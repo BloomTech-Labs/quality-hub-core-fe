@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
 import PreviewCard from './CoachDashPreviewModal.js';
-
+import Availability from './Availability/Availability'
 import './EditForm.scss';
 
 const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
@@ -42,7 +42,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		}
 	}, [coachPost]);
 
-	console.log('orig', post.id);
+	// console.log('orig', coachPost);
 	// console.log('coach', coachObj)
 
 	
@@ -102,31 +102,32 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
   
 	const handleSubmit = (e, index) => {
-    let keyval = Object.keys(post);
-		// console.log('key', keyval);
-    e.preventDefault();
-    deleteTags.forEach(tag => {
-      removeTag({ variables: { id: post.id, tagID: tag.id}})
-    });
-		changeField({ variables: post })
-			.then(res => {
-        if(keyval[1] === 'tagString') {
-          // let newLength = res.data.updatePost.tags.length;
-          let tags = res.data.updatePost.tags;
+    	let keyval = Object.keys(post);
+			// console.log('key', keyval);
+   			e.preventDefault();
+    		deleteTags.forEach(tag => {
+      		removeTag({ variables: { id: post.id, tagID: tag.id}})
+    	});
+			changeField({ variables: post })
+					.then(res => {
+        		if(keyval[1] === 'tagString') {
+          	// let newLength = res.data.updatePost.tags.length;
+		  		let tags = res.data.updatePost.tags;
+		  			console.log('tag', tags);
           // let newTags;
-          tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+         			 tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
           // setEditing(newEditing, () => {
           //   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
           // });
-          setOriginal({...original, tags: tags})
-          setPost({id: coachPost.postByCoach.id});
+         	 setOriginal({...original, tags: tags})
+          	setPost({id: coachPost.postByCoach.id});
 
-        } else {
+        	} else {
           setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
-        }
-        let newEditing = [...editing];
-        newEditing[index] = false;
-        setEditing(newEditing);
+       	 }
+        	let newEditing = [...editing];
+        	newEditing[index] = false;
+        	setEditing(newEditing);
 			})
 			.catch(err => {
 				console.log(err);
@@ -147,7 +148,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	e.preventDefault();
 	changeField({ variables: { id: post.id, isPublished: true}})
 		.then(res => {
-			console.log(res.data);
+			console.log(res.data.updatePost.isPublished);
 		})
 		.catch(err => {
 			console.log(err);
@@ -337,6 +338,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
+			
 
 			{/* START HOURLY RATE */}
 			<div className='editform'>
@@ -398,18 +400,22 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-			<div className="editform">
-			<div className='delete-post'>
-			<PreviewCard setOpen={setOpen} open={open} post={original} />
+			<div className='editform'>
+				<h2>Availability</h2>
+				<Availability />
 			</div>
+				<div className="editform">
+					<div className='delete-post'>
+					<PreviewCard setOpen={setOpen} open={open} post={original} />
+				</div>
 			</div>
 			<div className='editform'> 
-			<h2>Coach Post Status</h2>
-			<div className='delete-post'> 
-				Your coach post is currently published.
-				{/* <PreviewCard setOpen={setOpen} open={open} post={original} /> */}
+				<h2>Coach Post Status</h2>
+					<div className='delete-post'> 
+					<p>Your coach post is currently published.</p>
+					{/* <PreviewCard setOpen={setOpen} open={open} post={original} /> */}
 				<button className='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
-			</div>
+				</div>
 			</div>
 		</>
 	);

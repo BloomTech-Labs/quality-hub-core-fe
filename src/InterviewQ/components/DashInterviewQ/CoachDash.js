@@ -38,10 +38,10 @@ export default function CoachDash() {
 			<EditPost
 			// coachPost={coachPost && coachPost}
 			/>
-			<div className='editform'>
+			{/* <div className='editform'>
 				<h2>Availability</h2>
 				<Availability />
-			</div>
+			</div> */}
 
 			<div className='editform'>
 				<h2>Delete Coach Post</h2>

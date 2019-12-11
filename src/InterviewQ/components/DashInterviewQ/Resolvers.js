@@ -9,7 +9,7 @@ mutation updatePost(
  $industryName: String
   $description: String
   $tagString: String
-  $isPublished: Boolean!
+  $isPublished: Boolean
 ) {
   updatePost(
     id: $id
