@@ -26,13 +26,10 @@ const Availability =() => {
   
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
   
-  //  console.log(localTime);
   useEffect(() => {
-     console.log(availabilities);
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
     setCurrentDate(Number(format(selectedCell, 'd')));
     setSetter(!setter)
-    console.log('here');
     setAvailability({
       ...availability,
       year: Number(format(selectedCell, 'yyyy')),
@@ -40,7 +37,6 @@ const Availability =() => {
       day: Number(format(selectedCell, 'd')),
     })
     refetch()
-    console.log('end')
    // eslint-disable-next-line
   }, [selectedCell]);
 
@@ -48,7 +44,7 @@ const Availability =() => {
 
 
   const timeFilter = (hour, min) => {
-    console.log('time filter')
+    // console.log('time filter')
     let returnvar = false;
     (availabilities && dateAvails) &&
       dateAvails.forEach(({ start_hour, start_minute }) => {
@@ -62,7 +58,7 @@ const Availability =() => {
   // `${obj.year}-${obj.month}-0${obj.day}T0${obj.start_hour}:${obj.start_minute}:00:000Z`
   
   const convertToUTC = (obj) => {
-    console.log('convert to UTC');
+
     let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.start_hour, obj.start_minute)
     let utc = zonedTimeToUtc(localAvail, localTime);
     let utcArr = utc.toISOString().split(/[T:-]/g);
@@ -78,7 +74,6 @@ const Availability =() => {
   }
 
   const convertToLocal = (obj) => {
-    console.log('convert to Local')
     // let localAvailDay = '0' + obj.day
     let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
     let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
@@ -102,7 +97,6 @@ const Availability =() => {
       start_minute: Number(zonedArr[4])
       
     }
-    console.log('end local')
     return zonedDate
   }
 
@@ -118,30 +112,32 @@ const Availability =() => {
       start_hour: hour,
       start_minute: minute,
     };
-    // console.log(newObj)
-    // console.log(dateAvails)
+    
+    
     // let localAvail = new Date(newObj.year, newObj.month - 1, newObj.day, newObj.start_hour, newObj.start_minute);
     // let utcAvail = utcToZonedTime(localAvail, localTime);
-    // console.log(localAvail);
-    // console.log(utcAvail.toISOString().split('-').join(', ').split('T'));
-    // console.log(utcAvail.toISOString());
-    console.log(newObj);
+
+    
     const utcAvail = convertToUTC(newObj);
-    // console.log(utcAvail);
+    
     let utcObj = {
       ...availability,
       ...utcAvail
     }
-    // console.log(utcObj);
+    
     newAvail({ variables: utcObj })
       .then(res => {
+        console.log('newAvail Refetch')
         refetch();
         // setDateAvails([...dateAvails, availability])
-        console.log('successful post', utcObj)
+        
       })
       .catch(err => console.log(err))
   }
-
+useEffect(()=>{
+  console.log('current month refetch')
+  refetch();
+},[currentMonth])
   const checkAvail = (checkvar) => {
     if(dateAvails){
       dateAvails.forEach(avail => {
@@ -163,7 +159,7 @@ const Availability =() => {
       day: currentDate
     }
     const delUtc = convertToUTC(delAvail)
-    console.log(delUtc)
+    
     let checkvar = {
       uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.start_hour}-${delUtc.start_minute}`
     };
@@ -191,7 +187,7 @@ const Availability =() => {
   };
 
   useEffect(() => {
-    // console.log('hello!')
+    
     // let localAvails = availabilities ? availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)) : [];
     // let currentAvails = availabilities ? availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth) : [];
     // availabilities ? setDateAvails(currentAvails.map(avail => convertToLocal(avail))) : setDateAvails([])
@@ -199,7 +195,7 @@ const Availability =() => {
     // availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth)) : setDateAvails([]);
     // console.log('maybe a thing', dateAvails, currentDate, currentMonth)
     // eslint-disable-next-line
-  }, [setter || availabilities])
+  }, [setter || availabilities, selectedCell])
 
   // console.log(dateAvails);
 
@@ -229,7 +225,7 @@ const Availability =() => {
     <div className=' availability-container'>
    
     <div className='coach-availability'>
-      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities}/>
+      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />
       <div className='interview-slot-list'>
         {timeObjs.map(time => {
           // console.log('map running')

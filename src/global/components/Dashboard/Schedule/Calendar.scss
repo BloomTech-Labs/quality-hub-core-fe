@@ -17,6 +17,18 @@ $neutral-cal-color: #fff;
 	background: $neutral-cal-color;
 }
 
+.calendar-button{
+	color: black;
+	border: 1px solid #dadce0;
+	border-radius: 0.4rem;
+	height: 4rem;
+	cursor: pointer;
+	p{
+		margin: 3px 20px;
+		font-weight: 500;
+	}
+}
+
 /* GRID */
 
 .row {
@@ -48,6 +60,8 @@ $neutral-cal-color: #fff;
 }
 
 .col-center {
+
+	color: #5F6368;
 	// margin: 0 1rem;
 	display: flex;
 	font-size: 14px;
@@ -102,7 +116,7 @@ $neutral-cal-color: #fff;
 	// background-color: $main-cal-color;
 	background-color: #efefef;
 	// color: white;
-	color: #5f6368;
+	color: #5F6368;
 	font-size: 70%;
 	text-align: center;
 	// border-bottom: 1px solid var(--border-color);
@@ -187,6 +201,7 @@ $neutral-cal-color: #fff;
 	border-left: 3px solid #cf1322;
 	height: 25px;
 	font-size: 12px;
+
 }
 
 .seeker-booking {
@@ -219,8 +234,7 @@ $neutral-cal-color: #fff;
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 	border-radius: 4px;
 	border: 1px solid lightgray;
-<<<<<<< HEAD
-	height:400px;
+	max-height:400px;
    overflow:scroll;
 	 overflow-x:hidden;
 	.cal-detail-header{
@@ -228,11 +242,6 @@ $neutral-cal-color: #fff;
 		position: fixed;
 		width: 100%;
 		text-align: left;
-=======
-	.cal-detail-header {
-		width: 100;
-		text-align: right;
->>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 		font-size: 16px;
 		cursor: pointer;
 	}
@@ -253,6 +262,7 @@ $neutral-cal-color: #fff;
 	}
 }
 
+
 .coach-detail,
 .seeker-detail {
 	padding: 30px;
@@ -262,6 +272,7 @@ $neutral-cal-color: #fff;
 }
 
 .coach-detail{
+	
 	.indented{
 		margin-left: 30px;
 	}
@@ -281,8 +292,8 @@ $neutral-cal-color: #fff;
 .week-header {
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0;
-	margin-left: 65%;
+padding-left: 40%;
+	
 	align-items: center;
 	button {
 		border: 1px solid #dadce0;
@@ -304,7 +315,7 @@ $neutral-cal-color: #fff;
 	// 			// I made a bug
 	// 		}
 	width: 900px;
-	margin-top: 6rem;
+	
 	display: grid;
 	grid-gap: 5px;
 	grid-template-columns: 70px repeat(7, 112px);
@@ -613,7 +624,8 @@ $neutral-cal-color: #fff;
 }
 
 // Small Calendar
-.small-calendar-container {
+// Small Calendar
+.small-calendar-container{
 	width: 500px;
 }
 
@@ -626,24 +638,27 @@ $neutral-cal-color: #fff;
 	background: $neutral-cal-color;
 	transition: 0.25s ease-out;
 	//border-bottom: 1px solid var(--border-color);
-	margin-bottom: 0 3px;
+	margin-bottom: 3px;
 }
 
 .small-col {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	flex-grow: 1;
 	flex-basis: 0;
-	max-width: 100%;
+	width: 55px;
 }
 
-.match-light-blue {
-	justify-content: center;
-	height: 50px;
-	width: 50px;
-	color: white;
-	background-color: lightblue;
-	border-radius: 50%;
+.match-light-blue{
+	display: flex;
+	align-items: center;
+justify-content: center;
+		height: 50px;
+		width: 50px;
+		color: black;
+		background-color: rgba(9, 109, 217, 0.1);
+		border-radius: 50%;
 }
 
 .small-col-center {
@@ -657,47 +672,41 @@ $neutral-cal-color: #fff;
 	//text-align: right;
 }
 
-.small-days {
-	display: flex;
+.small-days{
+		display: flex;
+		align-items: center;
+		height: 50px;
+		font-size: 20px;
+		text-transform: uppercase;
+		font-weight: 400;
+		background-color: $neutral-cal-color;
+		color: $main-cal-color;
+		font-size: 70%;
+		text-align: center;
+		// border-bottom: 1px solid var(--border-color);
+	}
+
+	.small-selected{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 50px;
+		width: 50px;
+		color: white;
+		background-color: $main-cal-color;
+		border-radius: 50%;
+	}
+	
+
+	.number{
+	text-align: center;
+	font-size: 14px;
+	}
+	.small-calendar-select{
+		display: flex;
+		justify-content: space-between;
 	align-items: center;
-	height: 50px;
-	font-size: 20px;
-	text-transform: uppercase;
-	font-weight: 400;
-	background-color: $neutral-cal-color;
-	color: $main-cal-color;
-	font-size: 70%;
-	text-align: center;
-	// border-bottom: 1px solid var(--border-color);
-}
-
-.small-selected {
-	justify-content: center;
-	height: 50px;
-	width: 50px;
-	color: white;
-	background-color: $main-cal-color;
-	border-radius: 50%;
-}
-
-.number {
-	// display: flex;
-	// align-items: center;
-	display: inline-block;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 1.4rem;
-	line-height: 2.2rem;
-	text-align: center;
-	margin: 0.5rem 0;
-}
-
-.small-calendar-select {
-	display: flex;
-	justify-content: space-between;
-	padding: 0 40px;
-}
-
+	}
 .delete-booking-btn {
 	width: 13rem;
 	height: 3.6rem;
@@ -713,4 +722,10 @@ $neutral-cal-color: #fff;
 
 .no-bookings {
 	margin: 0 2rem;
+}
+
+.week-buttons{
+	width: 482px;
+	display: flex;
+	justify-content: space-around;
 }
