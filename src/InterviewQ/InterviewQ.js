@@ -7,7 +7,7 @@ import QNav from './components/QNav';
 import { Route } from 'react-router-dom';
 import BookingContainer from './components/RequestInterview/BookingContainer';
 import TestComponent from './components/Review/TestComponent';
-import { ReviewForm } from './components/Review';
+import { ReviewPage } from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/ConfirmedInterview';
 
 const InterviewQContainer = () => {
@@ -22,7 +22,7 @@ const InterviewQContainer = () => {
 				<Route path='/interviewq/booking' component={BookingContainer} />
         <Route path='/interviewq/settings' component={DashInterviewQ} />
         <Route exact path='/interviewq/test' component={TestComponent} />
-        <Route exact path='/interviewq/test/:id' component={ReviewForm} />
+        <Route exact path='/interviewq/test/:id' component={ReviewPage} />
         <Route path='/interviewq/interviewconfirmed' component={ConfirmedInterview} />
       </div>
 		</>

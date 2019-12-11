@@ -28,7 +28,7 @@ const TestComponent = (props) => {
         { data.bookingsBySeeker.map(booking => 
           <div>
             {booking.coach.first_name}
-            {booking.review ? <div>{booking.review.rating} stars: {booking.review.review} </div> : <Link to={`${booking.uniquecheck}`}>Submit Review</Link>}
+            {booking.review ? <div>{booking.review.rating} stars: {booking.review.review} </div> : <Link to={{pathname: `/interviewq/test/${booking.uniquecheck}`, state: { firstName: booking.coach.first_name } }}>Submit Review</Link>}
           </div>
         )}
         </div>}

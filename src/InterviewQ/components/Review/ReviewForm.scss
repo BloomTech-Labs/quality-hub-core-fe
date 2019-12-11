@@ -1,0 +1,59 @@
+@import 'ReviewPage.scss';
+@import '../../../globalStyles/variables';
+
+.review-form {
+  .review-container {
+    border: 1px solid lightgray;
+    padding: 2% 6%;
+  }
+
+  margin-top: 6%;
+  text-align: left;
+
+  .label {
+    margin-bottom: 2%;
+  }
+  .rating-form {
+    margin-bottom: 4%;
+    .rating-container {
+      display: flex;
+      .message {
+        width: 30%;
+        text-align:left;
+        margin-left: 4%;
+      }
+      .stars-container {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .review-text {
+      .review-text-area {
+        background-color: $input-border;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    .error {
+      border: 1px solid red;
+    }
+  }
+
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    .cancel {
+      color:gray;
+    }
+    .submit {
+      background-color:$main-blue;
+      color:white;
+      &:hover {
+        background-color: $hover-blue;
+      }
+    }
+  }
+}

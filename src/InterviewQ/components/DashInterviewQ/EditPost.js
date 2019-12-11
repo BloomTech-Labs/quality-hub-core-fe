@@ -101,6 +101,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
     let keyval = Object.keys(post);
 		// console.log('key', keyval);
     e.preventDefault();
+    console.log(post);
     deleteTags.forEach(tag => {
       removeTag({ variables: { id: post.id, tagID: tag.id}})
     });

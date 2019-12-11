@@ -1,3 +1,3 @@
-import ReviewForm from './ReviewForm';
+import ReviewPage from './ReviewPage';
 
-export { ReviewForm };
+export { ReviewPage };

@@ -3,12 +3,20 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { CREATE_REVIEW } from './Resolvers.js';
 import Rating from './Rating';
-import './CoachReview.scss';
+import './ReviewForm.scss';
 
-const CoachReview = props => {
+const ReviewForm = props => {
   const [fields, setFields] = useState({rating: 0, review: ""})
   const [fieldsError, setError] = useState({rating: ""})
   const [hoverIdx, setHover] = useState();
+  const messages = [
+    '',
+    'Never again!',
+    'Meh.',
+    'Not bad.',
+    'Solid!',
+    'Super great!'
+  ]
 
   const handleHover = (e, index) => {
     setHover(index);
@@ -29,7 +37,7 @@ const CoachReview = props => {
     e.preventDefault();
     let id = props.match.params.id
     if (checkError(fields.rating)) {
-      submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
+      // submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
     }
   }
 
@@ -59,23 +67,28 @@ const CoachReview = props => {
 
 	return (
 		<form className='review-form' onChange={handleChange} onSubmit={handleSubmit}>
-      <div>
-        <label>Rating </label>
-        {fieldsError.rating && <p>{fieldsError.rating}</p>}
-        <div className={`rating-container ${fieldsError.rating ? 'error' : ''}`}>
-          {stars}
+      <div className='review-container'>
+        <div className='rating-form'>
+          <p className='label'>How did {props.location.state.firstName} do? </p>
+          {fieldsError.rating && <p>{fieldsError.rating}</p>}
+          <div className='rating-container'>
+            <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
+              {stars}
+            </div>
+            <p className='message'>{messages[hoverIdx]}</p>
+          </div> 
         </div>
-        {/* <input name='rating' type="number" value={fields.rating} /> */}
+        <div className='review-text'>
+          <p className='label'>Any feedback you want to share?</p>
+          <textarea className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review}/>
+        </div>
       </div>
-      <div>
-        <label>Review </label>
-			  <textarea name='review' placeholder='comment review here' value={fields.review}/>
-      </div>
-      <div>
-        <p className='rating-button button'>Submit</p>
+      <div className='button-container'>
+        <p className='rating-button button cancel'><button>Cancel</button></p>
+        <p className='rating-button button submit'><button>Submit</button></p>
       </div>
 		</form>
 	);
 };
 
-export default CoachReview;
+export default ReviewForm;
