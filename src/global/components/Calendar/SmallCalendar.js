@@ -6,7 +6,7 @@ import SmallCells from './SmallCells';
 
 import { days, months, years } from '../Dashboard/Schedule/TimeArrays'
 
-const SmallCalendar = ({ selectedCell, setSelectedCell }) => {
+const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities }) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	// const [selectedCell, setSelectedCell] = useState(new Date());
 	
@@ -37,7 +37,6 @@ const SmallCalendar = ({ selectedCell, setSelectedCell }) => {
 		const month = getMonth(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 	};
-
 	return (	
 		<div className='small-calendar-container'>
 		<div className='calendar'>
@@ -91,6 +90,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell }) => {
 
 			<div className="calendar-cells"></div>
 			<SmallCells
+			availabilities={availabilities}
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedCell}

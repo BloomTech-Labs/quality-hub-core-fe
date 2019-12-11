@@ -36,13 +36,6 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		}
 	};
 	
-
-	// useEffect(()=>{
-	// 	// console.log('selectedDate');
-	// 	setOpen(false);
-	// },[selectedDate]);
-	
-	
 	useEffect(() => {
 		if (open) {
 			document.addEventListener('mousedown', handleOutsideClick);
@@ -58,12 +51,8 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCurrentMonth(subMonths(currentMonth, 1))
 	}
 	const onDateClick = day => {
-		// refetch();
-		console.log('clicked!')
 		setOpen(false);
 		setSelectedDate(day);
-		// console.log(day);
-		// console.log(open);
 	};
 
 	useEffect(()=>{
@@ -77,10 +66,15 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCounter(1);
 	},[])
 
+	useEffect(()=>{
+		if(currentMonth){
+			setOpen(false);
+		}
+	},[currentMonth])
+
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		// console.log(currentMonth);
 	};
 
 	const onYearChange = e => {
@@ -150,10 +144,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				<div className='calendar-detail'>
 					<CalendarDetail
 						setOpen={setOpen}
-						// handleOutsideClick={handleOutsideClick}
 						selectedDate={selectedDate}
-						// data={data}
-						// refetch={refetch}
 					/>
 				</div>
 			)}		

@@ -7,7 +7,8 @@ import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 import axios from 'axios';
-
+// import { useDropzone } from 'react-dropzone';
+import { uploadBox } from '../../../globalIcons/uploadBox';
 
 const RequestInteview =(props) => {
 
@@ -15,6 +16,13 @@ const coachId = props.match.params.coachId
 const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variables: {coach_id: coachId}});
 
 const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+// const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
+// const files = acceptedFiles.map(file => (
+//   <li key={file.path}>
+//     {file.path} - {file.size} bytes
+//   </li>
+// ));
 
 const [resumeURL, setResumeURL] = useState(null);
 const [resume, setResume] = useState(null);
@@ -29,7 +37,12 @@ const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
   let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-  let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let localAvail;
+  if(obj.month < 10){
+    localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  } else{
+    localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  }
   let zoned = utcToZonedTime(localAvail, localTime);
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
   let zonedDate = {
@@ -76,7 +89,6 @@ if(validateFile(resume)){
       });
     }
   }
-  console.log('end useEffect');
   // eslint-disable-next-line
 }, [resume]);
 
@@ -99,10 +111,10 @@ const handleChange = (e) => {
 }
 const createBooking = (e, slot) => {
   setPrevId(e.target.id)
-  if (prevId){
-    // console.log(prevId)
-    
   let prevSlot = document.getElementById(prevId)
+  if (prevId && prevSlot !== null){
+    console.log(prevId)
+  
   prevSlot.className = 'interview-slot'
 }
   e.target.className = 'available-slot interview-slot'
@@ -195,6 +207,7 @@ if(currentSlots){
 }
 return (
 	<div className='booking-content-section'>
+    
 		<div className='formsection'>
     <div className='interviewq-header-container'>
       <h2>Select a Date</h2>
@@ -202,6 +215,7 @@ return (
       <div className='interviewq-content-container'>
 			<div className='coach-availability'>
 				<SmallCalendar
+        availabilities={availabilities}
 					selectedCell={selectedCell}
 					setSelectedCell={setSelectedCell}
 				/>
@@ -245,12 +259,17 @@ return (
       <div className='interviewq-content-container'>
         <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
-      {/* <Dropzone> {({getRootProps, getInputProps}) => (
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              Click me to upload a file!
-            </div>
-          )}</Dropzone> */}
+      <section className="container">
+      {/* <div {...getRootProps({className: 'dropzone'})}>
+        <input {...getInputProps()} />
+        <span>{uploadBox()}</span>
+        <p>Click or drag file to this area to upload resume</p>
+      </div> */}
+      {/* <aside>
+        <h4>Files</h4>
+        <ul>{files}</ul>
+      </aside> */}
+    </section>
       <input
 							className=''
 							type='file'

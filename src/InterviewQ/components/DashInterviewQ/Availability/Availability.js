@@ -32,6 +32,7 @@ const Availability =() => {
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
     setCurrentDate(Number(format(selectedCell, 'd')));
     setSetter(!setter)
+    console.log('here');
     setAvailability({
       ...availability,
       year: Number(format(selectedCell, 'yyyy')),
@@ -39,6 +40,7 @@ const Availability =() => {
       day: Number(format(selectedCell, 'd')),
     })
     refetch()
+    console.log('end')
    // eslint-disable-next-line
   }, [selectedCell]);
 
@@ -46,6 +48,7 @@ const Availability =() => {
 
 
   const timeFilter = (hour, min) => {
+    console.log('time filter')
     let returnvar = false;
     (availabilities && dateAvails) &&
       dateAvails.forEach(({ start_hour, start_minute }) => {
@@ -59,6 +62,7 @@ const Availability =() => {
   // `${obj.year}-${obj.month}-0${obj.day}T0${obj.start_hour}:${obj.start_minute}:00:000Z`
   
   const convertToUTC = (obj) => {
+    console.log('convert to UTC');
     let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.start_hour, obj.start_minute)
     let utc = zonedTimeToUtc(localAvail, localTime);
     let utcArr = utc.toISOString().split(/[T:-]/g);
@@ -74,11 +78,17 @@ const Availability =() => {
   }
 
   const convertToLocal = (obj) => {
+    console.log('convert to Local')
     // let localAvailDay = '0' + obj.day
     let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
     let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
     let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-    let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+    let localAvail;
+    if(obj.month < 10){
+      localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+    } else{
+      localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+    }
     let zoned = utcToZonedTime(localAvail, localTime);
     let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
     let zonedDate = {
@@ -92,6 +102,7 @@ const Availability =() => {
       start_minute: Number(zonedArr[4])
       
     }
+    console.log('end local')
     return zonedDate
   }
 
@@ -114,6 +125,7 @@ const Availability =() => {
     // console.log(localAvail);
     // console.log(utcAvail.toISOString().split('-').join(', ').split('T'));
     // console.log(utcAvail.toISOString());
+    console.log(newObj);
     const utcAvail = convertToUTC(newObj);
     // console.log(utcAvail);
     let utcObj = {
@@ -131,8 +143,17 @@ const Availability =() => {
   }
 
   const deleteAvail = (h, m) => {
+    const delAvail ={
+      start_hour: h,
+      start_minute: m,
+      year: format(selectedCell, 'yyyy'),
+      month: currentMonth,
+      day: currentDate
+    }
+    const delUtc = convertToUTC(delAvail)
+    console.log(delUtc)
     let checkvar = {
-      uniquecheck: `${localStorage.getItem('id')}-${format(selectedCell, 'yyyy')}-${currentMonth}-${currentDate}-${h}-${m}`
+      uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.start_hour}-${delUtc.start_minute}`
     };
     removeAvail({ variables: checkvar })
     .then(res => {
@@ -153,6 +174,7 @@ const Availability =() => {
   };
 
   useEffect(() => {
+    // console.log('hello!')
     // let localAvails = availabilities ? availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)) : [];
     // let currentAvails = availabilities ? availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth) : [];
     // availabilities ? setDateAvails(currentAvails.map(avail => convertToLocal(avail))) : setDateAvails([])
@@ -183,13 +205,14 @@ const Availability =() => {
   //     start_minute: 30,
   //     uniquecheck: "ck34qxshk000e0796rsdew5t32019129130",
   //     year: 2019}))
+  // console.log(availabilities)
   return(
     <>
     
     <div className=' availability-container'>
    
     <div className='coach-availability'>
-      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} />
+      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities}/>
       <div className='interview-slot-list'>
         {timeObjs.map(time => {
           // console.log('map running')

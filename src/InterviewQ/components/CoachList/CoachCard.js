@@ -85,7 +85,7 @@ const CoachCard = ({ history, post, setOpen }) => {
 						</a>
 					)}
 				</div>
-				<button className='interview-button' disabled>
+				<button className={coach.id === localStorage.getItem('id') ? `interview-button-hidden`: `interview-button`}>
 					<Link to={`interviewq/booking/${coach.id}`}>
 					Request Interview
 					</Link>

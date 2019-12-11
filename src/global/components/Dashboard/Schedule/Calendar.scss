@@ -268,8 +268,20 @@ $neutral-cal-color: #fff;
 		border-radius: 8px;
 	}
 }
+.time-column{
+	// border: 1px solid green;
+}
 .week-container {
 	// margin-right: 80px;
+	// .sched-placeholder{
+	// 	// border-bottom: 1px solid red;
+	// 	border: 1px solid grey;
+	// }
+	// 		:nth-child(8){
+	// 			border-bottom: none;
+	// 			// border-top: green !important;
+	// 			// I made a bug
+	// 		}
   width: 900px;
   margin-top: 6rem;
   display: grid;
@@ -317,11 +329,11 @@ $neutral-cal-color: #fff;
 	color: #5F6368;
 	display: grid;
 	font-size: 12px;
-  grid-row: 2 / 21;
+  grid-row: 2 / 51;
   grid-gap: 5px;
   grid-template-rows: repeat(49, 25px);
   :nth-child(even){
-    visibility: hidden;
+	visibility: hidden;
   }
 }
 
@@ -610,6 +622,15 @@ border: 2px solid $main-cal-color !important;
 	max-width: 100%;
 }
 
+.match-light-blue{
+justify-content: center;
+		height: 50px;
+		width: 50px;
+		color: white;
+		background-color: lightblue;
+		border-radius: 50%;
+}
+
 .small-col-center {
 	// margin: 0 1rem;
 	display: flex;
@@ -643,6 +664,7 @@ border: 2px solid $main-cal-color !important;
 		background-color: $main-cal-color;
 		border-radius: 50%;
 	}
+	
 
 	.number{
 		display: flex;
