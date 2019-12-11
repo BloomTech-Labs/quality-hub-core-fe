@@ -3,8 +3,8 @@ import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format } from 'date-fns';
 import { clock } from '../../../../globalIcons/Clock.js';
-import { document } from '../../../../globalIcons/document.js'
-import { paperclip } from '../../../../globalIcons/paperclip.js'
+import { document } from '../../../../globalIcons/document.js';
+import { paperclip } from '../../../../globalIcons/paperclip.js';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 import Icon from '../../../../globalIcons/Icon';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -27,87 +27,6 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		},
 	});
 
-<<<<<<< HEAD
-// const selectedMonth = format(selectedDate, 'M');
-  const selectedDay = format(selectedDate, 'd');
-
-//Krishan Commented this line out
-// const booking = data && allBookings.filter(month => {return month.day === Number(selectedDay)});
-
-// const coachBooking = data && booking.filter(booking => booking.coach.id === localStorage.getItem('id'));
-// const seekerBooking = data && booking.filter(booking => booking.seeker.id === localStorage.getItem('id'));
-const convertToLocal = (obj) => {
-  let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
-  let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
-  let localAvailMin = obj.minute === 0 ? '00' : '30'
-	let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-  let zoned = utcToZonedTime(localAvail, localTime);
-  let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-
-  let zonedDate = {
-    ...obj,
-    year: Number(zonedArr[0]),
-    month: Number(zonedArr[1]),
-    day: Number(zonedArr[2]),
-    hour: Number(zonedArr[3]),
-    minute: Number(zonedArr[4])
-    
-  }
-
-  return zonedDate
-}
-return (
-	<div>
-		<div className='cal-detail-header'>
-  <span  onClick={() => setOpen(false)}>X</span>
-	</div>
-		{booking[0] ? (
-			<div>
-				{booking.map((info, index) => {
-					//const localInfo = convertToLocal(info)
-					return info.coach.id === localStorage.getItem('id') ? (
-						<div className = "coach-detail" key={index}>
-							<h3>
-								<span>&#x25FC;</span> InterviewQ
-							</h3>
-							<p>
-								<Icon
-									icon={ICONS.PERSONALINFO}
-									width={20}
-									height={15}
-									color='#777'
-								/>
-								  {info.seeker.first_name} {info.seeker.last_name} (Seeker)
-							</p>
-							{/* <p>		&#x2709;
-                {info.seeker.email}</p> */}
-							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
-							<p>{paperclip()} {info.resumeString ? info.resumeString : 'No resume provided'}</p>
-							<div>
-							<p>{document()} What do you want to get out of your mock interview?</p>
-							<p className='indented intres'>{info.interviewGoals}</p>
-							<p className='indented'>What kind of questions do you want to focus on?</p>
-							<p className='indented intres'>{info.interviewQuestions}</p>
-							</div>
-						</div>
-					) : (
-						<div className= "seeker-detail" key={index}>
-							<h3>
-								<span>&#x25FC;</span> InterviewQ
-							</h3>
-							<p>
-								<Icon
-									icon={ICONS.PERSONALINFO}
-									width={15}
-									height={15}
-									color='#777'
-								/>
-								  {info.coach.first_name} {info.coach.last_name} (Coach)
-							</p>
-							{/* <p>&#x2709;{info.coach.email}</p> */}
-							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
-						{/* <p>What do you want to get out of mock interviews?</p>
-=======
 	const [booking, setBooking] = useState([]);
 	const [allBookings, setAllBookings] = useState();
 	const [selectedDay, setSelectedDay] = useState(format(selectedDate, 'd'));
@@ -304,7 +223,6 @@ return (
 									)}
 								</p>
 								{/* <p>What do you want to get out of mock interviews?</p>
->>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 						<p>{info.interviewGoals}</p>
 						<p>What kind of questions do you want to focus on?</p>
 						<p>{info.interviewQuestions}</p> */}

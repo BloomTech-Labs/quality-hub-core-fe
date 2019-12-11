@@ -40,7 +40,6 @@
 	}
 }
 
-
 html {
 	font-size: 62.5%;
 	::-webkit-scrollbar {
@@ -99,12 +98,18 @@ textarea {
 	border: 1px solid silver;
 	font-family: inherit;
 	padding: 0.8rem 1rem;
-	
 }
-input:focus, option:focus, select:focus, textarea:focus{
+input:focus,
+option:focus,
+select:focus,
+textarea:focus {
 	// :focus{
-		border: 1px solid #096DD9 !important;
+	border: 1px solid #096dd9 !important;
 	// }
+}
+
+button {
+	cursor: pointer;
 }
 
 .form-btn {
@@ -157,7 +162,6 @@ input:focus, option:focus, select:focus, textarea:focus{
 	width: 220px;
 	outline: 0;
 	text-align: center;
-
 }
 
 .manage-btn:hover {
