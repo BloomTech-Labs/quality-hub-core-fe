@@ -37,7 +37,12 @@ const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
   let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-  let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let localAvail;
+  if(obj.month < 10){
+    localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  } else{
+    localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  }
   let zoned = utcToZonedTime(localAvail, localTime);
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
   let zonedDate = {

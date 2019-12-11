@@ -14,6 +14,7 @@ const { data, refetch, loading } = useQuery(ALL_BOOKINGS, {variables: {seekerId:
 
 const [booking, setBooking] = useState([]);
 const [allBookings, setAllBookings] = useState();
+const [selectedDay, setSelectedDay] = useState(format(selectedDate, 'd'));
 
 const node = useRef();
 const sortBookingsFunction = array =>{
@@ -34,7 +35,8 @@ const sortBookingsFunction = array =>{
 	return array;
 }
 useEffect(()=>{
-if(data){
+	if(data){
+		console.log(data.bookingsByCoach);
 let bookingArray = sortBookingsFunction([...data.bookingsByCoach, ...data.bookingsBySeeker]);
 
 	setAllBookings(bookingArray);
@@ -54,7 +56,7 @@ useEffect(()=>{
 const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 // const selectedMonth = format(selectedDate, 'M');
-  const selectedDay = format(selectedDate, 'd');
+//   const selectedDay = format(selectedDate, 'd');
 
 //Krishan Commented this line out
 // const booking = data && allBookings.filter(month => {return month.day === Number(selectedDay)});
@@ -65,7 +67,12 @@ const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
   let localAvailMin = obj.minute === 0 ? '00' : '30'
-	let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let localAvail;
+  if(obj.month < 10){
+	localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  } else{
+	localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  }
   let zoned = utcToZonedTime(localAvail, localTime);
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
 
