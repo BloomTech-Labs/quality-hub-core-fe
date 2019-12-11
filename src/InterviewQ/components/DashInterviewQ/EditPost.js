@@ -20,6 +20,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
   	const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
 
+	//Component State
 	const [published, setPublished] = useState();
 	const [editing, setEditing] = useState([
 		false,
@@ -31,7 +32,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	]);
   const [post, setPost] = useState({id: coachPost.postByCoach.id, tagString: ""});
   const [deleteTags, setDelete] = useState([]);
-	//Component State
+
   let coachObj = coachPost && coachPost.postByCoach;
   let tagArray = 
     coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
@@ -43,11 +44,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		}
 	}, [coachPost]);
 
-	// console.log('orig', coachPost.postByCoach.isPublished);
-	// console.log('coach', coachObj)
-// console.log('boiii', original)
 	
-
 
 	//Handler Functions
 	const handleChange = e => {
