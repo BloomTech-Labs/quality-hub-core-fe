@@ -267,17 +267,29 @@ $neutral-cal-color: #fff;
 		border-radius: 8px;
 	}
 }
+.time-column{
+	// border: 1px solid green;
+}
 .week-container {
 	// margin-right: 80px;
-	width: 900px;
-	margin-top: 6rem;
-	display: grid;
-	grid-gap: 5px;
-	grid-template-columns: 70px repeat(7, 112px);
-	grid-template-rows: 50px repeat(49, 25px);
-	height: 600px;
-	overflow: scroll;
-	overflow-x: hidden;
+	// .sched-placeholder{
+	// 	// border-bottom: 1px solid red;
+	// 	border: 1px solid grey;
+	// }
+	// 		:nth-child(8){
+	// 			border-bottom: none;
+	// 			// border-top: green !important;
+	// 			// I made a bug
+	// 		}
+  width: 900px;
+  margin-top: 6rem;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 70px repeat(7, 112px);
+  grid-template-rows: 50px repeat(49, 25px);
+   height:600px;
+   overflow:scroll;
+	 overflow-x:hidden;
 }
 
 // .weekview-border{
@@ -317,13 +329,20 @@ $neutral-cal-color: #fff;
 	color: #5f6368;
 	display: grid;
 	font-size: 12px;
-	grid-row: 2 / 21;
-	grid-gap: 5px;
-	grid-template-rows: repeat(49, 25px);
-	:nth-child(even) {
-		visibility: hidden;
-	}
+  grid-row: 2 / 51;
+  grid-gap: 5px;
+  grid-template-rows: repeat(49, 25px);
+  :nth-child(even){
+	visibility: hidden;
+  }
 }
+
+.booking{
+  color: #CF1322;;
+	background-color: #FFCCC7;;
+	border-left: 3px solid #CF1322;
+	p{
+		font-size: 12px;
 
 .booking {
 	color: #cf1322;
@@ -608,6 +627,15 @@ $neutral-cal-color: #fff;
 	max-width: 100%;
 }
 
+.match-light-blue{
+justify-content: center;
+		height: 50px;
+		width: 50px;
+		color: white;
+		background-color: lightblue;
+		border-radius: 50%;
+}
+
 .small-col-center {
 	// margin: 0 1rem;
 	display: flex;
@@ -633,14 +661,15 @@ $neutral-cal-color: #fff;
 	// border-bottom: 1px solid var(--border-color);
 }
 
-.small-selected {
-	justify-content: center;
-	height: 50px;
-	width: 50px;
-	color: white;
-	background-color: $main-cal-color;
-	border-radius: 50%;
-}
+	.small-selected{
+		justify-content: center;
+		height: 50px;
+		width: 50px;
+		color: white;
+		background-color: $main-cal-color;
+		border-radius: 50%;
+	}
+	
 
 .number {
 	display: flex;

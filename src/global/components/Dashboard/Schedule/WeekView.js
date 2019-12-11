@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { times as timeArray, months, years } from './TimeArrays';
 
 import { useQuery } from '@apollo/react-hooks';
@@ -22,9 +22,8 @@ import { nextArrow } from '../../../../globalIcons/nextArrow';
 import { backArrow } from '../../../../globalIcons/backArrow';
 
 const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
-	console.log('is rendering');
 	const currentWeek = getWeek(selectedDate);
-
+	const scheduleBody = document.getElementsByName('weekContainer');
 	const { data } = useQuery(ALL_BOOKINGS, {
 		variables: {
 			seekerId: localStorage.getItem('id'),
@@ -34,24 +33,20 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 
 	const allBookings =
 		data && data.bookingsByCoach.concat(data.bookingsBySeeker);
-	console.log('bookings', allBookings);
 	const filterBookings =
 		data &&
 		allBookings.filter(booking => {
-			console.log(currentWeek);
 			let bookingDate = new Date(booking.year, booking.month - 1, booking.day);
 			let bookingWeek = getWeek(bookingDate);
 
 			return currentWeek === bookingWeek;
 		});
-	console.log(filterBookings);
 	const firstDay = startOfWeek(selectedDate);
 	const lastDay = endOfWeek(selectedDate);
 	const dateFormat = 'd';
 
 	let day = firstDay;
 	let days = [];
-	console.log(firstDay, lastDay);
 	let times = [];
 
 	while (day <= lastDay) {
@@ -79,6 +74,35 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 		);
 	}
 
+	// ****************original code
+	//let divcounter = 0;
+	//  useEffect(() => {
+	// 	 const weekGrid = document.getElementById('weekContainer');
+	// 	 const div = document.createElement('div');
+	// 	 console.log(weekGrid)
+	// 	  data ? divCounter = (filterBookings.length) : divCounter = 337
+	//    while (weekGrid && divCounter < 336) {
+	// 	   console.log('here');
+	// 		weekGrid.appendChild(div);
+	// 		divCounter = divCounter + 1
+	//  }
+	// 	}, [allBookings])
+	// ****************original code
+
+	//ALL MY CODE IS ACTUALLY KRISHANS
+	//ONLY THE THINGS THAT INVOLVE REACT
+
+	useEffect(() => {
+		if (filterBookings) {
+			const weekGrid = document.getElementById('weekContainer');
+			for (let i = 392 - 27 - 7 - filterBookings.length * 2; i > 0; i--) {
+				const div = document.createElement('div');
+				div.classList.add('sched-placeholder');
+				weekGrid.appendChild(div);
+			}
+		}
+	}, [filterBookings]);
+
 	const onMonthChange = e => {
 		const year = getYear(selectedDate);
 		const month = e.target.value;
@@ -101,8 +125,6 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 		setSelectedDate(subWeeks(selectedDate, 1));
 	};
 
-	const scheduleBody = document.getElementsByName('weekContainer');
-	console.log(scheduleBody);
 	useEffect(() => {
 		scheduleBody[0].scrollTo(0, 500);
 	});
@@ -132,12 +154,16 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 				</select>
 				<Link to='/dashboard/schedule'>Month</Link>
 			</div>
-			<div className='week-container weekview-border' name='weekContainer'>
+			<div
+				className='week-container weekview-border'
+				name='weekContainer'
+				id='weekContainer'>
 				<div className='time-column'>{times}</div>
 				<div className='top-row'>
 					<div className='week-day-header time'></div>
 					{days}
 				</div>
+
 				{data &&
 					filterBookings.map(booking => (
 						<WeekBooking booking={booking} key={booking} />
