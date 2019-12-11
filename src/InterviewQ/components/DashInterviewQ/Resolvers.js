@@ -5,8 +5,8 @@ mutation updatePost(
   $id: ID! 
   $price: Int
   $position: String
- $company: String
- $industryName: String
+  $company: String
+  $industryName: String
   $description: String
   $tagString: String
   $isPublished: Boolean

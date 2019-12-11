@@ -12,13 +12,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	// console.log(industries);
-	const { data: coachPost } = useQuery(GET_COACH_POST, {
+	const { loading, data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
-	// console.log('coachpost',coachPost);
+	console.log('coachpost', coachPost);
+
   	const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
-	// const [addPost] = useMutation(ADD_POST);
+
 
 	const [editing, setEditing] = useState([
 		false,
@@ -42,9 +43,9 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		}
 	}, [coachPost]);
 
-	// console.log('orig', coachPost);
+	// console.log('orig', coachPost.postByCoach);
 	// console.log('coach', coachObj)
-
+console.log('boiii', original)
 	
 
 
@@ -405,7 +406,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<Availability />
 			</div>
 				<div className="editform">
-					<div className='delete-post'>
+					<div className='see-preview'>
 					<PreviewCard setOpen={setOpen} open={open} post={original} />
 				</div>
 			</div>
