@@ -50,6 +50,8 @@ export const COACH_BOOKINGS = gql`
   export const ALL_BOOKINGS = gql`
 						query allBookings($coachId: String!, $seekerId: String!) {
 							bookingsByCoach(coach_id: $coachId) {
+                uniquecheck
+                id
 								year
 								month
 								day
@@ -71,6 +73,8 @@ export const COACH_BOOKINGS = gql`
 								}
 							}
 							bookingsBySeeker(seeker_id: $seekerId) {
+                uniquecheck
+                id
 								year
 								month
 								day

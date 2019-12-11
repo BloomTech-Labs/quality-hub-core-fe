@@ -40,7 +40,12 @@ const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities })
 		let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
 		let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
 		let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-		let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+		let localAvail;
+		if(obj.month < 10){
+			localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+		  } else{
+			localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+		  }
 		let zoned = utcToZonedTime(localAvail, localTime);
 		let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
 		let zonedDate = {
@@ -92,6 +97,7 @@ const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities })
   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
 //   console.log(availabilities)
 // console.log(bookingArray);
+
 setAllTheAvails(bookingArray);
 }
 
@@ -99,7 +105,8 @@ useEffect(()=>{
 	if(availabilities){
 		// console.log(availabilities)
 		let someArray = availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.month === integerMonth && avail.isOpen === true);
-		console.log(someArray);
+		// console.log(someArray);
+
 		getAvailableSlots(someArray);
 	}
 },[availabilities]);
@@ -146,6 +153,7 @@ useEffect(()=>{
 							: isSameDay(day, selectedDate)
 							? 'small-selected'
 							: availsExist(day) ? 'match-light-blue' : ''
+							// : availsExist(day) ? 'match-light-blue' : ''
 					}`}><p>{formattedDate}</p></div>
 					{/* <span className='bg'>{formattedDate}</span> */}
 					
