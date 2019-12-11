@@ -7,6 +7,7 @@ import QNav from './components/QNav';
 import { Route } from 'react-router-dom';
 import BookingContainer from './components/RequestInterview/BookingContainer';
 import ConfirmedInterview from './components/RequestInterview/ConfirmedInterview';
+import History from './components/History';
 import CoachReport from './components/CoachReport';
 
 const InterviewQContainer = () => {
@@ -23,6 +24,7 @@ const InterviewQContainer = () => {
 					path='/interviewq/interviewconfirmed'
 					component={ConfirmedInterview}
 				/>
+				<Route path='/interviewq/history' component={History} />
 				<Route path='/interviewq/coachreport' component={CoachReport} />
 			</div>
 		</>

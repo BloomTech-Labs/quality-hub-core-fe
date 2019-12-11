@@ -1,0 +1,46 @@
+.history-wrapper {
+	border: 1px solid#dadce0;
+	border-radius: 0.8rem;
+	width: 90%;
+	max-width: 94.4rem;
+	margin: 10rem auto;
+	padding: 4.8rem 10.1rem;
+}
+
+.coach-history-headings,
+.seeker-history-headings {
+	display: flex;
+	width: 100%;
+	background-color: silver;
+}
+
+.coach-history-headings h4 {
+	width: 20%;
+}
+
+.seeker-history-headings h4 {
+	width: 25%;
+}
+
+.coach-history-row,
+.seeker-history-row {
+	display: flex;
+	width: 100%;
+
+	div {
+		width: 20%;
+		border: 1px solid purple;
+	}
+}
+
+.coach-history-row {
+	div {
+		width: 20%;
+	}
+}
+
+.seeker-history-row {
+	div {
+		width: 25%;
+	}
+}
