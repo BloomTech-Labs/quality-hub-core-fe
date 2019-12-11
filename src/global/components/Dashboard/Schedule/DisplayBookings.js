@@ -71,11 +71,12 @@ export const DisplayBookings = currentMonth => {
 		let counter = 0;
 
 		array.forEach(appt => {
-			const localAppt = convertToLocal(appt);
+	  const localAppt = convertToLocal(appt);
+      if (Number(format(currentMonth, 'M')) == localAppt.month){
+			
 			if (localAppt.day === i && counter < 2) {
 				counter++;
 				const apptId = `${localAppt.month}-${localAppt.day}`;
-				console.log(apptId);
 				const booking = document.getElementById(apptId);
 				//  if (booking && index <= 52) {
 				const div = document.createElement('div');
@@ -93,19 +94,21 @@ export const DisplayBookings = currentMonth => {
 				//  return booking.appendChild(div);
 				//  }
 				//  return null
-			} else if (appt.day === i && counter === 2) {
+			} else if (appt.day === i &&  counter === 2) {
 				//const localAppt = convertToLocal(appt);
-				const apptId = `${appt.month}${appt.day}`;
+				const apptId = `${appt.month}-${appt.day}`;
 				const booking = document.getElementById(apptId);
 				const div = document.createElement('div');
 				div.setAttribute('class', 'seeker-booking');
-				div.textContent = `...`;
+				div.textContent = `more..`;
 				if (booking) {
+					
 					booking.appendChild(div);
 				}
 				counter++;
 			}
-		});
+		}
+    });
 	};
 
 	useEffect(() => {
@@ -117,70 +120,8 @@ export const DisplayBookings = currentMonth => {
 			let counter = 0;
 			for (let i = 1; i < 32; i++) {
 				renderPerCell(sortBookings, i);
-				//   sortBookings.map((appt, index) => {
-				//     if(appt.day === i){
-				//       const localAppt = convertToLocal(appt);
-				//      const apptId = `${appt.month}${appt.day}`;
-				//      const booking = document.getElementById(apptId);
-				//          if (booking && index <= 52) {
-				//              const div = document.createElement('div');
-				//              div.setAttribute('class', 'coach-booking');
-				//              div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;
-				//              return booking.appendChild(div);
-				//      } else if (booking && index === 3) {
-				//        const div = document.createElement('div');
-				//        div.setAttribute('class', 'seeker-booking');
-				//        div.textContent = `...`;
-				//        return booking.appendChild(div);
-				//      }
-				//      return null
-				//     }
-				//  });
+
 			}
 		}
 	}, [renderBookings]);
-
-	//   useEffect(() => {
-	//    bookingsByCoach && bookingsByCoach.bookingsByCoach.map((appt, index) => {
-	//      const localAppt = convertToLocal(appt);
-	//     const apptId = `${appt.month}${appt.day}`;
-	//     const booking = document.getElementById(apptId);
-	//         if (booking && index <= 32) {
-	//             const div = document.createElement('div');
-	//             div.setAttribute('class', 'coach-booking');
-	//             div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;
-	//             return booking.appendChild(div);
-	//     } else if (booking && index === 3) {
-	//       const div = document.createElement('div');
-	//       div.setAttribute('class', 'seeker-booking');
-	//       div.textContent = `...`;
-	//       return booking.appendChild(div);
-	//     }
-	//     return null
-	//   });
-	//   // eslint-disable-next-line
-	// }, [currentMonth, bookingsByCoach])
-
-	// useEffect(() => {
-	//   bookingsBySeeker &&
-	//     bookingsBySeeker.bookingsBySeeker.map((appt, index) => {
-	//       const apptId = `${appt.month}${appt.day}`;
-	//       const booking = document.getElementById(apptId);
-
-	//       const localAppt = convertToLocal(appt)
-	//       if (booking && index <= 32) {
-	//         const div = document.createElement('div');
-	//         div.setAttribute('class', 'seeker-booking');
-	//         div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;
-	//         return booking.appendChild(div);
-	//       } else if (booking && index === 3) {
-	//         const div = document.createElement('div');
-	//         div.setAttribute('class', 'seeker-booking');
-	//         div.textContent = `...`;
-	//         return booking.appendChild(div);
-	//       }
-	//       return null;
-	//     });
-	//     // eslint-disable-next-line
-	// }, [currentMonth, bookingsBySeeker]);
 };

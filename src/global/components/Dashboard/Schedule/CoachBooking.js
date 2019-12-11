@@ -44,7 +44,7 @@ const convertToLocal = (obj) => {
   useEffect(() => {
    bookingsByCoach && bookingsByCoach.bookingsByCoach.map((appt, index) => {
      const localAppt = convertToLocal(appt);
-    const apptId = `${appt.month}${appt.day}`;
+    const apptId = `${appt.month}-${appt.day}`;
     const booking = document.getElementById(apptId);
 		if (booking && index <= 32) {
 			const div = document.createElement('div');

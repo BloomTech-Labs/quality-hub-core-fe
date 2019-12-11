@@ -18,7 +18,8 @@ import {
 } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
-const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities }) => {
+const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities, refetchAvails }) => {
+
 
 	const [allTheAvails, setAllTheAvails] = useState();
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -95,21 +96,18 @@ const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities })
 	}
   }
   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
-//   console.log(availabilities)
-// console.log(bookingArray);
+
 
 setAllTheAvails(bookingArray);
 }
 
 useEffect(()=>{
 	if(availabilities){
-		// console.log(availabilities)
 		let someArray = availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.month === integerMonth && avail.isOpen === true);
-		// console.log(someArray);
 
 		getAvailableSlots(someArray);
 	}
-},[availabilities]);
+},[availabilities, currentMonth]);
 
 	const availsExist = someDate =>{
 		let integerDate = getDate(someDate);
@@ -138,7 +136,6 @@ useEffect(()=>{
 			formattedDate = format(day, dateFormat);
 			cellId = format(day, 'Md');
 			const cloneDay = day;
-			// console.log(availsExist(day));
 			// {availabilities && console.log(availsExist(day))}
 			days.push(
 				<div
@@ -147,7 +144,7 @@ useEffect(()=>{
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
 						
-					<div className={`number ${
+					<div className={`${
 						!isSameMonth(day, monthStart)
 							? 'disabled'
 							: isSameDay(day, selectedDate)
