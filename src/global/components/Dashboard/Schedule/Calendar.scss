@@ -52,7 +52,8 @@ $neutral-cal-color: #fff;
 	display: flex;
 	font-size: 14px;
 	font-weight: 600;
-	border: 1px solid $text-cal-color-light;
+	// border: 1px solid $text-cal-color-light;
+	border: 1px solid #efefef;
 	height: 50px;
 	justify-content: center;
 	align-items: center;
@@ -98,8 +99,10 @@ $neutral-cal-color: #fff;
 	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: 400;
-	background-color: $main-cal-color;
-	color: white;
+	// background-color: $main-cal-color;
+	background-color: #efefef;
+	// color: white;
+	color: #5f6368;
 	font-size: 70%;
 	text-align: center;
 	// border-bottom: 1px solid var(--border-color);
@@ -661,8 +664,15 @@ $neutral-cal-color: #fff;
 }
 
 .number {
-	display: flex;
-	align-items: center;
+	// display: flex;
+	// align-items: center;
+	display: inline-block;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.4rem;
+	line-height: 2.2rem;
+	text-align: center;
+	margin: 0.5rem 0;
 }
 
 .small-calendar-select {
