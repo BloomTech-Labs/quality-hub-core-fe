@@ -7,7 +7,7 @@ import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 import axios from 'axios';
-import Dropzone from 'react-dropzone';
+
 
 const RequestInteview =(props) => {
 
@@ -245,12 +245,12 @@ return (
       <div className='interviewq-content-container'>
         <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
-      <Dropzone> {({getRootProps, getInputProps}) => (
+      {/* <Dropzone> {({getRootProps, getInputProps}) => (
             <div {...getRootProps()}>
               <input {...getInputProps()} />
               Click me to upload a file!
             </div>
-          )}</Dropzone>
+          )}</Dropzone> */}
       <input
 							className=''
 							type='file'

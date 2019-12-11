@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, ADD_POST, REMOVE_TAG } from './Resolvers';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
 import PreviewCard from './CoachDashPreviewModal.js';
 
 import './EditForm.scss';
@@ -145,13 +145,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
   const handleSubmitPost = e => {
 	e.preventDefault();
-	changeField({ variables: { id: post.id, isPublished:true}})
+	changeField({ variables: { id: post.id, isPublished: true}})
 		.then(res => {
+			console.log(res.data);
 		})
 		.catch(err => {
 			console.log(err);
 		});
-};
+	};
 
 
 	return (
@@ -397,9 +398,18 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-			<div className='editform'> Click 'Publish' to advertise your service!
-				<PreviewCard setOpen={setOpen} open={open} post={original} />
+			<div className="editform">
+			<div className='delete-post'>
+			<PreviewCard setOpen={setOpen} open={open} post={original} />
+			</div>
+			</div>
+			<div className='editform'> 
+			<h2>Coach Post Status</h2>
+			<div className='delete-post'> 
+				Your coach post is currently published.
+				{/* <PreviewCard setOpen={setOpen} open={open} post={original} /> */}
 				<button className='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
+			</div>
 			</div>
 		</>
 	);
