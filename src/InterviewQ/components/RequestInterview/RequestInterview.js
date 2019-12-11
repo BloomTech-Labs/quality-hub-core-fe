@@ -34,15 +34,6 @@ const RequestInteview = props => {
 //   </li>
 // ));
 
-const [resumeURL, setResumeURL] = useState(null);
-const [resume, setResume] = useState(null);
-const [currentSlots, setCurrentSlots] = useState();
-const [setter, setSetter] = useState(true);
-const [selectedCell, setSelectedCell] = useState(new Date());
-const [dateAvails, setDateAvails] = useState();
-const [currentMonth, setCurrentMonth] = useState();
-const [currentDate, setCurrentDate] = useState();
-
 const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
@@ -65,6 +56,14 @@ const convertToLocal = (obj) => {
     
   }
   return zonedDate
+}
+
+const validateFile = checkFile =>{
+  if (checkFile.type == "application/pdf") {
+      return true;
+  } else{
+    return false;
+  }
 }
 
 	useEffect(() => {
