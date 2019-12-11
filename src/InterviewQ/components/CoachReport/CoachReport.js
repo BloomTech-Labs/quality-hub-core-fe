@@ -14,7 +14,9 @@ export default function CoachReport(props) {
 
 	const [createReport] = useMutation(CREATE_REPORT);
 
-	const { firstName, uniqueBooking } = props.location.state;
+	const { firstName, uniqueBooking } = props.location.state
+		? props.location.state
+		: {};
 
 	const handleChange = e => {
 		setReport({ ...report, [e.target.name]: e.target.value });
