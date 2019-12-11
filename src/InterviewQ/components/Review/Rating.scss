@@ -1,5 +1,14 @@
-.rating-object {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
+.rating-container {
+
+  .rating-object {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    &:hover {
+      background-color: gold;
+    }
+  }
+  .gold {
+    background-color: gold;
+  }
 }

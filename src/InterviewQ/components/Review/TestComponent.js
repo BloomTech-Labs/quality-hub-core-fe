@@ -21,7 +21,6 @@ const GET_BOOKS = gql`
 const TestComponent = (props) => {
   let id = localStorage.getItem('id');
   const { data } = useQuery(GET_BOOKS, {variables: { seeker_id: id }})
-  console.log(data);
   return (
     <div>
       List bookings here
@@ -29,8 +28,8 @@ const TestComponent = (props) => {
         { data.bookingsBySeeker.map(booking => 
           <div>
             {booking.coach.first_name}
-            {booking.review ? <div>{booking.review.rating} stars: {booking.review.review} </div> : <Link to={`test/${booking.uniquecheck}`}>Submit Review</Link>}
-            </div>
+            {booking.review ? <div>{booking.review.rating} stars: {booking.review.review} </div> : <Link to={`${booking.uniquecheck}`}>Submit Review</Link>}
+          </div>
         )}
         </div>}
     </div>

@@ -1,10 +1,14 @@
 import React from 'react';
 import './Rating.scss';
-const Rating = () => {
+const Rating = ({ handleHover, hoverIdx, fields, index, handleClick }) => {
   return (
-    <div className="rating-object">
+    <div 
+      onClick={(e) => handleClick(e, index)} 
+      onMouseOver={(e) => handleHover(e, index)}
+      onMouseLeave={(e) => handleHover(e, fields.rating)}
+      className={`rating-object ${( hoverIdx >= index ? 'gold' : '')}`}
 
-    </div>
+    />
   )
 }
 
