@@ -22,7 +22,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		}
 	`;
 
-	const { data, refetch, loading } = useQuery(ALL_BOOKINGS, {
+	const { data, refetch, loading, client } = useQuery(ALL_BOOKINGS, {
 		variables: {
 			seekerId: localStorage.getItem('id'),
 			coachId: localStorage.getItem('id'),
@@ -52,6 +52,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	};
 	useEffect(() => {
 		if (data) {
+			// console.log(client)
 			// console.log(data.bookingsByCoach);
 			let bookingArray = sortBookingsFunction([
 				...data.bookingsByCoach,
@@ -122,6 +123,11 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		console.log(uniquecheck)
 		deleteBook({ variables: {uniquecheck: uniquecheck} })
 		.then(res=>{
+			// client.clearStore();
+			window.location.reload(true);
+			// client.resetStore();
+			// refetch();
+			setOpen(false);
 			console.log(res)
 		})
 		.catch(err=>{
