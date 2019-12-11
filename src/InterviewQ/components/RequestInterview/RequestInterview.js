@@ -7,7 +7,7 @@ import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 import axios from 'axios';
-import { useDropzone } from 'react-dropzone';
+// import { useDropzone } from 'react-dropzone';
 import { uploadBox } from '../../../globalIcons/uploadBox';
 
 const RequestInteview =(props) => {
@@ -17,12 +17,12 @@ const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variable
 
 const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
-const files = acceptedFiles.map(file => (
-  <li key={file.path}>
-    {file.path} - {file.size} bytes
-  </li>
-));
+// const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
+// const files = acceptedFiles.map(file => (
+//   <li key={file.path}>
+//     {file.path} - {file.size} bytes
+//   </li>
+// ));
 
 const [resumeURL, setResumeURL] = useState(null);
 const [resume, setResume] = useState(null);
@@ -255,11 +255,11 @@ return (
         <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
       <section className="container">
-      <div {...getRootProps({className: 'dropzone'})}>
+      {/* <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
         <span>{uploadBox()}</span>
         <p>Click or drag file to this area to upload resume</p>
-      </div>
+      </div> */}
       <aside>
         <h4>Files</h4>
         <ul>{files}</ul>
