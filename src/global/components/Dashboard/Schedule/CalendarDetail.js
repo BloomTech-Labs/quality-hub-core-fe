@@ -3,6 +3,8 @@ import { ALL_BOOKINGS } from './Queries';
 import { useQuery } from "@apollo/react-hooks";
 import { format } from 'date-fns';
 import { clock } from '../../../../globalIcons/Clock.js';
+import { document } from '../../../../globalIcons/document.js'
+import { paperclip } from '../../../../globalIcons/paperclip.js'
 import { ICONS } from '../../../../globalIcons/iconConstants';
 import Icon from '../../../../globalIcons/Icon';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -83,7 +85,9 @@ const convertToLocal = (obj) => {
 }
 return (
 	<div>
-  <span className='cal-detail-header' onClick={() => setOpen(false)}>X</span>
+		<div className='cal-detail-header'>
+  <span  onClick={() => setOpen(false)}>X</span>
+	</div>
 		{booking[0] ? (
 			<div>
 				{booking.map((info, index) => {
@@ -96,18 +100,22 @@ return (
 							<p>
 								<Icon
 									icon={ICONS.PERSONALINFO}
-									width={15}
+									width={20}
 									height={15}
 									color='#777'
 								/>
-								{info.seeker.first_name} {info.seeker.last_name}
+								  {info.seeker.first_name} {info.seeker.last_name} (Seeker)
 							</p>
-							<p>		&#x2709;
-                {info.seeker.email}</p>
+							{/* <p>		&#x2709;
+                {info.seeker.email}</p> */}
 							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
-							{/* <button className='default-btn' onClick={() => setOpen(false)}>
-								done
-							</button> */}
+							<p>{paperclip()} {info.resumeString ? info.resumeString : 'No resume provided'}</p>
+							<div>
+							<p>{document()} What do you want to get out of your mock interview?</p>
+							<p className='indented intres'>{info.interviewGoals}</p>
+							<p className='indented'>What kind of questions do you want to focus on?</p>
+							<p className='indented intres'>{info.interviewQuestions}</p>
+							</div>
 						</div>
 					) : (
 						<div className= "seeker-detail" key={index}>
@@ -121,9 +129,9 @@ return (
 									height={15}
 									color='#777'
 								/>
-								{info.coach.first_name} {info.coach.last_name}
+								  {info.coach.first_name} {info.coach.last_name} (Coach)
 							</p>
-							<p>&#x2709;{info.coach.email}</p>
+							{/* <p>&#x2709;{info.coach.email}</p> */}
 							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
 						{/* <p>What do you want to get out of mock interviews?</p>
 						<p>{info.interviewGoals}</p>

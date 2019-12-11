@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import SmallCalendar from '../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
 import { format, getMonth } from 'date-fns';
@@ -7,7 +7,7 @@ import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 import axios from 'axios';
-// import { useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import { uploadBox } from '../../../globalIcons/uploadBox';
 
 const RequestInteview =(props) => {
@@ -32,6 +32,9 @@ const [selectedCell, setSelectedCell] = useState(new Date());
 const [dateAvails, setDateAvails] = useState();
 const [currentMonth, setCurrentMonth] = useState();
 const [currentDate, setCurrentDate] = useState();
+
+const onDrop = useCallback(acceptedFiles => setResume(acceptedFiles), [])
+const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
 const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
@@ -59,6 +62,29 @@ const validateFile = checkFile =>{
     return false;
   }
 }
+
+const dropbox = {
+  width: '100%',
+  height: '30px',
+  background: 'black',
+}
+
+const dropboxDiv = {
+  display: 'flex',
+  justifyContent: 'flex-start',
+  flexDirection: 'column',
+  textAlign: 'left',
+  margin: '20px 90px',
+  border: '2px solid #DADCE0',
+  borderRadius: '5px',
+  height: '530px',
+  margin: '8px 0',
+  background: 'black'
+}
+
+const style = useMemo(() => ({
+  ...dropboxDiv,
+}), []);
 
 useEffect(() => {
   if (resume) {
@@ -200,6 +226,7 @@ if(currentSlots){
   });
   // console.log(test);
 }
+console.log(currentSlots)
 return (
 	<div className='booking-content-section'>
     
@@ -215,7 +242,7 @@ return (
 					setSelectedCell={setSelectedCell}
 				/>
 				<div className='interview-slot-list'>
-					{currentSlots ? (
+					{currentSlots && currentSlots !== [] ? (
 						currentSlots.map(time => {
 							if (time.isOpen === true) {
 								return (
@@ -240,11 +267,11 @@ return (
 				</div>
 			</div>
 
-			{props.booking && props.booking.minute !== undefined ? (
+			{/* {props.booking && props.booking.minute !== undefined ? (
 				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
 			) : (
 				<p> Please select a time slot</p>
-			)}
+			)} */}
 		</div>
     </div>
     <div className="formsection">
@@ -253,18 +280,28 @@ return (
       </div>
       <div className='interviewq-content-container'>
         <div className='interviewq-booking-input'>
-      <h3>Resume Upload</h3>
-      <section className="container">
-      {/* <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} />
-        <span>{uploadBox()}</span>
-        <p>Click or drag file to this area to upload resume</p>
-      </div> */}
-      {/* <aside>
-        <h4>Files</h4>
-        <ul>{files}</ul>
-      </aside> */}
-    </section>
+          <h3>Resume Upload</h3>
+            {/* <section className="container"> */}
+              {/* <div {...getRootProps({style})}>
+                <input {...getInputProps({dropbox})} />
+                {
+                  isDragActive ?
+                    <p>Drop the files here ...</p> :
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                }
+                <h1>{`${isDragActive}`}</h1> 
+              </div>  */}
+
+            {/* <div {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+              <span>{uploadBox()}</span>
+              <p>Click or drag file to this area to upload resume</p>
+            </div> */}
+            {/* <aside>
+              <h4>Files</h4>
+              <ul>{files}</ul>
+            </aside> */}
+            {/* </section> */}
       <input
 							className=''
 							type='file'
@@ -272,7 +309,7 @@ return (
               accept="application/pdf"
 							onChange={e => setResume(e.target.files[0])}
 						/>
-        </div>
+        </div>  
         <div className='interviewq-booking-input'>
       <h3>What do you want to get out of mock interviews?</h3>
       <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' name='interviewGoals' value={props.booking.interviewGoals} onChange={handleChange} />
