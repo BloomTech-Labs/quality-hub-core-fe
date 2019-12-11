@@ -55,8 +55,6 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		days = [];
   }
 	
-//  CoachBooking(currentMonth);
-//  SeekerBooking(currentMonth);
  DisplayBookings(currentMonth);
  
 	return( 

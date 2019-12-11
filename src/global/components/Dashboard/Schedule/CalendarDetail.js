@@ -16,10 +16,28 @@ const [booking, setBooking] = useState([]);
 const [allBookings, setAllBookings] = useState();
 
 const node = useRef();
+const sortBookingsFunction = array =>{
+	array.sort((a,b)=>{
 
+	  if(a.hour > b.hour){
+		return 1;
+	  } else if(b.hour  > a.hour){
+		return -1;
+	  } 
+	  else if(a.minute > b.minute){
+		return 1;
+	  } else{
+		return -1;
+	  }
+  
+	});
+	return array;
+}
 useEffect(()=>{
 if(data){
-	setAllBookings(data.bookingsByCoach.concat(data.bookingsBySeeker))
+let bookingArray = sortBookingsFunction([...data.bookingsByCoach, ...data.bookingsBySeeker]);
+
+	setAllBookings(bookingArray);
 }
 },[data])
 
@@ -37,12 +55,10 @@ const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 // const selectedMonth = format(selectedDate, 'M');
   const selectedDay = format(selectedDate, 'd');
 
-  //Krishan Commented this line out
+//Krishan Commented this line out
 // const booking = data && allBookings.filter(month => {return month.day === Number(selectedDay)});
 
-// console.log(booking)
 // const coachBooking = data && booking.filter(booking => booking.coach.id === localStorage.getItem('id'));
-// console.log('coachBooking', coachBooking)
 // const seekerBooking = data && booking.filter(booking => booking.seeker.id === localStorage.getItem('id'));
 const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`

@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 const WeekBooking = ({ booking }) => {
 
   const bookingDate = new Date(booking.year, booking.month - 1, booking.day, booking.hour, booking.minute);
-  console.log(bookingDate);
+//   console.log(bookingDate);
 	const bookingDay = format(bookingDate, "EEE");
 	const bookingTime = format(bookingDate, "p")
   

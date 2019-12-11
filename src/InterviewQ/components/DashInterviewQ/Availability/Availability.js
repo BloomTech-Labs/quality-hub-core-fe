@@ -131,8 +131,17 @@ const Availability =() => {
   }
 
   const deleteAvail = (h, m) => {
+    const delAvail ={
+      start_hour: h,
+      start_minute: m,
+      year: format(selectedCell, 'yyyy'),
+      month: currentMonth,
+      day: currentDate
+    }
+    const delUtc = convertToUTC(delAvail)
+    console.log(delUtc)
     let checkvar = {
-      uniquecheck: `${localStorage.getItem('id')}-${format(selectedCell, 'yyyy')}-${currentMonth}-${currentDate}-${h}-${m}`
+      uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.start_hour}-${delUtc.start_minute}`
     };
     removeAvail({ variables: checkvar })
     .then(res => {
@@ -153,6 +162,7 @@ const Availability =() => {
   };
 
   useEffect(() => {
+    // console.log('hello!')
     // let localAvails = availabilities ? availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)) : [];
     // let currentAvails = availabilities ? availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth) : [];
     // availabilities ? setDateAvails(currentAvails.map(avail => convertToLocal(avail))) : setDateAvails([])
@@ -183,13 +193,14 @@ const Availability =() => {
   //     start_minute: 30,
   //     uniquecheck: "ck34qxshk000e0796rsdew5t32019129130",
   //     year: 2019}))
+  // console.log(availabilities)
   return(
     <>
     
     <div className=' availability-container'>
    
     <div className='coach-availability'>
-      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} />
+      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities}/>
       <div className='interview-slot-list'>
         {timeObjs.map(time => {
           // console.log('map running')
