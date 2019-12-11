@@ -15,6 +15,8 @@ const { data, refetch, loading } = useQuery(ALL_BOOKINGS, {variables: {seekerId:
 const [booking, setBooking] = useState([]);
 const [allBookings, setAllBookings] = useState();
 const [selectedDay, setSelectedDay] = useState(format(selectedDate, 'd'));
+const [selectedMonth, setSelectedMonth] = useState(format(selectedDate, "M"));
+
 
 const node = useRef();
 const sortBookingsFunction = array =>{
@@ -46,7 +48,10 @@ let bookingArray = sortBookingsFunction([...data.bookingsByCoach, ...data.bookin
 useEffect(()=>{
 	if(allBookings){
 		let convertedBookings = allBookings.map(booking => convertToLocal(booking))
-		setBooking(convertedBookings.filter(month => {return month.day === Number(selectedDay)}))
+		setBooking(convertedBookings.filter(month => {
+			console.log(month);
+			return (month.day === Number(selectedDay) && month.month === Number(selectedMonth));
+		}))
 	}
 },[allBookings])
 

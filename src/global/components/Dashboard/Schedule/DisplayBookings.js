@@ -20,11 +20,11 @@ export const DisplayBookings = currentMonth => {
 		let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`;
 		let localAvailMin = obj.minute === 0 ? '00' : '30';
 		let localAvail;
-		if(obj.month < 10){
+		if (obj.month < 10) {
 			localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-		  } else{
+		} else {
 			localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-		  }
+		}
 		let zoned = utcToZonedTime(localAvail, localTime);
 		let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
 
@@ -41,9 +41,7 @@ export const DisplayBookings = currentMonth => {
 	};
 
 	useEffect(() => {
-    
 		if (bookingsBySeeker && bookingsByCoach) {
-      
 			// const allBooking = bookingsBySeeker.bookingsBySeeker.join(bookingsByCoach.bookingsByCoach)
 			// const convertedArr = allBooking.map(booking => convertToLocal(booking));
 			// setRenderBookings(convertedArr)
@@ -68,25 +66,26 @@ export const DisplayBookings = currentMonth => {
 		});
 		return array;
 	};
-  
+
 	const renderPerCell = (array, i) => {
-    let counter = 0;
-    
+		let counter = 0;
+
 		array.forEach(appt => {
-      const localAppt = convertToLocal(appt);
+			const localAppt = convertToLocal(appt);
 			if (localAppt.day === i && counter < 2) {
 				counter++;
-				const apptId = `${localAppt.month}${localAppt.day}`;
+				const apptId = `${localAppt.month}-${localAppt.day}`;
+				console.log(apptId);
 				const booking = document.getElementById(apptId);
 				//  if (booking && index <= 52) {
 				const div = document.createElement('div');
 				div.setAttribute('class', 'coach-booking');
 				div.textContent = `InterviewQ ${
 					localAppt.hour === 0 ? 12 : localAppt.hour
-        }:${localAppt.minute === 0 ? '00' : '30'}`;
-        if(booking){
-          booking.appendChild(div);
-        }
+				}:${localAppt.minute === 0 ? '00' : '30'}`;
+				if (booking) {
+					booking.appendChild(div);
+				}
 				//  } else if (booking && index === 3) {
 				//  const div = document.createElement('div');
 				//  div.setAttribute('class', 'seeker-booking');
@@ -100,23 +99,22 @@ export const DisplayBookings = currentMonth => {
 				const booking = document.getElementById(apptId);
 				const div = document.createElement('div');
 				div.setAttribute('class', 'seeker-booking');
-        div.textContent = `...`;
-        if(booking){
-
-          booking.appendChild(div);
-        }
+				div.textContent = `...`;
+				if (booking) {
+					booking.appendChild(div);
+				}
 				counter++;
 			}
 		});
 	};
 
 	useEffect(() => {
-    let sortBookings;
+		let sortBookings;
 		if (renderBookings) {
-      sortBookings = sortBookingsFunction(renderBookings);
+			sortBookings = sortBookingsFunction(renderBookings);
 		}
 		if (renderBookings && sortBookings) {
-      let counter = 0;
+			let counter = 0;
 			for (let i = 1; i < 32; i++) {
 				renderPerCell(sortBookings, i);
 				//   sortBookings.map((appt, index) => {

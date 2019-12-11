@@ -30,7 +30,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	while (day <= endDate) {
 		for (let i = 0; i < 7; i++) {
 			formattedDate = format(day, dateFormat);
-			cellId = format(day, 'Md');
+			cellId = format(day, 'M') + '-' + format(day, 'd');
 			const cloneDay = day;
 			days.push(
 				<div
@@ -61,6 +61,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 // 	console.log('ue')
 // 	setStateMonth(currentMonth);
 // },[currentMonth])
+console.log('current month', currentMonth);
 DisplayBookings(currentMonth);
  
 	return( 
