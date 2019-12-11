@@ -1,5 +1,4 @@
 /* VARIABLES */
-
 $main-cal-color: #096dd9;
 $text-cal-color: #777;
 $text-cal-color-light: #ccc;
@@ -267,7 +266,7 @@ $neutral-cal-color: #fff;
 		border-radius: 8px;
 	}
 }
-.time-column{
+.time-column {
 	// border: 1px solid green;
 }
 .week-container {
@@ -281,25 +280,21 @@ $neutral-cal-color: #fff;
 	// 			// border-top: green !important;
 	// 			// I made a bug
 	// 		}
-  width: 900px;
-  margin-top: 6rem;
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 70px repeat(7, 112px);
-  grid-template-rows: 50px repeat(49, 25px);
-   height:600px;
-   overflow:scroll;
-	 overflow-x:hidden;
+	width: 900px;
+	margin-top: 6rem;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: 70px repeat(7, 112px);
+	grid-template-rows: 50px repeat(49, 25px);
+	height: 600px;
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 // .weekview-border{
 // 	background-color: gray;
 // 	z-index: -99;
 // }
-.week-container div {
-	// background-color: white;
-	// padding: 10px;
-}
 
 .top-row {
 	font-size: 14px;
@@ -329,20 +324,13 @@ $neutral-cal-color: #fff;
 	color: #5f6368;
 	display: grid;
 	font-size: 12px;
-  grid-row: 2 / 51;
-  grid-gap: 5px;
-  grid-template-rows: repeat(49, 25px);
-  :nth-child(even){
-	visibility: hidden;
-  }
+	grid-row: 2 / 51;
+	grid-gap: 5px;
+	grid-template-rows: repeat(49, 25px);
+	:nth-child(even) {
+		visibility: hidden;
+	}
 }
-
-.booking{
-  color: #CF1322;;
-	background-color: #FFCCC7;;
-	border-left: 3px solid #CF1322;
-	p{
-		font-size: 12px;
 
 .booking {
 	color: #cf1322;
@@ -352,7 +340,6 @@ $neutral-cal-color: #fff;
 		font-size: 12px;
 	}
 }
-
 .Mon {
 	grid-column: 3 / 4;
 }
@@ -627,13 +614,13 @@ $neutral-cal-color: #fff;
 	max-width: 100%;
 }
 
-.match-light-blue{
-justify-content: center;
-		height: 50px;
-		width: 50px;
-		color: white;
-		background-color: lightblue;
-		border-radius: 50%;
+.match-light-blue {
+	justify-content: center;
+	height: 50px;
+	width: 50px;
+	color: white;
+	background-color: lightblue;
+	border-radius: 50%;
 }
 
 .small-col-center {
@@ -661,20 +648,20 @@ justify-content: center;
 	// border-bottom: 1px solid var(--border-color);
 }
 
-	.small-selected{
-		justify-content: center;
-		height: 50px;
-		width: 50px;
-		color: white;
-		background-color: $main-cal-color;
-		border-radius: 50%;
-	}
-	
+.small-selected {
+	justify-content: center;
+	height: 50px;
+	width: 50px;
+	color: white;
+	background-color: $main-cal-color;
+	border-radius: 50%;
+}
 
 .number {
 	display: flex;
 	align-items: center;
 }
+
 .small-calendar-select {
 	display: flex;
 	justify-content: space-between;
