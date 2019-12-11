@@ -6,23 +6,36 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 
 const ConfirmInterview = ({ booking, history }) => {
 
+  console.log(booking)
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const convertToUTC = (obj) => {
     let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.hour, obj.minute)
-     console.log(localAvail)
+    //  console.log(localAvail)
     let utc = zonedTimeToUtc(localAvail, localTime);
     // console.log(utc)
     let utcArr = utc.toISOString().split(/[T:-]/g);
     // console.log(utcArr);
     const availAMin = obj.minute === 30 ? 30 : 0;
     const availAHour = utcArr[3].charAt(0) === '0' ? utcArr[3].substr(1, 1) : utcArr[3];
-    console.log(utcArr[3].substr(1));
-    const availAMonth = utcArr[2].charAt(0) === '0' ? utcArr[2].substr(1, 1) : utcArr[2];
-    const availA = `${obj.coach}-${utcArr[0]}-${utcArr[1]}-${availAMonth}-${availAHour}-${availAMin}`
     
+    const availAMonth = utcArr[2].charAt(0) === '0' ? utcArr[2].substr(1, 1) : utcArr[2];
+    // const availA = `${obj.coach}-${utcArr[0]}-${8}-${availAMonth}-${availAHour}-${availAMin}`
+    console.log(typeof(utcArr[1]))
+    console.log(utcArr[1]);
+    if(utcArr[1].charAt(0)==="0"){
+      utcArr[1]=utcArr[1].charAt(1);
+    }
+    console.log(utcArr[1]);
+    const availA = `${obj.coach}-${utcArr[0]}-${utcArr[1]}-${availAMonth}-${availAHour}-${availAMin}`
+    // console.log(availA);
+    // console.log(availAMonth);
+    // console.log(utcArr);
+    // console.log(availAHour);
+    // console.log(availAMin);
     const availBMin = availAMin === 30 ? 0 : 30;
     const availBHour = availBMin === 30 ? availAHour : Number(availAHour) + 1;
+    // const availB = `${obj.coach}-${utcArr[0]}-${8}-${availAMonth}-${availBHour}-${availBMin}`
     const availB = `${obj.coach}-${utcArr[0]}-${utcArr[1]}-${availAMonth}-${availBHour}-${availBMin}`
     let UTCdate = {
       ...obj,
@@ -34,7 +47,7 @@ const ConfirmInterview = ({ booking, history }) => {
       hour: Number(utcArr[3]),
       minute: Number(utcArr[4])
     }
-    console.log(UTCdate)
+    // console.log(UTCdate)
     return UTCdate
   }
 
@@ -42,6 +55,7 @@ const ConfirmInterview = ({ booking, history }) => {
 
   const submitBooking = () => {
     const utcBooking = convertToUTC(booking)
+    console.log(utcBooking)
     newBooking({ variables: utcBooking })
   .then(res => {
     // setDateAvails([...dateAvails, availability])
@@ -63,20 +77,27 @@ const ConfirmInterview = ({ booking, history }) => {
   return(
     <div className='booking-content-section'>
     <div className='formsection'>
-    <div className='interviewq-header-container'>
-      <h2>Interview Appointment Confirmation</h2>
+    <div className='interviewq-header-container interviewq-conf-heading'>
+      <h2>Confirmation</h2>
       </div>
-      <div className='interviewq-booking-input'>
-      
-   <h3>Your booking will be scheduled for {bookingDate}</h3>
+      <p> Please review the details of your mock interview, and click 'Confirm' to schedule it with your coach!</p>
+      <div className='interviewq-content-container interviewq-conf-container'>
+      <div className='interviewq-conf-section'>
+      <h3>Coach</h3> <p>{booking.coachName}</p>
+      </div>
+      <div className='interviewq-conf-section'>
+   <h3>Date</h3> <p> {bookingDate}</p>
    </div>
-   <div className='interviewq-booking-input'>
+   <div className='interviewq-conf-section'>
    <h3>What do you want to get out of mock interviews?</h3>
+   <p>{booking.interviewGoals}</p>
    </div>
-   <div className='interviewq-booking-input'>
+   <div className='interviewq-conf-section'>
    <h3>What kind of interview questions do you want to focus on?</h3>
+   <p>{booking.interviewQuestions}</p>
    </div>
-   <button className='interview-button' onClick={submitBooking}>Submit</button>
+   </div>
+   <button className='interview-button' onClick={submitBooking}>Confirm</button>
    </div>
 </div>
     

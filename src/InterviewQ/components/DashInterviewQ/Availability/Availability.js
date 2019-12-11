@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { timeObjs } from '../../../../global/components/Dashboard/Schedule/TimeArrays';
 import './Availability.scss';
-import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY } from './Resolvers';
+import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY, AVAIL_BY_UNIQUE } from './Resolvers';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, getMonth } from 'date-fns';
@@ -26,9 +26,7 @@ const Availability =() => {
   
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
   
-  //  console.log(localTime);
   useEffect(() => {
-     console.log(availabilities);
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
     setCurrentDate(Number(format(selectedCell, 'd')));
     setSetter(!setter)
@@ -46,6 +44,7 @@ const Availability =() => {
 
 
   const timeFilter = (hour, min) => {
+    // console.log('time filter')
     let returnvar = false;
     (availabilities && dateAvails) &&
       dateAvails.forEach(({ start_hour, start_minute }) => {
@@ -59,6 +58,7 @@ const Availability =() => {
   // `${obj.year}-${obj.month}-0${obj.day}T0${obj.start_hour}:${obj.start_minute}:00:000Z`
   
   const convertToUTC = (obj) => {
+
     let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.start_hour, obj.start_minute)
     let utc = zonedTimeToUtc(localAvail, localTime);
     let utcArr = utc.toISOString().split(/[T:-]/g);
@@ -78,7 +78,12 @@ const Availability =() => {
     let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
     let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
     let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-    let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+    let localAvail;
+    if(obj.month < 10){
+      localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+    } else{
+      localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+    }
     let zoned = utcToZonedTime(localAvail, localTime);
     let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
     let zonedDate = {
@@ -107,33 +112,58 @@ const Availability =() => {
       start_hour: hour,
       start_minute: minute,
     };
-    // console.log(newObj)
-    // console.log(dateAvails)
+    
+    
     // let localAvail = new Date(newObj.year, newObj.month - 1, newObj.day, newObj.start_hour, newObj.start_minute);
     // let utcAvail = utcToZonedTime(localAvail, localTime);
-    // console.log(localAvail);
-    // console.log(utcAvail.toISOString().split('-').join(', ').split('T'));
-    // console.log(utcAvail.toISOString());
+
+    
     const utcAvail = convertToUTC(newObj);
-    // console.log(utcAvail);
+    
     let utcObj = {
       ...availability,
       ...utcAvail
     }
-    // console.log(utcObj);
+    
     newAvail({ variables: utcObj })
       .then(res => {
+        console.log('newAvail Refetch')
         refetch();
         // setDateAvails([...dateAvails, availability])
-        console.log('successful post', utcObj)
+        
       })
       .catch(err => console.log(err))
   }
-
+useEffect(()=>{
+  console.log('current month refetch')
+  refetch();
+},[currentMonth])
+  const checkAvail = (checkvar) => {
+    if(dateAvails){
+      dateAvails.forEach(avail => {
+        if(avail.uniquecheck === checkvar.uniquecheck){
+          return avail.isOpen === true ? true : false
+      } else {
+        return true
+      }
+    })
+    }
+    return true
+  }
   const deleteAvail = (h, m) => {
+    const delAvail ={
+      start_hour: h,
+      start_minute: m,
+      year: format(selectedCell, 'yyyy'),
+      month: currentMonth,
+      day: currentDate
+    }
+    const delUtc = convertToUTC(delAvail)
+    
     let checkvar = {
-      uniquecheck: `${localStorage.getItem('id')}-${format(selectedCell, 'yyyy')}-${currentMonth}-${currentDate}-${h}-${m}`
+      uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.start_hour}-${delUtc.start_minute}`
     };
+    if (checkAvail(checkvar) === true){
     removeAvail({ variables: checkvar })
     .then(res => {
       refetch();
@@ -141,6 +171,10 @@ const Availability =() => {
     })
     .catch(err => console.log(err))
   }
+  else {
+    console.log('cannot delete')
+  }
+} 
 
   const toggleAvail = (e, h, m) => {
     if(e.target.className === 'available-slot interview-slot'){
@@ -153,6 +187,7 @@ const Availability =() => {
   };
 
   useEffect(() => {
+    
     // let localAvails = availabilities ? availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)) : [];
     // let currentAvails = availabilities ? availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth) : [];
     // availabilities ? setDateAvails(currentAvails.map(avail => convertToLocal(avail))) : setDateAvails([])
@@ -160,7 +195,7 @@ const Availability =() => {
     // availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth)) : setDateAvails([]);
     // console.log('maybe a thing', dateAvails, currentDate, currentMonth)
     // eslint-disable-next-line
-  }, [setter || availabilities])
+  }, [setter || availabilities, selectedCell])
 
   // console.log(dateAvails);
 
@@ -183,13 +218,14 @@ const Availability =() => {
   //     start_minute: 30,
   //     uniquecheck: "ck34qxshk000e0796rsdew5t32019129130",
   //     year: 2019}))
+  // console.log(availabilities)
   return(
     <>
     
     <div className=' availability-container'>
    
     <div className='coach-availability'>
-      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} />
+      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />
       <div className='interview-slot-list'>
         {timeObjs.map(time => {
           // console.log('map running')

@@ -6,7 +6,7 @@ import { utcToZonedTime } from 'date-fns-tz';
 
 export const CoachBooking = (currentMonth) => {
 
-const { data: bookingsByCoach } = useQuery(COACH_BOOKINGS, {variables: {coachId: localStorage.getItem('id')}});
+const { data: bookingsByCoach, refetch } = useQuery(COACH_BOOKINGS, {variables: {coachId: localStorage.getItem('id')}});
 
 const [counter, setCounter] = useState(0);
 
@@ -17,7 +17,12 @@ const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
   let localAvailMin = obj.minute === 0 ? '00' : '30'
-	let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let localAvail;
+	if(obj.month < 10){
+    localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  } else{
+    localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  }
 	console.log(localAvail)
   let zoned = utcToZonedTime(localAvail, localTime);
   console.log(zoned)
@@ -39,9 +44,9 @@ const convertToLocal = (obj) => {
   useEffect(() => {
    bookingsByCoach && bookingsByCoach.bookingsByCoach.map((appt, index) => {
      const localAppt = convertToLocal(appt);
-    const apptId = `${appt.month}${appt.day}`;
+    const apptId = `${appt.month}-${appt.day}`;
     const booking = document.getElementById(apptId);
-		if (booking && index <= 2) {
+		if (booking && index <= 32) {
 			const div = document.createElement('div');
 			div.setAttribute('class', 'coach-booking');
 			div.textContent = `InterviewQ ${localAppt.hour === 0 ? 12 : localAppt.hour}:${localAppt.minute === 0 ? '00' : '30'}`;

@@ -4,9 +4,9 @@ import AvatarDropdown from './AvatarDropdown';
 import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import {Bellicon} from '../../../globalIcons/bellicon';
+import { Bellicon } from '../../../globalIcons/bellicon';
 
-import {Hamburger} from '../../../globalIcons/hamburger';
+import { Hamburger } from '../../../globalIcons/hamburger';
 
 const GET_USER = gql`
 	query dropdownMenu {
@@ -21,10 +21,9 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const [getUser, { client, error, data, loading }] = useLazyQuery(GET_USER);
 	const [errorCount, setErrorCount] = useState(0);
 
-	const title = location.pathname.match(/\/(.*)q/);
+	const title = location.pathname.match(/\/(.*?)q/);
 	const navtitle =
 		title && title[1].charAt(0).toUpperCase() + title[1].substring(1);
-
 
 	const logout = () => {
 		localStorage.clear();
@@ -46,7 +45,6 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 		setLoggedin(true);
 	}
 
-
 	if (error && errorCount === 0) {
 		if (error === 'Error: Network error: Failed to fetch') {
 		} else {
@@ -58,19 +56,22 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	}
 
 	return (
-		<div className="styled-nav" id="main-navbar">
-			<div className="nav-left">
-				<NavLink to="/">
-					<div className="navbar-hamburger-and-title"><div className="navbar-hamburger-icon">{Hamburger()}</div><h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2></div>
+		<div className='styled-nav' id='main-navbar'>
+			<div className='nav-left'>
+				<NavLink to='/'>
+					<div className='navbar-hamburger-and-title'>
+						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
+						<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
+					</div>
 				</NavLink>
 			</div>
 
-			<div className="nav-right">
+			<div className='nav-right'>
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>
-						<NavLink to="signin"> Sign In </NavLink>
-						<NavLink to="signup" className="signup-link">
+						<NavLink to='/signin'> Sign In </NavLink>
+						<NavLink to='/signup' className='signup-link'>
 							{' '}
 							Sign Up{' '}
 						</NavLink>
