@@ -126,15 +126,19 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 	};
 
 	useEffect(() => {
-		scheduleBody[0].scrollTo(0, 500);
+		scheduleBody[0].scrollTo(0, 480);
 	});
 
 	return (
-		<>
-			<div className='week-header'>
-				<button onClick={handleBack}>{backArrow()}</button>
-				<button onClick={handleNext}>{nextArrow()}</button>
-				<select onChange={onMonthChange} value={getMonth(selectedDate)}>
+		<div className='calendar'>
+				<header className='calendar-header'>
+				<div className='cal-header row flex-middle'>
+					<div className='col col-start'>
+						{/* <h2>{format(currentMonth, "MMMM")}</h2> */}
+					</div>
+					<div className='col calendar-select'>
+						<button className='calendar-button' onClick={handleBack}>{backArrow()}</button>
+						<select onChange={onMonthChange} value={getMonth(selectedDate)}>
 					{months.map(month => {
 						return (
 							<option key={month.num} value={month.num}>
@@ -152,10 +156,21 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 						);
 					})}
 				</select>
-				<Link to='/dashboard/schedule'>Month</Link>
-			</div>
+						<button className='calendar-button' onClick={handleNext}>{nextArrow()}</button>
+
+						<Link to='/dashboard/schedule'>
+				<button className='calendar-button'>
+					<p>
+					Month
+					</p>
+					</button>
+					</Link>
+					
+					</div>
+				</div>
+			</header>
 			<div
-				className='week-container weekview-border'
+				className='week-container'
 				name='weekContainer'
 				id='weekContainer'>
 				<div className='time-column'>{times}</div>
@@ -169,7 +184,7 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 						<WeekBooking booking={booking} key={booking} />
 					))}
 			</div>
-		</>
+		</div>
 	);
 };
 

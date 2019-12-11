@@ -8,7 +8,9 @@ import { ALL_BOOKINGS } from './Queries';
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
 
-// import { nextArrow }
+import { nextArrow } from '../../../../globalIcons/nextArrow';
+import { backArrow } from '../../../../globalIcons/backArrow';
+
 import { days, months, years } from './TimeArrays'
 
 const Calendar = ({ selectedDate, setSelectedDate }) => {
@@ -90,7 +92,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 						<h2>{format(currentMonth, "MMMM")}</h2>
 					</div>
 					<div className='col calendar-select'>
-						<button onClick={lastMonth}>&#x00AB;</button>
+						<button className='calendar-button' onClick={lastMonth}>{backArrow()}</button>
 						<select
 							onChange={onMonthChange}
 							value={getMonth(new Date(currentMonth))}>
@@ -113,8 +115,15 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 								);
 							})}
 						</select>
-						<button onClick={nextMonth}>&#x00BB;</button>
-						<Link to='/dashboard/schedule/week'>Week</Link>
+						<button className='calendar-button' onClick={nextMonth}>{nextArrow()}</button>
+
+						<Link to='/dashboard/schedule/week'>
+						<button className='calendar-button'>
+							<p>
+							Week
+							</p>
+							</button>
+							</Link>
 					</div>
 				</div>
 			</header>

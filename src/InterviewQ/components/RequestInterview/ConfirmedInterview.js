@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { greencheckcircle } from '../../../globalIcons/checkcircle'
 
 const ConfirmedInterview = () => {
@@ -15,6 +16,7 @@ const ConfirmedInterview = () => {
 				Also note, you will not be charged if the coach is unable to make the
 				meeting
 			</p>
+			<Link to='/dashboard/schedule'>Go to your schedule</Link>
 		</div>
     </>
 	);

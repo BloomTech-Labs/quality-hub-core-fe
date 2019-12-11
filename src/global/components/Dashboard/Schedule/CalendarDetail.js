@@ -27,87 +27,6 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		},
 	});
 
-<<<<<<< HEAD
-// const selectedMonth = format(selectedDate, 'M');
-  const selectedDay = format(selectedDate, 'd');
-
-//Krishan Commented this line out
-// const booking = data && allBookings.filter(month => {return month.day === Number(selectedDay)});
-
-// const coachBooking = data && booking.filter(booking => booking.coach.id === localStorage.getItem('id'));
-// const seekerBooking = data && booking.filter(booking => booking.seeker.id === localStorage.getItem('id'));
-const convertToLocal = (obj) => {
-  let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
-  let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`
-  let localAvailMin = obj.minute === 0 ? '00' : '30'
-	let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-  let zoned = utcToZonedTime(localAvail, localTime);
-  let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-
-  let zonedDate = {
-    ...obj,
-    year: Number(zonedArr[0]),
-    month: Number(zonedArr[1]),
-    day: Number(zonedArr[2]),
-    hour: Number(zonedArr[3]),
-    minute: Number(zonedArr[4])
-    
-  }
-
-  return zonedDate
-}
-return (
-	<div>
-		<div className='cal-detail-header'>
-  <span  onClick={() => setOpen(false)}>X</span>
-	</div>
-		{booking[0] ? (
-			<div>
-				{booking.map((info, index) => {
-					//const localInfo = convertToLocal(info)
-					return info.coach.id === localStorage.getItem('id') ? (
-						<div className = "coach-detail" key={index}>
-							<h3>
-								<span>&#x25FC;</span> InterviewQ
-							</h3>
-							<p>
-								<Icon
-									icon={ICONS.PERSONALINFO}
-									width={20}
-									height={15}
-									color='#777'
-								/>
-								  {info.seeker.first_name} {info.seeker.last_name} (Seeker)
-							</p>
-							{/* <p>		&#x2709;
-                {info.seeker.email}</p> */}
-							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
-							<p>{paperclip()} {info.resumeString ? info.resumeString : 'No resume provided'}</p>
-							<div>
-							<p>{document()} What do you want to get out of your mock interview?</p>
-							<p className='indented intres'>{info.interviewGoals}</p>
-							<p className='indented'>What kind of questions do you want to focus on?</p>
-							<p className='indented intres'>{info.interviewQuestions}</p>
-							</div>
-						</div>
-					) : (
-						<div className= "seeker-detail" key={index}>
-							<h3>
-								<span>&#x25FC;</span> InterviewQ
-							</h3>
-							<p>
-								<Icon
-									icon={ICONS.PERSONALINFO}
-									width={15}
-									height={15}
-									color='#777'
-								/>
-								  {info.coach.first_name} {info.coach.last_name} (Coach)
-							</p>
-							{/* <p>&#x2709;{info.coach.email}</p> */}
-							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
-						{/* <p>What do you want to get out of mock interviews?</p>
-=======
 	const [booking, setBooking] = useState([]);
 	const [allBookings, setAllBookings] = useState();
 	const [selectedDay, setSelectedDay] = useState(format(selectedDate, 'd'));
@@ -216,15 +135,12 @@ return (
 	return (
 		<div>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
-				{/* X */}
 				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
 			{booking[0] ? (
 				<div>
 					{booking.map((info, index) => {
 						console.log(info);
-						//const localInfo = convertToLocal(info)
-						// let someId = info.id;
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
 								<h3>
@@ -237,12 +153,7 @@ return (
 										height={15}
 										color='#777'
 									/>
-									{info.seeker.first_name} {info.seeker.last_name}
-								</p>
-								<p>
-									{' '}
-									&#x2709;
-									{info.seeker.email}
+									{info.seeker.first_name} {info.seeker.last_name} (Seeker)
 								</p>
 								<p>
 									{clock()}{' '}
@@ -257,9 +168,13 @@ return (
 										'PPPP - p ',
 									)}
 								</p>
-								{/* <button className='default-btn' onClick={() => setOpen(false)}>
-								done
-							</button> */}
+										<p>{paperclip()} {info.resumeURL === null ? <span>No resume provided</span> : <a target='_blank' rel='noopener noreferrer' href={info.resumeURL}>Download Resume</a>}</p>
+							<div>
+							<p>{document()} What do you want to get out of your mock interview?</p>
+							<p className='indented intres'>{info.interviewGoals}</p>
+							<p className='indented'>What kind of questions do you want to focus on?</p>
+							<p className='indented intres'>{info.interviewQuestions}</p>
+							</div>
 								{console.log('jargon', info)}
 								{info.id && (
 									<button
@@ -287,10 +202,10 @@ return (
 										height={15}
 										color='#777'
 									/>
-									{info.coach.first_name} {info.coach.last_name}
+									{info.coach.first_name} {info.coach.last_name} (Coach)
 								</p>
-								<p>&#x2709;{info.coach.email}</p>
-								<p>
+
+								<p> 
 									{clock()}{' '}
 									{format(
 										new Date(
@@ -303,27 +218,35 @@ return (
 										'PPPP - p ',
 									)}
 								</p>
-								{/* <p>What do you want to get out of mock interviews?</p>
->>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
-						<p>{info.interviewGoals}</p>
-						<p>What kind of questions do you want to focus on?</p>
-						<p>{info.interviewQuestions}</p> */}
+								{info.id && (
+									<button
+										className={`${info.id} delete-booking-btn`}
+										data-id={`${info.uniquecheck}`}
+										data-year={info.year}
+										data-month={info.month}
+										data-day={info.day}
+										data-hour={info.hour}
+										data-minute={info.minute}
+										onClick={e => handleDelete(e)}>
+										Cancel Booking
+									</button>
+								)}
 							</div>
 						);
 					})}
 				</div>
 			) : (
-				<div>
-					{loading ? (
+				// console.log('its working???')
+				<div className='coach-detail'>
+					{/* {loading ? (
 						<p>Please Wait. Loading...</p>
-					) : (
+						
+					) : ( */}
+					
 						<h3 className='no-bookings'>No bookings</h3>
-					)}
+					{/* // )} */}
 				</div>
 			)}
-			{/* <button className='default-btn' onClick={() => setOpen(false)}>
-					done
-				</button> */}
 		</div>
 	);
 };

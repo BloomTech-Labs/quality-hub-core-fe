@@ -58,10 +58,10 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
   }
 	
 //   useEffect(()=>{
-// 	console.log('ue')
+
 // 	setStateMonth(currentMonth);
 // },[currentMonth])
-console.log('current month', currentMonth);
+
 DisplayBookings(currentMonth);
  
 	return( 

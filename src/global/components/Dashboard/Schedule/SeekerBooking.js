@@ -41,7 +41,7 @@ const convertToLocal = (obj) => {
 useEffect(() => {
 	bookingsBySeeker &&
 		bookingsBySeeker.bookingsBySeeker.map((appt, index) => {
-			const apptId = `${appt.month}${appt.day}`;
+			const apptId = `${appt.month}-${appt.day}`;
 			const booking = document.getElementById(apptId);
 
 			const localAppt = convertToLocal(appt)
