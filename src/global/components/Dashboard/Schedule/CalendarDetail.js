@@ -11,7 +11,6 @@ import Loading from '../../../../Core/components/Loading';
 const CalendarDetail = ({ selectedDate,  setOpen }) => { 
 
 const { data, refetch, loading } = useQuery(ALL_BOOKINGS, {variables: {seekerId: localStorage.getItem('id'), coachId: localStorage.getItem('id')}});
-
 const [booking, setBooking] = useState([]);
 const [allBookings, setAllBookings] = useState();
 
