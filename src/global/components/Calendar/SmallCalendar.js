@@ -21,9 +21,11 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 
 	const nextMonth = () => {
 		setCurrentMonth(addMonths(currentMonth, 1))
+		
 	}
 	const lastMonth = () => {
 		setCurrentMonth(subMonths(currentMonth, 1))
+	
 	}
 	const onDateClick = day => {
 		setSelectedCell(day);
@@ -32,7 +34,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		setSelectedCell(new Date(year, 1, 1), e.target.value)
+		setSelectedCell(new Date(year, e.target.value, 1))
 	};
 
 	const onYearChange = e => {

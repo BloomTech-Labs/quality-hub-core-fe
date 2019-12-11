@@ -181,6 +181,7 @@ const getAvailableSlots = () => {
   }
   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
 setCurrentSlots(bookingArray);
+
 }
 if(currentSlots){
   // let test = [...currentSlots];
@@ -199,6 +200,8 @@ if(currentSlots){
 
   });
 }
+console.log(currentSlots)
+console.log(selectedCell)
 return (
 	<div className='booking-content-section'>
     
