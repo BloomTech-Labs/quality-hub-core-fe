@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import InterviewLandingPage from '../InterviewQ/components/Landing Page/index';
 import DashInterviewQ from './components/DashInterviewQ/DashInterviewQ';
 import CoachForm from './components/CoachForm/CoachForm';
@@ -7,24 +7,20 @@ import QNav from './components/QNav';
 import { Route } from 'react-router-dom';
 import BookingContainer from './components/RequestInterview/BookingContainer';
 import ConfirmedInterview from './components/RequestInterview/ConfirmedInterview';
-import CoachReport from './components/Review/CoachReport';
 
 const InterviewQContainer = () => {
+
 	return (
 		<>
-			<QNav />
+				<QNav />
 			<div>
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
 				<Route path='/interviewq/coachlist' component={CoachList} />
-				<Route path='/interviewq/booking' component={BookingContainer} />
-				<Route path='/interviewq/settings' component={DashInterviewQ} />
-				<Route
-					path='/interviewq/interviewconfirmed'
-					component={ConfirmedInterview}
-				/>
-				<Route path='/interviewq/coachreport' component={CoachReport} />
-			</div>
+				 <Route path='/interviewq/booking' component={BookingContainer} />
+        <Route path='/interviewq/settings' component={DashInterviewQ} />
+        <Route path='/interviewq/interviewconfirmed' component={ConfirmedInterview} />
+      </div>
 		</>
 	);
 };
