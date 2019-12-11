@@ -13,14 +13,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	// console.log(industries);
 	const { loading, data: coachPost } = useQuery(GET_COACH_POST, {
-		variables: { coach_id: localStorage.getItem('id') },
+		variables: { coach_id: localStorage.getItem('id') }
 	});
-	console.log('coachpost', coachPost);
+	console.log('coachpost', coachPost.postByCoach);
 
   	const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
 
-
+	const [published, setPublished] = useState();
 	const [editing, setEditing] = useState([
 		false,
 		false,
@@ -39,13 +39,13 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	useEffect(() => {
 		if (coachPost) {
-      setOriginal({...coachPost['postByCoach']});
+	setPublished(coachPost.postByCoach.isPublished) && setOriginal({...coachPost['postByCoach']});
 		}
 	}, [coachPost]);
 
-	// console.log('orig', coachPost.postByCoach);
+	// console.log('orig', coachPost.postByCoach.isPublished);
 	// console.log('coach', coachObj)
-console.log('boiii', original)
+// console.log('boiii', original)
 	
 
 
@@ -147,15 +147,26 @@ console.log('boiii', original)
 
   const handleSubmitPost = e => {
 	e.preventDefault();
-	changeField({ variables: { id: post.id, isPublished: true}})
+	changeField({ variables: { id: post.id, isPublished: true }})
 		.then(res => {
-			console.log(res.data.updatePost.isPublished);
+			console.log(res.data.updatePost);
 		})
 		.catch(err => {
 			console.log(err);
 		});
 	};
 
+	const handleUnpublish = e => {
+		e.preventDefault();
+		changeField({ variables: { id: post.id, isPublished: false }})
+			.then(res => {
+				console.log(res.data.updatePost);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+		};
+	
 
 	return (
 		<>
@@ -412,12 +423,35 @@ console.log('boiii', original)
 			</div>
 			<div className='editform'> 
 				<h2>Coach Post Status</h2>
-					<div className='delete-post'> 
-					<p>Your coach post is currently published.</p>
-					{/* <PreviewCard setOpen={setOpen} open={open} post={original} /> */}
-				<button className='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
+					{/* <div className='delete-post'>  */}
+					{/* <p>Your coach post is currently published.</p> */}
+					<div className='published-btns'>
+				{coachPost ? (
+					//if coach is done loading 
+					 !loading ? (
+						published ? ( 
+							// if coach listing is published, render 'unpublished'
+							<div className='delete-post'> 
+				<p>Your coach post is currently published.</p>
+				<button className='update-post-btn' onClick={e => handleUnpublish(e)}> Unpublish </button>
 				</div>
+			) : (
+				// Allow coach to published their listing 
+				<div className='delete-post'>
+					<p>Your coach post is currently unpublished.</p>
+					<button class='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
+					</div>
+				) 
+					 ): 
+				null
+					 ) : (
+						 <></>
+					 )}
+					 {/* </div> */}
+				</div>
+
 			</div>
+
 		</>
 	);
 };

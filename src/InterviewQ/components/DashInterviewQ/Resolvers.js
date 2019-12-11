@@ -71,6 +71,7 @@ query coachPost ($coach_id: String!){
     position
     description
     price
+    isPublished
     industry{
       id
       name
