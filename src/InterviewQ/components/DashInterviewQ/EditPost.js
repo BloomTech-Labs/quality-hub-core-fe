@@ -111,7 +111,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
         		if(keyval[1] === 'tagString') {
           	// let newLength = res.data.updatePost.tags.length;
 		  		let tags = res.data.updatePost.tags;
-		  			console.log('tag', tags);
+		  			// console.log('tag', tags);
           // let newTags;
          			 tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
           // setEditing(newEditing, () => {
@@ -128,7 +128,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
         	setEditing(newEditing);
 			})
 			.catch(err => {
-				console.log(err);
+				// console.log(err);
 			});
   };
   
@@ -146,7 +146,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	e.preventDefault();
 	changeField({ variables: { id: post.id, isPublished: true }})
 		.then(res => {
-			console.log(res.data.updatePost);
+			// console.log(res.data.updatePost);
 		})
 		.catch(err => {
 			console.log(err);
@@ -157,7 +157,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		e.preventDefault();
 		changeField({ variables: { id: post.id, isPublished: false }})
 			.then(res => {
-				console.log(res.data.updatePost);
+				// console.log(res.data.updatePost);
 			})
 			.catch(err => {
 				console.log(err);
