@@ -35,6 +35,9 @@ export const DisplayBookings = (currentMonth) => {
 
     useEffect(()=>{
       if(bookingsBySeeker && bookingsByCoach){
+        // const allBooking = bookingsBySeeker.bookingsBySeeker.join(bookingsByCoach.bookingsByCoach)
+        // const convertedArr = allBooking.map(booking => convertToLocal(booking));
+        // setRenderBookings(convertedArr)
         setRenderBookings([...bookingsBySeeker.bookingsBySeeker, ...bookingsByCoach.bookingsByCoach]);
       }
     },[bookingsByCoach, bookingsBySeeker]);
@@ -56,17 +59,18 @@ export const DisplayBookings = (currentMonth) => {
       });
       return array;
   }
+  
 
   const renderPerCell = (array, i) =>{
 
     let counter = 0;
 
     array.forEach((appt) => {
-
-      if(appt.day === i && counter < 2){
+      const localAppt = convertToLocal(appt);
+      if(localAppt.day === i && counter < 2){
         counter++
-        const localAppt = convertToLocal(appt);
-       const apptId = `${appt.month}${appt.day}`;
+        // 
+       const apptId = `${localAppt.month}${localAppt.day}`;
        const booking = document.getElementById(apptId);
           //  if (booking && index <= 52) {
                const div = document.createElement('div');
@@ -81,7 +85,7 @@ export const DisplayBookings = (currentMonth) => {
       //  }
       //  return null
       } else if(appt.day ===i && counter ===2){
-        const localAppt = convertToLocal(appt);
+        //const localAppt = convertToLocal(appt);
        const apptId = `${appt.month}${appt.day}`;
        const booking = document.getElementById(apptId);
         const div = document.createElement('div');

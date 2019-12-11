@@ -260,10 +260,10 @@ return (
         <span>{uploadBox()}</span>
         <p>Click or drag file to this area to upload resume</p>
       </div> */}
-      <aside>
+      {/* <aside>
         <h4>Files</h4>
         <ul>{files}</ul>
-      </aside>
+      </aside> */}
     </section>
       <input
 							className=''
