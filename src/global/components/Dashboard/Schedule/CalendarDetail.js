@@ -43,7 +43,8 @@ let bookingArray = sortBookingsFunction([...data.bookingsByCoach, ...data.bookin
 
 useEffect(()=>{
 	if(allBookings){
-		setBooking(allBookings.filter(month => {return month.day === Number(selectedDay)}))
+		let convertedBookings = allBookings.map(booking => convertToLocal(booking))
+		setBooking(convertedBookings.filter(month => {return month.day === Number(selectedDay)}))
 	}
 },[allBookings])
 
@@ -86,7 +87,7 @@ return (
 		{booking[0] ? (
 			<div>
 				{booking.map((info, index) => {
-					const localInfo = convertToLocal(info)
+					//const localInfo = convertToLocal(info)
 					return info.coach.id === localStorage.getItem('id') ? (
 						<div className = "coach-detail" key={index}>
 							<h3>
@@ -103,7 +104,7 @@ return (
 							</p>
 							<p>		&#x2709;
                 {info.seeker.email}</p>
-							<p>{clock()} {format((new Date(localInfo.year, localInfo.month -1, localInfo.day, localInfo.hour, localInfo.minute)), "PPPP - p ")}</p>
+							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
 							{/* <button className='default-btn' onClick={() => setOpen(false)}>
 								done
 							</button> */}
@@ -123,7 +124,7 @@ return (
 								{info.coach.first_name} {info.coach.last_name}
 							</p>
 							<p>&#x2709;{info.coach.email}</p>
-							<p>{clock()} {format((new Date(localInfo.year, localInfo.month -1, localInfo.day, localInfo.hour, localInfo.minute)), "PPPP - p ")}</p>
+							<p>{clock()} {format((new Date(info.year, info.month -1, info.day, info.hour, info.minute)), "PPPP - p ")}</p>
 						{/* <p>What do you want to get out of mock interviews?</p>
 						<p>{info.interviewGoals}</p>
 						<p>What kind of questions do you want to focus on?</p>
