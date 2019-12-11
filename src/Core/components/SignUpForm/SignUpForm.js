@@ -38,11 +38,11 @@ const SignUpForm = props => {
 		city: '',
 		state: '',
 		bio: '',
-		personal_url: 'http://',
-		portfolio_url: 'http://',
-		twitter_url: 'http://',
-		linkedin_url: 'http://',
-		github_url: 'http://',
+		personal_url: '',
+		portfolio_url: '',
+		twitter_url: '',
+		linkedin_url: '',
+		github_url: '',
 	});
 
 	const [signup, error] = useMutation(SIGN_UP);
@@ -51,6 +51,7 @@ const SignUpForm = props => {
 	//Form management/validation
 	useEffect(() => {
 		validateUser();
+		// eslint-disable-next-line
 	}, [user]);
 
 	const validateUser = () => {
@@ -65,7 +66,7 @@ const SignUpForm = props => {
 	};
 
 	const handleChange = e => {
-		console.log(e.target.value);
+		// console.log(e.target.value);
 		setUser({
 			...user,
 			[e.target.name]: e.target.value,

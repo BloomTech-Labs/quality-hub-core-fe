@@ -1,3 +1,30 @@
+input#edit-post-0, input#edit-post-1{
+	width: 100%;
+}
+
+
+
+.see-preview-post-btn{
+	color: #096dd9;
+	font-size: 1.6rem;
+	text-decoration: none;
+}
+.update-post-btn {
+	color: white;
+	display: flex;
+	align-items: center;
+	line-height: 24px;
+	cursor: pointer;
+	font-size: 1.6rem;
+	text-align: center;
+	justify-content: center;
+	// padding: 1rem 2rem;
+	border-radius: 4px;
+	width: 148px;    
+	height: 36px;
+	background-color:#096dd9;
+	
+}
 .delete-post-btn {
 	color: white;
 	display: flex;
@@ -11,17 +38,20 @@
 	border-radius: 4px;
 	width: 148px;
 	height: 36px;
-	background-color: #096dd9;
+	background-color: #CF1322;
+	
 }
 
 .dash-coachinfo {
-	width: 100%;
+  width: 100%;
+  
 }
 
 .delete-post {
 	display: flex;
 	justify-content: space-between;
 	padding: 1.7rem 3.2rem;
+	
 }
 
 .delete-warning {
@@ -79,6 +109,14 @@
 		color: #262626;
 	}
 }
+
+.not-a-coach-here{
+	color:  #096dd9;
+	text-decoration: none;
+}
+
+
+
 
 .edit-post-slider {
 	width: 300px;

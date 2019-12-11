@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 import axios from 'axios';
+import {Gear} from '../../../globalIcons/gear';
+import {Signout} from '../../../globalIcons/signout';
 
 // Icons
-import blankavatar from '../../../globalIcons/blankavatar.svg';
+import { blankavatar } from '../../../globalIcons/blankavatar';
 
 const GET_USER = gql`
 	query dropdownMenu {
@@ -33,8 +35,6 @@ const AvatarDropdown = props => {
 
 	const [picture, setPicture] = useState(null);
 	const [open, setOpen] = useState(false);
-	const [avatarURL, setAvatarURL] = useState(blankavatar);
-	const [runCount, setRunCount] = useState(0);
 
 	const node = useRef();
 
@@ -93,23 +93,13 @@ const AvatarDropdown = props => {
 					console.log(err);
 				});
 		}
+		// eslint-disable-next-line
 	}, [picture]);
 
 	useEffect(() => {
 		getUser();
-		setRunCount(1);
+		// eslint-disable-next-line
 	}, []);
-
-	useEffect(() => {
-		//useEffect runs on intialization of component, so runCount makes sure data is first retrieved
-		if (runCount > 0) {
-			if (data) {
-				if (data.me.image_url) {
-					setAvatarURL(data.me.image_url);
-				}
-			}
-		}
-	}, [data]);
 
 	useEffect(() => {
 		if (open) {
@@ -118,6 +108,7 @@ const AvatarDropdown = props => {
 			document.removeEventListener('mousedown', handleOutsideClick);
 		}
 		getUser();
+		// eslint-disable-next-line
 	}, [open]);
 
 	return (
@@ -126,9 +117,10 @@ const AvatarDropdown = props => {
 				style={{
 					backgroundImage: `url('${data && data.me.image_url}')`,
 				}}
-				// alt='Avatar menu'
 				className='avatar-menu'
-				onClick={e => setOpen(!open)}></div>
+				onClick={e => setOpen(!open)}>
+				{data && !data.me.image_url && blankavatar()}
+			</div>
 			{open && (
 				<div className='dropdown-content'>
 					<div className='dropdown-avatar-camera'>
@@ -140,11 +132,15 @@ const AvatarDropdown = props => {
 						/>
 						<label htmlFor='imageInput-2'>
 							<div className='img-wrapper-dropdown'>
+								{data ? //ternary 1
+								data.me.image_url ? //ternary 2
 								<div
 									className='profile-img-dropdown'
 									style={{
-										backgroundImage: `url('${data && data.me.image_url}')`,
-									}}></div>
+										backgroundImage: `url('${data.me.image_url}')`,
+									}}></div> : //ternary 2
+									<div className='profile-img-dropdown2'>{blankavatar(81.25,81.25)}</div>: //ternary 1
+									<div className='profile-img-dropdown3'>{blankavatar(81.25,81.25)}</div>}
 							</div>
 						</label>
 						{/* Avatar image in dropdown menu */}
@@ -163,30 +159,17 @@ const AvatarDropdown = props => {
 						</p>
 					)}
 					{data && <p className='dropdown-menu-email'>{data.me.email}</p>}
-
-					{/* Need to link to dashboard */}
-					<Link to='/dashboard'>
-						<button className='manage-btn' onClick={() => setOpen(false)}>
-							Manage your Quality Hub account
-						</button>
+					<hr className="hr-below-email" />
+					<div className="avatar-dropdown-dashboard-link">
+					<Link to='/dashboard' onClick={()=> setOpen(false)} >
+							<div className="avatar-dropdown-lower-icons">{Gear()}</div> <div>QualityHub account</div>
 					</Link>
+					</div>
 					<hr />
-					{/* Need to add sign out functionality */}
-					<Link to='/'>
-						<button className='signout-btn' onClick={() => logout()}>
-							Sign Out
-						</button>
+					<div className="avatar-dropdown-signout-link">
+					<Link to='/' onClick={()=>logout()} >
+							<div className="avatar-dropdown-lower-icons">{Signout()}</div> <div>Sign Out</div>
 					</Link>
-					<hr />
-					<div className='dropdown-menu-links-div'>
-						{/* Need to link to policy and TOS eventually */}
-						<a href='/' className='dropdown-menu-links'>
-							Privacy Policy
-						</a>
-						&#8226;
-						<a href='/' className='dropdown-menu-links'>
-							Terms of Service
-						</a>
 					</div>
 				</div>
 			)}

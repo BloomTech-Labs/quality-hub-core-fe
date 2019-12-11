@@ -29,6 +29,7 @@ mutation updatePost(
     }
     description
     tags{
+      id
       name
     }
   }
@@ -47,6 +48,20 @@ export const GET_INDUSTRIES = gql `
 export const GET_COACH_POST = gql `
 query coachPost ($coach_id: String!){
   postByCoach(coach_id: $coach_id) {
+    coach{
+      id
+      first_name
+      last_name
+      city
+      state
+      image_url
+      personal_url
+      blog_url
+      twitter_url
+      portfolio_url
+      linkedin_url
+      github_url
+    }
     id
     company
     position
@@ -62,4 +77,15 @@ query coachPost ($coach_id: String!){
     }
   }
 }
+`
+
+export const REMOVE_TAG = gql`
+  mutation ($id: ID!, $tagID: String!) {
+    removeTagFromPost(id: $id, tagID: $tagID) {
+      tags {
+        id
+        name
+      }
+    }
+  }
 `

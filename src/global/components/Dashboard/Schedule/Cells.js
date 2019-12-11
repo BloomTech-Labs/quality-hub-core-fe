@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { CoachBooking } from './CoachBooking';
-import { SeekerBooking } from './SeekerBooking';
+import React, {useEffect, useState} from 'react';
+// import { CoachBooking } from './CoachBooking';
+// import { SeekerBooking } from './SeekerBooking';
+import {DisplayBookings} from './DisplayBookings';
 import {
 	format,
 	isSameMonth,
@@ -14,6 +15,8 @@ import {
 } from 'date-fns';
 
 const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
+
+	// const [stateMonth, setStateMonth] = useState(currentMonth);
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
 	const startDate = startOfWeek(monthStart);
@@ -27,7 +30,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 	while (day <= endDate) {
 		for (let i = 0; i < 7; i++) {
 			formattedDate = format(day, dateFormat);
-			cellId = format(day, 'Md');
+			cellId = format(day, 'M') + '-' + format(day, 'd');
 			const cloneDay = day;
 			days.push(
 				<div
@@ -40,11 +43,8 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 							: ''
 					}`}
 					key={day}
-					onClick={() => onDateClick(toDate(cloneDay))}>
-						
-					<span className='number'>{formattedDate}</span>
-					<span className='bg'>{formattedDate}</span>
-					
+					onClick={() => onDateClick(toDate(cloneDay))}>					
+					<span className='number'>{formattedDate}</span>					
 				</div>,
 			);
 			day = addDays(day, 1);
@@ -57,8 +57,13 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		days = [];
   }
 	
- CoachBooking(currentMonth);
- SeekerBooking(currentMonth);
+//   useEffect(()=>{
+
+// 	setStateMonth(currentMonth);
+// },[currentMonth])
+
+DisplayBookings(currentMonth);
+ 
 	return( 
 	<>
 	<div className='calendar-body'>{rows}</div>

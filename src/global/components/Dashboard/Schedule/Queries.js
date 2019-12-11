@@ -15,6 +15,7 @@ export const COACH_BOOKINGS = gql`
      }
      seeker{
        first_name
+       last_name
        email
        id
      }
@@ -49,35 +50,49 @@ export const COACH_BOOKINGS = gql`
   export const ALL_BOOKINGS = gql`
 						query allBookings($coachId: String!, $seekerId: String!) {
 							bookingsByCoach(coach_id: $coachId) {
+                uniquecheck
+                id
 								year
 								month
 								day
 								hour
-								minute
+                minute
+                interviewQuestions
+                interviewGoals
+                resumeURL
 								coach {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
 								seeker {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
 							}
 							bookingsBySeeker(seeker_id: $seekerId) {
+                uniquecheck
+                id
 								year
 								month
 								day
 								hour
-								minute
+                minute
+                interviewGoals
+                interviewQuestions
+                resumeURL
 								coach {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
 								seeker {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}

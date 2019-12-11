@@ -50,7 +50,7 @@ export default function LeftNavBar({ setLoggedin }) {
 					<div className='dashnav-txt'>Personal Info</div>
 				</div>
 			</NavLink>
-			<NavLink activeClassName='dashnavactive' to='/dashboard/coachinfo'>
+			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/coachinfo'>
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.COACHINFO}
@@ -60,9 +60,9 @@ export default function LeftNavBar({ setLoggedin }) {
 					/>
 					<div className='dashnav-txt'>Coach Info</div>
 				</div>
-			</NavLink>
+			</NavLink> */}
 			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/schedule'> */}
-			<NavLink activeClassName='dashnavactive' to='/dashboard/schedules'>
+			<NavLink activeClassName='dashnavactive' to='/dashboard/schedule'>
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.SCHEDULE}

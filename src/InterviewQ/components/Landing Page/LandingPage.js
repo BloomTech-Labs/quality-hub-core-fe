@@ -13,7 +13,6 @@ import { lightbulb2 } from '../../../globalIcons/lightbulb2';
 // Components
 // import LandingPageCTA from './LandingPageCTA';
 import LandingPageHeader from './LandingPageHeader';
-import QNav from '../QNav';
 // import Search from '../Search';
 import CoachList from '../CoachList/CoachList';
 import CoachForm from '../CoachForm/CoachForm';
@@ -43,6 +42,7 @@ export default function InterviewLandingPage() {
 
 	useEffect(() => {
 		refetch();
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -55,7 +55,7 @@ export default function InterviewLandingPage() {
 		<div className='interview-container' id='interview-container'>
 			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
-				<QNav />
+				{/* <QNav /> */}
 				<div className='interviewq-header-container'>
 					<LandingPageHeader />
 					<div className='interviewq-header-btns'>
@@ -65,7 +65,7 @@ export default function InterviewLandingPage() {
 								hasPost ? (
 									//if you have a post made, show edit
 									<Link
-										to='/dashboard/coachinfo'
+										to='/interviewq/settings'
 										className='become-a-coach-reroute-to-signin'>
 										<button className='become-a-coach-btn'>
 											{/* <Icon icon={ICONS.LIGHTBULB} width={16} height={22} /> */}
