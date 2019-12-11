@@ -384,10 +384,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-			<div className='editform'>
+			{/* <div className='editform'>
 				<PreviewCard setOpen={setOpen} open={open} post={original} />
 				<button className='update-post-btn'> Update </button>
-			</div>
+			</div> */}
 		</>
 	);
 };

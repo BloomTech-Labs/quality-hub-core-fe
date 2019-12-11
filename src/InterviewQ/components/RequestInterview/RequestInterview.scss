@@ -35,7 +35,10 @@
 		line-height: 2rem;
 		color: #5f6368;
 		text-transform: uppercase;
-	}
+  }
+  p{
+    text-align: left;
+  }
 }
 
 
@@ -55,6 +58,9 @@
   }
 }
 
+.interview-slot-list{
+  width: 27rem;
+}
 .interviewq-booking-input{
   display: flex;
   justify-content: flex-start;
@@ -89,4 +95,57 @@ margin: 20px 90px;
       font-size: 16px;
       margin-bottom: 25px;
     }
+}
+
+.interviewq-conf-container{
+  margin: 80px 0;
+  padding: 40px 50px;
+}
+.interviewq-conf-section{
+  padding: 15px 0;
+  border-bottom: 1px solid #D4D4D4;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  h3{
+    width: 450px;
+    text-transform: none;
+    font-size: 14px;
+  }
+  p{
+    width: 300px;
+    font-size: 16px;
+  }
+}
+
+.interviewq-conf-heading{
+  border-bottom: 1px solid #D4D4D4;
+  padding-bottom: 10px;
+  margin-bottom: 34px;
+  h2{
+    margin-bottom: 0;
+  }
+}
+
+.dropboxDiv {
+
+  p{
+    font-weight: 500;
+    color: #333333;
+    text-transform: none;
+    font-size: 1.2rem;
+  }
+  input {
+    width: 100%;
+    height: 30px;
+    background: black;
+  }
+}
+
+.booking-bottom{
+  p{
+    text-align: center;
+  }
+  width: 100%;
+  margin-bottom: 4rem;
 }

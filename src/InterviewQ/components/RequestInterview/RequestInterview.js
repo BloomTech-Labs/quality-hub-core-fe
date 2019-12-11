@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
+import axios from 'axios';
 
 const RequestInteview =(props) => {
 
@@ -14,6 +15,8 @@ const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {variable
 
 const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+const [resumeURL, setResumeURL] = useState(null);
+const [resume, setResume] = useState(null);
 const [currentSlots, setCurrentSlots] = useState();
 const [setter, setSetter] = useState(true);
 const [selectedCell, setSelectedCell] = useState(new Date());
@@ -22,15 +25,17 @@ const [currentMonth, setCurrentMonth] = useState();
 const [currentDate, setCurrentDate] = useState();
 
 const convertToLocal = (obj) => {
-  // console.log(obj)
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
   let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
   let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-  let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let localAvail;
+  if(obj.month < 10){
+    localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  } else{
+    localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  }
   let zoned = utcToZonedTime(localAvail, localTime);
-  // console.log(zoned)
   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-  // console.log(zonedArr)
   let zonedDate = {
     ...obj,
     year: Number(zonedArr[0]),
@@ -43,6 +48,38 @@ const convertToLocal = (obj) => {
   return zonedDate
 }
 
+const validateFile = checkFile =>{
+  if (checkFile.type == "application/pdf") {
+      return true;
+  } else{
+    return false;
+  }
+}
+
+useEffect(() => {
+  if (resume) {
+
+if(validateFile(resume)){
+
+  let formData = new FormData();
+  formData.append('file', resume);
+  formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+  
+  axios
+  .post(
+    `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+    formData,
+    )
+    .then(res => {
+      setResumeURL(res.data.secure_url)
+    })
+    .catch(err => {
+      console.log(err);
+      });
+    }
+  }
+  // eslint-disable-next-line
+}, [resume]);
 
 
 useEffect(() => {
@@ -62,10 +99,9 @@ const handleChange = (e) => {
 }
 const createBooking = (e, slot) => {
   setPrevId(e.target.id)
-  if (prevId){
-    // console.log(prevId)
-    
   let prevSlot = document.getElementById(prevId)
+  if (prevId && prevSlot !== null){
+  
   prevSlot.className = 'interview-slot'
 }
   e.target.className = 'available-slot interview-slot'
@@ -75,17 +111,28 @@ const createBooking = (e, slot) => {
     ...props.booking,
       hour: slot.start_hour,
       minute: slot.start_minute,
+       coachName: `${availabilities.availabilitiesByCoach[0].coach.first_name} ${availabilities.availabilitiesByCoach[0].coach.last_name}`,
       // availabilityA: availA,
       // availabilityB: availB,
       // interviewGoals: e.value.interviewGoals,
       // interviewQuestions: e.target.value,
+      // resumeUrl: resumeURL,
       coach: coachId,
       year: Number(format(selectedCell, 'yyyy')),
       month: (Number(format(selectedCell, 'M'))),
       day: Number(format(selectedCell, 'd')),
   })
-  console.log(props.booking)
 }
+
+useEffect(()=>{
+if(resumeURL){
+  console.log('just putting this here to make sure the code works')
+  props.setBooking({
+    ...props.booking,
+    resumeURL: resumeURL
+  })
+}
+},[resumeURL])
 
 useEffect(()=> {
   refetch()
@@ -134,9 +181,8 @@ const getAvailableSlots = () => {
   }
   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
 setCurrentSlots(bookingArray);
+
 }
-// console.log(dateAvails)
-// console.log(currentSlots)
 if(currentSlots){
   // let test = [...currentSlots];
  currentSlots.sort((a,b)=>{
@@ -153,10 +199,12 @@ if(currentSlots){
   }
 
   });
-  // console.log(test);
 }
+console.log(currentSlots)
+console.log(selectedCell)
 return (
 	<div className='booking-content-section'>
+    
 		<div className='formsection'>
     <div className='interviewq-header-container'>
       <h2>Select a Date</h2>
@@ -164,8 +212,10 @@ return (
       <div className='interviewq-content-container'>
 			<div className='coach-availability'>
 				<SmallCalendar
+        availabilities={availabilities}
 					selectedCell={selectedCell}
-					setSelectedCell={setSelectedCell}
+          setSelectedCell={setSelectedCell}
+          refetchAvails={refetch}
 				/>
 				<div className='interview-slot-list'>
 					{currentSlots ? (
@@ -193,11 +243,11 @@ return (
 				</div>
 			</div>
 
-			{props.booking && props.booking.minute !== undefined ? (
+			{/* {props.booking && props.booking.minute !== undefined ? (
 				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
 			) : (
 				<p> Please select a time slot</p>
-			)}
+			)} */}
 		</div>
     </div>
     <div className="formsection">
@@ -207,6 +257,13 @@ return (
       <div className='interviewq-content-container'>
         <div className='interviewq-booking-input'>
       <h3>Resume Upload</h3>
+      <input
+							className=''
+							type='file'
+              id='resumeInput'
+              accept="application/pdf"
+							onChange={e => setResume(e.target.files[0])}
+						/>
         </div>
         <div className='interviewq-booking-input'>
       <h3>What do you want to get out of mock interviews?</h3>
@@ -219,25 +276,28 @@ return (
     </div>
     </div>
     </div>
-    <div className='formsection'>
+    {/* <div className='formsection'>
     <div className='interviewq-header-container'>
    
       <h2>Payment Info</h2>
       <div className='interviewq-content-container'>
       </div>
       </div>
-    </div>
-    <div className='formsection'>
+    </div> */}
+    
     {props.booking && props.booking.minute !== undefined ? (
+      <div className='formsection'>
 				<Link to={`/interviewq/booking/${coachId}/confirm`}>
 					<button className='interview-button'>Next</button>
 				</Link>
+        </div>
 			) : (
+        <div className='booking-bottom'>
 				<p> Please select a time slot</p>
+        </div>
 			)}
-      </div>
+     
 	</div>
 );
 };
-
 export default RequestInteview;
