@@ -66,6 +66,12 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCounter(1);
 	},[])
 
+	useEffect(()=>{
+		if(currentMonth){
+			setOpen(false);
+		}
+	},[currentMonth])
+
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));

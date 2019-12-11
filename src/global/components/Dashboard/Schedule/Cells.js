@@ -1,6 +1,6 @@
-import React from 'react';
-import { CoachBooking } from './CoachBooking';
-import { SeekerBooking } from './SeekerBooking';
+import React, {useEffect, useState} from 'react';
+// import { CoachBooking } from './CoachBooking';
+// import { SeekerBooking } from './SeekerBooking';
 import {DisplayBookings} from './DisplayBookings';
 import {
 	format,
@@ -15,6 +15,8 @@ import {
 } from 'date-fns';
 
 const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
+
+	// const [stateMonth, setStateMonth] = useState(currentMonth);
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
 	const startDate = startOfWeek(monthStart);
@@ -55,7 +57,11 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		days = [];
   }
 	
- DisplayBookings(currentMonth);
+//   useEffect(()=>{
+// 	console.log('ue')
+// 	setStateMonth(currentMonth);
+// },[currentMonth])
+DisplayBookings(currentMonth);
  
 	return( 
 	<>
