@@ -58,7 +58,8 @@ export const COACH_BOOKINGS = gql`
 								hour
                 minute
                 interviewQuestions
-                
+                interviewGoals
+                resumeURL
 								coach {
                   first_name
                   last_name
@@ -82,6 +83,7 @@ export const COACH_BOOKINGS = gql`
                 minute
                 interviewGoals
                 interviewQuestions
+                resumeURL
 								coach {
                   first_name
                   last_name

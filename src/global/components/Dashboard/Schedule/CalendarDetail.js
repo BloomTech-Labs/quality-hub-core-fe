@@ -135,15 +135,12 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	return (
 		<div>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
-				{/* X */}
 				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
 			{booking[0] ? (
 				<div>
 					{booking.map((info, index) => {
 						console.log(info);
-						//const localInfo = convertToLocal(info)
-						// let someId = info.id;
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
 								<h3>
@@ -156,12 +153,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										height={15}
 										color='#777'
 									/>
-									{info.seeker.first_name} {info.seeker.last_name}
-								</p>
-								<p>
-									{' '}
-									&#x2709;
-									{info.seeker.email}
+									{info.seeker.first_name} {info.seeker.last_name} (Seeker)
 								</p>
 								<p>
 									{clock()}{' '}
@@ -176,9 +168,13 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										'PPPP - p ',
 									)}
 								</p>
-								{/* <button className='default-btn' onClick={() => setOpen(false)}>
-								done
-							</button> */}
+										<p>{paperclip()} {info.resumeURL === null ? <span>No resume provided</span> : <a target='_blank' rel='noopener noreferrer' href={info.resumeURL}>Download Resume</a>}</p>
+							<div>
+							<p>{document()} What do you want to get out of your mock interview?</p>
+							<p className='indented intres'>{info.interviewGoals}</p>
+							<p className='indented'>What kind of questions do you want to focus on?</p>
+							<p className='indented intres'>{info.interviewQuestions}</p>
+							</div>
 								{console.log('jargon', info)}
 								{info.id && (
 									<button
@@ -206,10 +202,10 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										height={15}
 										color='#777'
 									/>
-									{info.coach.first_name} {info.coach.last_name}
+									{info.coach.first_name} {info.coach.last_name} (Coach)
 								</p>
-								<p>&#x2709;{info.coach.email}</p>
-								<p>
+
+								<p> 
 									{clock()}{' '}
 									{format(
 										new Date(
@@ -222,26 +218,35 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										'PPPP - p ',
 									)}
 								</p>
-								{/* <p>What do you want to get out of mock interviews?</p>
-						<p>{info.interviewGoals}</p>
-						<p>What kind of questions do you want to focus on?</p>
-						<p>{info.interviewQuestions}</p> */}
+								{info.id && (
+									<button
+										className={`${info.id} delete-booking-btn`}
+										data-id={`${info.uniquecheck}`}
+										data-year={info.year}
+										data-month={info.month}
+										data-day={info.day}
+										data-hour={info.hour}
+										data-minute={info.minute}
+										onClick={e => handleDelete(e)}>
+										Cancel Booking
+									</button>
+								)}
 							</div>
 						);
 					})}
 				</div>
 			) : (
-				<div>
-					{loading ? (
+				// console.log('its working???')
+				<div className='coach-detail'>
+					{/* {loading ? (
 						<p>Please Wait. Loading...</p>
-					) : (
+						
+					) : ( */}
+					
 						<h3 className='no-bookings'>No bookings</h3>
-					)}
+					{/* // )} */}
 				</div>
 			)}
-			{/* <button className='default-btn' onClick={() => setOpen(false)}>
-					done
-				</button> */}
 		</div>
 	);
 };
