@@ -133,7 +133,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	return (
 		<div>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
-				X
+				{/* X */}
+				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
 			{booking[0] ? (
 				<div>
@@ -229,7 +230,11 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 				</div>
 			) : (
 				<div>
-					{loading ? <p>Please Wait. Loading...</p> : <h3>No bookings</h3>}
+					{loading ? (
+						<p>Please Wait. Loading...</p>
+					) : (
+						<h3 className='no-bookings'>No bookings</h3>
+					)}
 				</div>
 			)}
 			{/* <button className='default-btn' onClick={() => setOpen(false)}>
