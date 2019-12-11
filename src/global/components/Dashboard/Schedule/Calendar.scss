@@ -241,6 +241,9 @@ $neutral-cal-color: #fff;
 .coach-detail,
 .seeker-detail {
 	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 // .coach-detail{
@@ -666,4 +669,17 @@ $neutral-cal-color: #fff;
 	display: flex;
 	justify-content: space-between;
 	padding: 0 40px;
+}
+
+.delete-booking-btn {
+	width: 13rem;
+	height: 3.6rem;
+	margin: 1rem auto;
+	background-color: #cf1322;
+	border-radius: 0.4rem;
+	text-align: center;
+	color: white;
+	font-size: 1.4rem;
+	font-weight: 400;
+	cursor: pointer;
 }

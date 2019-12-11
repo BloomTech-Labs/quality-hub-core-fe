@@ -11,12 +11,8 @@ import { gql } from 'apollo-boost';
 
 const CalendarDetail = ({ selectedDate, setOpen }) => {
 	const DELETE_BOOKING = gql`
-		mutation deleteBooking(
-			$uniquecheck: String!
-		) {
-			deleteBooking(
-				uniquecheck: $uniquecheck
-			){
+		mutation deleteBooking($uniquecheck: String!) {
+			deleteBooking(uniquecheck: $uniquecheck) {
 				id
 			}
 		}
@@ -118,26 +114,25 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		return zonedDate;
 	};
 	const handleDelete = e => {
-		let uniquecheck = e.target.getAttribute('data-id')
+		let uniquecheck = e.target.getAttribute('data-id');
 		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;
-		console.log(uniquecheck)
-		deleteBook({ variables: {uniquecheck: uniquecheck} })
-		.then(res=>{
-			// client.clearStore();
-			window.location.reload(true);
-			// client.resetStore();
-			// refetch();
-			setOpen(false);
-			console.log(res)
-		})
-		.catch(err=>{
-			console.log(err.message);
-		})
-		
+		console.log(uniquecheck);
+		deleteBook({ variables: { uniquecheck: uniquecheck } })
+			.then(res => {
+				// client.clearStore();
+				window.location.reload(true);
+				// client.resetStore();
+				// refetch();
+				setOpen(false);
+				console.log(res);
+			})
+			.catch(err => {
+				console.log(err.message);
+			});
 	};
 	return (
 		<div>
-			<span className="cal-detail-header" onClick={() => setOpen(false)}>
+			<span className='cal-detail-header' onClick={() => setOpen(false)}>
 				X
 			</span>
 			{booking[0] ? (
@@ -147,7 +142,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 						//const localInfo = convertToLocal(info)
 						// let someId = info.id;
 						return info.coach.id === localStorage.getItem('id') ? (
-							<div className="coach-detail" key={index}>
+							<div className='coach-detail' key={index}>
 								<h3>
 									<span>&#x25FC;</span> InterviewQ
 								</h3>
@@ -156,7 +151,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										icon={ICONS.PERSONALINFO}
 										width={15}
 										height={15}
-										color="#777"
+										color='#777'
 									/>
 									{info.seeker.first_name} {info.seeker.last_name}
 								</p>
@@ -184,7 +179,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 								{console.log('jargon', info)}
 								{info.id && (
 									<button
-										className={`${info.id}`}
+										className={`${info.id} delete-booking-btn`}
 										data-id={`${info.uniquecheck}`}
 										data-year={info.year}
 										data-month={info.month}
@@ -192,12 +187,12 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-hour={info.hour}
 										data-minute={info.minute}
 										onClick={e => handleDelete(e)}>
-										Delete Booking
+										Cancel Booking
 									</button>
 								)}
 							</div>
 						) : (
-							<div className="seeker-detail" key={index}>
+							<div className='seeker-detail' key={index}>
 								<h3>
 									<span>&#x25FC;</span> InterviewQ
 								</h3>
@@ -206,7 +201,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										icon={ICONS.PERSONALINFO}
 										width={15}
 										height={15}
-										color="#777"
+										color='#777'
 									/>
 									{info.coach.first_name} {info.coach.last_name}
 								</p>
