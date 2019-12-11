@@ -84,8 +84,8 @@ const ReviewForm = props => {
         </div>
       </div>
       <div className='button-container'>
-        <p className='rating-button button cancel'><button>Cancel</button></p>
-        <p className='rating-button button submit'><button>Submit</button></p>
+        <p className='review-button button cancel'><button>Cancel</button></p>
+        <p className='review-button button submit'><button>Submit</button></p>
       </div>
 		</form>
 	);

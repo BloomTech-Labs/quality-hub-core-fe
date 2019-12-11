@@ -14,7 +14,7 @@ const Rating = ({ handleHover, hoverIdx, fields, index, handleClick }) => {
         onMouseOver={(e) => handleHover(e, index)}
         onMouseLeave={(e) => handleHover(e, fields.rating)}
       >
-        <Icon icon={ICONS.STAR_YELLOW} width={26} height={24} color='#FA8C16' 
+        <Icon icon={ICONS.STAR_YELLOW} width={26} height={24} color='#096dd9' 
         />
       </div>
       :
