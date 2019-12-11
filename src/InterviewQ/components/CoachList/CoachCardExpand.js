@@ -22,9 +22,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 
 	return (
 		<div ref={node}>
-			<>
 			<div id='overlay-coachcard-expand' onClick={() => setOpen(false)}></div>
-			<div id='coachcard-expand-background'>
 			<div className='coachcard-expand'>
 				<button
 					className='close-coachcard-expand'
@@ -119,8 +117,6 @@ const CoachCard = ({ post, setOpen, open }) => {
 				</div>
 			</div>
 			</div>
-			</div>
-			</>
 		</div>
 
 	);

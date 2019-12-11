@@ -36,25 +36,12 @@ body{
 	}
 }
 
-// .coachcard-expand-background {
-//     position: absolute;
-//     display: flex;
-//     justify-content: center;
-//     align-content: flex-end;
-//     align-items: flex-end;
-//     width: 85rem;
-//     height: 31.7rem;
-//     left: 50%;
-//     top: 7.5rem;
-//     transform: translate(-50%);
-//     background: blue;
-//     border-radius: 10px;
-//     // z-index: 1000;
-
-
-
-.coachcard-expand{
+.coachcard-expand {
 	display: flex;
+	// width: 31.3rem;
+	// height: 50.1rem;
+	// padding: 3rem;
+	// box-shadow: 2px 2px 5px gray;
 	border: 1px solid silver;
 	border-radius: 1rem;
 	margin-bottom: 1.3rem;
@@ -220,4 +207,3 @@ body{
 		}
 	}
 }
-// }
