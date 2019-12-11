@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { timeObjs } from '../../../../global/components/Dashboard/Schedule/TimeArrays';
 import './Availability.scss';
-import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY } from './Resolvers';
+import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY, AVAIL_BY_UNIQUE } from './Resolvers';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, getMonth } from 'date-fns';
@@ -142,6 +142,18 @@ const Availability =() => {
       .catch(err => console.log(err))
   }
 
+  const checkAvail = (checkvar) => {
+    if(dateAvails){
+      dateAvails.forEach(avail => {
+        if(avail.uniquecheck === checkvar.uniquecheck){
+          return avail.isOpen === true ? true : false
+      } else {
+        return true
+      }
+    })
+    }
+    return true
+  }
   const deleteAvail = (h, m) => {
     const delAvail ={
       start_hour: h,
@@ -155,6 +167,7 @@ const Availability =() => {
     let checkvar = {
       uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.start_hour}-${delUtc.start_minute}`
     };
+    if (checkAvail(checkvar) === true){
     removeAvail({ variables: checkvar })
     .then(res => {
       refetch();
@@ -162,6 +175,10 @@ const Availability =() => {
     })
     .catch(err => console.log(err))
   }
+  else {
+    console.log('cannot delete')
+  }
+} 
 
   const toggleAvail = (e, h, m) => {
     if(e.target.className === 'available-slot interview-slot'){

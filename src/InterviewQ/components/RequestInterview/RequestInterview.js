@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import SmallCalendar from '../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
 import { format, getMonth } from 'date-fns';
@@ -7,7 +7,7 @@ import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
 import './RequestInterview.scss';
 import axios from 'axios';
-// import { useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import { uploadBox } from '../../../globalIcons/uploadBox';
 
 const RequestInteview = props => {
@@ -58,6 +58,29 @@ const RequestInteview = props => {
 		return zonedDate;
 	};
 
+<<<<<<< HEAD
+const onDrop = useCallback(acceptedFiles => setResume(acceptedFiles), [])
+const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+const convertToLocal = (obj) => {
+  let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
+  let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
+  let localAvailMin = obj.start_minute === 0 ? '00' : '30'
+  let localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  let zoned = utcToZonedTime(localAvail, localTime);
+  let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
+  let zonedDate = {
+    ...obj,
+    year: Number(zonedArr[0]),
+    month: Number(zonedArr[1]),
+    day: Number(zonedArr[2]),
+    start_hour: Number(zonedArr[3]),
+    start_minute: Number(zonedArr[4])
+    
+  }
+  return zonedDate
+}
+=======
 	const validateFile = checkFile => {
 		if (checkFile.type == 'application/pdf') {
 			return true;
@@ -65,6 +88,7 @@ const RequestInteview = props => {
 			return false;
 		}
 	};
+>>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 
 	useEffect(() => {
 		if (resume) {
@@ -74,6 +98,33 @@ const RequestInteview = props => {
 				formData.append('file', resume);
 				formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
 
+<<<<<<< HEAD
+const dropbox = {
+  width: '100%',
+  height: '30px',
+  background: 'black',
+}
+
+const dropboxDiv = {
+  display: 'flex',
+  justifyContent: 'flex-start',
+  flexDirection: 'column',
+  textAlign: 'left',
+  margin: '20px 90px',
+  border: '2px solid #DADCE0',
+  borderRadius: '5px',
+  height: '530px',
+  margin: '8px 0',
+  background: 'black'
+}
+
+const style = useMemo(() => ({
+  ...dropboxDiv,
+}), []);
+
+useEffect(() => {
+  if (resume) {
+=======
 				axios
 					.post(
 						`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
@@ -90,6 +141,7 @@ const RequestInteview = props => {
 		}
 		// eslint-disable-next-line
 	}, [resume]);
+>>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 
 	useEffect(() => {
 		setCurrentMonth(getMonth(new Date(selectedCell)) + 1);
@@ -269,6 +321,46 @@ const RequestInteview = props => {
 						</div>
 					</div>
 
+<<<<<<< HEAD
+  });
+  // console.log(test);
+}
+console.log(currentSlots)
+return (
+	<div className='booking-content-section'>
+    
+		<div className='formsection'>
+    <div className='interviewq-header-container'>
+      <h2>Select a Date</h2>
+      </div>
+      <div className='interviewq-content-container'>
+			<div className='coach-availability'>
+				<SmallCalendar
+        availabilities={availabilities}
+					selectedCell={selectedCell}
+					setSelectedCell={setSelectedCell}
+				/>
+				<div className='interview-slot-list'>
+					{currentSlots && currentSlots !== [] ? (
+						currentSlots.map(time => {
+							if (time.isOpen === true) {
+								return (
+									<div
+                    key={time.id}
+                    id={time.id}
+										className='interview-slot'
+										onClick={e => createBooking(e, time)}>
+										{time.start_hour === 0 ? 12 : (time.start_hour > 12
+											? time.start_hour - 12
+											: time.start_hour)}
+										:{time.start_minute === 0 ? '00' : '30'}{' '}
+										{time.start_hour >= 12 ? 'PM' : 'AM'}
+									</div>
+								);
+							}
+							return null;
+						})
+=======
 					{props.booking && props.booking.minute !== undefined ? (
 						<p>
 							You've selected{' '}
@@ -283,11 +375,51 @@ const RequestInteview = props => {
 								'PPPP - p ',
 							)}
 						</p>
+>>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 					) : (
 						<p> Please select a time slot</p>
 					)}
 				</div>
 			</div>
+<<<<<<< HEAD
+
+			{/* {props.booking && props.booking.minute !== undefined ? (
+				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
+			) : (
+				<p> Please select a time slot</p>
+			)} */}
+		</div>
+    </div>
+    <div className="formsection">
+    <div className='interviewq-header-container'>
+      <h2>Additional Information</h2>
+      </div>
+      <div className='interviewq-content-container'>
+        <div className='interviewq-booking-input'>
+          <h3>Resume Upload</h3>
+            {/* <section className="container"> */}
+              {/* <div {...getRootProps({style})}>
+                <input {...getInputProps({dropbox})} />
+                {
+                  isDragActive ?
+                    <p>Drop the files here ...</p> :
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                }
+                <h1>{`${isDragActive}`}</h1> 
+              </div>  */}
+
+            {/* <div {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+              <span>{uploadBox()}</span>
+              <p>Click or drag file to this area to upload resume</p>
+            </div> */}
+            {/* <aside>
+              <h4>Files</h4>
+              <ul>{files}</ul>
+            </aside> */}
+            {/* </section> */}
+      <input
+=======
 			<div className='formsection'>
 				<div className='interviewq-header-container'>
 					<h2>Additional Information</h2>
@@ -307,12 +439,46 @@ const RequestInteview = props => {
       </aside> */}
 						</section>
 						<input
+>>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 							className=''
 							type='file'
 							id='resumeInput'
 							accept='application/pdf'
 							onChange={e => setResume(e.target.files[0])}
 						/>
+<<<<<<< HEAD
+        </div>  
+        <div className='interviewq-booking-input'>
+      <h3>What do you want to get out of mock interviews?</h3>
+      <textarea placeholder='e.g. More confidence, preparation for upcoming interview etc....' name='interviewGoals' value={props.booking.interviewGoals} onChange={handleChange} />
+</div>
+<div className='interviewq-booking-input'>
+      <h3>What kind of interview questions do you want to focus on?</h3>
+      <textarea 
+      placeholder='e.g. Technical questions, soft skill questions etc' name='interviewQuestions' value={props.booking.interviewQuestions} onChange={handleChange}/>
+    </div>
+    </div>
+    </div>
+    <div className='formsection'>
+    <div className='interviewq-header-container'>
+   
+      <h2>Payment Info</h2>
+      <div className='interviewq-content-container'>
+      </div>
+      </div>
+    </div>
+    <div className='formsection'>
+    {props.booking && props.booking.minute !== undefined ? (
+				<Link to={`/interviewq/booking/${coachId}/confirm`}>
+					<button className='interview-button'>Next</button>
+				</Link>
+			) : (
+				<p> Please select a time slot</p>
+			)}
+      </div>
+	</div>
+);
+=======
 					</div>
 					<div className='interviewq-booking-input'>
 						<h3>What do you want to get out of mock interviews?</h3>
@@ -351,5 +517,6 @@ const RequestInteview = props => {
 			</div>
 		</div>
 	);
+>>>>>>> 4efadbc2585a2a5ce524b68ca11370729b839f04
 };
 export default RequestInteview;

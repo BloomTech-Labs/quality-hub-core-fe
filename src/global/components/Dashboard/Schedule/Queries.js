@@ -66,7 +66,8 @@ export const COACH_BOOKINGS = gql`
 									id
 								}
 								seeker {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
@@ -78,7 +79,9 @@ export const COACH_BOOKINGS = gql`
 								month
 								day
 								hour
-								minute
+                minute
+                interviewGoals
+                interviewQuestions
 								coach {
                   first_name
                   last_name
@@ -86,7 +89,8 @@ export const COACH_BOOKINGS = gql`
 									id
 								}
 								seeker {
-									first_name
+                  first_name
+                  last_name
 									email
 									id
 								}
