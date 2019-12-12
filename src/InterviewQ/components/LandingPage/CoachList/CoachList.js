@@ -3,22 +3,28 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import CoachCard from './CoachCard';
-import Search from '../Search';
+import Search from './subs/0_Search';
+import CoachCard from './subs/1_CoachCard/CoachCard';
 
 import './CoachList.scss';
 
-import Loading from '../../../Core/components/Loading';
+import Loading from '../../../../Core/components/Loading';
 
 export const GET_POSTS = gql`
 	query GET_POSTS(
 		$industry: String
 		$price: String
 		$orderBy: String
-    $tags: String
-    $ids: [String]
+		$tags: String
+		$ids: [String]
 	) {
-		posts(industry: $industry, price: $price, orderBy: $orderBy, tags: $tags, ids: $ids) {
+		posts(
+			industry: $industry
+			price: $price
+			orderBy: $orderBy
+			tags: $tags
+			ids: $ids
+		) {
 			id
 			price
 			position
@@ -75,7 +81,7 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 			{!loading && data && (
 				<div className='coach-list'>
 					{data.posts.map(post => (
-						<CoachCard key={post.id} post={post} history={history}/>
+						<CoachCard key={post.id} post={post} history={history} />
 					))}
 				</div>
 			)}

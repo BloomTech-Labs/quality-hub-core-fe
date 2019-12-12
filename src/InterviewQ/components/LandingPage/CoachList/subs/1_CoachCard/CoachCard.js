@@ -2,14 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 // Styles & Icons
-import './CoachCard.scss';
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
+import '../../CoachCard.scss';
+import Icon from '../../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../../global/icons/iconConstants';
 
 //Component
-import CoachModal from './CoachCardModal.js';
+import CoachModal from '../2_CoachCardModal/CoachCardModal';
 
 const CoachCard = ({ post }) => {
 	let { coach } = post;
@@ -74,20 +73,29 @@ const CoachCard = ({ post }) => {
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
 					{post.coach.linkedin_url && (
-						<a href={post.coach.linkedin_url} target='_blank' rel="noopener noreferrer">
+						<a
+							href={post.coach.linkedin_url}
+							target='_blank'
+							rel='noopener noreferrer'>
 							<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
 						</a>
 					)}
 					{post.coach.twitter_url && (
-						<a href={post.coach.twitter_url} target='_blank' rel="noopener noreferrer">
+						<a
+							href={post.coach.twitter_url}
+							target='_blank'
+							rel='noopener noreferrer'>
 							<Icon icon={ICONS.TWITTER} width={24} height={24} />
 						</a>
 					)}
 				</div>
-				<button className={coach.id === localStorage.getItem('id') ? `interview-button-hidden`: `interview-button`}>
-					<Link to={`interviewq/booking/${coach.id}`}>
-					  Request Interview
-					</Link>
+				<button
+					className={
+						coach.id === localStorage.getItem('id')
+							? `interview-button-hidden`
+							: `interview-button`
+					}>
+					<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
 				</button>
 			</div>
 		</div>

@@ -12,7 +12,7 @@ import { lightbulb } from '../../../global/icons/lightbulb';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Query
-import { GET_POSTS } from '../CoachList/CoachList';
+import { GET_POSTS } from '../LandingPage/CoachList/CoachList';
 import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';
 
 import DoneModal from './subs/DoneModal';

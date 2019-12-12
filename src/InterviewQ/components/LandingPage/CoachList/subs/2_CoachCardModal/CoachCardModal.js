@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import CoachCard from './CoachCardExpand.js';
+import CoachCard from './CoachCardExpand';
 
 //Styles
-import './CoachCardModal.scss';
+import '../../CoachCardModal.scss';
 // import Icon from '../../../globalIcons/Icon';
 // import { ICONS } from '../../../globalIcons/iconConstants';
 
 const CoachCardModal = ({ post }) => {
 	const [open, setOpen] = useState(false);
-
-
 
 	return (
 		<div className='coach-card-modal-text'>

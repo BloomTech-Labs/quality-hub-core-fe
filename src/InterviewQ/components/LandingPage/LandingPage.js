@@ -14,8 +14,8 @@ import { lightbulb2 } from '../../../global/icons/lightbulb2';
 // import LandingPageCTA from './LandingPageCTA';
 import LandingPageHeader from './LandingPageHeader';
 // import Search from '../Search';
-import CoachList from '../CoachList/CoachList';
-import CoachForm from '../CoachForm/CoachForm';
+import CoachList from './CoachList';
+import CoachForm from '../CoachForm';
 
 export const GET_USER = gql`
 	query {

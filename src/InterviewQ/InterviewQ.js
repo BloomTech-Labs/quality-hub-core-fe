@@ -1,11 +1,11 @@
 import React from 'react';
-import InterviewLandingPage from '../InterviewQ/components/Landing Page/index';
-import DashInterviewQ from './components/DashInterviewQ/index';
+import InterviewLandingPage from '../InterviewQ/components/LandingPage';
+import DashInterviewQ from './components/DashInterviewQ';
 import CoachForm from './components/CoachForm/CoachForm';
-import CoachList from './components/CoachList';
+import CoachList from './components/LandingPage/CoachList';
 import LeftNav from './components/LeftNav/LeftNav';
 import { Route } from 'react-router-dom';
-import Booking from './components/RequestInterview/index';
+import Booking from './components/RequestInterview';
 import TestComponent from './components/Review/subs/TestComponent';
 import { ReviewPage } from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';

@@ -9,8 +9,8 @@ import { ICONS } from '../../../../global/icons/iconConstants';
 import './CoachDash.scss';
 
 // Components
-import EditPost from './Basic Info/00_EditPost';
-import DeletePost from './Delete Post/00_DeletePost';
+import EditPost from './BasicInfo/00_EditPost';
+import DeletePost from './DeletePost/00_DeletePost';
 // import Review from '../Review/ReviewForm';
 
 // Hooks
@@ -18,7 +18,6 @@ import useModal from '../../../../utils/useModal';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();
-
 
 	return (
 		<div className='dash-coachinfo'>
