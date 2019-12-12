@@ -3,7 +3,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 // Styles
-import './SignUpForm.scss';
+import '../../SignUpForm.scss';
 
 const CompletedSignUp = () => {
 	const history = useHistory();

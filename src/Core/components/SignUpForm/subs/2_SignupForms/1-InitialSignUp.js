@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost';
 import { Link } from 'react-router-dom';
 
 // Styles & Icons
-import './SignUpForm.scss';
+import '../../SignUpForm.scss';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 

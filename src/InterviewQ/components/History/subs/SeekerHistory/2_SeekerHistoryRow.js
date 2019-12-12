@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import CoachBookingContent from './CoachBookingContent';
+import SeekerBookingContent from './3_SeekerBookingContent';
 
-export default function CoachHistoryRow({ booking }) {
+export default function SeekerHistoryRow({ booking }) {
 	const [showContent, setShowContent] = useState(false);
 
 	return (
 		<div>
-			<div className='coach-history-row'>
+			<div className='seeker-history-row'>
 				<div>
-					{booking.seeker.first_name} {booking.seeker.last_name}
+					{booking.coach.first_name} {booking.coach.last_name}
 				</div>
 				<div>
 					{booking.month}/{booking.day}/{booking.year}
@@ -22,19 +22,19 @@ export default function CoachHistoryRow({ booking }) {
 				<div>
 					<Link
 						to={{
-							pathname: `/interviewq/coachreport/${booking.uniquecheck}`,
-							state: { firstName: booking.seeker.first_name },
+							pathname: `/interviewq/test/${booking.uniquecheck}`,
+							state: { firstName: booking.coach.first_name },
 						}}>
-						{booking.report ? 'View' : 'Write'} your Report
+						{booking.review ? 'View' : 'Write'} your Review
 					</Link>
 				</div>
 				<div
 					className='history-content-toggle'
 					onClick={() => setShowContent(!showContent)}>
-					{showContent ? 'Hide' : 'View'} the seeker review
+					{showContent ? 'Hide' : 'View'} your Report
 				</div>
 			</div>
-			{showContent && <CoachBookingContent booking={booking} />}
+			{showContent && <SeekerBookingContent booking={booking} />}
 		</div>
 	);
 }
