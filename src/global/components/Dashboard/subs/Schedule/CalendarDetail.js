@@ -8,7 +8,7 @@ import { paperclip } from '../../../../../global/icons/paperclip.js';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 import Icon from '../../../../../global/icons/Icon';
 import { utcToZonedTime } from 'date-fns-tz';
-import Loading from '../../../../../Core/components/Loading';
+import Loading from '../../../Loading';
 import { gql } from 'apollo-boost';
 
 const CalendarDetail = ({ selectedDate, setOpen }) => {
