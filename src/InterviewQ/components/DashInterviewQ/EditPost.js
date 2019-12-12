@@ -467,7 +467,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 			<div className='editform'> 
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
-					//if coach is done loading 
+					//if coach is done loading then ..
 					 !loading ? (
 						published ? ( 
 							// if coach listing is published, render 'unpublished'
