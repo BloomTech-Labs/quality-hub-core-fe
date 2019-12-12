@@ -7,12 +7,12 @@ import './SignUpForm.scss';
 
 // Components
 import SignUpNav from './subs/1_SignupNav/SignUpNav';
-import ProgressBar from './subs/2_SignupForms/00-ProgressBar';
-import InitialSignUp from './subs/2_SignupForms/1-InitialSignUp';
-import GetStarted from './subs/2_SignupForms/2-GetStarted';
-import GeneralSignUp from './subs/2_SignupForms/3-GeneralSignUp';
-import ExpSignUp from './subs/2_SignupForms/4-ExpSignUp';
-import CompletedSignUp from './subs/2_SignupForms/5-CompletedSignUp';
+import ProgressBar from './subs/2_SignupForms/00_ProgressBar';
+import InitialSignUp from './subs/2_SignupForms/1_InitialSignUp';
+import GetStarted from './subs/2_SignupForms/2_GetStarted';
+import GeneralSignUp from './subs/2_SignupForms/3_GeneralSignUp';
+import ExpSignUp from './subs/2_SignupForms/4_ExpSignUp';
+import CompletedSignUp from './subs/2_SignupForms/5_CompletedSignUp';
 
 // Mutation
 import { SIGN_UP } from './Mutation';

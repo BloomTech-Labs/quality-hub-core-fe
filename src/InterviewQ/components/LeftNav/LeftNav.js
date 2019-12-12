@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Styles
-import './QNav.scss';
+import './LeftNav.scss';
 
 // Icons
 import Icon from '../../../global/icons/Icon';

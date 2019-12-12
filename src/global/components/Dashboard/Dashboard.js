@@ -9,7 +9,7 @@ import './Dashboard.scss';
 
 // Components
 import LeftNavBar from './subs/LeftNavBar';
-import PersonalInfo from './subs/PersonalInfo';
+import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './Schedule';
 // import DashInterviewQ from '../../../InterviewQ/components/DashInterviewQ';
 // GraphQuaiL Query
@@ -50,9 +50,6 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route  path='/dashboard/schedule'>
 						<Schedule />
 					</Route>
-					{/* <Route exact path='/dashboard/coachinfo'>
-						<DashInterviewQ />
-					</Route> */}
 				</Switch>
 			</div>
 		</div>

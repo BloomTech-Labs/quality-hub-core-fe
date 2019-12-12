@@ -2,13 +2,13 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../icons/Icon';
-import { ICONS } from '../../../icons/iconConstants';
+import Icon from '../../../../icons/Icon';
+import { ICONS } from '../../../../icons/iconConstants';
 
 // Components
-import BasicInfo from './BasicInfo';
-import Accounts from './Accounts';
-import PaymentInfo from './PaymentInfo';
+import BasicInfo from './subs/BasicInfo';
+import Accounts from './subs/Accounts';
+import PaymentInfo from './subs/PaymentInfo';
 
 export default function PersonalInfo() {
 	return (
