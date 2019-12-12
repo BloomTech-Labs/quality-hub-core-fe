@@ -2,19 +2,19 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
+import Icon from '../../../../global/icons/Icon';
+import { ICONS } from '../../../../global/icons/iconConstants';
 
 // Styles
 import './CoachDash.scss';
 
 // Components
-import EditPost from './EditPost';
-import DeletePost from './DeletePost';
+import EditPost from './Basic Info/EditPost';
+import DeletePost from './Delete Post/DeletePost';
 // import Review from '../Review/ReviewForm';
 
 // Hooks
-import useModal from '../../../utils/useModal';
+import useModal from '../../../../utils/useModal';
 import Availability from './Availability/Availability';
 // import { useQuery } from '@apollo/react-hooks';
 // import { GET_COACH_POST } from './Resolvers.js';

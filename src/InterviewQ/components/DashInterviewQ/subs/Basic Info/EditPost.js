@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from '../Resolvers';
 import PreviewCard from './CoachDashPreviewModal.js';
-import Availability from './Availability/Availability'
+import Availability from '../Availability/Availability'
 
 import './EditForm.scss';
 

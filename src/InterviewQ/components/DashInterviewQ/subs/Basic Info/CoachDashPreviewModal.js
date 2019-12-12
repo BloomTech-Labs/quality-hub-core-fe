@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CoachPreview from './CoachDashCardExpand.js';
 
 //Styles
-import '../CoachList/CoachCardModal.scss';
+import '../../../CoachList/CoachCardModal.scss';
 // import Icon from '../../../globalIcons/Icon';
 // import { ICONS } from '../../../globalIcons/iconConstants';
 

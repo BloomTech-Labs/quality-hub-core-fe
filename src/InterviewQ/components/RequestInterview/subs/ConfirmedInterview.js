@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { greencheckcircle } from '../../../global/icons/checkcircle'
+import { greencheckcircle } from '../../../../global/icons/checkcircle'
 
 const ConfirmedInterview = () => {
 	return (
