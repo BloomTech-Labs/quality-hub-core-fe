@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import CoachCard from './CoachCard';
+import CoachCard from './subs/1_CoachCard/CoachCard';
 import Search from '../Search';
 
 import './CoachList.scss';
