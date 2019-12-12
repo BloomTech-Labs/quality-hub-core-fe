@@ -350,11 +350,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						/>
 					</div>
 				</div>
-			
-
 			{/* START HOURLY RATE */}
 			<div className='post-input'>
-				<div className='dash-input'>
 					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>PRICE PER SESSION</h3>
@@ -401,7 +398,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							handleSubmit={handleSubmit}
 						/>
 					</div>
-				</div>
 			</div>
 			
 			<div className='post-input-last'>
