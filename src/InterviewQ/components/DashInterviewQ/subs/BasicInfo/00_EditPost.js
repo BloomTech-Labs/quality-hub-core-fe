@@ -3,9 +3,14 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './01_PostButtons';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from '../Resolvers';
-import PreviewCard from './02_CoachDashPreviewModal.js';
-import Availability from '../Availability/00_Availability'
+import {
+	GET_COACH_POST,
+	GET_INDUSTRIES,
+	UPDATE_POST,
+	REMOVE_TAG,
+} from '../Resolvers';
+import PreviewCard from './02_CoachDashPreviewModal';
+import Availability from '../Availability/00_Availability';
 
 import './00_EditForm.scss';
 
@@ -17,8 +22,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	// console.log(coachPost);
-	
- 	const [removeTag] = useMutation(REMOVE_TAG)
+
+	const [removeTag] = useMutation(REMOVE_TAG);
 	const [changeField] = useMutation(UPDATE_POST);
 
 	const [published, setPublished] = useState();
@@ -30,23 +35,37 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		false,
 		false,
 	]);
-  const [post, setPost] = useState({id: coachPost.postByCoach.id, tagString: ""});
-  const [deleteTags, setDelete] = useState([]);
+	const [post, setPost] = useState({
+		id: coachPost.postByCoach.id,
+		tagString: '',
+	});
+	const [deleteTags, setDelete] = useState([]);
 	//Component State
-  let coachObj = coachPost && coachPost.postByCoach;
-  let tagArray = 
-    coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
+	let coachObj = coachPost && coachPost.postByCoach;
+	let tagArray =
+		coachPost &&
+		coachPost.postByCoach.tags.map(tag => (
+			<button key={tag.id} className='tag-button'>
+				{tag.name}
+				<span
+					className={editing[5] ? '' : 'hidden'}
+					id={tag.id}
+					onClick={handleTagRemove}>
+					{' '}
+					x{' '}
+				</span>
+			</button>
+		));
 	const [original, setOriginal] = useState(coachObj);
 
 	useEffect(() => {
 		if (coachPost) {
-			setPublished(coachPost.postByCoach.isPublished) && setOriginal({...coachPost['postByCoach']});
+			setPublished(coachPost.postByCoach.isPublished) &&
+				setOriginal({ ...coachPost['postByCoach'] });
 		}
 	}, [coachPost]);
 
 	// console.log('orig', original);
-
-
 
 	//Handler Functions
 	const handleChange = e => {
@@ -83,91 +102,111 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 			id: coachPost.postByCoach.id,
 		});
 		let newEditing = [...editing];
-    newEditing[index] = false;
-    setEditing(newEditing);
-    if (index === 5) {
-      setOriginal({...original, tags: coachPost.postByCoach.tags})
-      setDelete([]);
-    }
+		newEditing[index] = false;
+		setEditing(newEditing);
+		if (index === 5) {
+			setOriginal({ ...original, tags: coachPost.postByCoach.tags });
+			setDelete([]);
+		}
 	};
 
-  useEffect(() => {
-    if (original.tagString) {
-      let tags = original.tags;
-      let newTags = tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
-      setOriginal({...original, tagString: newTags})
+	useEffect(() => {
+		if (original.tagString) {
+			let tags = original.tags;
+			let newTags = tags.map(tag => (
+				<button key={tag.id} className='tag-button'>
+					{tag.name}
+					<span
+						className={editing[5] ? '' : 'hidden'}
+						id={tag.id}
+						onClick={handleTagRemove}>
+						{' '}
+						x{' '}
+					</span>
+				</button>
+			));
+			setOriginal({ ...original, tagString: newTags });
 		}
 		// eslint-disable-next-line
-  }, [editing[5], original.tags])
+	}, [editing[5], original.tags]);
 
-
-  
 	const handleSubmit = (e, index) => {
-    let keyval = Object.keys(post);
+		let keyval = Object.keys(post);
 		// console.log('key', keyval);
-    e.preventDefault();
-    console.log(post);
-    deleteTags.forEach(tag => {
-      removeTag({ variables: { id: post.id, tagID: tag.id}})
-    });
+		e.preventDefault();
+		console.log(post);
+		deleteTags.forEach(tag => {
+			removeTag({ variables: { id: post.id, tagID: tag.id } });
+		});
 		changeField({ variables: post })
 			.then(res => {
-        if(keyval[1] === 'tagString') {
-          // let newLength = res.data.updatePost.tags.length;
-          let tags = res.data.updatePost.tags;
-          // let newTags;
-          tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
-          // setEditing(newEditing, () => {
-          //   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
-          // });
-          setOriginal({...original, tags: tags})
-          setPost({id: coachPost.postByCoach.id});
-
-        } else {
-          setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
-        }
-        let newEditing = [...editing];
-        newEditing[index] = false;
-        setEditing(newEditing);
+				if (keyval[1] === 'tagString') {
+					// let newLength = res.data.updatePost.tags.length;
+					let tags = res.data.updatePost.tags;
+					// let newTags;
+					tags.map(tag => (
+						<button key={tag.id} className='tag-button'>
+							{tag.name}
+							<span
+								className={editing[5] ? '' : 'hidden'}
+								id={tag.id}
+								onClick={handleTagRemove}>
+								{' '}
+								x{' '}
+							</span>
+							}
+						</button>
+					));
+					// setEditing(newEditing, () => {
+					//   newTags = tags.map(tag => <button key={tag.id} className="tag-button">#{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span>}</button>);
+					// });
+					setOriginal({ ...original, tags: tags });
+					setPost({ id: coachPost.postByCoach.id });
+				} else {
+					setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
+				}
+				let newEditing = [...editing];
+				newEditing[index] = false;
+				setEditing(newEditing);
 			})
 			.catch(err => {
 				console.log(err);
 			});
-  };
-  
-  function handleTagRemove(e) {
-    let tagID = e.target.id;
-    let newArray = original.tags.filter(tag => tagID !== tag.id)
-    let newNodes = tagArray.filter(tag => tag.key !== tagID )
-    tagArray = newNodes;
-    setOriginal({...original, tags: newArray, tagString: tagArray})
-    setDelete(arr => [...arr, {id: tagID}])
-    console.log(deleteTags);
-  }
-	// const tagArray =
-  // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
-
-  const handleSubmitPost = e => {
-	e.preventDefault();
-	changeField({ variables: { id: post.id, isPublished: true}})
-		.then(res => {
-			console.log(res.data.updatePost);
-		})
-		.catch(err => {
-			console.log(err);
-		});
 	};
 
-	const handleUnpublish = e => {
+	function handleTagRemove(e) {
+		let tagID = e.target.id;
+		let newArray = original.tags.filter(tag => tagID !== tag.id);
+		let newNodes = tagArray.filter(tag => tag.key !== tagID);
+		tagArray = newNodes;
+		setOriginal({ ...original, tags: newArray, tagString: tagArray });
+		setDelete(arr => [...arr, { id: tagID }]);
+		console.log(deleteTags);
+	}
+	// const tagArray =
+	// 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
+
+	const handleSubmitPost = e => {
 		e.preventDefault();
-		changeField({ variables: { id: post.id, isPublished: false }})
+		changeField({ variables: { id: post.id, isPublished: true } })
 			.then(res => {
 				console.log(res.data.updatePost);
 			})
 			.catch(err => {
 				console.log(err);
 			});
-		};
+	};
+
+	const handleUnpublish = e => {
+		e.preventDefault();
+		changeField({ variables: { id: post.id, isPublished: false } })
+			.then(res => {
+				console.log(res.data.updatePost);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
 
 	return (
 		<>
@@ -318,27 +357,27 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						<span className='dash-heading'>
 							<h3>TAGS</h3>
 						</span>
-            <div className="tag-form">
-              {editing[5] &&
-                <div className="tag-input">
-                  <input
-                    id='edit-post-5'
-                    type='text'
-                    name='tagString'
-                    placeholder="Add tags here (i.e Javascript, Node ..)"
-                    value={post.tagString}
-                    onChange={handleChange}
-                  />
-                </div>
-                }
-                <div className="tags-container">
-                  <p>
-                    {original && original.tagString
-                      ? original && original.tagString
-                      : original && tagArray}
-                  </p>
+						<div className='tag-form'>
+							{editing[5] && (
+								<div className='tag-input'>
+									<input
+										id='edit-post-5'
+										type='text'
+										name='tagString'
+										placeholder='Add tags here (i.e Javascript, Node ..)'
+										value={post.tagString}
+										onChange={handleChange}
+									/>
+								</div>
+							)}
+							<div className='tags-container'>
+								<p>
+									{original && original.tagString
+										? original && original.tagString
+										: original && tagArray}
+								</p>
 							</div>
-              </div>
+						</div>
 					</div>
 					<div className='edit-btns'>
 						<PostButtons
@@ -350,8 +389,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						/>
 					</div>
 				</div>
-			{/* START HOURLY RATE */}
-			<div className='post-input'>
+				{/* START HOURLY RATE */}
+				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>PRICE PER SESSION</h3>
@@ -379,9 +418,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 											step='1'
 										/>
 									</div>
-						
 								</div>
-							
 							</div>
 						) : (
 							<div>
@@ -398,42 +435,52 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							handleSubmit={handleSubmit}
 						/>
 					</div>
-			</div>
-			
-			<div className='post-input-last'>
-				<div className='see-preview'>
-					<PreviewCard setOpen={setOpen} open={open} post={original} />
+				</div>
+
+				<div className='post-input-last'>
+					<div className='see-preview'>
+						<PreviewCard setOpen={setOpen} open={open} post={original} />
 					</div>
 				</div>
 			</div>
-			
+
 			<div className='editform'>
 				<h2>Availability</h2>
-					<Availability />
-				</div>
-			<div className='editform'> 
+				<Availability />
+			</div>
+			<div className='editform'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
-					//if coach is done loading 
-					 !loading ? (
-						published ? ( 
+					//if coach is done loading
+					!loading ? (
+						published ? (
 							// if coach listing is published, render 'unpublished'
-						<div className='delete-post'> 
-							<p>Your coach post is currently published.</p>
-							<button className='update-post-btn' onClick={e => handleUnpublish(e)}> Unpublish </button>
-						</div>
+							<div className='delete-post'>
+								<p>Your coach post is currently published.</p>
+								<button
+									className='update-post-btn'
+									onClick={e => handleUnpublish(e)}>
+									{' '}
+									Unpublish{' '}
+								</button>
+							</div>
+						) : (
+							// Allow coach to published their listing if unpublished
+							<div className='delete-post'>
+								<p>Your coach post is currently unpublished.</p>
+								<button
+									class='update-post-btn'
+									onClick={e => handleSubmitPost(e)}>
+									{' '}
+									Publish{' '}
+								</button>
+							</div>
+						)
+					) : null
 				) : (
-				// Allow coach to published their listing if unpublished
-					<div className='delete-post'>
-							<p>Your coach post is currently unpublished.</p>
-							<button class='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
-					</div>	) 
-					 ): 
-				null
-					 ) : (
-						<p>text</p>
-					 )}
-					 </div>
+					<p>text</p>
+				)}
+			</div>
 		</>
 	);
 };

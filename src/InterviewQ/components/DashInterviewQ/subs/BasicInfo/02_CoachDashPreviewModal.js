@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import CoachPreview from './03_CoachDashCardExpand';
 
 //Styles
-import '../../../CoachList/CoachCardModal.scss';
+import '../../../LandingPage/CoachList/CoachCardModal.scss';
 // import Icon from '../../../globalIcons/Icon';
 // import { ICONS } from '../../../globalIcons/iconConstants';
 
 const CoachPreviewModal = ({ post }) => {
 	const [open, setOpen] = useState(false);
 
-
-
 	return (
 		<div className='coach-card-modal-text'>
-		
 			<button className='update-post-btn' onClick={() => setOpen(!open)}>
 				<p className='coach-card-modal-text coachcard-seemore'>See preview </p>
 			</button>

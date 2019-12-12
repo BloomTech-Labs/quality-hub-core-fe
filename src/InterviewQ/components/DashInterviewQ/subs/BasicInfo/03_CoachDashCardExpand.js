@@ -2,14 +2,15 @@
 import React, { useEffect, useRef } from 'react';
 
 // Styles & Icons
-import '../../CoachCardModal.scss';
-import Icon from '../../../../../../global/icons/Icon';
-import { ICONS } from '../../../../../../global/icons/iconConstants';
+import '../../../LandingPage/CoachList/CoachCardModal.scss';
+import Icon from '../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../global/icons/iconConstants';
 
-const CoachCard = ({ post, setOpen, open }) => {
+const CoachPreviewCard = ({ post, setOpen, open }) => {
 	const node = useRef();
 	let { coach } = post;
-
+	// let { coach } = original;
+	console.log('here', post.tags);
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -91,13 +92,16 @@ const CoachCard = ({ post, setOpen, open }) => {
 					<div className='coachcard-description-expand'>
 						<p>{post.description}</p>
 						<div className='coachcard-tags-container-expand'>
-							{post.tags.map(tag => (
-								<p className='coachcard-tag-button-expand' key={tag.id}>
-									{tag.name}
-								</p>
-							))}
+							<p className='tags'>
+								{post.tags.map(tag => (
+									<p className='coachcard-tag-button-expand' key={tag.id}>
+										{tag.name}
+									</p>
+								))}
+							</p>
 						</div>
 					</div>
+
 					<div className='coachcard-footer-expand'>
 						<div className='coachcard-links-exand'>
 							{post.coach.twitter_url && (
@@ -127,4 +131,4 @@ const CoachCard = ({ post, setOpen, open }) => {
 	);
 };
 
-export default CoachCard;
+export default CoachPreviewCard;
