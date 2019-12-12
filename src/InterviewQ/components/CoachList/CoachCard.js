@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 // Styles & Icons
 import './CoachCard.scss';
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/globalIcons/Icon';
+import { ICONS } from '../../../global/globalIcons/iconConstants';
 
 //Component
 import CoachModal from './CoachCardModal.js';

@@ -6,10 +6,10 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Styles && Icons
 import './CoachForm.scss';
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
-import { lightbulb } from '../../../globalIcons/lightbulb';
-import { lightbulb2 } from '../../../globalIcons/lightbulb2';
+import Icon from '../../../global/globalIcons/Icon';
+import { ICONS } from '../../../global/globalIcons/iconConstants';
+import { lightbulb } from '../../../global/globalIcons/lightbulb';
+import { lightbulb2 } from '../../../global/globalIcons/lightbulb2';
 
 // Query
 import { GET_POSTS } from '../CoachList/CoachList';

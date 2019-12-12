@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 import axios from 'axios';
-import {Gear} from '../../../globalIcons/gear';
-import {Signout} from '../../../globalIcons/signout';
+import {Gear} from '../../globalIcons/gear';
+import {Signout} from '../../globalIcons/signout';
 
 // Icons
-import { blankavatar } from '../../../globalIcons/blankavatar';
+import { blankavatar } from '../../globalIcons/blankavatar';
 
 const GET_USER = gql`
 	query dropdownMenu {

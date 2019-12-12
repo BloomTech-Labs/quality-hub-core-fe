@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../globalIcons/Icon';
+import { ICONS } from '../../globalIcons/iconConstants';
 
 // Components
 import DeleteModal from './DeleteModal';
