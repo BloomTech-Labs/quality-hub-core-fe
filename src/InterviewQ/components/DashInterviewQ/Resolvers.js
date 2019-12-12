@@ -5,10 +5,11 @@ mutation updatePost(
   $id: ID! 
   $price: Int
   $position: String
- $company: String
- $industryName: String
+  $company: String
+  $industryName: String
   $description: String
   $tagString: String
+  $isPublished: Boolean
 ) {
   updatePost(
     id: $id
@@ -18,6 +19,7 @@ mutation updatePost(
     industryName: $industryName
     description: $description
     tagString: $tagString
+    isPublished: $isPublished
   ) {
     id
     price
@@ -32,6 +34,7 @@ mutation updatePost(
       id
       name
     }
+    isPublished
   }
 }
 `
@@ -67,6 +70,7 @@ query coachPost ($coach_id: String!){
     position
     description
     price
+    isPublished
     industry{
       id
       name

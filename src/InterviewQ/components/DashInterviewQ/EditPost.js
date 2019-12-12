@@ -17,9 +17,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	// console.log(coachPost);
-	const [published, setPublished] = useState();
-  const [removeTag] = useMutation(REMOVE_TAG)
+	
+ 	const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
+
+	const [published, setPublished] = useState();
 	const [editing, setEditing] = useState([
 		false,
 		false,
@@ -35,10 +37,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
   let tagArray = 
     coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
 	const [original, setOriginal] = useState(coachObj);
+
 	useEffect(() => {
 		if (coachPost) {
-			setPublished(coachPost.postByCoach.isPublished) &&
-      setOriginal({...coachPost['postByCoach']});
+			setPublished(coachPost.postByCoach.isPublished) && setOriginal({...coachPost['postByCoach']});
 		}
 	}, [coachPost]);
 
@@ -148,9 +150,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
   const handleSubmitPost = e => {
 	e.preventDefault();
 	changeField({ variables: { id: post.id, isPublished: true}})
-	changeField({ variables: { id: post.id, isPublished: true }})
 		.then(res => {
-			console.log(res.data.updatePost.isPublished);
 			console.log(res.data.updatePost);
 		})
 		.catch(err => {
@@ -168,13 +168,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				console.log(err);
 			});
 		};
-
-
-
-
-
-
-
 
 	return (
 		<>
@@ -427,17 +420,16 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					 !loading ? (
 						published ? ( 
 							// if coach listing is published, render 'unpublished'
-							<div className='delete-post'> 
-						<p>Your coach post is currently published.</p>
-				<button className='update-post-btn' onClick={e => handleUnpublish(e)}> Unpublish </button>
-				</div>
-			) : (
-				// Allow coach to published their listing 
-				<div className='delete-post'>
-					<p>Your coach post is currently unpublished.</p>
-					<button class='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
-					</div>
-				) 
+						<div className='delete-post'> 
+							<p>Your coach post is currently published.</p>
+							<button className='update-post-btn' onClick={e => handleUnpublish(e)}> Unpublish </button>
+						</div>
+				) : (
+				// Allow coach to published their listing if unpublished
+					<div className='delete-post'>
+							<p>Your coach post is currently unpublished.</p>
+							<button class='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
+					</div>	) 
 					 ): 
 				null
 					 ) : (
