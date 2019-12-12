@@ -5,7 +5,7 @@ import { format, getMonth } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
-import './RequestInterview.scss';
+import './00_RequestInterview.scss';
 import axios from 'axios';
 
 const RequestInteview =(props) => {

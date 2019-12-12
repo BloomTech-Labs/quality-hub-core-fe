@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 // import { ApolloClient as client } from 'apollo-boost';
 
 // Styles & Icons
-import './DeletePost.scss';
+import './00_DeletePost.scss';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 import { GET_COACH_POST } from '../Resolvers';

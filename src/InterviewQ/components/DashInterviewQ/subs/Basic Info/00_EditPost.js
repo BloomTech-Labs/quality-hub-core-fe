@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './01_PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from '../Resolvers';
-import PreviewCard from './02_CoachDashPreviewModal.js/index.js';
+import PreviewCard from './02_CoachDashPreviewModal.js';
 import Availability from '../Availability/00_Availability'
 
-import './EditForm.scss';
+import './00_EditForm.scss';
 
 const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
