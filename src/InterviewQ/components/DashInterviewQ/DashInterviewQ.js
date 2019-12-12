@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_COACH_POST } from './Resolvers'
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 // Components
 import CoachDash from './CoachDash';
-import { spacecoach } from '../../../globalIcons/SpaceCoach.js'
+import { spacecoach } from '../../../global/icons/SpaceCoach.js'
 // import Reviews from './Reviews';
 // import Video from './Video';
 

@@ -6,8 +6,8 @@ import axios from 'axios';
 import './Avatar.scss';
 
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../icons/Icon';
+import { ICONS } from '../../icons/iconConstants';
 
 // Queries/Mutations: Remember to export for testing
 export const GET_IMG = gql`

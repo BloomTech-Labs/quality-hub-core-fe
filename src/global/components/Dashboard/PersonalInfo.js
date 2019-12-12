@@ -2,8 +2,8 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../icons/Icon';
+import { ICONS } from '../../icons/iconConstants';
 
 // Components
 import BasicInfo from './BasicInfo';

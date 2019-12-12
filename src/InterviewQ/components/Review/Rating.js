@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 import './Rating.scss';
 const Rating = ({ handleHover, hoverIdx, fields, index, handleClick }) => {
