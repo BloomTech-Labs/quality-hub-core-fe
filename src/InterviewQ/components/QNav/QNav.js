@@ -14,13 +14,13 @@ export default function QNav() {
 	return (
 		<div className='QNav'>
 			<>
-			<NavLink to='/interviewq' exact activeClassName="QNav-row-highlight">
-				<div className='QNav-row' >
-				<Icon icon={ICONS.INTERVIEWQ} width={24} height={22} />
-					<div className='QNav-btn'>InterviewQ</div>
-				</div>
-			</NavLink>
-			{/* <Link to='/interviewq/availability'>
+				<NavLink to='/interviewq' exact activeClassName='QNav-row-highlight'>
+					<div className='QNav-row'>
+						<Icon icon={ICONS.INTERVIEWQ} width={24} height={22} />
+						<div className='QNav-btn'>InterviewQ</div>
+					</div>
+				</NavLink>
+				{/* <Link to='/interviewq/availability'>
 				<div className='QNav-row'>
 					{/* <Icon
 						icon={ICONS.EMAIL}
@@ -32,13 +32,18 @@ export default function QNav() {
 					<div className='QNav-btn'>Availabilty</div>
 				</div>
 				</Link> */}
-			
-			<NavLink to='/interviewq/settings' activeClassName="QNav-row-highlight">
-				<div className='QNav-row'>
-					<Icon icon={ICONS.SETTING} width={24} height={22} />
-					<div className='QNav-btn'>Settings</div>
-				</div>
-			</NavLink>
+				<NavLink to='/interviewq/history' activeClassName='QNav-row-highlight'>
+					<div className='QNav-row'>
+						<div className='QNav-btn'>History</div>
+					</div>
+				</NavLink>
+
+				<NavLink to='/interviewq/settings' activeClassName='QNav-row-highlight'>
+					<div className='QNav-row'>
+						<Icon icon={ICONS.SETTING} width={24} height={22} />
+						<div className='QNav-btn'>Settings</div>
+					</div>
+				</NavLink>
 			</>
 		</div>
 	);

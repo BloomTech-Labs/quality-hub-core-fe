@@ -71,7 +71,6 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 					setToggleFilter={setToggleFilter}
 				/>
 			)}
-			{/* <hr /> */}
 			{loading && <Loading />}
 			{!loading && data && (
 				<div className='coach-list'>
