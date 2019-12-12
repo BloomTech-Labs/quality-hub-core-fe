@@ -8,8 +8,8 @@ import { ALL_BOOKINGS } from './Queries';
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
 
-import { nextArrow } from '../../../../globalIcons/nextArrow';
-import { backArrow } from '../../../../globalIcons/backArrow';
+import { nextArrow } from '../../../icons/nextArrow';
+import { backArrow } from '../../../icons/backArrow';
 
 import { days, months, years } from './TimeArrays'
 

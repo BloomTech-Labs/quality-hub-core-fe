@@ -2,8 +2,8 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 // Styles
 import './CoachDash.scss';
@@ -37,7 +37,7 @@ export default function CoachDash() {
 			</div>
 
 			<EditPost/>
-			<Review />
+			{/* <Review /> */}
 
 			<div className='editform'>
 				<h2>Delete Coach Post</h2>

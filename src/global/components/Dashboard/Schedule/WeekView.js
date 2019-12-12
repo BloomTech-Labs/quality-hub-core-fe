@@ -18,8 +18,8 @@ import {
 } from 'date-fns';
 import WeekBooking from './WeekBooking';
 
-import { nextArrow } from '../../../../globalIcons/nextArrow';
-import { backArrow } from '../../../../globalIcons/backArrow';
+import { nextArrow } from '../../../icons/nextArrow';
+import { backArrow } from '../../../icons/backArrow';
 
 const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 	const currentWeek = getWeek(selectedDate);

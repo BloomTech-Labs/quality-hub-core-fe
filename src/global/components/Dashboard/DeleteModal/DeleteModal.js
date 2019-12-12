@@ -7,8 +7,8 @@ import { useHistory } from 'react-router-dom';
 
 // Styles & Icons
 import './DeleteModal.scss';
-import Icon from '../../../../globalIcons/Icon';
-import { ICONS } from '../../../../globalIcons/iconConstants';
+import Icon from '../../../icons/Icon';
+import { ICONS } from '../../../icons/iconConstants';
 
 // GraphQL Mutation
 export const DELETE_USER = gql`
