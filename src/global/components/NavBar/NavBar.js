@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import AvatarDropdown from './AvatarDropdown';
-import GridDropdown from './GridDropdown';
+import AvatarDropdown from './subs/AvatarDropdown';
+import GridDropdown from './subs/GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Bellicon } from '../../icons/bellicon';
