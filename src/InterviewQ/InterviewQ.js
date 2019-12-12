@@ -6,7 +6,7 @@ import CoachList from './components/CoachList';
 import LeftNav from './components/LeftNav/LeftNav';
 import { Route } from 'react-router-dom';
 import Booking from './components/RequestInterview/index';
-import TestComponent from './components/Review/TestComponent';
+import TestComponent from './components/Review/subs/TestComponent';
 import { ReviewPage } from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';

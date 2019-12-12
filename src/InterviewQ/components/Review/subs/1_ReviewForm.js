@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import { CREATE_REVIEW } from './Resolvers';
-import Rating from './Rating';
+import Rating from './2_Rating';
 import './ReviewForm.scss';
 
 const ReviewForm = props => {
