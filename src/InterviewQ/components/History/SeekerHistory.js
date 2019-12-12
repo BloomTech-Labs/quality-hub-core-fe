@@ -33,9 +33,8 @@ const GET_SEEKERBOOKINGS = gql`
 	}
 `;
 
-const seeker_id = localStorage.getItem('id');
-
 export default function SeekerHistory() {
+  const seeker_id = localStorage.getItem('id');
 	const { loading, error, data } = useQuery(GET_SEEKERBOOKINGS, {
 		variables: { seeker_id },
 	});
