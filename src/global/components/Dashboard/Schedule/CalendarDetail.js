@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format } from 'date-fns';
-import { clock } from '../../../icons/Clock.js';
-import { document } from '../../../icons/document.js';
-import { paperclip } from '../../../icons/paperclip.js';
-import { ICONS } from '../../../icons/iconConstants';
-import Icon from '../../../icons/Icon';
+import { clock } from '../../../../global/icons/Clock';
+import { document } from '../../../../global/icons/document.js';
+import { paperclip } from '../../../../global/icons/paperclip.js';
+import { ICONS } from '../../../../global/icons/iconConstants';
+import Icon from '../../../../global/icons/Icon';
 import { utcToZonedTime } from 'date-fns-tz';
 import Loading from '../../../../Core/components/Loading';
 import { gql } from 'apollo-boost';
@@ -31,7 +31,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	const [allBookings, setAllBookings] = useState();
 	const [selectedDay, setSelectedDay] = useState(format(selectedDate, 'd'));
 	const [selectedMonth, setSelectedMonth] = useState(format(selectedDate, 'M'));
-	const [deleteBook] = useMutation(DELETE_BOOKING);
+	const [deleteBook, { client: bookClient }] = useMutation(DELETE_BOOKING);
 
 	const node = useRef();
 	const sortBookingsFunction = array => {
@@ -49,6 +49,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		return array;
 	};
 	useEffect(() => {
+		// refetch();
 		if (data) {
 			// console.log(client)
 			// console.log(data.bookingsByCoach);
@@ -122,8 +123,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		deleteBook({ variables: { uniquecheck: uniquecheck } })
 			.then(res => {
 				// client.clearStore();
-				window.location.reload(true);
-				// client.resetStore();
+				//window.location.reload(true);
+				bookClient.clearStore();
 				// refetch();
 				setOpen(false);
 				console.log(res);
