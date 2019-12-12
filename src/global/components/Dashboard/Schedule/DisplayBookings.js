@@ -5,10 +5,10 @@ import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
 export const DisplayBookings = currentMonth => {
-	const { data: bookingsByCoach, refetch } = useQuery(COACH_BOOKINGS, {
+	const { data: bookingsByCoach, refetch: refetchCoaches } = useQuery(COACH_BOOKINGS, {
 		variables: { coachId: localStorage.getItem('id') },
 	});
-	const { data: bookingsBySeeker } = useQuery(SEEKER_BOOKINGS, {
+	const { data: bookingsBySeeker, refetch: refetchSeekers } = useQuery(SEEKER_BOOKINGS, {
 		variables: { seekerId: localStorage.getItem('id') },
 	});
 	const [renderBookings, setRenderBookings] = useState();
@@ -41,6 +41,8 @@ export const DisplayBookings = currentMonth => {
 	};
 
 	useEffect(() => {
+		refetchCoaches();
+		refetchSeekers();
 		if (bookingsBySeeker && bookingsByCoach) {
 			// const allBooking = bookingsBySeeker.bookingsBySeeker.join(bookingsByCoach.bookingsByCoach)
 			// const convertedArr = allBooking.map(booking => convertToLocal(booking));
