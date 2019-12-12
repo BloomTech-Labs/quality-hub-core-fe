@@ -8,8 +8,8 @@ import { Route, Switch } from 'react-router-dom';
 import './Dashboard.scss';
 
 // Components
-import LeftNavBar from './LeftNavBar';
-import PersonalInfo from './PersonalInfo';
+import LeftNavBar from './subs/LeftNavBar';
+import PersonalInfo from './subs/PersonalInfo';
 import Schedule from './Schedule';
 // import DashInterviewQ from '../../../InterviewQ/components/DashInterviewQ';
 // GraphQuaiL Query

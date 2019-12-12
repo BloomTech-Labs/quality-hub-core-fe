@@ -14,18 +14,11 @@ import DeletePost from './Delete Post/DeletePost';
 // import Review from '../Review/ReviewForm';
 
 // Hooks
-import useModal from '../../../../utils/useModal';
-import Availability from './Availability/Availability';
-// import { useQuery } from '@apollo/react-hooks';
-// import { GET_COACH_POST } from './Resolvers.js';
+import useModal from '../../../utils/useModal';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();
 
-	// const { data: coachPost } = useQuery(GET_COACH_POST, {
-	// 	variables: { coach_id: localStorage.getItem('id') },
-	// });
-	// console.log(coachPost);
 
 	return (
 		<div className='dash-coachinfo'>
@@ -36,7 +29,7 @@ export default function CoachDash() {
 				<h1>Coach Info</h1>
 			</div>
 
-			<EditPost/>
+			<EditPost />
 			{/* <Review /> */}
 
 			<div className='editform'>
