@@ -4,7 +4,7 @@ import LandingPage from '../../Core/components/LandingPage';
 import Dashboard from '../components/Dashboard';
 import SignInForm from '../../Core/components/SignInForm';
 import SignUpForm from '../../Core/components/SignUpForm';
-import ForgotPassword from '../../Core/components/SignInForm/ForgotPassword';
+import ForgotPassword from '../../Core/components/SignInForm/subs/ForgotPassword';
 import PrivateRoute from '../../global/components/PrivateRoute';
 
 
