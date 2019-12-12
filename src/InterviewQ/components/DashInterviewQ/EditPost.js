@@ -5,7 +5,6 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
 import PreviewCard from './CoachDashPreviewModal.js';
-import Availability from './Availability/Availability'
 
 import './EditForm.scss';
 
@@ -13,11 +12,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	// console.log(industries);
-	const { loading, data: coachPost } = useQuery(GET_COACH_POST, {
+	const { data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	// console.log(coachPost);
-	const [published, setPublished] = useState();
   const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
 	const [editing, setEditing] = useState([
@@ -35,10 +33,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
   let tagArray = 
     coachPost && coachPost.postByCoach.tags.map(tag => <button key={tag.id} className="tag-button">{tag.name}<span className={editing[5] ? "" : "hidden"} id={tag.id} onClick={handleTagRemove} > x </span></button>);
 	const [original, setOriginal] = useState(coachObj);
-
 	useEffect(() => {
 		if (coachPost) {
-			setPublished(coachPost.postByCoach.isPublished) &&
       setOriginal({...coachPost['postByCoach']});
 		}
 	}, [coachPost]);
@@ -146,39 +142,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	// const tagArray =
   // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
 
-
-
-  const handleSubmitPost = e => {
-	e.preventDefault();
-	changeField({ variables: { id: post.id, isPublished: true}})
-	changeField({ variables: { id: post.id, isPublished: true }})
-		.then(res => {
-			console.log(res.data.updatePost.isPublished);
-			console.log(res.data.updatePost);
-		})
-		.catch(err => {
-			console.log(err);
-		});
-	};
-
-	const handleUnpublish = e => {
-		e.preventDefault();
-		changeField({ variables: { id: post.id, isPublished: false }})
-			.then(res => {
-				console.log(res.data.updatePost);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-		};
-
-
-
-
-
 	return (
-
-	<>
+		<>
 			<div className='editform'>
 				{/* START BASIC INFO */}
 				<h2>Basic Info</h2>
@@ -211,6 +176,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
+
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
@@ -240,6 +206,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
+
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
@@ -285,6 +252,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
+
 				<div className='post-input'>
 					<div className='post-row'>
 						<span className='dash-heading'>
@@ -317,7 +285,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						/>
 					</div>
 				</div>
-				<div className='post-input'>
+
+				<div className='post-input last'>
 					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>TAGS</h3>
@@ -354,60 +323,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						/>
 					</div>
 				</div>
-				<div className="post-input last">
-				{/* <h2>Hourly Rate</h2> */}
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
-							<h3>PRICE PER SESSION</h3>
-						</span>
-						{editing[4] ? (
-							<div>
-								<div className='slider-post'>
-									<div className='slider-inner-boxes-post'>
-										<div className='slider-dollar-amounts-post'>
-											<p>$0</p>
-											<p>
-												{post.price ? post.price : original && original.price}
-											</p>
-											<p>$200</p>
-										</div>
-										<input
-											id='edit-post-4'
-											name='price-slider'
-											type='range'
-											min='0'
-											max='200'
-											value={original.price <= 200 ? post.price : 200}
-											defaultValue={original && original.price}
-											onChange={handleChange}
-											step='1'
-										/>
-									</div>
-								</div>
-							</div>
-						) : (
-							<div>
-								<p>${original && original.price}</p>
-							</div>
-						)}
-					</div>
-					<div className='edit-btns'>
-						<PostButtons
-							index={4}
-							editing={editing}
-							setEditing={setEditing}
-							handleCancel={handleCancel}
-							handleSubmit={handleSubmit}
-						/>
-					</div>
-				</div>
-				</div>
 			</div>
-			
+
 			{/* START HOURLY RATE */}
 			<div className='editform'>
-				{/* <h2>Hourly Rate</h2>
+				<h2>Hourly Rate</h2>
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
@@ -436,7 +356,17 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 											step='1'
 										/>
 									</div>
+									{/* <input
+											type='number'
+											name='price'
+											placeholder='$'
+											defaultValue={original && original.price}
+											value={post.price}
+											onChange={handleChange}
+										/>
+									 */}
 								</div>
+								{/* <h4>${original && original.price}</h4> */}
 							</div>
 						) : (
 							<div>
@@ -453,42 +383,12 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							handleSubmit={handleSubmit}
 						/>
 					</div>
-				</div> */}
-			</div>
-			<div className='editform'>
-				<h2>Availability</h2>
-				<Availability />
-			</div>
-				<div className="editform">
-					<div className='see-preview'>
-					<PreviewCard setOpen={setOpen} open={open} post={original} />
 				</div>
 			</div>
-			<div className='editform'> 
-				<h2>Coach Post Status</h2>
-				{coachPost ? (
-					//if coach is done loading then ..
-					 !loading ? (
-						published ? ( 
-							// if coach listing is published, render 'unpublished'
-							<div className='delete-post'> 
-						<p>Your coach post is currently published.</p>
-				<button className='update-post-btn' onClick={e => handleUnpublish(e)}> Unpublish </button>
-				</div>
-			) : (
-				// Allow coach to published their listing 
-				<div className='delete-post'>
-					<p>Your coach post is currently unpublished.</p>
-					<button class='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
-					</div>
-				) 
-					 ): 
-				null
-					 ) : (
-						<p>text</p>
-					 )}
-					 </div>
-
+			{/* <div className='editform'>
+				<PreviewCard setOpen={setOpen} open={open} post={original} />
+				<button className='update-post-btn'> Update </button>
+			</div> */}
 		</>
 	);
 };
