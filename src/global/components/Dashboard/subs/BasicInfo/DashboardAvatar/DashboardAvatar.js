@@ -5,7 +5,7 @@ import React from 'react';
 import './DashboardAvatar.scss';
 
 // Components
-import Avatar from '../../../Avatar';
+import Avatar from '../../../../Avatar';
 
 export default function DashboardAvatar() {
 	return (
