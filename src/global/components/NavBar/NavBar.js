@@ -4,9 +4,9 @@ import AvatarDropdown from './AvatarDropdown';
 import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Bellicon } from '../../globalIcons/bellicon';
+import { Bellicon } from '../../icons/bellicon';
 
-import { Hamburger } from '../../globalIcons/hamburger';
+import { Hamburger } from '../../icons/hamburger';
 
 const GET_USER = gql`
 	query dropdownMenu {
