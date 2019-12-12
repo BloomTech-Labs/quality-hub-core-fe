@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 import Booking from './components/RequestInterview/index';
 import TestComponent from './components/Review/TestComponent';
 import { ReviewPage } from './components/Review';
-import ConfirmedInterview from './components/RequestInterview/subs/ConfirmedInterview';
+import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
 

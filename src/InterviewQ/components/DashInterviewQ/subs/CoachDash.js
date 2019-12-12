@@ -9,12 +9,12 @@ import { ICONS } from '../../../../global/icons/iconConstants';
 import './CoachDash.scss';
 
 // Components
-import EditPost from './Basic Info/EditPost';
-import DeletePost from './Delete Post/DeletePost';
+import EditPost from './Basic Info/00_EditPost';
+import DeletePost from './Delete Post/00_DeletePost';
 // import Review from '../Review/ReviewForm';
 
 // Hooks
-import useModal from '../../../utils/useModal';
+import useModal from '../../../../utils/useModal';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();

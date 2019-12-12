@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CoachPreview from './CoachDashCardExpand.js';
+import CoachPreview from './03_CoachDashCardExpand.js/index.js';
 
 //Styles
 import '../../../CoachList/CoachCardModal.scss';

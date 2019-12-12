@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-import RequestInteview from './subs/RequestInterview';
-import ConfirmInterview from './subs/ConfirmInterview';
+import RequestInteview from './subs/00_RequestInterview';
+import ConfirmInterview from './subs/01_ConfirmInterview';
 
 const BookingContainer = () => {
 	const [booking, setBooking] = useState({});
