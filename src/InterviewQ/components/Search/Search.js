@@ -28,8 +28,6 @@ const GET_USERS = gql`
 export default function Search({ fields, setFields, refetch }) {
   const { data: ind_data } = useQuery(GET_INDUSTRIES);
 	const [getUsers, { data: user_data }] = useLazyQuery(GET_USERS);
-	// eslint-disable-next-line
-  const [company, setCompany] = useState();
   const [lastChanged, setChanged] = useState();
 
   const makeArray = (data) => {
@@ -87,10 +85,8 @@ export default function Search({ fields, setFields, refetch }) {
 	return (
 		<div className="search-dropdowns">
 			<div className="search-field">
-				{/* <label htmlFor='sign-up-state'>Company*</label> */}
 				<label>Industry</label>
 				<select
-					// onBlur={() => setCompany(true)}
 					name="industry"
 					placeholder="Industry"
 					onChange={handleChange}
@@ -108,7 +104,6 @@ export default function Search({ fields, setFields, refetch }) {
 			<div className="search-field">
 				<label>Price</label>
 				<select
-					// onBlur={() => setCompany(true)}
 					name="price"
 					placeholder="Price"
 					onChange={handleChange}
@@ -125,7 +120,6 @@ export default function Search({ fields, setFields, refetch }) {
 			<div className="search-field">
 				<label>Sort results by</label>
 				<select
-					// onBlur={() => setCompany(true)}
 					name="orderBy"
 					placeholder="Order By"
 					onChange={handleChange}

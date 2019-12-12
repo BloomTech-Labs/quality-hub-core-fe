@@ -6,6 +6,8 @@ import CoachList from './components/CoachList';
 import QNav from './components/QNav';
 import { Route } from 'react-router-dom';
 import BookingContainer from './components/RequestInterview/BookingContainer';
+import TestComponent from './components/Review/TestComponent';
+import { ReviewPage } from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
@@ -26,6 +28,8 @@ const InterviewQContainer = () => {
 				/>
 				<Route path='/interviewq/history' component={History} />
 				<Route path='/interviewq/coachreport' component={CoachReport} />
+        <Route exact path='/interviewq/test' component={TestComponent} />
+        <Route exact path='/interviewq/test/:id' component={ReviewPage} />
 			</div>
 		</>
 	);

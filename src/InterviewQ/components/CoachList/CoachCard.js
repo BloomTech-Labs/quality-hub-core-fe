@@ -11,7 +11,7 @@ import { ICONS } from '../../../globalIcons/iconConstants';
 //Component
 import CoachModal from './CoachCardModal.js';
 
-const CoachCard = ({ history, post, setOpen }) => {
+const CoachCard = ({ post }) => {
 	let { coach } = post;
 	let maxWidth = 100;
 	console.log( 'need this', post);
@@ -68,7 +68,7 @@ const CoachCard = ({ history, post, setOpen }) => {
 					{post.description.substring(0, maxWidth)}
 					<span>
 						{post.description.length >= maxWidth ? '...' : ''}{' '}
-						<CoachModal setOpen={setOpen} post={post} />
+						<CoachModal post={post} />
 					</span>
 				</div>
 			</div>
@@ -87,7 +87,7 @@ const CoachCard = ({ history, post, setOpen }) => {
 				</div>
 				<button className={coach.id === localStorage.getItem('id') ? `interview-button-hidden`: `interview-button`}>
 					<Link to={`interviewq/booking/${coach.id}`}>
-					Request Interview
+					  Request Interview
 					</Link>
 				</button>
 			</div>
