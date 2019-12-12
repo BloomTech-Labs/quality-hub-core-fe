@@ -3,13 +3,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 //Icons
-import { Interviewqicon } from '../../icons/interviewqicon';
-import { Resumeq } from '../../icons/resumeqicon';
-import { Designqicon } from '../../icons/designqicon';
-import { Codeqicon } from '../../icons/codeqicon';
-import { Recruiterqicon } from '../../icons/recruiterqicon';
-import { Networkqicon } from '../../icons/networkqicon';
-import { Gridicon } from '../../icons/gridicon';
+import { Interviewqicon } from '../../../icons/interviewqicon';
+import { Resumeq } from '../../../icons/resumeqicon';
+import { Designqicon } from '../../../icons/designqicon';
+import { Codeqicon } from '../../../icons/codeqicon';
+import { Recruiterqicon } from '../../../icons/recruiterqicon';
+import { Networkqicon } from '../../../icons/networkqicon';
+import { Gridicon } from '../../../icons/gridicon';
 
 const GridDropdown = props => {
 	const node = useRef();
