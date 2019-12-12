@@ -4,26 +4,20 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Components
-import DashboardAvatar from './DashboardAvatar';
-import DashboardInput from '../DashboardInput';
+import DashboardInput from '../../../DashboardInput';
 
 // Query
-const GET_BASICINFO = gql`
+const GET_PAYMENTINFO = gql`
 	query {
 		me {
 			id
-			bio
-			first_name
-			last_name
-			email
-			city
-			state
+			payment_info
 		}
 	}
 `;
 
-const BasicInfo = () => {
-	const { data, loading, error } = useQuery(GET_BASICINFO);
+const PaymentInfo = () => {
+	const { data, loading, error } = useQuery(GET_PAYMENTINFO);
 
 	error && console.log(error);
 
@@ -32,9 +26,8 @@ const BasicInfo = () => {
 		Object.keys(data.me).filter(item => item !== 'id' && item !== '__typename');
 
 	return (
-		<div className='editform basiceditform'>
-			<h2>Basic Info</h2>
-			<DashboardAvatar />
+		<div className='editform'>
+			<h2>Payment Info</h2>
 			{loading && <p>Loading...</p>}
 			{data &&
 				keys.map(item => (
@@ -44,4 +37,4 @@ const BasicInfo = () => {
 	);
 };
 
-export default BasicInfo;
+export default PaymentInfo;

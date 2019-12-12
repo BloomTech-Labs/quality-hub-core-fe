@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Components
-import DashboardInput from '../DashboardInput';
+import DashboardInput from '../../../DashboardInput';
 
 // Query
 const GET_ACCOUNTS = gql`
