@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { COACH_BOOKINGS, SEEKER_BOOKINGS } from './Queries';
+import { COACH_BOOKINGS, SEEKER_BOOKINGS, ALL_BOOKINGS } from './Queries';
 import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
 export const DisplayBookings = currentMonth => {
-	const { data: bookingsByCoach, refetch: refetchCoaches } = useQuery(COACH_BOOKINGS, {
-		variables: { coachId: localStorage.getItem('id') },
+	// const { data: bookingsByCoach, refetch: refetchCoaches } = useQuery(COACH_BOOKINGS, {
+	// 	variables: { coachId: localStorage.getItem('id') },
+	// });
+	// const { data: bookingsBySeeker, refetch: refetchSeekers } = useQuery(SEEKER_BOOKINGS, {
+	// 	variables: { seekerId: localStorage.getItem('id') },
+	// });
+
+	const { data, refetch, loading, client } = useQuery(ALL_BOOKINGS, {
+		variables: {
+			seekerId: localStorage.getItem('id'),
+			coachId: localStorage.getItem('id'),
+		},
 	});
-	const { data: bookingsBySeeker, refetch: refetchSeekers } = useQuery(SEEKER_BOOKINGS, {
-		variables: { seekerId: localStorage.getItem('id') },
-	});
+
+	console.log(data)
 	const [renderBookings, setRenderBookings] = useState();
 
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -41,18 +50,21 @@ export const DisplayBookings = currentMonth => {
 	};
 
 	useEffect(() => {
-		refetchCoaches();
-		refetchSeekers();
-		if (bookingsBySeeker && bookingsByCoach) {
+		// refetchCoaches();
+		// refetchSeekers();
+		refetch();
+		// if (bookingsBySeeker && bookingsByCoach) {
+			if (data) {
 			// const allBooking = bookingsBySeeker.bookingsBySeeker.join(bookingsByCoach.bookingsByCoach)
 			// const convertedArr = allBooking.map(booking => convertToLocal(booking));
 			// setRenderBookings(convertedArr)
 			setRenderBookings([
-				...bookingsBySeeker.bookingsBySeeker,
-				...bookingsByCoach.bookingsByCoach,
+				...data.bookingsByCoach,
+				...data.bookingsBySeeker
 			]);
 		}
-	}, [bookingsByCoach, bookingsBySeeker, currentMonth]);
+	//}, [bookingsByCoach, bookingsBySeeker, currentMonth]);
+}, [data]);
 
 	const sortBookingsFunction = array => {
 		array.sort((a, b) => {
