@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 
 // Styles & Icons
 import './SignUpForm.scss';
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
+import Icon from '../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../global/icons/iconConstants';
 
 // Components
-import Loading from '../Loading';
+import Loading from '../../../Loading';
 
 const CHECK_EMAIL = gql`
 	mutation checkEmail($email: String!) {

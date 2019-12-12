@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 // Icons
-import Icon from '../../icons/Icon';
-import { ICONS } from '../../icons/iconConstants';
+import Icon from '../../../icons/Icon';
+import { ICONS } from '../../../icons/iconConstants';
 
 // Components
 import DeleteModal from './DeleteModal';
 
 // Hooks
-import useModal from '../../../utils/useModal';
+import useModal from '../../../../utils/useModal';
 
 export default function LeftNavBar({ setLoggedin }) {
 	let { pathname } = useLocation();
