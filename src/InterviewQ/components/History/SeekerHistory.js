@@ -42,10 +42,22 @@ export default function SeekerHistory() {
 
 	error && console.log(error);
 
+	const filteredData = data
+		? data.bookingsBySeeker.filter(booking =>
+				isPast(
+					booking.year,
+					booking.month,
+					booking.day,
+					booking.hour,
+					booking.minute,
+				),
+		  )
+		: [];
+
 	return (
 		<div>
 			<h3>Seeker History</h3>
-			{data && data.bookingsBySeeker.length ? (
+			{data && filteredData.length ? (
 				<div className='seeker-history-headings'>
 					<h4>Coach</h4>
 					<h4>Date</h4>
@@ -58,19 +70,9 @@ export default function SeekerHistory() {
 			)}
 			{loading && <p>Loading...</p>}
 			{data &&
-				data.bookingsBySeeker
-					.filter(booking =>
-						isPast(
-							booking.year,
-							booking.month,
-							booking.day,
-							booking.hour,
-							booking.minute,
-						),
-					)
-					.map(booking => (
-						<SeekerHistoryRow key={booking.id} booking={booking} />
-					))}
+				filteredData.map(booking => (
+					<SeekerHistoryRow key={booking.id} booking={booking} />
+				))}
 		</div>
 	);
 }
