@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { CREATE_BOOKING } from './Resolvers.js';
+import { CREATE_BOOKING } from './Resolvers';
 import { format } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 

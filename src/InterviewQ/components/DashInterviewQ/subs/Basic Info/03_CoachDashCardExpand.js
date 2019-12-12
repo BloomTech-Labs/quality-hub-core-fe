@@ -2,9 +2,9 @@
 import React, { useEffect, useRef } from 'react';
 
 // Styles & Icons
-import '../CoachList/CoachCardModal.scss';
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
+import '../../../CoachList/CoachCardModal.scss';
+import Icon from '../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../global/icons/iconConstants';
 
 const CoachPreviewCard = ({ post, setOpen, open }) => {
 	const node = useRef();

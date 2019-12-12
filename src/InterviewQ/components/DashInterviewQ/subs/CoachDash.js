@@ -2,19 +2,19 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
+import Icon from '../../../../global/icons/Icon';
+import { ICONS } from '../../../../global/icons/iconConstants';
 
 // Styles
 import './CoachDash.scss';
 
 // Components
-import EditPost from './EditPost';
-import DeletePost from './DeletePost';
+import EditPost from './Basic Info/00_EditPost';
+import DeletePost from './Delete Post/00_DeletePost';
 // import Review from '../Review/ReviewForm';
 
 // Hooks
-import useModal from '../../../utils/useModal';
+import useModal from '../../../../utils/useModal';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();
