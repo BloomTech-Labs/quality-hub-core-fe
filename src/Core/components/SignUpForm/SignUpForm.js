@@ -6,13 +6,13 @@ import { useMutation } from '@apollo/react-hooks';
 import './SignUpForm.scss';
 
 // Components
-import ProgressBar from './ProgressBar';
-import InitialSignUp from './1-InitialSignUp';
-import GetStarted from './2-GetStarted';
-import SignUpNav from './SignUpNav';
-import GeneralSignUp from './3-GeneralSignUp';
-import ExpSignUp from './4-ExpSignUp';
-import CompletedSignUp from './5-CompletedSignUp';
+import SignUpNav from './subs/1_SignupNav/SignUpNav';
+import ProgressBar from './subs/2_SignupForms/00-ProgressBar';
+import InitialSignUp from './subs/2_SignupForms/1-InitialSignUp';
+import GetStarted from './subs/2_SignupForms/2-GetStarted';
+import GeneralSignUp from './subs/2_SignupForms/3-GeneralSignUp';
+import ExpSignUp from './subs/2_SignupForms/4-ExpSignUp';
+import CompletedSignUp from './subs/2_SignupForms/5-CompletedSignUp';
 
 // Mutation
 import { SIGN_UP } from './Mutation';

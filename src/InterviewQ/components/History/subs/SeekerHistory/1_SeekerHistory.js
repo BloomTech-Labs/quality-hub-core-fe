@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { isPast } from '../../../utils/isPast';
+import { isPast } from '../../../../../utils/isPast';
 
-import SeekerHistoryRow from './SeekerHistoryRow';
+import SeekerHistoryRow from './2_SeekerHistoryRow';
 
 const GET_SEEKERBOOKINGS = gql`
 	query getSeekerHistory($seeker_id: String!) {
