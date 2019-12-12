@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost';
 
 // Components
 import DashboardAvatar from './DashboardAvatar';
-import DashboardInput from '../../../DashboardInput';
+import DashboardInput from '../DashboardInput';
 
 // Query
 const GET_BASICINFO = gql`

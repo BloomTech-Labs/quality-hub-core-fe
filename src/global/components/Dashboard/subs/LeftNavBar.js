@@ -7,7 +7,7 @@ import Icon from '../../../icons/Icon';
 import { ICONS } from '../../../icons/iconConstants';
 
 // Components
-import DeleteModal from './DeleteModal';
+import DeleteModal from './PersonalInfo/subs/DeleteModal';
 
 // Hooks
 import useModal from '../../../../utils/useModal';
