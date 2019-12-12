@@ -1,17 +1,15 @@
-@import '../../../global/globalStyles/variables';
-
+@import '../../../global/styles/variables';
 $width: 80%;
-
 .review-page {
-  margin: auto;
-  text-align: left;
-  width: $width;
-  h2 {
-    font-size: 24px;
-    font-weight: normal;
-  }
-  hr {
-    color: $input-border;
-    margin: 1.0rem 0 3rem 0;
-  }
+    margin: auto;
+    text-align: left;
+    width: $width;
+    h2 {
+        font-size: 24px;
+        font-weight: normal;
+    }
+    hr {
+        color: $input-border;
+        margin: 1.0rem 0 3rem 0;
+    }
 }
