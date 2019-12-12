@@ -5,8 +5,8 @@ import React from 'react';
 import './Footer.scss';
 
 // Icons
-import Icon from '../../../../global/globalIcons/Icon';
-import { ICONS } from '../../../../global/globalIcons/iconConstants';
+import Icon from '../../../../global/icons/Icon';
+import { ICONS } from '../../../../global/icons/iconConstants';
 
 export default function Footer() {
 	return (

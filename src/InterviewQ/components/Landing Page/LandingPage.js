@@ -6,9 +6,9 @@ import { gql } from 'apollo-boost';
 
 // Styles & Icons
 import './LandingPage.scss';
-import Icon from '../../../global/globalIcons/Icon';
-import { ICONS } from '../../../global/globalIcons/iconConstants';
-import { lightbulb2 } from '../../../global/globalIcons/lightbulb2';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
+import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Components
 // import LandingPageCTA from './LandingPageCTA';

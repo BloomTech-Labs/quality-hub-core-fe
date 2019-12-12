@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom';
 import './QNav.scss';
 
 // Icons
-import Icon from '../../../global/globalIcons/Icon';
-import { ICONS } from '../../../global/globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 // import { clock } from '../../../globalIcons/Clock'
 
 export default function QNav() {

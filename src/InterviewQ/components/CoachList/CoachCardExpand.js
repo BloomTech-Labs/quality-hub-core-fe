@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react';
 
 // Styles & Icons
 import './CoachCardModal.scss';
-import Icon from '../../../global/globalIcons/Icon';
-import { ICONS } from '../../../global/globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 const CoachCard = ({ post, setOpen, open }) => {
 	const node = useRef();

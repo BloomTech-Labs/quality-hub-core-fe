@@ -1,7 +1,7 @@
 import React from 'react';
-import Icon from '../../../global/globalIcons/Icon';
-import { ICONS } from '../../../global/globalIcons/iconConstants';
-import { checkcircle } from '../../../global/globalIcons/checkcircle';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
+import { checkcircle } from '../../../global/icons/checkcircle';
 import { Link } from 'react-router-dom';
 
 const DoneModal = ({closeWindow, setAvailability}) => {
