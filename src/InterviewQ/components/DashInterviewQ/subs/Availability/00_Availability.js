@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../../global/components/Calendar/SmallCalendar';
-import { timeObjs } from '../../../../../global/components/Dashboard/Schedule/TimeArrays';
+import { timeObjs } from '../../../../../global/utils/TimeArrays';
 import './00_Availability.scss';
 import { GET_AVAILABILITIES, CREATE_AVAILABILITY, DELETE_AVAILABILITY, AVAIL_BY_UNIQUE } from './Resolvers';
 

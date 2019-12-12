@@ -9,7 +9,7 @@ import './DashboardInput.scss';
 import { EDIT_USER } from './Mutation';
 
 // Functions & Utils
-import { capitalize } from '../../../../../../../utils/capitalize';
+import { capitalize } from '../../../../../../utils/capitalize';
 
 // Data
 import { statesArray } from '../../../../../../../Core/components/SignUpForm/States';

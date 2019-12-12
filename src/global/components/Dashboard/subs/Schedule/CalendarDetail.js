@@ -2,13 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format } from 'date-fns';
-import { clock } from '../../../../global/icons/Clock';
-import { document } from '../../../../global/icons/document.js';
-import { paperclip } from '../../../../global/icons/paperclip.js';
-import { ICONS } from '../../../../global/icons/iconConstants';
-import Icon from '../../../../global/icons/Icon';
+import { clock } from '../../../../../global/icons/Clock';
+import { document } from '../../../../../global/icons/document.js';
+import { paperclip } from '../../../../../global/icons/paperclip.js';
+import { ICONS } from '../../../../../global/icons/iconConstants';
+import Icon from '../../../../../global/icons/Icon';
 import { utcToZonedTime } from 'date-fns-tz';
-import Loading from '../../../../Core/components/Loading';
+import Loading from '../../../../../Core/components/Loading';
 import { gql } from 'apollo-boost';
 
 const CalendarDetail = ({ selectedDate, setOpen }) => {
