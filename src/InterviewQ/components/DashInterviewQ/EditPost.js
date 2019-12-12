@@ -313,7 +313,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 
-				<div className='post-input last'>
+				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>TAGS</h3>
@@ -350,13 +350,12 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						/>
 					</div>
 				</div>
-			</div>
+			
 
 			{/* START HOURLY RATE */}
-			<div className='editform'>
-				<h2>Hourly Rate</h2>
+			<div className='post-input'>
 				<div className='dash-input'>
-					<div className='dash-row post-row'>
+					<div className='post-row post-tag'>
 						<span className='dash-heading'>
 							<h3>PRICE PER SESSION</h3>
 						</span>
@@ -404,15 +403,18 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-			<div className='editform'>
-				<h2>Availability</h2>
-				<Availability />
-			</div>
-				<div className="editform">
-					<div className='see-preview'>
+			
+			<div className='post-input-last'>
+				<div className='see-preview'>
 					<PreviewCard setOpen={setOpen} open={open} post={original} />
+					</div>
 				</div>
 			</div>
+			
+			<div className='editform'>
+				<h2>Availability</h2>
+					<Availability />
+				</div>
 			<div className='editform'> 
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
@@ -436,8 +438,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						<p>text</p>
 					 )}
 					 </div>
-
-
 		</>
 	);
 };
