@@ -14,7 +14,7 @@ const CoachPreviewModal = ({ post }) => {
 	return (
 		<div className='coach-card-modal-text'>
 		
-			<button className='coach-card-modal-text' onClick={() => setOpen(!open)}>
+			<button className='update-post-btn' onClick={() => setOpen(!open)}>
 				<p className='coach-card-modal-text coachcard-seemore'>See preview </p>
 			</button>
 			{open && <CoachPreview setOpen={setOpen} open={open} post={post} />}
