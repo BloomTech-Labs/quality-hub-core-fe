@@ -86,7 +86,7 @@ export default function DeletePost({ isShowing, hide }) {
 								<button className='cancel' onClick={hide}>
 									<span>Cancel</span>
 								</button>
-								<button className='ok-button' onClick={deletePost}>
+								<button className="delete-button" onClick={deletePost}>
 									<span>Delete</span>
 								</button>
 							</div>
