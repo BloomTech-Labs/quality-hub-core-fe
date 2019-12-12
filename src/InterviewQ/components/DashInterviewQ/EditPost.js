@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import PostButtons from './PostButtons';
 import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from './Resolvers';
 import PreviewCard from './CoachDashPreviewModal.js';
+import Availability from './Availability/Availability'
 
 import './EditForm.scss';
 
@@ -12,10 +13,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
 	const { data: industries } = useQuery(GET_INDUSTRIES);
 	// console.log(industries);
-	const { data: coachPost } = useQuery(GET_COACH_POST, {
+	const { loading, data: coachPost } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 	// console.log(coachPost);
+	const [published, setPublished] = useState();
   const [removeTag] = useMutation(REMOVE_TAG)
 	const [changeField] = useMutation(UPDATE_POST);
 	const [editing, setEditing] = useState([
@@ -35,6 +37,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	const [original, setOriginal] = useState(coachObj);
 	useEffect(() => {
 		if (coachPost) {
+			setPublished(coachPost.postByCoach.isPublished) &&
       setOriginal({...coachPost['postByCoach']});
 		}
 	}, [coachPost]);
@@ -141,6 +144,37 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
   }
 	// const tagArray =
   // 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
+
+  const handleSubmitPost = e => {
+	e.preventDefault();
+	changeField({ variables: { id: post.id, isPublished: true}})
+	changeField({ variables: { id: post.id, isPublished: true }})
+		.then(res => {
+			console.log(res.data.updatePost.isPublished);
+			console.log(res.data.updatePost);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+	};
+
+	const handleUnpublish = e => {
+		e.preventDefault();
+		changeField({ variables: { id: post.id, isPublished: false }})
+			.then(res => {
+				console.log(res.data.updatePost);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+		};
+
+
+
+
+
+
+
 
 	return (
 		<>
@@ -377,7 +411,41 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-		
+			<div className='editform'>
+				<h2>Availability</h2>
+				<Availability />
+			</div>
+				<div className="editform">
+					<div className='see-preview'>
+					<PreviewCard setOpen={setOpen} open={open} post={original} />
+				</div>
+			</div>
+			<div className='editform'> 
+				<h2>Coach Post Status</h2>
+				{coachPost ? (
+					//if coach is done loading 
+					 !loading ? (
+						published ? ( 
+							// if coach listing is published, render 'unpublished'
+							<div className='delete-post'> 
+						<p>Your coach post is currently published.</p>
+				<button className='update-post-btn' onClick={e => handleUnpublish(e)}> Unpublish </button>
+				</div>
+			) : (
+				// Allow coach to published their listing 
+				<div className='delete-post'>
+					<p>Your coach post is currently unpublished.</p>
+					<button class='update-post-btn' onClick={e => handleSubmitPost(e)}> Publish </button>
+					</div>
+				) 
+					 ): 
+				null
+					 ) : (
+						<p>text</p>
+					 )}
+					 </div>
+
+
 		</>
 	);
 };
