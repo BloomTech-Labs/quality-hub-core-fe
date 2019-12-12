@@ -8,7 +8,7 @@ import CoachCard from './subs/1_CoachCard/CoachCard';
 
 import './CoachList.scss';
 
-import Loading from '../../../../Core/components/Loading';
+import Loading from '../../../../global/components/Loading';
 
 export const GET_POSTS = gql`
 	query GET_POSTS(
