@@ -3,8 +3,8 @@ import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format } from 'date-fns';
 import { clock } from '../../../../globalIcons/Clock.js';
-import { document } from '../../../../globalIcons/document.js'
-import { paperclip } from '../../../../globalIcons/paperclip.js'
+import { document } from '../../../../globalIcons/document.js';
+import { paperclip } from '../../../../globalIcons/paperclip.js';
 import { ICONS } from '../../../../globalIcons/iconConstants';
 import Icon from '../../../../globalIcons/Icon';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -168,13 +168,30 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										'PPPP - p ',
 									)}
 								</p>
-										<p>{paperclip()} {info.resumeURL === null ? <span>No resume provided</span> : <a target='_blank' rel='noopener noreferrer' href={info.resumeURL}>Download Resume</a>}</p>
-							<div>
-							<p>{document()} What do you want to get out of your mock interview?</p>
-							<p className='indented intres'>{info.interviewGoals}</p>
-							<p className='indented'>What kind of questions do you want to focus on?</p>
-							<p className='indented intres'>{info.interviewQuestions}</p>
-							</div>
+								<p>
+									{paperclip()}{' '}
+									{info.resumeURL === null ? (
+										<span>No resume provided</span>
+									) : (
+										<a
+											target='_blank'
+											rel='noopener noreferrer'
+											href={info.resumeURL}>
+											Download Resume
+										</a>
+									)}
+								</p>
+								<div>
+									<p>
+										{document()} What do you want to get out of your mock
+										interview?
+									</p>
+									<p className='indented intres'>{info.interviewGoals}</p>
+									<p className='indented'>
+										What kind of questions do you want to focus on?
+									</p>
+									<p className='indented intres'>{info.interviewQuestions}</p>
+								</div>
 								{console.log('jargon', info)}
 								{info.id && (
 									<button
@@ -205,7 +222,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 									{info.coach.first_name} {info.coach.last_name} (Coach)
 								</p>
 
-								<p> 
+								<p>
 									{clock()}{' '}
 									{format(
 										new Date(
@@ -242,8 +259,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 						<p>Please Wait. Loading...</p>
 						
 					) : ( */}
-					
-						<h3 className='no-bookings'>No bookings</h3>
+
+					<h3 className='no-bookings'>No bookings</h3>
 					{/* // )} */}
 				</div>
 			)}
