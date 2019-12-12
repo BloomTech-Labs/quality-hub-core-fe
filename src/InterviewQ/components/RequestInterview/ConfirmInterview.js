@@ -51,13 +51,14 @@ const ConfirmInterview = ({ booking, history }) => {
     return UTCdate
   }
 
-  const [newBooking] = useMutation(CREATE_BOOKING);
+  const [newBooking, { client }] = useMutation(CREATE_BOOKING);
 
   const submitBooking = () => {
     const utcBooking = convertToUTC(booking)
     console.log(utcBooking)
     newBooking({ variables: utcBooking })
   .then(res => {
+    client.clearStore();
     // setDateAvails([...dateAvails, availability])
     console.log('successful post')
     history.push('/interviewq/interviewconfirmed')

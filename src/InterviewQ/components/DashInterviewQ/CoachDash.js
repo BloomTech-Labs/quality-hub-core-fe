@@ -11,7 +11,7 @@ import './CoachDash.scss';
 // Components
 import EditPost from './EditPost';
 import DeletePost from './DeletePost';
-import Review from '../Review/ReviewForm';
+// import Review from '../Review/ReviewForm';
 
 // Hooks
 import useModal from '../../../utils/useModal';
@@ -35,8 +35,10 @@ export default function CoachDash() {
 				</div>
 				<h1>Coach Info</h1>
 			</div>
+
 			<EditPost/>
 			<Review />
+
 			<div className='editform'>
 				<h2>Delete Coach Post</h2>
 				<div className='delete-post'>

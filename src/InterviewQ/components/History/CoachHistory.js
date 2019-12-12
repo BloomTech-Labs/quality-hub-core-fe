@@ -34,9 +34,10 @@ const GET_COACHBOOKINGS = gql`
 	}
 `;
 
-const coach_id = localStorage.getItem('id');
+
 
 export default function CoachHistory() {
+  const coach_id = localStorage.getItem('id');
 	const { loading, error, data } = useQuery(GET_COACHBOOKINGS, {
 		variables: { coach_id },
 	});
