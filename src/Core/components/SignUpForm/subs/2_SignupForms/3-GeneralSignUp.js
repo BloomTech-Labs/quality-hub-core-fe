@@ -1,5 +1,5 @@
 import React from 'react';
-import { statesArray } from './States';
+import { statesArray } from '../../States';
 
 const GeneralSignUp = ({
 	user,
