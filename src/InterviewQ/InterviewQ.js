@@ -3,7 +3,7 @@ import InterviewLandingPage from '../InterviewQ/components/Landing Page/index';
 import DashInterviewQ from './components/DashInterviewQ/index';
 import CoachForm from './components/CoachForm/CoachForm';
 import CoachList from './components/CoachList';
-import QNav from './components/QNav';
+import LeftNav from './components/LeftNav/LeftNav';
 import { Route } from 'react-router-dom';
 import Booking from './components/RequestInterview/index';
 import TestComponent from './components/Review/TestComponent';
@@ -15,7 +15,7 @@ import CoachReport from './components/CoachReport';
 const InterviewQContainer = () => {
 	return (
 		<>
-			<QNav />
+			<LeftNav />
 			<div>
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
