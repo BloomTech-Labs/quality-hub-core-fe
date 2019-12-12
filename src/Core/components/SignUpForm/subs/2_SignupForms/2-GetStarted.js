@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Styles
-import './SignUpForm.scss';
+import '../../SignUpForm.scss';
 
 export default function GetStarted({ setProgress }) {
 	const handleClick = () => {
