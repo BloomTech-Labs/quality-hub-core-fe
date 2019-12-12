@@ -45,8 +45,8 @@ export default function CoachHistory() {
 				<h4>Seeker</h4>
 				<h4>Date</h4>
 				<h4>Time</h4>
+				<h4>Report</h4>
 				<h4>Review</h4>
-				<h4>Response</h4>
 			</div>
 			{loading && <p>Loading...</p>}
 			{data &&
