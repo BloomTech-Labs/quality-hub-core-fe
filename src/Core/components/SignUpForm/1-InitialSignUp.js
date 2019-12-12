@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 // Styles & Icons
 import './SignUpForm.scss';
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 // Components
 import Loading from '../Loading';

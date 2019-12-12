@@ -2,8 +2,8 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 export default function ProgressBar({ progress }) {
 	const mainBlue = `#096dd9`;
