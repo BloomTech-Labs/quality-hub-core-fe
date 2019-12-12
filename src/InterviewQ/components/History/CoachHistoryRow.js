@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import CoachBookingContent from './CoachBookingContent';
 
@@ -18,7 +19,15 @@ export default function CoachHistoryRow({ booking }) {
 					{booking.hour}:{booking.minute}
 					{booking.minute === 0 && '0'}
 				</div>
-				<div>Write/view your Report</div>
+				<div>
+					<Link
+						to={{
+							pathname: `/interviewq/coachreport/${booking.uniquecheck}`,
+							state: { firstName: booking.seeker.first_name },
+						}}>
+						{booking.report ? 'View' : 'Write'} your Report
+					</Link>
+				</div>
 				<div
 					className='history-content-toggle'
 					onClick={() => setShowContent(!showContent)}>

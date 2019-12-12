@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { useParams } from 'react-router-dom';
 import './CoachReport.scss';
 
 import { CREATE_REPORT } from './Mutation';
 
 export default function CoachReport(props) {
+	const { key } = useParams();
+
 	const [report, setReport] = useState({
 		strengths: '',
 		growth: '',
@@ -14,9 +17,7 @@ export default function CoachReport(props) {
 
 	const [createReport] = useMutation(CREATE_REPORT);
 
-	const { firstName, uniqueBooking } = props.location.state
-		? props.location.state
-		: {};
+	const { firstName } = props.location.state ? props.location.state : {};
 
 	const handleChange = e => {
 		setReport({ ...report, [e.target.name]: e.target.value });
@@ -27,7 +28,7 @@ export default function CoachReport(props) {
 		console.log(report);
 		createReport({
 			variables: {
-				uniqueBooking,
+				uniqueBooking: key,
 				strengths: report.strengths,
 				growthAreas: report.growth,
 				suggestions: report.suggestions,
@@ -42,7 +43,7 @@ export default function CoachReport(props) {
 		console.log(report);
 		createReport({
 			variables: {
-				uniqueBooking,
+				uniqueBooking: key,
 				strengths: report.strengths,
 				growthAreas: report.growth,
 				suggestions: report.suggestions,
