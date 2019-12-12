@@ -149,13 +149,34 @@ body{
 		
 	}
 
-.tags{
-	p{
-	display: flex-wrap;
-	padding: none;
-	margin:none;
-	}
-}
+	.coachcard-tags-container-expand {
+			display: flex;
+		  	flex-wrap: wrap;
+		
+		 p {
+		
+		  display: flex;
+		  flex-wrap: wrap;
+		  justify-content: center;
+		  border-radius: 100px;
+		  line-height: 2.2rem;
+		  color: #096DD9;
+		}
+		.coachcard-tag-button-expand {
+		  background-color: lightgray;
+		  margin: 0.5% 0.9%;
+		  padding: 0% 3.5%;
+		  border-radius: 100px;
+		  font-size: 1.6rem;
+		  height: 28px;
+		  width: max-content;
+		  align-items: center;
+		  flex-wrap: nowrap;
+		  white-space:nowrap;
+		  background: rgba(9, 109, 217, 0.1);
+		  
+		}
+	  }
 	
 	.coachcard-footer-expand {
 		display: flex-wrap;

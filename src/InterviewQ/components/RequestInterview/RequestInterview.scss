@@ -1,151 +1,151 @@
 .unavailable-to-book {
-  display: none;
-}
-
-.interviewq-content-container{
-  border: 1px solid #dadce0;
-	border-radius: 0.8rem;
-}
-
-.formsection {
-	display: flex;
-	margin: 40px auto;
-	justify-content: space-between;
-	width: 100%;
-	flex-direction: column;
-	// border: 1px solid #dadce0;
-	// border-radius: 0.8rem;
-	padding: 2.4rem 1rem;
-
-	h2 {
-		font-style: normal;
-		font-weight: 600;
-		font-size: 2rem;
-		line-height: 2.8rem;
-		text-align: left;
-		color: #202124;
-		// margin-left: 1rem;
-		margin-bottom: 6rem;
-	}
-
-	h3 {
-		font-style: normal;
-		font-weight: 600;
-		font-size: 1.2rem;
-		line-height: 2rem;
-		color: #5f6368;
-		text-transform: uppercase;
+    display: none;
   }
-  p{
-    text-align: left;
+  
+  .interviewq-content-container{
+    border: 1px solid #dadce0;
+      border-radius: 0.8rem;
   }
-}
-
-
-.booking-content-section {
-  flex-direction: column;
-	margin: 5rem auto 0;
-	display: flex;
-	width: 92%;
-	max-width: 96.4rem;
-
-	@media screen and (max-width: 1500px) {
-		margin-left: 27rem;
-	}
-
-	@media screen and (max-width: 1270px) {
-		margin: 0 auto;
-  }
-}
-
-.interview-slot-list{
-  width: 27rem;
-}
-.interviewq-booking-input{
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-text-align: left;
-margin: 20px 90px;
-  h3{
-    font-weight: 500;
-    color: #333333;
-    text-transform: none;
-    font-size: 1.6rem;
-  }
-  textarea{
-    height: 130px;
-    margin: 8px 0;
-  }
-}
-
-.interviewq-confirmed-interview{
-  margin-top: 150px;
-  padding-top: 150px;
-  width: 723px;
-  height: 636px;
-  border: 1px solid #D4D4D4;
-  box-sizing: border-box;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-    h2{
-      font-size: 36px;
-      margin-bottom: 40px;
+  
+  .formsection {
+      display: flex;
+      margin: 40px auto;
+      justify-content: space-between;
+      width: 100%;
+      flex-direction: column;
+      // border: 1px solid #dadce0;
+      // border-radius: 0.8rem;
+      padding: 2.4rem 1rem;
+  
+      h2 {
+          font-style: normal;
+          font-weight: 600;
+          font-size: 2rem;
+          line-height: 2.8rem;
+          text-align: left;
+          color: #202124;
+          // margin-left: 1rem;
+          margin-bottom: 6rem;
+      }
+  
+      h3 {
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.2rem;
+          line-height: 2rem;
+          color: #5f6368;
+          text-transform: uppercase;
     }
     p{
-      font-size: 16px;
-      margin-bottom: 25px;
+      text-align: left;
     }
-}
-
-.interviewq-conf-container{
-  margin: 80px 0;
-  padding: 40px 50px;
-}
-.interviewq-conf-section{
-  padding: 15px 0;
-  border-bottom: 1px solid #D4D4D4;
-  display: flex;
-  align-items: center;
+  }
+  
+  
+  .booking-content-section {
+    flex-direction: column;
+      margin: 5rem auto 0;
+      display: flex;
+      width: 92%;
+      max-width: 96.4rem;
+  
+      @media screen and (max-width: 1500px) {
+          margin-left: 27rem;
+      }
+  
+      @media screen and (max-width: 1270px) {
+          margin: 0 auto;
+    }
+  }
+  
+  .interview-slot-list{
+    width: 27rem;
+  }
+  .interviewq-booking-input{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
   text-align: left;
-  h3{
-    width: 450px;
-    text-transform: none;
-    font-size: 14px;
+  margin: 20px 90px;
+    h3{
+      font-weight: 500;
+      color: #333333;
+      text-transform: none;
+      font-size: 1.6rem;
+    }
+    textarea{
+      height: 130px;
+      margin: 8px 0;
+    }
   }
-  p{
-    width: 300px;
-    font-size: 16px;
+  
+  .interviewq-confirmed-interview{
+    margin-top: 150px;
+    padding-top: 150px;
+    width: 723px;
+    height: 636px;
+    border: 1px solid #D4D4D4;
+    box-sizing: border-box;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+      h2{
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+      p{
+        font-size: 16px;
+        margin-bottom: 25px;
+      }
   }
-}
-
-.interviewq-conf-heading{
-  border-bottom: 1px solid #D4D4D4;
-  padding-bottom: 10px;
-  margin-bottom: 34px;
-  h2{
-    margin-bottom: 0;
+  
+  .interviewq-conf-container{
+    margin: 80px 0;
+    padding: 40px 50px;
   }
-}
-
-.dropboxDiv {
-
-  p{
-    font-weight: 500;
-    color: #333333;
-    text-transform: none;
-    font-size: 1.2rem;
+  .interviewq-conf-section{
+    padding: 15px 0;
+    border-bottom: 1px solid #D4D4D4;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    h3{
+      width: 450px;
+      text-transform: none;
+      font-size: 14px;
+    }
+    p{
+      width: 300px;
+      font-size: 16px;
+    }
   }
-  input {
+  
+  .interviewq-conf-heading{
+    border-bottom: 1px solid #D4D4D4;
+    padding-bottom: 10px;
+    margin-bottom: 34px;
+    h2{
+      margin-bottom: 0;
+    }
+  }
+  
+  .dropboxDiv {
+  
+    p{
+      font-weight: 500;
+      color: #333333;
+      text-transform: none;
+      font-size: 1.2rem;
+    }
+    input {
+      width: 100%;
+      height: 30px;
+      background: black;
+    }
+  }
+  
+  .booking-bottom{
+    p{
+      text-align: center;
+    }
     width: 100%;
-    height: 30px;
-    background: black;
+    margin-bottom: 4rem;
   }
-}
-
-.booking-bottom{
-  p{
-    text-align: center;
-  }
-  width: 100%;
-  margin-bottom: 4rem;
-}
