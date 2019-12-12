@@ -43,10 +43,22 @@ export default function CoachHistory() {
 
 	error && console.log(error);
 
+	const filteredData = data
+		? data.bookingsByCoach.filter(booking =>
+				isPast(
+					booking.year,
+					booking.month,
+					booking.day,
+					booking.hour,
+					booking.minute,
+				),
+		  )
+		: [];
+
 	return (
 		<div>
 			<h3>Coach History</h3>
-			{data && data.bookingsByCoach.length ? (
+			{data && filteredData.length ? (
 				<div className='coach-history-headings'>
 					<h4>Seeker</h4>
 					<h4>Date</h4>
@@ -59,19 +71,9 @@ export default function CoachHistory() {
 			)}
 			{loading && <p>Loading...</p>}
 			{data &&
-				data.bookingsByCoach
-					.filter(booking =>
-						isPast(
-							booking.year,
-							booking.month,
-							booking.day,
-							booking.hour,
-							booking.minute,
-						),
-					)
-					.map(booking => (
-						<CoachHistoryRow key={booking.id} booking={booking} />
-					))}
+				filteredData.map(booking => (
+					<CoachHistoryRow key={booking.id} booking={booking} />
+				))}
 		</div>
 	);
 }
