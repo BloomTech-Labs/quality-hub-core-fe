@@ -34,12 +34,15 @@ const GET_SEEKERBOOKINGS = gql`
 `;
 
 export default function SeekerHistory() {
-  const seeker_id = localStorage.getItem('id');
+	const seeker_id = localStorage.getItem('id');
+
 	const { loading, error, data } = useQuery(GET_SEEKERBOOKINGS, {
 		variables: { seeker_id },
 	});
 
 	error && console.log(error);
+
+	const headings = ['Coach', 'Date', 'Time', 'Review', 'Report'];
 
 	const filteredData = data
 		? data.bookingsBySeeker.filter(booking =>
@@ -58,11 +61,9 @@ export default function SeekerHistory() {
 			<h3>Seeker History</h3>
 			{data && filteredData.length ? (
 				<div className='seeker-history-headings'>
-					<h4>Coach</h4>
-					<h4>Date</h4>
-					<h4>Time</h4>
-					<h4>Review</h4>
-					<h4>Report</h4>
+					{headings.map(heading => (
+						<h4>{heading}</h4>
+					))}
 				</div>
 			) : (
 				<p>You have no previous bookings as a Seeker</p>

@@ -36,7 +36,7 @@ export default function CoachDash() {
 				<h1>Coach Info</h1>
 			</div>
 
-			<EditPost/>
+			<EditPost />
 			{/* <Review /> */}
 
 			<div className='editform'>
