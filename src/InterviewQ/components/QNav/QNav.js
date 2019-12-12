@@ -8,7 +8,7 @@ import './QNav.scss';
 // Icons
 import Icon from '../../../globalIcons/Icon';
 import { ICONS } from '../../../globalIcons/iconConstants';
-// import { CLOCK } from '../../../globalIcons/clock-circle.js'
+// import { clock } from '../../../globalIcons/Clock'
 
 export default function QNav() {
 	return (
@@ -34,7 +34,6 @@ export default function QNav() {
 				</Link> */}
 				<NavLink to='/interviewq/history' activeClassName='QNav-row-highlight'>
 					<div className='QNav-row'>
-					<Icon icon={ICONS.CLOCK} widht={24} height={22} />
 						<div className='QNav-btn'>History</div>
 					</div>
 				</NavLink>

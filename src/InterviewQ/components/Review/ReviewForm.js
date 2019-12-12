@@ -69,7 +69,7 @@ const ReviewForm = props => {
 		<form className='review-form' onChange={handleChange} onSubmit={handleSubmit}>
       <div className='review-container'>
         <div className='rating-form'>
-          {/* <p className='label'>How did {props.location.state.firstName} do? </p> */}
+          <p className='label'>How did {props.location.state.firstName} do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='rating-container'>
             <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
