@@ -10,7 +10,7 @@ import { ICONS } from '../../../icons/iconConstants';
 import DeleteModal from './PersonalInfo/subs/DeleteModal';
 
 // Hooks
-import useModal from '../../../../utils/useModal';
+import useModal from '../../../utils/useModal';
 
 export default function LeftNavBar({ setLoggedin }) {
 	let { pathname } = useLocation();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { times as timeArray, months, years } from './TimeArrays';
+import { times as timeArray, months, years } from '../../../../utils/TimeArrays';
 
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
@@ -18,8 +18,8 @@ import {
 } from 'date-fns';
 import WeekBooking from './WeekBooking';
 
-import { nextArrow } from '../../../icons/nextArrow';
-import { backArrow } from '../../../icons/backArrow';
+import { nextArrow } from '../../../../icons/nextArrow';
+import { backArrow } from '../../../../icons/backArrow';
 
 const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 	const currentWeek = getWeek(selectedDate);

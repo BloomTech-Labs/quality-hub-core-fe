@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { isPast } from '../../../../../utils/isPast';
+import { isPast } from '../../../../../global/utils/isPast';
 
 import SeekerHistoryRow from './2_SeekerHistoryRow';
 

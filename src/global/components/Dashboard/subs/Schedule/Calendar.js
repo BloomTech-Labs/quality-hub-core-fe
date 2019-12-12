@@ -8,10 +8,10 @@ import { ALL_BOOKINGS } from './Queries';
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
 
-import { nextArrow } from '../../../icons/nextArrow';
-import { backArrow } from '../../../icons/backArrow';
+import { nextArrow } from '../../../../icons/nextArrow';
+import { backArrow } from '../../../../icons/backArrow';
 
-import { days, months, years } from './TimeArrays'
+import { days, months, years } from '../../../../utils/TimeArrays'
 
 const Calendar = ({ selectedDate, setSelectedDate }) => {
 	// const { data, refetch } = useQuery(ALL_BOOKINGS, {variables: {seekerId: localStorage.getItem('id'), coachId: localStorage.getItem('id')}});
