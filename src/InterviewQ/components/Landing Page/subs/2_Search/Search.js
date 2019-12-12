@@ -6,7 +6,7 @@ import { gql } from 'apollo-boost';
 // Styles
 import './Search.scss';
 
-import { search } from '../../../global/icons/search';
+import { search } from '../../../../../global/icons/search';
 
 // GraphQL Query
 export const GET_INDUSTRIES = gql`
