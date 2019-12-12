@@ -34,15 +34,16 @@ const GET_COACHBOOKINGS = gql`
 	}
 `;
 
-
-
 export default function CoachHistory() {
-  const coach_id = localStorage.getItem('id');
+	const coach_id = localStorage.getItem('id');
+
 	const { loading, error, data } = useQuery(GET_COACHBOOKINGS, {
 		variables: { coach_id },
 	});
 
 	error && console.log(error);
+
+	const headings = ['Seeker', 'Date', 'Time', 'Report', 'Review'];
 
 	const filteredData = data
 		? data.bookingsByCoach.filter(booking =>
@@ -61,11 +62,9 @@ export default function CoachHistory() {
 			<h3>Coach History</h3>
 			{data && filteredData.length ? (
 				<div className='coach-history-headings'>
-					<h4>Seeker</h4>
-					<h4>Date</h4>
-					<h4>Time</h4>
-					<h4>Report</h4>
-					<h4>Review</h4>
+					{headings.map(heading => (
+						<h4>{heading}</h4>
+					))}
 				</div>
 			) : (
 				<p>You have no previous bookings as a Coach</p>
