@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import { CREATE_REVIEW } from './Resolvers.js';
+import { CREATE_REVIEW } from './Resolvers';
 import Rating from './Rating';
 import './ReviewForm.scss';
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import InterviewLandingPage from '../InterviewQ/components/Landing Page/index';
-import DashInterviewQ from './components/DashInterviewQ/DashInterviewQ';
+import DashInterviewQ from './components/DashInterviewQ/index';
 import CoachForm from './components/CoachForm/CoachForm';
 import CoachList from './components/CoachList';
 import QNav from './components/QNav';
 import { Route } from 'react-router-dom';
-import BookingContainer from './components/RequestInterview/BookingContainer';
+import Booking from './components/RequestInterview/index';
 import TestComponent from './components/Review/TestComponent';
 import { ReviewPage } from './components/Review';
-import ConfirmedInterview from './components/RequestInterview/ConfirmedInterview';
+import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
 
@@ -20,7 +20,7 @@ const InterviewQContainer = () => {
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
 				<Route path='/interviewq/coachlist' component={CoachList} />
-				<Route path='/interviewq/booking' component={BookingContainer} />
+				<Route path='/interviewq/booking' component={Booking} />
 				<Route path='/interviewq/settings' component={DashInterviewQ} />
 				<Route
 					path='/interviewq/interviewconfirmed'
