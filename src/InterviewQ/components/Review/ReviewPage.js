@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReviewForm from './ReviewForm';
+import ReviewForm from './subs/ReviewForm';
 
 import './ReviewPage.scss';
 
