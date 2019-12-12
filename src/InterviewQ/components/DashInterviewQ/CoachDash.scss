@@ -54,6 +54,13 @@ input#edit-post-0, input#edit-post-1{
 	
 }
 
+.see-preview{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	padding: 1.7rem 3.2rem;
+}
+
 .delete-warning {
 	display: flex;
 	justify-content: flex-start;

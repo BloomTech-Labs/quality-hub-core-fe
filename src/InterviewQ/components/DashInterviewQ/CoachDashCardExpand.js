@@ -88,13 +88,13 @@ console.log('here', post.tags
 				</div>
 				<div className='coachcard-description-expand'>
 					<p>{post.description}</p>
-				{/* {need to style the tags here} */}
+					<div className='coachcard-tags-container-expand'>
 					<p className='tags' >
 					{post.tags.map(tag => (
-						<p key={tag.id}>{tag.name}</p>
+						<p className="coachcard-tag-button-expand" key={tag.id}>{tag.name}</p>
 					))}
 					</p>
-				
+				</div>
 				</div>
 				
 				<div className='coachcard-footer-expand'>

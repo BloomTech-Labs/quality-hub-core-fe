@@ -45,6 +45,7 @@
 		height: 3rem;
 		padding: 0;
 		text-align: center;
+		line-height: 5px;
 		background-color: #fff;
 		color: gray;
 		border: 1px solid #d9d9d9;
@@ -53,13 +54,14 @@
 			cursor: pointer;
 		}
 	}
-	.ok-button {
+	.delete-button {
 		width: 7.5rem;
 		height: 3rem;
-		// margin: 0 1rem;
+		margin: 0 1.5rem;
 		padding: 0;
 		text-align: center;
-		background-color: #D4380D;
+		line-height: 5px;
+		background-color: #CF1322;
 		border-style: none;
 		color: #fff;
 		border-radius: 4px;
