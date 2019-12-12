@@ -356,17 +356,9 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 											step='1'
 										/>
 									</div>
-									{/* <input
-											type='number'
-											name='price'
-											placeholder='$'
-											defaultValue={original && original.price}
-											value={post.price}
-											onChange={handleChange}
-										/>
-									 */}
+						
 								</div>
-								{/* <h4>${original && original.price}</h4> */}
+							
 							</div>
 						) : (
 							<div>
@@ -385,10 +377,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 			</div>
-			{/* <div className='editform'>
-				<PreviewCard setOpen={setOpen} open={open} post={original} />
-				<button className='update-post-btn'> Update </button>
-			</div> */}
+		
 		</>
 	);
 };
