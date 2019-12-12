@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react';
 
 // Styles & Icons
 import '../CoachList/CoachCardModal.scss';
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 const CoachPreviewCard = ({ post, setOpen, open }) => {
 	const node = useRef();
@@ -88,13 +88,13 @@ console.log('here', post.tags
 				</div>
 				<div className='coachcard-description-expand'>
 					<p>{post.description}</p>
-				{/* {need to style the tags here} */}
+					<div className='coachcard-tags-container-expand'>
 					<p className='tags' >
 					{post.tags.map(tag => (
-						<p key={tag.id}>{tag.name}</p>
+						<p className="coachcard-tag-button-expand" key={tag.id}>{tag.name}</p>
 					))}
 					</p>
-				
+				</div>
 				</div>
 				
 				<div className='coachcard-footer-expand'>

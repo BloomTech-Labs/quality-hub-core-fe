@@ -2,8 +2,8 @@
 import React from 'react';
 
 // Icons
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 // Styles
 import './CoachDash.scss';
@@ -35,14 +35,10 @@ export default function CoachDash() {
 				</div>
 				<h1>Coach Info</h1>
 			</div>
-			<EditPost
-			// coachPost={coachPost && coachPost}
-			/>
-			<div className='editform'>
-				<h2>Availability</h2>
-				<Availability />
-			</div>
+
+			<EditPost/>
 			{/* <Review /> */}
+
 			<div className='editform'>
 				<h2>Delete Coach Post</h2>
 				<div className='delete-post'>

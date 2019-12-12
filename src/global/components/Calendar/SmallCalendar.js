@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../Dashboard/Schedule/Calendar.scss';
 import { setMonth, getMonth, getYear, addMonths, subMonths } from 'date-fns';
 
-import { nextArrow } from '../../../globalIcons/nextArrow';
-import { backArrow } from '../../../globalIcons/backArrow';
+import { nextArrow } from '../../icons/nextArrow';
+import { backArrow } from '../../icons/backArrow';
 
 import SmallCells from './SmallCells';
 
