@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// import './CoachForm.scss';
-
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Styles && Icons
@@ -21,7 +19,7 @@ import StepTwo from './subs/StepTwo';
 import StepThree from './subs/StepThree';
 import BottomButtons from './subs/BottomButtons';
 import TopText from './subs/TopText';
-import {handleChange, handleSubmit, handleSave} from './subs/Functions';
+import { handleChange, handleSubmit, handleSave } from './subs/Functions';
 
 const CoachForm = props => {
 	const { data } = useQuery(GET_USER);
@@ -33,7 +31,9 @@ const CoachForm = props => {
 	//Done is the second modal that pops up after you publish a coach form
 	const [done, setDone] = useState(false);
 	const [addPost] = useMutation(ADD_POST, {
-		refetchQueries: ["GET_POSTS"], awaitRefetchQueries: true
+		// after a post is added, refetch the data with the current filter parameters
+		refetchQueries: ['GET_POSTS'],
+		awaitRefetchQueries: true,
 	});
 
 	//This sets the darkened overlay behind the modals
@@ -47,6 +47,7 @@ const CoachForm = props => {
 		}
 	}, [open, done]);
 
+	// This is the avatar image in the preview post section
 	let image;
 	if (data) {
 		if (data.me.image_url) {
@@ -92,7 +93,7 @@ const CoachForm = props => {
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
-			<div id="overlay-coach-form" onClick={(e) => closeWindow(e)}></div>
+			<div id="overlay-coach-form" onClick={e => closeWindow(e)}></div>
 
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className="become-a-coach-btn">
@@ -122,9 +123,11 @@ const CoachForm = props => {
 								handleChange={handleChange}
 								industriesData={industriesData}
 							/>
-							<StepTwo formState={formState} 
-							setFormState={setFormState}
-							handleChange={handleChange} />
+							<StepTwo
+								formState={formState}
+								setFormState={setFormState}
+								handleChange={handleChange}
+							/>
 							<StepThree data={data} image={image} formState={formState} />
 							<BottomButtons
 								handleSave={handleSave}
