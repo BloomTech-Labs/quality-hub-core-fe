@@ -396,7 +396,7 @@ const CoachForm = props => {
 												color='#595959'
 											/>
 										</span>
-										4.2
+										4.9
 									</p>
 								</div>
 								<p className='add-coach-form-preview-description'>
