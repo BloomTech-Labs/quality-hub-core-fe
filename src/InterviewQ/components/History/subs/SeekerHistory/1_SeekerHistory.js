@@ -18,6 +18,9 @@ const GET_SEEKERBOOKINGS = gql`
 			coach {
 				first_name
 				last_name
+				post {
+					price
+				}
 			}
 			uniquecheck
 			report {
@@ -42,7 +45,7 @@ export default function SeekerHistory() {
 
 	error && console.log(error);
 
-	const headings = ['Coach', 'Date', 'Time', 'Review', 'Report'];
+	const headings = ['Coach', 'Date', 'Time', 'Price', 'Review', 'Report'];
 
 	const filteredData = data
 		? data.bookingsBySeeker.filter(booking =>
@@ -58,11 +61,11 @@ export default function SeekerHistory() {
 
 	return (
 		<div>
-			<h3>Seeker History</h3>
+			<h2>Seeker History</h2>
 			{data && filteredData.length ? (
 				<div className='seeker-history-headings'>
 					{headings.map(heading => (
-						<h4>{heading}</h4>
+						<h3>{heading}</h3>
 					))}
 				</div>
 			) : (
