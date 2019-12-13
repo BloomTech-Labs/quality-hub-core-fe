@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from "@apollo/react-hooks";
 import './Calendar.scss';
 import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
-import { ALL_BOOKINGS } from './Queries';
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
@@ -14,18 +12,19 @@ import { backArrow } from '../../../../icons/backArrow';
 import { days, months, years } from '../../../../utils/TimeArrays'
 
 const Calendar = ({ selectedDate, setSelectedDate }) => {
-	// const { data, refetch } = useQuery(ALL_BOOKINGS, {variables: {seekerId: localStorage.getItem('id'), coachId: localStorage.getItem('id')}});
+
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	const [counter, setCounter] = useState(0);
-	// const [selectedDate, setSelectedDate] = useState(new Date());
-	
-	
-	// const headerDateFormat = "MMMM yyyy";
-	// const dateFormat = 'dd';
-	
-	// let startDate = startOfWeek(currentMonth);
 	const node = useRef();
 	const [open, setOpen] = useState(false);
+
+	useEffect(() => {
+		if (open) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [open]);
+	
 	const handleOutsideClick = e => {
 		if (node.current) {
 			if (node.current.contains(e.target)) {
@@ -38,14 +37,6 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		}
 	};
 	
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
-		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		}
-	}, [open]);
-
 	const nextMonth = () => {
 		setCurrentMonth(addMonths(currentMonth, 1))
 	}
@@ -53,26 +44,9 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCurrentMonth(subMonths(currentMonth, 1))
 	}
 	const onDateClick = day => {
-		setOpen(false);
+		setOpen(true);
 		setSelectedDate(day);
 	};
-
-	useEffect(()=>{
-		if(counter > 0){
-			setOpen(true);
-		}
-	},[selectedDate])
-
-	useEffect(()=>{
-		setOpen(false);
-		setCounter(1);
-	},[])
-
-	useEffect(()=>{
-		if(currentMonth){
-			setOpen(false);
-		}
-	},[currentMonth])
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
@@ -147,7 +121,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
-				open={open}
+				// open={open}
 			/>
 			{open && (
 				<div className='calendar-detail'>

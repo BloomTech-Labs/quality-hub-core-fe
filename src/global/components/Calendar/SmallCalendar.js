@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Dashboard/subs/Schedule/Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate } from 'date-fns';
 
 import { nextArrow } from '../../icons/nextArrow';
 import { backArrow } from '../../icons/backArrow';
@@ -10,14 +10,8 @@ import SmallCells from './SmallCells';
 import { days, months, years } from '../../utils/TimeArrays';
 
 const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails }) => {
+
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	// const [selectedCell, setSelectedCell] = useState(new Date());
-	
-
-	// const headerDateFormat = "MMMM yyyy";
-	// const dateFormat = 'dd';
-
-	// let startDate = startOfWeek(currentMonth);
 
 	const nextMonth = () => {
 		setCurrentMonth(addMonths(currentMonth, 1))
@@ -28,7 +22,9 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	
 	}
 	const onDateClick = day => {
-		setSelectedCell(day);
+		if(isBefore(new Date(), day) || getDate(new Date) === getDate(day)){
+			setSelectedCell(day);
+		}
 	};
 
 	const onMonthChange = e => {
@@ -41,6 +37,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		const month = getMonth(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 	};
+	
 	return (	
 		<div className='small-calendar-container'>
 		<div className='calendar'>

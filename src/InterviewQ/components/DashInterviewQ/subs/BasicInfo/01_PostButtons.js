@@ -10,7 +10,6 @@ const PostButtons = ({
 
 	const [focusvar, setFocusvar] = useState(false);
 	const handleEdit = () => {
-		// console.log('running', editing)
 		let newArr = [];
 		newArr = [...editing];
 		newArr[index] = true;
@@ -24,8 +23,6 @@ const PostButtons = ({
 		}
 		// eslint-disable-next-line
 	}, [focusvar]);
-
-	// console.log(editing);
 
 	return (
 		<>
