@@ -35,12 +35,6 @@ export default function Search({ fields, setFields, refetch }) {
 		refetch({ ...fields, ids });
 	};
 
-	const handleChange = e => {
-		e.preventDefault();
-		setFields({ ...fields, [e.target.name]: e.target.value });
-		setChanged(e.target.name);
-	};
-
 	useEffect(() => {
 		if (
 			lastChanged === 'industry' ||
@@ -62,7 +56,13 @@ export default function Search({ fields, setFields, refetch }) {
 		};
 		checkUser();
 		// eslint-disable-next-line
-	}, [user_data]);
+  }, [user_data]);
+  
+  const handleChange = e => {
+		e.preventDefault();
+		setFields({ ...fields, [e.target.name]: e.target.value });
+		setChanged(e.target.name);
+	};
 
 	const handlePress = e => {
 		if (e.keyCode === 13) {
@@ -70,7 +70,7 @@ export default function Search({ fields, setFields, refetch }) {
 		}
 	};
 
-	const handleSubmit = async e => {
+	const handleSubmit = e => {
 		e.preventDefault();
 		if (fields.tags) {
 			getUsers({ variables: { tags: fields.tags } });
@@ -86,7 +86,8 @@ export default function Search({ fields, setFields, refetch }) {
 		e.preventDefault();
 		setFields({ tags: '', price: '', industry: '', orderBy: 'id_ASC' });
 		setChanged('');
-	};
+  };
+  
 	return (
 		<div className='search-dropdowns'>
 			<div className='search-field'>
@@ -145,7 +146,6 @@ export default function Search({ fields, setFields, refetch }) {
 					<label className='search-label-keywords'>Keywords</label>
 					<input
 						className='search-by-keyword-input'
-						// style="background-image:{search()}"
 						type='text'
 						name='tags'
 						value={fields.tags}

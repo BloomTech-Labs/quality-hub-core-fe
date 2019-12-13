@@ -1,11 +1,11 @@
 @import '../../../global/styles/variables';
+
 .interview-container {
     margin-top: 13.9rem;
 }
 
 .interview-landing-page {
     width: 94%;
-    // margin-left: 30rem;
     max-width: 97.8rem;
     margin: 0 auto;
     @media screen and (max-width: 1600px) {
@@ -21,29 +21,6 @@
     text-decoration: none;
 }
 
-// .interview-cta {
-// 	display: flex;
-// 	width: 100%;
-// 	justify-content: space-between;
-// 	background-color: $main-blue;
-// 	// border: 1px solid grey;
-// 	padding: 1.8rem;
-// 	.interview-cta-center {
-// 		display: flex;
-// 		width: 100%;
-// 		justify-content: center;
-// 		h4,
-// 		a {
-// 			font-size: 1.4rem;
-// 			font-weight: normal;
-// 			color: white;
-// 		}
-// 	}
-// 	.interview-cta-x {
-// 		color: white;
-// 		cursor: pointer;
-// 	}
-// }
 .interviewq-header-container {
     display: flex;
     justify-content: space-between;
@@ -60,11 +37,7 @@
 }
 
 .interview-header {
-    // width: 100%;
-    // background-color: lightgray;
     text-align: left;
-    // border: 1px solid lightgray;
-    // padding: 2% 10%;
     display: flex;
     align-items: center;
     .red-circle {
@@ -81,12 +54,10 @@
         display: flex;
         flex-wrap: wrap;
         width: 50%;
-        // color: $main-blue;
     }
 }
 
 button {
-    // padding: 0;
     border: none;
     font: inherit;
     color: inherit;
