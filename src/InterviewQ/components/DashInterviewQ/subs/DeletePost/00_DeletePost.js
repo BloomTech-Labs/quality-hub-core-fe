@@ -10,37 +10,8 @@ import { useHistory } from 'react-router-dom';
 import './00_DeletePost.scss';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
-import { GET_COACH_POST } from '../Resolvers';
+import { DELETE_POST } from '../Resolvers';
 
-// GraphQL Query to get posts to update cache
-export const GET_POSTS = gql`
-	query {
-		posts {
-			id
-		}
-	}
-`;
-
-// GraphQL Mutation to delete post associated with user
-export const DELETE_POST = gql`
-	mutation {
-		deletePost {
-			id
-		}
-	}
-`;
-
-// export default function DeletePost({ isShowing, hide }) {
-// 	const history = useHistory();
-// 	const [deleteCoachPost] = useMutation(DELETE_POST, {
-// 		update(cache, { data }) {
-// 			const { posts } = cache.readQuery({ query: GET_POSTS });
-// 			cache.writeQuery({
-// 				query: GET_POSTS,
-// 				data: { posts: posts.filter(post => post.id !== data.deletePost.id) },
-// 			});
-// 		},
-// 	});
 
 export default function DeletePost({ isShowing, hide }) {
 	const history = useHistory();
