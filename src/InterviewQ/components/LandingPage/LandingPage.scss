@@ -1,7 +1,10 @@
 @import '../../../global/styles/variables';
 
 .interview-container {
-    margin-top: 13.9rem;
+    margin-top: 10rem;
+    @media screen and (max-width: 1269px){
+        margin-top: 0rem;
+    }
 }
 
 .interview-landing-page {

@@ -26,7 +26,7 @@ export default function PersonalInfo() {
 			</div>
 			<BasicInfo />
 			<Accounts />
-			<PaymentInfo />
+			{/* <PaymentInfo /> */}
 		</div>
 	);
 }
