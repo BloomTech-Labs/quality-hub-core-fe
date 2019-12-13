@@ -6,30 +6,36 @@ import { useMutation } from '@apollo/react-hooks';
 import './SignUpForm.scss';
 
 // Components
-import ProgressBar from './ProgressBar';
-import InitialSignUp from './1-InitialSignUp';
-import GetStarted from './2-GetStarted';
-import SignUpNav from './SignUpNav';
-import GeneralSignUp from './3-GeneralSignUp';
-import ExpSignUp from './4-ExpSignUp';
-import CompletedSignUp from './5-CompletedSignUp';
+import SignUpNav from './subs/1_SignupNav/SignUpNav';
+import ProgressBar from './subs/2_SignupForms/0_ProgressBar';
+import InitialSignUp from './subs/2_SignupForms/1_InitialSignUp';
+import GetStarted from './subs/2_SignupForms/2_GetStarted';
+import GeneralSignUp from './subs/2_SignupForms/3_GeneralSignUp';
+import AccountsSignUp from './subs/2_SignupForms/4_AccountsSignUp';
+import CompletedSignUp from './subs/2_SignupForms/5_CompletedSignUp';
 
 // Mutation
-import { SIGN_UP } from './Mutation';
+import { SIGN_UP } from './subs/Mutation';
 
 // User Schema
-import { userSchema } from './UserSchema';
+import { userSchema } from './subs/UserSchema';
 
-//COM-ponent
 const SignUpForm = props => {
+	const [signup, error] = useMutation(SIGN_UP);
+
+	// Validation
 	const [emailTouched, setEmailTouched] = useState(false);
 	const [firstTouched, setFirstTouched] = useState(false);
 	const [lastTouched, setLastTouched] = useState(false);
 	const [cityTouched, setCityTouched] = useState(false);
 	const [stateTouched, setStateTouched] = useState(false);
 	const [passwordTouched, setPasswordTouched] = useState(false);
+	const [valError, setValError] = useState();
 
-	//Set user object
+	// Set form step
+	const [progress, setProgress] = useState(-1);
+
+	// Set user object
 	const [user, setUser] = useState({
 		first_name: '',
 		last_name: '',
@@ -45,13 +51,9 @@ const SignUpForm = props => {
 		github_url: '',
 	});
 
-	const [signup, error] = useMutation(SIGN_UP);
-	const [valError, setValError] = useState();
-
-	//Form management/validation
+	// Form management/validation
 	useEffect(() => {
 		validateUser();
-		// eslint-disable-next-line
 	}, [user]);
 
 	const validateUser = () => {
@@ -93,15 +95,13 @@ const SignUpForm = props => {
 			}
 		});
 
-		//Isn't this redundant? You would not be able to submit if it was already validated, right?
-		validateUser();
-
 		signup({ variables: submitUser })
 			.then(results => {
 				// console.log(results);
 				let token = results.data.signup.token;
-				localStorage.setItem('token', token); //Should probably also set id to localStorage
+				localStorage.setItem('token', token);
 				localStorage.setItem('id', results.data.signup.user.id);
+				props.setLoggedin(true);
 				setProgress(progress + 1);
 				setTimeout(() => {
 					props.history.push('/dashboard');
@@ -111,9 +111,6 @@ const SignUpForm = props => {
 				console.log(err);
 			});
 	};
-
-	//Set form step
-	const [progress, setProgress] = useState(-1);
 
 	const handleNext = e => {
 		e.preventDefault();
@@ -136,6 +133,7 @@ const SignUpForm = props => {
 					setPasswordTouched={setPasswordTouched}
 				/>
 			)}
+
 			{progress === -1 && valError
 				? valError.map(message => {
 						if (message.includes('email') && !emailTouched) {
@@ -159,7 +157,6 @@ const SignUpForm = props => {
 						) {
 							return null;
 						}
-
 						return (
 							<p key={message} className='validation-error-message'>
 								{message}
@@ -172,44 +169,27 @@ const SignUpForm = props => {
 
 			{progress > 0 && (
 				<div className='sign-up-form'>
-					{/* <h2>Sign Up</h2> */}
 					<ProgressBar progress={progress} />
-
 					<form>
-						{/* <form onSubmit={handleSubmit}> */}
 						{(function() {
 							switch (progress) {
 								case 1:
 									return (
 										<>
 											<GeneralSignUp
-												// setEmailTouched={setEmailTouched}
 												setFirstTouched={setFirstTouched}
 												setLastTouched={setLastTouched}
 												setCityTouched={setCityTouched}
 												setStateTouched={setStateTouched}
-												// setPasswordTouched={setPasswordTouched}
 												user={user}
 												handleChange={handleChange}
 											/>
-											{/* {valError ? (
-												<button className='form-btn' disabled>
-													Next
-												</button>
-											) : (
-												<button className='form-btn' onClick={handleNext}>
-													Next
-												</button>
-											)} */}
 											<SignUpNav
 												handleBack={handleBack}
 												handleNext={handleNext}
 											/>
 											{valError
 												? valError.map(message => {
-														// if (message.includes('email') && !emailTouched) {
-														// 	return null;
-														// }
 														if (message.includes('first') && !firstTouched) {
 															return null;
 														}
@@ -222,14 +202,6 @@ const SignUpForm = props => {
 														if (message.includes('state') && !stateTouched) {
 															return null;
 														}
-														// if (
-														// 	(message.includes('password') ||
-														// 		message.includes('Password')) &&
-														// 	!passwordTouched
-														// ) {
-														// 	return null;
-														// }
-
 														return (
 															<p
 																key={message}
@@ -244,13 +216,7 @@ const SignUpForm = props => {
 								case 2:
 									return (
 										<>
-											<ExpSignUp user={user} handleChange={handleChange} />
-											{/* <button className='form-btn' onClick={handleBack}>
-												Back
-											</button>
-											<button className='submit-btn' type='submit'>
-												Submit
-											</button> */}
+											<AccountsSignUp user={user} handleChange={handleChange} />
 											<SignUpNav
 												handleBack={handleBack}
 												handleNext={handleSubmit}
@@ -269,7 +235,6 @@ const SignUpForm = props => {
 									return;
 							}
 						})()}
-
 						<br />
 					</form>
 				</div>

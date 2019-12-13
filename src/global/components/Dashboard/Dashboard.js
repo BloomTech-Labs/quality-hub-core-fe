@@ -8,10 +8,10 @@ import { Route, Switch } from 'react-router-dom';
 import './Dashboard.scss';
 
 // Components
-import LeftNavBar from './LeftNavBar';
-import PersonalInfo from './PersonalInfo';
-import Schedule from './Schedule';
-// import DashInterviewQ from '../../../InterviewQ/components/DashInterviewQ';
+import LeftNavBar from './subs/LeftNavBar';
+import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
+import Schedule from './subs/Schedule';
+
 // GraphQuaiL Query
 const GET_USER = gql`
 	query {
@@ -50,9 +50,6 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route  path='/dashboard/schedule'>
 						<Schedule />
 					</Route>
-					{/* <Route exact path='/dashboard/coachinfo'>
-						<DashInterviewQ />
-					</Route> */}
 				</Switch>
 			</div>
 		</div>

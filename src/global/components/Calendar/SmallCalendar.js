@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import '../Dashboard/Schedule/Calendar.scss';
+import '../Dashboard/subs/Schedule/Calendar.scss';
 import { setMonth, getMonth, getYear, addMonths, subMonths } from 'date-fns';
 
-import { nextArrow } from '../../../globalIcons/nextArrow';
-import { backArrow } from '../../../globalIcons/backArrow';
+import { nextArrow } from '../../icons/nextArrow';
+import { backArrow } from '../../icons/backArrow';
 
 import SmallCells from './SmallCells';
 
-import { days, months, years } from '../Dashboard/Schedule/TimeArrays'
+import { days, months, years } from '../../utils/TimeArrays';
 
 const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails }) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());

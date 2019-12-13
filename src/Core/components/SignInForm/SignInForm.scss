@@ -1,4 +1,4 @@
-@import '../../../globalStyles/variables';
+@import '../../../global/styles/variables';
 
 .sign-in-form {
 	width: 92%;
@@ -76,6 +76,9 @@
 		}
 	}
 
+.invalid-credentials{
+	color: red;
+}
 	.signup-link {
 		margin-top: 1.6rem;
 

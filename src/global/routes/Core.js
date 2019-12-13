@@ -4,9 +4,8 @@ import LandingPage from '../../Core/components/LandingPage';
 import Dashboard from '../components/Dashboard';
 import SignInForm from '../../Core/components/SignInForm';
 import SignUpForm from '../../Core/components/SignUpForm';
-import ForgotPassword from '../../Core/components/SignInForm/ForgotPassword';
+import ForgotPassword from '../../Core/components/SignInForm/subs/ForgotPassword';
 import PrivateRoute from '../../global/components/PrivateRoute';
-
 
 function Core({ loggedin, setLoggedin }) {
 	return (
@@ -23,7 +22,16 @@ function Core({ loggedin, setLoggedin }) {
 				)}
 			/>
 			<Route path='/forgotPassword' component={ForgotPassword} />
-			<Route path='/signup' component={SignUpForm} />
+			<Route
+				path='/signup'
+				render={props => (
+					<SignUpForm
+						{...props}
+						loggedin={loggedin}
+						setLoggedin={setLoggedin}
+					/>
+				)}
+			/>
 			<PrivateRoute
 				path='/dashboard'
 				component={Dashboard}
