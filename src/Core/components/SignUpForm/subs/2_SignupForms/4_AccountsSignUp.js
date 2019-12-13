@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExpSignUp = ({ handleChange, user }) => {
+const AccountsSignUp = ({ handleChange, user }) => {
 	return (
 		<div className='exp-signup'>
 			<div className='input-label'>
@@ -67,4 +67,4 @@ const ExpSignUp = ({ handleChange, user }) => {
 	);
 };
 
-export default ExpSignUp;
+export default AccountsSignUp;
