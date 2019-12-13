@@ -1,12 +1,16 @@
+// Libraries
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import AvatarDropdown from './subs/AvatarDropdown';
-import GridDropdown from './subs/GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Bellicon } from '../../icons/bellicon';
 
+// Icons
+import { Bellicon } from '../../icons/bellicon';
 import { Hamburger } from '../../icons/hamburger';
+
+// Components
+import GridDropdown from './subs/GridDropdown';
+import AvatarDropdown from './subs/AvatarDropdown';
 
 const GET_USER = gql`
 	query dropdownMenu {
@@ -61,7 +65,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<NavLink to='/'>
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
-						<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
+						<h2>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h2>
 					</div>
 				</NavLink>
 			</div>
