@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import './CoachForm.scss';
+// import './CoachForm.scss';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -11,9 +11,6 @@ import { ICONS } from '../../../global/icons/iconConstants';
 import { lightbulb } from '../../../global/icons/lightbulb';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
 import {blankavatar2} from '../../../global/icons/blankavatar';
-// import Icon from '../../../global/icons/Icon';
-// import { ICONS } from '../../../global/icons/iconConstants';
-// import { blankavatar } from '../../../../icons/blankavatar';
 
 // Query
 import { GET_POSTS } from '../LandingPage/CoachList/CoachList';
@@ -25,8 +22,6 @@ import DoneModal from './subs/DoneModal';
 const CoachForm = props => {
 	const { data } = useQuery(GET_USER);
 	const { data: industriesData } = useQuery(INDUSTRIES);
-	
-	// const node = useRef();
 
 	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
@@ -61,11 +56,7 @@ const CoachForm = props => {
 	if (data) {
 		if (data.me.image_url) {
 			image = data.me.image_url;
-		} else {
-			//Need to add a default image here if user hasn't uploaded anything yet
-			// image = {blankavatar}
-			// image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; 
-		}
+		} 
 	}
 
 	const [formState, setFormState] = useState({
@@ -142,6 +133,7 @@ const CoachForm = props => {
 			});
 	};
 
+	//This is for when you hit "save and exit"
 	const handleSave = e => {
 		e.preventDefault();
 		let newFormState = { ...formState, isPublished: false };
