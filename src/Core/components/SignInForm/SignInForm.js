@@ -12,6 +12,7 @@ import { ICONS } from '../../../global/icons/iconConstants';
 // Components
 import Loading from '../../../global/components/Loading';
 
+// Mutation
 const LOGIN = gql`
 	mutation Login($email: String!, $password: String!) {
 		login(email: $email, password: $password) {
