@@ -27,11 +27,13 @@ export const GET_USER = gql`
 `;
 
 export default function InterviewLandingPage() {
+	// Component State
 	const [toggleFilter, setToggleFilter] = useState(true);
 	const [hasPost, setHasPost] = useState();
 
-
+	// Usequery
 	const { refetch, loading, data: userData } = useQuery(GET_USER);
+
 
 	useEffect(() => {
 		refetch();
@@ -95,9 +97,9 @@ export default function InterviewLandingPage() {
 								color={toggleFilter ? '#096dd9' : '#5f6368'}
 							/>
 							<span className='filters-btn'>Filters </span>
-						</button>
+							</button>
+						</div>
 					</div>
-				</div>
 				<div className='landingpage-container'>
 					<CoachList toggleFilter={toggleFilter} />
 				</div>
