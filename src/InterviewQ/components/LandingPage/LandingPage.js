@@ -11,9 +11,7 @@ import { ICONS } from '../../../global/icons/iconConstants';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Components
-// import LandingPageCTA from './LandingPageCTA';
 import LandingPageHeader from './LandingPageHeader';
-// import Search from '../Search';
 import CoachList from './CoachList';
 import CoachForm from '../CoachForm';
 
@@ -29,16 +27,13 @@ export const GET_USER = gql`
 `;
 
 export default function InterviewLandingPage() {
+	// Component State
 	const [toggleFilter, setToggleFilter] = useState(true);
 	const [hasPost, setHasPost] = useState();
-	// const [fields, setFields] = useState({
-	// 	tag: '',
-	// 	price: '',
-	// 	industry: '',
-	// 	orderBy: '',
-	// });
 
+	// Usequery
 	const { refetch, loading, data: userData } = useQuery(GET_USER);
+
 
 	useEffect(() => {
 		refetch();
@@ -53,7 +48,6 @@ export default function InterviewLandingPage() {
 
 	return (
 		<div className='interview-container' id='interview-container'>
-			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				{/* <QNav /> */}
 				<div className='interviewq-header-container'>
@@ -103,9 +97,9 @@ export default function InterviewLandingPage() {
 								color={toggleFilter ? '#096dd9' : '#5f6368'}
 							/>
 							<span className='filters-btn'>Filters </span>
-						</button>
+							</button>
+						</div>
 					</div>
-				</div>
 				<div className='landingpage-container'>
 					<CoachList toggleFilter={toggleFilter} />
 				</div>
