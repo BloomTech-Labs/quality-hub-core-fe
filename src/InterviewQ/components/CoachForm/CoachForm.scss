@@ -110,6 +110,10 @@
 	background: white;
 	border-radius: 10px;
 	z-index: 1000;
+	@media screen and (max-width: 550px) {
+		min-width: 550px;
+		// float: none;
+	  }
 }
 
 .done-modal {
