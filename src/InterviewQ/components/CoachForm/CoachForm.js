@@ -29,7 +29,7 @@ const CoachForm = props => {
 	// const node = useRef();
 
 	//false sets the default to not show the Done modal
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 
 	//Done is the second modal that pops up after you publish a coach form
 	const [done, setDone] = useState(false);
