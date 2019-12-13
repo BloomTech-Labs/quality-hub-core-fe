@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 import axios from 'axios';
-import {Gear} from '../../../icons/gear';
-import {Signout} from '../../../icons/signout';
+import { Gear } from '../../../icons/gear';
+import { Signout } from '../../../icons/signout';
 
 // Icons
 import { blankavatar } from '../../../icons/blankavatar';
 
+// Queries
 const GET_USER = gql`
 	query dropdownMenu {
 		me {
@@ -93,12 +94,10 @@ const AvatarDropdown = props => {
 					console.log(err);
 				});
 		}
-		// eslint-disable-next-line
 	}, [picture]);
 
 	useEffect(() => {
 		getUser();
-		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -108,7 +107,6 @@ const AvatarDropdown = props => {
 			document.removeEventListener('mousedown', handleOutsideClick);
 		}
 		getUser();
-		// eslint-disable-next-line
 	}, [open]);
 
 	return (
@@ -132,15 +130,23 @@ const AvatarDropdown = props => {
 						/>
 						<label htmlFor='imageInput-2'>
 							<div className='img-wrapper-dropdown'>
-								{data ? //ternary 1
-								data.me.image_url ? //ternary 2
-								<div
-									className='profile-img-dropdown'
-									style={{
-										backgroundImage: `url('${data.me.image_url}')`,
-									}}></div> : //ternary 2
-									<div className='profile-img-dropdown2'>{blankavatar(81.25,81.25)}</div>: //ternary 1
-									<div className='profile-img-dropdown3'>{blankavatar(81.25,81.25)}</div>}
+								{data ? ( //ternary 1
+									data.me.image_url ? ( //ternary 2
+										<div
+											className='profile-img-dropdown'
+											style={{
+												backgroundImage: `url('${data.me.image_url}')`,
+											}}></div> //ternary 2
+									) : (
+										<div className='profile-img-dropdown2'>
+											{blankavatar(81.25, 81.25)}
+										</div>
+									) //ternary 1
+								) : (
+									<div className='profile-img-dropdown3'>
+										{blankavatar(81.25, 81.25)}
+									</div>
+								)}
 							</div>
 						</label>
 						{/* Avatar image in dropdown menu */}
@@ -159,17 +165,19 @@ const AvatarDropdown = props => {
 						</p>
 					)}
 					{data && <p className='dropdown-menu-email'>{data.me.email}</p>}
-					<hr className="hr-below-email" />
-					<div className="avatar-dropdown-dashboard-link">
-					<Link to='/dashboard' onClick={()=> setOpen(false)} >
-							<div className="avatar-dropdown-lower-icons">{Gear()}</div> <div>QualityHub account</div>
-					</Link>
+					<hr className='hr-below-email' />
+					<div className='avatar-dropdown-dashboard-link'>
+						<Link to='/dashboard' onClick={() => setOpen(false)}>
+							<div className='avatar-dropdown-lower-icons'>{Gear()}</div>{' '}
+							<div>QualityHub account</div>
+						</Link>
 					</div>
 					<hr />
-					<div className="avatar-dropdown-signout-link">
-					<Link to='/' onClick={()=>logout()} >
-							<div className="avatar-dropdown-lower-icons">{Signout()}</div> <div>Sign Out</div>
-					</Link>
+					<div className='avatar-dropdown-signout-link'>
+						<Link to='/' onClick={() => logout()}>
+							<div className='avatar-dropdown-lower-icons'>{Signout()}</div>{' '}
+							<div>Sign Out</div>
+						</Link>
 					</div>
 				</div>
 			)}

@@ -12,6 +12,7 @@ import { Hamburger } from '../../icons/hamburger';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
 
+// Query
 const GET_USER = gql`
 	query dropdownMenu {
 		me {

@@ -93,12 +93,12 @@ const CoachForm = props => {
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
-			<div id="overlay-coach-form" onClick={e => closeWindow(e)}></div>
+			<div id='overlay-coach-form' onClick={e => closeWindow(e)}></div>
 
 			{/* This is the Button that is rendered on the landing page */}
-			<button onClick={() => setOpen(!open)} className="become-a-coach-btn">
+			<button onClick={() => setOpen(!open)} className='become-a-coach-btn'>
 				{lightbulb2()}
-				<span className="add-coach-form-button">Become a coach</span>
+				<span className='add-coach-form-button'>Become a coach</span>
 			</button>
 
 			{/* This is the 2nd modal that pops up after you publish a post */}
@@ -112,8 +112,8 @@ const CoachForm = props => {
 			{/* The create coach post form */}
 			{open && (
 				<>
-					<div className="add-coach-form-background">
-						<div className="add-coach-form">
+					<div className='add-coach-form-background'>
+						<div className='add-coach-form'>
 							<CloseButton closeWindow={closeWindow} />
 							<TopText lightbulb={lightbulb} />
 
