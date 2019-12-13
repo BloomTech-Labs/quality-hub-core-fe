@@ -7,7 +7,7 @@ import { document } from '../../../../../global/icons/document.js';
 import { paperclip } from '../../../../../global/icons/paperclip.js';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 import Icon from '../../../../../global/icons/Icon';
-import { utcToZonedTime } from 'date-fns-tz';
+import { convertToLocal } from '../../../../../global/utils/TZHelpers.js';
 import Loading from '../../../Loading';
 import { gql } from 'apollo-boost';
 
@@ -77,30 +77,30 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-	const convertToLocal = obj => {
-		let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`;
-		let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`;
-		let localAvailMin = obj.minute === 0 ? '00' : '30';
-		let localAvail;
-		if (obj.month < 10) {
-			localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-		} else {
-			localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-		}
-		let zoned = utcToZonedTime(localAvail, localTime);
-		let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
+	// const convertToLocal = obj => {
+	// 	let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`;
+	// 	let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`;
+	// 	let localAvailMin = obj.minute === 0 ? '00' : '30';
+	// 	let localAvail;
+	// 	if (obj.month < 10) {
+	// 		localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+	// 	} else {
+	// 		localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+	// 	}
+	// 	let zoned = utcToZonedTime(localAvail, localTime);
+	// 	let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
 
-		let zonedDate = {
-			...obj,
-			year: Number(zonedArr[0]),
-			month: Number(zonedArr[1]),
-			day: Number(zonedArr[2]),
-			hour: Number(zonedArr[3]),
-			minute: Number(zonedArr[4]),
-		};
+	// 	let zonedDate = {
+	// 		...obj,
+	// 		year: Number(zonedArr[0]),
+	// 		month: Number(zonedArr[1]),
+	// 		day: Number(zonedArr[2]),
+	// 		hour: Number(zonedArr[3]),
+	// 		minute: Number(zonedArr[4]),
+	// 	};
 
-		return zonedDate;
-	};
+	// 	return zonedDate;
+	// };
 	const handleDelete = e => {
 		let uniquecheck = e.target.getAttribute('data-id');
 		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;

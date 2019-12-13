@@ -10,15 +10,12 @@ import { ICONS } from '../../../global/icons/iconConstants';
 // Components
 import CoachDash from './subs/CoachDash';
 import { spacecoach } from '../../../global/icons/SpaceCoach.js'
-// import Reviews from './Reviews';
-// import Video from './Video';
 
 export default function DashInterviewQ() {
 
 	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
-	// console.log(coachPost);
 
 	return (
 		<div className='lower-dashboard'>
@@ -44,9 +41,6 @@ export default function DashInterviewQ() {
 				</p>
 			</div>
 		)}
-			
-			{/* <Reviews /> */}
-			{/* <Video /> */}
 		</div>
 	);
 }
