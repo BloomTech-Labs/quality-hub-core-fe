@@ -32,6 +32,7 @@ const SignInForm = props => {
 	});
 	const [showPassword, setShowPassword] = useState(true);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 	const [login] = useMutation(LOGIN);
 
 	const handleChange = e => {
@@ -57,6 +58,7 @@ const SignInForm = props => {
 			})
 			.catch(err => {
 				setLoading(false);
+				setError('Invalid Credentials, please try again.');
 			});
 	};
 
@@ -107,6 +109,7 @@ const SignInForm = props => {
 							bottom: !showPassword && '5.4rem',
 							left: !showPassword && 'calc(100% - 4.6rem)',
 						}}
+						// Allows user to see password typed in or to not see
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword && (
 							<Icon
@@ -126,6 +129,7 @@ const SignInForm = props => {
 						)}
 					</div>
 				</div>
+				{error && <p className='invalid-credentials'>{error}</p>}
 				<br />
 				{!loading &&
 					(user.email !== '' && user.password !== '' ? (
