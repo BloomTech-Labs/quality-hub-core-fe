@@ -20,7 +20,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		}
 	`;
 
-	const { data } = useQuery(ALL_BOOKINGS, {
+	const { data, refetch } = useQuery(ALL_BOOKINGS, {
 		variables: {
 			seekerId: localStorage.getItem('id'),
 			coachId: localStorage.getItem('id'),
@@ -60,6 +60,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		let selectedDay = format(selectedDate, 'd');
 		let selectedMonth = format(selectedDate, 'M');
 		if (allBookings) {
+			//refetch();
 			let convertedBookings = allBookings.map(booking =>
 				convertToLocal(booking),
 			);
@@ -109,7 +110,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 				// client.clearStore();
 				//window.location.reload(true);
 				bookClient.clearStore();
-				// refetch();
+				refetch();
 				setOpen(false);
 				console.log(res);
 			})

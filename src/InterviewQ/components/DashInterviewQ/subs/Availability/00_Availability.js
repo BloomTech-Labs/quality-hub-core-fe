@@ -74,7 +74,6 @@ const Availability =() => {
   }
 
   const convertToLocal = (obj) => {
-    // let localAvailDay = '0' + obj.day
     let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
     let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
     let localAvailMin = obj.start_minute === 0 ? '00' : '30'
@@ -101,22 +100,11 @@ const Availability =() => {
   }
 
   const createAvail = (hour, minute) => {
-     
-    setAvailability({
-     ...availability,
-      start_hour: hour,
-      start_minute: minute,
-    })
     
     let newObj= {...availability,
       start_hour: hour,
       start_minute: minute,
     };
-    
-    
-    // let localAvail = new Date(newObj.year, newObj.month - 1, newObj.day, newObj.start_hour, newObj.start_minute);
-    // let utcAvail = utcToZonedTime(localAvail, localTime);
-
     
     const utcAvail = convertToUTC(newObj);
     
@@ -128,9 +116,7 @@ const Availability =() => {
     newAvail({ variables: utcObj })
       .then(res => {
         console.log('newAvail Refetch')
-        refetch();
-        // setDateAvails([...dateAvails, availability])
-        
+        refetch();     
       })
       .catch(err => console.log(err))
   }

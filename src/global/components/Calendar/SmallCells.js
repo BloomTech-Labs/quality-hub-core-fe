@@ -11,10 +11,7 @@ import {
 	startOfMonth,
 	getDate,
 	getMonth,
-	localTime,
-	// utcToZonedTime
-	// convertToLocal,
-	// currentDate
+	isBefore,
 } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
@@ -95,8 +92,6 @@ const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities, r
 	  }
 	}
   }
-  // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
-
 
 setAllTheAvails(bookingArray);
 }
@@ -114,20 +109,12 @@ useEffect(()=>{
 		let match = false;
 		if(allTheAvails){
 
-			// for(let i = 0; i < availabilities.availabilitiesByCoach.length; i++){
-			// 	if(availabilities.availabilitiesByCoach[i].month === integerMonth && availabilities.availabilitiesByCoach[i].day === integerDate){
-			// 		match = true;
-			// 		break
-			// 	}
-			// }
-
 			for(let i = 0; i < allTheAvails.length; i++){
 				if(allTheAvails[i].month === integerMonth && allTheAvails[i].day === integerDate){
 					match = true;
 					break
 				}
 			}
-			
 			return match;
 		}
 	}
@@ -136,11 +123,14 @@ useEffect(()=>{
 			formattedDate = format(day, dateFormat);
 			cellId = format(day, 'Md');
 			const cloneDay = day;
-			// {availabilities && console.log(availsExist(day))}
 			days.push(
+				
 				<div
 					id={cellId}
-					className={`small-col small-cell`} //classname conditional here for light blue
+					className={`small-col  ${isBefore(day, new Date()) ?
+						'past-day'  :
+						'small-cell'
+					} ${getDate(day) === getDate(new Date()) ? 'today' : ' '}`} 
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
 						
@@ -150,9 +140,7 @@ useEffect(()=>{
 							: isSameDay(day, selectedDate)
 							? 'small-selected'
 							: availsExist(day) ? 'match-light-blue' : ''
-							// : availsExist(day) ? 'match-light-blue' : ''
 					}`}><p>{formattedDate}</p></div>
-					{/* <span className='bg'>{formattedDate}</span> */}
 					
 				</div>,
 			);
