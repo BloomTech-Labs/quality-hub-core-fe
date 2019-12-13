@@ -58,7 +58,7 @@ export default function SeekerHistory() {
 
 	return (
 		<div>
-			<h3>Seeker History</h3>
+			<h2>Seeker History</h2>
 			{data && filteredData.length ? (
 				<div className='seeker-history-headings'>
 					{headings.map(heading => (
