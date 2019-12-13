@@ -11,7 +11,7 @@ import './Dashboard.scss';
 import LeftNavBar from './subs/LeftNavBar';
 import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './subs/Schedule';
-// import DashInterviewQ from '../../../InterviewQ/components/DashInterviewQ';
+
 // GraphQuaiL Query
 const GET_USER = gql`
 	query {

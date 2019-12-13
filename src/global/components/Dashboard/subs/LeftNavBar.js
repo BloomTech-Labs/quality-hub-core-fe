@@ -17,16 +17,8 @@ export default function LeftNavBar({ setLoggedin }) {
 	const [profileDropdownToggle] = useState(false);
 	const { isShowing, toggle } = useModal();
 
-	// const profileDropdown = () => {
-	// 	setProfileDropdownToggle(!profileDropdownToggle);
-	// };
-
 	return (
 		<div className='dashboard-left-bar'>
-			{/* <div className='dash-left-menu-btn' onClick={() => profileDropdown()}>
-				<Icon icon={ICONS.DASHBOARD} width={24} height={24} color='#3c4043' />
-				<div className='dashnav-txt'>Dashboard</div>
-			</div> */}
 			{profileDropdownToggle && (
 				<div className='profile-dropdown-links'>
 					<NavLink to='#' onClick={toggle}>
@@ -50,18 +42,6 @@ export default function LeftNavBar({ setLoggedin }) {
 					<div className='dashnav-txt'>Personal Info</div>
 				</div>
 			</NavLink>
-			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/coachinfo'>
-				<div className='dash-left-menu-btn'>
-					<Icon
-						icon={ICONS.COACHINFO}
-						width={24}
-						height={24}
-						color={pathname === '/dashboard/coachinfo' ? '#096dd9' : '#3c4043'}
-					/>
-					<div className='dashnav-txt'>Coach Info</div>
-				</div>
-			</NavLink> */}
-			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/schedule'> */}
 			<NavLink activeClassName='dashnavactive' to='/dashboard/schedule'>
 				<div className='dash-left-menu-btn'>
 					<Icon
