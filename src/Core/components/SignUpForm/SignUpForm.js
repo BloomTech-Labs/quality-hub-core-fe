@@ -101,6 +101,7 @@ const SignUpForm = props => {
 				let token = results.data.signup.token;
 				localStorage.setItem('token', token);
 				localStorage.setItem('id', results.data.signup.user.id);
+				props.setLoggedin(true);
 				setProgress(progress + 1);
 				setTimeout(() => {
 					props.history.push('/dashboard');
