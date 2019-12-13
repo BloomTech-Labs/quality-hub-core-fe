@@ -42,7 +42,6 @@ const SignInForm = props => {
 
 	const handleSubmit = e => {
 		//Add validation checking here
-
 		e.preventDefault();
 		setLoading(true);
 		let { email, password } = user;
@@ -58,7 +57,6 @@ const SignInForm = props => {
 			.catch(err => {
 				setLoading(false);
 			});
-		// console.log(user);
 	};
 
 	return (
@@ -72,7 +70,6 @@ const SignInForm = props => {
 			{/* <h2 className="sign-in-or">
         <span>OR</span>
       </h2> */}
-
 			<form onSubmit={handleSubmit}>
 				<div className='input-label'>
 					<label htmlFor='email'>Email address</label>
