@@ -159,8 +159,8 @@ const RequestInteview = props => {
 	}, [dateAvails]);
 
 	//this will hold all potential 1 hour blocks
-	let bookingArray = [];
 	const getAvailableSlots = () => {
+    let bookingArray = [];
 		//Minutes change to 50 for simplicity in calculating difference between times
 		const convertMinute = oldMinute => {
 			return oldMinute == 0 ? '00' : '50';
@@ -178,7 +178,8 @@ const RequestInteview = props => {
 						)}` ==
 					-50
 				) {
-					bookingArray.push(dateAvails[x]);
+          bookingArray.push(dateAvails[x]);
+          break;
 				}
 			}
 		}
