@@ -1,5 +1,6 @@
 // Libraries
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 // Styles & Icons
 import '../../CoachCardModal.scss';
@@ -117,8 +118,12 @@ const CoachCard = ({ post, setOpen, open }) => {
 								</a>
 							)}
 						</div>
-						<button className='interview-button-expand' disabled>
-							Request Interview
+						<button className={
+						coach.id === localStorage.getItem('id')
+							? `interview-button-hidden`
+							: `interview-button-expand`
+					}>
+					<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
 						</button>
 					</div>
 				</div>

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import Search from './subs/0_Search';
-import CoachCard from './subs/1_CoachCard/CoachCard';
+import CoachCard from './subs/1_CoachCard';
 
 import './CoachList.scss';
 
@@ -68,15 +68,15 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 
 	return (
 		<div className='coach-list-container'>
-			{toggleFilter && (
-				<Search
+      <div className={(toggleFilter ? '' : 'hidden')}>
+        <Search
 					setFields={setFields}
 					fields={fields}
 					refetch={refetch}
 					toggleFilter={toggleFilter}
 					setToggleFilter={setToggleFilter}
 				/>
-			)}
+      </div>
 			{loading && <Loading />}
 			{!loading && data && (
 				<div className='coach-list'>

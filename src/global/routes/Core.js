@@ -22,7 +22,16 @@ function Core({ loggedin, setLoggedin }) {
 				)}
 			/>
 			<Route path='/forgotPassword' component={ForgotPassword} />
-			<Route path='/signup' component={SignUpForm} />
+			<Route
+				path='/signup'
+				render={props => (
+					<SignUpForm
+						{...props}
+						loggedin={loggedin}
+						setLoggedin={setLoggedin}
+					/>
+				)}
+			/>
 			<PrivateRoute
 				path='/dashboard'
 				component={Dashboard}

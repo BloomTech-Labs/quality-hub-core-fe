@@ -27,7 +27,7 @@ const DoneModal = ({ closeWindow, setAvailability }) => {
 				<div className='done-modal-buttons'>
 					<button onClick={() => closeWindow()}>Skip for now</button>
 					<Link
-						to='/dashboard/schedule'
+						to='/interviewq/settings'
 						className='add-coach-set-availability-link'>
 						<button
 							onClick={() => setAvailability()}

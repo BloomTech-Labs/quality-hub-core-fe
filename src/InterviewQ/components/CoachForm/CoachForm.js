@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import './CoachForm.scss';
+// import './CoachForm.scss';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -10,17 +10,20 @@ import Icon from '../../../global/icons/Icon';
 import { ICONS } from '../../../global/icons/iconConstants';
 import { lightbulb } from '../../../global/icons/lightbulb';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
+import {blankavatar2} from '../../../global/icons/blankavatar';
 
 // Query
 import { GET_POSTS } from '../LandingPage/CoachList/CoachList';
 import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';
 
+//Modal that pops up when done filling out coach form
 import DoneModal from './subs/DoneModal';
 
 const CoachForm = props => {
-	const node = useRef();
+	const { data } = useQuery(GET_USER);
+	const { data: industriesData } = useQuery(INDUSTRIES);
 
-	//false sets the default to not show the modal
+	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
 
 	//Done is the second modal that pops up after you publish a coach form
@@ -35,7 +38,9 @@ const CoachForm = props => {
 			});
 		},
 	});
+	
 
+	//This sets the darkened overlay behind the modals
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coach-form').style.display = 'block';
@@ -46,21 +51,18 @@ const CoachForm = props => {
 		}
 	}, [open, done]);
 
-	const { data } = useQuery(GET_USER);
-	const { data: industriesData } = useQuery(INDUSTRIES);
 
 	let image;
 	if (data) {
 		if (data.me.image_url) {
 			image = data.me.image_url;
-		} else {
-			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; //Need to add a default image here if user hasn't uploaded anything yet
-		}
+		} 
 	}
 
 	const [formState, setFormState] = useState({
 		company: '',
 		position: '',
+		//We leave a default industry so users are FORCED to pick something
 		industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
@@ -70,6 +72,7 @@ const CoachForm = props => {
 
 	const handleChange = e => {
 		if (e.target.name === 'price') {
+			//If you try to delete the last number, the price will change to $0
 			if (e.target.value.length < 2) {
 				setFormState({
 					...formState,
@@ -77,8 +80,19 @@ const CoachForm = props => {
 				});
 				return;
 			}
+
+			//The input form MUST include a dollar sign and have a number after it.
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
+
+				//set a maximum price for the text input form
+				//If price is greater than 200, don't accept those changes
+				//If this number is changed, you can optionally allow a different price limit in the text-input than the range-slider
+				if(newPrice[1] > 200){ 
+					return;
+				}
+
+				//If price is less than or equal to 200, make changes to state
 				setFormState({
 					...formState,
 					[e.target.name]: parseInt(newPrice[1]),
@@ -88,6 +102,8 @@ const CoachForm = props => {
 				return;
 			}
 		}
+
+		//price text input and slider input are both connected to the same state variable
 		if (e.target.name === 'price-slider') {
 			setFormState({
 				...formState,
@@ -95,6 +111,8 @@ const CoachForm = props => {
 			});
 			return;
 		}
+
+		// If the input is not about hourly rates, just set the value to state
 		setFormState({
 			...formState,
 			[e.target.name]: e.target.value,
@@ -105,7 +123,9 @@ const CoachForm = props => {
 		e.preventDefault();
 		addPost({ variables: formState })
 			.then(res => {
+				//Open 2nd modal
 				setDone(true);
+				//Close first modal
 				setOpen(false);
 			})
 			.catch(err => {
@@ -113,11 +133,13 @@ const CoachForm = props => {
 			});
 	};
 
+	//This is for when you hit "save and exit"
 	const handleSave = e => {
 		e.preventDefault();
 		let newFormState = { ...formState, isPublished: false };
 		addPost({ variables: newFormState })
 			.then(res => {
+				//Don't reroute. Just close the modal, and check for new data
 				closeWindow();
 			})
 			.catch(err => {
@@ -141,13 +163,16 @@ const CoachForm = props => {
 	};
 
 	const setAvailability = e => {
+		//Get new data
 		props.refetch();
+		//turn off overlay
 		document.getElementById('overlay-coach-form').style.display = 'none';
+		//close 2nd modal
 		setDone(false);
 	};
 
 	return (
-		<div ref={node}>
+		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
 			<div id='overlay-coach-form' onClick={() => closeWindow()}></div>
 
@@ -170,6 +195,7 @@ const CoachForm = props => {
 				<>
 					<div className='add-coach-form-background'>
 						<div className='add-coach-form'>
+							{/* This is the 'X' button at the top of the page */}
 							<button
 								className='close-coach-form-button'
 								onClick={() => closeWindow()}>
@@ -201,7 +227,6 @@ const CoachForm = props => {
 								Please tell us about your career so far and your
 								accomplishments.
 							</p>
-							{/* Should be changed to a label */}
 							<p className='add-coach-form-row-6'>Company</p>
 							<input
 								className='add-coach-form-row-7'
@@ -274,6 +299,7 @@ const CoachForm = props => {
 										type='range'
 										min='0'
 										max='200'
+										// If we allowed the text-input for price to go higher than 200, the price slider will bump to 200 till the price drops below
 										value={formState.price <= 200 ? formState.price : 200}
 										onChange={handleChange}
 										step='1'
@@ -317,11 +343,14 @@ const CoachForm = props => {
 											${formState.price} per hour
 										</p>
 									</div>
-									<img
+									{image ? <img
 										className='add-coach-form-preview-coach-photo'
 										src={image}
 										alt='Coach Profile Pic'
-									/>
+									/> : <div className='profile-img-coach-form'>
+										{blankavatar2()}
+								</div>}
+									
 								</div>
 								<div className='coachformcard-info'>
 									<p>
@@ -359,7 +388,7 @@ const CoachForm = props => {
 												color='#595959'
 											/>
 										</span>
-										{/* 4.2 */}
+										4.9
 									</p>
 								</div>
 								<p className='add-coach-form-preview-description'>

@@ -1,3 +1,3 @@
 import ReviewPage from './ReviewPage';
 
-export { ReviewPage };
+export default ReviewPage;
