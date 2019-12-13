@@ -19,6 +19,11 @@ const GET_COACHBOOKINGS = gql`
 				first_name
 				last_name
 			}
+			coach {
+				post {
+					price
+				}
+			}
 			uniquecheck
 			review {
 				rating
@@ -63,7 +68,7 @@ export default function CoachHistory() {
 			{data && filteredData.length ? (
 				<div className='coach-history-headings'>
 					{headings.map(heading => (
-						<h4>{heading}</h4>
+						<h3>{heading}</h3>
 					))}
 				</div>
 			) : (
