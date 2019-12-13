@@ -48,3 +48,31 @@ export const handleChange = (e, setFormState, formState) => {
         [e.target.name]: e.target.value,
     });
 };
+
+export const handleSubmit = (e, formState, setDone, setOpen, addPost) => {
+    e.preventDefault();
+    addPost({ variables: formState })
+        .then(res => {
+            //Open 2nd modal
+            setDone(true);
+            //Close first modal
+            setOpen(false);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+//This is for when you hit "save and exit"
+export const handleSave = (e, formState, closeWindow, addPost) => {
+    e.preventDefault();
+    let newFormState = { ...formState, isPublished: false };
+    addPost({ variables: newFormState })
+        .then(res => {
+            //Don't reroute. Just close the modal, and check for new data
+            closeWindow();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};

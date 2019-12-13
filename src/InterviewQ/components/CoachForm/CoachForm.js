@@ -6,14 +6,10 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Styles && Icons
 import './CoachForm.scss';
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
 import { lightbulb } from '../../../global/icons/lightbulb';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
-import { blankavatar2 } from '../../../global/icons/blankavatar';
 
 // Query
-import { GET_POSTS } from '../LandingPage/CoachList/CoachList';
 import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';
 
 //Modal that pops up when done filling out coach form
@@ -25,7 +21,7 @@ import StepTwo from './subs/StepTwo';
 import StepThree from './subs/StepThree';
 import BottomButtons from './subs/BottomButtons';
 import TopText from './subs/TopText';
-import {handleChange} from './subs/Functions';
+import {handleChange, handleSubmit, handleSave} from './subs/Functions';
 
 const CoachForm = props => {
 	const { data } = useQuery(GET_USER);
@@ -69,83 +65,6 @@ const CoachForm = props => {
 		isPublished: true,
 	});
 
-	// const handleChange = e => {
-	// 	if (e.target.name === 'price') {
-	// 		//If you try to delete the last number, the price will change to $0
-	// 		if (e.target.value.length < 2) {
-	// 			setFormState({
-	// 				...formState,
-	// 				[e.target.name]: 0,
-	// 			});
-	// 			return;
-	// 		}
-
-	// 		//The input form MUST include a dollar sign and have a number after it.
-	// 		if (/^\$[0-9]*$/gm.test(e.target.value)) {
-	// 			let newPrice = e.target.value.split('$');
-
-	// 			//set a maximum price for the text input form
-	// 			//If price is greater than 200, don't accept those changes
-	// 			//If this number is changed, you can optionally allow a different price limit in the text-input than the range-slider
-	// 			if (newPrice[1] > 200) {
-	// 				return;
-	// 			}
-
-	// 			//If price is less than or equal to 200, make changes to state
-	// 			setFormState({
-	// 				...formState,
-	// 				[e.target.name]: parseInt(newPrice[1]),
-	// 			});
-	// 			return;
-	// 		} else {
-	// 			return;
-	// 		}
-	// 	}
-
-	// 	//price text input and slider input are both connected to the same state variable
-	// 	if (e.target.name === 'price-slider') {
-	// 		setFormState({
-	// 			...formState,
-	// 			price: parseInt(e.target.value),
-	// 		});
-	// 		return;
-	// 	}
-
-	// 	// If the input is not about hourly rates, just set the value to state
-	// 	setFormState({
-	// 		...formState,
-	// 		[e.target.name]: e.target.value,
-	// 	});
-	// };
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		addPost({ variables: formState })
-			.then(res => {
-				//Open 2nd modal
-				setDone(true);
-				//Close first modal
-				setOpen(false);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
-
-	//This is for when you hit "save and exit"
-	const handleSave = e => {
-		e.preventDefault();
-		let newFormState = { ...formState, isPublished: false };
-		addPost({ variables: newFormState })
-			.then(res => {
-				//Don't reroute. Just close the modal, and check for new data
-				closeWindow();
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
-
 	const closeWindow = e => {
 		props.refetch();
 		setFormState({
@@ -173,7 +92,7 @@ const CoachForm = props => {
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
-			<div id="overlay-coach-form" onClick={() => closeWindow()}></div>
+			<div id="overlay-coach-form" onClick={(e) => closeWindow(e)}></div>
 
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className="become-a-coach-btn">
@@ -210,6 +129,11 @@ const CoachForm = props => {
 							<BottomButtons
 								handleSave={handleSave}
 								handleSubmit={handleSubmit}
+								formState={formState}
+								setDone={setDone}
+								setOpen={setOpen}
+								addPost={addPost}
+								closeWindow={closeWindow}
 							/>
 						</div>
 					</div>
