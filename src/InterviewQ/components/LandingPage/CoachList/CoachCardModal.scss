@@ -80,7 +80,7 @@ body {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 20px;
+    margin-bottom: 20px;
 		.coachcard-header-txt-expand {
 			text-align: left;
 			margin: 8px;
@@ -89,7 +89,8 @@ body {
 				font-weight: 600;
 				font-style: normal;
 				line-height: 2.8rem;
-				color: #262626;
+        color: #262626;
+        text-transform: none;
 			}
 			h4 {
 				font-size: 1.6rem;
@@ -161,7 +162,7 @@ body {
 		.coachcard-tag-button-expand {
 			background-color: lightgray;
 			margin: 0.5% 0.9%;
-			padding: 0% 3.5%;
+			padding: 0% 2.5% 0% 2%;
 			border-radius: 100px;
 			font-size: 1.6rem;
 			height: 28px;
