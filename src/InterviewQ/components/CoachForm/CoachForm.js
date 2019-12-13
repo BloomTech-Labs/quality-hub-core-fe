@@ -132,7 +132,9 @@ const CoachForm = props => {
 		e.preventDefault();
 		addPost({ variables: formState })
 			.then(res => {
+				//Open 2nd modal
 				setDone(true);
+				//Close first modal
 				setOpen(false);
 			})
 			.catch(err => {
@@ -145,6 +147,7 @@ const CoachForm = props => {
 		let newFormState = { ...formState, isPublished: false };
 		addPost({ variables: newFormState })
 			.then(res => {
+				//Don't reroute. Just close the modal, and check for new data
 				closeWindow();
 			})
 			.catch(err => {
@@ -168,8 +171,11 @@ const CoachForm = props => {
 	};
 
 	const setAvailability = e => {
+		//Get new data
 		props.refetch();
+		//turn off overlay
 		document.getElementById('overlay-coach-form').style.display = 'none';
+		//close 2nd modal
 		setDone(false);
 	};
 
@@ -197,6 +203,7 @@ const CoachForm = props => {
 				<>
 					<div className='add-coach-form-background'>
 						<div className='add-coach-form'>
+							{/* This is the 'X' button at the top of the page */}
 							<button
 								className='close-coach-form-button'
 								onClick={() => closeWindow()}>
@@ -228,7 +235,6 @@ const CoachForm = props => {
 								Please tell us about your career so far and your
 								accomplishments.
 							</p>
-							{/* Should be changed to a label */}
 							<p className='add-coach-form-row-6'>Company</p>
 							<input
 								className='add-coach-form-row-7'
@@ -301,6 +307,7 @@ const CoachForm = props => {
 										type='range'
 										min='0'
 										max='200'
+										// If we allowed the text-input for price to go higher than 200, the price slider will bump to 200 till the price drops below
 										value={formState.price <= 200 ? formState.price : 200}
 										onChange={handleChange}
 										step='1'
@@ -389,7 +396,7 @@ const CoachForm = props => {
 												color='#595959'
 											/>
 										</span>
-										{/* 4.2 */}
+										4.2
 									</p>
 								</div>
 								<p className='add-coach-form-preview-description'>
