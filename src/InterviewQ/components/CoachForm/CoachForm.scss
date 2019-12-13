@@ -11,6 +11,18 @@
 	z-index: 999;
 }
 
+.profile-img-coach-form {
+	border-radius: 50%;
+	width: 6.1rem;
+	height: 6.1rem;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #bfbfbf;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
 .slider {
 	margin-top: 40px;
 	display: flex;
@@ -98,6 +110,9 @@
 	background: white;
 	border-radius: 10px;
 	z-index: 1000;
+	@media screen and (max-width: 550px) {
+		min-width: 550px;
+	  }
 }
 
 .done-modal {
