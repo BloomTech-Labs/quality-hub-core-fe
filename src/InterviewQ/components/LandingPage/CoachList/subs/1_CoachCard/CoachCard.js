@@ -27,10 +27,11 @@ const CoachCard = ({ post }) => {
 					{coach.image_url ? (
 						<img src={coach.image_url} alt='Coach Profile Pic' />
 					) : (
-						<img
-							src='https://www.birdorable.com/img/bird/th440/california-quail.png'
-							alt='Coach Profile Pic'
-						/>
+            <Icon icon={ICONS.BLANK_AVATAR} />
+						// <img
+						// 	src='https://www.birdorable.com/img/bird/th440/california-quail.png'
+						// 	alt='Coach Profile Pic'
+						// />
 					)}
 				</div>
 			</div>
