@@ -10,14 +10,8 @@ import SmallCells from './SmallCells';
 import { days, months, years } from '../Dashboard/Schedule/TimeArrays'
 
 const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails }) => {
+
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	// const [selectedCell, setSelectedCell] = useState(new Date());
-	
-
-	// const headerDateFormat = "MMMM yyyy";
-	// const dateFormat = 'dd';
-
-	// let startDate = startOfWeek(currentMonth);
 
 	const nextMonth = () => {
 		setCurrentMonth(addMonths(currentMonth, 1))
@@ -41,6 +35,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		const month = getMonth(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 	};
+	
 	return (	
 		<div className='small-calendar-container'>
 		<div className='calendar'>

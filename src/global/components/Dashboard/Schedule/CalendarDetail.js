@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format } from 'date-fns';
@@ -20,7 +20,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		}
 	`;
 
-	const { data, refetch, loading, client } = useQuery(ALL_BOOKINGS, {
+	const { data } = useQuery(ALL_BOOKINGS, {
 		variables: {
 			seekerId: localStorage.getItem('id'),
 			coachId: localStorage.getItem('id'),
@@ -29,11 +29,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	const [booking, setBooking] = useState([]);
 	const [allBookings, setAllBookings] = useState();
-	const [selectedDay, setSelectedDay] = useState(format(selectedDate, 'd'));
-	const [selectedMonth, setSelectedMonth] = useState(format(selectedDate, 'M'));
 	const [deleteBook, { client: bookClient }] = useMutation(DELETE_BOOKING);
 
-	const node = useRef();
 	const sortBookingsFunction = array => {
 		array.sort((a, b) => {
 			if (a.hour > b.hour) {
@@ -49,10 +46,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		return array;
 	};
 	useEffect(() => {
-		// refetch();
 		if (data) {
-			// console.log(client)
-			// console.log(data.bookingsByCoach);
 			let bookingArray = sortBookingsFunction([
 				...data.bookingsByCoach,
 				...data.bookingsBySeeker,
@@ -63,13 +57,14 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	}, [data]);
 
 	useEffect(() => {
+		let selectedDay = format(selectedDate, 'd');
+		let selectedMonth = format(selectedDate, 'M');
 		if (allBookings) {
 			let convertedBookings = allBookings.map(booking =>
 				convertToLocal(booking),
 			);
 			setBooking(
 				convertedBookings.filter(month => {
-					// console.log(month);
 					return (
 						month.day === Number(selectedDay) &&
 						month.month === Number(selectedMonth)
@@ -79,19 +74,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		}
 	}, [allBookings]);
 
-	//Krishan commented this line out
-	// const allBookings = data.bookingsByCoach.concat(data.bookingsBySeeker);
-
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-	// const selectedMonth = format(selectedDate, 'M');
-	//   const selectedDay = format(selectedDate, 'd');
-
-	//Krishan Commented this line out
-	// const booking = data && allBookings.filter(month => {return month.day === Number(selectedDay)});
-
-	// const coachBooking = data && booking.filter(booking => booking.coach.id === localStorage.getItem('id'));
-	// const seekerBooking = data && booking.filter(booking => booking.seeker.id === localStorage.getItem('id'));
 	const convertToLocal = obj => {
 		let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`;
 		let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`;
