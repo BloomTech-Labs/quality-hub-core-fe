@@ -1,8 +1,12 @@
+// Libraries
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
+
+// Styles
 import './CoachReport.scss';
 
+// Mutation
 import { CREATE_REPORT } from './Mutation';
 
 export default function CoachReport(props) {
