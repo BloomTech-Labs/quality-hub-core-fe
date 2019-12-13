@@ -634,7 +634,7 @@ padding-left: 40%;
 	height: 50px;
 	//border-right: 1px solid var(--border-color);
 	overflow: hidden;
-	cursor: pointer;
+	cursor: pointer !important;
 	background: $neutral-cal-color;
 	transition: 0.25s ease-out;
 	//border-bottom: 1px solid var(--border-color);
@@ -697,7 +697,31 @@ justify-content: center;
 		border-radius: 50%;
 	}
 	
+	.past-day{
+		cursor: auto;
+		position: relative;
+		height: 50px;
+		//border-right: 1px solid var(--border-color);
+		overflow: hidden;
+		background: $neutral-cal-color;
+		transition: 0.25s ease-out;
+		//border-bottom: 1px solid var(--border-color);
+		margin-bottom: 3px;
+	
+	}
 
+	.today{
+		cursor: pointer;
+		position: relative;
+		height: 50px;
+		//border-right: 1px solid var(--border-color);
+		overflow: hidden;
+		background: $neutral-cal-color;
+		transition: 0.25s ease-out;
+		//border-bottom: 1px solid var(--border-color);
+		margin-bottom: 3px;
+	
+	}
 	.number{
 	text-align: center;
 	font-size: 14px;
