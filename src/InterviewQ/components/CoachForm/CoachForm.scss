@@ -11,6 +11,27 @@
 	z-index: 999;
 }
 
+.test-thing-here{
+	border: 1px solid green !important;
+	
+}
+// .profile-img.coach-form-blank-avatar{
+// 	display:flex;
+// 	justify-content: center;
+// 	border: 1px solid green;
+// }
+.profile-img-coach-form {
+	border-radius: 50%;
+	width: 6.1rem;
+	height: 6.1rem;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #bfbfbf;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
 .slider {
 	margin-top: 40px;
 	display: flex;

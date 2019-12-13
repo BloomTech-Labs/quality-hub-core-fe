@@ -10,6 +10,10 @@ import Icon from '../../../global/icons/Icon';
 import { ICONS } from '../../../global/icons/iconConstants';
 import { lightbulb } from '../../../global/icons/lightbulb';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
+import {blankavatar2} from '../../../global/icons/blankavatar';
+// import Icon from '../../../global/icons/Icon';
+// import { ICONS } from '../../../global/icons/iconConstants';
+// import { blankavatar } from '../../../../icons/blankavatar';
 
 // Query
 import { GET_POSTS } from '../LandingPage/CoachList/CoachList';
@@ -25,7 +29,7 @@ const CoachForm = props => {
 	// const node = useRef();
 
 	//false sets the default to not show the Done modal
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 
 	//Done is the second modal that pops up after you publish a coach form
 	const [done, setDone] = useState(false);
@@ -59,7 +63,8 @@ const CoachForm = props => {
 			image = data.me.image_url;
 		} else {
 			//Need to add a default image here if user hasn't uploaded anything yet
-			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; 
+			// image = {blankavatar}
+			// image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; 
 		}
 	}
 
@@ -339,11 +344,14 @@ const CoachForm = props => {
 											${formState.price} per hour
 										</p>
 									</div>
-									<img
+									{image ? <img
 										className='add-coach-form-preview-coach-photo'
 										src={image}
 										alt='Coach Profile Pic'
-									/>
+									/> : <div className='profile-img-coach-form'>
+										{blankavatar2()}
+								</div>}
+									
 								</div>
 								<div className='coachformcard-info'>
 									<p>
