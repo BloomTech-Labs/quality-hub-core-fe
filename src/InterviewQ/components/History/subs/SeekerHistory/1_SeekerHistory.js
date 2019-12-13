@@ -42,7 +42,7 @@ export default function SeekerHistory() {
 
 	error && console.log(error);
 
-	const headings = ['Coach', 'Date', 'Time', 'Review', 'Report'];
+	const headings = ['Coach', 'Date', 'Time', 'Price', 'Review', 'Report'];
 
 	const filteredData = data
 		? data.bookingsBySeeker.filter(booking =>

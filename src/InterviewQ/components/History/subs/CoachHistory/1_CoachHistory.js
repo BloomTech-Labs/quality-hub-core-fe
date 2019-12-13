@@ -43,7 +43,7 @@ export default function CoachHistory() {
 
 	error && console.log(error);
 
-	const headings = ['Seeker', 'Date', 'Time', 'Report', 'Review'];
+	const headings = ['Seeker', 'Date', 'Time', 'Price', 'Report', 'Review'];
 
 	const filteredData = data
 		? data.bookingsByCoach.filter(booking =>
