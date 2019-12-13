@@ -1,4 +1,4 @@
-@import '../../../../global/styles/variables';
+@import '../../../../../../global/styles/variables';
 
 .coach-card {
 	display: flex;
@@ -62,18 +62,18 @@
 			.coachcard-icon {
 				display: inline-block;
 				width: 1.8em;
-				// margin-top: 0.2rem;
-			}
-		}
+        // margin-top: 0.2rem;
+      }
+      .text {
+        width: 90%;
+      }
+    }
+
 		.coachcard-posloc {
 			display: inline-block;
 			max-width: 20rem;
 			text-overflow: ellipsis;
 			overflow: hidden;
-		}
-		.location {
-		}
-		.star {
 		}
 	}
 	.coachcard-description {

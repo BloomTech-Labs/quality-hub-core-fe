@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Styles & Icons
-import '../../CoachCard.scss';
+import './CoachCard.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
 
@@ -36,10 +36,10 @@ const CoachCard = ({ post }) => {
 			</div>
 			<div className='coachcard-info'>
 				<p>
-					<span className='coachcard-icon'>
+					<span className='coachcard-icon industry'>
 						<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 					</span>
-					{`${post.company} - ${post.position}`}
+					<span className='text'>{`${post.company} - ${post.position}`}</span>
 				</p>
 				<p>
 					<span className='coachcard-icon'>
@@ -58,7 +58,7 @@ const CoachCard = ({ post }) => {
 					<span className='coachcard-icon'>
 						<Icon icon={ICONS.STAR} width={19} height={20} color='#595959' />
 					</span>
-					4.9
+					<span>4.9</span>
 				</p>
 			</div>
 			<div className='coachcard-description'>

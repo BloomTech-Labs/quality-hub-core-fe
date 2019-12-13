@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
 import { CREATE_REVIEW } from './Resolvers';
@@ -37,7 +38,7 @@ const ReviewForm = props => {
     e.preventDefault();
     let id = props.match.params.id
     if (checkError(fields.rating)) {
-      // submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
+      submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
     }
   }
 
@@ -69,7 +70,7 @@ const ReviewForm = props => {
 		<form className='review-form' onChange={handleChange} onSubmit={handleSubmit}>
       <div className='review-container'>
         <div className='rating-form'>
-          {/* <p className='label'>How did {props.location.state.firstName} do? </p> */}
+          <p className='label'>How did {props.location.state.firstName} do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='rating-container'>
             <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
@@ -84,7 +85,7 @@ const ReviewForm = props => {
         </div>
       </div>
       <div className='button-container'>
-        <p className='review-button button cancel'><button>Cancel</button></p>
+        <Link to ='/interviewq/history' className='review-button button cancel'><button>Cancel</button></Link>
         <p className='review-button button submit'><button>Submit</button></p>
       </div>
 		</form>
