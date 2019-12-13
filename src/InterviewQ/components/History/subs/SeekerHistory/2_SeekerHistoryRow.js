@@ -22,7 +22,7 @@ export default function SeekerHistoryRow({ booking }) {
 				<div>
 					<Link
 						to={{
-							pathname: `/interviewq/test/${booking.uniquecheck}`,
+							pathname: `/interviewq/review/${booking.uniquecheck}`,
 							state: { firstName: booking.coach.first_name },
 						}}>
 						{booking.review ? 'View' : 'Write'} your Review
