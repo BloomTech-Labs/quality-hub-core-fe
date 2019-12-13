@@ -19,7 +19,10 @@ import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';
 import DoneModal from './subs/DoneModal';
 
 const CoachForm = props => {
-	const node = useRef();
+	const { data } = useQuery(GET_USER);
+	const { data: industriesData } = useQuery(INDUSTRIES);
+	
+	// const node = useRef();
 
 	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
@@ -36,6 +39,7 @@ const CoachForm = props => {
 			});
 		},
 	});
+	
 
 	//This sets the darkened overlay behind the modals
 	useEffect(() => {
@@ -48,15 +52,14 @@ const CoachForm = props => {
 		}
 	}, [open, done]);
 
-	const { data } = useQuery(GET_USER);
-	const { data: industriesData } = useQuery(INDUSTRIES);
 
 	let image;
 	if (data) {
 		if (data.me.image_url) {
 			image = data.me.image_url;
 		} else {
-			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; //Need to add a default image here if user hasn't uploaded anything yet
+			//Need to add a default image here if user hasn't uploaded anything yet
+			image = 'https://www.birdorable.com/img/bird/th440/california-quail.png'; 
 		}
 	}
 
@@ -73,6 +76,7 @@ const CoachForm = props => {
 
 	const handleChange = e => {
 		if (e.target.name === 'price') {
+			//If you try to delete the last number, the price will change to $0
 			if (e.target.value.length < 2) {
 				setFormState({
 					...formState,
@@ -80,11 +84,19 @@ const CoachForm = props => {
 				});
 				return;
 			}
+
+			//The input form MUST include a dollar sign and have a number after it.
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
-				if(newPrice[1] > 200){
+
+				//set a maximum price for the text input form
+				//If price is greater than 200, don't accept those changes
+				//If this number is changed, you can optionally allow a different price limit in the text-input than the range-slider
+				if(newPrice[1] > 200){ 
 					return;
 				}
+
+				//If price is less than or equal to 200, make changes to state
 				setFormState({
 					...formState,
 					[e.target.name]: parseInt(newPrice[1]),
@@ -94,6 +106,8 @@ const CoachForm = props => {
 				return;
 			}
 		}
+
+		//price text input and slider input are both connected to the same state variable
 		if (e.target.name === 'price-slider') {
 			setFormState({
 				...formState,
@@ -101,6 +115,8 @@ const CoachForm = props => {
 			});
 			return;
 		}
+
+		// If the input is not about hourly rates, just set the value to state
 		setFormState({
 			...formState,
 			[e.target.name]: e.target.value,
@@ -153,7 +169,7 @@ const CoachForm = props => {
 	};
 
 	return (
-		<div ref={node}>
+		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
 			<div id='overlay-coach-form' onClick={() => closeWindow()}></div>
 
