@@ -11,9 +11,7 @@ import { ICONS } from '../../../global/icons/iconConstants';
 import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Components
-// import LandingPageCTA from './LandingPageCTA';
 import LandingPageHeader from './LandingPageHeader';
-// import Search from '../Search';
 import CoachList from './CoachList';
 import CoachForm from '../CoachForm';
 
@@ -31,12 +29,7 @@ export const GET_USER = gql`
 export default function InterviewLandingPage() {
 	const [toggleFilter, setToggleFilter] = useState(true);
 	const [hasPost, setHasPost] = useState();
-	// const [fields, setFields] = useState({
-	// 	tag: '',
-	// 	price: '',
-	// 	industry: '',
-	// 	orderBy: '',
-	// });
+
 
 	const { refetch, loading, data: userData } = useQuery(GET_USER);
 
@@ -53,7 +46,6 @@ export default function InterviewLandingPage() {
 
 	return (
 		<div className='interview-container' id='interview-container'>
-			{/* <LandingPageCTA /> */}
 			<div className='interview-landing-page'>
 				{/* <QNav /> */}
 				<div className='interviewq-header-container'>
