@@ -12,7 +12,7 @@ import { EDIT_USER } from './Mutation';
 import { capitalize } from '../../../../../../utils/capitalize';
 
 // Data
-import { statesArray } from '../../../../../../../Core/components/SignUpForm/States';
+import { statesArray } from '../../../../../../data/States';
 
 const DashboardInput = ({ userKey, userValue, isLink }) => {
 	const [original, setOriginal] = useState(userValue);
@@ -181,7 +181,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 				) : //When you're not in edit mode, render this
 				isLink ? (
 					<p>
-						<a href={user[userKey]} target='_blank' rel="noopener noreferrer">
+						<a href={user[userKey]} target='_blank' rel='noopener noreferrer'>
 							{user[userKey]}
 						</a>
 					</p>

@@ -15,11 +15,6 @@ const CompletedSignUp = () => {
 				<br />
 				You can see your profile in dashboard.
 			</p>
-			{/* <img
-				className='quail-walk'
-				src='https://i.imgur.com/ABm9pT1.gif'
-				alt='animation of quail walking'
-			/> */}
 			<button
 				className='signup-btn gotit-btn'
 				onClick={() => {
