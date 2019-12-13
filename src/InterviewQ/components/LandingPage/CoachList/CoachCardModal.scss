@@ -149,6 +149,7 @@ body {
 	.coachcard-tags-container-expand {
 		display: flex;
 		flex-wrap: wrap;
+		margin-bottom: 25px;
 		p {
 			display: flex;
 			flex-wrap: wrap;
@@ -177,15 +178,15 @@ body {
 		align-items: center;
 		width: 300px;
 		.coachcard-links-expand {
-			// margin-left: 10px;
+			margin-top: 20px;
 			width: 6.2rem;
+			align-items: baseline;
 			display: flex;
 			justify-content: space-between;
 		}
 		.interview-button-expand {
 			font-size: 1.4rem;
 			font-style: normal;
-			// font-weight: 600;
 			line-height: 2.2rem;
 			background-color: $main-blue;
 			text-align: center;
@@ -193,8 +194,7 @@ body {
 			border-radius: 0.5rem;
 			width: 100%;
 			height: 4.2rem;
-			// margin: 10px;
-			margin-top: 30px;
+			margin-top: 25px;
 		}
 	}
 }
