@@ -15,12 +15,13 @@ import { lightbulb2 } from '../../../global/icons/lightbulb2';
 import { GET_POSTS } from '../LandingPage/CoachList/CoachList';
 import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';
 
+//Modal that pops up when done filling out coach form
 import DoneModal from './subs/DoneModal';
 
 const CoachForm = props => {
 	const node = useRef();
 
-	//false sets the default to not show the modal
+	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
 
 	//Done is the second modal that pops up after you publish a coach form
@@ -36,6 +37,7 @@ const CoachForm = props => {
 		},
 	});
 
+	//This sets the darkened overlay behind the modals
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coach-form').style.display = 'block';
@@ -61,6 +63,7 @@ const CoachForm = props => {
 	const [formState, setFormState] = useState({
 		company: '',
 		position: '',
+		//We leave a default industry so users are FORCED to pick something
 		industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
@@ -79,6 +82,9 @@ const CoachForm = props => {
 			}
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
+				if(newPrice[1] > 200){
+					return;
+				}
 				setFormState({
 					...formState,
 					[e.target.name]: parseInt(newPrice[1]),
