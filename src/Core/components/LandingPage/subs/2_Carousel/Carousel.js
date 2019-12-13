@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 import './Carousel.scss';
 
 // Data
-import { FeaturesInfo } from './FeaturesInfo';
+import { FeaturesInfo } from './subs/FeaturesInfo';
 
 // Components
-import FeatureCard from './FeatureCard';
+import FeatureCard from './subs/FeatureCard';
 
 export default function Carousel() {
 	const [position, setPosition] = useState(0);
