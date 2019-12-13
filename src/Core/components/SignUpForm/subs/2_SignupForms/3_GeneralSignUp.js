@@ -1,14 +1,12 @@
 import React from 'react';
-import { statesArray } from '../../States';
+import { statesArray } from '../../../../../global/data/States';
 
 const GeneralSignUp = ({
 	user,
 	handleChange,
-	// setEmailTouched,
 	setFirstTouched,
 	setLastTouched,
 	setCityTouched,
-	// setPasswordTouched,
 	setStateTouched,
 }) => {
 	return (
@@ -26,7 +24,6 @@ const GeneralSignUp = ({
 						onBlur={() => setFirstTouched(true)}
 						id='sign-up-first-name'
 						name='first_name'
-						// placeholder='First Name'
 						value={user.first_name}
 						onChange={handleChange}
 						required
@@ -43,7 +40,6 @@ const GeneralSignUp = ({
 						onBlur={() => setLastTouched(true)}
 						id='sign-up-last-name'
 						name='last_name'
-						// placeholder='Last Name'
 						value={user.last_name}
 						onChange={handleChange}
 						required
@@ -61,7 +57,6 @@ const GeneralSignUp = ({
 						onBlur={() => setCityTouched(true)}
 						id='sign-up-city'
 						name='city'
-						// placeholder='City'
 						value={user.city}
 						onChange={handleChange}
 						required
@@ -78,7 +73,6 @@ const GeneralSignUp = ({
 						onBlur={() => setStateTouched(true)}
 						id='sign-up-state'
 						name='state'
-						// placeholder='State'
 						value={user.state}
 						onChange={handleChange}
 						required>

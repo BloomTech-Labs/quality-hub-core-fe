@@ -10,7 +10,7 @@ import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 
 // Components
-import Loading from '../../../Loading';
+import Loading from '../../../../../global/components/Loading';
 
 const CHECK_EMAIL = gql`
 	mutation checkEmail($email: String!) {
@@ -26,8 +26,6 @@ export default function SignUp({
 	setPasswordTouched,
 }) {
 	const [verifyEmail, { loading }] = useMutation(CHECK_EMAIL);
-
-	// const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [showPassword, setShowPassword] = useState(true);
 
@@ -72,7 +70,6 @@ export default function SignUp({
 						id='sign-up-email'
 						name='email'
 						type='email'
-						// placeholder='Email'
 						value={user.email}
 						onChange={handleChange}
 						required
@@ -90,7 +87,6 @@ export default function SignUp({
 						id='sign-up-password'
 						type={showPassword ? 'password' : 'text'}
 						name='password'
-						// placeholder='Password'
 						value={user.password}
 						onChange={handleChange}
 						required

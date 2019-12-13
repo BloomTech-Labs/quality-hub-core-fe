@@ -14,7 +14,7 @@ import DeletePost from './DeletePost/00_DeletePost';
 // import Review from '../Review/ReviewForm';
 
 // Hooks
-import useModal from '../../../../utils/useModal';
+import useModal from '../../../../global/utils/useModal';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();

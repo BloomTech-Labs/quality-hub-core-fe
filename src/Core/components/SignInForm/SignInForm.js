@@ -10,7 +10,7 @@ import Icon from '../../../global/icons/Icon';
 import { ICONS } from '../../../global/icons/iconConstants';
 
 // Components
-import Loading from '../Loading';
+import Loading from '../../../global/components/Loading';
 
 const LOGIN = gql`
 	mutation Login($email: String!, $password: String!) {

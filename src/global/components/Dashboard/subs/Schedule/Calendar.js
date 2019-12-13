@@ -6,10 +6,10 @@ import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
 
-import { nextArrow } from '../../../icons/nextArrow';
-import { backArrow } from '../../../icons/backArrow';
+import { nextArrow } from '../../../../icons/nextArrow';
+import { backArrow } from '../../../../icons/backArrow';
 
-import { days, months, years } from './TimeArrays'
+import { days, months, years } from '../../../../utils/TimeArrays'
 
 const Calendar = ({ selectedDate, setSelectedDate }) => {
 
