@@ -45,14 +45,7 @@ export const DELETE_POST = gql`
 export default function DeletePost({ isShowing, hide }) {
 	const history = useHistory();
 	const [deleteCoachPost, { client }] = useMutation(DELETE_POST, {
-		update(cache, { data }) {
-			const { posts } = cache.readQuery({ query: GET_COACH_POST });
-
-			// cache.writeQuery({
-
-			// 	data: postByCoach ,
-			// });
-		},
+    refetchQueries: ["GET_POST"], awaitRefetchQueries: true
 	});
 
 	const deletePost = () => {
