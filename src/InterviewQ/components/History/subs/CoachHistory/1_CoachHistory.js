@@ -19,6 +19,11 @@ const GET_COACHBOOKINGS = gql`
 				first_name
 				last_name
 			}
+			coach {
+				post {
+					price
+				}
+			}
 			uniquecheck
 			review {
 				rating
@@ -43,7 +48,7 @@ export default function CoachHistory() {
 
 	error && console.log(error);
 
-	const headings = ['Seeker', 'Date', 'Time', 'Report', 'Review'];
+	const headings = ['Seeker', 'Date', 'Time', 'Price', 'Report', 'Review'];
 
 	const filteredData = data
 		? data.bookingsByCoach.filter(booking =>
@@ -58,12 +63,12 @@ export default function CoachHistory() {
 		: [];
 
 	return (
-		<div>
-			<h3>Coach History</h3>
+		<div className='coach-history'>
+			<h2>Coach History</h2>
 			{data && filteredData.length ? (
 				<div className='coach-history-headings'>
 					{headings.map(heading => (
-						<h4>{heading}</h4>
+						<h3>{heading}</h3>
 					))}
 				</div>
 			) : (
