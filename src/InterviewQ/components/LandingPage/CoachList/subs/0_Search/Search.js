@@ -162,7 +162,13 @@ export default function Search({ fields, setFields, refetch }) {
 						Reset Filters
 					</button>
 				</div>
+				{/* <div className="search-tags-container">
+				<p className="search-tags"> {fields.tags} </p>
+				</div> */}
 			</div>
+			<div className="search-tags-container">
+				<p className="search-tags"> {fields.tags} X </p>
+				</div>
 		</div>
 	);
 }
