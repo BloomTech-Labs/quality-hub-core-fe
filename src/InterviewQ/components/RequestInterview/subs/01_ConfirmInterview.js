@@ -69,7 +69,7 @@ const ConfirmInterview = ({ booking, history }) => {
   if(booking){
   if(booking.year){
 
-    // const { year, month, day, start_hour, start_minute } = booking;
+    // const { year, month, day, hour, minute } = booking;
 
     bookingDate = format(new Date(booking.year, booking.month - 1, booking.day, booking.hour, booking.minute), "PPPP - p ");
   console.log(bookingDate)

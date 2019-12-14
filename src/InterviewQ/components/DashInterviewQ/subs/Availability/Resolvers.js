@@ -7,8 +7,8 @@ query availabilities ($coach_id: String!){
     year
     month
     day
-    start_hour
-    start_minute
+    hour
+    minute
     isOpen
     recurring
     coach{
@@ -20,8 +20,8 @@ query availabilities ($coach_id: String!){
 
   export const CREATE_AVAILABILITY = gql`
   mutation createAvailability(
-      $start_hour: Int!
-      $start_minute: Int!
+      $hour: Int!
+      $minute: Int!
       # $coach: String!
       $year: Int!
       $month: Int!
@@ -30,8 +30,8 @@ query availabilities ($coach_id: String!){
       $recurring: Boolean!
   ) {
     createAvailability(
-      start_hour: $start_hour
-      start_minute: $start_minute
+      hour: $hour
+      minute: $minute
       # coach: $coach
       year: $year
       month: $month
@@ -41,8 +41,8 @@ query availabilities ($coach_id: String!){
     ) {
       id
       uniquecheck
-      start_hour
-      start_minute
+      hour
+      minute
       coach{
         id
       }

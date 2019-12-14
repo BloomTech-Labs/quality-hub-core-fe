@@ -8,6 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, getMonth } from 'date-fns';
 import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz'
 // import { zonedTimeToUtc } from 'date-fns-tz/esm';
+import { convertToLocal, convertToUTC } from '../../../../../global/utils/TZHelpers';
 
 const Availability =() => {
 
@@ -43,67 +44,65 @@ const Availability =() => {
 
 
 
-  const timeFilter = (hour, min) => {
+  const timeFilter = (h, m) => {
     // console.log('time filter')
     let returnvar = false;
     (availabilities && dateAvails) &&
-      dateAvails.forEach(({ start_hour, start_minute }) => {
-        if (start_hour === hour && start_minute === min) {
+      dateAvails.forEach(({ hour, minute }) => {
+        if (h === hour && minute === m) {
           returnvar = true;
         }
       });
     return returnvar;
   };
 
-  // `${obj.year}-${obj.month}-0${obj.day}T0${obj.start_hour}:${obj.start_minute}:00:000Z`
+  // `${obj.year}-${obj.month}-0${obj.day}T0${obj.hour}:${obj.minute}:00:000Z`
   
-  const convertToUTC = (obj) => {
+  // const convertToUTC = (obj) => {
 
-    let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.start_hour, obj.start_minute)
-    let utc = zonedTimeToUtc(localAvail, localTime);
-    let utcArr = utc.toISOString().split(/[T:-]/g);
-    let UTCdate = {
-      ...obj,
-      year: Number(utcArr[0]),
-      month: Number(utcArr[1]),
-      day: Number(utcArr[2]),
-      start_hour: Number(utcArr[3]),
-      start_minute: Number(utcArr[4])
-    }
-    return UTCdate
-  }
+  //   let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.hour, obj.minute)
+  //   let utc = zonedTimeToUtc(localAvail, localTime);
+  //   let utcArr = utc.toISOString().split(/[T:-]/g);
+  //   let UTCdate = {
+  //     ...obj,
+  //     year: Number(utcArr[0]),
+  //     month: Number(utcArr[1]),
+  //     day: Number(utcArr[2]),
+  //     hour: Number(utcArr[3]),
+  //     minute: Number(utcArr[4])
+  //   }
+  //   return UTCdate
+  // }
 
-  const convertToLocal = (obj) => {
-    let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
-    let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
-    let localAvailMin = obj.start_minute === 0 ? '00' : '30'
-    let localAvail;
-    if(obj.month < 10){
-      localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-    } else{
-      localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-    }
-    let zoned = utcToZonedTime(localAvail, localTime);
-    let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-    let zonedDate = {
-      // id: obj.id,
-      // isOpen: obj.isOpen,
-      ...obj,
-      year: Number(zonedArr[0]),
-      month: Number(zonedArr[1]),
-      day: Number(zonedArr[2]),
-      start_hour: Number(zonedArr[3]),
-      start_minute: Number(zonedArr[4])
+  // const convertToLocal = (obj) => {
+  //   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
+  //   let localAvailHour = obj.hour <= 9 ? `0${obj.hour}` : `${obj.hour}`
+  //   let localAvailMin = obj.minute === 0 ? '00' : '30'
+  //   let localAvail;
+  //   if(obj.month < 10){
+  //     localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  //   } else{
+  //     localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
+  //   }
+  //   let zoned = utcToZonedTime(localAvail, localTime);
+  //   let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
+  //   let zonedDate = {
+  //     ...obj,
+  //     year: Number(zonedArr[0]),
+  //     month: Number(zonedArr[1]),
+  //     day: Number(zonedArr[2]),
+  //     hour: Number(zonedArr[3]),
+  //     minute: Number(zonedArr[4])
       
-    }
-    return zonedDate
-  }
+  //   }
+  //   return zonedDate
+  // }
 
   const createAvail = (hour, minute) => {
     
     let newObj= {...availability,
-      start_hour: hour,
-      start_minute: minute,
+      hour: hour,
+      minute: minute,
     };
     
     const utcAvail = convertToUTC(newObj);
@@ -138,8 +137,8 @@ useEffect(()=>{
   }
   const deleteAvail = (h, m) => {
     const delAvail ={
-      start_hour: h,
-      start_minute: m,
+      hour: h,
+      minute: m,
       year: format(selectedCell, 'yyyy'),
       month: currentMonth,
       day: currentDate
@@ -147,7 +146,7 @@ useEffect(()=>{
     const delUtc = convertToUTC(delAvail)
     
     let checkvar = {
-      uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.start_hour}-${delUtc.start_minute}`
+      uniquecheck: `${localStorage.getItem('id')}-${delUtc.year}-${delUtc.month}-${delUtc.day}-${delUtc.hour}-${delUtc.minute}`
     };
     if (checkAvail(checkvar) === true){
     removeAvail({ variables: checkvar })
@@ -173,38 +172,10 @@ useEffect(()=>{
   };
 
   useEffect(() => {
-    
-    // let localAvails = availabilities ? availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)) : [];
-    // let currentAvails = availabilities ? availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth) : [];
-    // availabilities ? setDateAvails(currentAvails.map(avail => convertToLocal(avail))) : setDateAvails([])
     availabilities ? setDateAvails(availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.day === currentDate && avail.month === currentMonth)) : setDateAvails([]);
-    // availabilities ? setDateAvails(availabilities.availabilitiesByCoach.filter(avail => avail.day === currentDate && avail.month === currentMonth)) : setDateAvails([]);
-    // console.log('maybe a thing', dateAvails, currentDate, currentMonth)
     // eslint-disable-next-line
   }, [setter || availabilities, selectedCell])
 
-  // console.log(dateAvails);
-
-  // console.log(convertToLocal({day: 9,
-  //   id: "ck3upwah2043q0787lri6p636",
-  //   isOpen: true,
-  //   month: 12,
-  //   recurring: false,
-  //   start_hour: 6,
-  //   start_minute: 30,
-  //   uniquecheck: "ck34qxshk000e0796rsdew5t32019129130",
-  //   year: 2019}))
-
-  //   console.log(convertToUTC({day: 9,
-  //     id: "ck3upwah2043q0787lri6p636",
-  //     isOpen: true,
-  //     month: 12,
-  //     recurring: false,
-  //     start_hour: 1,
-  //     start_minute: 30,
-  //     uniquecheck: "ck34qxshk000e0796rsdew5t32019129130",
-  //     year: 2019}))
-  // console.log(availabilities)
   return(
     <>
     
