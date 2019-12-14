@@ -15,10 +15,6 @@ const Schedule = () => {
 				</div>
 				<h1>Schedule</h1>
 			</div>
-			 {/* <Calendar /> */}
-		 {/* <Switch>  */}
-         {/* <Calendar selectedDate={selectedDate}
-							setSelectedDate={setSelectedDate}/>  */}
 				 	<Route
 					exact
 					path='/dashboard/schedule'
@@ -42,7 +38,6 @@ const Schedule = () => {
 						/>
 					)}
 				/>
-			{/* </Switch> */}
 		</div>
 	);
 }
