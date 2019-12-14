@@ -126,7 +126,7 @@ const createBooking = (e, slot) => {
 
 useEffect(()=>{
 if(resumeURL){
-  console.log('just putting this here to make sure the code works')
+  // console.log('just putting this here to make sure the code works')
   props.setBooking({
     ...props.booking,
     resumeURL: resumeURL
@@ -151,39 +151,67 @@ useEffect(()=>{
 },[dateAvails])
 
 //this will hold all potential 1 hour blocks
-let bookingArray = [];
+// let bookingArray = [];
+// const getAvailableSlots = () => {
+//   for(let x = 0; x < dateAvails.length-1; x++){
+//       for (let y = x+1; y < dateAvails.length; y++) {
+//           if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 0) { //if it's the same hour
+//               if (dateAvails[x].minute < dateAvails[y].minute) {
+//                   bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
+//               } else {
+//               bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
+//               }   
+
+//           } else if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 1) { //if the difference between the two is 1, then they are next to each other
+//             if (dateAvails[x].hour < dateAvails[y].hour) { //if the first date is lower...
+
+//                   if (dateAvails[y].minute - dateAvails[x].minute === -30) { //if the difference is -30, then the numbers are next to each other
+//                     bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
+//                   } else{ //if the difference is anything but -30, then they are more than an hour apart
+//                   }
+//               } else{ //if the second date is lower....
+//                   if(dateAvails[x].minute - dateAvails[y].minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
+//                     bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
+//                   } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
+//                   }
+//               }
+//           } else { //the hours are not equal or next to each other, so we skip to the next date object
+//           }
+//       }
+//   }
+//   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
+// setCurrentSlots(bookingArray);
+
+// }
+
 const getAvailableSlots = () => {
-  for(let x = 0; x < dateAvails.length-1; x++){
-      for (let y = x+1; y < dateAvails.length; y++) {
-          if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 0) { //if it's the same hour
-              if (dateAvails[x].minute < dateAvails[y].minute) {
-                  bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
-              } else {
-              bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
-              }   
-
-          } else if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 1) { //if the difference between the two is 1, then they are next to each other
-            if (dateAvails[x].hour < dateAvails[y].hour) { //if the first date is lower...
-
-                  if (dateAvails[y].minute - dateAvails[x].minute === -30) { //if the difference is -30, then the numbers are next to each other
-                    bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
-                  } else{ //if the difference is anything but -30, then they are more than an hour apart
-                  }
-              } else{ //if the second date is lower....
-                  if(dateAvails[x].minute - dateAvails[y].minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
-                    bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
-                  } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
-                  }
+  //console.log(dateAvails)
+  let bookingArray = [];
+      const convertMinute = oldMinute => {
+          return oldMinute == 0 ? '00' : '50';
+      };
+      for (let x = 0; x < dateAvails.length; x++) {
+          for (let y = 0; y < dateAvails.length; y++) {
+              if (
+                  `${dateAvails[x].hour}${convertMinute(
+                      dateAvails[x].minute,
+                  )}` -
+                      `${dateAvails[y].hour}${convertMinute(
+                          dateAvails[y].minute,
+                      )}` ==
+                  -50
+              ) {
+        bookingArray.push(dateAvails[x]);
+        break;
               }
-          } else { //the hours are not equal or next to each other, so we skip to the next date object
           }
       }
-  }
-  // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
-setCurrentSlots(bookingArray);
+      console.log(bookingArray)
+      setCurrentSlots(bookingArray);
+  };
 
-}
 if(currentSlots){
+  console.log(currentSlots)
   // let test = [...currentSlots];
  currentSlots.sort((a,b)=>{
   
@@ -200,8 +228,8 @@ if(currentSlots){
 
   });
 }
-console.log(currentSlots)
-console.log(selectedCell)
+// console.log(currentSlots)
+// console.log(selectedCell)
 return (
 	<div className='booking-content-section'>
     
