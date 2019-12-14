@@ -26,8 +26,8 @@ const [currentDate, setCurrentDate] = useState();
 
 const convertToLocal = (obj) => {
   let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`
-  let localAvailHour = obj.start_hour <= 9 ? `0${obj.start_hour}` : `${obj.start_hour}`
-  let localAvailMin = obj.start_minute === 0 ? '00' : '30'
+  let localAvailHour = obj.hour <= 9 ? `0${obj.hour}` : `${obj.hour}`
+  let localAvailMin = obj.minute === 0 ? '00' : '30'
   let localAvail;
   if(obj.month < 10){
     localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
@@ -41,8 +41,8 @@ const convertToLocal = (obj) => {
     year: Number(zonedArr[0]),
     month: Number(zonedArr[1]),
     day: Number(zonedArr[2]),
-    start_hour: Number(zonedArr[3]),
-    start_minute: Number(zonedArr[4])
+    hour: Number(zonedArr[3]),
+    minute: Number(zonedArr[4])
     
   }
   return zonedDate
@@ -109,8 +109,8 @@ const createBooking = (e, slot) => {
 
   props.setBooking({
     ...props.booking,
-      hour: slot.start_hour,
-      minute: slot.start_minute,
+      hour: slot.hour,
+      minute: slot.minute,
        coachName: `${availabilities.availabilitiesByCoach[0].coach.first_name} ${availabilities.availabilitiesByCoach[0].coach.last_name}`,
       // availabilityA: availA,
       // availabilityB: availB,
@@ -155,22 +155,22 @@ let bookingArray = [];
 const getAvailableSlots = () => {
   for(let x = 0; x < dateAvails.length-1; x++){
       for (let y = x+1; y < dateAvails.length; y++) {
-          if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) === 0) { //if it's the same hour
-              if (dateAvails[x].start_minute < dateAvails[y].start_minute) {
+          if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 0) { //if it's the same hour
+              if (dateAvails[x].minute < dateAvails[y].minute) {
                   bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
               } else {
               bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
               }   
 
-          } else if (Math.abs(dateAvails[x].start_hour - dateAvails[y].start_hour) === 1) { //if the difference between the two is 1, then they are next to each other
-            if (dateAvails[x].start_hour < dateAvails[y].start_hour) { //if the first date is lower...
+          } else if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 1) { //if the difference between the two is 1, then they are next to each other
+            if (dateAvails[x].hour < dateAvails[y].hour) { //if the first date is lower...
 
-                  if (dateAvails[y].start_minute - dateAvails[x].start_minute === -30) { //if the difference is -30, then the numbers are next to each other
+                  if (dateAvails[y].minute - dateAvails[x].minute === -30) { //if the difference is -30, then the numbers are next to each other
                     bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
                   } else{ //if the difference is anything but -30, then they are more than an hour apart
                   }
               } else{ //if the second date is lower....
-                  if(dateAvails[x].start_minute - dateAvails[y].start_minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
+                  if(dateAvails[x].minute - dateAvails[y].minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
                     bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
                   } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
                   }
@@ -187,12 +187,12 @@ if(currentSlots){
   // let test = [...currentSlots];
  currentSlots.sort((a,b)=>{
   
-  if(a.start_hour > b.start_hour){
+  if(a.hour > b.hour){
     return 1;
-  } else if(b.start_hour  > a.start_hour){
+  } else if(b.hour  > a.hour){
     return -1;
   } 
-  else if(a.start_minute > b.start_minute){
+  else if(a.minute > b.minute){
     return 1;
   } else{
     return -1;
@@ -227,11 +227,11 @@ return (
                     id={time.id}
 										className='interview-slot'
 										onClick={e => createBooking(e, time)}>
-										{time.start_hour === 0 ? 12 : (time.start_hour > 12
-											? time.start_hour - 12
-											: time.start_hour)}
-										:{time.start_minute === 0 ? '00' : '30'}{' '}
-										{time.start_hour >= 12 ? 'PM' : 'AM'}
+										{time.hour === 0 ? 12 : (time.hour > 12
+											? time.hour - 12
+											: time.hour)}
+										:{time.minute === 0 ? '00' : '30'}{' '}
+										{time.hour >= 12 ? 'PM' : 'AM'}
 									</div>
 								);
 							}
