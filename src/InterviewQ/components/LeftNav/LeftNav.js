@@ -22,7 +22,7 @@ export default function QNav() {
 						height={22}
 						color={!pathname.includes('interviewq/') ? 'white' : '#096dd9'}
 					/>
-					<div className='QNav-btn'>InterviewQ</div>
+					<div className='QNav-btn'>Search Coach</div>
 				</div>
 			</NavLink>
 
