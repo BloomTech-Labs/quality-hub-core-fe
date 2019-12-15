@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SettingsHeader() {
 	return (
-		<div>
+		<div className='settings-header'>
 			<h2>Settings</h2>
 		</div>
 	);
