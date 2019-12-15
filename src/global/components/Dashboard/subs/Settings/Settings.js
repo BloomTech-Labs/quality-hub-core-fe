@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './settings.scss';
+import './Settings.scss';
 
 import SettingsHeader from './subs/1_SettingsHeader';
 import DeleteAccount from './subs/2_DeleteAccount';
