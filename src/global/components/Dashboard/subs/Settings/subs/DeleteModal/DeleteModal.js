@@ -29,7 +29,7 @@ const DeleteModal = ({ isShowing, hide, setLoggedin }) => {
 		deleteThatUser().then(res => {
 			client.clearStore();
 			localStorage.clear();
-			setLoggedin(false); // GOAL: Have this be a state variable held in Apollo Client cache
+			// setLoggedin(false); // GOAL: Have this be a state variable held in Apollo Client cache
 			history.push('/');
 		});
 	};
@@ -38,14 +38,18 @@ const DeleteModal = ({ isShowing, hide, setLoggedin }) => {
 		<div>
 			{isShowing &&
 				createPortal(
-					<div className='modal-container'>
-						<div className='modal-wrapper' aria-modal aria-hidden role='dialog'>
-							<div className='modal-header'>
+					<div className='del-modal-container'>
+						<div
+							className='del-modal-wrapper'
+							aria-modal
+							aria-hidden
+							role='dialog'>
+							<div className='del-modal-header'>
 								<Icon
 									icon={ICONS.QUESTIONMARK}
 									width={24}
 									height={24}
-									color='#FAAD14'
+									color='#096dd9'
 								/>
 								<h2> Do you want to delete your account?</h2>
 							</div>
@@ -53,12 +57,12 @@ const DeleteModal = ({ isShowing, hide, setLoggedin }) => {
 								Deleting your account will remove all of your content and data
 								associated with it.
 							</p>
-							<div className='modal-button-cont'>
+							<div className='del-modal-button-cont'>
 								<button className='cancel' onClick={hide}>
 									Cancel
 								</button>
 								<button className='ok-button' onClick={deleteAccount}>
-									OK
+									Delete
 								</button>
 							</div>
 						</div>
