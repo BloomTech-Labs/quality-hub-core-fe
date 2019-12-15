@@ -7,8 +7,8 @@ query availabilities ($coach_id: String!){
     year
     month
     day
-    start_hour
-    start_minute
+    hour
+    minute
     isOpen
     recurring
     uniquecheck

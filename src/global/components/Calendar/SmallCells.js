@@ -13,13 +13,11 @@ import {
 	getMonth,
 	isBefore,
 } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
 
 const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities, refetchAvails }) => {
 
 	const [allTheAvails, setAllTheAvails] = useState();
-	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	let integerMonth = getMonth(currentMonth) + 1;
 	
 	const monthStart = startOfMonth(currentMonth);
@@ -34,60 +32,92 @@ const SmallCells = ({ onDateClick, currentMonth, selectedDate, availabilities, r
 	let formattedDate = '';
 	let cellId = '';
 
-	// const convertToLocal = (obj) => {
-	// 	let rawDate = new Date(obj.year, obj.month - 1, obj.day, obj.start_hour, obj.start_minute)
-	// 	let rawIso = rawDate.toISOString();
-	// 	let zoned = utcToZonedTime(rawIso, localTime);
-	// 	let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-	// 	let zonedDate = {
-	// 	  ...obj,
-	// 	  year: Number(zonedArr[0]),
-	// 	  month: Number(zonedArr[1]),
-	// 	  day: Number(zonedArr[2]),
-	// 	  start_hour: Number(zonedArr[3]),
-	// 	  start_minute: Number(zonedArr[4])
-	// 	}
-	// 	return zonedDate
-	//   }
+		const getAvailableSlots = (dateAvails) => {
+			let bookingArray = [];
+			const convertMinute = oldMinute => {
+				return oldMinute == 0 ? '00' : '50';
+			};
+			for (let x = 0; x < dateAvails.length; x++) {
+				for (let y = 0; y < dateAvails.length; y++) {
+					if (
+						`${dateAvails[x].hour}${convertMinute(
+							dateAvails[x].minute,
+						)}` -
+							`${dateAvails[y].hour}${convertMinute(
+								dateAvails[y].minute,
+							)}` ==
+						-50
+					) {
+						bookingArray.push(dateAvails[x]);
+						break;
+					}
+				}
+			}
+			setAllTheAvails(bookingArray);
+		};
 
+// 		let bookingArray = [];
+// const getAvailableSlots = (dateAvails) => {
+// 	console.log(dateAvails)
+//   for(let x = 0; x < dateAvails.length-1; x++){
+//       for (let y = x+1; y < dateAvails.length; y++) {
+//           if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 0) { //if it's the same hour
+//               if (dateAvails[x].minute < dateAvails[y].minute) {
+//                   bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
+//               } else {
+//               bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
+//               }   
 
-    let bookingArray = [];
-    const getAvailableSlots = (dateAvails) => {
-    const convertMinute = oldMinute =>{
-      return oldMinute == 0 ? '00' : '50';
-    }
-        for (let x = 0; x < dateAvails.length; x++) {
-            for (let y = 0; y < dateAvails.length; y++) {
-                let time1 = `${dateAvails[x].start_hour}${convertMinute(dateAvails[x].start_minute)}`;
-                let time2 = `${dateAvails[y].start_hour}${convertMinute(dateAvails[y].start_minute)}`;
-        time1-time2==-50 ? bookingArray.push(dateAvails[x]) : console.log();
-            }
-        }
-        setAllTheAvails(bookingArray);
-    };
+//           } else if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 1) { //if the difference between the two is 1, then they are next to each other
+//             if (dateAvails[x].hour < dateAvails[y].hour) { //if the first date is lower...
 
-useEffect(()=>{
-	if(availabilities){
-		let someArray = availabilities.availabilitiesByCoach.map(avail => convertToLocal(avail)).filter(avail => avail.month === integerMonth && avail.isOpen === true);
+//                   if (dateAvails[y].minute - dateAvails[x].minute === -30) { //if the difference is -30, then the numbers are next to each other
+//                     bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
+//                   } else{ //if the difference is anything but -30, then they are more than an hour apart
+//                   }
+//               } else{ //if the second date is lower....
+//                   if(dateAvails[x].minute - dateAvails[y].minute === -30){ //if the difference is -30, then you know the numbers are next to each other 
+//                     bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
+//                   } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
+//                   }
+//               }
+//           } else { //the hours are not equal or next to each other, so we skip to the next date object
+//           }
+//       }
+//   }
+//   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
+// setAllTheAvails(bookingArray);
+
+// }
+
+useEffect(() => {
+	if (availabilities) {
+		let someArray = availabilities.availabilitiesByCoach
+			.map(avail => convertToLocal(avail))
+			.filter(avail => avail.month === integerMonth && avail.isOpen === true);
 
 		getAvailableSlots(someArray);
 	}
-},[availabilities, currentMonth]);
+}, [availabilities, currentMonth]);
 
-	const availsExist = someDate =>{
+	const availsExist = someDate => {
+		console.log(allTheAvails)
 		let integerDate = getDate(someDate);
 		let match = false;
-		if(allTheAvails){
-
-			for(let i = 0; i < allTheAvails.length; i++){
-				if(allTheAvails[i].month === integerMonth && allTheAvails[i].day === integerDate){
+		if (allTheAvails) {
+			for (let i = 0; i < allTheAvails.length; i++) {
+				if (
+					allTheAvails[i].month === integerMonth &&
+					allTheAvails[i].day === integerDate
+				) {
 					match = true;
-					break
+					break;
 				}
 			}
 			return match;
 		}
-	}
+	};
+
 	while (day <= endDate) {
 		for (let i = 0; i < 7; i++) {
 			formattedDate = format(day, dateFormat);

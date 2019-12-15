@@ -77,35 +77,12 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-	// const convertToLocal = obj => {
-	// 	let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`;
-	// 	let localAvailHour = obj.hour < 9 ? `0${obj.hour}` : `${obj.hour}`;
-	// 	let localAvailMin = obj.minute === 0 ? '00' : '30';
-	// 	let localAvail;
-	// 	if (obj.month < 10) {
-	// 		localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-	// 	} else {
-	// 		localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-	// 	}
-	// 	let zoned = utcToZonedTime(localAvail, localTime);
-	// 	let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-
-	// 	let zonedDate = {
-	// 		...obj,
-	// 		year: Number(zonedArr[0]),
-	// 		month: Number(zonedArr[1]),
-	// 		day: Number(zonedArr[2]),
-	// 		hour: Number(zonedArr[3]),
-	// 		minute: Number(zonedArr[4]),
-	// 	};
-
-	// 	return zonedDate;
-	// };
-	const handleDelete = e => {
-		let uniquecheck = e.target.getAttribute('data-id');
+	const handleDelete = id => {
+		//let uniquecheck = e.target.getAttribute('data-id');
 		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;
-		console.log(uniquecheck);
-		deleteBook({ variables: { uniquecheck: uniquecheck } })
+		//console.log(uniquecheck);
+		console.log()
+		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
 				// client.clearStore();
 				//window.location.reload(true);
@@ -189,7 +166,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-hour={info.hour}
 										data-minute={info.minute}
 										onClick={e => handleDelete(e)}>
-										Cancel Booking
+										Cancel Booking!!! {info.uniquecheck}
 									</button>
 								)}
 							</div>
@@ -230,7 +207,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={e => handleDelete(e)}>
+										onClick={() => handleDelete(info.uniquecheck)}>
 										Cancel Booking
 									</button>
 								)}
@@ -241,10 +218,6 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 			) : (
 				// console.log('its working???')
 				<div className='coach-detail'>
-					{/* {loading ? (
-						<p>Please Wait. Loading...</p>
-						
-					) : ( */}
 
 					<h3 className='no-bookings'>No bookings</h3>
 					{/* // )} */}

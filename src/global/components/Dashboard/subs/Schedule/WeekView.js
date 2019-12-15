@@ -21,7 +21,7 @@ import WeekBooking from './WeekBooking';
 import { nextArrow } from '../../../../icons/nextArrow';
 import { backArrow } from '../../../../icons/backArrow';
 
-const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
+const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const currentWeek = getWeek(selectedDate);
 	const scheduleBody = document.getElementsByName('weekContainer');
 	const { data } = useQuery(ALL_BOOKINGS, {
@@ -73,24 +73,6 @@ const WeekView = ({ onDateClick, setSelectedDate, selectedDate }) => {
 			),
 		);
 	}
-
-	// ****************original code
-	//let divcounter = 0;
-	//  useEffect(() => {
-	// 	 const weekGrid = document.getElementById('weekContainer');
-	// 	 const div = document.createElement('div');
-	// 	 console.log(weekGrid)
-	// 	  data ? divCounter = (filterBookings.length) : divCounter = 337
-	//    while (weekGrid && divCounter < 336) {
-	// 	   console.log('here');
-	// 		weekGrid.appendChild(div);
-	// 		divCounter = divCounter + 1
-	//  }
-	// 	}, [allBookings])
-	// ****************original code
-
-	//ALL MY CODE IS ACTUALLY KRISHANS
-	//ONLY THE THINGS THAT INVOLVE REACT
 
 	useEffect(() => {
 		if (filterBookings) {
