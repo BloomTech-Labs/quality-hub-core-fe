@@ -29,7 +29,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	const [booking, setBooking] = useState([]);
 	const [allBookings, setAllBookings] = useState();
-	const [deleteBook, { client: bookClient }] = useMutation(DELETE_BOOKING);
+	const [deleteBook, { client }] = useMutation(DELETE_BOOKING);
 
 	const sortBookingsFunction = array => {
 		array.sort((a, b) => {
@@ -47,6 +47,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	};
 	useEffect(() => {
 		if (data) {
+			
 			let bookingArray = sortBookingsFunction([
 				...data.bookingsByCoach,
 				...data.bookingsBySeeker,
@@ -57,6 +58,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	}, [data]);
 
 	useEffect(() => {
+		refetch();
 		let selectedDay = format(selectedDate, 'd');
 		let selectedMonth = format(selectedDate, 'M');
 		if (allBookings) {
@@ -85,9 +87,9 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
 				// client.clearStore();
-				//window.location.reload(true);
-				bookClient.clearStore();
-				refetch();
+				window.location.reload(true);
+				// client.clearStore();
+				// refetch();
 				setOpen(false);
 				console.log(res);
 			})
@@ -165,8 +167,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={e => handleDelete(e)}>
-										Cancel Booking!!! {info.uniquecheck}
+										onClick={() => handleDelete(info.uniquecheck)}>
+										Cancel Booking
 									</button>
 								)}
 							</div>
