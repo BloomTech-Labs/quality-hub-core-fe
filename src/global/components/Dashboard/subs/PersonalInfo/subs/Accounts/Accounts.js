@@ -32,7 +32,7 @@ const Experience = () => {
 
 	return (
 		<div className='editform'>
-			<h2>Linked Accounts</h2>
+			<h3>Linked Accounts</h3>
 			{loading && <p>Loading...</p>}
 			{data &&
 				keys.map(item => (

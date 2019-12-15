@@ -66,7 +66,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<NavLink to='/'>
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
-						<h2>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h2>
+						<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
 					</div>
 				</NavLink>
 			</div>
@@ -83,7 +83,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 					</>
 				)}
 
-				{Bellicon()}
+				<div className='bell-icon'>{Bellicon()}</div>
 				{/* Dropdown list of Q services */}
 				<GridDropdown />
 
