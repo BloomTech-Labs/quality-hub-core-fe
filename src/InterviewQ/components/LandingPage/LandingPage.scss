@@ -43,6 +43,7 @@
     text-align: left;
     display: flex;
     align-items: center;
+
     .red-circle {
         background-color: #cf1322;
         width: 60px;
@@ -53,10 +54,10 @@
         align-items: center;
         margin-right: 1.8rem;
     }
+
     h1 {
         display: flex;
         flex-wrap: wrap;
-        width: 50%;
     }
 }
 
