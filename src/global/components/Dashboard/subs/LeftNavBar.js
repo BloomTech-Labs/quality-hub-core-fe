@@ -1,36 +1,21 @@
 // Libraries
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 // Icons
 import Icon from '../../../icons/Icon';
 import { ICONS } from '../../../icons/iconConstants';
 
-// Components
-import DeleteModal from './PersonalInfo/subs/DeleteModal';
-
-// Hooks
-import useModal from '../../../utils/useModal';
-
 export default function LeftNavBar({ setLoggedin }) {
 	let { pathname } = useLocation();
-	const [profileDropdownToggle] = useState(false);
-	const { isShowing, toggle } = useModal();
 
 	return (
 		<div className='dashboard-left-bar'>
-			{profileDropdownToggle && (
-				<div className='profile-dropdown-links'>
-					<NavLink to='#' onClick={toggle}>
-						Delete Account
-					</NavLink>
-				</div>
-			)}
-			<DeleteModal
+			{/* <DeleteModal
 				isShowing={isShowing}
 				hide={toggle}
 				setLoggedin={setLoggedin} // GOAL: Have this be a state variable held in Apollo Client cache
-			/>
+			/> */}
 			<NavLink activeClassName='dashnavactive' exact to='/dashboard'>
 				<div className='dash-left-menu-btn'>
 					<Icon
