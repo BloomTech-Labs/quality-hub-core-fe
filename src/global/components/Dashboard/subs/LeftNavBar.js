@@ -35,9 +35,9 @@ export default function LeftNavBar({ setLoggedin }) {
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.PERSONALINFO}
-						width={18}
-						height={20}
-						color={pathname === '/dashboard' ? '#096dd9' : '#3c4043'}
+						width={24}
+						height={24}
+						color={pathname === '/dashboard' ? 'white' : '#096dd9'}
 					/>
 					<div className='dashnav-txt'>Personal Info</div>
 				</div>
@@ -48,9 +48,20 @@ export default function LeftNavBar({ setLoggedin }) {
 						icon={ICONS.SCHEDULE}
 						width={24}
 						height={24}
-						color={pathname === '/dashboard/schedule' ? '#096dd9' : '#3c4043'}
+						color={pathname === '/dashboard/schedule' ? 'white' : '#096dd9'}
 					/>
 					<div className='dashnav-txt'> Schedule</div>
+				</div>
+			</NavLink>
+			<NavLink activeClassName='dashnavactive' to='/dashboard/payments'>
+				<div className='dash-left-menu-btn'>
+					<Icon
+						icon={ICONS.PAYMENTS}
+						width={24}
+						height={24}
+						color={pathname === '/dashboard/payments' ? 'white' : '#096dd9'}
+					/>
+					<div className='dashnav-txt'> Payments</div>
 				</div>
 			</NavLink>
 			<NavLink activeClassName='dashnavactive' to='/dashboard/settings'>
@@ -59,7 +70,7 @@ export default function LeftNavBar({ setLoggedin }) {
 						icon={ICONS.SETTING}
 						width={24}
 						height={24}
-						color={pathname === '/dashboard/settings' ? '#096dd9' : '#3c4043'}
+						color={pathname === '/dashboard/settings' ? 'white' : '#096dd9'}
 					/>
 					<div className='dashnav-txt'>Settings</div>
 				</div>

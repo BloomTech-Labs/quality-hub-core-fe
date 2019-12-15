@@ -33,7 +33,7 @@ const BasicInfo = () => {
 
 	return (
 		<div className='editform basiceditform'>
-			<h2>Basic Info</h2>
+			<h3>Basic Info</h3>
 			<DashboardAvatar />
 			{loading && <p>Loading...</p>}
 			{data &&
