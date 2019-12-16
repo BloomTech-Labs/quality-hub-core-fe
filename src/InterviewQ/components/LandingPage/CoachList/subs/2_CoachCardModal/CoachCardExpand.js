@@ -12,6 +12,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 	let { coach } = post;
   const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
   const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
+  const fullName = `${coach.first_name} ${coach.last_name}`;
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -45,7 +46,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						}>
 						<div className='coachcard-header-txt-expand'>
 							<h3>
-								{coach.first_name} {coach.last_name}
+                {(fullName.length > 25 ? `${fullName.substring(0,25)}...` : fullName)}
 							</h3>
 							<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
 						</div>

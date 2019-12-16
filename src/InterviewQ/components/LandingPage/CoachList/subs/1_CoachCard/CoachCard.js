@@ -15,12 +15,13 @@ const CoachCard = ({ post }) => {
 	let maxWidth = 100;
   const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
   const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
+  const fullName = `${coach.first_name} ${coach.last_name}`;
 	return (
 		<div className='coach-card'>
 			<div className='coachcard-header'>
 				<div className='coachcard-header-txt'>
 					<h3>
-						{coach.first_name} {coach.last_name}
+            {(fullName.length > 25 ? `${fullName.substring(0,25)}...` : fullName)}
 					</h3>
 					<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
 				</div>
@@ -28,7 +29,9 @@ const CoachCard = ({ post }) => {
 					{coach.image_url ? (
 						<img src={coach.image_url} alt='Coach Profile Pic' />
 					) : (
-            <Icon icon={ICONS.BLANK_AVATAR} />
+            <div className='blank-image'>
+              <Icon icon={ICONS.BLANK_AVATAR} color="white" width={80} height={90} />
+            </div>
 					)}
 				</div>
 			</div>
