@@ -15,16 +15,7 @@ import LandingPageHeader from './LandingPageHeader';
 import CoachList from './CoachList';
 import CoachForm from '../CoachForm';
 
-export const GET_USER = gql`
-	query {
-		me {
-			id
-			post {
-				id
-			}
-		}
-	}
-`;
+import { GET_USER } from './Resolvers';
 
 export default function InterviewLandingPage() {
 	// Component State
