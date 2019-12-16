@@ -210,6 +210,9 @@
 	font-size: 20px;
 	line-height: 28px;
 	color: #202124;
+	// max-width: 17rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .dropdown-menu-email {
