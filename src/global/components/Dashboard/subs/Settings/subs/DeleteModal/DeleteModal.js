@@ -29,7 +29,7 @@ const DeleteModal = ({ isShowing, hide, setLoggedin }) => {
 		deleteThatUser().then(res => {
 			client.clearStore();
 			localStorage.clear();
-			// setLoggedin(false); // GOAL: Have this be a state variable held in Apollo Client cache
+			setLoggedin(false); // GOAL: Have this be a state variable held in Apollo Client cache
 			history.push('/');
 		});
 	};

@@ -6,16 +6,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import Icon from '../../../icons/Icon';
 import { ICONS } from '../../../icons/iconConstants';
 
-export default function LeftNavBar({ setLoggedin }) {
+export default function LeftNavBar() {
 	let { pathname } = useLocation();
 
 	return (
 		<div className='dashboard-left-bar'>
-			{/* <DeleteModal
-				isShowing={isShowing}
-				hide={toggle}
-				setLoggedin={setLoggedin} // GOAL: Have this be a state variable held in Apollo Client cache
-			/> */}
 			<NavLink activeClassName='dashnavactive' exact to='/dashboard'>
 				<div className='dash-left-menu-btn'>
 					<Icon
