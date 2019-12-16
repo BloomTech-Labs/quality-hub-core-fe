@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 
 // Styles & Icons
 import './SignInForm.scss';
-import Icon from '../../../globalIcons/Icon';
-import { ICONS } from '../../../globalIcons/iconConstants';
+import Icon from '../../../global/icons/Icon';
+import { ICONS } from '../../../global/icons/iconConstants';
 
 // Components
-import Loading from '../Loading';
+import Loading from '../../../global/components/Loading';
 
+// Mutation
 const LOGIN = gql`
 	mutation Login($email: String!, $password: String!) {
 		login(email: $email, password: $password) {
@@ -24,6 +25,7 @@ const LOGIN = gql`
 	}
 `;
 
+
 const SignInForm = props => {
 	const [user, setUser] = useState({
 		email: '',
@@ -31,6 +33,7 @@ const SignInForm = props => {
 	});
 	const [showPassword, setShowPassword] = useState(true);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 	const [login] = useMutation(LOGIN);
 
 	const handleChange = e => {
@@ -42,7 +45,6 @@ const SignInForm = props => {
 
 	const handleSubmit = e => {
 		//Add validation checking here
-
 		e.preventDefault();
 		setLoading(true);
 		let { email, password } = user;
@@ -57,8 +59,8 @@ const SignInForm = props => {
 			})
 			.catch(err => {
 				setLoading(false);
+				setError('Invalid Credentials, please try again.');
 			});
-		// console.log(user);
 	};
 
 	return (
@@ -67,81 +69,82 @@ const SignInForm = props => {
 				<h1>QualityHub</h1>
 				<h2>Welcome back!</h2>
 			</div>
-			<br />
+				<br />
 			{/* Insert Google Login Button Here */}
 			{/* <h2 className="sign-in-or">
         <span>OR</span>
       </h2> */}
-
 			<form onSubmit={handleSubmit}>
 				<div className='input-label'>
 					<label htmlFor='email'>Email address</label>
-					<br />
-					<input
-						// placeholder='Email'
-						name='email'
-						value={user.email}
-						onChange={handleChange}
-						id='email'
-					/>
-					<div className='signin-icon'>
-						<Icon icon={ICONS.EMAIL} width={22} height={18} color='#5f6368' />
-					</div>
+						<br />
+							<input
+								// placeholder='Email'
+								name='email'
+								value={user.email}
+								onChange={handleChange}
+								id='email'
+							/>
+						<div className='signin-icon'>
+							<Icon icon={ICONS.EMAIL} width={22} height={18} color='#5f6368' />
+						</div>
 				</div>
-				<br />
-				<div className='input-label'>
-					<label htmlFor='password'> Password </label>
 					<br />
-					<input
-						// placeholder='Password'
-						name='password'
-						type={showPassword ? 'password' : 'text'}
-						id='password'
-						value={user.password}
-						onChange={handleChange}
-					/>
-					<p>
-						<Link to='/forgotPassword'>Forgot password?</Link>
-					</p>
+						<div className='input-label'>
+							<label htmlFor='password'> Password </label>
+							<br />
+								<input
+									// placeholder='Password'
+									name='password'
+									type={showPassword ? 'password' : 'text'}
+									id='password'
+									value={user.password}
+									onChange={handleChange}
+								/>
+							<p>
+							<Link to='/forgotPassword'>Forgot password?</Link>
+						</p>
 					<div
 						className='signin-icon-pw'
 						style={{
 							bottom: !showPassword && '5.4rem',
 							left: !showPassword && 'calc(100% - 4.6rem)',
 						}}
+						// Allows user to see password typed in or to not see
 						onClick={() => setShowPassword(!showPassword)}>
-						{showPassword && (
-							<Icon
-								icon={ICONS.PASSWORD_Y}
-								width={22}
-								height={19}
-								color='#5f6368'
-							/>
-						)}
-						{!showPassword && (
-							<Icon
-								icon={ICONS.PASSWORD_N}
-								width={22}
-								height={19}
-								color='#5f6368'
-							/>
-						)}
+							{showPassword && (
+								<Icon
+									icon={ICONS.PASSWORD_Y}
+									width={22}
+									height={19}
+									color='#5f6368'
+								/>
+							)}
+							{!showPassword && (
+								<Icon
+									icon={ICONS.PASSWORD_N}
+									width={22}
+									height={19}
+									color='#5f6368'
+								/>
+							)}
+						</div>
 					</div>
-				</div>
+				{error && <p className='invalid-credentials'>{error}</p>}
 				<br />
-				{!loading &&
-					(user.email !== '' && user.password !== '' ? (
-						<button className='submit-btn sign-in-button'>Sign in</button>
-					) : (
-						<button className='submit-btn sign-in-button' disabled>
-							Sign in
-						</button>
-					))}
-				{!loading && (
-					<p className='signup-link'>
-						Don't have an account? <Link to='/signup'>Sign up</Link>
-					</p>
-				)}
+					{!loading &&
+						(user.email !== '' && user.password !== '' ? (
+							<button className='submit-btn sign-in-button'>Sign in</button>
+						) : (
+							<button className='submit-btn sign-in-button' disabled>
+								Sign in
+							</button>
+						))}
+					{!loading && (
+						<p className='signup-link'>
+							Don't have an account? <Link to='/signup'>Sign up</Link>
+						</p>
+					)}
 				{loading && <Loading />}
 			</form>
 		</div>

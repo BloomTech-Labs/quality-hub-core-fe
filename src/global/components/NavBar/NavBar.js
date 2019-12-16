@@ -1,13 +1,18 @@
+// Libraries
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import AvatarDropdown from './AvatarDropdown';
-import GridDropdown from './GridDropdown';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Bellicon } from '../../../globalIcons/bellicon';
 
-import { Hamburger } from '../../../globalIcons/hamburger';
+// Icons
+import { Bellicon } from '../../icons/bellicon';
+import { Hamburger } from '../../icons/hamburger';
 
+// Components
+import GridDropdown from './subs/GridDropdown';
+import AvatarDropdown from './subs/AvatarDropdown';
+
+// Query
 const GET_USER = gql`
 	query dropdownMenu {
 		me {
@@ -61,7 +66,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<NavLink to='/'>
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
-						<h2>QualityHub{navtitle && `: ${navtitle}Q`}</h2>
+						<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
 					</div>
 				</NavLink>
 			</div>
@@ -78,7 +83,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 					</>
 				)}
 
-				{Bellicon()}
+				<div className='bell-icon'>{Bellicon()}</div>
 				{/* Dropdown list of Q services */}
 				<GridDropdown />
 

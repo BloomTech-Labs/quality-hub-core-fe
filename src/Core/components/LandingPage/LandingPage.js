@@ -5,10 +5,10 @@ import React from 'react';
 import './LandingPage.scss';
 
 // Components
-import Header from './Header';
-import Carousel from './Carousel';
-import Panels from './Panels';
-import Footer from './Footer';
+import Header from './subs/1_Header';
+import Carousel from './subs/2_Carousel';
+import Panels from './subs/3_Panels';
+import Footer from './subs/4_Footer';
 
 export default function LandingPage() {
 	return (

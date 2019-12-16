@@ -5,28 +5,30 @@
 @font-face {
 	font-family: 'SFProDisplay';
 	src: local('SFProDisplay'),
-		url(./fonts/SFProDisplay/SF-Pro-Display-Regular.otf) format('opentype');
+		url(./global/fonts/SFProDisplay/SF-Pro-Display-Regular.otf)
+			format('opentype');
 }
 
 @font-face {
 	font-family: 'SFProDisplay';
 	font-weight: 600;
 	src: local('SFProDisplay'),
-		url(./fonts/SFProDisplay/SF-Pro-Display-Semibold.otf) format('opentype');
+		url(./global/fonts/SFProDisplay/SF-Pro-Display-Semibold.otf)
+			format('opentype');
 }
 
 @font-face {
 	font-family: 'SFProDisplay';
 	font-weight: 900;
 	src: local('SFProDisplay'),
-		url(./fonts/SFProDisplay/SF-Pro-Display-Heavy.otf) format('opentype');
+		url(./global/fonts/SFProDisplay/SF-Pro-Display-Heavy.otf) format('opentype');
 }
 
 @font-face {
 	font-family: 'SFProDisplay';
 	font-weight: 700;
 	src: local('SFProDisplay'),
-		url(./fonts/SFProDisplay/SF-Pro-Display-Bold.otf) format('opentype');
+		url(./global/fonts/SFProDisplay/SF-Pro-Display-Bold.otf) format('opentype');
 }
 
 * {
@@ -39,7 +41,6 @@
 		// border: 1px solid #096DD9 !important;
 	}
 }
-
 
 html {
 	font-size: 62.5%;
@@ -76,7 +77,7 @@ body {
 }
 
 .not-nav {
-	margin-top: 70px;
+	margin-top: 6.4rem;
 }
 
 h1 {
@@ -99,11 +100,13 @@ textarea {
 	border: 1px solid silver;
 	font-family: inherit;
 	padding: 0.8rem 1rem;
-	
 }
-input:focus, option:focus, select:focus, textarea:focus{
+input:focus,
+option:focus,
+select:focus,
+textarea:focus {
 	// :focus{
-		border: 1px solid #096DD9 !important;
+	border: 1px solid #096dd9 !important;
 	// }
 }
 
@@ -157,7 +160,6 @@ input:focus, option:focus, select:focus, textarea:focus{
 	width: 220px;
 	outline: 0;
 	text-align: center;
-
 }
 
 .manage-btn:hover {
