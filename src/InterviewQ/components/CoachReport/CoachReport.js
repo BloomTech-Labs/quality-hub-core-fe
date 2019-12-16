@@ -1,16 +1,23 @@
 // Libraries
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 // Styles
 import './CoachReport.scss';
+
+// Modal
+import useModal from '../../../global/utils/useModal';
+import FeedbackModal from './FeedbackModal';
 
 // Mutation
 import { CREATE_REPORT } from './Mutation';
 
 export default function CoachReport(props) {
 	const { key } = useParams();
+	const history = useHistory();
+
+	const { isShowing, toggle } = useModal();
 
 	const [report, setReport] = useState({
 		strengths: '',
@@ -27,34 +34,25 @@ export default function CoachReport(props) {
 		setReport({ ...report, [e.target.name]: e.target.value });
 	};
 
-	const handleSave = e => {
+	const handleSkip = e => {
 		e.preventDefault();
-		console.log(report);
-		createReport({
-			variables: {
-				uniqueBooking: key,
-				strengths: report.strengths,
-				growthAreas: report.growth,
-				suggestions: report.suggestions,
-				comments: report.comments,
-				isSent: false,
-			},
-		});
+		history.push('/interviewq/history');
 	};
 
 	const handleSend = e => {
 		e.preventDefault();
-		console.log(report);
-		createReport({
-			variables: {
-				uniqueBooking: key,
-				strengths: report.strengths,
-				growthAreas: report.growth,
-				suggestions: report.suggestions,
-				comments: report.comments,
-				isSent: true,
-			},
-		});
+		// console.log(report);
+		toggle();
+		// createReport({
+		// 	variables: {
+		// 		uniqueBooking: key,
+		// 		strengths: report.strengths,
+		// 		growthAreas: report.growth,
+		// 		suggestions: report.suggestions,
+		// 		comments: report.comments,
+		// 		isSent: true,
+		// 	},
+		// });
 	};
 
 	return (
@@ -119,14 +117,15 @@ export default function CoachReport(props) {
 				/>
 
 				<div className='coachreport-btns'>
-					<button className='coachreport-btn-save' onClick={handleSave}>
-						Save and skip
+					<button className='coachreport-btn-save' onClick={handleSkip}>
+						Skip for now
 					</button>
 					<button className='coachreport-btn-send' onClick={handleSend}>
 						Send
 					</button>
 				</div>
 			</form>
+			<FeedbackModal isShowing={isShowing} />
 		</div>
 	);
 }
