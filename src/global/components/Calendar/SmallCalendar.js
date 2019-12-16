@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Dashboard/subs/Schedule/Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate, format } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate, format, isAfter } from 'date-fns';
 
 import { nextArrow } from '../../icons/nextArrow';
 import { backArrow } from '../../icons/backArrow';
@@ -18,9 +18,11 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		
 	}
 	const lastMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1))
-	
+		if (isAfter(currentMonth, new Date(2019, 0, 1))){
+		 setCurrentMonth(subMonths(currentMonth, 1))
+		}
 	}
+
 	const onDateClick = day => {
 		if(isBefore(new Date(), day) || getDate(new Date) === getDate(day)){
 			setSelectedCell(day);

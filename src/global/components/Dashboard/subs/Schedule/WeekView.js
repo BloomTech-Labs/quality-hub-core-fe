@@ -15,6 +15,7 @@ import {
 	addDays,
 	addWeeks,
 	subWeeks,
+	isAfter
 } from 'date-fns';
 import WeekBooking from './WeekBooking';
 
@@ -102,10 +103,12 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const handleNext = e => {
 		setSelectedDate(addWeeks(selectedDate, 1));
 	};
-
+	
 	const handleBack = e => {
-		setSelectedDate(subWeeks(selectedDate, 1));
-	};
+		if(isAfter(selectedDate, new Date(2019, 0, 4))){
+			setSelectedDate(subWeeks(selectedDate, 1));
+		}
+		};
 
 	useEffect(() => {
 		scheduleBody[0].scrollTo(0, 480);
