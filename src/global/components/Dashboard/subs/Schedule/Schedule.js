@@ -10,9 +10,9 @@ const Schedule = () => {
   return (
 		<div className='schedule'>
 					<div className='coachinfo-header'>
-				<div className='circle-blue'>
+				{/* <div className='circle-blue'>
 					<Icon icon={ICONS.SCHEDULE} width={26} height={28} color='white' />
-				</div>
+				</div> */}
 				<h1>Schedule</h1>
 			</div>
 				 	<Route
