@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { format } from 'date-fns';
+import { format, differenceInHours } from 'date-fns';
 import { clock } from '../../../../../global/icons/Clock';
 import { document } from '../../../../../global/icons/document.js';
 import { paperclip } from '../../../../../global/icons/paperclip.js';
@@ -11,7 +11,7 @@ import { convertToLocal } from '../../../../../global/utils/TZHelpers.js';
 import Loading from '../../../Loading';
 import { gql } from 'apollo-boost';
 
-const CalendarDetail = ({ selectedDate, setOpen }) => {
+const CalendarDetail = ({ selectedDate, setOpen, node }) => {
 	const DELETE_BOOKING = gql`
 		mutation deleteBooking($uniquecheck: String!) {
 			deleteBooking(uniquecheck: $uniquecheck) {
@@ -79,10 +79,29 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-	const handleDelete = id => {
+	var canDelete = true
+
+	const lessThan24 = (time) => {
+		console.log(time)
+		console.log(Date())
+		console.log(differenceInHours(time, new Date()))
+		if (differenceInHours(time, new Date()) < 24) {
+			canDelete = false
+			console.log(canDelete)
+			return "disabled-delete-booking-btn"
+		}
+		else {
+			return ""
+		}
+	}
+
+	
+
+	const handleDelete = (id, event) => {
 		//let uniquecheck = e.target.getAttribute('data-id');
 		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;
 		//console.log(uniquecheck);
+		event.stopPropagation();
 		console.log()
 		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
@@ -98,7 +117,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 			});
 	};
 	return (
-		<div>
+		<div ref={node}>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
 				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
@@ -106,6 +125,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 				<div>
 					{booking.map((info, index) => {
 						console.log(info);
+						console.log(booking.length)
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
 								<h3>
@@ -167,7 +187,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={() => handleDelete(info.uniquecheck)}>
+										onClick={(event) => handleDelete(info.uniquecheck, event)}>
 										Cancel Booking
 									</button>
 								)}
@@ -202,14 +222,14 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 								</p>
 								{info.id && (
 									<button
-										className={`${info.id} delete-booking-btn`}
+										className={`${info.id} delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
 										data-id={`${info.uniquecheck}`}
 										data-year={info.year}
 										data-month={info.month}
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={() => handleDelete(info.uniquecheck)}>
+										onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
 										Cancel Booking
 									</button>
 								)}
