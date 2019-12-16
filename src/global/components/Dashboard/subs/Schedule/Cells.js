@@ -34,6 +34,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			days.push(
 				<div
 					id={cellId}
+				
 					className={`col cell ${
 						!isSameMonth(day, monthStart)
 							? 'disabled'
