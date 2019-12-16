@@ -86,7 +86,8 @@ export default function InterviewLandingPage() {
 								background: toggleFilter && 'rgba(9, 109, 217, 0.1)',
 								color: toggleFilter && '#096dd9',
 								border: toggleFilter && '1px solid #096dd9',
-							}}>
+							}} 
+							>
 							<Icon
 								icon={ICONS.FILTER}
 								width={20}
@@ -100,7 +101,8 @@ export default function InterviewLandingPage() {
 				<div className='landingpage-container'>
 					<CoachList toggleFilter={toggleFilter} />
 				</div>
-			</div>
+			</div>		
 		</div>
+
 	);
 }
