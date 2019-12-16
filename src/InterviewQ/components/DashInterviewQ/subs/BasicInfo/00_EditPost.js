@@ -198,12 +198,12 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	return (
 		<>
-			<div className='editform'>
+			<div className='IQ-editform'>
 				{/* START BASIC INFO */}
 				<h2>Basic Info</h2>
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
+				<div className='IQ-dash-input'>
+					<div className='IQ-dash-row post-row'>
+						<span className='IQ-dash-heading'>
 							<h4>COMPANY</h4>
 						</span>
 						{editing[0] ? (
@@ -231,9 +231,9 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
+				<div className='IQ-dash-input'>
+					<div className='IQ-dash-row post-row'>
+						<span className='IQ-dash-heading'>
 							<h4>POSITION</h4>
 						</span>
 						{editing[1] ? (
@@ -261,9 +261,9 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
+				<div className='IQ-dash-input'>
+					<div className='IQ-dash-row post-row'>
+						<span className='IQ-dash-heading'>
 							<h4>INDUSTRY</h4>
 						</span>
 						{editing[2] ? (
@@ -309,7 +309,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 				<div className='post-input'>
 					<div className='post-row'>
-						<span className='dash-heading'>
+						<span className='IQ-dash-heading'>
 							<h4>DESCRIPTION</h4>
 						</span>
 						{editing[3] ? (
@@ -342,7 +342,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 				<div className='post-input'>
 					<div className='post-row post-tag'>
-						<span className='dash-heading'>
+						<span className='IQ-dash-heading'>
 							<h4>TAGS</h4>
 						</span>
 						<div className='tag-form'>
@@ -380,7 +380,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				{/* START HOURLY RATE */}
 				<div className='post-input'>
 					<div className='post-row post-tag'>
-						<span className='dash-heading'>
+						<span className='IQ-dash-heading'>
 							<h4>PRICE PER SESSION</h4>
 						</span>
 						{editing[4] ? (
@@ -432,11 +432,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				</div>
 			</div>
 
-			<div className='editform'>
+			<div className='IQ-editform'>
 				<h2>Availability</h2>
 				<Availability />
 			</div>
-			<div className='editform'>
+			<div className='IQ-editform'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
 					//if coach is done loading
