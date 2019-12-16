@@ -39,6 +39,7 @@ const DeleteModal = ({ isShowing, hide, setLoggedin }) => {
 			{isShowing &&
 				createPortal(
 					<div className='del-modal-container'>
+						<div id='overlay-delete-account-modal'></div>
 						<div
 							className='del-modal-wrapper'
 							aria-modal
