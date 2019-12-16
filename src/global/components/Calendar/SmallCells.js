@@ -12,6 +12,8 @@ import {
 	getDate,
 	getMonth,
 	isBefore,
+	isAfter,
+	getYear
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
 
@@ -24,7 +26,7 @@ const SmallCells = ({
 }) => {
 	const [allTheAvails, setAllTheAvails] = useState();
 	let integerMonth = getMonth(currentMonth) + 1;
-
+	let integerYear = getYear(currentMonth);
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
 	const startDate = startOfWeek(monthStart);
@@ -44,53 +46,22 @@ const SmallCells = ({
 		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
-				if (dateAvails[x].day == dateAvails[y].day) {
-					if (
-						`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-							`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
-						-50
-					) {
-						bookingArray.push(dateAvails[x]);
-						break;
+				if (dateAvails[x].year === dateAvails[y].year) {
+					if (dateAvails[x].day == dateAvails[y].day) {
+						if (
+							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
+								`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
+							-50
+						) {
+							bookingArray.push(dateAvails[x]);
+							break;
+						}
 					}
 				}
 			}
 		}
 		setAllTheAvails(bookingArray);
 	};
-
-	// 		let bookingArray = [];
-	// const getAvailableSlots = (dateAvails) => {
-	//   for(let x = 0; x < dateAvails.length-1; x++){
-	//       for (let y = x+1; y < dateAvails.length; y++) {
-	//           if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 0) { //if it's the same hour
-	//               if (dateAvails[x].minute < dateAvails[y].minute) {
-	//                   bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
-	//               } else {
-	//               bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
-	//               }
-
-	//           } else if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 1) { //if the difference between the two is 1, then they are next to each other
-	//             if (dateAvails[x].hour < dateAvails[y].hour) { //if the first date is lower...
-
-	//                   if (dateAvails[y].minute - dateAvails[x].minute === -30) { //if the difference is -30, then the numbers are next to each other
-	//                     bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
-	//                   } else{ //if the difference is anything but -30, then they are more than an hour apart
-	//                   }
-	//               } else{ //if the second date is lower....
-	//                   if(dateAvails[x].minute - dateAvails[y].minute === -30){ //if the difference is -30, then you know the numbers are next to each other
-	//                     bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
-	//                   } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
-	//                   }
-	//               }
-	//           } else { //the hours are not equal or next to each other, so we skip to the next date object
-	//           }
-	//       }
-	//   }
-	//   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
-	// setAllTheAvails(bookingArray);
-
-	// }
 
 	useEffect(() => {
 		if (availabilities) {
@@ -103,11 +74,13 @@ const SmallCells = ({
 	}, [availabilities, currentMonth]);
 
 	const availsExist = someDate => {
+		console.log('month', integerMonth)
 		let integerDate = getDate(someDate);
 		let match = false;
 		if (allTheAvails) {
 			for (let i = 0; i < allTheAvails.length; i++) {
 				if (
+					allTheAvails[i].year === integerYear &&
 					allTheAvails[i].month === integerMonth &&
 					allTheAvails[i].day === integerDate
 				) {
@@ -138,7 +111,7 @@ const SmallCells = ({
 								? 'disabled'
 								: isSameDay(day, selectedDate)
 								? 'small-selected'
-								: availsExist(day)
+								: availsExist(day) && isAfter(day, new Date())
 								? 'match-light-blue'
 								: ''
 						}`}>
