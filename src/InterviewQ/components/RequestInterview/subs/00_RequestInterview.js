@@ -212,7 +212,6 @@ const RequestInteview = props => {
 				}
 			}
 		}
-		// console.log(bookingArray);
 		setCurrentSlots(bookingArray);
 	};
 

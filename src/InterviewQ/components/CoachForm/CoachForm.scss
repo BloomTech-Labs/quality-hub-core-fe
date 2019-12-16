@@ -309,6 +309,9 @@ textarea.add-coach-form-row-7 {
 	font-size: 20px;
 	line-height: 28px;
 	color: #096dd9;
+	max-width: 17rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .add-coach-form-preview-amount {
