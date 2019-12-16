@@ -1,19 +1,20 @@
 import React from 'react';
 
-export default function AccountIcon({ userKey }) {
-	console.log(userKey);
+import Icon from '../../../../../../../icons/Icon';
+import { ICONS } from '../../../../../../../icons/iconConstants';
 
+export default function AccountIcon({ userKey }) {
 	return userKey && userKey.includes('linkedin') ? (
-		<span>LI!</span>
+		<Icon icon={ICONS.LINKEDIN} width={24} height={24} color='#5f6368' />
 	) : userKey.includes('github') ? (
-		<span>Git!</span>
+		<Icon icon={ICONS.GITHUB} width={24} height={24} color='#5f6368' />
 	) : userKey.includes('personal') ? (
-		<span>Personal!</span>
+		<Icon icon={ICONS.PERSONAL} width={24} height={24} color='#5f6368' />
 	) : userKey.includes('twitter') ? (
-		<span>Twitter!</span>
+		<Icon icon={ICONS.TWITTER} width={24} height={24} color='#5f6368' />
 	) : userKey.includes('portfolio') ? (
-		<span>Portfolio!</span>
+		<Icon icon={ICONS.PORTFOLIO} width={24} height={24} color='#5f6368' />
 	) : userKey.includes('blog') ? (
-		<span>Blog!</span>
+		<Icon icon={ICONS.BLOG} width={24} height={24} color='#5f6368' />
 	) : null;
 }
