@@ -9,52 +9,7 @@ import CoachCard from './subs/1_CoachCard';
 import './CoachList.scss';
 
 import Loading from '../../../../global/components/Loading';
-
-export const GET_POSTS = gql`
-	query GET_POSTS(
-		$industry: String
-		$price: String
-		$orderBy: String
-		$tags: String
-		$ids: [String]
-	) {
-		posts(
-			industry: $industry
-			price: $price
-			orderBy: $orderBy
-			tags: $tags
-			ids: $ids
-		) {
-			id
-			price
-			position
-			description
-			company
-			industry {
-				id
-				name
-			}
-			tags {
-				id
-				name
-			}
-			coach {
-				id
-				first_name
-				last_name
-				city
-				state
-				image_url
-				personal_url
-				blog_url
-				twitter_url
-				portfolio_url
-				linkedin_url
-				github_url
-			}
-		}
-	}
-`;
+import { GET_POSTS } from '../Resolvers';
 
 const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 	const [fields, setFields] = useState({

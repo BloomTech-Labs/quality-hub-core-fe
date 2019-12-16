@@ -15,6 +15,7 @@ import {
 	addDays,
 	addWeeks,
 	subWeeks,
+	isAfter
 } from 'date-fns';
 import WeekBooking from './WeekBooking';
 
@@ -102,10 +103,12 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const handleNext = e => {
 		setSelectedDate(addWeeks(selectedDate, 1));
 	};
-
+	
 	const handleBack = e => {
-		setSelectedDate(subWeeks(selectedDate, 1));
-	};
+		if(isAfter(selectedDate, new Date(2019, 0, 4))){
+			setSelectedDate(subWeeks(selectedDate, 1));
+		}
+		};
 
 	useEffect(() => {
 		scheduleBody[0].scrollTo(0, 480);
@@ -119,7 +122,10 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 						{/* <h2>{format(currentMonth, "MMMM")}</h2> */}
 					</div>
 					<div className='col calendar-select'>
-						<button className='calendar-button' onClick={handleBack}>{backArrow()}</button>
+						<div className='cal-arrow-container'>
+						<button className='calendar-button back-arrow' onClick={handleBack}>{backArrow()}</button>
+							<button className='calendar-button next-arrow' onClick={handleNext}>{nextArrow()}</button>
+							</div>
 						<select onChange={onMonthChange} value={getMonth(selectedDate)}>
 					{months.map(month => {
 						return (
@@ -138,9 +144,8 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 						);
 					})}
 				</select>
-						<button className='calendar-button' onClick={handleNext}>{nextArrow()}</button>
 
-						<Link to='/dashboard/schedule'>
+						<Link className='calendar-button' to='/dashboard/schedule'>
 				<button className='calendar-button'>
 					<p>
 					Month
