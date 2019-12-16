@@ -4,7 +4,7 @@ import DeleteModal from './DeleteModal';
 
 import useModal from '../../../../../utils/useModal';
 
-export default function Delete() {
+export default function Delete({ setLoggedin }) {
 	const { isShowing, toggle } = useModal();
 
 	return (
@@ -14,7 +14,11 @@ export default function Delete() {
 				<p>If you delete your account, you can't reverse this action.</p>
 				<button onClick={toggle}>Delete Account</button>
 			</div>
-			<DeleteModal isShowing={isShowing} hide={toggle} />
+			<DeleteModal
+				isShowing={isShowing}
+				hide={toggle}
+				setLoggedin={setLoggedin}
+			/>
 		</div>
 	);
 }
