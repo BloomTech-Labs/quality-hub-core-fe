@@ -14,7 +14,7 @@ import {
 	startOfMonth,
 } from 'date-fns';
 
-const Cells = ({ onDateClick, currentMonth, selectedDate, node }) => {
+const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
@@ -34,7 +34,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate, node }) => {
 			days.push(
 				<div
 					id={cellId}
-					ref={node}
+				
 					className={`col cell ${
 						!isSameMonth(day, monthStart)
 							? 'disabled'

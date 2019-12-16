@@ -120,7 +120,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 
 			<div className="calendar-cells"></div>
 			<Cells
-			node = {node}
+			
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
@@ -129,6 +129,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 			{open && (
 				<div className='calendar-detail'>
 					<CalendarDetail
+					node = {node}
 						setOpen={setOpen}
 						selectedDate={selectedDate}
 					/>

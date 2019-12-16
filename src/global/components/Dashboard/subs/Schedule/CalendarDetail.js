@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect, useState } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -13,7 +11,7 @@ import { convertToLocal } from '../../../../../global/utils/TZHelpers.js';
 import Loading from '../../../Loading';
 import { gql } from 'apollo-boost';
 
-const CalendarDetail = ({ selectedDate, setOpen }) => {
+const CalendarDetail = ({ selectedDate, setOpen, node }) => {
 	const DELETE_BOOKING = gql`
 		mutation deleteBooking($uniquecheck: String!) {
 			deleteBooking(uniquecheck: $uniquecheck) {
@@ -99,10 +97,11 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	
 
-	const handleDelete = id => {
+	const handleDelete = (id, event) => {
 		//let uniquecheck = e.target.getAttribute('data-id');
 		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;
 		//console.log(uniquecheck);
+		event.stopPropagation();
 		console.log()
 		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
@@ -118,7 +117,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 			});
 	};
 	return (
-		<div>
+		<div ref={node}>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
 				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
@@ -188,7 +187,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={() => handleDelete(info.uniquecheck)}>
+										onClick={(event) => handleDelete(info.uniquecheck, event)}>
 										Cancel Booking
 									</button>
 								)}
@@ -230,7 +229,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={(event) => canDelete ? handleDelete(info.uniquecheck) : event.preventDefault}>
+										onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
 										Cancel Booking
 									</button>
 								)}
@@ -251,4 +250,3 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 };
 
 export default CalendarDetail;
->>>>>>> 10fceeed71a10e49cc53458204a394ea6ba51c16
