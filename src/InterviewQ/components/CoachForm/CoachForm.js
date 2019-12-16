@@ -89,7 +89,7 @@ const CoachForm = props => {
 		//close 2nd modal
 		setDone(false);
 	};
-
+ 
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
