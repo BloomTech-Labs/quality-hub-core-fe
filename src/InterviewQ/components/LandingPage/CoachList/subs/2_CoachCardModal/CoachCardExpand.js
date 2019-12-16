@@ -54,10 +54,9 @@ const CoachCard = ({ post, setOpen, open }) => {
 							{coach.image_url ? (
 								<img src={coach.image_url} alt='Coach Profile Pic' />
 							) : (
-								<img
-									src='https://www.birdorable.com/img/bird/th440/california-quail.png'
-									alt='Coach Profile Pic'
-								/>
+                <div className='blank-image'>
+                  <Icon icon={ICONS.BLANK_AVATAR} color="white" width={80} height={90} />
+                </div>
 							)}
 						</div>
 					</div>
