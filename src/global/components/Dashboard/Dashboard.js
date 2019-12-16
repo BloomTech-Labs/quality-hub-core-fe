@@ -42,7 +42,7 @@ const Dashboard = ({ setLoggedin }) => {
 
 	return (
 		<div className='entire-dashboard'>
-			<LeftNavBar setLoggedin={setLoggedin} />
+			<LeftNavBar />
 			<div className='lower-dashboard'>
 				<Switch>
 					<Route exact path='/dashboard'>
@@ -52,9 +52,10 @@ const Dashboard = ({ setLoggedin }) => {
 						<Schedule />
 					</Route>
 					<Route path='/dashboard/payments'></Route>
-					<Route path='/dashboard/settings'>
-						<Settings />
-					</Route>
+					<Route
+						path='/dashboard/settings'
+						render={props => <Settings {...props} setLoggedin={setLoggedin} />}
+					/>
 				</Switch>
 			</div>
 		</div>
