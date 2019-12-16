@@ -52,7 +52,7 @@ $neutral-cal-color: #fff;
 	display: flex;
 }
 .next-arrow{
-	margin-left: 0;
+	margin: 0;
 	width: 45px;
 	border-top-right-radius: 100px;
 	border-bottom-right-radius: 100px;
@@ -108,6 +108,10 @@ $neutral-cal-color: #fff;
 	justify-content: center;
 	align-items: center;
 	//text-align: right;
+	p{
+		font-weight: 600;
+font-size: 12px;
+	}
 }
 
 .col-end {
@@ -118,7 +122,7 @@ $neutral-cal-color: #fff;
 /* Calendar */
 .calendar-select {
 	display: flex;
-	justify-content: space-between;
+	//justify-content: space-between;
 }
 .flex-middle {
 	display: flex;
@@ -665,7 +669,9 @@ padding-left: 40%;
 // }
 
 .selected {
-	border: 2px solid $main-cal-color !important;
+	background-color: rgba(9, 109, 217, 0.1) !important;
+	// box-sizing: border-box;
+	// border: 2px solid $main-cal-color !important;
 }
 
 // Small Calendar
@@ -742,6 +748,9 @@ justify-content: center;
 		border-radius: 50%;
 	}
 	
+	.cell{
+		box-sizing: border-box;
+	}
 	.past-day{
 		cursor: not-allowed;
 		caret-color: black;
