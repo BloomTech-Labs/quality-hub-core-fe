@@ -24,14 +24,16 @@
 		position: static;
 		flex-direction: row;
 		justify-content: space-around;
-		width: auto;
+		width: 95%;
 		height: auto;
-		margin-top: 150px;
+		margin: 12rem 5% auto;
 
 	}
 	@media screen and (max-width: 700px) {
-		width: 94%;
-		margin: 0 auto;
+		justify-content: space-around;
+		width: 100%;
+		margin: 0 2% auto;
+		margin-top: 150px;
 	}
 }
 
@@ -53,12 +55,13 @@
 	}
 }
 
-.QNav-row:last-of-type {
-}
 
 .QNav-btn {
 	color: $main-blue;
 	margin-left: 1.6rem;
+	@media screen and (max-width: 700px) {
+		display: none;
+	}
 
 	@media screen and (max-width: 450px) {
 		margin-left: 0.5rem;
@@ -68,6 +71,7 @@
 .QNav-main {
 	color: $main-blue;
 	margin-left: 1.6rem;
+
 	@media screen and (max-width: 700px) {
 		display: none;
 	}
