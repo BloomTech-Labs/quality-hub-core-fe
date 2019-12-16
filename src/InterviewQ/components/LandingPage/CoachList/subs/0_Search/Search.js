@@ -163,6 +163,9 @@ export default function Search({ fields, setFields, refetch }) {
 					</button>
 				</div>
 			</div>
+			{/* <div className="search-tags-container">
+				<p className="search-tags"> {fields.tags} X </p>
+				</div> */}
 		</div>
 	);
 }
