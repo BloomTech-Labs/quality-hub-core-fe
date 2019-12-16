@@ -204,7 +204,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
-							<h3>COMPANY</h3>
+							<h4>COMPANY</h4>
 						</span>
 						{editing[0] ? (
 							<div>
@@ -234,7 +234,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
-							<h3>POSITION</h3>
+							<h4>POSITION</h4>
 						</span>
 						{editing[1] ? (
 							<div>
@@ -264,7 +264,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='dash-input'>
 					<div className='dash-row post-row'>
 						<span className='dash-heading'>
-							<h3>INDUSTRY</h3>
+							<h4>INDUSTRY</h4>
 						</span>
 						{editing[2] ? (
 							<div>
@@ -310,7 +310,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='post-input'>
 					<div className='post-row'>
 						<span className='dash-heading'>
-							<h3>DESCRIPTION</h3>
+							<h4>DESCRIPTION</h4>
 						</span>
 						{editing[3] ? (
 							<div>
@@ -343,7 +343,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='dash-heading'>
-							<h3>TAGS</h3>
+							<h4>TAGS</h4>
 						</span>
 						<div className='tag-form'>
 							{editing[5] && (
@@ -381,7 +381,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='dash-heading'>
-							<h3>PRICE PER SESSION</h3>
+							<h4>PRICE PER SESSION</h4>
 						</span>
 						{editing[4] ? (
 							<div>
