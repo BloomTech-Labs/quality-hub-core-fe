@@ -7,6 +7,7 @@ import { ICONS } from '../../../../../global/icons/iconConstants';
 import CoachBookingContent from './3_CoachBookingContent';
 
 export default function CoachHistoryRow({ booking }) {
+	console.log(ICONS.MORE);
 	const [showContent, setShowContent] = useState(false);
 
 	return (
@@ -22,7 +23,7 @@ export default function CoachHistoryRow({ booking }) {
 					{booking.hour}:{booking.minute}
 					{booking.minute === 0 && '0'}
 				</div>
-				<div>${booking.coach.post.price}</div>
+				<div>${booking.coach.post && booking.coach.post.price}</div>
 				<div>
 					<Link
 						to={{

@@ -27,7 +27,7 @@
 		color: #202124;
 		text-align: left;
 		margin-left: 2.4rem;
-		margin-bottom: 4rem;
+		margin-bottom: 2.5rem;
 	}
 
 	h4 {
@@ -94,6 +94,12 @@
 .dash-heading {
 	width: 15.6rem;
 	text-align: left;
+	display: flex;
+	align-items: center;
+
+	h4 {
+		margin-left: 0.8rem;
+	}
 }
 
 .edit-button {

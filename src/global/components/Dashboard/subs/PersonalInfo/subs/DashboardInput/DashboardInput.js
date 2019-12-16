@@ -5,6 +5,8 @@ import { useMutation } from '@apollo/react-hooks';
 // Styles & Icons
 import './DashboardInput.scss';
 
+import AccountIcon from './subs/AccountIcon';
+
 //GraphQuail Mutation
 import { EDIT_USER } from './Mutation';
 
@@ -173,6 +175,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
+					{userKey && <AccountIcon userKey={userKey} />}
 					<h4>{userKey && capitalize(userKey)}</h4>
 				</span>
 				{/* <div> */}

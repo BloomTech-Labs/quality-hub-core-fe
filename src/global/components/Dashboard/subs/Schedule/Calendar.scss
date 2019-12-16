@@ -18,15 +18,51 @@ $neutral-cal-color: #fff;
 }
 
 .calendar-button{
+	display: flex;
+	text-decoration: none !important;
+	align-items: center;
+	justify-content: center;
 	color: black;
+	font-size: 16px;
 	border: 1px solid #dadce0;
 	border-radius: 0.4rem;
 	height: 4rem;
 	cursor: pointer;
+	// :hover{
+	// 	background-color: #EFEFEF;
+	// }
 	p{
+		text-decoration: none !important;
 		margin: 3px 20px;
 		font-weight: 500;
 	}
+
+}
+
+.calendar-button:hover{
+		background-color: #EFEFEF;
+}
+.cal-header select:hover{
+
+		background-color: #EFEFEF;
+
+}
+.cal-arrow-container{
+	margin: 0 .8rem;
+	display: flex;
+}
+.next-arrow{
+	margin-left: 0;
+	width: 45px;
+	border-top-right-radius: 100px;
+	border-bottom-right-radius: 100px;
+}
+
+.back-arrow{
+	margin-right: 0;
+		width: 45px;
+		border-top-left-radius: 100px;
+		border-bottom-left-radius: 100px;
 }
 
 /* GRID */
@@ -101,8 +137,17 @@ $neutral-cal-color: #fff;
 .calendar .cal-header {
 	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 115%;
+	font-size: 1.6rem;
 	padding: 1.5em 0;
+	select, button{
+		border: 1px solid #dadce0;
+		font-size: 1.6rem;
+		color: #3C4043;
+	
+	}
+	select{
+		margin-right: .8rem;
+	}
 	// border-bottom: 1px solid var(--border-color);
 }
 
@@ -698,7 +743,8 @@ justify-content: center;
 	}
 	
 	.past-day{
-		cursor: auto;
+		cursor: not-allowed;
+		caret-color: black;
 		position: relative;
 		height: 50px;
 		//border-right: 1px solid var(--border-color);
@@ -742,6 +788,10 @@ justify-content: center;
 	font-size: 1.4rem;
 	font-weight: 400;
 	cursor: pointer;
+}
+
+.disabled-delete-booking-btn {
+	background-color: #a09e9f;
 }
 
 .no-bookings {

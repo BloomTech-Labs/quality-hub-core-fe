@@ -67,8 +67,8 @@ export default function CoachHistory() {
 			<h2>Coach History</h2>
 			{data && filteredData.length ? (
 				<div className='coach-history-headings'>
-					{headings.map(heading => (
-						<h3>{heading}</h3>
+					{headings.map((heading, index) => (
+						<h3 key={index}>{heading}</h3>
 					))}
 				</div>
 			) : (

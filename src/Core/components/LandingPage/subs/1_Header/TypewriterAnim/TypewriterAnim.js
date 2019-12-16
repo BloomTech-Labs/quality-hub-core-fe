@@ -1,47 +1,42 @@
 // Libraries
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Styles
 import './Typewriter.scss';
 
 export default function Typewriter() {
-	let [animatedText, setText] = useState('');
-	let [seconds, setTime] = useState(0);
-	let [wordIndex, setWord] = useState(0);
+  let [seconds, setTime] = useState(0);
+  const text = useRef({wordIndex: 0, text: '', letterIndex: 0})
 	// array with texts to type in typewriter
 	let dataText = ['Interviews', 'Code', 'Designs', 'Resumes', 'Quailcoin'];
 
-	useEffect(() => {
-		let key = setInterval(() => {
-			setTime(seconds => seconds + 1);
-		}, 100);
-		return () => {
-			clearInterval(key);
-		};
-	}, []);
+  useEffect(() => {
+    let key = setInterval(() => {
+      setTime(seconds => seconds + 1);
+    }, 100)
+    return () => clearInterval(key)
+  }, [])
 
-	useEffect(() => {
-		// If we completed all words, reset
-		if (wordIndex >= dataText.length) {
-			setWord(0);
+  useEffect(() => {
+    if (text.current.wordIndex >= dataText.length) {
+      text.current.wordIndex = 0;
 		} else {
-			let letter_index = Math.floor(seconds);
-			setText(dataText[wordIndex].substring(0, letter_index + 1));
+      text.current.text = (dataText[text.current.wordIndex].substring(0, text.current.letterIndex + 1));
+      text.current.letterIndex++;
 			// Add delay when word is completed
-			if (letter_index === dataText[wordIndex].length - 1) {
-				setTimeout(() => {
-					setWord(idx => idx + 1);
-					setTime(0);
-				}, 1000);
+			if (text.current.letterIndex === dataText[text.current.wordIndex].length - 1) {
+        setTimeout(() => {
+          text.current.wordIndex = text.current.wordIndex + 1;
+          text.current.letterIndex = 0;
+        }, 1000)
 			}
-		}
-		// eslint-disable-next-line
-	}, [seconds]);
+    }
+  }, [seconds])
 
 	return (
 		<div className='typewriter-text'>
 			<h1>
-				The best way to assess the quality of {animatedText}
+				The best way to assess the quality of {text.current.text}
 				<span className='blinking-cursor'>|</span>
 			</h1>
 		</div>
