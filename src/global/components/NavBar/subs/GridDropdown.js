@@ -11,7 +11,7 @@ import { Recruiterqicon } from '../../../icons/recruiterqicon';
 import { Networkqicon } from '../../../icons/networkqicon';
 import { Gridicon } from '../../../icons/gridicon';
 
-const GridDropdown = props => {
+const GridDropdown = () => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
 
@@ -33,13 +33,11 @@ const GridDropdown = props => {
 	return (
 		<div ref={node}>
 			<div className='grid-menu grid-icon' onClick={() => setOpen(!open)}>
-				{/* <Icon icon={ICONS.GRID} width={24} height={24} /> */}
 				{Gridicon()}
 			</div>
 
 			{open && (
 				<div className='dropdown-grid-content dropdown-icons'>
-					{/* <div className="test-css-grid"> */}
 					<div className='grid-dropdown-top-content'>
 						<div className='grid-dropdown-top-row-1'>
 							<Link
@@ -63,6 +61,7 @@ const GridDropdown = props => {
 								<p>DesignQ</p>
 							</Link>
 						</div>
+
 						<div className='grid-dropdown-top-row-2'>
 							<Link to='#' className='box' onClick={() => setOpen(false)}>
 								{Codeqicon()}
@@ -79,7 +78,6 @@ const GridDropdown = props => {
 							</Link>
 						</div>
 					</div>
-					{/* </div> */}
 					<hr className='grid-dropdown-bottom-hr' />
 					<div className='grid-dropdown-bottom-content'>
 						<p className='grid-dropdown-more'>More</p>

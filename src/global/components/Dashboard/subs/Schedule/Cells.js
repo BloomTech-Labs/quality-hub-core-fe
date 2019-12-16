@@ -16,7 +16,6 @@ import {
 
 const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 
-	// const [stateMonth, setStateMonth] = useState(currentMonth);
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
 	const startDate = startOfWeek(monthStart);
@@ -56,11 +55,6 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		);
 		days = [];
   }
-	
-//   useEffect(()=>{
-
-// 	setStateMonth(currentMonth);
-// },[currentMonth])
 
 DisplayBookings(currentMonth);
  

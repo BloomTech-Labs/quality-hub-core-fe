@@ -93,3 +93,19 @@ export const REMOVE_TAG = gql`
     }
   }
 `
+export const GET_POSTS = gql`
+	query {
+		posts {
+			id
+		}
+	}
+`;
+
+// GraphQL Mutation to delete post associated with user
+export const DELETE_POST = gql`
+	mutation {
+		deletePost {
+			id
+		}
+	}
+`;

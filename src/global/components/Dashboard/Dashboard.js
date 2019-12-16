@@ -11,6 +11,7 @@ import './Dashboard.scss';
 import LeftNavBar from './subs/LeftNavBar';
 import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './subs/Schedule';
+import Settings from './subs/Settings';
 
 // GraphQuaiL Query
 const GET_USER = gql`
@@ -41,15 +42,20 @@ const Dashboard = ({ setLoggedin }) => {
 
 	return (
 		<div className='entire-dashboard'>
-			<LeftNavBar setLoggedin={setLoggedin} />
+			<LeftNavBar />
 			<div className='lower-dashboard'>
 				<Switch>
 					<Route exact path='/dashboard'>
 						<PersonalInfo />
 					</Route>
-					<Route  path='/dashboard/schedule'>
+					<Route path='/dashboard/schedule'>
 						<Schedule />
 					</Route>
+					<Route path='/dashboard/payments'></Route>
+					<Route
+						path='/dashboard/settings'
+						render={props => <Settings {...props} setLoggedin={setLoggedin} />}
+					/>
 				</Switch>
 			</div>
 		</div>

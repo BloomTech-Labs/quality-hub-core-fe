@@ -1,7 +1,10 @@
 @import '../../../global/styles/variables';
 
 .interview-container {
-    margin-top: 13.9rem;
+    margin-top: 10rem;
+    @media screen and (max-width: 1269px){
+        margin-top: 0rem;
+    }
 }
 
 .interview-landing-page {
@@ -40,6 +43,7 @@
     text-align: left;
     display: flex;
     align-items: center;
+
     .red-circle {
         background-color: #cf1322;
         width: 60px;
@@ -50,10 +54,10 @@
         align-items: center;
         margin-right: 1.8rem;
     }
+
     h1 {
         display: flex;
         flex-wrap: wrap;
-        width: 50%;
     }
 }
 

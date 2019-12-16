@@ -22,6 +22,17 @@
 	h3 {
 		font-style: normal;
 		font-weight: 600;
+		font-size: 2rem;
+		line-height: 2.8rem;
+		color: #202124;
+		text-align: left;
+		margin-left: 2.4rem;
+		margin-bottom: 4rem;
+	}
+
+	h4 {
+		font-style: normal;
+		font-weight: 600;
 		font-size: 1.2rem;
 		line-height: 2rem;
 		color: #5f6368;
@@ -33,9 +44,9 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 5rem;
+	// height: 5rem;
 	border-bottom: 1px solid #dadce0;
-	padding: 1.7rem 3.2rem;
+	padding: 1.5rem 2.4rem;
 
 	@media screen and (max-width: 380px) {
 		flex-direction: column;
@@ -52,8 +63,16 @@
 .dash-row {
 	display: flex;
 	align-items: center;
-	height: 5rem;
+	// height: 5rem;
 	width: 100%;
+
+	p {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 24px;
+		color: #202124;
+	}
 
 	a {
 		color: inherit;
@@ -82,10 +101,14 @@
 	border: none;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 1.4rem;
-	line-height: 2.2rem;
+	font-size: 1.2rem;
+	line-height: 2rem;
 	color: #5f6368;
 	cursor: pointer;
+
+	&:hover {
+		color: #096dd9;
+	}
 }
 
 .update-btns {
@@ -102,10 +125,14 @@
 	border: none;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 1.4rem;
-	line-height: 2.2rem;
+	font-size: 1.2rem;
+	line-height: 2rem;
 	color: #5f6368;
 	cursor: pointer;
+
+	&:hover {
+		color: #096dd9;
+	}
 }
 
 .accept-button {
@@ -113,11 +140,15 @@
 	border: none;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 1.4rem;
-	line-height: 2.2rem;
-	color: #096DD9;
+	font-size: 1.2rem;
+	line-height: 2rem;
+	color: #5f6368;
 	cursor: pointer;
-	margin-right: 2rem;
+	margin-right: 2.4rem;
+
+	&:hover {
+		color: #096dd9;
+	}
 }
 
 #dashboard-input-bio {
@@ -142,7 +173,7 @@
 		align-items: center;
 		height: 7.5rem;
 		border-bottom: 1px solid #dadce0;
-		padding: 1.7rem 3.2rem;
+		padding: 1.5rem 2.4rem;
 
 		@media screen and (max-width: 380px) {
 			flex-direction: column;

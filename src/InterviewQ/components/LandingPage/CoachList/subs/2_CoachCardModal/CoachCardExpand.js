@@ -10,7 +10,9 @@ import { ICONS } from '../../../../../../global/icons/iconConstants';
 const CoachCard = ({ post, setOpen, open }) => {
 	const node = useRef();
 	let { coach } = post;
-
+  const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
+  const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
+  const fullName = `${coach.first_name} ${coach.last_name}`;
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -44,7 +46,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						}>
 						<div className='coachcard-header-txt-expand'>
 							<h3>
-								{coach.first_name} {coach.last_name}
+                {(fullName.length > 25 ? `${fullName.substring(0,25)}...` : fullName)}
 							</h3>
 							<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
 						</div>
@@ -101,9 +103,9 @@ const CoachCard = ({ post, setOpen, open }) => {
 					</div>
 					<div className='coachcard-footer-expand'>
 						<div className='coachcard-links-exand'>
-							{post.coach.twitter_url && (
+							{post.coach.linkedin_url && (
 								<a
-									href={post.coach.linkedin_url}
+									href={linkedin}
 									target='_blank'
 									rel='noopener noreferrer'>
 									<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
@@ -111,7 +113,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 							)}
 							{post.coach.twitter_url && (
 								<a
-									href={post.coach.twitter_url}
+									href={twitter}
 									target='_blank'
 									rel='noopener noreferrer'>
 									<Icon icon={ICONS.TWITTER} width={24} height={24} />

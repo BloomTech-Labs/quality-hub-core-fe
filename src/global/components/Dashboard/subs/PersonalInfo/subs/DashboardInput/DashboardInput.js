@@ -173,7 +173,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					<h3>{userKey && capitalize(userKey)}</h3>
+					<h4>{userKey && capitalize(userKey)}</h4>
 				</span>
 				{/* <div> */}
 				{editing ? (
