@@ -22,10 +22,10 @@ export default function CoachDash() {
 	return (
 		<div className='dash-coachinfo'>
 			<div className='coachinfo-header'>
-				<div className='circle-blue'>
+				{/* <div className='circle-blue'>
 					<Icon icon={ICONS.COACHINFO} width={26} height={28} color='white' />
-				</div>
-				<h1>Coach Info</h1>
+				</div> */}
+				<h1>Settings</h1>
 			</div>
 
 			<EditPost />
