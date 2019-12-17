@@ -789,13 +789,15 @@ justify-content: center;
 	align-items: center;
 	}
 .delete-booking-btn {
-	width: 13rem;
+	width: 31.1rem;
 	height: 3.6rem;
 	margin: 1rem auto;
-	background-color: #cf1322;
+	margin-top: 16px;
+	border-top: 1px solid #DADCE0;
+	background-color: white !important;
 	border-radius: 0.4rem;
 	text-align: center;
-	color: white;
+	color: #cf1322;
 	font-size: 1.4rem;
 	font-weight: 400;
 	cursor: pointer;
