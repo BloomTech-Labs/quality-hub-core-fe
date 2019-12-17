@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
+import { convertToLocal } from '../../../../../global/utils/TZHelpers';
 import { isPast } from '../../../../../global/utils/isPast';
 
 import CoachHistoryRow from './2_CoachHistoryRow';
@@ -51,21 +52,15 @@ export default function CoachHistory() {
 	const headings = ['Seeker', 'Date', 'Time', 'Price', 'Report', 'Review'];
 
 	const filteredData = data
-		? data.bookingsByCoach.filter(booking =>
-				isPast(
-					booking.year,
-					booking.month,
-					booking.day,
-					booking.hour,
-					booking.minute,
-				),
-		  )
+		? data.bookingsByCoach
+				.map(booking => convertToLocal(booking))
+				.filter(booking => isPast(booking))
 		: [];
 
 	return (
 		<div className='coach-history'>
 			<h2>Coach History</h2>
-			{data && filteredData.length ? (
+			{filteredData && filteredData.length ? (
 				<div className='coach-history-headings'>
 					{headings.map((heading, index) => (
 						<h3 key={index}>{heading}</h3>
@@ -75,7 +70,7 @@ export default function CoachHistory() {
 				<p>You have no previous bookings as a Coach</p>
 			)}
 			{loading && <p>Loading...</p>}
-			{data &&
+			{filteredData &&
 				filteredData.map(booking => (
 					<CoachHistoryRow key={booking.id} booking={booking} />
 				))}

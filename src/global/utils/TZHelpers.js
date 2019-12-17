@@ -1,16 +1,10 @@
 import { format } from 'date-fns';
 import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 
-export const convertToLocal = (obj) => {
-  const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+export const convertToLocal = obj => {
+	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	let rawDate = new Date(
-  Date.UTC(
-		obj.year,
-		obj.month - 1,
-		obj.day,
-		obj.hour,
-		obj.minute,
-  )
+		Date.UTC(obj.year, obj.month - 1, obj.day, obj.hour, obj.minute),
 	);
 	let rawIso = rawDate.toISOString();
 	let zoned = utcToZonedTime(rawIso, localTime);
@@ -26,9 +20,8 @@ export const convertToLocal = (obj) => {
 	return zonedDate;
 };
 
-
-export const convertToUTC = (obj) => {
-  const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+export const convertToUTC = obj => {
+	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	let localAvail = new Date(
 		obj.year,
 		obj.month - 1,
