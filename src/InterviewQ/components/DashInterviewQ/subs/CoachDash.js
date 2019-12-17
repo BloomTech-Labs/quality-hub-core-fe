@@ -18,7 +18,7 @@ import useModal from '../../../../global/utils/useModal';
 
 export default function CoachDash() {
 	const { isShowing, toggle } = useModal();
-
+	window.scrollTo(0, 0);
 	return (
 		<div className='dash-coachinfo'>
 			<div className='coachinfo-header'>
@@ -27,7 +27,7 @@ export default function CoachDash() {
 				</div> */}
 				<h1>Settings</h1>
 			</div>
-
+		
 			<EditPost />
 			{/* <Review /> */}
 

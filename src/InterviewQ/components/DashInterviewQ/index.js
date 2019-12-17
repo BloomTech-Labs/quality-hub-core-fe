@@ -13,6 +13,7 @@ export default function DashInterviewQ() {
 	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
+	//window.scrollTo(0, 0);
 	return (
 		<div className='lower-dashboard'>
 			{loading ? null : coachPost && coachPost.postByCoach ? (

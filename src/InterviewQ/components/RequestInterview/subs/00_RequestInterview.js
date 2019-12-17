@@ -230,7 +230,7 @@ const RequestInteview = props => {
 		});
 	}
 
-	// createBooking(e, time)
+	window.scrollTo(0, 0);
 
 	return (
 		<div className="booking-content-section">

@@ -121,10 +121,19 @@ body {
 			line-height: 2.4rem;
 			color: #595959;
 			width: 40rem;
-			.coachcard-icon-expand {
-				width: 4.8rem;
+			// .coachcard-icon {
+			// 	margin-right: 8px;
+			// 	// width: 2rem;
+			// 	// display: inline-block;
+			// }
+			.coachcard-icon {
 				display: inline-block;
-			}
+				width: 1.8em;
+        // margin-top: 0.2rem;
+      }
+      .text {
+        width: 90%;
+      }
 		}
 	}
 	.coachcard-description-expand {
