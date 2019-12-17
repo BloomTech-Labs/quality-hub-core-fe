@@ -461,7 +461,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							<div className='delete-post'>
 								<p>Your coach post is currently unpublished.</p>
 								<button
-									class='update-post-btn'
+									className='update-post-btn'
 									onClick={e => handleSubmitPost(e)}>
 									{' '}
 									Publish{' '}
