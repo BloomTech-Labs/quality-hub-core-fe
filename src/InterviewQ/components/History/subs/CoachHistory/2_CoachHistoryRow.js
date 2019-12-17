@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 
-import CoachBookingContent from './3_CoachBookingContent';
-import SeekerBookingContent from '../SeekerHistory/3_SeekerBookingContent';
+import CoachHistoryReport from './3_CoachHistoryReport';
+import CoachHistoryReview from './4_CoachHistoryReview';
 
 export default function CoachHistoryRow({ booking }) {
 	const [showReport, setShowReport] = useState(false);
@@ -24,9 +24,7 @@ export default function CoachHistoryRow({ booking }) {
 					{booking.hour}:{booking.minute}
 					{booking.minute === 0 && '0'}
 				</div>
-				<div className='history-col'>
-					${booking.coach.post && booking.coach.post.price}
-				</div>
+				<div className='history-col'>${booking.price}</div>
 				<div className='history-col'>
 					{booking.report ? (
 						<div
@@ -38,7 +36,7 @@ export default function CoachHistoryRow({ booking }) {
 					) : (
 						<Link
 							to={{
-								pathname: `/interviewq/coachreport/${booking.uniquecheck}`,
+								pathname: `/interviewq/history/coachreport/${booking.uniquecheck}`,
 								state: { firstName: booking.seeker.first_name },
 							}}>
 							Write Report
@@ -52,8 +50,8 @@ export default function CoachHistoryRow({ booking }) {
 					<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
 				</div>
 			</div>
-			{showReport && <SeekerBookingContent booking={booking} />}
-			{showReview && <CoachBookingContent booking={booking} />}
+			{showReport && <CoachHistoryReport booking={booking} />}
+			{showReview && <CoachHistoryReview booking={booking} />}
 		</div>
 	);
 }

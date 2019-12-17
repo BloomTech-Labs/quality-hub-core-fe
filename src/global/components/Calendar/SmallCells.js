@@ -74,7 +74,6 @@ const SmallCells = ({
 	}, [availabilities, currentMonth]);
 
 	const availsExist = someDate => {
-		console.log('month', integerMonth)
 		let integerDate = getDate(someDate);
 		let match = false;
 		if (allTheAvails) {

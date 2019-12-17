@@ -38,7 +38,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	// 	tagString: '',
 	// });
 	let coachObj = coachPost && coachPost.postByCoach;
-	const [post, setPost] = useState(coachObj)
+	const [post, setPost] = useState(coachObj);
 	const [deleteTags, setDelete] = useState([]);
 	//Component State
 	let tagArray =
@@ -202,7 +202,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		<>
 			<div className='IQ-editform'>
 				{/* START BASIC INFO */}
-				<h2>Basic Info</h2>
+				<h2>Coach Post</h2>
 				<div className='IQ-dash-input'>
 					<div className='IQ-dash-row post-row'>
 						<span className='IQ-dash-heading'>
@@ -342,7 +342,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
-							<h4>TAGS</h4>
+							<h4>KEYWORDS</h4>
 						</span>
 						<div className='tag-form'>
 							{editing[5] && (
@@ -389,7 +389,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												{post.price === 0 ? '0' : post.price ? post.price :  original && original.price}
+												{post.price === 0
+													? '0'
+													: post.price
+													? post.price
+													: original && original.price}
 											</p>
 											<p>$200</p>
 										</div>
@@ -434,14 +438,15 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<h2>Availability</h2>
 				<Availability />
 			</div>
-			<div className='IQ-editform'>
+
+			<div className='coach-post-status'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
 					//if coach is done loading
 					!loading ? (
 						published ? (
 							// if coach listing is published, render 'unpublished'
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently published.</p>
 								<button
 									className='update-post-btn'
@@ -455,7 +460,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							<div className='delete-post'>
 								<p>Your coach post is currently unpublished.</p>
 								<button
-									class='update-post-btn'
+									className='update-post-btn'
 									onClick={e => handleSubmitPost(e)}>
 									{' '}
 									Publish{' '}

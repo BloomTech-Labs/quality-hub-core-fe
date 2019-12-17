@@ -8,8 +8,7 @@
 	border-radius: 0.8rem;
 	padding: 2.4rem 0;
 
-
-  h2 {
+	h2 {
 		font-style: normal;
 		font-weight: 600;
 		font-size: 2rem;
@@ -38,52 +37,52 @@
 		line-height: 2rem;
 		color: #5f6368;
 		text-transform: uppercase;
-  }
-  
-  .post-input.last {
-    border-bottom: none;
-  }
-  .post-row.post-tag {
-    width: 100%;
-  }
-  .hidden {
-    display: none;
-  }
-  .tag-form {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    .tag-input {
-      margin-bottom: 1.0rem;
-    }
-  }
-  
-  .tags-container {
-    > p {
-      display: flex;
-      flex-wrap: wrap;
-      border-radius: 100px;
-      line-height: 2.2rem;
-      color: #096DD9;
-    }
-    .tag-button {
-      background-color: lightgray;
-      margin: 0.5% 0.5%;
-      padding: 0% 1.2%;
-      border-radius: 100px;
-      height: 25px;
-      width: max-content;
-      flex-wrap: nowrap;
-      white-space:nowrap;
-      background: rgba(9, 109, 217, 0.1);
-      span {
-        color: #096DD9;
-        &:hover {
-          color: gray;
-        }
-      }
-    }
-  }
+	}
+
+	.post-input.last {
+		border-bottom: none;
+	}
+	.post-row.post-tag {
+		width: 100%;
+	}
+	.hidden {
+		display: none;
+	}
+	.tag-form {
+		display: flex;
+		flex-direction: column;
+		width: 90%;
+		.tag-input {
+			margin-bottom: 1rem;
+		}
+	}
+
+	.tags-container {
+		> p {
+			display: flex;
+			flex-wrap: wrap;
+			border-radius: 100px;
+			line-height: 2.2rem;
+			color: #096dd9;
+		}
+		.tag-button {
+			background-color: lightgray;
+			margin: 0.5% 0.5%;
+			padding: 0% 1.2%;
+			border-radius: 100px;
+			height: 25px;
+			width: max-content;
+			flex-wrap: nowrap;
+			white-space: nowrap;
+			background: rgba(9, 109, 217, 0.1);
+			span {
+				color: #096dd9;
+				&:hover {
+					color: gray;
+				}
+			}
+		}
+	}
 }
 
 .IQ-dash-input {
@@ -101,7 +100,6 @@
 		align-items: flex-start;
 	}
 }
-
 
 .dash-input:last-of-type {
 	border-bottom: none;
