@@ -21,7 +21,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 
-	console.log(coachPost)
 	const [removeTag] = useMutation(REMOVE_TAG);
 	const [changeField] = useMutation(UPDATE_POST);
 
