@@ -16,6 +16,9 @@ query availabilities ($coach_id: String!){
       id
       first_name
       last_name
+      post{
+        price
+      }
     }
   }
   }
@@ -36,6 +39,7 @@ export const CREATE_BOOKING = gql`
     $interviewQuestions: String
     $interviewGoals: String
     $resumeURL: String
+    $price: Int!
   ) {
     createBooking(
       year: $year
@@ -51,6 +55,7 @@ export const CREATE_BOOKING = gql`
       interviewQuestions: $interviewQuestions
       interviewGoals: $interviewGoals
       resumeURL : $resumeURL
+      price: $price
     ) {
       id
       year
@@ -58,6 +63,7 @@ export const CREATE_BOOKING = gql`
       day
       hour
       minute
+      price
       coach{
         id
       }
