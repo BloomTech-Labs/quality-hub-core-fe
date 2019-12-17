@@ -14,21 +14,18 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 
 	const nextMonth = () => {
-		console.log(getMonth(new Date));
-		console.log(getYear(new Date));
-		setOpen(false);
+		setSelectedCell(addMonths(currentMonth, 1));
 		setCurrentMonth(addMonths(currentMonth, 1))
 		
 	}
 	const lastMonth = () => {
 		if (isAfter(currentMonth, new Date())){
-			setOpen(false);
+			setSelectedCell(subMonths(currentMonth, 1));
 		 setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
 
 	const onDateClick = day => {
-		console.log(day);
 		if(isBefore(new Date(), day) || getDate(new Date) === getDate(day)){
 			setSelectedCell(day);
 		}
@@ -41,10 +38,10 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		if (isAfter(new Date(year, e.target.value, 1), new Date())) {
-			setOpen(false);
-			setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
+			setSelectedCell(setMonth(new Date(year, 1, getDate(new Date)), e.target.value));
+			setCurrentMonth(setMonth(new Date(year, 1, getDate(new Date)), e.target.value));
 			if (format(currentMonth, 'Myyyy') === format(new Date(), 'Myyyy')) {
-				setSelectedCell(new Date());
+				// setSelectedCell(new Date());
 				//setSelectedCell(new Date(year, e.target.value, 1))
 			}
 		}
@@ -53,8 +50,8 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const onYearChange = e => {
 		const month = getMonth(new Date(currentMonth));
 		if (isAfter(new Date(e.target.value, month, 31), new Date())) {
-			setOpen(false);
-			setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
+			setSelectedCell(setMonth(new Date(e.target.value, 1, getDate(new Date)), month))
+			setCurrentMonth(setMonth(new Date(e.target.value, 1, getDate(new Date)), month));
 		}
 	};
 	
