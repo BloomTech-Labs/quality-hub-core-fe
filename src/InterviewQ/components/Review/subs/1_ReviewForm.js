@@ -36,7 +36,7 @@ const ReviewForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    let id = props.match.params.id
+    let id = props.id;
     if (checkError(fields.rating)) {
       submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
     }
@@ -62,7 +62,7 @@ const ReviewForm = props => {
 
   useEffect(() => {
     if (called && !error) {
-      props.history.goBack();
+      props.setOpen(true);
     }
   }, [called])
 
