@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
 // Styles & Icons
-import './00_DeletePostModal.scss';
+import './DeletePostModal.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
 import { DELETE_POST } from '../../Resolvers';

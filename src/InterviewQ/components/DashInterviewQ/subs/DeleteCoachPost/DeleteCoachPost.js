@@ -1,9 +1,11 @@
+// Libraries
 import React from 'react';
 
+// Styles
 import './DeleteCoachPost.scss';
 
-import DeletePostModal from './DeletePostModal/00_DeletePostModal';
-
+// Modal
+import DeletePostModal from './DeletePostModal/DeletePostModal';
 import useModal from '../../../../../global/utils/useModal';
 
 export default function DeletePost() {

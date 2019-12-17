@@ -21,7 +21,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 
-	console.log(coachPost)
+	console.log(coachPost);
 	const [removeTag] = useMutation(REMOVE_TAG);
 	const [changeField] = useMutation(UPDATE_POST);
 
@@ -39,7 +39,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	// 	tagString: '',
 	// });
 	let coachObj = coachPost && coachPost.postByCoach;
-	const [post, setPost] = useState(coachObj)
+	const [post, setPost] = useState(coachObj);
 	const [deleteTags, setDelete] = useState([]);
 	//Component State
 	let tagArray =
@@ -203,7 +203,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		<>
 			<div className='IQ-editform'>
 				{/* START BASIC INFO */}
-				<h2>Basic Info</h2>
+				<h2>Coach Post</h2>
 				<div className='IQ-dash-input'>
 					<div className='IQ-dash-row post-row'>
 						<span className='IQ-dash-heading'>
@@ -343,7 +343,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
-							<h4>TAGS</h4>
+							<h4>KEYWORDS</h4>
 						</span>
 						<div className='tag-form'>
 							{editing[5] && (
@@ -390,7 +390,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												{post.price === 0 ? '0' : post.price ? post.price :  original && original.price}
+												{post.price === 0
+													? '0'
+													: post.price
+													? post.price
+													: original && original.price}
 											</p>
 											<p>$200</p>
 										</div>
@@ -435,7 +439,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<h2>Availability</h2>
 				<Availability />
 			</div>
-			<div className='IQ-editform'>
+
+			{/* <div className='IQ-editform'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
 					//if coach is done loading
@@ -467,7 +472,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				) : (
 					<p>text</p>
 				)}
-			</div>
+			</div> */}
 		</>
 	);
 };
