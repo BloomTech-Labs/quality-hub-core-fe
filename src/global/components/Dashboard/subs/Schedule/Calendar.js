@@ -45,7 +45,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		 setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
-	
+
 	const onDateClick = day => {
 		setOpen(true);
 		setSelectedDate(day);
@@ -130,9 +130,9 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				// open={open}
 			/>
 			{open && (
-				<div className='calendar-detail'>
+				<div className='calendar-detail' ref={node}>
 					<CalendarDetail
-					node = {node}
+					open={open}
 						setOpen={setOpen}
 						selectedDate={selectedDate}
 					/>
