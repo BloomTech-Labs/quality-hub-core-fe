@@ -10,6 +10,7 @@ import ReviewPage from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
+import Meeting from './components/Meeting';
 
 const InterviewQContainer = () => {
 	return (
@@ -25,9 +26,17 @@ const InterviewQContainer = () => {
 					path='/interviewq/interviewconfirmed'
 					component={ConfirmedInterview}
 				/>
-				<Route path='/interviewq/history' component={History} />
-				<Route path='/interviewq/coachreport/:key' component={CoachReport} />
-				<Route exact path='/interviewq/review/:id' component={ReviewPage} />
+				<Route exact path='/interviewq/history' component={History} />
+				<Route
+					path='/interviewq/history/coachreport/:key'
+					component={CoachReport}
+				/>
+				<Route
+					exact
+					path='/interviewq/history/review/:id'
+					component={ReviewPage}
+				/>
+				<Route path='/interviewq/meeting' component={Meeting} />
 			</div>
 		</>
 	);
