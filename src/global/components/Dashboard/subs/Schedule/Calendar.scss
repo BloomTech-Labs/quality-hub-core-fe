@@ -18,15 +18,51 @@ $neutral-cal-color: #fff;
 }
 
 .calendar-button{
+	display: flex;
+	text-decoration: none !important;
+	align-items: center;
+	justify-content: center;
 	color: black;
+	font-size: 16px;
 	border: 1px solid #dadce0;
 	border-radius: 0.4rem;
 	height: 4rem;
 	cursor: pointer;
+	// :hover{
+	// 	background-color: #EFEFEF;
+	// }
 	p{
+		text-decoration: none !important;
 		margin: 3px 20px;
 		font-weight: 500;
 	}
+
+}
+
+.calendar-button:hover{
+		background-color: #EFEFEF;
+}
+.cal-header select:hover{
+
+		background-color: #EFEFEF;
+
+}
+.cal-arrow-container{
+	margin: 0 .8rem;
+	display: flex;
+}
+.next-arrow{
+	margin: 0;
+	width: 45px;
+	border-top-right-radius: 100px;
+	border-bottom-right-radius: 100px;
+}
+
+.back-arrow{
+	margin-right: 0;
+		width: 45px;
+		border-top-left-radius: 100px;
+		border-bottom-left-radius: 100px;
 }
 
 /* GRID */
@@ -72,6 +108,10 @@ $neutral-cal-color: #fff;
 	justify-content: center;
 	align-items: center;
 	//text-align: right;
+	p{
+		font-weight: 600;
+font-size: 12px;
+	}
 }
 
 .col-end {
@@ -82,7 +122,7 @@ $neutral-cal-color: #fff;
 /* Calendar */
 .calendar-select {
 	display: flex;
-	justify-content: space-between;
+	//justify-content: space-between;
 }
 .flex-middle {
 	display: flex;
@@ -101,8 +141,17 @@ $neutral-cal-color: #fff;
 .calendar .cal-header {
 	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 115%;
+	font-size: 1.6rem;
 	padding: 1.5em 0;
+	select, button{
+		border: 1px solid #dadce0;
+		font-size: 1.6rem;
+		color: #3C4043;
+	
+	}
+	select{
+		margin-right: .8rem;
+	}
 	// border-bottom: 1px solid var(--border-color);
 }
 
@@ -206,8 +255,6 @@ $neutral-cal-color: #fff;
 
 .seeker-booking {
 	color: #cf1322;
-	// background-color: #FFCCC7;
-
 	border: 1px solid #cf1322;
 	border-left: 3px solid #cf1322;
 	height: 25px;
@@ -224,21 +271,21 @@ $neutral-cal-color: #fff;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 99;
 	width: 450px;
-	
 	display: flex;
 	justify-content: flex-start;
 	text-align: left;
 	flex-direction: column;
-	// align-items: center;
-	// align-content: center;
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 	border-radius: 4px;
 	border: 1px solid lightgray;
 	max-height:400px;
    overflow:scroll;
 	 overflow-x:hidden;
+	 -webkit-transform: translateX(0);
+	 transform: translateX(0);
 	.cal-detail-header{
 		background-color: white;
+		margin-top: 4px;
 		position: fixed;
 		width: 100%;
 		text-align: left;
@@ -269,6 +316,10 @@ $neutral-cal-color: #fff;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	p{
+		display: flex;
+		align-items: center;
+	}
 }
 
 .coach-detail{
@@ -554,7 +605,7 @@ padding-left: 40%;
 	grid-row-end: 38;
 }
 
-.start1730 {
+.start17-30 {
 	grid-row-start: 37;
 	grid-row-end: 39;
 }
@@ -620,7 +671,9 @@ padding-left: 40%;
 // }
 
 .selected {
-	border: 2px solid $main-cal-color !important;
+	background-color: rgba(9, 109, 217, 0.1) !important;
+	// box-sizing: border-box;
+	// border: 2px solid $main-cal-color !important;
 }
 
 // Small Calendar
@@ -697,8 +750,12 @@ justify-content: center;
 		border-radius: 50%;
 	}
 	
+	.cell{
+		box-sizing: border-box;
+	}
 	.past-day{
-		cursor: auto;
+		cursor: not-allowed;
+		caret-color: black;
 		position: relative;
 		height: 50px;
 		//border-right: 1px solid var(--border-color);
@@ -732,16 +789,22 @@ justify-content: center;
 	align-items: center;
 	}
 .delete-booking-btn {
-	width: 13rem;
+	width: 31.1rem;
 	height: 3.6rem;
 	margin: 1rem auto;
-	background-color: #cf1322;
+	margin-top: 16px;
+	border-top: 1px solid #DADCE0;
+	background-color: white !important;
 	border-radius: 0.4rem;
 	text-align: center;
-	color: white;
+	color: #cf1322;
 	font-size: 1.4rem;
 	font-weight: 400;
 	cursor: pointer;
+}
+
+.disabled-delete-booking-btn {
+	background-color: #a09e9f;
 }
 
 .no-bookings {

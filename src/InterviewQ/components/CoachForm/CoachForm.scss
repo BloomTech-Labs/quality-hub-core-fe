@@ -1,3 +1,5 @@
+@import '../../../global/styles//variables';
+
 #overlay-coach-form {
 	position: fixed;
 	display: none;
@@ -17,7 +19,7 @@
 	height: 6.1rem;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-color: #bfbfbf;
+	background-color: $gray-avatar;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -309,6 +311,9 @@ textarea.add-coach-form-row-7 {
 	font-size: 20px;
 	line-height: 28px;
 	color: #096dd9;
+	max-width: 17rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .add-coach-form-preview-amount {

@@ -34,6 +34,7 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			days.push(
 				<div
 					id={cellId}
+				
 					className={`col cell ${
 						!isSameMonth(day, monthStart)
 							? 'disabled'
@@ -54,7 +55,11 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			</div>,
 		);
 		days = [];
-  }
+	}
+	
+	useEffect(() => {
+		console.log('changin')
+	}, [currentMonth])
 
 DisplayBookings(currentMonth);
  

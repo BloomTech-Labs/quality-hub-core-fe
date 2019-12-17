@@ -54,22 +54,23 @@ const CoachCard = ({ post, setOpen, open }) => {
 							{coach.image_url ? (
 								<img src={coach.image_url} alt='Coach Profile Pic' />
 							) : (
-								<img
-									src='https://www.birdorable.com/img/bird/th440/california-quail.png'
-									alt='Coach Profile Pic'
-								/>
+                <div className='blank-image'>
+                  <Icon icon={ICONS.BLANK_AVATAR} color="white" width={80} height={90} />
+                </div>
 							)}
 						</div>
 					</div>
 					<div className='coachcard-info-expand'>
 						<p>
-							<span className='coachcard-icon-expand'>
+						<span className='coachcard-icon industry'>
 								<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 							</span>
+							<span className='text'>
 							{post.company} - {post.position}
+							</span>
 						</p>
 						<p>
-							<span className='coachcard-icon-expand'>
+							<span className='coachcard-icon'>
 								<Icon
 									icon={ICONS.LOCATION}
 									width={16}
@@ -77,10 +78,12 @@ const CoachCard = ({ post, setOpen, open }) => {
 									color='#595959'
 								/>
 							</span>
+							<span className='coachcard-posloc'>
 							{coach.city}, {coach.state}
+							</span>
 						</p>
 						<p>
-							<span className='coachcard-icon-expand'>
+							<span className='coachcard-icon'>
 								<Icon
 									icon={ICONS.STAR}
 									width={19}
@@ -88,7 +91,9 @@ const CoachCard = ({ post, setOpen, open }) => {
 									color='#595959'
 								/>
 							</span>
+							<span>
 							4.9
+							</span>
 						</p>
 					</div>
 					<div className='coachcard-description-expand'>

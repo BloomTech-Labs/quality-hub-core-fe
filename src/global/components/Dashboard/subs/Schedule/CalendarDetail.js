@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { format } from 'date-fns';
+import { format, differenceInHours } from 'date-fns';
 import { clock } from '../../../../../global/icons/Clock';
 import { document } from '../../../../../global/icons/document.js';
 import { paperclip } from '../../../../../global/icons/paperclip.js';
+import { interviewQtie } from '../../../../../global/icons/interviewqtie.js';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 import Icon from '../../../../../global/icons/Icon';
 import { convertToLocal } from '../../../../../global/utils/TZHelpers.js';
-import Loading from '../../../Loading';
 import { gql } from 'apollo-boost';
 
-const CalendarDetail = ({ selectedDate, setOpen }) => {
+const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 	const DELETE_BOOKING = gql`
 		mutation deleteBooking($uniquecheck: String!) {
 			deleteBooking(uniquecheck: $uniquecheck) {
 				id
+				uniquecheck
 			}
 		}
 	`;
@@ -47,7 +48,6 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	};
 	useEffect(() => {
 		if (data) {
-			
 			let bookingArray = sortBookingsFunction([
 				...data.bookingsByCoach,
 				...data.bookingsBySeeker,
@@ -58,11 +58,10 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	}, [data]);
 
 	useEffect(() => {
-		refetch();
+		
 		let selectedDay = format(selectedDate, 'd');
 		let selectedMonth = format(selectedDate, 'M');
 		if (allBookings) {
-			//refetch();
 			let convertedBookings = allBookings.map(booking =>
 				convertToLocal(booking),
 			);
@@ -79,17 +78,28 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-	const handleDelete = id => {
-		//let uniquecheck = e.target.getAttribute('data-id');
-		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;
-		//console.log(uniquecheck);
-		console.log()
+	var canDelete = true
+
+	const lessThan24 = (time) => {
+		if (differenceInHours(time, new Date()) < 24) {
+			canDelete = false
+			return "disabled-delete-booking-btn"
+		}
+		else {
+			return ""
+		}
+	}
+
+	
+
+	const handleDelete = (id, event) => {
+		event.stopPropagation();
 		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
-				// client.clearStore();
 				window.location.reload(true);
 				// client.clearStore();
-				// refetch();
+				// client.resetStore();
+				//refetch();
 				setOpen(false);
 				console.log(res);
 			})
@@ -106,18 +116,14 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 				<div>
 					{booking.map((info, index) => {
 						console.log(info);
+						console.log(booking.length)
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
 								<h3>
 									<span>&#x25FC;</span> InterviewQ
 								</h3>
 								<p>
-									<Icon
-										icon={ICONS.PERSONALINFO}
-										width={15}
-										height={15}
-										color='#777'
-									/>
+									{interviewQtie()}
 									{info.seeker.first_name} {info.seeker.last_name} (Seeker)
 								</p>
 								<p>
@@ -167,8 +173,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={() => handleDelete(info.uniquecheck)}>
-										Cancel Booking
+										onClick={(event) => handleDelete(info.uniquecheck, event)}>
+										Cancel Appointment
 									</button>
 								)}
 							</div>
@@ -178,12 +184,7 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 									<span>&#x25FC;</span> InterviewQ
 								</h3>
 								<p>
-									<Icon
-										icon={ICONS.PERSONALINFO}
-										width={15}
-										height={15}
-										color='#777'
-									/>
+								{interviewQtie()}
 									{info.coach.first_name} {info.coach.last_name} (Coach)
 								</p>
 
@@ -202,15 +203,15 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 								</p>
 								{info.id && (
 									<button
-										className={`${info.id} delete-booking-btn`}
+										className={`${info.id} delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
 										data-id={`${info.uniquecheck}`}
 										data-year={info.year}
 										data-month={info.month}
 										data-day={info.day}
 										data-hour={info.hour}
 										data-minute={info.minute}
-										onClick={() => handleDelete(info.uniquecheck)}>
-										Cancel Booking
+										onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
+										Cancel Appointment
 									</button>
 								)}
 							</div>

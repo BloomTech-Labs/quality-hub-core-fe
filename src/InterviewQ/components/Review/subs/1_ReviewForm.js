@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
-import { CREATE_REVIEW } from './Resolvers';
+import { CREATE_REVIEW } from '../Resolvers';
 import Rating from './2_Rating';
 import './ReviewForm.scss';
 

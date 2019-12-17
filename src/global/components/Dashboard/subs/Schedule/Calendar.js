@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths, format, isAfter } from 'date-fns';
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
@@ -41,8 +41,11 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCurrentMonth(addMonths(currentMonth, 1))
 	}
 	const lastMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1))
+		if (isAfter(currentMonth, new Date(2019, 0, 1))){
+		 setCurrentMonth(subMonths(currentMonth, 1))
+		}
 	}
+
 	const onDateClick = day => {
 		setOpen(true);
 		setSelectedDate(day);
@@ -59,14 +62,17 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 	};
 
 	return (	
-		<div className='calendar' ref={node}>
+		<div className='calendar'>
 			<header className='calendar-header'>
 				<div className='cal-header row flex-middle'>
 					<div className='col col-start'>
-						<h2>{format(currentMonth, "MMMM")}</h2>
-					</div>
+						{/* <h2>{format(currentMonth, "MMMM")}</h2> */}
+					</div >
 					<div className='col calendar-select'>
-						<button className='calendar-button' onClick={lastMonth}>{backArrow()}</button>
+						<div className='cal-arrow-container'>
+						<button className='calendar-button back-arrow' onClick={lastMonth}>{backArrow()}</button>
+						<button className='calendar-button next-arrow' onClick={nextMonth}>{nextArrow()}</button>
+						</div>
 						<select
 							onChange={onMonthChange}
 							value={getMonth(new Date(currentMonth))}>
@@ -89,9 +95,8 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 								);
 							})}
 						</select>
-						<button className='calendar-button' onClick={nextMonth}>{nextArrow()}</button>
 
-						<Link to='/dashboard/schedule/week'>
+						<Link className='calendar-button' to='/dashboard/schedule/week'>
 						<button className='calendar-button'>
 							<p>
 							Week
@@ -118,14 +123,16 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 
 			<div className="calendar-cells"></div>
 			<Cells
+			
 				onDateClick={onDateClick}
 				currentMonth={currentMonth}
 				selectedDate={selectedDate}
 				// open={open}
 			/>
 			{open && (
-				<div className='calendar-detail'>
+				<div className='calendar-detail' ref={node}>
 					<CalendarDetail
+					open={open}
 						setOpen={setOpen}
 						selectedDate={selectedDate}
 					/>
