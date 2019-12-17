@@ -18,6 +18,7 @@ import CoachForm from '../CoachForm';
 import { GET_USER } from './Resolvers';
 
 export default function InterviewLandingPage() {
+	
 	// Component State
 	const [toggleFilter, setToggleFilter] = useState(true);
 	const [hasPost, setHasPost] = useState();
