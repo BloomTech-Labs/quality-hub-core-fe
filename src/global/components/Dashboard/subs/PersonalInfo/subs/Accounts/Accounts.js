@@ -11,12 +11,12 @@ const GET_ACCOUNTS = gql`
 	query {
 		me {
 			id
-			linkedin_url
-			github_url
-			personal_url
-			twitter_url
-			portfolio_url
-			blog_url
+			linkedin: linkedin_url
+			github: github_url
+			personal: personal_url
+			twitter: twitter_url
+			portfolio: portfolio_url
+			blog: blog_url
 		}
 	}
 `;

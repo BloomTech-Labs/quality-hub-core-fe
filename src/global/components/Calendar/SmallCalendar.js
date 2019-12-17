@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Dashboard/subs/Schedule/Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate, format, isAfter } from 'date-fns';
 
 import { nextArrow } from '../../icons/nextArrow';
 import { backArrow } from '../../icons/backArrow';
@@ -18,9 +18,11 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		
 	}
 	const lastMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1))
-	
+		if (isAfter(currentMonth, new Date(2019, 0, 1))){
+		 setCurrentMonth(subMonths(currentMonth, 1))
+		}
 	}
+
 	const onDateClick = day => {
 		if(isBefore(new Date(), day) || getDate(new Date) === getDate(day)){
 			setSelectedCell(day);
@@ -30,7 +32,10 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		setSelectedCell(new Date(year, e.target.value, 1))
+		if (format(currentMonth, 'Myyyy') === format(new Date (), 'Myyyy')){
+			setSelectedCell(new Date())
+		//setSelectedCell(new Date(year, e.target.value, 1))
+		}
 	};
 
 	const onYearChange = e => {
@@ -47,7 +52,10 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 					
 					</div>
 					<div className='col small-calendar-select'>
-						<button className='calendar-button' onClick={lastMonth}>{backArrow()}</button>
+						<div className='cal-arrow-container'>
+						<button className='calendar-button back-arrow' onClick={lastMonth}>{backArrow()}</button>
+						<button className='calendar-button next-arrow' onClick={nextMonth}>{nextArrow()}</button>
+						</div>
 						<select
 							onChange={onMonthChange}
 							value={getMonth(new Date(currentMonth))}>
@@ -70,7 +78,6 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 								);
 							})}
 						</select>
-						<button className='calendar-button' onClick={nextMonth}>{nextArrow()}</button>
 					</div>
 				</div>
 			</header>

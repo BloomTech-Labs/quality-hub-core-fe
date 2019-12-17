@@ -32,6 +32,7 @@ export default function DeletePost({ isShowing, hide }) {
 			{isShowing &&
 				createPortal(
 					<div className='modal-container'>
+					<div id='overlay-delete-post-modal'></div>
 						<div className='modal-wrapper' aria-modal aria-hidden role='dialog'>
 							<div className='modal-header'>
 								<Icon

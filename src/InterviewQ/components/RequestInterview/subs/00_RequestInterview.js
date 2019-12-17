@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
-import { format, getMonth, differenceInMilliseconds } from 'date-fns';
+import { format, getMonth, getYear, differenceInMilliseconds } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -140,6 +140,7 @@ const RequestInteview = props => {
 						.map(avail => convertToLocal(avail))
 						.filter(
 							avail =>
+								avail.year === getYear(selectedCell) &&
 								avail.day === currentDate &&
 								avail.month === currentMonth &&
 								avail.isOpen === true,
@@ -197,19 +198,20 @@ const RequestInteview = props => {
 		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
-				if (dateAvails[x].day == dateAvails[y].day) {
-					if (
-						`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-							`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
-						-50
-					) {
-						bookingArray.push(dateAvails[x]);
-						break;
+				if (dateAvails[x].year === dateAvails[y].year) {
+					if (dateAvails[x].day == dateAvails[y].day) {
+						if (
+							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
+								`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
+							-50
+						) {
+							bookingArray.push(dateAvails[x]);
+							break;
+						}
 					}
 				}
 			}
 		}
-		// console.log(bookingArray);
 		setCurrentSlots(bookingArray);
 	};
 
@@ -230,14 +232,14 @@ const RequestInteview = props => {
 
 	var inPast = false;
 	const isPast = (time) => {
-		if (differenceInMilliseconds(time, new Date()) < 0) {
-			inPast = true
-			return "disabled-interview-slot"
-		}
-		else {
-			return ""
-		
-		}
+		console.log(differenceInMilliseconds(time, new Date()))
+		// if (differenceInMilliseconds(time, new Date()) < 0) {
+		// 	inPast = true
+		// 	return "disabled-interview-slot"
+		// }
+		// else {
+		// 	return ""
+		// }
 	}	
 
 	return (
