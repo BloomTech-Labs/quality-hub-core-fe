@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CoachBookingContent({ booking }) {
+export default function CoachHistoryReview({ booking }) {
 	return (
 		<div>
 			<h4>Review</h4>
