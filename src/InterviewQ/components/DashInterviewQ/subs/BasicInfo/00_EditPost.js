@@ -21,6 +21,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 
+	console.log(coachPost)
 	const [removeTag] = useMutation(REMOVE_TAG);
 	const [changeField] = useMutation(UPDATE_POST);
 
@@ -33,13 +34,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		false,
 		false,
 	]);
-	const [post, setPost] = useState({
-		id: coachPost.postByCoach.id,
-		tagString: '',
-	});
+	// const [post, setPost] = useState({
+	// 	id: coachPost.postByCoach.id,
+	// 	tagString: '',
+	// });
+	let coachObj = coachPost && coachPost.postByCoach;
+	const [post, setPost] = useState(coachObj)
 	const [deleteTags, setDelete] = useState([]);
 	//Component State
-	let coachObj = coachPost && coachPost.postByCoach;
 	let tagArray =
 		coachPost &&
 		coachPost.postByCoach.tags.map(tag => (
@@ -93,6 +95,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	const handleCancel = index => {
 		setPost({
+			...original,
 			id: coachPost.postByCoach.id,
 		});
 		let newEditing = [...editing];
@@ -210,7 +213,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							<div>
 								<input
 									id='edit-post-0'
-									defaultValue={original && original.company}
 									name='company'
 									value={post.company}
 									onChange={handleChange}
@@ -242,7 +244,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 									id='edit-post-1'
 									name='position'
 									value={post.position}
-									defaultValue={original && original.position}
 									onChange={handleChange}
 								/>
 							</div>
@@ -319,7 +320,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 									type='textarea'
 									name='description'
 									value={post.description}
-									defaultValue={coachPost && coachPost.postByCoach.description}
 									onChange={handleChange}
 								/>
 							</div>
@@ -401,7 +401,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 											min='0'
 											max='200'
 											value={original.price <= 200 ? post.price : 200}
-											defaultValue={original && original.price}
 											onChange={handleChange}
 											step='1'
 										/>
