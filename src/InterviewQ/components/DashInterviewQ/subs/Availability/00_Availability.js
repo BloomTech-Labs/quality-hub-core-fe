@@ -26,6 +26,7 @@ const Availability =() => {
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
   
   useEffect(() => {
+    console.log(selectedCell);
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
     setCurrentDate(Number(format(selectedCell, 'd')));
     setSetter(!setter)
@@ -70,13 +71,11 @@ const Availability =() => {
     
     newAvail({ variables: utcObj })
       .then(res => {
-        console.log('newAvail Refetch')
         refetch();     
       })
       .catch(err => console.log(err))
   }
 useEffect(()=>{
-  console.log('current month refetch')
   refetch();
 },[currentMonth])
   const checkAvail = (checkvar) => {
