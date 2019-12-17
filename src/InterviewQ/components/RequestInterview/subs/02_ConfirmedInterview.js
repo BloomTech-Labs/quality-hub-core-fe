@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { greencheckcircle } from '../../../../global/icons/checkcircle'
+//import { confirmed } from '../../../../global/images/confirmed'
 
-const ConfirmedInterview = () => {
+const ConfirmedInterview = ({ node }) => {
 	return (
-    <>
-		<div className='booking-content-section interviewq-confirmed-interview'>
-			<span>{greencheckcircle()}</span>
-			<h2>You requested an interview!</h2>
+		<div ref={node}>
+			<img src='/images/confirmed.svg' />
+			<h2>You scheduled an interview!</h2>
+			<div className='int-confirmation-text'>
 			<p>
 				Interviews can be canceled until 24 hours prior to start time with no
 				penalty
@@ -16,9 +16,11 @@ const ConfirmedInterview = () => {
 				Also note, you will not be charged if the coach is unable to make the
 				meeting
 			</p>
-			<Link to='/dashboard/schedule'>Go to your schedule</Link>
+			<Link to='/dashboard/schedule'>
+			<button>See Schedule</button>
+			</Link>
 		</div>
-    </>
+		</div>
 	);
 };
 
