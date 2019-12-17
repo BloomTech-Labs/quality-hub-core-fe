@@ -178,7 +178,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 										data-hour={info.hour}
 										data-minute={info.minute}
 										onClick={(event) => handleDelete(info.uniquecheck, event)}>
-										Cancel Booking
+										Cancel Appointment
 									</button>
 								)}
 							</div>
@@ -215,7 +215,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 										data-hour={info.hour}
 										data-minute={info.minute}
 										onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
-										Cancel Booking
+										Cancel Appointment
 									</button>
 								)}
 							</div>
