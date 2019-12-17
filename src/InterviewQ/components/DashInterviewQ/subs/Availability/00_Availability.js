@@ -76,6 +76,7 @@ const Availability =() => {
       .catch(err => console.log(err))
   }
 useEffect(()=>{
+  console.log(currentMonth)
   refetch();
 },[currentMonth])
   const checkAvail = (checkvar) => {
