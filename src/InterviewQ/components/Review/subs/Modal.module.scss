@@ -1,4 +1,4 @@
-.overlay  {
+.overlay {
 	position: fixed;
 	display: none;
 	width: 100%;
@@ -13,19 +13,34 @@
 
 .modal {
 	position: absolute;
-	width: 850px;
-	height: 577px;
 	overflow: auto;
 	overflow-x: hidden;
-
 	left: 50%;
 	transform: translate(-50%);
-	padding-top: 149px;
-	padding-left: 91px;
-	padding-right: 91px;
 	background: white;
 	border-radius: 10px;
 	text-align: left;
-
+  width: 63.4rem;
+	height: 45.7rem;
   z-index: 1000;
+  padding: 3rem 1.6rem;
+}
+
+.wrapper {
+  margin: auto;
+  padding: 0 4%;
+  text-align: center;
+}
+
+.h2 {
+	font-style: normal;
+	font-weight: 600;
+	font-size: 3rem;
+	line-height: 3.8rem;
+	color: #202124;
+	margin-bottom: 1.7rem;
+}
+.close {
+  display: flex;
+  justify-content: flex-end;
 }
