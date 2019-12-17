@@ -51,7 +51,7 @@
 		width: 16.5%;
 		padding: 3.1rem 0 3rem 1.6rem;
 		text-align: left;
-		border-bottom: 1px solid #dadce0;
+		border-top: 1px solid #dadce0;
 		font-style: normal;
 		font-weight: normal;
 		font-size: 1.4rem;
@@ -80,5 +80,28 @@
 		display: flex;
 		align-items: center;
 		cursor: pointer;
+	}
+}
+
+.history-report {
+	text-align: left;
+
+	h4 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+		text-decoration-line: underline;
+		color: #202124;
+		margin-bottom: 0.8rem;
+	}
+
+	p {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 1.6rem;
+		line-height: 3rem;
+		color: #3c4043;
+		margin-bottom: 3.2rem;
 	}
 }

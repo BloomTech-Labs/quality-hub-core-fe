@@ -22,19 +22,11 @@ const ConfirmInterview = ({ booking, history }) => {
     const availAHour = utcArr[3].charAt(0) === '0' ? utcArr[3].substr(1, 1) : utcArr[3];
     
     const availAMonth = utcArr[2].charAt(0) === '0' ? utcArr[2].substr(1, 1) : utcArr[2];
-    // const availA = `${obj.coach}-${utcArr[0]}-${8}-${availAMonth}-${availAHour}-${availAMin}`
-    console.log(typeof(utcArr[1]))
-    console.log(utcArr[1]);
+ 
     if(utcArr[1].charAt(0)==="0"){
       utcArr[1]=utcArr[1].charAt(1);
     }
-    console.log(utcArr[1]);
     const availA = `${obj.coach}-${utcArr[0]}-${utcArr[1]}-${availAMonth}-${availAHour}-${availAMin}`
-    // console.log(availA);
-    // console.log(availAMonth);
-    // console.log(utcArr);
-    // console.log(availAHour);
-    // console.log(availAMin);
     const availBMin = availAMin === 30 ? 0 : 30;
     const availBHour = availBMin === 30 ? availAHour : Number(availAHour) + 1;
     // const availB = `${obj.coach}-${utcArr[0]}-${8}-${availAMonth}-${availBHour}-${availBMin}`

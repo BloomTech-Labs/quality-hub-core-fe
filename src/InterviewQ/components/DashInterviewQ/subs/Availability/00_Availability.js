@@ -135,7 +135,7 @@ useEffect(()=>{
   return(
     <>
     
-    <div className=' availability-container'>
+    <div className='availability-container'>
    
     <div className='coach-availability'>
       <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />

@@ -17,14 +17,17 @@ const GET_SEEKERBOOKINGS = gql`
 			hour
 			minute
 			coach {
+				id
 				first_name
 				last_name
 				post {
+					id
 					price
 				}
 			}
 			uniquecheck
 			report {
+				id
 				strengths
 				growthAreas
 				suggestions

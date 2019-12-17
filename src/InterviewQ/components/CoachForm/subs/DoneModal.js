@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '../../../../global/icons/Icon';
 import { ICONS } from '../../../../global/icons/iconConstants';
 import { checkcircle } from '../../../../global/icons/checkcircle';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const DoneModal = ({ closeWindow, setAvailability }) => {
 	return (
@@ -27,7 +27,12 @@ const DoneModal = ({ closeWindow, setAvailability }) => {
 				<div className='done-modal-buttons'>
 					<button onClick={() => closeWindow()}>Skip for now</button>
 					<Link
-						to='/interviewq/settings'
+						scroll={el => {
+							el.scrollIntoView(true);
+							window.scrollBy(0, -70);
+						}}
+						smooth
+						to='/interviewq/settings#interviewq-availability-header'
 						className='add-coach-set-availability-link'>
 						<button
 							onClick={() => setAvailability()}
