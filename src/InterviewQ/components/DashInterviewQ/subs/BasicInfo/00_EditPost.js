@@ -248,7 +248,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							<div>
-								<p>{original && original.position}</p>
+								<p className="IQ-dash-position">{original && original.position}</p>
 							</div>
 						)}
 					</div>
