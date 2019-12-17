@@ -7,7 +7,6 @@ import { ICONS } from '../../../../../global/icons/iconConstants';
 import CoachBookingContent from './3_CoachBookingContent';
 
 export default function CoachHistoryRow({ booking }) {
-	console.log(ICONS.MORE);
 	const [showContent, setShowContent] = useState(false);
 
 	return (
