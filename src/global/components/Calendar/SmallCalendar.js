@@ -18,7 +18,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		
 	}
 	const lastMonth = () => {
-		if (isAfter(currentMonth, new Date(2019, 0, 1))){
+		if (isAfter(currentMonth, new Date())){
 		 setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
@@ -31,16 +31,20 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
-		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		if (format(currentMonth, 'Myyyy') === format(new Date (), 'Myyyy')){
-			setSelectedCell(new Date())
-		//setSelectedCell(new Date(year, e.target.value, 1))
+		if (isAfter(new Date(year, e.target.value, 1), new Date())) {
+			setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
+			if (format(currentMonth, 'Myyyy') === format(new Date(), 'Myyyy')) {
+				setSelectedCell(new Date());
+				//setSelectedCell(new Date(year, e.target.value, 1))
+			}
 		}
 	};
 
 	const onYearChange = e => {
 		const month = getMonth(new Date(currentMonth));
-		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
+		if (isAfter(new Date(e.target.value, month, 31), new Date())) {
+			setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
+		}
 	};
 	
 	return (	
@@ -57,7 +61,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 						<button className='calendar-button next-arrow' onClick={nextMonth}>{nextArrow()}</button>
 						</div>
 						<select
-							onChange={onMonthChange}
+							onChange={(e) =>onMonthChange(e)}
 							value={getMonth(new Date(currentMonth))}>
 							{months.map(month => {
 								return (
@@ -68,7 +72,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 							})}
 						</select>
 						<select
-							onChange={onYearChange}
+							onChange={(e) =>onYearChange(e)}
 							value={getYear(new Date(currentMonth))}>
 							{years.map(year => {
 								return (
