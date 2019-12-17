@@ -9,29 +9,39 @@ import SmallCells from './SmallCells';
 
 import { days, months, years } from '../../utils/TimeArrays';
 
-const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails }) => {
+const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails, open, setOpen }) => {
 
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 
 	const nextMonth = () => {
+		console.log(getMonth(new Date));
+		console.log(getYear(new Date));
+		setOpen(false);
 		setCurrentMonth(addMonths(currentMonth, 1))
 		
 	}
 	const lastMonth = () => {
 		if (isAfter(currentMonth, new Date())){
+			setOpen(false);
 		 setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
 
 	const onDateClick = day => {
+		console.log(day);
 		if(isBefore(new Date(), day) || getDate(new Date) === getDate(day)){
 			setSelectedCell(day);
 		}
 	};
+	
+	useEffect(()=>{
+		setOpen(true);
+	},[selectedCell])
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
 		if (isAfter(new Date(year, e.target.value, 1), new Date())) {
+			setOpen(false);
 			setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
 			if (format(currentMonth, 'Myyyy') === format(new Date(), 'Myyyy')) {
 				setSelectedCell(new Date());
@@ -43,6 +53,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const onYearChange = e => {
 		const month = getMonth(new Date(currentMonth));
 		if (isAfter(new Date(e.target.value, month, 31), new Date())) {
+			setOpen(false);
 			setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
 		}
 	};
