@@ -55,7 +55,11 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			</div>,
 		);
 		days = [];
-  }
+	}
+	
+	useEffect(() => {
+		console.log('changin')
+	}, [currentMonth])
 
 DisplayBookings(currentMonth);
  

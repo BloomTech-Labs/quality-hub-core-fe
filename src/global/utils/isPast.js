@@ -1,4 +1,4 @@
-export const isPast = (year, month, day, hour, minute) => {
+export const isPast = ({ year, month, day, hour, minute }) => {
 	const now = new Date();
 	const currentYr = now.getFullYear();
 	const currentMonth = now.getMonth() + 1;

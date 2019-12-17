@@ -61,6 +61,11 @@
 .interview-slot-list{
   width: 27rem;
 }
+
+.disabled-interview-slot {
+  display: none;
+}
+
 .interviewq-booking-input{
   display: flex;
   justify-content: flex-start;
@@ -80,21 +85,21 @@ margin: 20px 90px;
 }
 
 .interviewq-confirmed-interview{
-  margin-top: 150px;
-  padding-top: 150px;
-  width: 723px;
-  height: 636px;
-  border: 1px solid #D4D4D4;
-  box-sizing: border-box;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-    h2{
-      font-size: 36px;
-      margin-bottom: 40px;
-    }
-    p{
-      font-size: 16px;
-      margin-bottom: 25px;
-    }
+  // margin-top: 150px;
+  // padding-top: 150px;
+  // width: 723px;
+  // height: 636px;
+  // border: 1px solid #D4D4D4;
+  // box-sizing: border-box;
+  // box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  //   h2{
+  //     font-size: 36px;
+  //     margin-bottom: 40px;
+  //   }
+  //   p{
+  //     font-size: 16px;
+  //     margin-bottom: 25px;
+  //   }
 }
 
 .interviewq-conf-container{
@@ -148,4 +153,55 @@ margin: 20px 90px;
   }
   width: 100%;
   margin-bottom: 4rem;
+}
+
+.confirmed-interview-modal{
+  z-index: 1100;
+  height: 53.6rem;
+  width: 63.4rem;
+  background-color: white;
+  position: absolute;
+	right: 27%;
+  top: 6.5%;
+  border: 1px solid #D4D4D4;
+  box-sizing: border-box;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  .int-confirmation-text{
+    position: relative;
+    top: -60px;
+  }
+    h2{
+      position: relative;
+     // left: 30px; 
+  top: -60px;
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    p{
+      font-size: 16px;
+      // margin-bottom: 25px;
+    }
+    button{
+      margin-top: 5.4rem;
+      text-align: center;
+      background-color: #096dd9;
+      color: white;
+      width: 21.6rem;
+      height: 5.4rem;
+      border-radius: 4px;
+    }
+}
+
+#overlay-confirm-interview{
+  position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(72, 72, 72, 0.4);
+	z-index: 999;
 }

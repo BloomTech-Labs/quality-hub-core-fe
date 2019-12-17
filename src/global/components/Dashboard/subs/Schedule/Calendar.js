@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, format } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths, format, isAfter } from 'date-fns';
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
@@ -41,8 +41,11 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 		setCurrentMonth(addMonths(currentMonth, 1))
 	}
 	const lastMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1))
+		if (isAfter(currentMonth, new Date(2019, 0, 1))){
+		 setCurrentMonth(subMonths(currentMonth, 1))
+		}
 	}
+
 	const onDateClick = day => {
 		setOpen(true);
 		setSelectedDate(day);
@@ -127,9 +130,9 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 				// open={open}
 			/>
 			{open && (
-				<div className='calendar-detail'>
+				<div className='calendar-detail' ref={node}>
 					<CalendarDetail
-					node = {node}
+					open={open}
 						setOpen={setOpen}
 						selectedDate={selectedDate}
 					/>

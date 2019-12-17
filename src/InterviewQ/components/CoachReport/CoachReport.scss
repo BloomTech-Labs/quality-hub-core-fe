@@ -114,6 +114,10 @@
 				line-height: 2.4rem;
 				color: #fff;
 				cursor: pointer;
+
+				&:hover {
+					background-color: #0050b3;
+				}
 			}
 		}
 	}
