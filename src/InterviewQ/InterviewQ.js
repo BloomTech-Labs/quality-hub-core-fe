@@ -25,9 +25,16 @@ const InterviewQContainer = () => {
 					path='/interviewq/interviewconfirmed'
 					component={ConfirmedInterview}
 				/>
-				<Route path='/interviewq/history' component={History} />
-				<Route path='/interviewq/coachreport/:key' component={CoachReport} />
-				<Route exact path='/interviewq/review/:id' component={ReviewPage} />
+				<Route exact path='/interviewq/history' component={History} />
+				<Route
+					path='/interviewq/history/coachreport/:key'
+					component={CoachReport}
+				/>
+				<Route
+					exact
+					path='/interviewq/history/review/:id'
+					component={ReviewPage}
+				/>
 			</div>
 		</>
 	);

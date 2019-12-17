@@ -35,6 +35,8 @@ const GET_SEEKERBOOKINGS = gql`
 			}
 			review {
 				id
+				rating
+				review
 			}
 		}
 	}

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 
-// import SeekerBookingContent from './3_SeekerBookingContent';
-// import CoachBookingContent from '../CoachHistory/3_CoachBookingContent';
+import SeekerHistoryReview from './3_SeekerHistoryReview';
+import SeekerHistoryReport from './4_SeekerHistoryReport';
 
 export default function SeekerHistoryRow({ booking }) {
 	const [showReview, setShowReview] = useState(false);
@@ -50,8 +50,8 @@ export default function SeekerHistoryRow({ booking }) {
 					<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
 				</div>
 			</div>
-			{/* {showReview && <CoachBookingContent booking={booking} />}
-			{showReport && <SeekerBookingContent booking={booking} />} */}
+			{showReview && <SeekerHistoryReview booking={booking} />}
+			{showReport && <SeekerHistoryReport booking={booking} />}
 		</div>
 	);
 }

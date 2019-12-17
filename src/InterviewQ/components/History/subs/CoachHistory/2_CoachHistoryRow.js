@@ -38,7 +38,7 @@ export default function CoachHistoryRow({ booking }) {
 					) : (
 						<Link
 							to={{
-								pathname: `/interviewq/coachreport/${booking.uniquecheck}`,
+								pathname: `/interviewq/history/coachreport/${booking.uniquecheck}`,
 								state: { firstName: booking.seeker.first_name },
 							}}>
 							Write Report
