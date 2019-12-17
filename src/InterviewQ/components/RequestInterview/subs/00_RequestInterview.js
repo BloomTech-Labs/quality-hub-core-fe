@@ -230,6 +230,8 @@ const RequestInteview = props => {
 		});
 	}
 
+	window.scrollTo(0, 0);
+
 	return (
 		<div className="booking-content-section">
 			<div className="formsection">

@@ -40,6 +40,8 @@ const GET_USER = gql`
 const Dashboard = ({ setLoggedin }) => {
 	useQuery(GET_USER);
 
+	window.scrollTo(0, 0);
+
 	return (
 		<div className='entire-dashboard'>
 			<LeftNavBar />
