@@ -440,14 +440,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<Availability />
 			</div>
 
-			{/* <div className='IQ-editform'>
+			<div className='coach-post-status'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
 					//if coach is done loading
 					!loading ? (
 						published ? (
 							// if coach listing is published, render 'unpublished'
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently published.</p>
 								<button
 									className='update-post-btn'
@@ -472,7 +472,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				) : (
 					<p>text</p>
 				)}
-			</div> */}
+			</div>
 		</>
 	);
 };

@@ -24,7 +24,7 @@ export default function SeekerHistoryRow({ booking }) {
 					{booking.hour}:{booking.minute}
 					{booking.minute === 0 && '0'}
 				</div>
-				<div className='history-col'>${booking.coach.post.price}</div>
+				<div className='history-col'>${booking.price}</div>
 				<div className='history-col'>
 					{booking.review ? (
 						<div

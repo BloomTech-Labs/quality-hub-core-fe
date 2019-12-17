@@ -16,14 +16,15 @@ const GET_SEEKERBOOKINGS = gql`
 			day
 			hour
 			minute
+			price
 			coach {
 				id
 				first_name
 				last_name
-				post {
-					id
-					price
-				}
+				# post {
+				# 	id
+				# 	price
+				# }
 			}
 			uniquecheck
 			report {
