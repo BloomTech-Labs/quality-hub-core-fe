@@ -17,7 +17,9 @@ const ReviewPage = (props) => {
 
   const closeWindow = () => {
     setOpen(false)
-    props.history.goBack();
+    setTimeout( () => {
+      props.history.goBack();
+    }, 1000)
   }
 
   //This sets the darkened overlay behind the modals
