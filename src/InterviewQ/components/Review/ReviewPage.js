@@ -7,11 +7,20 @@ import './ReviewPage.scss';
 import styles from './subs/Modal.module.scss';
 
 const ReviewPage = (props) => {
+  // Refreshing causese state to be undefined, so we go back a page
+  if (!props.location.state) {
+    props.history.goBack();
+  }
+
   //false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
 
-  
-	//This sets the darkened overlay behind the modals
+  const closeWindow = () => {
+    setOpen(false)
+    props.history.goBack();
+  }
+
+  //This sets the darkened overlay behind the modals
 	useEffect(() => {
 		if (open) {
 			document.getElementById('iq-review-page').style.display = 'block';
@@ -22,8 +31,8 @@ const ReviewPage = (props) => {
   
   return (
     <div>
-      <div id='iq-review-page' className={styles.overlay}></div>
-      { open && <Modal />}
+      <div id='iq-review-page' className={styles.overlay} onClick={closeWindow}></div>
+      { open && <Modal closeWindow={closeWindow} />}
       <div className='review-page'>
         <h2>Rating & Review</h2>
         <hr />
