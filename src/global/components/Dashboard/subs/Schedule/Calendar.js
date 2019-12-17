@@ -132,7 +132,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 			{open && (
 				<div className='calendar-detail' ref={node}>
 					<CalendarDetail
-					// node = {node}
+					open={open}
 						setOpen={setOpen}
 						selectedDate={selectedDate}
 					/>

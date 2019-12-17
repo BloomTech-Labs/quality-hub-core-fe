@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { ALL_BOOKINGS } from './Queries';
-import { format } from 'date-fns';
+import { format, getYear } from 'date-fns';
 import { convertToLocal } from '../../../../../global/utils/TZHelpers';
 
 
 export const DisplayBookings = currentMonth => {
 	
+	console.log(currentMonth)
 	const { data, refetch } = useQuery(ALL_BOOKINGS, {
 		variables: {
 			seekerId: localStorage.getItem('id'),
@@ -18,10 +19,12 @@ export const DisplayBookings = currentMonth => {
 
 	useEffect(() => {
 		refetch();
+		console.log('running')
 		if (data) {
+			console.log('inner running')
 			setRenderBookings([...data.bookingsByCoach, ...data.bookingsBySeeker]);
 		}
-	}, [data]);
+	}, [data, currentMonth]);
 
 	const sortBookingsFunction = array => {
 		array.sort((a, b) => {
@@ -43,7 +46,7 @@ export const DisplayBookings = currentMonth => {
 
 		array.forEach(appt => {
 			const localAppt = convertToLocal(appt);
-			if (Number(format(currentMonth, 'M')) == localAppt.month) {
+			if (Number(format(currentMonth, 'Myyyy')) == `${localAppt.month}${localAppt.year}`) {
 				if (localAppt.day === i && counter < 2) {
 					counter++;
 					const apptId = `${localAppt.month}-${localAppt.day}`;

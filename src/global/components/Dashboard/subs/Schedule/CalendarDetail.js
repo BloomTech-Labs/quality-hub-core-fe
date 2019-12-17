@@ -11,11 +11,12 @@ import Icon from '../../../../../global/icons/Icon';
 import { convertToLocal } from '../../../../../global/utils/TZHelpers.js';
 import { gql } from 'apollo-boost';
 
-const CalendarDetail = ({ selectedDate, setOpen }) => {
+const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 	const DELETE_BOOKING = gql`
 		mutation deleteBooking($uniquecheck: String!) {
 			deleteBooking(uniquecheck: $uniquecheck) {
 				id
+				uniquecheck
 			}
 		}
 	`;
@@ -47,7 +48,6 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	};
 	useEffect(() => {
 		if (data) {
-			
 			let bookingArray = sortBookingsFunction([
 				...data.bookingsByCoach,
 				...data.bookingsBySeeker,
@@ -58,11 +58,10 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	}, [data]);
 
 	useEffect(() => {
-		refetch();
+		
 		let selectedDay = format(selectedDate, 'd');
 		let selectedMonth = format(selectedDate, 'M');
 		if (allBookings) {
-			//refetch();
 			let convertedBookings = allBookings.map(booking =>
 				convertToLocal(booking),
 			);
@@ -102,6 +101,9 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
 				window.location.reload(true);
+				// client.clearStore();
+				// client.resetStore();
+				//refetch();
 				setOpen(false);
 				console.log(res);
 			})
