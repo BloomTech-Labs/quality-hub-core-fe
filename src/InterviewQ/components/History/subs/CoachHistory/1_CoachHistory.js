@@ -35,6 +35,10 @@ const GET_COACHBOOKINGS = gql`
 			}
 			report {
 				id
+				strengths
+				growthAreas
+				suggestions
+				additionalComments
 			}
 		}
 	}

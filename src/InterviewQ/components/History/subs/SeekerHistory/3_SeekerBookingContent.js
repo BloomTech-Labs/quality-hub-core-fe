@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default function SeekerBookingContent({ booking }) {
+	console.log(booking);
+
 	return (
 		<div>
 			<h3>InterviewQ Report</h3>

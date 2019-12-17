@@ -42,17 +42,17 @@ export default function CoachReport(props) {
 	const handleSend = e => {
 		e.preventDefault();
 		// console.log(report);
+		createReport({
+			variables: {
+				uniqueBooking: key,
+				strengths: report.strengths,
+				growthAreas: report.growth,
+				suggestions: report.suggestions,
+				comments: report.comments,
+				isSent: true,
+			},
+		});
 		toggle();
-		// createReport({
-		// 	variables: {
-		// 		uniqueBooking: key,
-		// 		strengths: report.strengths,
-		// 		growthAreas: report.growth,
-		// 		suggestions: report.suggestions,
-		// 		comments: report.comments,
-		// 		isSent: true,
-		// 	},
-		// });
 	};
 
 	return (
