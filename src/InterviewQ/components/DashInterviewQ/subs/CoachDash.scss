@@ -1,71 +1,39 @@
-input#edit-post-0, input#edit-post-1{
+input#edit-post-0,
+input#edit-post-1 {
 	width: 100%;
 }
 
-
-
-.see-preview-post-btn{
+.see-preview-post-btn {
 	color: #096dd9;
 	font-size: 1.6rem;
 	text-decoration: none;
 }
-.update-post-btn {
-	color: white;
-	display: flex;
-	align-items: center;
-	line-height: 24px;
-	cursor: pointer;
-	font-size: 1.6rem;
-	text-align: center;
-	justify-content: center;
-	// padding: 1rem 2rem;
-	border-radius: 4px;
-	width: 148px;    
-	height: 36px;
-	background-color:#096dd9;
-	
-}
-.delete-post-btn {
-	color: white;
-	display: flex;
-	align-items: center;
-	line-height: 24px;
-	cursor: pointer;
-	font-size: 1.6rem;
-	text-align: center;
-	justify-content: center;
-	// padding: 1rem 2rem;
-	border-radius: 4px;
-	width: 148px;
-	height: 36px;
-	background-color: #CF1322;
-	
-}
+
+// .update-post-btn {
+// 	color: white;
+// 	display: flex;
+// 	align-items: center;
+// 	line-height: 24px;
+// 	cursor: pointer;
+// 	font-size: 1.6rem;
+// 	text-align: center;
+// 	justify-content: center;
+// 	// padding: 1rem 2rem;
+// 	border-radius: 4px;
+// 	width: 148px;
+// 	height: 36px;
+// 	background-color: #096dd9;
+// }
 
 .dash-coachinfo {
-  width: 100%;
-  
+	width: 100%;
 }
 
-.delete-post {
-	display: flex;
-	justify-content: space-between;
-	padding: 1.7rem 3.2rem;
-	
-}
-
-.see-preview{
+.see-preview {
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	padding: 1.7rem 3.2rem;
-}
-
-.delete-warning {
-	display: flex;
-	justify-content: flex-start;
-	width: 80rem;
-	font-size: 16px;
 }
 
 .coachinfo-header {
@@ -87,9 +55,11 @@ input#edit-post-0, input#edit-post-1{
 
 	h1 {
 		text-align: left;
+		font-style: normal;
 		font-weight: 600;
-		font-size: 3rem;
-		color: #262626;
+		font-size: 2.4rem;
+		line-height: 3.2rem;
+		color: #202124;
 	}
 }
 
@@ -117,13 +87,10 @@ input#edit-post-0, input#edit-post-1{
 	}
 }
 
-.not-a-coach-here{
-	color:  #096dd9;
+.not-a-coach-here {
+	color: #096dd9;
 	text-decoration: none;
 }
-
-
-
 
 .edit-post-slider {
 	width: 300px;
@@ -177,7 +144,7 @@ input:focus#edit-post-4 {
 	justify-content: space-around;
 }
 
-.post-desc{
+.post-desc {
 	display: flex;
 	overflow-wrap: break-word;
 	max-width: 50rem;
@@ -208,7 +175,8 @@ input:focus#edit-post-4 {
 	}
 }
 
-#edit-post-3, #edit-post-5{
+#edit-post-3,
+#edit-post-5 {
 	overflow-wrap: break-word;
 	width: 50rem;
 	height: 7rem;
@@ -217,13 +185,12 @@ input:focus#edit-post-4 {
 	align-items: flex-start;
 }
 
-#edit-post-5{
+#edit-post-5 {
 	overflow-wrap: break-word;
 	width: 50rem;
 	height: 4rem;
 	text-align: left;
 	display: flex;
 	align-items: flex-start;
-	margin-top: .5rem;
+	margin-top: 0.5rem;
 }
-
