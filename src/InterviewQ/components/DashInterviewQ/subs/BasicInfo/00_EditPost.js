@@ -390,7 +390,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												{post.price ? post.price : original && original.price}
+												{post.price === 0 ? '0' : post.price ? post.price :  original && original.price}
 											</p>
 											<p>$200</p>
 										</div>
