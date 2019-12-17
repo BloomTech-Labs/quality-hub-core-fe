@@ -82,12 +82,8 @@ const CalendarDetail = ({ selectedDate, setOpen }) => {
 	var canDelete = true
 
 	const lessThan24 = (time) => {
-		console.log(time)
-		console.log(Date())
-		console.log(differenceInHours(time, new Date()))
 		if (differenceInHours(time, new Date()) < 24) {
 			canDelete = false
-			console.log(canDelete)
 			return "disabled-delete-booking-btn"
 		}
 		else {
