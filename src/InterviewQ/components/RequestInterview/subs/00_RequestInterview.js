@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
-import { format, getMonth, getYear } from 'date-fns';
+import { format, getMonth, getYear, differenceInMilliseconds } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -250,12 +250,16 @@ const RequestInteview = props => {
 							{currentSlots ? (
 								currentSlots.map(time => {
 									if (time.isOpen === true) {
+										const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-interview-slot" : "";
+										const inPast = (e) => differenceInMilliseconds(new Date(time.year, time.month - 1, time.day, time.hour, time.minute), new Date()) < 0 ? console.log('true') : createBooking(e, time);
+										
 										return (
 											<div
 												key={time.id}
 												id={time.id}
-												className="interview-slot"
-												onClick={e => createBooking(e, time)}>
+												className={`interview-slot ${isPast(new Date(time.year, time.month - 1, time.day, time.hour, time.minute))}`}
+												onClick={inPast}>
+													{/* inPast ? "" : createBooking(e, time) */}
 												{time.hour === 0
 													? 12
 													: time.hour > 12
