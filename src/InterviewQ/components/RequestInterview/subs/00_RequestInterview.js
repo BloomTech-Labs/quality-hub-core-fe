@@ -230,17 +230,7 @@ const RequestInteview = props => {
 		});
 	}
 
-	var inPast = false;
-	const isPast = (time) => {
-		console.log(differenceInMilliseconds(time, new Date()))
-		// if (differenceInMilliseconds(time, new Date()) < 0) {
-		// 	inPast = true
-		// 	return "disabled-interview-slot"
-		// }
-		// else {
-		// 	return ""
-		// }
-	}	
+	// createBooking(e, time)
 
 	return (
 		<div className="booking-content-section">
@@ -260,12 +250,15 @@ const RequestInteview = props => {
 							{currentSlots ? (
 								currentSlots.map(time => {
 									if (time.isOpen === true) {
+										const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-interview-slot" : "";
+										const inPast = (e) => differenceInMilliseconds(new Date(time.year, time.month - 1, time.day, time.hour, time.minute), new Date()) < 0 ? console.log('true') : createBooking(e, time);
+										
 										return (
 											<div
 												key={time.id}
 												id={time.id}
 												className={`interview-slot ${isPast(new Date(time.year, time.month - 1, time.day, time.hour, time.minute))}`}
-												onClick={e => console.log(time)}>
+												onClick={inPast}>
 													{/* inPast ? "" : createBooking(e, time) */}
 												{time.hour === 0
 													? 12

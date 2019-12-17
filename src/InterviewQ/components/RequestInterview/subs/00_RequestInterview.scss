@@ -61,6 +61,11 @@
 .interview-slot-list{
   width: 27rem;
 }
+
+.disabled-interview-slot {
+  display: none;
+}
+
 .interviewq-booking-input{
   display: flex;
   justify-content: flex-start;
