@@ -76,25 +76,25 @@ const AvatarDropdown = props => {
 		}
 	};
 
-	useEffect(() => {
-		if (picture) {
-			const formData = new FormData();
-			formData.append('file', picture);
-			formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+	// useEffect(() => {
+	// 	if (picture) {
+	// 		const formData = new FormData();
+	// 		formData.append('file', picture);
+	// 		formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
 
-			axios
-				.post(
-					`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-					formData,
-				)
-				.then(res => {
-					editImage({ variables: { image_url: res.data.secure_url } });
-				})
-				.catch(err => {
-					console.log(err);
-				});
-		}
-	}, [picture]);
+	// 		axios
+	// 			.post(
+	// 				`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+	// 				formData,
+	// 			)
+	// 			.then(res => {
+	// 				editImage({ variables: { image_url: res.data.secure_url } });
+	// 			})
+	// 			.catch(err => {
+	// 				console.log(err);
+	// 			});
+	// 	}
+	// }, [picture]);
 
 	useEffect(() => {
 		getUser();
@@ -122,12 +122,12 @@ const AvatarDropdown = props => {
 			{open && (
 				<div className='dropdown-content'>
 					<div className='dropdown-avatar-camera'>
-						<input
+						{/* <input
 							className='image-input-dropdown'
 							type='file'
 							id='imageInput'
 							onChange={e => setPicture(e.target.files[0])}
-						/>
+						/> */}
 						<label htmlFor='imageInput-2'>
 							<div className='img-wrapper-dropdown'>
 								{data ? ( //ternary 1
@@ -151,13 +151,13 @@ const AvatarDropdown = props => {
 						</label>
 						{/* Avatar image in dropdown menu */}
 						{/* This is the offset camera icon */}
-						<label htmlFor='imageInput' className='camera-label'>
+						{/* <label htmlFor='imageInput' className='camera-label'>
 							<div className='dropdown-camera-icon grey-on-hover'>
 								<span role='img' aria-label='camera icon'>
 									&#x1F4F7;
 								</span>
 							</div>
-						</label>
+						</label> */}
 					</div>
 					{data && (
 						<p className='dropdown-menu-name'>
@@ -169,7 +169,7 @@ const AvatarDropdown = props => {
 					<div className='avatar-dropdown-dashboard-link'>
 						<Link to='/dashboard' onClick={() => setOpen(false)}>
 							<div className='avatar-dropdown-lower-icons'>{Gear()}</div>{' '}
-							<div>QualityHub account</div>
+							<div>QualityHub Account</div>
 						</Link>
 					</div>
 					<hr />
