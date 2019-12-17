@@ -15,7 +15,7 @@ import Meeting from './components/Meeting';
 const InterviewQContainer = () => {
 	return (
 		<>
-			<LeftNav />
+			{localStorage.getItem('token') && <LeftNav />}
 			<div>
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
