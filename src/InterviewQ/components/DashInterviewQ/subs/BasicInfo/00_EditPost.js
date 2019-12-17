@@ -307,7 +307,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row'>
 						<span className='IQ-dash-heading'>
 							<h4>DESCRIPTION</h4>
@@ -339,7 +339,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
 							<h4>KEYWORDS</h4>
@@ -377,7 +377,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 				{/* START HOURLY RATE */}
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
 							<h4>PRICE PER SESSION</h4>
