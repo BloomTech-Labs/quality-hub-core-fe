@@ -5,13 +5,13 @@ import { format, differenceInHours } from 'date-fns';
 import { clock } from '../../../../../global/icons/Clock';
 import { document } from '../../../../../global/icons/document.js';
 import { paperclip } from '../../../../../global/icons/paperclip.js';
+import { interviewQtie } from '../../../../../global/icons/interviewqtie.js';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 import Icon from '../../../../../global/icons/Icon';
 import { convertToLocal } from '../../../../../global/utils/TZHelpers.js';
-import Loading from '../../../Loading';
 import { gql } from 'apollo-boost';
 
-const CalendarDetail = ({ selectedDate, setOpen, node }) => {
+const CalendarDetail = ({ selectedDate, setOpen }) => {
 	const DELETE_BOOKING = gql`
 		mutation deleteBooking($uniquecheck: String!) {
 			deleteBooking(uniquecheck: $uniquecheck) {
@@ -98,17 +98,10 @@ const CalendarDetail = ({ selectedDate, setOpen, node }) => {
 	
 
 	const handleDelete = (id, event) => {
-		//let uniquecheck = e.target.getAttribute('data-id');
-		// -${e.target.getAttribute('data-year')}-${e.target.getAttribute('data-month')}-${e.target.getAttribute('data-day')}-${e.target.getAttribute('data-hour')}-${e.target.getAttribute('data-minute')}`;
-		//console.log(uniquecheck);
 		event.stopPropagation();
-		console.log()
 		deleteBook({ variables: { uniquecheck: id } })
 			.then(res => {
-				// client.clearStore();
 				window.location.reload(true);
-				// client.clearStore();
-				// refetch();
 				setOpen(false);
 				console.log(res);
 			})
@@ -117,7 +110,7 @@ const CalendarDetail = ({ selectedDate, setOpen, node }) => {
 			});
 	};
 	return (
-		<div ref={node}>
+		<div>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
 				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
@@ -132,12 +125,7 @@ const CalendarDetail = ({ selectedDate, setOpen, node }) => {
 									<span>&#x25FC;</span> InterviewQ
 								</h3>
 								<p>
-									<Icon
-										icon={ICONS.PERSONALINFO}
-										width={15}
-										height={15}
-										color='#777'
-									/>
+									{interviewQtie()}
 									{info.seeker.first_name} {info.seeker.last_name} (Seeker)
 								</p>
 								<p>
@@ -198,12 +186,7 @@ const CalendarDetail = ({ selectedDate, setOpen, node }) => {
 									<span>&#x25FC;</span> InterviewQ
 								</h3>
 								<p>
-									<Icon
-										icon={ICONS.PERSONALINFO}
-										width={15}
-										height={15}
-										color='#777'
-									/>
+								{interviewQtie()}
 									{info.coach.first_name} {info.coach.last_name} (Coach)
 								</p>
 
