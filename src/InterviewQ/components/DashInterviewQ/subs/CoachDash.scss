@@ -3,27 +3,31 @@ input#edit-post-1 {
 	width: 100%;
 }
 
-.see-preview-post-btn {
-	color: #096dd9;
-	font-size: 1.6rem;
-	text-decoration: none;
-}
-
-// .update-post-btn {
-// 	color: white;
-// 	display: flex;
-// 	align-items: center;
-// 	line-height: 24px;
-// 	cursor: pointer;
+// .see-preview-post-btn {
+// 	color: #096dd9;
 // 	font-size: 1.6rem;
-// 	text-align: center;
-// 	justify-content: center;
-// 	// padding: 1rem 2rem;
-// 	border-radius: 4px;
-// 	width: 148px;
-// 	height: 36px;
-// 	background-color: #096dd9;
+// 	text-decoration: none;
 // }
+
+.see-preview-btn {
+	color: white;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 0.4rem;
+	width: 13rem;
+	height: 3.6rem;
+	background-color: #096dd9;
+
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.4rem;
+	line-height: 2.2rem;
+	color: #ffffff;
+
+	&:hover {
+		background-color: #0050b3;
+	}
+}
 
 .dash-coachinfo {
 	width: 100%;
@@ -33,7 +37,7 @@ input#edit-post-1 {
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: space-between;
-	padding: 1.7rem 3.2rem;
+	padding: 2.4rem 2.4rem 0;
 }
 
 .coachinfo-header {
@@ -156,7 +160,7 @@ input:focus#edit-post-4 {
 .post-row {
 	display: flex;
 	align-items: center;
-	min-height: 5rem;
+	// min-height: 5rem;
 }
 
 .post-input {
