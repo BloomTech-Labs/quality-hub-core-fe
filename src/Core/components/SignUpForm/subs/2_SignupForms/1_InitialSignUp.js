@@ -51,92 +51,96 @@ export default function SignUp({
 	};
 
 	return (
-		<div className='sign-up'>
-			<div>
-				<h1>QualityHub</h1>
-				<h2>Welcome!</h2>
-			</div>
-			<br />
-			{/* Insert Google Login Button Here */}
-			{/* <h2 className="sign-up-or">
+		<div className="initial-sign-up-container">
+			<img src="/images/signup.svg" className="sign-up-image" />
+
+			<div className="sign-up">
+				<div>
+					<h1>Welcome to QualityHub!</h1>
+					{/* <h2>Welcome!</h2> */}
+				</div>
+				{/* <br /> */}
+				{/* Insert Google Login Button Here */}
+				{/* <h2 className="sign-up-or">
         <span>OR</span>
       </h2> */}
-			<form onSubmit={handleSubmit}>
-				<div className='input-label'>
-					<label htmlFor='sign-up-email'>Email address</label>
-					<br />
-					<input
-						onBlur={() => setEmailTouched(true)}
-						id='sign-up-email'
-						name='email'
-						type='email'
-						value={user.email}
-						onChange={handleChange}
-						required
-					/>
-					<div className='signup-icon'>
-						<Icon icon={ICONS.EMAIL} width={22} height={18} color='#5f6368' />
+				<form onSubmit={handleSubmit}>
+					<div className="input-label">
+						<label htmlFor="sign-up-email">Email address</label>
+						<br />
+						<input
+							onBlur={() => setEmailTouched(true)}
+							id="sign-up-email"
+							name="email"
+							type="email"
+							value={user.email}
+							onChange={handleChange}
+							required
+						/>
+						<div className="signup-icon">
+							<Icon icon={ICONS.EMAIL} width={22} height={18} color="#5f6368" />
+						</div>
 					</div>
-				</div>
-				<br />
-				<div className='input-label'>
-					<label htmlFor='password'> Password </label>
 					<br />
-					<input
-						onBlur={() => setPasswordTouched(true)}
-						id='sign-up-password'
-						type={showPassword ? 'password' : 'text'}
-						name='password'
-						value={user.password}
-						onChange={handleChange}
-						required
-					/>
-					<p className='password-minlength'>Minimum length is 6 characters</p>
-					<div
-						className='signup-icon-pw'
-						style={{
-							bottom: !showPassword && '5.4rem',
-							left: !showPassword && 'calc(100% - 4.6rem)',
-						}}
-						onClick={() => setShowPassword(!showPassword)}>
-						{showPassword && (
-							<Icon
-								icon={ICONS.PASSWORD_Y}
-								width={24}
-								height={24}
-								color='#5f6368'
-							/>
-						)}
-						{!showPassword && (
-							<Icon
-								icon={ICONS.PASSWORD_N}
-								width={24}
-								height={24}
-								color='#5f6368'
-							/>
-						)}
+					<div className="input-label">
+						<label htmlFor="password"> Password </label>
+						<br />
+						<input
+							onBlur={() => setPasswordTouched(true)}
+							id="sign-up-password"
+							type={showPassword ? 'password' : 'text'}
+							name="password"
+							value={user.password}
+							onChange={handleChange}
+							required
+						/>
+						<p className="password-minlength">Minimum length is 8 characters</p>
+						<div
+							className="signup-icon-pw"
+							style={{
+								bottom: !showPassword && '5.4rem',
+								left: !showPassword && 'calc(100% - 4.6rem)',
+							}}
+							onClick={() => setShowPassword(!showPassword)}>
+							{showPassword && (
+								<Icon
+									icon={ICONS.PASSWORD_Y}
+									width={24}
+									height={24}
+									color="#5f6368"
+								/>
+							)}
+							{!showPassword && (
+								<Icon
+									icon={ICONS.PASSWORD_N}
+									width={24}
+									height={24}
+									color="#5f6368"
+								/>
+							)}
+						</div>
 					</div>
-				</div>
-				{error && <p className='email-address-taken'>{error}</p>}
-				<br />
-				{!loading &&
-					(user.email !== '' &&
-					user.password !== '' &&
-					user.password.length >= 6 ? (
-						<button className='submit-btn sign-up-button'>Sign Up</button>
-					) : (
-						<button className='submit-btn sign-up-button' disabled>
-							Sign Up
-						</button>
-					))}
+					{error && <p className="email-address-taken">{error}</p>}
+					<br />
+					{!loading &&
+						(user.email !== '' &&
+						user.password !== '' &&
+						user.password.length >= 6 ? (
+							<button className="submit-btn sign-up-button">Sign Up</button>
+						) : (
+							<button className="submit-btn sign-up-button" disabled>
+								Sign Up
+							</button>
+						))}
 
-				{!loading && (
-					<p className='signin-link'>
-						Already have an account? <Link to='/signin'>Sign In</Link>
-					</p>
-				)}
-				{loading && <Loading />}
-			</form>
+					{!loading && (
+						<p className="signin-link">
+							Already have an account? <Link to="/signin">Sign In</Link>
+						</p>
+					)}
+					{loading && <Loading />}
+				</form>
+			</div>
 		</div>
 	);
 }
