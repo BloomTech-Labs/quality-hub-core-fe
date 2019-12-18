@@ -48,7 +48,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 							<h3>
                 {(fullName.length > 25 ? `${fullName.substring(0,25)}...` : fullName)}
 							</h3>
-							<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
+							<h4 className="coach-price">{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
 						</div>
 						<div className='coach-photo-expand'>
 							{coach.image_url ? (

@@ -164,15 +164,16 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 					</div>
 				</div>
 			</header>
+			<div className='top-row'>
+					<div className='week-day-header time'></div>
+					{days}
+				</div>
 			<div
 				className='week-container'
 				name='weekContainer'
 				id='weekContainer'>
 				<div className='time-column'>{times}</div>
-				<div className='top-row'>
-					<div className='week-day-header time'></div>
-					{days}
-				</div>
+
 
 				{data &&
 					filterBookings.map(booking => (

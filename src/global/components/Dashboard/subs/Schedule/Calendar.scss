@@ -28,6 +28,7 @@ $neutral-cal-color: #fff;
 	border: 1px solid #dadce0;
 	border-radius: 0.4rem;
 	height: 4rem;
+	width: 8.4rem;
 	cursor: pointer;
 
 	p{
@@ -122,7 +123,6 @@ font-size: 12px;
 .calendar-select {
 	display: flex;
 	justify-content: flex-end;
-	//justify-content: space-between;
 }
 .flex-middle {
 	display: flex;
@@ -377,14 +377,18 @@ padding-left: 40%;
 	// 			// I made a bug
 	// 		}
 	width: 942px;
-	padding-right: 0;
+	
 	display: grid;
 	grid-gap: 5px;
 	grid-template-columns: 75.25px repeat(7, 117.25px);
-	grid-template-rows: 50px repeat(49, 25px);
+	grid-template-rows: repeat(49, 25px);
 	height: 600px;
 	overflow: scroll;
 	overflow-x: hidden;
+	position: relative;
+	// transform: translateX(0);
+	// transform: translateY(0);
+
 }
 
 // .weekview-border{
@@ -405,6 +409,7 @@ padding-left: 40%;
 	margin-bottom: 10px;
 	// border-bottom: 1px solid black;
 	justify-items: center;
+	position: sticky;
 }
 
 .week-day-header {
@@ -422,7 +427,7 @@ padding-left: 40%;
 	font-size: 12px;
 	grid-row: 2 / 51;
 	grid-gap: 5px;
-	grid-template-rows: repeat(49, 25px);
+	grid-template-rows: repeat(39, 25px);
 	:nth-child(even) {
 		visibility: hidden;
 	}
