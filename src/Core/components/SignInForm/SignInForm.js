@@ -79,7 +79,6 @@ const SignInForm = props => {
 					<label htmlFor='email'>Email address</label>
 						<br />
 							<input
-								// placeholder='Email'
 								name='email'
 								value={user.email}
 								onChange={handleChange}
@@ -94,7 +93,6 @@ const SignInForm = props => {
 							<label htmlFor='password'> Password </label>
 							<br />
 								<input
-									// placeholder='Password'
 									name='password'
 									type={showPassword ? 'password' : 'text'}
 									id='password'
