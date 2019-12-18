@@ -9,7 +9,7 @@ import SmallCells from './SmallCells';
 
 import { days, months, years } from '../../utils/TimeArrays';
 
-const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails}) => {
+const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails }) => {
 
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 
