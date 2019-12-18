@@ -80,7 +80,7 @@
 		align-items: center;
 	}
 
-	h1 {
+	h2 {
 		text-align: left;
 		font-weight: 600;
 		font-size: 3rem;
@@ -142,7 +142,22 @@ input:focus#edit-post-4 {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	// justify-content: space-around;
+	align-items: center;
+
+	p {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 2rem;
+		line-height: 2.8rem;
+
+		color: #5F6368;
+	}
+
+	img {
+		width: 34rem;
+		height: auto;
+	}
 }
 
 .post-desc {
