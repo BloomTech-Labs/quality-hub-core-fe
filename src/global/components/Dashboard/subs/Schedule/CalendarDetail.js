@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { format, differenceInHours } from 'date-fns';
+import { format, differenceInHours, differenceInMilliseconds } from 'date-fns';
 import { clock } from '../../../../../global/icons/Clock';
 import { document } from '../../../../../global/icons/document.js';
 import { paperclip } from '../../../../../global/icons/paperclip.js';
@@ -115,8 +115,9 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 			{booking[0] ? (
 				<div>
 					{booking.map((info, index) => {
-						console.log(info);
+						console.log('info:', info);
 						console.log(booking.length)
+						// const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-delete-booking-btn" : "";
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
 								<h3>
