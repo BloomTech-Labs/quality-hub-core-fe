@@ -3,45 +3,9 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { CREATE_REVIEW } from '../Resolvers';
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
 import Rating from './2_Rating';
 import './ReviewForm.scss';
-
-const GET_SEEKER_BOOKINGS = gql`
-	query getSeekerHistory($seeker_id: String!) {
-		bookingsBySeeker(seeker_id: $seeker_id) {
-			id
-			year
-			month
-			day
-			hour
-			minute
-			price
-			coach {
-				id
-				first_name
-				last_name
-				# post {
-				# 	id
-				# 	price
-				# }
-			}
-			uniquecheck
-			report {
-				id
-				strengths
-				growthAreas
-				suggestions
-				additionalComments
-			}
-			review {
-				id
-				rating
-				review
-			}
-		}
-	}
-`;
 
 const ReviewForm = props => {
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
