@@ -57,7 +57,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			const expTime = decodedToken.exp;
 			const currentTime = (Date.now() / 1000) | 0;
 			if (currentTime >= expTime) {
-				client.clearStore();
+				// client.clearStore();
 				setLoggedin(false);
 				logout();
 			}
