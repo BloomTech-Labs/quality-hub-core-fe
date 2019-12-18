@@ -78,9 +78,10 @@ const CoachCard = ({ post, setOpen, open }) => {
 									color='#595959'
 								/>
 							</span>
-							<span className='coachcard-posloc'>
 							{coach.city}, {coach.state}
-							</span>
+							{/* <span className='coachcard-posloc'>
+							{coach.city}, {coach.state}
+							</span> */}
 						</p>
 						<p>
 							<span className='coachcard-icon'>
@@ -107,7 +108,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						</div>
 					</div>
 					<div className='coachcard-footer-expand'>
-						<div className='coachcard-links-exand'>
+						<div className='coachcard-links-expand'>
 							{post.coach.linkedin_url && (
 								<a
 									href={linkedin}
