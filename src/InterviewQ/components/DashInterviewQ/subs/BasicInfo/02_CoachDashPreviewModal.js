@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import CoachPreview from './03_CoachDashCardExpand';
-
-//Styles
-import '../../../LandingPage/CoachList/CoachCardModal.scss';
-// import Icon from '../../../globalIcons/Icon';
-// import { ICONS } from '../../../globalIcons/iconConstants';
+import CoachPreview from '../../../LandingPage/CoachList/subs/2_CoachCardModal/CoachCardExpand'
 
 const CoachPreviewModal = ({ post }) => {
 	const [open, setOpen] = useState(false);

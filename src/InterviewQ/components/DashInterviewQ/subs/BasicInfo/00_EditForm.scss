@@ -19,23 +19,23 @@
 		margin-bottom: 4rem;
 	}
 
-	h3 {
-		font-style: normal;
-		font-weight: 600;
-		font-size: 2rem;
-		line-height: 2.8rem;
-		color: #202124;
-		text-align: left;
-		margin-bottom: 4rem;
-	}
+	// h3 {
+	// 	font-style: normal;
+	// 	font-weight: 600;
+	// 	font-size: 2rem;
+	// 	line-height: 2.8rem;
+	// 	color: #202124;
+	// 	text-align: left;
+	// 	margin-bottom: 4rem;
+	// }
 
-	h4 {
+	h4.tag-title {
 		font-style: normal;
 		font-weight: 600;
 		font-size: 1.2rem;
 		line-height: 2rem;
 		color: #5f6368;
-		text-transform: uppercase;
+		// text-transform: uppercase;
 	}
 
 	.post-input.last {
@@ -57,19 +57,23 @@
 	}
 
 	.tags-container {
-		> p {
+		width: 100%;
+		p {
 			display: flex;
+			width: 100%;
+			padding: 0 4px;
 			flex-wrap: wrap;
 			border-radius: 100px;
 			line-height: 2.2rem;
 			color: #096dd9;
-		}
+		
 		.tag-button {
 			background-color: lightgray;
 			margin: 0.5% 0.5%;
 			padding: 0% 1.2%;
 			border-radius: 100px;
 			height: 25px;
+			padding: 0 10px;
 			width: max-content;
 			flex-wrap: nowrap;
 			white-space: nowrap;
@@ -81,6 +85,7 @@
 				}
 			}
 		}
+		}
 	}
 }
 
@@ -90,7 +95,7 @@
 	align-items: center;
 	// height: 5rem;
 	border-bottom: 1px solid #dadce0;
-	padding: 1.6rem 2.4rem;
+	padding: .8rem 2.4rem;
 
 	@media screen and (max-width: 380px) {
 		flex-direction: column;
@@ -111,6 +116,7 @@
 	width: 100%;
 
 	p {
+		margin: .8rem 0rem;
 		font-style: normal;
 		font-weight: normal;
 		font-size: 16px;
@@ -139,4 +145,9 @@
 .IQ-dash-heading {
 	width: 15.6rem;
 	text-align: left;
+}
+
+.big-tag-boi{
+width: 100%;
+padding-left: 20px;
 }

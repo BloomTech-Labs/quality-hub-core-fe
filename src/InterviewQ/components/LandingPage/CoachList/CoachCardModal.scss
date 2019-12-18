@@ -92,11 +92,11 @@ body {
         color: #262626;
         text-transform: none;
 			}
-			h4 {
+			.coach-price {
 				font-size: 1.6rem;
 				font-weight: normal;
 				line-height: 2.4rem;
-				color: #096dd9;
+				color: $price;
 			}
 		}
 		.coach-photo-expand {
@@ -121,21 +121,32 @@ body {
 			line-height: 2.4rem;
 			color: #595959;
 			width: 40rem;
-			// .coachcard-icon {
-			// 	margin-right: 8px;
-			// 	// width: 2rem;
-			// 	// display: inline-block;
-			// }
-			.coachcard-icon {
+			
+			.coachcard-icon-industry {
 				display: inline-block;
-				width: 1.8em;
-        // margin-top: 0.2rem;
+				width: 3.0rem;
+       
+      }
+			.coachcard-icon-expand {
+				display: inline-block;
+				width: 3.0rem;
+     
       }
       .text {
-        width: 90%;
+		width: 90%;
+	
       }
 		}
 	}
+
+
+	.coachcard-posloc {
+		display: inline-block;
+		max-width: 20rem;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
 	.coachcard-description-expand {
 		p {
 			font-style: normal;
@@ -183,10 +194,10 @@ body {
 		}
 	}
 	.coachcard-footer-expand {
-		display: flex-wrap;
+		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 300px;
+		//width: 300px;
 		.coachcard-links-expand {
 			margin-top: 20px;
 			width: 6.2rem;
@@ -203,7 +214,7 @@ body {
 			text-decoration: none;
 			color: white;
 			border-radius: 0.5rem;
-			width: 100%;
+			width: 132px;
 			height: 4.2rem;
 			margin-top: 25px;
 			a {
@@ -217,3 +228,12 @@ body {
 		}
 	}
 }
+
+.preview-desc{
+	height: 8rem;
+}
+
+.coachcard-expand-inner{
+	height: 100%;
+}
+

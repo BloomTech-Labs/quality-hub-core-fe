@@ -27,6 +27,26 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const [open, setOpen] = useState(false);
 	const node = useRef();
 
+	const handleOutsideClick = e => {
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				setOpen(false);
+			}
+		} else {
+			setOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		if (open) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [open]);
+	
 	const currentWeek = getWeek(selectedDate);
 	const scheduleBody = document.getElementsByName('weekContainer');
 	const { data } = useQuery(ALL_BOOKINGS, {
@@ -79,16 +99,16 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 		);
 	}
 
-	useEffect(() => {
-		if (filterBookings) {
-			const weekGrid = document.getElementById('weekContainer');
-			for (let i = 392 - 27 - 7 - filterBookings.length * 2; i > 0; i--) {
-				const div = document.createElement('div');
-				div.classList.add('sched-placeholder');
-				weekGrid.appendChild(div);
-			}
-		}
-	}, [filterBookings]);
+	// useEffect(() => {
+	// 	if (filterBookings) {
+	// 		const weekGrid = document.getElementById('weekContainer');
+	// 		for (let i = 392 - 27 - 7 - filterBookings.length * 2; i > 0; i--) {
+	// 			const div = document.createElement('div');
+	// 			div.classList.add('sched-placeholder');
+	// 			weekGrid.appendChild(div);
+	// 		}
+	// 	}
+	// }, [filterBookings]);
 
 	const onMonthChange = e => {
 		const year = getYear(selectedDate);
@@ -164,21 +184,24 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 					</div>
 				</div>
 			</header>
+			<div className='top-row'>
+					<div className='week-day-header time'></div>
+					{days}
+				</div>
 			<div
 				className='week-container'
 				name='weekContainer'
 				id='weekContainer'>
 				<div className='time-column'>{times}</div>
-				<div className='top-row'>
-					<div className='week-day-header time'></div>
-					{days}
-				</div>
+
 
 				{data &&
 					filterBookings.map(booking => (
 						<WeekBooking booking={booking} key={booking} onBookingClick={onBookingClick}/>
 					))}
-						{open && (
+					
+			</div>
+			{open && (
 				<div className='calendar-detail' ref={node}>
 					<CalendarDetail
 					open={open}
@@ -187,7 +210,6 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 					/>
 				</div>
 			)}
-			</div>
 		</div>
 	);
 };
