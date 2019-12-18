@@ -35,8 +35,8 @@
 		color: #5f6368;
 	}
 
-	.delete-post-btn,
-	.update-post-btn {
+	.delete-post-btn
+		{
 		color: white;
 		cursor: pointer;
 		text-align: center;
@@ -58,6 +58,18 @@
 
 	.update-post-btn {
 		background-color: #096dd9;
+		color: white;
+		cursor: pointer;
+		text-align: center;
+		border-radius: 0.4rem;
+		width: 13rem;
+		height: 3.6rem;
+
+		font-style: normal;
+		font-weight: 600;
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+		color: #ffffff;
 
 		&:hover {
 			background-color: #0050b3;
