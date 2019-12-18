@@ -154,9 +154,31 @@
 	}
 }
 
-.interview-button-hidden {
-	display: none;
-}
+.interview-button-disabled {
+	display: flex;
+			border-radius: 0.5rem;
+			font-size: 1.4rem;
+			font-style: normal;
+			justify-content: center;
+			align-items: center;
+			font-weight: 500;
+			line-height: 2.2rem;
+			background-color: #EFEFEF;
+			text-align: center;
+			color: #5F6368;
+			align-items: center;
+			width: 13.23rem;
+			height: 4.2rem;
+			padding: 0;
+			a {
+				text-decoration: none;
+				color: #5F6368;				;
+				font-style: normal;
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 22px;
+			}
+		}
 
 .blank-image {
   background-color: $gray-avatar;
