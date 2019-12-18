@@ -297,7 +297,7 @@ textarea.add-coach-form-row-7 {
 	width: 410px;
 	border-radius: 8px;
 	border: 1px solid #d4d4d4;
-	box-shadow: 4px 4px 25px #d4d4d4;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .add-coach-form-preview-close {
@@ -310,7 +310,7 @@ textarea.add-coach-form-row-7 {
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 28px;
-	color: #096dd9;
+	color: #202124;
 	max-width: 17rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -321,7 +321,7 @@ textarea.add-coach-form-row-7 {
 	font-weight: normal;
 	font-size: 16px;
 	line-height: 24px;
-	color: #262626;
+	color: #202124;
 }
 
 .coachformcard-info {
@@ -330,10 +330,10 @@ textarea.add-coach-form-row-7 {
 		display: flex;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 14px;
+		line-height: 30px;
 
-		color: #595959;
+		color: #3C4043;
 
 		.coachcard-icon {
 			margin-right: 9px;
@@ -358,11 +358,17 @@ textarea.add-coach-form-row-7 {
 	margin-top: 21px;
 
 	.coachcard-links {
-		.icon1 {
-			margin-right: 21px;
-		}
+		margin-top: 20px;
+		margin-bottom: 20px;
+		width: 5.2rem;
+		align-items: baseline;
 		display: flex;
-		color:#5F6368;
+		justify-content: space-between;
+		.icon1 {
+			// margin-right: 21px;
+		}
+		// display: flex;
+
 	}
 }
 .become-a-coach-btn {

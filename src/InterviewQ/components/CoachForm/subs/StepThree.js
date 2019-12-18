@@ -63,7 +63,7 @@ const StepThree = ({data, image, formState}) => {
 												icon={ICONS.LOCATIONGRAY}
 												width={24}
 												height={24}
-												color='#595959'
+												color='#5F6368'
 											/>
 										</span>
 										{data && `${data.me.city}, ${data.me.state}`}
