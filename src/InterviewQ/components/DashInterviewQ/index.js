@@ -28,7 +28,7 @@ export default function DashInterviewQ() {
 					</div>
 					<div>{spacecoach()}</div>
 					<p>
-						You aren't currently a coach! To become a coach, click
+						You aren't currently a coach! To become a coach, click{' '}
 						<Link className='not-a-coach-here' to='/interviewq'>
 							here
 						</Link>

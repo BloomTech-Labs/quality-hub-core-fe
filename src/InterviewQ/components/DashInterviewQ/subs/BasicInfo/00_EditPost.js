@@ -344,6 +344,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						<span className='IQ-dash-heading'>
 							<h4 className="tag-title">KEYWORDS</h4>
 						</span>
+						<div className= 'big-tag-boi'>
 						<div className='tag-form'>
 							{editing[5] && (
 								<div className='tag-input'>
@@ -364,6 +365,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										: original && tagArray}
 								</p>
 							</div>
+							</div> 
 						</div>
 					</div>
 					<div className='edit-btns'>
@@ -378,7 +380,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				</div>
 				{/* START HOURLY RATE */}
 				<div className='IQ-dash-input'>
-					<div className='post-row post-tag'>
+					<div className='post-row post-price'>
 						<span className='IQ-dash-heading'>
 							<h4 className="tag-title">PRICE PER SESSION</h4>
 						</span>

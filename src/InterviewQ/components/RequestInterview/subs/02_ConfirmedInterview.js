@@ -18,11 +18,11 @@ const ConfirmedInterview = ({ node }) => {
 					<div className='int-confirmation-text'>
 						<p>
 							Interviews can be canceled until 24 hours prior to start time with
-							no penalty
+							no penalty.
 						</p>
 						<p>
 							Also note, you will not be charged if the coach is unable to make
-							the meeting
+							the meeting.
 						</p>
 						<Link to='/dashboard/schedule'>
 							<button>See Schedule</button>
