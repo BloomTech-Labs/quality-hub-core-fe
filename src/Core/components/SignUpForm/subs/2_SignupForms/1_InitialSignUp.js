@@ -24,6 +24,14 @@ export default function SignUp({
 	setProgress,
 	setEmailTouched,
 	setPasswordTouched,
+	progress,
+	valError,
+	emailTouched,
+	firstTouched,
+	lastTouched,
+	cityTouched,
+	stateTouched,
+	passwordTouched,
 }) {
 	const [verifyEmail, { loading }] = useMutation(CHECK_EMAIL);
 	const [error, setError] = useState(false);
@@ -104,40 +112,71 @@ export default function SignUp({
 							onClick={() => setShowPassword(!showPassword)}>
 							{showPassword && (
 								<Icon
-									icon={ICONS.PASSWORD_Y}
-									width={24}
-									height={24}
-									color="#5f6368"
+								icon={ICONS.PASSWORD_Y}
+								width={24}
+								height={24}
+								color="#5f6368"
 								/>
-							)}
+								)}
 							{!showPassword && (
 								<Icon
-									icon={ICONS.PASSWORD_N}
-									width={24}
-									height={24}
-									color="#5f6368"
+								icon={ICONS.PASSWORD_N}
+								width={24}
+								height={24}
+								color="#5f6368"
 								/>
-							)}
+								)}
 						</div>
 					</div>
 					{error && <p className="email-address-taken">{error}</p>}
-					<br />
-					{!loading &&
-						(user.email !== '' &&
-						user.password !== '' &&
-						user.password.length >= 6 ? (
-							<button className="submit-btn sign-up-button">Sign Up</button>
-						) : (
-							<button className="submit-btn sign-up-button" disabled>
-								Sign Up
-							</button>
-						))}
-
-					{!loading && (
-						<p className="signin-link">
-							Already have an account? <Link to="/signin">Sign In</Link>
-						</p>
-					)}
+					{progress === -1 && valError
+						? valError.map(message => {
+							if (message.includes('email') && !emailTouched) {
+								return null;
+							}
+							if (message.includes('first') && !firstTouched) {
+								return null;
+							}
+							if (message.includes('last') && !lastTouched) {
+								return null;
+							}
+							if (message.includes('city') && !cityTouched) {
+								return null;
+							}
+							if (message.includes('state') && !stateTouched) {
+								return null;
+							}
+							if (
+								(message.includes('password') ||
+								message.includes('Password')) &&
+								!passwordTouched
+								) {
+									return null;
+								}
+								return (
+									<p key={message} className="validation-error-message">
+										{message}
+									</p>
+								);
+							})
+							: null}
+							<br />
+							{!loading &&
+								(user.email !== '' &&
+								user.password !== '' &&
+								user.password.length >= 6 ? (
+									<button className="submit-btn sign-up-button">Sign Up</button>
+									) : (
+										<button className="submit-btn sign-up-button" disabled>
+										Sign Up
+									</button>
+								))}
+		
+							{!loading && (
+								<p className="signin-link">
+									Already have an account? <Link to="/signin">Sign In</Link>
+								</p>
+							)}
 					{loading && <Loading />}
 				</form>
 			</div>

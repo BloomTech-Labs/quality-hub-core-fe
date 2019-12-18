@@ -1,13 +1,15 @@
 @import '../../../global/styles/variables';
 
 .initial-sign-up-container{
+    height: 685px;
     margin: 0 auto;
     width: 1200px;
     display:flex;
-    margin-top: 80px;
+    margin-top: 66px;
     justify-content: center;
     align-items: center;
     align-content: center;
+    // border: 1px solid red;
     .sign-up-image{
         @media screen and (max-width: 1200px) {
 			display:none
