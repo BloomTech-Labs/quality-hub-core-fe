@@ -81,12 +81,8 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 	var canDelete = true
 
 	const lessThan24 = (time) => {
-		console.log(time)
-		console.log(Date())
-		console.log(differenceInHours(time, new Date()))
 		if (differenceInHours(time, new Date()) < 24) {
 			canDelete = false
-			console.log(canDelete)
 			return "disabled-delete-booking-btn"
 		}
 		else {
@@ -178,7 +174,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 										data-hour={info.hour}
 										data-minute={info.minute}
 										onClick={(event) => handleDelete(info.uniquecheck, event)}>
-										Cancel Booking
+										Cancel Appointment
 									</button>
 								)}
 							</div>
@@ -215,7 +211,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 										data-hour={info.hour}
 										data-minute={info.minute}
 										onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
-										Cancel Booking
+										Cancel Appointment
 									</button>
 								)}
 							</div>

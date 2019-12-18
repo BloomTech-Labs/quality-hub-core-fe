@@ -45,10 +45,10 @@ const StepThree = ({data, image, formState}) => {
 									<p>
 										<span className='coachcard-icon'>
 											<Icon
-												icon={ICONS.BAG}
+												icon={ICONS.POSITIONGRAY}
 												width={24}
 												height={24}
-												color='#595959'
+												color='#5F6368'
 											/>
 										</span>
 										{formState.company}
@@ -60,7 +60,7 @@ const StepThree = ({data, image, formState}) => {
 									<p>
 										<span className='coachcard-icon'>
 											<Icon
-												icon={ICONS.LOCATION}
+												icon={ICONS.LOCATIONGRAY}
 												width={24}
 												height={24}
 												color='#595959'
@@ -68,17 +68,18 @@ const StepThree = ({data, image, formState}) => {
 										</span>
 										{data && `${data.me.city}, ${data.me.state}`}
 									</p>
-									<p>
+
+									{/* <p>
 										<span className='coachcard-icon'>
 											<Icon
 												icon={ICONS.STAR}
 												width={24}
 												height={24}
-												color='#595959'
+												color='#5F6368'
 											/>
 										</span>
 										4.9
-									</p>
+									</p> */}
 								</div>
 								<p className='add-coach-form-preview-description'>
 									{formState.description}
@@ -87,12 +88,12 @@ const StepThree = ({data, image, formState}) => {
 									<div className='coachcard-links'>
 										{data && data.me.linkedin_url && (
 											<div className='icon1'>
-												<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+												<Icon icon={ICONS.LINKEDIN} width={24} height={24} color='#5F6368' />
 											</div>
 										)}
 										{data && data.me.twitter_url && (
 											<div>
-												<Icon icon={ICONS.TWITTER} width={24} height={24} />
+												<Icon icon={ICONS.TWITTER} width={24} height={24} color='#5F6368' />
 											</div>
 										)}
 									</div>

@@ -21,6 +21,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 
+	console.log(coachPost);
 	const [removeTag] = useMutation(REMOVE_TAG);
 	const [changeField] = useMutation(UPDATE_POST);
 
@@ -33,13 +34,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		false,
 		false,
 	]);
-	const [post, setPost] = useState({
-		id: coachPost.postByCoach.id,
-		tagString: '',
-	});
+	// const [post, setPost] = useState({
+	// 	id: coachPost.postByCoach.id,
+	// 	tagString: '',
+	// });
+	let coachObj = coachPost && coachPost.postByCoach;
+	const [post, setPost] = useState(coachObj);
 	const [deleteTags, setDelete] = useState([]);
 	//Component State
-	let coachObj = coachPost && coachPost.postByCoach;
 	let tagArray =
 		coachPost &&
 		coachPost.postByCoach.tags.map(tag => (
@@ -93,6 +95,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	const handleCancel = index => {
 		setPost({
+			...original,
 			id: coachPost.postByCoach.id,
 		});
 		let newEditing = [...editing];
@@ -200,7 +203,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		<>
 			<div className='IQ-editform'>
 				{/* START BASIC INFO */}
-				<h2>Basic Info</h2>
+				<h2>Coach Post</h2>
 				<div className='IQ-dash-input'>
 					<div className='IQ-dash-row post-row'>
 						<span className='IQ-dash-heading'>
@@ -210,7 +213,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							<div>
 								<input
 									id='edit-post-0'
-									defaultValue={original && original.company}
 									name='company'
 									value={post.company}
 									onChange={handleChange}
@@ -242,7 +244,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 									id='edit-post-1'
 									name='position'
 									value={post.position}
-									defaultValue={original && original.position}
 									onChange={handleChange}
 								/>
 							</div>
@@ -319,7 +320,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 									type='textarea'
 									name='description'
 									value={post.description}
-									defaultValue={coachPost && coachPost.postByCoach.description}
 									onChange={handleChange}
 								/>
 							</div>
@@ -343,7 +343,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='post-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
-							<h4>TAGS</h4>
+							<h4>KEYWORDS</h4>
 						</span>
 						<div className='tag-form'>
 							{editing[5] && (
@@ -390,7 +390,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												${post.price === 0 ? '0' : post.price ? post.price :  original && original.price}
+												${post.price === 0
+													? '0'
+													: post.price
+													? post.price
+													: original && original.price}
 											</p>
 											<p>$200</p>
 										</div>
@@ -401,7 +405,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 											min='0'
 											max='200'
 											value={original.price <= 200 ? post.price : 200}
-											defaultValue={original && original.price}
 											onChange={handleChange}
 											step='1'
 										/>
@@ -436,14 +439,15 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<h2>Availability</h2>
 				<Availability />
 			</div>
-			<div className='IQ-editform'>
+
+			<div className='coach-post-status'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
 					//if coach is done loading
 					!loading ? (
 						published ? (
 							// if coach listing is published, render 'unpublished'
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently published.</p>
 								<button
 									className='update-post-btn'
@@ -454,7 +458,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							// Allow coach to published their listing if unpublished
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently unpublished.</p>
 								<button
 									className='update-post-btn'
