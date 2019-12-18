@@ -20,7 +20,7 @@ const RequestInteview = props => {
 	const [resume, setResume] = useState(null);
 	const [currentSlots, setCurrentSlots] = useState();
 	const [setter, setSetter] = useState(true);
-	const [selectedCell, setSelectedCell] = useState(new Date());
+	// const [selectedCell, setSelectedCell] = useState(new Date());
 	const [dateAvails, setDateAvails] = useState();
 	const [currentMonth, setCurrentMonth] = useState();
 	const [currentDate, setCurrentDate] = useState();
@@ -57,11 +57,11 @@ const RequestInteview = props => {
 	}, [resume]);
 
 	useEffect(() => {
-		setCurrentMonth(getMonth(new Date(selectedCell)) + 1);
-		setCurrentDate(Number(format(selectedCell, 'd')));
+		setCurrentMonth(getMonth(new Date(props.selectedCell)) + 1);
+		setCurrentDate(Number(format(props.selectedCell, 'd')));
 		setSetter(!setter);
 		// eslint-disable-next-line
-	}, [selectedCell]);
+	}, [props.selectedCell]);
 
 	const [prevId, setPrevId] = useState();
 
@@ -72,12 +72,16 @@ const RequestInteview = props => {
 		});
 	};
 	const createBooking = (e, slot) => {
+		console.log(e.target.id)
+		console.log(slot.id)
 		setPrevId(e.target.id);
 		let prevSlot = document.getElementById(prevId);
 		if (prevId && prevSlot !== null) {
 			prevSlot.className = 'interview-slot';
 		}
-		e.target.className = 'available-slot interview-slot';
+		if (e.target.id === slot.id){
+			e.target.className = 'available-slot interview-slot';
+		}
 
 		props.setBooking({
 			...props.booking,
@@ -86,9 +90,10 @@ const RequestInteview = props => {
 			coachName: `${availabilities.availabilitiesByCoach[0].coach.first_name} ${availabilities.availabilitiesByCoach[0].coach.last_name}`,
 			price: availabilities.availabilitiesByCoach[0].coach.post.price,
 			coach: coachId,
-			year: Number(format(selectedCell, 'yyyy')),
-			month: Number(format(selectedCell, 'M')),
-			day: Number(format(selectedCell, 'd')),
+			year: Number(format(props.selectedCell, 'yyyy')),
+			month: Number(format(props.selectedCell, 'M')),
+			day: Number(format(props.selectedCell, 'd')),
+			availId: slot.id,
 		});
 	};
 
@@ -102,9 +107,12 @@ const RequestInteview = props => {
 	}, [resumeURL]);
 
 	useEffect(() => {
-		refetch();
-		// eslint-disable-next-line
-	}, []);
+		const bookedSlot = document.getElementById(props.booking.availId);
+		if (bookedSlot) {
+			bookedSlot.classList.add('available-slot');
+		}
+	}, [currentSlots]);
+	
 
 	useEffect(() => {
 		availabilities
@@ -113,7 +121,7 @@ const RequestInteview = props => {
 						.map(avail => convertToLocal(avail))
 						.filter(
 							avail =>
-								avail.year === getYear(selectedCell) &&
+								avail.year === getYear(props.selectedCell) &&
 								avail.day === currentDate &&
 								avail.month === currentMonth &&
 								avail.isOpen === true,
@@ -169,20 +177,25 @@ const RequestInteview = props => {
 		});
 	}
 
-	window.scrollTo(0, 0);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [])
 
 	return (
 		<div className="booking-content-section">
 			<div className="formsection">
-				<div className="interviewq-header-container">
-					<h2>Select a Date</h2>
+				<div className="booking-header-container">
+					<h2 className='booking-first-header'>Select a Date</h2>
+				</div>
+				<div className='booking-subheading'>
+				<p>Please select a date and timeslot for your mock interview</p>
 				</div>
 				<div className="interviewq-content-container">
 					<div className="coach-availability">
 						<SmallCalendar
 							availabilities={availabilities}
-							selectedCell={selectedCell}
-							setSelectedCell={setSelectedCell}
+							selectedCell={props.selectedCell}
+							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
 						<div className="interview-slot-list">
@@ -225,8 +238,11 @@ const RequestInteview = props => {
 				</div>
 			</div>
 			<div className="formsection">
-				<div className="interviewq-header-container">
+				<div className="booking-header-container">
 					<h2>Additional Information</h2>
+				</div>
+				<div className='booking-subheading'>
+					<p>Please respond to these prompts to give your interview coach a better sense of who you are and what your goals and motivations are.</p>
 				</div>
 				<div className="interviewq-content-container">
 					<div className="interviewq-booking-input">
@@ -269,14 +285,16 @@ const RequestInteview = props => {
     </div> */}
 
 			{props.booking && props.booking.minute !== undefined ? (
-				<div className="formsection">
-					<Link to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className="interview-button">Next</button>
+				<div className="booking-button-container">
+					<Link className="book-interview-button" to={`/interviewq/booking/${coachId}/confirm`}>
+						<button className="book-interview-button">
+							<p>Next</p>
+							</button>
 					</Link>
 				</div>
 			) : (
 				<div className="booking-bottom">
-					<p> Please select a time slot</p>
+					<p> Please select a time slot above to continue</p>
 				</div>
 			)}
 		</div>

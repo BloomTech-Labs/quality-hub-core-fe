@@ -26,6 +26,7 @@ const Availability =() => {
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
   
   useEffect(() => {
+    console.log(selectedCell);
     setCurrentMonth(getMonth(new Date(selectedCell)) + 1)
     setCurrentDate(Number(format(selectedCell, 'd')));
     setSetter(!setter)
@@ -43,7 +44,6 @@ const Availability =() => {
 
 
   const timeFilter = (h, m) => {
-    // console.log('time filter')
     let returnvar = false;
     (availabilities && dateAvails) &&
       dateAvails.forEach(({ hour, minute }) => {
@@ -70,13 +70,11 @@ const Availability =() => {
     
     newAvail({ variables: utcObj })
       .then(res => {
-        console.log('newAvail Refetch')
         refetch();     
       })
       .catch(err => console.log(err))
   }
 useEffect(()=>{
-  console.log('current month refetch')
   refetch();
 },[currentMonth])
   const checkAvail = (checkvar) => {
@@ -108,7 +106,6 @@ useEffect(()=>{
     removeAvail({ variables: checkvar })
     .then(res => {
       refetch();
-      console.log('deleted', checkvar)
     })
     .catch(err => console.log(err))
   }
@@ -141,7 +138,6 @@ useEffect(()=>{
       <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />
       <div className='interview-slot-list'>
         {timeObjs.map(time => {
-          // console.log('map running')
           return(
             <div key={time.display}  className={`${timeFilter(time.hour, time.minute) ? 'available-slot' : 'unavailable-slot'} interview-slot`} onClick={e => toggleAvail(e, time.hour, time.minute)}>
               {time.display}

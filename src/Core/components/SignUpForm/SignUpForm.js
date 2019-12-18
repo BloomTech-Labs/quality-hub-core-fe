@@ -131,44 +131,21 @@ const SignUpForm = props => {
 					setProgress={setProgress}
 					setEmailTouched={setEmailTouched}
 					setPasswordTouched={setPasswordTouched}
+					progress={progress}
+					valError={valError}
+					emailTouched={emailTouched}
+					firstTouched={firstTouched}
+					lastTouched={lastTouched}
+					cityTouched={cityTouched}
+					stateTouched={stateTouched}
+					passwordTouched={passwordTouched}
 				/>
 			)}
-
-			{progress === -1 && valError
-				? valError.map(message => {
-						if (message.includes('email') && !emailTouched) {
-							return null;
-						}
-						if (message.includes('first') && !firstTouched) {
-							return null;
-						}
-						if (message.includes('last') && !lastTouched) {
-							return null;
-						}
-						if (message.includes('city') && !cityTouched) {
-							return null;
-						}
-						if (message.includes('state') && !stateTouched) {
-							return null;
-						}
-						if (
-							(message.includes('password') || message.includes('Password')) &&
-							!passwordTouched
-						) {
-							return null;
-						}
-						return (
-							<p key={message} className='validation-error-message'>
-								{message}
-							</p>
-						);
-				  })
-				: null}
-
+			
 			{progress === 0 && <GetStarted setProgress={setProgress} />}
 
 			{progress > 0 && (
-				<div className='sign-up-form'>
+				<div className="sign-up-form">
 					<ProgressBar progress={progress} />
 					<form>
 						{(function() {
@@ -205,7 +182,7 @@ const SignUpForm = props => {
 														return (
 															<p
 																key={message}
-																className='validation-error-message'>
+																className="validation-error-message">
 																{message}
 															</p>
 														);

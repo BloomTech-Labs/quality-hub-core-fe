@@ -21,7 +21,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
 
-	console.log(coachPost);
 	const [removeTag] = useMutation(REMOVE_TAG);
 	const [changeField] = useMutation(UPDATE_POST);
 
@@ -249,7 +248,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							<div>
-								<p>{original && original.position}</p>
+								<p className="IQ-dash-position">{original && original.position}</p>
 							</div>
 						)}
 					</div>
@@ -308,7 +307,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row'>
 						<span className='IQ-dash-heading'>
 							<h4>DESCRIPTION</h4>
@@ -340,7 +339,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
 							<h4>KEYWORDS</h4>
@@ -378,7 +377,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 				{/* START HOURLY RATE */}
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
 							<h4>PRICE PER SESSION</h4>
@@ -390,7 +389,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												{post.price === 0
+												${post.price === 0
 													? '0'
 													: post.price
 													? post.price
@@ -458,10 +457,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							// Allow coach to published their listing if unpublished
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently unpublished.</p>
 								<button
-									class='update-post-btn'
+									className='update-post-btn'
 									onClick={e => handleSubmitPost(e)}>
 									{' '}
 									Publish{' '}
