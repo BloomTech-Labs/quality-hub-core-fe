@@ -40,7 +40,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	// 	id: coachPost.postByCoach.id,
 	// 	tagString: '',
   // });
-  console.log(editing);
 	let coachObj = coachPost && coachPost.postByCoach;
 	const [post, setPost] = useState(coachObj);
 	const [deleteTags, setDelete] = useState([]);
@@ -154,13 +153,13 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						</button>
 					));
 					setOriginal({ ...original, tags: tags });
-					setPost({ id: coachPost.postByCoach.id });
 				} else {
-					setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
+          setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
 				}
 				let newEditing = [...editing];
 				newEditing[index] = false;
-				setEditing(newEditing);
+        setEditing(newEditing);
+        setPost({ ...original, [keyval[1]]: post[keyval[1]] });
 			})
 			.catch(err => {
 				console.log(err);
@@ -174,78 +173,75 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		tagArray = newNodes;
 		setOriginal({ ...original, tags: newArray, tagString: tagArray });
 		setDelete(arr => [...arr, { id: tagID }]);
-		console.log(deleteTags);
 	}
 
 	return (
-		<>
-			<div className='IQ-editform'>
-				{/* START BASIC INFO */}
-				<h2>Coach Post</h2>
-        <CompanyInput
-          editing={editing} 
-          setEditing={setEditing}
-          original={original}
-          post={post}
-          handleChange={handleChange}
-          handleCancel={handleCancel}
-          handleSubmit={handleSubmit}
-        />
-				<PositionInput
-          editing={editing} 
-          setEditing={setEditing}
-          original={original}
-          post={post}
-          handleChange={handleChange}
-          handleCancel={handleCancel}
-          handleSubmit={handleSubmit}
-        />
-        <IndustryInput 
-          editing={editing} 
-          setEditing={setEditing}
-          original={original}
-          post={post}
-          handleChange={handleChange}
-          handleCancel={handleCancel}
-          handleSubmit={handleSubmit}
-          industries={industries}
-        />
-        <TagInput
-          editing={editing} 
-          setEditing={setEditing}
-          original={original}
-          post={post}
-          handleChange={handleChange}
-          handleCancel={handleCancel}
-          handleSubmit={handleSubmit}
-          tagArray={tagArray}
-        />
-        <DescInput
-          editing={editing} 
-          setEditing={setEditing}
-          original={original}
-          post={post}
-          handleChange={handleChange}
-          handleCancel={handleCancel}
-          handleSubmit={handleSubmit}
-        />
-				{/* START HOURLY RATE */}
-        <PriceInput 
-          editing={editing} 
-          setEditing={setEditing}
-          original={original}
-          post={post}
-          handleChange={handleChange}
-          handleCancel={handleCancel}
-          handleSubmit={handleSubmit} 
-        />
-				<div className='post-input-last'>
-					<div className='see-preview'>
-						<PreviewCard setOpen={setOpen} open={open} post={original} />
-					</div>
+		<div className='IQ-editform'>
+			{/* START BASIC INFO */}
+			<h2>Coach Post</h2>
+      <CompanyInput
+        editing={editing} 
+        setEditing={setEditing}
+        original={original}
+        post={post}
+        handleChange={handleChange}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
+      />
+			<PositionInput
+        editing={editing} 
+        setEditing={setEditing}
+        original={original}
+        post={post}
+        handleChange={handleChange}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
+      />
+      <IndustryInput 
+        editing={editing} 
+        setEditing={setEditing}
+        original={original}
+        post={post}
+        handleChange={handleChange}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
+        industries={industries}
+      />
+      <TagInput
+        editing={editing} 
+        setEditing={setEditing}
+        original={original}
+        post={post}
+        handleChange={handleChange}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
+        tagArray={tagArray}
+      />
+      <DescInput
+        editing={editing} 
+        setEditing={setEditing}
+        original={original}
+        post={post}
+        handleChange={handleChange}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
+      />
+			{/* START HOURLY RATE */}
+      <PriceInput 
+        editing={editing} 
+        setEditing={setEditing}
+        original={original}
+        post={post}
+        handleChange={handleChange}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit} 
+      />
+			<div className='post-input-last'>
+				<div className='see-preview'>
+					<PreviewCard setOpen={setOpen} open={open} post={original} />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
