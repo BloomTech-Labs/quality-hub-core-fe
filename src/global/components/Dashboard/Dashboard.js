@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, {useEffect} from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
@@ -40,7 +40,9 @@ const GET_USER = gql`
 const Dashboard = ({ setLoggedin }) => {
 	useQuery(GET_USER);
 
-	window.scrollTo(0, 0);
+	useEffect(()=>{
+		window.scrollTo(0, 0);
+	},[]);
 
 	return (
 		<div className='entire-dashboard'>
