@@ -177,13 +177,14 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		} 
 	}
 	
+	console.log(userKey);
 
 	return (
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					{userKey && <AccountIcon userKey={userKey} />}
-					<h4>{userKey && capitalize(userKey)}</h4>
+					{userKey && <div className='account-icon'><AccountIcon userKey={userKey} /></div>}
+					<h4>{userKey && capitalize((userKey.split('_url'))[0])}</h4>
 				</span>
 				{/* <div> */}
 				{editing ? (
