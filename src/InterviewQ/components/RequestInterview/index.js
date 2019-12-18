@@ -5,11 +5,12 @@ import ConfirmInterview from './subs/01_ConfirmInterview';
 
 const BookingContainer = () => {
 	const [booking, setBooking] = useState({});
+	const [selectedCell, setSelectedCell] = useState(new Date());
 	return (
 		<>
 			<Route
 				path='/interviewq/booking/:coachId/confirm'
-				render={props => <ConfirmInterview {...props} booking={booking} />}
+				render={props => <ConfirmInterview {...props} booking={booking} selectedCell={selectedCell}/>}
 			/>
 			<Route
 				exact
@@ -17,6 +18,8 @@ const BookingContainer = () => {
 				render={props => (
 					<RequestInteview
 						{...props}
+						setSelectedCell={setSelectedCell}
+						selectedCell={selectedCell}
 						booking={booking}
 						setBooking={setBooking}
 					/>

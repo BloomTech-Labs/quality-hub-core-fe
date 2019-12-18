@@ -9,7 +9,7 @@ import SmallCells from './SmallCells';
 
 import { days, months, years } from '../../utils/TimeArrays';
 
-const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails, open, setOpen }) => {
+const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchAvails }) => {
 
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -31,9 +31,9 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		}
 	};
 	
-	useEffect(()=>{
-		setOpen(true);
-	},[selectedCell])
+	// useEffect(()=>{
+	// 	setOpen(true);
+	// },[selectedCell])
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
