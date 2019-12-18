@@ -194,10 +194,10 @@ body {
 		}
 	}
 	.coachcard-footer-expand {
-		display: flex-wrap;
+		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 300px;
+		//width: 300px;
 		.coachcard-links-expand {
 			margin-top: 20px;
 			width: 6.2rem;
@@ -214,7 +214,7 @@ body {
 			text-decoration: none;
 			color: white;
 			border-radius: 0.5rem;
-			width: 100%;
+			width: 132px;
 			height: 4.2rem;
 			margin-top: 25px;
 			a {
@@ -228,3 +228,12 @@ body {
 		}
 	}
 }
+
+.preview-desc{
+	height: 8rem;
+}
+
+.coachcard-expand-inner{
+	height: 100%;
+}
+
