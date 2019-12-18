@@ -9,8 +9,7 @@ import {
 	UPDATE_POST,
 	REMOVE_TAG,
 } from '../Resolvers';
-import PreviewCard from '../../../LandingPage/CoachList/subs/2_CoachCardModal/CoachCardModal'
-// import PreviewCard from './02_CoachDashPreviewModal';
+import PreviewCard from './02_CoachDashPreviewModal';
 import Availability from '../Availability/00_Availability';
 
 import './00_EditForm.scss';
