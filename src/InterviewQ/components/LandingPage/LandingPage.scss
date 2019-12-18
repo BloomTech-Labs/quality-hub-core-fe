@@ -1,7 +1,7 @@
 @import '../../../global/styles/variables';
 
 .interview-container {
-    margin-top: 10rem;
+    margin-top: 8.8rem;
     @media screen and (max-width: 1269px){
         margin-top: 0rem;
     }
@@ -11,6 +11,8 @@
     width: 94%;
     max-width: 97.8rem;
     margin: 0 auto;
+    margin-bottom: 3.2rem;
+    
     @media screen and (max-width: 1600px) {
         margin-left: 25rem;
     }
@@ -44,20 +46,26 @@
     display: flex;
     align-items: center;
 
-    .red-circle {
-        background-color: #cf1322;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 1.8rem;
-    }
+    // .red-circle {
+    //     background-color: #cf1322;
+    //     width: 60px;
+    //     height: 60px;
+    //     border-radius: 50%;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     margin-right: 1.8rem;
+    // }
 
-    h1 {
-        display: flex;
-        flex-wrap: wrap;
+    h2 {
+        // display: flex;
+        // flex-wrap: wrap;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+
+        color: #202124;
     }
 }
 

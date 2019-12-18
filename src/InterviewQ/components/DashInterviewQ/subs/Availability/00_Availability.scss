@@ -19,8 +19,8 @@ $neutral-cal-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4px 2rem;
-  width: 220px;
+  margin: 3px 0;
+  width: 225px;
   height: 64px;
   border: 1px solid $main-cal-color;
   border-radius: 4px;
@@ -36,7 +36,8 @@ $neutral-cal-color: #fff;
 }
 
 .interview-slot-list{
-  margin-top: 20px;
+  margin-top: 28px;
+  margin-right: 20px;
   height:350px;
   overflow:scroll;
   overflow-x:hidden;

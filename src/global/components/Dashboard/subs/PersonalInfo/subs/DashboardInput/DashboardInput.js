@@ -5,6 +5,8 @@ import { useMutation } from '@apollo/react-hooks';
 // Styles & Icons
 import './DashboardInput.scss';
 
+import AccountIcon from './subs/AccountIcon';
+
 //GraphQuail Mutation
 import { EDIT_USER } from './Mutation';
 
@@ -126,7 +128,6 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 	//when you click edit...
 	//if the key name is state, use a dropdown menu instead of input form
 	const checkKeyNameForEdit = () => {
-		console.log(userKey);
 		if (userKey === 'state') {
 			return (
 				<select
@@ -162,18 +163,26 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 			<input
 				name={userKey}
 				id={`dashboard-input-${userKey}`}
-				// placeholder={original}
 				onChange={handleChange}
 				value={user[userKey]}
 			/>
 		);
 	};
+	let newURL = user[userKey];
+	if(user[userKey]){
 
+		let splitURL = user[userKey].split(':');
+		if(splitURL.length == 1){
+			newURL = `http://${user[userKey]}`
+		} 
+	}
+	
 	return (
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					<h4>{userKey && capitalize(userKey)}</h4>
+					{userKey.includes('_url') && <div className='account-icon'><AccountIcon userKey={userKey} /></div>}
+					<h4>{userKey && capitalize((userKey.split('_url'))[0])}</h4>
 				</span>
 				{/* <div> */}
 				{editing ? (
@@ -181,7 +190,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 				) : //When you're not in edit mode, render this
 				isLink ? (
 					<p>
-						<a href={user[userKey]} target='_blank' rel='noopener noreferrer'>
+						<a href={newURL} target='_blank' rel='noopener noreferrer'>
 							{user[userKey]}
 						</a>
 					</p>
@@ -212,7 +221,6 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 					data-testid='edit-button' //data-testid made explicitly for testing-purposes
 				>
 					Edit
-					{/* <Icon icon={ICONS.PENCIL} width={24} height={24} /> */}
 				</button>
 			)}
 		</div>

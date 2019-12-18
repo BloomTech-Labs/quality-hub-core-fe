@@ -33,13 +33,14 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		false,
 		false,
 	]);
-	const [post, setPost] = useState({
-		id: coachPost.postByCoach.id,
-		tagString: '',
-	});
+	// const [post, setPost] = useState({
+	// 	id: coachPost.postByCoach.id,
+	// 	tagString: '',
+	// });
+	let coachObj = coachPost && coachPost.postByCoach;
+	const [post, setPost] = useState(coachObj);
 	const [deleteTags, setDelete] = useState([]);
 	//Component State
-	let coachObj = coachPost && coachPost.postByCoach;
 	let tagArray =
 		coachPost &&
 		coachPost.postByCoach.tags.map(tag => (
@@ -93,6 +94,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	const handleCancel = index => {
 		setPost({
+			...original,
 			id: coachPost.postByCoach.id,
 		});
 		let newEditing = [...editing];
@@ -198,19 +200,18 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	return (
 		<>
-			<div className='editform'>
+			<div className='IQ-editform'>
 				{/* START BASIC INFO */}
-				<h2>Basic Info</h2>
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
-							<h4>COMPANY</h4>
+				<h2>Coach Post</h2>
+				<div className='IQ-dash-input'>
+					<div className='IQ-dash-row post-row'>
+						<span className='IQ-dash-heading'>
+							<h4 className="tag-title">COMPANY</h4>
 						</span>
 						{editing[0] ? (
 							<div>
 								<input
 									id='edit-post-0'
-									defaultValue={original && original.company}
 									name='company'
 									value={post.company}
 									onChange={handleChange}
@@ -231,10 +232,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
-							<h4>POSITION</h4>
+				<div className='IQ-dash-input'>
+					<div className='IQ-dash-row post-row'>
+						<span className='IQ-dash-heading'>
+							<h4 className="tag-title">POSITION</h4>
 						</span>
 						{editing[1] ? (
 							<div>
@@ -242,13 +243,12 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 									id='edit-post-1'
 									name='position'
 									value={post.position}
-									defaultValue={original && original.position}
 									onChange={handleChange}
 								/>
 							</div>
 						) : (
 							<div>
-								<p>{original && original.position}</p>
+								<p className="IQ-dash-position">{original && original.position}</p>
 							</div>
 						)}
 					</div>
@@ -261,10 +261,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='dash-input'>
-					<div className='dash-row post-row'>
-						<span className='dash-heading'>
-							<h4>INDUSTRY</h4>
+				<div className='IQ-dash-input'>
+					<div className='IQ-dash-row post-row'>
+						<span className='IQ-dash-heading'>
+							<h4 className="tag-title">INDUSTRY</h4>
 						</span>
 						{editing[2] ? (
 							<div>
@@ -307,10 +307,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					/>
 				</div>
 
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row'>
-						<span className='dash-heading'>
-							<h4>DESCRIPTION</h4>
+						<span className='IQ-dash-heading'>
+							<h4 className="tag-title">DESCRIPTION</h4>
 						</span>
 						{editing[3] ? (
 							<div>
@@ -319,7 +319,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 									type='textarea'
 									name='description'
 									value={post.description}
-									defaultValue={coachPost && coachPost.postByCoach.description}
 									onChange={handleChange}
 								/>
 							</div>
@@ -340,11 +339,12 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 
-				<div className='post-input'>
+				<div className='IQ-dash-input'>
 					<div className='post-row post-tag'>
-						<span className='dash-heading'>
-							<h4>TAGS</h4>
+						<span className='IQ-dash-heading'>
+							<h4 className="tag-title">KEYWORDS</h4>
 						</span>
+						<div className= 'big-tag-boi'>
 						<div className='tag-form'>
 							{editing[5] && (
 								<div className='tag-input'>
@@ -365,6 +365,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										: original && tagArray}
 								</p>
 							</div>
+							</div> 
 						</div>
 					</div>
 					<div className='edit-btns'>
@@ -378,10 +379,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 					</div>
 				</div>
 				{/* START HOURLY RATE */}
-				<div className='post-input'>
-					<div className='post-row post-tag'>
-						<span className='dash-heading'>
-							<h4>PRICE PER SESSION</h4>
+				<div className='IQ-dash-input'>
+					<div className='post-row post-price'>
+						<span className='IQ-dash-heading'>
+							<h4 className="tag-title">PRICE PER SESSION</h4>
 						</span>
 						{editing[4] ? (
 							<div>
@@ -390,7 +391,11 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												{post.price ? post.price : original && original.price}
+												${post.price === 0
+													? '0'
+													: post.price
+													? post.price
+													: original && original.price}
 											</p>
 											<p>$200</p>
 										</div>
@@ -401,7 +406,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 											min='0'
 											max='200'
 											value={original.price <= 200 ? post.price : 200}
-											defaultValue={original && original.price}
 											onChange={handleChange}
 											step='1'
 										/>
@@ -432,18 +436,19 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				</div>
 			</div>
 
-			<div className='editform'>
+			<div className='IQ-editform' id='interviewq-availability-header'>
 				<h2>Availability</h2>
 				<Availability />
 			</div>
-			<div className='editform'>
+
+			<div className='coach-post-status'>
 				<h2>Coach Post Status</h2>
 				{coachPost ? (
 					//if coach is done loading
 					!loading ? (
 						published ? (
 							// if coach listing is published, render 'unpublished'
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently published.</p>
 								<button
 									className='update-post-btn'
@@ -454,10 +459,10 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							// Allow coach to published their listing if unpublished
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently unpublished.</p>
 								<button
-									class='update-post-btn'
+									className='update-post-btn'
 									onClick={e => handleSubmitPost(e)}>
 									{' '}
 									Publish{' '}

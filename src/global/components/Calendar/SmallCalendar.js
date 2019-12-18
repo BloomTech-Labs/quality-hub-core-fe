@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Dashboard/subs/Schedule/Calendar.scss';
-import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate } from 'date-fns';
+import { setMonth, getMonth, getYear, addMonths, subMonths, isBefore, getDate, format, isAfter } from 'date-fns';
 
 import { nextArrow } from '../../icons/nextArrow';
 import { backArrow } from '../../icons/backArrow';
@@ -14,28 +14,45 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 
 	const nextMonth = () => {
+		setSelectedCell(addMonths(currentMonth, 1));
 		setCurrentMonth(addMonths(currentMonth, 1))
 		
 	}
 	const lastMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1))
-	
+		if (isAfter(currentMonth, new Date())){
+			setSelectedCell(subMonths(currentMonth, 1));
+		 setCurrentMonth(subMonths(currentMonth, 1))
+		}
 	}
+
 	const onDateClick = day => {
 		if(isBefore(new Date(), day) || getDate(new Date) === getDate(day)){
 			setSelectedCell(day);
 		}
 	};
+	
+	// useEffect(()=>{
+	// 	setOpen(true);
+	// },[selectedCell])
 
 	const onMonthChange = e => {
 		const year = getYear(new Date(currentMonth));
-		setCurrentMonth(setMonth(new Date(year, 1, 1), e.target.value));
-		setSelectedCell(new Date(year, e.target.value, 1))
+		if (isAfter(new Date(year, e.target.value, 1), new Date())) {
+			setSelectedCell(setMonth(new Date(year, 1, getDate(new Date)), e.target.value));
+			setCurrentMonth(setMonth(new Date(year, 1, getDate(new Date)), e.target.value));
+			// if (format(currentMonth, 'Myyyy') === format(new Date(), 'Myyyy')) {
+			// 	// setSelectedCell(new Date());
+			// 	//setSelectedCell(new Date(year, e.target.value, 1))
+			// }
+		}
 	};
 
 	const onYearChange = e => {
 		const month = getMonth(new Date(currentMonth));
-		setCurrentMonth(setMonth(new Date(e.target.value, 1, 1), month));
+		if (isAfter(new Date(e.target.value, month, 31), new Date())) {
+			setSelectedCell(setMonth(new Date(e.target.value, 1, getDate(new Date)), month))
+			setCurrentMonth(setMonth(new Date(e.target.value, 1, getDate(new Date)), month));
+		}
 	};
 	
 	return (	
@@ -47,9 +64,12 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 					
 					</div>
 					<div className='col small-calendar-select'>
-						<button className='calendar-button' onClick={lastMonth}>{backArrow()}</button>
+						<div className='cal-arrow-container'>
+						<button className='calendar-button back-arrow' onClick={lastMonth}>{backArrow()}</button>
+						<button className='calendar-button next-arrow' onClick={nextMonth}>{nextArrow()}</button>
+						</div>
 						<select
-							onChange={onMonthChange}
+							onChange={(e) =>onMonthChange(e)}
 							value={getMonth(new Date(currentMonth))}>
 							{months.map(month => {
 								return (
@@ -60,7 +80,7 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 							})}
 						</select>
 						<select
-							onChange={onYearChange}
+							onChange={(e) =>onYearChange(e)}
 							value={getYear(new Date(currentMonth))}>
 							{years.map(year => {
 								return (
@@ -70,7 +90,6 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 								);
 							})}
 						</select>
-						<button className='calendar-button' onClick={nextMonth}>{nextArrow()}</button>
 					</div>
 				</div>
 			</header>

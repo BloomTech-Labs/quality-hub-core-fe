@@ -4,45 +4,54 @@ import { Link } from 'react-router-dom';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
 
-import SeekerBookingContent from './3_SeekerBookingContent';
+import SeekerHistoryReview from './3_SeekerHistoryReview';
+import SeekerHistoryReport from './4_SeekerHistoryReport';
 
 export default function SeekerHistoryRow({ booking }) {
-	const [showContent, setShowContent] = useState(false);
+	const [showReview, setShowReview] = useState(false);
+	const [showReport, setShowReport] = useState(false);
 
 	return (
 		<div>
 			<div className='seeker-history-row'>
-				<div>
+				<div className='history-col'>
 					{booking.coach.first_name} {booking.coach.last_name}
 				</div>
-				<div>
+				<div className='history-col'>
 					{booking.month}/{booking.day}/{booking.year}
 				</div>
-				<div>
+				<div className='history-col'>
 					{booking.hour}:{booking.minute}
 					{booking.minute === 0 && '0'}
 				</div>
-				<div>${booking.coach.post.price}</div>
-				<div>
-					<Link
-						to={{
-							pathname: `/interviewq/review/${booking.uniquecheck}`,
-							state: { firstName: booking.coach.first_name },
-						}}>
-						{booking.review ? 'View' : 'Write'} Review{' '}
-						{booking.review && (
+				<div className='history-col'>${booking.price}</div>
+				<div className='history-col'>
+					{booking.review ? (
+						<div
+							className='view-review'
+							onClick={() => setShowReview(!showReview)}>
+							<div>{showReview ? 'Hide' : 'View'} Review</div>
 							<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
-						)}
-					</Link>
+						</div>
+					) : (
+						<Link
+							to={{
+								pathname: `/interviewq/history/review/${booking.uniquecheck}`,
+								state: { firstName: booking.coach.first_name },
+							}}>
+							Write Review
+						</Link>
+					)}
 				</div>
 				<div
-					className='history-content-toggle'
-					onClick={() => setShowContent(!showContent)}>
-					{showContent ? 'Hide' : 'View'} Report{' '}
+					className='history-col history-content-toggle'
+					onClick={() => setShowReport(!showReport)}>
+					{showReport ? 'Hide' : 'View'} Report{' '}
 					<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
 				</div>
 			</div>
-			{showContent && <SeekerBookingContent booking={booking} />}
+			{showReview && <SeekerHistoryReview booking={booking} />}
+			{showReport && <SeekerHistoryReport booking={booking} />}
 		</div>
 	);
 }

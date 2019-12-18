@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
-import { CREATE_REVIEW } from './Resolvers';
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
 import Rating from './2_Rating';
 import './ReviewForm.scss';
 
 const ReviewForm = props => {
+  const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
+    update(cache, {data: { createReview }}) {
+      const data = cache.readQuery({query: GET_SEEKER_BOOKINGS, variables: {seeker_id: localStorage.getItem('id')}})
+      const bookings = data.bookingsBySeeker;
+      const id = props.id
+      const newBookings = bookings.map(booking => {
+        if (booking.uniquecheck === id) {
+          return {...booking, review: createReview}
+        }
+        return booking
+      })
+      cache.writeQuery({query: GET_SEEKER_BOOKINGS, data: {...data, bookingsBySeeker: newBookings}})
+    }
+  });
+
   const [fields, setFields] = useState({rating: 0, review: ""})
   const [fieldsError, setError] = useState({rating: ""})
   const [hoverIdx, setHover] = useState();
@@ -36,7 +52,7 @@ const ReviewForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    let id = props.match.params.id
+    let id = props.id;
     if (checkError(fields.rating)) {
       submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
     }
@@ -55,19 +71,18 @@ const ReviewForm = props => {
   let stars = [];
 
   for (let i = 0; i < 5; i++) {
-    stars.push(<Rating hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
+    stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
   }
 
-  const [submitReview, { called, error }] = useMutation(CREATE_REVIEW);
-
   useEffect(() => {
-    if (called && !error) {
-      props.history.goBack();
+    console.log(loading);
+    if (called && !loading && !error) {
+      props.setOpen(true);
     }
-  }, [called])
+  }, [called, loading])
 
 	return (
-		<form className='review-form' onChange={handleChange} onSubmit={handleSubmit}>
+		<form className='review-form'>
       <div className='review-container'>
         <div className='rating-form'>
           <p className='label'>How did {props.location.state.firstName} do? </p>
@@ -81,12 +96,12 @@ const ReviewForm = props => {
         </div>
         <div className='review-text'>
           <p className='label'>Any feedback you want to share?</p>
-          <textarea className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review}/>
+          <textarea onChange={handleChange} className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review}/>
         </div>
       </div>
       <div className='button-container'>
         <Link to ='/interviewq/history' className='review-button button cancel'><button>Cancel</button></Link>
-        <p className='review-button button submit'><button>Submit</button></p>
+        <p className='review-button button submit' onClick={handleSubmit}><button>Submit</button></p>
       </div>
 		</form>
 	);

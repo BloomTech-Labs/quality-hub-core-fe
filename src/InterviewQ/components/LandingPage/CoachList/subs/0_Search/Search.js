@@ -9,21 +9,7 @@ import './Search.scss';
 import { search } from '../../../../../../global/icons/search';
 
 // GraphQL Query
-export const GET_INDUSTRIES = gql`
-	query {
-		industries {
-			name
-		}
-	}
-`;
-
-const GET_USERS = gql`
-	query($tags: String) {
-		users(keywords: $tags) {
-			id
-		}
-	}
-`;
+import { GET_INDUSTRIES, GET_USERS } from '../../../Resolvers';
 
 export default function Search({ fields, setFields, refetch }) {
 	const { data: ind_data } = useQuery(GET_INDUSTRIES);

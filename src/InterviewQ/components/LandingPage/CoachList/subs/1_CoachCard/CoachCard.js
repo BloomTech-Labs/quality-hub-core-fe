@@ -21,17 +21,26 @@ const CoachCard = ({ post }) => {
 			<div className='coachcard-header'>
 				<div className='coachcard-header-txt'>
 					<h3>
-            {(fullName.length > 25 ? `${fullName.substring(0,25)}...` : fullName)}
+						{fullName.length > 25
+							? `${fullName.substring(0, 25)}...`
+							: fullName}
 					</h3>
-					<h4>{post.price === 0 ? 'Free' : `$${post.price} per hour`}</h4>
+					<h4 className='coach-price'>
+						{post.price === 0 ? 'Free' : `$${post.price} per hour`}
+					</h4>
 				</div>
 				<div className='coach-photo'>
 					{coach.image_url ? (
 						<img src={coach.image_url} alt='Coach Profile Pic' />
 					) : (
-            <div className='blank-image'>
-              <Icon icon={ICONS.BLANK_AVATAR} color="white" width={80} height={90} />
-            </div>
+						<div className='blank-image'>
+							<Icon
+								icon={ICONS.BLANK_AVATAR}
+								color='white'
+								width={80}
+								height={90}
+							/>
+						</div>
 					)}
 				</div>
 			</div>
@@ -74,30 +83,25 @@ const CoachCard = ({ post }) => {
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
 					{post.coach.linkedin_url && (
-						<a
-							href={linkedin}
-							target='_blank'
-							rel='noopener noreferrer'>
+						<a href={linkedin} target='_blank' rel='noopener noreferrer'>
 							<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
 						</a>
 					)}
 					{post.coach.twitter_url && (
-						<a
-							href={twitter}
-							target='_blank'
-							rel='noopener noreferrer'>
+						<a href={twitter} target='_blank' rel='noopener noreferrer'>
 							<Icon icon={ICONS.TWITTER} width={24} height={24} />
 						</a>
 					)}
 				</div>
-				<button
-					className={
-						coach.id === localStorage.getItem('id')
-							? `interview-button-hidden`
-							: `interview-button`
-					}>
-					<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
-				</button>
+				{coach.id === localStorage.getItem('id') ? (
+					<button className='interview-button-disabled'>
+						Request Interview
+					</button>
+				) : (
+					<button className='interview-button'>
+						<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
+					</button>
+				)}
 			</div>
 		</div>
 	);

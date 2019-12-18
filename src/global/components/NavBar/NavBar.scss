@@ -7,7 +7,7 @@
 	height: 6.4rem;
 	background-color: white;
 	padding: 0 2.4rem;
-	border-bottom: 1px solid silver;
+	border-bottom: 1px solid #dadce0;
 	width: 100%;
 	position: fixed;
 	top: 0;
@@ -28,7 +28,7 @@
 		align-items: center;
 
 		a {
-			color: black;
+			color: #3c4043;
 			text-decoration: none;
 			font-weight: bold;
 			margin-left: 1.6rem;
@@ -36,6 +36,9 @@
 
 		.bell-icon {
 			margin-left: 1.6rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 }
@@ -68,7 +71,7 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 	width: 350px;
-	height: 315px;
+	min-height: 315px;
 	border-radius: 4px;
 	border: 1px solid lightgray;
 
@@ -83,6 +86,7 @@
 .avatar-dropdown-dashboard-link,
 .avatar-dropdown-signout-link {
 	margin: 17.75px 0 17.25px 0 !important;
+
 	a {
 		font-style: normal;
 		font-weight: 600;
@@ -210,6 +214,9 @@
 	font-size: 20px;
 	line-height: 28px;
 	color: #202124;
+	// max-width: 17rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .dropdown-menu-email {

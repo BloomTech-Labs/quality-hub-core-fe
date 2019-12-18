@@ -66,8 +66,8 @@ const SignInForm = props => {
 	return (
 		<div className='sign-in-form'>
 			<div>
-				<h1>QualityHub</h1>
-				<h2>Welcome back!</h2>
+				<h1>Welcome Back!</h1>
+				<h2>Please sign in to your account</h2>
 			</div>
 				<br />
 			{/* Insert Google Login Button Here */}
@@ -79,7 +79,6 @@ const SignInForm = props => {
 					<label htmlFor='email'>Email address</label>
 						<br />
 							<input
-								// placeholder='Email'
 								name='email'
 								value={user.email}
 								onChange={handleChange}
@@ -94,7 +93,6 @@ const SignInForm = props => {
 							<label htmlFor='password'> Password </label>
 							<br />
 								<input
-									// placeholder='Password'
 									name='password'
 									type={showPassword ? 'password' : 'text'}
 									id='password'

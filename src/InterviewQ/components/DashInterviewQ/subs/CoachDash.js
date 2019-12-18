@@ -1,48 +1,26 @@
 // Libraries
-import React from 'react';
-
-// Icons
-import Icon from '../../../../global/icons/Icon';
-import { ICONS } from '../../../../global/icons/iconConstants';
+import React, {useEffect} from 'react';
 
 // Styles
 import './CoachDash.scss';
 
 // Components
 import EditPost from './BasicInfo/00_EditPost';
-import DeletePost from './DeletePost/00_DeletePost';
-// import Review from '../Review/ReviewForm';
-
-// Hooks
-import useModal from '../../../../global/utils/useModal';
+import DeleteCoachPost from './DeleteCoachPost/DeleteCoachPost';
 
 export default function CoachDash() {
-	const { isShowing, toggle } = useModal();
+	
+	useEffect(()=>{
+		window.scrollTo(0, 0);
+	},[]);
 
 	return (
 		<div className='dash-coachinfo'>
 			<div className='coachinfo-header'>
-				<div className='circle-blue'>
-					<Icon icon={ICONS.COACHINFO} width={26} height={28} color='white' />
-				</div>
-				<h1>Coach Info</h1>
+				<h1>Settings</h1>
 			</div>
-
 			<EditPost />
-			{/* <Review /> */}
-
-			<div className='editform'>
-				<h2>Delete Coach Post</h2>
-				<div className='delete-post'>
-					<span className='delete-warning'>
-						<p>If you delete your post, you can't reverse this action</p>
-					</span>
-					<button className='delete-post-btn' onClick={toggle}>
-						<p>Delete Post</p>
-					</button>
-				</div>
-			</div>
-			<DeletePost isShowing={isShowing} hide={toggle} />
+			<DeleteCoachPost />
 		</div>
 	);
 }

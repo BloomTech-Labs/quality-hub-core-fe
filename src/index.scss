@@ -48,6 +48,7 @@ html {
 		-webkit-appearance: none;
 		width: 10px;
 		height: 7px;
+		z-index: 9999999;
 	}
 	::-webkit-scrollbar-corner {
 		background: rgba(0, 0, 0, 0);

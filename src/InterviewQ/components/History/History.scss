@@ -3,7 +3,8 @@
 	border-radius: 0.8rem;
 	width: 90%;
 	max-width: 94.2rem;
-	margin: 10rem auto;
+	margin: 9.6rem auto;
+	margin-bottom: 3.2rem;
 	// padding: 4.8rem 10.1rem;
 
 	h2 {
@@ -47,16 +48,25 @@
 	display: flex;
 	width: 100%;
 
-	div {
+	.history-col {
 		width: 16.5%;
 		padding: 3.1rem 0 3rem 1.6rem;
 		text-align: left;
-		border-bottom: 1px solid #dadce0;
+		border-top: 1px solid #dadce0;
 		font-style: normal;
 		font-weight: normal;
 		font-size: 1.4rem;
 		line-height: 2.2rem;
 		color: #3c4043;
+		display: flex;
+		align-items: center;
+	}
+
+	.view-report,
+	.view-review {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
 	}
 
 	a {
@@ -72,4 +82,33 @@
 		align-items: center;
 		cursor: pointer;
 	}
+}
+
+.history-report {
+	text-align: left;
+	margin: 2.3rem 7.8rem 4.8rem 1.6rem;
+
+	h4 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+		text-decoration-line: underline;
+		color: #202124;
+		margin-bottom: 0.8rem;
+	}
+
+	p {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 1.6rem;
+		line-height: 3rem;
+		color: #3c4043;
+		margin-bottom: 3.2rem;
+	}
+}
+
+.coach-history-review,
+.seeker-history-report {
+	margin-bottom: 6.4rem;
 }

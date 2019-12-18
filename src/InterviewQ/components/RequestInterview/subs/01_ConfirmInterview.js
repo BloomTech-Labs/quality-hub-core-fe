@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_BOOKING } from './Resolvers';
 import { format } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
+import ConfirmedInterview from './02_ConfirmedInterview';
+//import { convertToUTC } from '../../../../global/utils/TZHelpers'
 
-const ConfirmInterview = ({ booking, history }) => {
-
+const ConfirmInterview = ({ booking, history, match, selectedCell }) => {
+	const coachId = match.params.coachId;
   console.log(booking)
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -20,19 +23,11 @@ const ConfirmInterview = ({ booking, history }) => {
     const availAHour = utcArr[3].charAt(0) === '0' ? utcArr[3].substr(1, 1) : utcArr[3];
     
     const availAMonth = utcArr[2].charAt(0) === '0' ? utcArr[2].substr(1, 1) : utcArr[2];
-    // const availA = `${obj.coach}-${utcArr[0]}-${8}-${availAMonth}-${availAHour}-${availAMin}`
-    console.log(typeof(utcArr[1]))
-    console.log(utcArr[1]);
+ 
     if(utcArr[1].charAt(0)==="0"){
       utcArr[1]=utcArr[1].charAt(1);
     }
-    console.log(utcArr[1]);
     const availA = `${obj.coach}-${utcArr[0]}-${utcArr[1]}-${availAMonth}-${availAHour}-${availAMin}`
-    // console.log(availA);
-    // console.log(availAMonth);
-    // console.log(utcArr);
-    // console.log(availAHour);
-    // console.log(availAMin);
     const availBMin = availAMin === 30 ? 0 : 30;
     const availBHour = availBMin === 30 ? availAHour : Number(availAHour) + 1;
     // const availB = `${obj.coach}-${utcArr[0]}-${8}-${availAMonth}-${availBHour}-${availBMin}`
@@ -51,6 +46,9 @@ const ConfirmInterview = ({ booking, history }) => {
     return UTCdate
   }
 
+  const node = useRef();
+  const [open, setOpen] = useState(false);
+  
   const [newBooking, { client }] = useMutation(CREATE_BOOKING);
 
   const submitBooking = () => {
@@ -59,9 +57,10 @@ const ConfirmInterview = ({ booking, history }) => {
     newBooking({ variables: utcBooking })
   .then(res => {
     client.clearStore();
+    setOpen(true)
     // setDateAvails([...dateAvails, availability])
     console.log('successful post')
-    history.push('/interviewq/interviewconfirmed')
+    //history.push('/interviewq/interviewconfirmed')
   })
   .catch(err => console.log(err))
   }
@@ -73,13 +72,24 @@ const ConfirmInterview = ({ booking, history }) => {
 
     bookingDate = format(new Date(booking.year, booking.month - 1, booking.day, booking.hour, booking.minute), "PPPP - p ");
   console.log(bookingDate)
+  	//This sets the darkened overlay behind the modals
+   
   }
 }
+
+useEffect(() => {
+  if (open === true) {
+    document.getElementById('overlay-confirm-interview').style.display = 'block';
+  }  else {
+    document.getElementById('overlay-confirm-interview').style.display = 'none';
+  }
+}, [open]);
   return(
     <div className='booking-content-section'>
+      <div id='overlay-confirm-interview'></div>
     <div className='formsection'>
     <div className='interviewq-header-container interviewq-conf-heading'>
-      <h2>Confirmation</h2>
+      <h2 className='booking-first-header'>Confirmation</h2>
       </div>
       <p> Please review the details of your mock interview, and click 'Confirm' to schedule it with your coach!</p>
       <div className='interviewq-content-container interviewq-conf-container'>
@@ -98,8 +108,24 @@ const ConfirmInterview = ({ booking, history }) => {
    <p>{booking.interviewQuestions}</p>
    </div>
    </div>
-   <button className='interview-button' onClick={submitBooking}>Confirm</button>
+   <div className='booking-button-container'>
+   <Link className="interview-a-secondary" to={`/interviewq/booking/${coachId}/`}>
+     <button className='interview-button-secondary'><p>Back</p></button>
+     </Link>
+   <button className='book-interview-button' onClick={submitBooking}><p>Confirm</p></button>
    </div>
+   </div>
+
+   {open && (
+				<div className='confirmed-interview-modal'>
+					<ConfirmedInterview
+					node = {node}
+						setOpen={setOpen}
+						//selectedDate={selectedDate}
+					/>
+			</div>
+			)}	
+
 </div>
     
   )

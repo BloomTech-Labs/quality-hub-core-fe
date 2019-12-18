@@ -1,22 +1,20 @@
 // Libraries
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
-// import { ApolloClient as client } from 'apollo-boost';
 
 // Styles & Icons
-import './00_DeletePost.scss';
-import Icon from '../../../../../global/icons/Icon';
-import { ICONS } from '../../../../../global/icons/iconConstants';
-import { DELETE_POST } from '../Resolvers';
+import './DeletePostModal.scss';
+import Icon from '../../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../../global/icons/iconConstants';
+import { DELETE_POST } from '../../Resolvers';
 
-
-export default function DeletePost({ isShowing, hide }) {
+export default function DeletePostModal({ isShowing, hide }) {
 	const history = useHistory();
 	const [deleteCoachPost, { client }] = useMutation(DELETE_POST, {
-    refetchQueries: ["GET_POST"], awaitRefetchQueries: true
+		refetchQueries: ['GET_POST'],
+		awaitRefetchQueries: true,
 	});
 
 	const deletePost = () => {
@@ -32,6 +30,7 @@ export default function DeletePost({ isShowing, hide }) {
 			{isShowing &&
 				createPortal(
 					<div className='modal-container'>
+						<div id='overlay-delete-post-modal'></div>
 						<div className='modal-wrapper' aria-modal aria-hidden role='dialog'>
 							<div className='modal-header'>
 								<Icon
@@ -50,7 +49,7 @@ export default function DeletePost({ isShowing, hide }) {
 								<button className='cancel' onClick={hide}>
 									<span>Cancel</span>
 								</button>
-								<button className="delete-button" onClick={deletePost}>
+								<button className='delete-button' onClick={deletePost}>
 									<span>Delete</span>
 								</button>
 							</div>

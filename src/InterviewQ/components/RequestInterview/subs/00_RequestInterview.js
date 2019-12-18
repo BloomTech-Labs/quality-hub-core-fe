@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
-import { format, getMonth } from 'date-fns';
+import { format, getMonth, getYear, differenceInMilliseconds } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
-import { utcToZonedTime } from 'date-fns-tz';
 import './00_RequestInterview.scss';
 import axios from 'axios';
+import { convertToLocal } from '../../../../global/utils/TZHelpers';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -20,33 +20,10 @@ const RequestInteview = props => {
 	const [resume, setResume] = useState(null);
 	const [currentSlots, setCurrentSlots] = useState();
 	const [setter, setSetter] = useState(true);
-	const [selectedCell, setSelectedCell] = useState(new Date());
+	// const [selectedCell, setSelectedCell] = useState(new Date());
 	const [dateAvails, setDateAvails] = useState();
 	const [currentMonth, setCurrentMonth] = useState();
 	const [currentDate, setCurrentDate] = useState();
-
-	const convertToLocal = obj => {
-		let localAvailDay = obj.day <= 9 ? `0${obj.day}` : `${obj.day}`;
-		let localAvailHour = obj.hour <= 9 ? `0${obj.hour}` : `${obj.hour}`;
-		let localAvailMin = obj.minute === 0 ? '00' : '30';
-		let localAvail;
-		if (obj.month < 10) {
-			localAvail = `${obj.year}-0${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-		} else {
-			localAvail = `${obj.year}-${obj.month}-${localAvailDay}T${localAvailHour}:${localAvailMin}:00.000Z`;
-		}
-		let zoned = utcToZonedTime(localAvail, localTime);
-		let zonedArr = format(zoned, 'yyyy M d H mm').split(' ');
-		let zonedDate = {
-			...obj,
-			year: Number(zonedArr[0]),
-			month: Number(zonedArr[1]),
-			day: Number(zonedArr[2]),
-			hour: Number(zonedArr[3]),
-			minute: Number(zonedArr[4]),
-		};
-		return zonedDate;
-	};
 
 	const validateFile = checkFile => {
 		if (checkFile.type == 'application/pdf') {
@@ -80,11 +57,11 @@ const RequestInteview = props => {
 	}, [resume]);
 
 	useEffect(() => {
-		setCurrentMonth(getMonth(new Date(selectedCell)) + 1);
-		setCurrentDate(Number(format(selectedCell, 'd')));
+		setCurrentMonth(getMonth(new Date(props.selectedCell)) + 1);
+		setCurrentDate(Number(format(props.selectedCell, 'd')));
 		setSetter(!setter);
 		// eslint-disable-next-line
-	}, [selectedCell]);
+	}, [props.selectedCell]);
 
 	const [prevId, setPrevId] = useState();
 
@@ -95,27 +72,28 @@ const RequestInteview = props => {
 		});
 	};
 	const createBooking = (e, slot) => {
+		console.log(e.target.id)
+		console.log(slot.id)
 		setPrevId(e.target.id);
 		let prevSlot = document.getElementById(prevId);
 		if (prevId && prevSlot !== null) {
 			prevSlot.className = 'interview-slot';
 		}
-		e.target.className = 'available-slot interview-slot';
+		if (e.target.id === slot.id){
+			e.target.className = 'available-slot interview-slot';
+		}
 
 		props.setBooking({
 			...props.booking,
 			hour: slot.hour,
 			minute: slot.minute,
 			coachName: `${availabilities.availabilitiesByCoach[0].coach.first_name} ${availabilities.availabilitiesByCoach[0].coach.last_name}`,
-			// availabilityA: availA,
-			// availabilityB: availB,
-			// interviewGoals: e.value.interviewGoals,
-			// interviewQuestions: e.target.value,
-			// resumeUrl: resumeURL,
+			price: availabilities.availabilitiesByCoach[0].coach.post.price,
 			coach: coachId,
-			year: Number(format(selectedCell, 'yyyy')),
-			month: Number(format(selectedCell, 'M')),
-			day: Number(format(selectedCell, 'd')),
+			year: Number(format(props.selectedCell, 'yyyy')),
+			month: Number(format(props.selectedCell, 'M')),
+			day: Number(format(props.selectedCell, 'd')),
+			availId: slot.id,
 		});
 	};
 
@@ -129,9 +107,12 @@ const RequestInteview = props => {
 	}, [resumeURL]);
 
 	useEffect(() => {
-		refetch();
-		// eslint-disable-next-line
-	}, []);
+		const bookedSlot = document.getElementById(props.booking.availId);
+		if (bookedSlot) {
+			bookedSlot.classList.add('available-slot');
+		}
+	}, [currentSlots]);
+	
 
 	useEffect(() => {
 		availabilities
@@ -140,6 +121,7 @@ const RequestInteview = props => {
 						.map(avail => convertToLocal(avail))
 						.filter(
 							avail =>
+								avail.year === getYear(props.selectedCell) &&
 								avail.day === currentDate &&
 								avail.month === currentMonth &&
 								avail.isOpen === true,
@@ -156,40 +138,6 @@ const RequestInteview = props => {
 		// eslint-disable-next-line
 	}, [dateAvails]);
 
-	//this will hold all potential 1 hour blocks
-	// let bookingArray = [];
-	// const getAvailableSlots = () => {
-	//   for(let x = 0; x < dateAvails.length-1; x++){
-	//       for (let y = x+1; y < dateAvails.length; y++) {
-	//           if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 0) { //if it's the same hour
-	//               if (dateAvails[x].minute < dateAvails[y].minute) {
-	//                   bookingArray.push(dateAvails[x]); //if the first date is lower, push that, because it has a full hour availabile
-	//               } else {
-	//               bookingArray.push(dateAvails[y]); //if the second date is lower, push that, because it has a full hour available
-	//               }
-
-	//           } else if (Math.abs(dateAvails[x].hour - dateAvails[y].hour) === 1) { //if the difference between the two is 1, then they are next to each other
-	//             if (dateAvails[x].hour < dateAvails[y].hour) { //if the first date is lower...
-
-	//                   if (dateAvails[y].minute - dateAvails[x].minute === -30) { //if the difference is -30, then the numbers are next to each other
-	//                     bookingArray.push(dateAvails[x]); //push the first date to the bookingArray, because it is lower and has an hour block available
-	//                   } else{ //if the difference is anything but -30, then they are more than an hour apart
-	//                   }
-	//               } else{ //if the second date is lower....
-	//                   if(dateAvails[x].minute - dateAvails[y].minute === -30){ //if the difference is -30, then you know the numbers are next to each other
-	//                     bookingArray.push(dateAvails[y]) //push second date, because it is lower and has the hour block
-	//                   } else{ //if the difference is NOT -30, then the blocks are not next to each other, and skip
-	//                   }
-	//               }
-	//           } else { //the hours are not equal or next to each other, so we skip to the next date object
-	//           }
-	//       }
-	//   }
-	//   // let localTimeArray = bookingArray.map(booking => convertToLocal(booking))
-	// setCurrentSlots(bookingArray);
-
-	// }
-
 	const getAvailableSlots = () => {
 		let bookingArray = [];
 		const convertMinute = oldMinute => {
@@ -197,19 +145,20 @@ const RequestInteview = props => {
 		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
-				if (dateAvails[x].day == dateAvails[y].day) {
-					if (
-						`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-							`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
-						-50
-					) {
-						bookingArray.push(dateAvails[x]);
-						break;
+				if (dateAvails[x].year === dateAvails[y].year) {
+					if (dateAvails[x].day == dateAvails[y].day) {
+						if (
+							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
+								`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
+							-50
+						) {
+							bookingArray.push(dateAvails[x]);
+							break;
+						}
 					}
 				}
 			}
 		}
-		// console.log(bookingArray);
 		setCurrentSlots(bookingArray);
 	};
 
@@ -228,30 +177,41 @@ const RequestInteview = props => {
 		});
 	}
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [])
+
 	return (
 		<div className="booking-content-section">
 			<div className="formsection">
-				<div className="interviewq-header-container">
-					<h2>Select a Date</h2>
+				<div className="booking-header-container">
+					<h2 className='booking-first-header'>Select a Date</h2>
+				</div>
+				<div className='booking-subheading'>
+				<p>Please select a date and timeslot for your mock interview</p>
 				</div>
 				<div className="interviewq-content-container">
 					<div className="coach-availability">
 						<SmallCalendar
 							availabilities={availabilities}
-							selectedCell={selectedCell}
-							setSelectedCell={setSelectedCell}
+							selectedCell={props.selectedCell}
+							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
 						<div className="interview-slot-list">
 							{currentSlots ? (
 								currentSlots.map(time => {
 									if (time.isOpen === true) {
+										const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-interview-slot" : "";
+										const inPast = (e) => differenceInMilliseconds(new Date(time.year, time.month - 1, time.day, time.hour, time.minute), new Date()) < 0 ? console.log('true') : createBooking(e, time);
+										
 										return (
 											<div
 												key={time.id}
 												id={time.id}
-												className="interview-slot"
-												onClick={e => createBooking(e, time)}>
+												className={`interview-slot ${isPast(new Date(time.year, time.month - 1, time.day, time.hour, time.minute))}`}
+												onClick={inPast}>
+													{/* inPast ? "" : createBooking(e, time) */}
 												{time.hour === 0
 													? 12
 													: time.hour > 12
@@ -278,8 +238,11 @@ const RequestInteview = props => {
 				</div>
 			</div>
 			<div className="formsection">
-				<div className="interviewq-header-container">
+				<div className="booking-header-container">
 					<h2>Additional Information</h2>
+				</div>
+				<div className='booking-subheading'>
+					<p>Please respond to these prompts to give your interview coach a better sense of who you are and what your goals and motivations are.</p>
 				</div>
 				<div className="interviewq-content-container">
 					<div className="interviewq-booking-input">
@@ -322,14 +285,16 @@ const RequestInteview = props => {
     </div> */}
 
 			{props.booking && props.booking.minute !== undefined ? (
-				<div className="formsection">
-					<Link to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className="interview-button">Next</button>
+				<div className="booking-button-container">
+					<Link className="book-interview-button" to={`/interviewq/booking/${coachId}/confirm`}>
+						<button className="book-interview-button">
+							<p>Next</p>
+							</button>
 					</Link>
 				</div>
 			) : (
 				<div className="booking-bottom">
-					<p> Please select a time slot</p>
+					<p> Please select a time slot above to continue</p>
 				</div>
 			)}
 		</div>

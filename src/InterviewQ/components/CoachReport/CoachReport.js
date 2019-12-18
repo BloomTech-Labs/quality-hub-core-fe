@@ -1,16 +1,23 @@
 // Libraries
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 // Styles
 import './CoachReport.scss';
+
+// Modal
+import useModal from '../../../global/utils/useModal';
+import FeedbackModal from './FeedbackModal';
 
 // Mutation
 import { CREATE_REPORT } from './Mutation';
 
 export default function CoachReport(props) {
 	const { key } = useParams();
+	const history = useHistory();
+
+	const { isShowing, toggle } = useModal();
 
 	const [report, setReport] = useState({
 		strengths: '',
@@ -27,24 +34,14 @@ export default function CoachReport(props) {
 		setReport({ ...report, [e.target.name]: e.target.value });
 	};
 
-	const handleSave = e => {
+	const handleSkip = e => {
 		e.preventDefault();
-		console.log(report);
-		createReport({
-			variables: {
-				uniqueBooking: key,
-				strengths: report.strengths,
-				growthAreas: report.growth,
-				suggestions: report.suggestions,
-				comments: report.comments,
-				isSent: false,
-			},
-		});
+		history.push('/interviewq/history');
 	};
 
 	const handleSend = e => {
 		e.preventDefault();
-		console.log(report);
+		// console.log(report);
 		createReport({
 			variables: {
 				uniqueBooking: key,
@@ -55,15 +52,15 @@ export default function CoachReport(props) {
 				isSent: true,
 			},
 		});
+		toggle();
 	};
 
 	return (
 		<div className='coachreport-wrapper'>
 			<h2 className='coachreport-header'>Feedback</h2>
 			<p className='coachreport-txt'>
-				Leave feedback on your interview with{' '}
-				{props.location.state ? firstName : 'the seeker'} here. Please make it
-				as detailed as possible.
+				Leave feedback on your interview here. Please make it as detailed as
+				possible.
 			</p>
 			<hr />
 			<div className='coachreport-question'>
@@ -71,7 +68,7 @@ export default function CoachReport(props) {
 			</div>
 			<form className='coachreport-form'>
 				<label className='coachreport-label'>
-					Strengths: <span className='coachreport-required'>*</span>
+					Strengths <span className='coachreport-required'>*</span>
 				</label>
 				<textarea
 					className='coachreport-txtarea'
@@ -84,7 +81,7 @@ export default function CoachReport(props) {
 				/>
 
 				<label className='coachreport-label'>
-					Areas of Growth: <span className='coachreport-required'>*</span>
+					Areas of growth <span className='coachreport-required'>*</span>
 				</label>
 				<textarea
 					className='coachreport-txtarea'
@@ -97,7 +94,7 @@ export default function CoachReport(props) {
 				/>
 
 				<label className='coachreport-label'>
-					Suggestions: <span className='coachreport-required'>*</span>
+					Suggestion <span className='coachreport-required'>*</span>
 				</label>
 				<textarea
 					className='coachreport-txtarea'
@@ -120,14 +117,15 @@ export default function CoachReport(props) {
 				/>
 
 				<div className='coachreport-btns'>
-					<button className='coachreport-btn-save' onClick={handleSave}>
-						Save and skip
+					<button className='coachreport-btn-save' onClick={handleSkip}>
+						Skip for now
 					</button>
 					<button className='coachreport-btn-send' onClick={handleSend}>
 						Send
 					</button>
 				</div>
 			</form>
+			<FeedbackModal isShowing={isShowing} />
 		</div>
 	);
 }

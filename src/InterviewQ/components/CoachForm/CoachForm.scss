@@ -1,3 +1,5 @@
+@import '../../../global/styles//variables';
+
 #overlay-coach-form {
 	position: fixed;
 	display: none;
@@ -17,7 +19,7 @@
 	height: 6.1rem;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-color: #bfbfbf;
+	background-color: $gray-avatar;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -105,7 +107,7 @@
 	width: 85rem;
 	height: 81.7rem;
 	left: 50%;
-	top: 7.5rem;
+	top: 6.4rem;
 	transform: translate(-50%);
 	background: white;
 	border-radius: 10px;
@@ -295,7 +297,7 @@ textarea.add-coach-form-row-7 {
 	width: 410px;
 	border-radius: 8px;
 	border: 1px solid #d4d4d4;
-	box-shadow: 4px 4px 25px #d4d4d4;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .add-coach-form-preview-close {
@@ -308,7 +310,10 @@ textarea.add-coach-form-row-7 {
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 28px;
-	color: #096dd9;
+	color: #202124;
+	max-width: 17rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .add-coach-form-preview-amount {
@@ -316,7 +321,7 @@ textarea.add-coach-form-row-7 {
 	font-weight: normal;
 	font-size: 16px;
 	line-height: 24px;
-	color: #262626;
+	color: $price;
 }
 
 .coachformcard-info {
@@ -325,10 +330,10 @@ textarea.add-coach-form-row-7 {
 		display: flex;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 14px;
+		line-height: 30px;
 
-		color: #595959;
+		color: #3c4043;
 
 		.coachcard-icon {
 			margin-right: 9px;
@@ -353,10 +358,16 @@ textarea.add-coach-form-row-7 {
 	margin-top: 21px;
 
 	.coachcard-links {
-		.icon1 {
-			margin-right: 21px;
-		}
+		margin-top: 20px;
+		margin-bottom: 20px;
+		width: 5.2rem;
+		align-items: baseline;
 		display: flex;
+		justify-content: space-between;
+		.icon1 {
+			// margin-right: 21px;
+		}
+		// display: flex;
 	}
 }
 .become-a-coach-btn {
@@ -368,9 +379,9 @@ textarea.add-coach-form-row-7 {
 	height: 45px;
 	padding: 1.4rem 2rem;
 	font-size: 1.4rem;
-	background-color: #096dd9;
+	background-color: #efefef;
 	text-align: center;
-	color: white !important;
+	color: #5f6368 !important;
 	border-radius: 1rem;
 	border-radius: 8px;
 	margin-left: 0 !important;

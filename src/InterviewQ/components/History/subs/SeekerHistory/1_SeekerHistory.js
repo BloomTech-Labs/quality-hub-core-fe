@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
+import { convertToLocal } from '../../../../../global/utils/TZHelpers';
 import { isPast } from '../../../../../global/utils/isPast';
 
 import SeekerHistoryRow from './2_SeekerHistoryRow';
@@ -15,15 +16,19 @@ const GET_SEEKERBOOKINGS = gql`
 			day
 			hour
 			minute
+			price
 			coach {
+				id
 				first_name
 				last_name
-				post {
-					price
-				}
+				# post {
+				# 	id
+				# 	price
+				# }
 			}
 			uniquecheck
 			report {
+				id
 				strengths
 				growthAreas
 				suggestions
@@ -31,6 +36,8 @@ const GET_SEEKERBOOKINGS = gql`
 			}
 			review {
 				id
+				rating
+				review
 			}
 		}
 	}
@@ -48,31 +55,25 @@ export default function SeekerHistory() {
 	const headings = ['Coach', 'Date', 'Time', 'Price', 'Review', 'Report'];
 
 	const filteredData = data
-		? data.bookingsBySeeker.filter(booking =>
-				isPast(
-					booking.year,
-					booking.month,
-					booking.day,
-					booking.hour,
-					booking.minute,
-				),
-		  )
+		? data.bookingsBySeeker
+				.map(booking => convertToLocal(booking))
+				.filter(booking => isPast(booking))
 		: [];
 
 	return (
 		<div>
 			<h2>Seeker History</h2>
-			{data && filteredData.length ? (
+			{filteredData && filteredData.length ? (
 				<div className='seeker-history-headings'>
 					{headings.map(heading => (
-						<h3>{heading}</h3>
+						<h3 key={heading}>{heading}</h3>
 					))}
 				</div>
 			) : (
 				<p>You have no previous bookings as a Seeker</p>
 			)}
 			{loading && <p>Loading...</p>}
-			{data &&
+			{filteredData &&
 				filteredData.map(booking => (
 					<SeekerHistoryRow key={booking.id} booking={booking} />
 				))}

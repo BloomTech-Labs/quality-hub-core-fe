@@ -1,7 +1,7 @@
 // Library
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Styles & Icons
@@ -15,28 +15,22 @@ import LandingPageHeader from './LandingPageHeader';
 import CoachList from './CoachList';
 import CoachForm from '../CoachForm';
 
-export const GET_USER = gql`
-	query {
-		me {
-			id
-			post {
-				id
-			}
-		}
-	}
-`;
+import { GET_USER } from './Resolvers';
 
 export default function InterviewLandingPage() {
+	
 	// Component State
 	const [toggleFilter, setToggleFilter] = useState(true);
 	const [hasPost, setHasPost] = useState();
 
-	// Usequery
-	const { refetch, loading, data: userData } = useQuery(GET_USER);
-
+	// useLazyQuery
+	const [getUser, { refetch, loading, data: userData }] = useLazyQuery(GET_USER);
 
 	useEffect(() => {
-		refetch();
+		//only check for current user if there is a token
+		if(localStorage.getItem('token')){
+			getUser();
+		}
 		// eslint-disable-next-line
 	}, []);
 
