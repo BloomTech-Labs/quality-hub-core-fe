@@ -166,16 +166,16 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 										 What do you want to get out of your mock
 										interview?
 									</p>
-									<p className=''>{info.interviewGoals}</p>
+									<p className='indented'>{info.interviewGoals}</p>
 									<p className='indented intres'>
 										What kind of questions do you want to focus on?
 									</p>
-									<p className='indented intres last-cal-detail'>{info.interviewQuestions}</p>
+									<p className='indented last-cal-detail'>{info.interviewQuestions}</p>
 								</div>
 								{console.log('jargon', info)}
 								{info.id && (
 									<button
-										className={`${info.id} delete-booking-btn`}
+									className={`${info.id} delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
 										data-id={`${info.uniquecheck}`}
 										data-year={info.year}
 										data-month={info.month}
