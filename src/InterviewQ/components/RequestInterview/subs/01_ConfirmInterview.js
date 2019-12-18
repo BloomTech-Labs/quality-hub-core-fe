@@ -112,7 +112,7 @@ useEffect(() => {
    <Link className="interview-a-secondary" to={`/interviewq/booking/${coachId}/`}>
      <button className='interview-button-secondary'><p>Back</p></button>
      </Link>
-   <button className='interview-button' onClick={submitBooking}><p>Confirm</p></button>
+   <button className='book-interview-button' onClick={submitBooking}><p>Confirm</p></button>
    </div>
    </div>
 

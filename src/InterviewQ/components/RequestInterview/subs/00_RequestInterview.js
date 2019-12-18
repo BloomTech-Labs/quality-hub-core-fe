@@ -286,8 +286,8 @@ const RequestInteview = props => {
 
 			{props.booking && props.booking.minute !== undefined ? (
 				<div className="booking-button-container">
-					<Link className="interview-button" to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className="interview-button">
+					<Link className="book-interview-button" to={`/interviewq/booking/${coachId}/confirm`}>
+						<button className="book-interview-button">
 							<p>Next</p>
 							</button>
 					</Link>
