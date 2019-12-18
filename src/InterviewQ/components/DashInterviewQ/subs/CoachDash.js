@@ -6,7 +6,9 @@ import './CoachDash.scss';
 
 // Components
 import EditPost from './BasicInfo/00_EditPost';
-import DeleteCoachPost from './DeleteCoachPost/DeleteCoachPost';
+import DeleteCoachPost from './DeleteCoachPost';
+import CoachPostStatus from './CoachPostStatus';
+import Availability from './Availability';
 
 export default function CoachDash() {
 	
@@ -20,6 +22,8 @@ export default function CoachDash() {
 				<h1>Settings</h1>
 			</div>
 			<EditPost />
+			<Availability />
+      <CoachPostStatus />
 			<DeleteCoachPost />
 		</div>
 	);
