@@ -177,8 +177,6 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		} 
 	}
 	
-	console.log(userKey);
-
 	return (
 		<div className='dash-input'>
 			<div className='dash-row'>
