@@ -181,7 +181,7 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					{userKey && <div className='account-icon'><AccountIcon userKey={userKey} /></div>}
+					{userKey.includes('_url') && <div className='account-icon'><AccountIcon userKey={userKey} /></div>}
 					<h4>{userKey && capitalize((userKey.split('_url'))[0])}</h4>
 				</span>
 				{/* <div> */}
