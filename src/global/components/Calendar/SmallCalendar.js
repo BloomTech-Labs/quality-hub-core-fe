@@ -40,10 +40,10 @@ const SmallCalendar = ({ selectedCell, setSelectedCell, availabilities, refetchA
 		if (isAfter(new Date(year, e.target.value, 1), new Date())) {
 			setSelectedCell(setMonth(new Date(year, 1, getDate(new Date)), e.target.value));
 			setCurrentMonth(setMonth(new Date(year, 1, getDate(new Date)), e.target.value));
-			if (format(currentMonth, 'Myyyy') === format(new Date(), 'Myyyy')) {
-				// setSelectedCell(new Date());
-				//setSelectedCell(new Date(year, e.target.value, 1))
-			}
+			// if (format(currentMonth, 'Myyyy') === format(new Date(), 'Myyyy')) {
+			// 	// setSelectedCell(new Date());
+			// 	//setSelectedCell(new Date(year, e.target.value, 1))
+			// }
 		}
 	};
 
