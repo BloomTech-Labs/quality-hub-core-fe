@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, {useEffect} from 'react';
 
 // Styles
 import './CoachDash.scss';
@@ -11,7 +11,11 @@ import CoachPostStatus from './CoachPostStatus';
 import Availability from './Availability';
 
 export default function CoachDash() {
-	window.scrollTo(0, 0);
+	
+	useEffect(()=>{
+		window.scrollTo(0, 0);
+	},[]);
+
 	return (
 		<div className='dash-coachinfo'>
 			<div className='coachinfo-header'>
