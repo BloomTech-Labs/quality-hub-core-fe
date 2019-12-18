@@ -4,7 +4,9 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import jwt_decode from 'jwt-decode';
+
 // Icons
+import './NavBar.scss';
 import { Bellicon } from '../../icons/bellicon';
 import { Hamburger } from '../../icons/hamburger';
 
