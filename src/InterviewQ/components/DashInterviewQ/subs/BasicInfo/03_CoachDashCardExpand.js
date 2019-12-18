@@ -11,9 +11,7 @@ const CoachPreviewCard = ({ post, setOpen, open }) => {
   let { coach } = post;
   const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
   const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
-  console.log(coach);
 	// let { coach } = original;
-	console.log('here', post.tags);
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =

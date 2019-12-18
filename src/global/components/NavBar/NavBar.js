@@ -56,7 +56,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			const decodedToken = jwt_decode(token);
 			const expTime = decodedToken.exp;
 			const currentTime = (Date.now() / 1000) | 0;
-			if (currentTime >= expTime) {
+			if (currentTime >= expTime && client) {
 				client.clearStore();
 				setLoggedin(false);
 				logout();
