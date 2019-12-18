@@ -10,8 +10,6 @@ import {
 	REMOVE_TAG,
 } from '../Resolvers';
 import PreviewCard from './02_CoachDashPreviewModal';
-import Availability from '../Availability/00_Availability';
-
 import './00_EditForm.scss';
 
 const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
@@ -176,27 +174,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	// const tagArray =
 	// 	coachPost && coachPost.postByCoach.tags.map(tag => tag.name).join(', ');
 
-	const handleSubmitPost = e => {
-		e.preventDefault();
-		changeField({ variables: { id: post.id, isPublished: true } })
-			.then(res => {
-				console.log(res.data.updatePost);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
-
-	const handleUnpublish = e => {
-		e.preventDefault();
-		changeField({ variables: { id: post.id, isPublished: false } })
-			.then(res => {
-				console.log(res.data.updatePost);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
 
 	return (
 		<>
@@ -434,45 +411,6 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 						<PreviewCard setOpen={setOpen} open={open} post={original} />
 					</div>
 				</div>
-			</div>
-
-			<div className='IQ-editform' id='interviewq-availability-header'>
-				<h2>Availability</h2>
-				<Availability />
-			</div>
-
-			<div className='coach-post-status'>
-				<h2>Coach Post Status</h2>
-				{coachPost ? (
-					//if coach is done loading
-					!loading ? (
-						published ? (
-							// if coach listing is published, render 'unpublished'
-							<div className='coach-post-status-row'>
-								<p>Your coach post is currently published.</p>
-								<button
-									className='update-post-btn'
-									onClick={e => handleUnpublish(e)}>
-									{' '}
-									Unpublish{' '}
-								</button>
-							</div>
-						) : (
-							// Allow coach to published their listing if unpublished
-							<div className='coach-post-status-row'>
-								<p>Your coach post is currently unpublished.</p>
-								<button
-									className='update-post-btn'
-									onClick={e => handleSubmitPost(e)}>
-									{' '}
-									Publish{' '}
-								</button>
-							</div>
-						)
-					) : null
-				) : (
-					<p>text</p>
-				)}
 			</div>
 		</>
 	);
