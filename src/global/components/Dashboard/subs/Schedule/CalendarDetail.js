@@ -108,7 +108,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 			});
 	};
 	return (
-		<div>
+		<div className='booking-container'>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
 				<Icon icon={ICONS.CLOSE} width={24} height={24} color='silver' />
 			</span>
@@ -120,14 +120,18 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
 								<h3>
-									<span>&#x25FC;</span> InterviewQ
+									<span className='detail-span'>&#x25FC;</span> InterviewQ
 								</h3>
 								<p>
+								<span className='detail-span'>
 									{interviewQtie()}
+									</span>
 									{info.seeker.first_name} {info.seeker.last_name} (Seeker)
 								</p>
 								<p>
+								<span className='detail-span'>
 									{clock()}{' '}
+									</span>
 									{format(
 										new Date(
 											info.year,
@@ -140,7 +144,8 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 									)}
 								</p>
 								<p>
-									{paperclip()}{' '}
+									<span className='detail-span'>
+									{paperclip()}</span>
 									{info.resumeURL === null ? (
 										<span>No resume provided</span>
 									) : (
@@ -153,15 +158,18 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 									)}
 								</p>
 								<div>
-									<p>
-										{document()} What do you want to get out of your mock
+									<p className='intres'>
+									<span className='detail-span'>
+										{document()}
+										</span>
+										 What do you want to get out of your mock
 										interview?
 									</p>
-									<p className='indented intres'>{info.interviewGoals}</p>
-									<p className='indented'>
+									<p className=''>{info.interviewGoals}</p>
+									<p className='indented intres'>
 										What kind of questions do you want to focus on?
 									</p>
-									<p className='indented intres'>{info.interviewQuestions}</p>
+									<p className='indented intres last-cal-detail'>{info.interviewQuestions}</p>
 								</div>
 								{console.log('jargon', info)}
 								{info.id && (
@@ -181,15 +189,19 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 						) : (
 							<div className='seeker-detail' key={index}>
 								<h3>
-									<span>&#x25FC;</span> InterviewQ
+								<span className='detail-span'>&#x25FC;</span> InterviewQ
 								</h3>
 								<p>
+								<span className='detail-span'>
 								{interviewQtie()}
+								</span>
 									{info.coach.first_name} {info.coach.last_name} (Coach)
 								</p>
 
-								<p>
+								<p className='last-cal-detail'>
+								<span className='detail-span'>
 									{clock()}{' '}
+									</span>
 									{format(
 										new Date(
 											info.year,
