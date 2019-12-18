@@ -34,7 +34,6 @@ const EDIT_IMG = gql`
 const AvatarDropdown = props => {
 	const [getUser, { client, data }] = useLazyQuery(GET_USER);
 
-	const [picture, setPicture] = useState(null);
 	const [open, setOpen] = useState(false);
 
 	const node = useRef();
@@ -76,26 +75,6 @@ const AvatarDropdown = props => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	if (picture) {
-	// 		const formData = new FormData();
-	// 		formData.append('file', picture);
-	// 		formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
-
-	// 		axios
-	// 			.post(
-	// 				`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-	// 				formData,
-	// 			)
-	// 			.then(res => {
-	// 				editImage({ variables: { image_url: res.data.secure_url } });
-	// 			})
-	// 			.catch(err => {
-	// 				console.log(err);
-	// 			});
-	// 	}
-	// }, [picture]);
-
 	useEffect(() => {
 		getUser();
 	}, []);
@@ -122,12 +101,6 @@ const AvatarDropdown = props => {
 			{open && (
 				<div className='dropdown-content'>
 					<div className='dropdown-avatar-camera'>
-						{/* <input
-							className='image-input-dropdown'
-							type='file'
-							id='imageInput'
-							onChange={e => setPicture(e.target.files[0])}
-						/> */}
 						<label htmlFor='imageInput-2'>
 							<div className='img-wrapper-dropdown'>
 								{data ? ( //ternary 1
@@ -149,15 +122,6 @@ const AvatarDropdown = props => {
 								)}
 							</div>
 						</label>
-						{/* Avatar image in dropdown menu */}
-						{/* This is the offset camera icon */}
-						{/* <label htmlFor='imageInput' className='camera-label'>
-							<div className='dropdown-camera-icon grey-on-hover'>
-								<span role='img' aria-label='camera icon'>
-									&#x1F4F7;
-								</span>
-							</div>
-						</label> */}
 					</div>
 					{data && (
 						<p className='dropdown-menu-name'>
