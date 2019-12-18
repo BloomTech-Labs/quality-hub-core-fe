@@ -10,7 +10,6 @@ import { convertToLocal, convertToUTC } from '../../../../../global/utils/TZHelp
 
 const Availability =() => {
 
-  const [open, setOpen] = useState(true);
   const [setter, setSetter] = useState(true);
   const [selectedCell, setSelectedCell] = useState(new Date());
   const [dateAvails, setDateAvails] = useState();
@@ -76,7 +75,6 @@ const Availability =() => {
       .catch(err => console.log(err))
   }
 useEffect(()=>{
-  console.log(currentMonth)
   refetch();
 },[currentMonth])
   const checkAvail = (checkvar) => {
@@ -108,7 +106,6 @@ useEffect(()=>{
     removeAvail({ variables: checkvar })
     .then(res => {
       refetch();
-      console.log('deleted', checkvar)
     })
     .catch(err => console.log(err))
   }
@@ -138,9 +135,9 @@ useEffect(()=>{
     <div className='availability-container'>
    
     <div className='coach-availability'>
-      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} open={open} setOpen={setOpen} />
+      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />
       <div className='interview-slot-list'>
-        {open && timeObjs.map(time => {
+        {timeObjs.map(time => {
           return(
             <div key={time.display}  className={`${timeFilter(time.hour, time.minute) ? 'available-slot' : 'unavailable-slot'} interview-slot`} onClick={e => toggleAvail(e, time.hour, time.minute)}>
               {time.display}

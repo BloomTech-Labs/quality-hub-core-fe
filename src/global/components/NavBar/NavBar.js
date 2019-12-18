@@ -51,8 +51,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	}
 
 	useEffect(() => {
-		if (localStorage.getItem('token')){
-			const token = localStorage.getItem('token');
+		const token = localStorage.getItem('token');
+		if(token){
 			const decodedToken = jwt_decode(token);
 			const expTime = decodedToken.exp;
 			const currentTime = (Date.now() / 1000) | 0;
