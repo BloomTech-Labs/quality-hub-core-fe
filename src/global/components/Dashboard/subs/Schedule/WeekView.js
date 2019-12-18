@@ -79,16 +79,16 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 		);
 	}
 
-	useEffect(() => {
-		if (filterBookings) {
-			const weekGrid = document.getElementById('weekContainer');
-			for (let i = 392 - 27 - 7 - filterBookings.length * 2; i > 0; i--) {
-				const div = document.createElement('div');
-				div.classList.add('sched-placeholder');
-				weekGrid.appendChild(div);
-			}
-		}
-	}, [filterBookings]);
+	// useEffect(() => {
+	// 	if (filterBookings) {
+	// 		const weekGrid = document.getElementById('weekContainer');
+	// 		for (let i = 392 - 27 - 7 - filterBookings.length * 2; i > 0; i--) {
+	// 			const div = document.createElement('div');
+	// 			div.classList.add('sched-placeholder');
+	// 			weekGrid.appendChild(div);
+	// 		}
+	// 	}
+	// }, [filterBookings]);
 
 	const onMonthChange = e => {
 		const year = getYear(selectedDate);

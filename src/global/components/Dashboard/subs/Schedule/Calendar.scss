@@ -29,9 +29,7 @@ $neutral-cal-color: #fff;
 	border-radius: 0.4rem;
 	height: 4rem;
 	cursor: pointer;
-	// :hover{
-	// 	background-color: #EFEFEF;
-	// }
+
 	p{
 		text-decoration: none !important;
 		margin: 3px 20px;
@@ -378,11 +376,11 @@ padding-left: 40%;
 	// 			// border-top: green !important;
 	// 			// I made a bug
 	// 		}
-	width: 900px;
-	
+	width: 942px;
+	padding-right: 0;
 	display: grid;
 	grid-gap: 5px;
-	grid-template-columns: 70px repeat(7, 112px);
+	grid-template-columns: 75.25px repeat(7, 117.25px);
 	grid-template-rows: 50px repeat(49, 25px);
 	height: 600px;
 	overflow: scroll;
@@ -403,7 +401,7 @@ padding-left: 40%;
 	display: grid;
 	// grid-column: 1 / 9;
 	grid-gap: 5px;
-	grid-template-columns: 70px repeat(7, 112px);
+	grid-template-columns: 75.25px repeat(7, 117.25px);
 	margin-bottom: 10px;
 	// border-bottom: 1px solid black;
 	justify-items: center;
