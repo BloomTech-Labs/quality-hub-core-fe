@@ -62,7 +62,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 					</div>
 					<div className='coachcard-info-expand'>
 						<p>
-						<span className='coachcard-icon industry'>
+						<span className='coachcard-icon-industry'>
 								<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 							</span>
 							<span className='text'>
@@ -70,7 +70,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 							</span>
 						</p>
 						<p>
-							<span className='coachcard-icon'>
+							<span className='coachcard-icon-expand'>
 								<Icon
 									icon={ICONS.LOCATION}
 									width={16}
@@ -84,7 +84,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 							</span> */}
 						</p>
 						<p>
-							<span className='coachcard-icon'>
+							<span className='coachcard-icon-expand'>
 								<Icon
 									icon={ICONS.STAR}
 									width={19}
