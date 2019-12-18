@@ -206,7 +206,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='IQ-dash-input'>
 					<div className='IQ-dash-row post-row'>
 						<span className='IQ-dash-heading'>
-							<h4>COMPANY</h4>
+							<h4 className="tag-title">COMPANY</h4>
 						</span>
 						{editing[0] ? (
 							<div>
@@ -235,7 +235,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='IQ-dash-input'>
 					<div className='IQ-dash-row post-row'>
 						<span className='IQ-dash-heading'>
-							<h4>POSITION</h4>
+							<h4 className="tag-title">POSITION</h4>
 						</span>
 						{editing[1] ? (
 							<div>
@@ -264,7 +264,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='IQ-dash-input'>
 					<div className='IQ-dash-row post-row'>
 						<span className='IQ-dash-heading'>
-							<h4>INDUSTRY</h4>
+							<h4 className="tag-title">INDUSTRY</h4>
 						</span>
 						{editing[2] ? (
 							<div>
@@ -310,7 +310,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='IQ-dash-input'>
 					<div className='post-row'>
 						<span className='IQ-dash-heading'>
-							<h4>DESCRIPTION</h4>
+							<h4 className="tag-title">DESCRIPTION</h4>
 						</span>
 						{editing[3] ? (
 							<div>
@@ -342,7 +342,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='IQ-dash-input'>
 					<div className='post-row post-tag'>
 						<span className='IQ-dash-heading'>
-							<h4>KEYWORDS</h4>
+							<h4 className="tag-title">KEYWORDS</h4>
 						</span>
 						<div className= 'big-tag-boi'>
 						<div className='tag-form'>
@@ -382,7 +382,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				<div className='IQ-dash-input'>
 					<div className='post-row post-price'>
 						<span className='IQ-dash-heading'>
-							<h4>PRICE PER SESSION</h4>
+							<h4 className="tag-title">PRICE PER SESSION</h4>
 						</span>
 						{editing[4] ? (
 							<div>

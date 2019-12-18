@@ -28,15 +28,15 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
-			h4 {
+			.coach-price {
 				font-size: 1.6rem;
 				font-weight: normal;
 				line-height: 2.4rem;
-				color: #096dd9;
+				color: $price;
 				max-width: 17rem;
 				overflow: hidden;
 				text-overflow: ellipsis;
-			}
+      }
 		}
 		.coach-photo {
 			width: 8.3rem;

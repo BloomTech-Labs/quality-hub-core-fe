@@ -92,11 +92,11 @@ body {
         color: #262626;
         text-transform: none;
 			}
-			h4 {
+			.coach-price {
 				font-size: 1.6rem;
 				font-weight: normal;
 				line-height: 2.4rem;
-				color: #096dd9;
+				color: $price;
 			}
 		}
 		.coach-photo-expand {
