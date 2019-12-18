@@ -22,10 +22,7 @@ export default function CoachDash() {
 				<h1>Settings</h1>
 			</div>
 			<EditPost />
-      <div className='IQ-editform' id='interviewq-availability-header'>
-				<h2>Availability</h2>
-				<Availability />
-			</div>
+			<Availability />
       <CoachPostStatus />
 			<DeleteCoachPost />
 		</div>

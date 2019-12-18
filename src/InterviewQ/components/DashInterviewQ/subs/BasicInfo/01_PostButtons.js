@@ -7,9 +7,10 @@ const PostButtons = ({
 	handleSubmit,
 	index,
 }) => {
-
+  // console.log(editing);
 	const [focusvar, setFocusvar] = useState(false);
 	const handleEdit = () => {
+
 		let newArr = [];
 		newArr = [...editing];
 		newArr[index] = true;
