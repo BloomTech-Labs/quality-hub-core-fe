@@ -13,7 +13,7 @@ import {
 	getMonth,
 	isBefore,
 	isAfter,
-	getYear
+	getYear,
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
 
@@ -100,7 +100,7 @@ const SmallCells = ({
 				<div
 					id={cellId}
 					className={`small-col  ${
-						isBefore(day, new Date()) ? 'past-day' : 'small-cell'
+						isBefore(addDays(day, 1), new Date()) ? 'past-day' : 'small-cell'
 					} ${getDate(day) === getDate(new Date()) ? 'today' : ' '}`}
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
@@ -110,7 +110,7 @@ const SmallCells = ({
 								? 'disabled'
 								: isSameDay(day, selectedDate)
 								? 'small-selected'
-								: availsExist(day) && isAfter(day, new Date())
+								: availsExist(day) && isAfter(addDays(day, 1), new Date())
 								? 'match-light-blue'
 								: ''
 						}`}>

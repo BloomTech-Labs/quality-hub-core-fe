@@ -38,7 +38,7 @@ export default function QNav() {
 				</div>
 			</NavLink> */}
 
-			{/* <NavLink to='/interviewq/history' activeClassName='QNav-row-highlight'>
+			<NavLink to='/interviewq/history' activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
 					<Icon
 						icon={ICONS.CLOCK}
@@ -48,7 +48,7 @@ export default function QNav() {
 					/>
 					<div className='QNav-btn'>History</div>
 				</div>
-			</NavLink> */}
+			</NavLink>
 
 			<NavLink to='/interviewq/settings' activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
