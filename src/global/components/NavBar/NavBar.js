@@ -52,13 +52,15 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		const decodedToken = jwt_decode(token);
-		const expTime = decodedToken.exp;
-		const currentTime = (Date.now() / 1000) | 0;
-		if (currentTime >= expTime) {
-			client.clearStore();
-			setLoggedin(false);
-			logout();
+		if(token){
+			const decodedToken = jwt_decode(token);
+			const expTime = decodedToken.exp;
+			const currentTime = (Date.now() / 1000) | 0;
+			if (currentTime >= expTime) {
+				client.clearStore();
+				setLoggedin(false);
+				logout();
+			}
 		}
 	}, [location]);
 
