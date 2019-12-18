@@ -248,7 +248,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							<div>
-								<p>{original && original.position}</p>
+								<p className="IQ-dash-position">{original && original.position}</p>
 							</div>
 						)}
 					</div>
@@ -389,7 +389,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 										<div className='slider-dollar-amounts-post'>
 											<p>$0</p>
 											<p>
-												{post.price === 0
+												${post.price === 0
 													? '0'
 													: post.price
 													? post.price
@@ -457,7 +457,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 							</div>
 						) : (
 							// Allow coach to published their listing if unpublished
-							<div className='delete-post'>
+							<div className='coach-post-status-row'>
 								<p>Your coach post is currently unpublished.</p>
 								<button
 									className='update-post-btn'
