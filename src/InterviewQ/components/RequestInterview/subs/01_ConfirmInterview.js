@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_BOOKING } from './Resolvers';
 import { format } from 'date-fns';
@@ -6,8 +7,8 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 import ConfirmedInterview from './02_ConfirmedInterview';
 //import { convertToUTC } from '../../../../global/utils/TZHelpers'
 
-const ConfirmInterview = ({ booking, history }) => {
-
+const ConfirmInterview = ({ booking, history, match, selectedCell }) => {
+	const coachId = match.params.coachId;
   console.log(booking)
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -88,7 +89,7 @@ useEffect(() => {
       <div id='overlay-confirm-interview'></div>
     <div className='formsection'>
     <div className='interviewq-header-container interviewq-conf-heading'>
-      <h2>Confirmation</h2>
+      <h2 className='booking-first-header'>Confirmation</h2>
       </div>
       <p> Please review the details of your mock interview, and click 'Confirm' to schedule it with your coach!</p>
       <div className='interviewq-content-container interviewq-conf-container'>
@@ -107,7 +108,12 @@ useEffect(() => {
    <p>{booking.interviewQuestions}</p>
    </div>
    </div>
-   <button className='interview-button' onClick={submitBooking}>Confirm</button>
+   <div className='booking-button-container'>
+   <Link className="interview-a-secondary" to={`/interviewq/booking/${coachId}/`}>
+     <button className='interview-button-secondary'><p>Back</p></button>
+     </Link>
+   <button className='interview-button' onClick={submitBooking}><p>Confirm</p></button>
+   </div>
    </div>
 
    {open && (
