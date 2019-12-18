@@ -18,8 +18,8 @@ const ReviewPage = (props) => {
   const closeWindow = () => {
     setOpen(false)
     setTimeout( () => {
-      props.history.goBack();
-    }, 1000)
+      props.history.push('/interviewq/history');
+    }, 200)
   }
 
   //This sets the darkened overlay behind the modals

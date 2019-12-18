@@ -7,6 +7,7 @@ export const CREATE_REVIEW = gql`
       rating: $rating 
       review: $review
     ){
+      id
       rating
       review
   }
