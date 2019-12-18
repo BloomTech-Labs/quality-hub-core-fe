@@ -27,6 +27,26 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const [open, setOpen] = useState(false);
 	const node = useRef();
 
+	const handleOutsideClick = e => {
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				setOpen(false);
+			}
+		} else {
+			setOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		if (open) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [open]);
+	
 	const currentWeek = getWeek(selectedDate);
 	const scheduleBody = document.getElementsByName('weekContainer');
 	const { data } = useQuery(ALL_BOOKINGS, {
@@ -179,7 +199,9 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 					filterBookings.map(booking => (
 						<WeekBooking booking={booking} key={booking} onBookingClick={onBookingClick}/>
 					))}
-						{open && (
+					
+			</div>
+			{open && (
 				<div className='calendar-detail' ref={node}>
 					<CalendarDetail
 					open={open}
@@ -188,7 +210,6 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 					/>
 				</div>
 			)}
-			</div>
 		</div>
 	);
 };

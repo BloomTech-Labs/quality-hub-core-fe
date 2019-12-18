@@ -97,8 +97,9 @@ const CoachCard = ({ post, setOpen, open }) => {
 							</span>
 						</p>
 					</div>
-					<div className='coachcard-description-expand'>
+					<div className='coachcard-description-expand preview-desc'>
 						<p>{post.description}</p>
+						</div>
 						<div className='coachcard-tags-container-expand'>
 							{post.tags.map(tag => (
 								<p className='coachcard-tag-button-expand' key={tag.id}>
@@ -106,7 +107,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 								</p>
 							))}
 						</div>
-					</div>
+					
 					<div className='coachcard-footer-expand'>
 						<div className='coachcard-links-expand'>
 							{post.coach.linkedin_url && (
@@ -126,13 +127,15 @@ const CoachCard = ({ post, setOpen, open }) => {
 								</a>
 							)}
 						</div>
-						<button className={
-						coach.id === localStorage.getItem('id')
-							? `interview-button-hidden`
-							: `interview-button-expand`
-					}>
-					<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
-						</button>
+						{coach.id === localStorage.getItem('id') ? (
+					<button className='interview-button-disabled'>
+						Request Interview
+					</button>
+				) : (
+					<button className='interview-button-expand'>
+						<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
+					</button>
+				)}
 					</div>
 				</div>
 			</div>
