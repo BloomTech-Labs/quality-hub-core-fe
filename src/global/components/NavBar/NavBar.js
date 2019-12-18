@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
+
 // Icons
+import './NavBar.scss';
 import { Bellicon } from '../../icons/bellicon';
 import { Hamburger } from '../../icons/hamburger';
 
@@ -52,7 +54,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		if(token){
+		if (token) {
 			const decodedToken = jwt_decode(token);
 			const expTime = decodedToken.exp;
 			const currentTime = (Date.now() / 1000) | 0;

@@ -64,7 +64,7 @@ const CoachPreviewCard = ({ post, setOpen, open }) => {
 					</div>
 					<div className='coachcard-info-expand'>
 						<p>
-							<span className='coachcard-icon-expand'>
+							<span className='coachcard-icon-industry'>
 								<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 							</span>
 							{post.company} - {post.position}
