@@ -198,6 +198,7 @@ body {
 		justify-content: space-between;
 		align-items: center;
 		//width: 300px;
+		margin-bottom: 8rem;
 		.coachcard-links-expand {
 			margin-top: 20px;
 			width: 6.2rem;
@@ -230,7 +231,7 @@ body {
 }
 
 .preview-desc{
-	height: 8rem;
+min-height: 8rem;
 }
 
 .coachcard-expand-inner{

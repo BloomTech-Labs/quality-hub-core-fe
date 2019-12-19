@@ -185,7 +185,7 @@ const RequestInteview = props => {
 		<div className="booking-content-section">
 			<div className="formsection">
 				<div className="booking-header-container">
-				<h2 className='booking-first-header'>Select a Date - Coach {props.coachName}</h2>
+				<h2 className='booking-first-header'>Select a Date - Coach {props.history.location.state.coachName}</h2>
 				</div>
 				<div className='booking-subheading'>
 				<p>Please select a date and timeslot for your mock interview</p>
