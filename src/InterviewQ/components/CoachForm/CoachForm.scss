@@ -71,11 +71,16 @@
 	align-items: center;
 	justify-content: space-around;
 
-	.add-coach-form-button {
-		display: inline-block;
-		margin-left: 1rem;
-		width: 11rem;
-	}
+	// .add-coach-form-button {
+	// 	// display: inline-block;
+	// 	// margin-left: 1rem;
+	// 	// width: 11rem;
+	// 	font-style: normal;
+	// 	font-weight: 600;
+	// 	font-size: 1.6rem;
+	// 	line-height: 2.4rem;
+	// 	color: #202124;
+	// }
 }
 
 .add-coach-form {
@@ -370,9 +375,7 @@ textarea.add-coach-form-row-7 {
 		// display: flex;
 	}
 }
-.become-a-coach-btn {
-	background-color: #efefef;
-}
+
 .interview-button {
 	border: none !important;
 	width: 100%;
