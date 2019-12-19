@@ -3,7 +3,9 @@ import { Route } from 'react-router-dom';
 import RequestInteview from './subs/00_RequestInterview';
 import ConfirmInterview from './subs/01_ConfirmInterview';
 
-const BookingContainer = () => {
+const BookingContainer = (props) => {
+	const coachName = props.history.location.state.coachName;
+	//console.log(history)
 	const [booking, setBooking] = useState({});
 	const [selectedCell, setSelectedCell] = useState(new Date());
 	return (
@@ -18,6 +20,7 @@ const BookingContainer = () => {
 				render={props => (
 					<RequestInteview
 						{...props}
+						coachName={coachName}
 						setSelectedCell={setSelectedCell}
 						selectedCell={selectedCell}
 						booking={booking}
