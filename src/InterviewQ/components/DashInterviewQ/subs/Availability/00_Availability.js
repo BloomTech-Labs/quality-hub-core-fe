@@ -130,7 +130,7 @@ useEffect(()=>{
   }, [setter || availabilities, selectedCell])
 
   return(
-    <div className='IQ-editform' id='interviewq-availability-header'>
+    <div  id='interviewq-availability-header'>
       <h2>Availability</h2>
       <div className='availability-container'>
     
