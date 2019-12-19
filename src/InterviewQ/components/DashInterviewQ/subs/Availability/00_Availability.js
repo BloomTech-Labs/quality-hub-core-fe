@@ -130,24 +130,24 @@ useEffect(()=>{
   }, [setter || availabilities, selectedCell])
 
   return(
-    <>
+    <div className='IQ-editform' id='interviewq-availability-header'>
+      <h2>Availability</h2>
+      <div className='availability-container'>
     
-    <div className='availability-container'>
-   
-    <div className='coach-availability'>
-      <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />
-      <div className='interview-slot-list'>
-        {timeObjs.map(time => {
-          return(
-            <div key={time.display}  className={`${timeFilter(time.hour, time.minute) ? 'available-slot' : 'unavailable-slot'} interview-slot`} onClick={e => toggleAvail(e, time.hour, time.minute)}>
-              {time.display}
-            </div>
-          )
-        })}
-      </div>
+      <div className='coach-availability'>
+        <SmallCalendar selectedCell={selectedCell} setSelectedCell={setSelectedCell} availabilities={availabilities} refetchAvails={refetch} />
+        <div className='interview-slot-list'>
+          {timeObjs.map(time => {
+            return(
+              <div key={time.display}  className={`${timeFilter(time.hour, time.minute) ? 'available-slot' : 'unavailable-slot'} interview-slot`} onClick={e => toggleAvail(e, time.hour, time.minute)}>
+                {time.display}
+              </div>
+            )
+          })}
+        </div>
+        </div>
       </div>
     </div>
-    </>
   )
 };
 

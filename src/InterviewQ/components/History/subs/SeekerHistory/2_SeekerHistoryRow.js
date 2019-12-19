@@ -31,7 +31,16 @@ export default function SeekerHistoryRow({ booking }) {
 							className='view-review'
 							onClick={() => setShowReview(!showReview)}>
 							<div>{showReview ? 'Hide' : 'View'} Review</div>
-							<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+							<div
+								className='arrow-icon'
+								style={{ transform: `scaleY(${showReview ? '-1' : '1'})` }}>
+								<Icon
+									icon={ICONS.MORE}
+									width={24}
+									height={24}
+									color='#757575'
+								/>
+							</div>
 						</div>
 					) : (
 						<Link
@@ -47,7 +56,11 @@ export default function SeekerHistoryRow({ booking }) {
 					className='history-col history-content-toggle'
 					onClick={() => setShowReport(!showReport)}>
 					{showReport ? 'Hide' : 'View'} Report{' '}
-					<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+					<div
+						className='arrow-icon'
+						style={{ transform: `scaleY(${showReport ? '-1' : '1'})` }}>
+						<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+					</div>
 				</div>
 			</div>
 			{showReview && <SeekerHistoryReview booking={booking} />}
