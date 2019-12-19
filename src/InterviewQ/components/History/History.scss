@@ -123,7 +123,9 @@
 .history-review {
 	.rating-container {
 		display: flex;
-
+    .stars-container {
+      display: flex;
+    }
 		.message {
 			margin-left: 2.6rem;
 		}

@@ -9,26 +9,26 @@ const TagInput = ({ editing, setEditing, original, post, handleChange, handleCan
           <h4 className="tag-title">KEYWORDS</h4>
         </span>
         <div className= 'big-tag-boi'>
-        <div className='tag-form'>
-          {editing[5] && (
-            <div className='tag-input'>
-              <input
-                id='edit-post-5'
-                type='text'
-                name='tagString'
-                placeholder='Add tags here (i.e Javascript, Node ..)'
-                value={post.tagString}
-                onChange={handleChange}
-              />
+          <div className='tag-form'>
+            {editing[5] && (
+              <div className='tag-input'>
+                <input
+                  id='edit-post-5'
+                  type='text'
+                  name='tagString'
+                  placeholder='Add tags here (i.e Javascript, Node ..)'
+                  value={post.tagString}
+                  onChange={handleChange}
+                />
+              </div>
+            )}
+            <div className='tags-container'>
+              <p>
+                {original && original.tagString
+                  ? original && original.tagString
+                  : original && tagArray}
+              </p>
             </div>
-          )}
-          <div className='tags-container'>
-            <p>
-              {original && original.tagString
-                ? original && original.tagString
-                : original && tagArray}
-            </p>
-          </div>
           </div> 
         </div>
       </div>
