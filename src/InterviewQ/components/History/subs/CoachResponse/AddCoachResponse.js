@@ -53,7 +53,6 @@ export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
 				text: response,
 			},
 		});
-		history.push('/history');
 	};
 
 	return (
