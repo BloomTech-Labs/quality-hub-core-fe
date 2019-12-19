@@ -14,7 +14,7 @@ const CREATE_RESPONSE = gql`
 	mutation createResponse(
 		$uniqueBooking: String!
 		$reviewID: String!
-		$text: String
+		$text: String!
 	) {
 		createResponse(
 			uniqueBooking: $uniqueBooking
