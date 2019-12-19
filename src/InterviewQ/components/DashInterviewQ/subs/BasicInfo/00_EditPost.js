@@ -60,6 +60,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//Handler Functions
 	const handleChange = e => {
 		if (e.target.name === 'price') {
+      console.log('hi');
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
 				setPost({
