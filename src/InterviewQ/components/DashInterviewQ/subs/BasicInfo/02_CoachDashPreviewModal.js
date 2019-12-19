@@ -5,12 +5,14 @@ const CoachPreviewModal = ({ post }) => {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<div className='coach-card-modal-text'>
-			<button className='see-preview-btn' onClick={() => setOpen(!open)}>
-				<p className='coach-card-modal-text coachcard-seemore'>See preview </p>
-			</button>
-			{open && <CoachPreview setOpen={setOpen} open={open} post={post} />}
-		</div>
+    <div className='see-preview'>
+      <div className='coach-card-modal-text'>
+        <button className='see-preview-btn' onClick={() => setOpen(!open)}>
+          <p className='coach-card-modal-text coachcard-seemore'>See preview </p>
+        </button>
+        {open && <CoachPreview setOpen={setOpen} open={open} post={post} />}
+      </div>
+    </div>
 	);
 };
 
