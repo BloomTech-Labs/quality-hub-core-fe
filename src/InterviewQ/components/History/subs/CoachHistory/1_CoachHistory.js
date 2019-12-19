@@ -55,6 +55,7 @@ export default function CoachHistory() {
 
 	const { loading, error, data } = useQuery(GET_COACHBOOKINGS, {
 		variables: { coach_id },
+		fetchPolicy: 'network-only',
 	});
 
 	error && console.log(error);
