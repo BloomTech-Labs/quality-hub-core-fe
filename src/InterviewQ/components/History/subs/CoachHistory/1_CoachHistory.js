@@ -22,13 +22,6 @@ const GET_COACHBOOKINGS = gql`
 				last_name
 			}
 			price
-			# coach {
-			# 	id
-			# 	post {
-			# 		id
-			# 		price
-			# 	}
-			# }
 			uniquecheck
 			review {
 				id
