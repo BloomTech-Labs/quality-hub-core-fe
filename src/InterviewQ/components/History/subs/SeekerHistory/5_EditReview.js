@@ -6,6 +6,8 @@ import Rating from '../../../Review/subs/2_Rating';
 
 import { UPDATE_REVIEW } from '../Resolvers';
 
+import styles from './EditReview.module.scss';
+
 export default function HistoryReview({ review }) {
 	const messages = [
 		'',
@@ -72,18 +74,20 @@ export default function HistoryReview({ review }) {
   let stars = [];
 
   for (let i = 0; i < 5; i++) {
-    stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
+    stars.push(<Rating className={(editing[0] ? '' : `${styles['not-editable']}`)} key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
   }
 
 	return (
 		<div className='history-review'>
+      {review &&
+      <>
 			<h4>Rating</h4>
-			<div className='rating-container'>
-				<div className={'stars-container'}>
+			<div className={styles.field}>
+				<div className={`${styles.stars} stars-container`}>
           {stars}
+          <p className='message'>{messages[hoverIdx]}</p>
 				</div>
-				<p className='message'>{messages[hoverIdx]}</p>
-        <span id="edit-post-0"></span>
+        <span id="edit-post-0">
         <PostButtons 
           editing={editing}
           setEditing={setEditing}
@@ -91,23 +95,30 @@ export default function HistoryReview({ review }) {
           handleSubmit={handleSubmit}
           index={0}
         />
+        </span>
 			</div>
 			<h4>Review</h4>
-      { (!editing[1] ? <p>{review.review}</p> : 
-        <input
-          id="edit-post-1"
-          type="text"
-          value={fields.review}
-          onChange={handleChange}
-        />     
-      )}
-      <PostButtons 
-      	editing={editing}
-        setEditing={setEditing}
-        handleCancel={handleCancel}
-        handleSubmit={handleSubmit}
-        index={1}
-      />
+      <div className={`${styles.field} ${styles.desc}`}>
+        { (!editing[1] 
+        ? <p>{review.review}</p> 
+        : <textarea
+            className={styles.input}
+            id="edit-post-1"
+            type="text"
+            value={fields.review}
+            onChange={handleChange}
+          />     
+        )}
+        <PostButtons 
+          editing={editing}
+          setEditing={setEditing}
+          handleCancel={handleCancel}
+          handleSubmit={handleSubmit}
+          index={1}
+        />
+      </div>
+      </>
+      }
 		</div>
 	);
 }

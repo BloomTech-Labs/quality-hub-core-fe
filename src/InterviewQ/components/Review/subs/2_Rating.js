@@ -5,12 +5,12 @@ import { ICONS } from '../../../../global/icons/iconConstants';
 
 import './Rating.scss';
 
-const Rating = ({ handleHover, hoverIdx, fields, index, handleClick }) => {
+const Rating = ({ handleHover, hoverIdx, fields, index, handleClick, className = '' }) => {
   return (
     <>
       {hoverIdx >= index ?
       <div
-        className='star'
+        className={`star ${className}`}
         onClick={(e) => handleClick(e, index)} 
         onMouseOver={(e) => handleHover(e, index)}
         onMouseLeave={(e) => handleHover(e, fields.rating)}
