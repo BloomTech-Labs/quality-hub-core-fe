@@ -7,7 +7,7 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 import ConfirmedInterview from './02_ConfirmedInterview';
 //import { convertToUTC } from '../../../../global/utils/TZHelpers'
 
-const ConfirmInterview = ({ booking, history, match, selectedCell }) => {
+const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) => {
 	const coachId = match.params.coachId;
   console.log(booking)
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;

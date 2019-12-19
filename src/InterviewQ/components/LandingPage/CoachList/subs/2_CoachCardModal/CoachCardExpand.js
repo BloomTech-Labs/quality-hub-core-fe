@@ -133,7 +133,10 @@ const CoachCard = ({ post, setOpen, open }) => {
 					</button>
 				) : (
 					<button className='interview-button-expand'>
-						<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
+						<Link to={{
+							pathname: `interviewq/booking/${coach.id}`,
+							state: { coachName: `${post.coach.first_name} ${post.coach.last_name}`}
+						}}>Request Interview</Link>
 					</button>
 				)}
 					</div>

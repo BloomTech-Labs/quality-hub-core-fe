@@ -121,7 +121,10 @@ const CoachCard = ({ post }) => {
 					</button>
 				) : (
 					<button className='interview-button'>
-						<Link to={`interviewq/booking/${coach.id}`}>Request Interview</Link>
+						<Link to={{
+							pathname: `interviewq/booking/${coach.id}`,
+							state: { coachName: `${post.coach.first_name} ${post.coach.last_name}`}
+						}}>Request Interview</Link>
 					</button>
 				)}
 			</div>

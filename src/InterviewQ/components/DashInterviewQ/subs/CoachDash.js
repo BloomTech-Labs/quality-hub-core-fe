@@ -22,7 +22,7 @@ export default function CoachDash() {
 				<h1>Settings</h1>
 			</div>
 			<EditPost />
-			<Availability />
+			{/* <Availability /> */}
       <CoachPostStatus />
 			<DeleteCoachPost />
 		</div>

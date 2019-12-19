@@ -14,6 +14,9 @@ import {
 	isBefore,
 	isAfter,
 	getYear,
+	getHours,
+	formatDistanceToNow,
+	getMinutes,
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
 
@@ -22,7 +25,6 @@ const SmallCells = ({
 	currentMonth,
 	selectedDate,
 	availabilities,
-	refetchAvails,
 }) => {
 	const [allTheAvails, setAllTheAvails] = useState();
 	let integerMonth = getMonth(currentMonth) + 1;
@@ -73,12 +75,66 @@ const SmallCells = ({
 		}
 	}, [availabilities, currentMonth]);
 
+	// const availsExist = someDate => {
+	// 	//let availTime= someDate.getTime();
+	// 	//let currentTime = Date.now();
+	// 	let currentHour = getHours(new Date());
+	// 	let currentMin = getMinutes(new Date());
+	// 	let currentDay = format(new Date(), 'Mdyyyy');
+	// 	let availDay = format(someDate, 'Mdyyyy');
+	// 	let integerDate = getDate(someDate);
+	// 	let match = false;
+	// 	if (allTheAvails) {
+	// 		for (let i = 0; i < allTheAvails.length; i++) {
+	// 			if (currentDay === availDay) {
+
+	// 				if (allTheAvails[i].hour >= currentHour) {
+
+	// 					if (allTheAvails[i].hour === currentHour && allTheAvails[i].minute > currentMin) {
+	// 						match = true;
+	// 						break;
+
+	// 					} else if (allTheAvails[i].hour > currentHour){
+	// 						match = true;
+	// 						break;
+	// 					}
+	// 				}
+					
+	// 			} else if (
+	// 				allTheAvails[i].year === integerYear &&
+	// 				allTheAvails[i].month === integerMonth &&
+	// 				allTheAvails[i].day === integerDate
+	// 			) {
+	// 				match = true;
+	// 				break;
+	// 			}
+	// 		}
+	// 		return match;
+	// 	}
+	// };
+
 	const availsExist = someDate => {
+		let currentHour = getHours(new Date());
+		let currentMin = getMinutes(new Date());
+		let currentDay = format(new Date(), 'Mdyyyy');
+		let availDay = format(someDate, 'Mdyyyy');
 		let integerDate = getDate(someDate);
 		let match = false;
+	
 		if (allTheAvails) {
+
 			for (let i = 0; i < allTheAvails.length; i++) {
-				if (
+				if (currentDay === availDay && currentDay === `${allTheAvails[i].month}${allTheAvails[i].day}${allTheAvails[i].year}`) {					
+				
+					if (allTheAvails[i].hour >= currentHour) {
+
+						if ((allTheAvails[i].hour === currentHour && allTheAvails[i].minute > currentMin) || (allTheAvails[i].hour > currentHour)) {
+							match = true;
+							break;
+						}
+					}
+					
+				} else if (
 					allTheAvails[i].year === integerYear &&
 					allTheAvails[i].month === integerMonth &&
 					allTheAvails[i].day === integerDate
@@ -90,6 +146,24 @@ const SmallCells = ({
 			return match;
 		}
 	};
+
+	// 	const availsExist = someDate => {
+	// 	let integerDate = getDate(someDate);
+	// 	let match = false;
+	// 	if (allTheAvails) {
+	// 		for (let i = 0; i < allTheAvails.length; i++) {
+	// 			if (
+	// 				allTheAvails[i].year === integerYear &&
+	// 				allTheAvails[i].month === integerMonth &&
+	// 				allTheAvails[i].day === integerDate
+	// 			) {
+	// 				match = true;
+	// 				break;
+	// 			}
+	// 		}
+	// 		return match;
+	// 	}
+	// };
 
 	while (day <= endDate) {
 		for (let i = 0; i < 7; i++) {
