@@ -6,7 +6,6 @@ export default function SeekerHistoryReview({ booking }) {
 	return (
 		<div>
 			<EditReview review={booking.review} />
-			<div>Click here to update your review</div>
 		</div>
 	);
 }
