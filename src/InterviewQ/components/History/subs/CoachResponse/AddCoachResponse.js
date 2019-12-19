@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 
 const GET_REVIEW = gql`
 	query getReview($uniqueBooking: String!) {
@@ -28,10 +29,9 @@ const CREATE_RESPONSE = gql`
 `;
 
 export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
+	const history = useHistory();
 	const [response, setResponse] = useState('');
-
 	const { data } = useQuery(GET_REVIEW, { variables: { uniqueBooking } });
-
 	const [createResponse] = useMutation(CREATE_RESPONSE);
 
 	const handleChange = e => {
@@ -53,6 +53,7 @@ export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
 				text: response,
 			},
 		});
+		history.push('/history');
 	};
 
 	return (

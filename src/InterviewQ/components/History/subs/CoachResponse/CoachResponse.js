@@ -23,7 +23,7 @@ export default function CoachResponse({ uniqueBooking }) {
 	return (
 		<div className='coach-response'>
 			{data && data.responseByBooking ? (
-				<ViewCoachResponse />
+				<ViewCoachResponse uniqueBooking={uniqueBooking} />
 			) : (
 				<>
 					{!showResponse && (

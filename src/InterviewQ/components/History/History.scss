@@ -123,9 +123,9 @@
 .history-review {
 	.rating-container {
 		display: flex;
-    .stars-container {
-      display: flex;
-    }
+		.stars-container {
+			display: flex;
+		}
 		.message {
 			margin-left: 2.6rem;
 		}
@@ -224,6 +224,80 @@
 				border-radius: 0.5rem;
 				color: #fff;
 			}
+		}
+	}
+
+	.view-coach-response {
+		width: 100%;
+		padding-left: 1.6rem;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 1.4rem;
+		line-height: 2.4rem;
+
+		color: #3c4043;
+
+		.view-coach-response-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+
+			.view-coach-response-headerleft {
+				display: flex;
+
+				h4 {
+					font-style: normal;
+					font-weight: 600;
+					font-size: 1.4rem;
+					line-height: 2.2rem;
+					text-decoration-line: underline;
+
+					color: #202124;
+				}
+
+				.view-coach-response-date {
+					margin-left: 2.4rem;
+				}
+			}
+
+			.view-coach-response-headerright {
+				display: flex;
+
+				.view-coach-response-save {
+					cursor: pointer;
+				}
+
+				.view-coach-response-cancel {
+					cursor: pointer;
+					margin-left: 2.4rem;
+				}
+
+				.view-coach-response-edit {
+					cursor: pointer;
+				}
+			}
+		}
+
+		p {
+			text-align: left;
+			margin-top: 1.5rem;
+		}
+
+		.edit-coach-response-txtarea {
+			margin-top: 1.6rem;
+			width: 100%;
+			height: 15.7rem;
+			border-radius: 0.3rem;
+			border: none;
+			background-color: #efefef;
+
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.6rem;
+			line-height: 3rem;
+
+			color: #3c4043;
 		}
 	}
 }
