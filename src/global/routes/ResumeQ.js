@@ -10,4 +10,4 @@ const ResumeQ = () => {
   </Switch>
 }
 
-export default Resumeq;
+export default ResumeQ;
