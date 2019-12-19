@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -16,9 +16,13 @@ const HAVE_RESPONSE = gql`
 export default function CoachResponse({ uniqueBooking }) {
 	const [showResponse, setShowResponse] = useState(false);
 
-	const { data } = useQuery(HAVE_RESPONSE, {
+	const { data, refetch } = useQuery(HAVE_RESPONSE, {
 		variables: { uniqueBooking },
 	});
+
+	// useEffect(() => {
+	// 	refetch();
+	// }, [hasResponse]);
 
 	return (
 		<div className='coach-response'>
