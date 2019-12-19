@@ -11,6 +11,7 @@ import { Bellicon } from '../../icons/bellicon';
 import { Hamburger } from '../../icons/hamburger';
 
 // Components
+import BecomeCoach from './subs/BecomeCoach';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
 
@@ -78,6 +79,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			</div>
 
 			<div className='nav-right'>
+				<BecomeCoach />
+
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>

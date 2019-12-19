@@ -82,9 +82,16 @@
 		align-items: center;
 		cursor: pointer;
 	}
+
+	.arrow-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
-.history-report {
+.history-report,
+.history-review {
 	text-align: left;
 	margin: 2.3rem 7.8rem 4.8rem 1.6rem;
 
@@ -111,4 +118,14 @@
 .coach-history-review,
 .seeker-history-report {
 	margin-bottom: 6.4rem;
+}
+
+.history-review {
+	.rating-container {
+		display: flex;
+
+		.message {
+			margin-left: 2.6rem;
+		}
+	}
 }

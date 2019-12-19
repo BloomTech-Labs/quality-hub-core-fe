@@ -1,6 +1,8 @@
 // Libraries
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
 // Styles & Icons
 import './CoachCard.scss';
@@ -10,12 +12,32 @@ import { ICONS } from '../../../../../../global/icons/iconConstants';
 //Component
 import CoachModal from '../2_CoachCardModal/CoachCardModal';
 
+const GET_COACHRATING = gql`
+	query RatingByCoach($coach_id: String!) {
+		ratingByCoach(coach_id: $coach_id)
+	}
+`;
+
 const CoachCard = ({ post }) => {
 	let { coach } = post;
 	let maxWidth = 100;
-  const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
-  const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
-  const fullName = `${coach.first_name} ${coach.last_name}`;
+
+	const { data } = useQuery(GET_COACHRATING, {
+		variables: { coach_id: coach.id },
+	});
+
+	const linkedin =
+		coach.linkedin_url &&
+		(coach.linkedin_url.startsWith('http')
+			? coach.linkedin
+			: `http://${coach.linkedin_url}`);
+	const twitter =
+		coach.twitter_url &&
+		(coach.twitter_url.startsWith('http')
+			? coach.linkedin
+			: `http://${coach.twitter_url}`);
+	const fullName = `${coach.first_name} ${coach.last_name}`;
+
 	return (
 		<div className='coach-card'>
 			<div className='coachcard-header'>
@@ -68,7 +90,7 @@ const CoachCard = ({ post }) => {
 					<span className='coachcard-icon'>
 						<Icon icon={ICONS.STAR} width={19} height={20} color='#595959' />
 					</span>
-					<span>4.9</span>
+					<span>{data && data.ratingByCoach ? data.ratingByCoach : '-'}</span>
 				</p>
 			</div>
 			<div className='coachcard-description'>

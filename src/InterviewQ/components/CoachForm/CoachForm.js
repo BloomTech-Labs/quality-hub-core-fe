@@ -89,7 +89,7 @@ const CoachForm = props => {
 		//close 2nd modal
 		setDone(false);
 	};
- 
+
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
@@ -97,7 +97,7 @@ const CoachForm = props => {
 
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className='become-a-coach-btn'>
-				{lightbulb2()}
+				{/* {lightbulb2()} */}
 				<span className='add-coach-form-button'>Become a coach</span>
 			</button>
 
