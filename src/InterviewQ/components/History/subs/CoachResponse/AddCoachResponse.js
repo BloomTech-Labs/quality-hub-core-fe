@@ -43,7 +43,7 @@ export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
 
 	const handleResponse = e => {
 		e.preventDefault();
-		console.log(response);
+		// console.log(response);
 		createResponse({
 			variables: {
 				uniqueBooking,
@@ -51,7 +51,7 @@ export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
 				text: response,
 			},
 		});
-		setShowResponse(false);
+		window.location.reload(true);
 	};
 
 	return (
