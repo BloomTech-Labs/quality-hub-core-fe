@@ -21,10 +21,6 @@ const GET_SEEKERBOOKINGS = gql`
 				id
 				first_name
 				last_name
-				# post {
-				# 	id
-				# 	price
-				# }
 			}
 			uniquecheck
 			report {
@@ -48,6 +44,7 @@ export default function SeekerHistory() {
 
 	const { loading, error, data } = useQuery(GET_SEEKERBOOKINGS, {
 		variables: { seeker_id },
+		fetchPolicy: 'network-only',
 	});
 
 	error && console.log(error);

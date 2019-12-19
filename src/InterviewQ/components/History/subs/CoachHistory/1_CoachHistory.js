@@ -22,13 +22,6 @@ const GET_COACHBOOKINGS = gql`
 				last_name
 			}
 			price
-			# coach {
-			# 	id
-			# 	post {
-			# 		id
-			# 		price
-			# 	}
-			# }
 			uniquecheck
 			review {
 				id
@@ -55,6 +48,7 @@ export default function CoachHistory() {
 
 	const { loading, error, data } = useQuery(GET_COACHBOOKINGS, {
 		variables: { coach_id },
+		fetchPolicy: 'network-only',
 	});
 
 	error && console.log(error);
