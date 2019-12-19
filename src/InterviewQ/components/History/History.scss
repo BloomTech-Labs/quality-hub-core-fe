@@ -93,7 +93,7 @@
 .history-report,
 .history-review {
 	text-align: left;
-	margin: 2.3rem 7.8rem 4.8rem 1.6rem;
+	margin: 2.3rem 7.8rem 3.3rem 1.6rem;
 
 	h4 {
 		font-style: normal;
@@ -111,13 +111,13 @@
 		font-size: 1.6rem;
 		line-height: 3rem;
 		color: #3c4043;
-		margin-bottom: 3.2rem;
+		// margin-bottom: 3.2rem;
 	}
 }
 
 .coach-history-review,
 .seeker-history-report {
-	margin-bottom: 6.4rem;
+	padding-bottom: 4.6rem;
 }
 
 .history-review {
@@ -127,6 +127,29 @@
 		.message {
 			margin-left: 2.6rem;
 		}
+	}
+}
+
+.coach-history-review {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	border-bottom: 1px solid #dadce0;
+
+	.toggle-coach-response-btn {
+		cursor: pointer;
+		width: 13.2rem;
+		height: 4.5rem;
+		background-color: #efefef;
+		border-radius: 0.4rem;
+		margin-left: 1.6rem;
+
+		font-style: normal;
+		font-weight: 600;
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+		color: #5f6368;
+		text-align: center;
 	}
 }
 
