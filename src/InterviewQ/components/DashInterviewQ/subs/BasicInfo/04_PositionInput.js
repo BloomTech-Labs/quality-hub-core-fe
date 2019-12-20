@@ -8,20 +8,18 @@ const PositionInput = ({ editing, setEditing, original, post, handleChange, hand
 				<span className='IQ-dash-heading'>
 					<h4 className='tag-title'>POSITION</h4>
 				</span>
+        <div>
 				{editing[1] ? (
-					<div>
-						<input
-							id='edit-post-1'
-							name='position'
-							value={post.position}
-							onChange={handleChange}
-						/>
-					</div>
+					<input
+						id='edit-post-1'
+						name='position'
+						value={post.position}
+						onChange={handleChange}
+					/>
 				) : (
-					<div>
-						<p className='IQ-dash-position'>{original && original.position}</p>
-					</div>
+					<p className='IQ-dash-position'>{original && original.position}</p>
 				)}
+        </div>
 			</div>
 			<PostButtons
 				index={1}
