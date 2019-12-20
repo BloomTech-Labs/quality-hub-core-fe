@@ -15,7 +15,6 @@ import {
 	isAfter,
 	getYear,
 	getHours,
-	formatDistanceToNow,
 	getMinutes,
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
@@ -44,15 +43,17 @@ const SmallCells = ({
 	const getAvailableSlots = dateAvails => {
 		let bookingArray = [];
 		const convertMinute = oldMinute => {
-			return oldMinute == 0 ? '00' : '50';
+			return oldMinute === 0 ? '00' : '50';
 		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
 				if (dateAvails[x].year === dateAvails[y].year) {
-					if (dateAvails[x].day == dateAvails[y].day) {
+					if (dateAvails[x].day === dateAvails[y].day) {
 						if (
 							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-								`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
+								`${dateAvails[y].hour}${convertMinute(
+									dateAvails[y].minute,
+								)}` ===
 							-50
 						) {
 							bookingArray.push(dateAvails[x]);
@@ -99,7 +100,7 @@ const SmallCells = ({
 	// 						break;
 	// 					}
 	// 				}
-					
+
 	// 			} else if (
 	// 				allTheAvails[i].year === integerYear &&
 	// 				allTheAvails[i].month === integerMonth &&
@@ -120,20 +121,24 @@ const SmallCells = ({
 		let availDay = format(someDate, 'Mdyyyy');
 		let integerDate = getDate(someDate);
 		let match = false;
-	
+
 		if (allTheAvails) {
-
 			for (let i = 0; i < allTheAvails.length; i++) {
-				if (currentDay === availDay && currentDay === `${allTheAvails[i].month}${allTheAvails[i].day}${allTheAvails[i].year}`) {					
-				
+				if (
+					currentDay === availDay &&
+					currentDay ===
+						`${allTheAvails[i].month}${allTheAvails[i].day}${allTheAvails[i].year}`
+				) {
 					if (allTheAvails[i].hour >= currentHour) {
-
-						if ((allTheAvails[i].hour === currentHour && allTheAvails[i].minute > currentMin) || (allTheAvails[i].hour > currentHour)) {
+						if (
+							(allTheAvails[i].hour === currentHour &&
+								allTheAvails[i].minute > currentMin) ||
+							allTheAvails[i].hour > currentHour
+						) {
 							match = true;
 							break;
 						}
 					}
-					
 				} else if (
 					allTheAvails[i].year === integerYear &&
 					allTheAvails[i].month === integerMonth &&
@@ -195,7 +200,7 @@ const SmallCells = ({
 			day = addDays(day, 1);
 		}
 		rows.push(
-			<div className="row" key={day}>
+			<div className='row' key={day}>
 				{days}
 			</div>,
 		);
@@ -204,7 +209,7 @@ const SmallCells = ({
 
 	return (
 		<>
-			<div className="calendar-body">{rows}</div>
+			<div className='calendar-body'>{rows}</div>
 		</>
 	);
 };

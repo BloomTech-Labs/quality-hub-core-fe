@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -17,11 +17,12 @@ const GET_COACHRATING = gql`
 `;
 
 const GET_COACHREVIEWS = gql`
-query reviewsByCoach($coach_id: String!) {
-	reviewsByCoach(coach_id: $coach_id){
-		id
+	query reviewsByCoach($coach_id: String!) {
+		reviewsByCoach(coach_id: $coach_id) {
+			id
+		}
 	}
-}`
+`;
 
 const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	const node = useRef();
@@ -34,9 +35,17 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 		variables: { coach_id: coach.id },
 	});
 
-  const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
-  const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
-  const fullName = `${coach.first_name} ${coach.last_name}`;
+	const linkedin =
+		coach.linkedin_url &&
+		(coach.linkedin_url.startsWith('http')
+			? coach.linkedin
+			: `http://${coach.linkedin_url}`);
+	const twitter =
+		coach.twitter_url &&
+		(coach.twitter_url.startsWith('http')
+			? coach.linkedin
+			: `http://${coach.twitter_url}`);
+	const fullName = `${coach.first_name} ${coach.last_name}`;
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -50,7 +59,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	const swapModals = () => {
 		openReviewModal(true);
 		setOpen(false);
-	}
+	};
 
 	return (
 		<div ref={node}>
@@ -157,7 +166,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 								)}
 							</span>
 							<span className='text rating-score'>
-							{data && data.ratingByCoach}
+								{data && data.ratingByCoach}
 								<span>{` (${
 									coachReviews && coachReviews.reviewsByCoach
 										? coachReviews.reviewsByCoach.length
