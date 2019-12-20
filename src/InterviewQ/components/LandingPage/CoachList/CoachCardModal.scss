@@ -36,37 +36,28 @@ body {
 	}
 }
 
-.coachcard-expand {
+
+.coachcard-expand-background {
+	position: absolute;
 	display: flex;
-	// width: 31.3rem;
-	// height: 50.1rem;
-	// padding: 3rem;
-	// box-shadow: 2px 2px 5px gray;
-	border: 1px solid silver;
-	border-radius: 1rem;
-	margin-bottom: 1.3rem;
-	flex-direction: column;
-	justify-content: space-between;
-	text-align: left;
-	position: fixed;
+	justify-content: center;
+	align-content: flex-end;
+	align-items: flex-end;
 	width: 41.6rem;
-	height: 56rem;
-	overflow: auto;
+	height: 59.7rem;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	padding-top: 8rem;
-	padding-left: 50px;
-	padding-right: 50px;
-	padding-bottom: 50px;
+	top: 6.4rem;
+	transform: translate(-50%);
 	background: white;
 	border-radius: 10px;
-	text-align: left;
 	z-index: 1000;
+	@media screen and (max-width: 550px) {
+		min-width: 550px;
+	}
 	.close-coachcard-expand {
 		position: absolute;
-		top: 40px;
-		right: 30px;
+		top: 6px;
+		right: 7px;
 		margin: 0 !important;
 		padding: 0 !important;
 		border: none !important;
@@ -76,6 +67,49 @@ body {
 		outline: none;
 		cursor: pointer;
 	}
+}
+
+.coachcard-expand {
+	display: flex;
+	// width: 31.3rem;
+	// height: 50.1rem;
+	// padding: 3rem;
+	// box-shadow: 2px 2px 5px gray;
+	// border: 1px solid silver;
+	border-radius: 1rem;
+	margin-bottom: 1.3rem;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: left;
+	position: fixed;
+	width: 38.6rem;
+	height: 53rem;
+	overflow: auto;
+	left: 50%;
+	top: 50%;
+	bottom: 10%;
+	transform: translate(-50%, -50%);
+	padding-top: 4rem;
+	padding-left: 35px;
+	padding-right: 35px;
+	padding-bottom: 60px;
+	background: white;
+	border-radius: 10px;
+	text-align: left;
+	z-index: 1000;
+	// .close-coachcard-expand {
+	// 	position: absolute;
+	// 	top: 40px;
+	// 	right: 30px;
+	// 	margin: 0 !important;
+	// 	padding: 0 !important;
+	// 	border: none !important;
+	// 	width: 24px !important;
+	// 	height: 24px !important;
+	// 	color: black;
+	// 	outline: none;
+	// 	cursor: pointer;
+	// }
 	.coachcard-header-expand {
 		display: flex;
 		justify-content: space-between;
@@ -202,7 +236,7 @@ body {
 		justify-content: space-between;
 		align-items: center;
 		//width: 300px;
-		margin-bottom: 6rem;
+		margin-bottom: 3rem;
 		.coachcard-links-expand {
 			margin-top: 20px;
 			width: 6.2rem;
