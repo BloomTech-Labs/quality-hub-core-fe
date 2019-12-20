@@ -54,6 +54,11 @@
     }
     .cancel {
       color:gray;
+      text-align: center;
+      text-decoration: none;
+      a{
+        text-decoration: none;
+      }
     }
     .submit {
       background-color:$main-blue;
