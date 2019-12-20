@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -26,8 +26,8 @@ const GET_USER = gql`
 
 const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const location = useLocation();
-	const [getUser, { client, error, data, loading }] = useLazyQuery(GET_USER);
-	const [errorCount, setErrorCount] = useState(0);
+	const [getUser, { client, data, loading }] = useLazyQuery(GET_USER);
+	// const [errorCount, setErrorCount] = useState(0);
 
 	const title = location.pathname.match(/\/(.*?)q/);
 	const navtitle =
