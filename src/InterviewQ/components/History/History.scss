@@ -255,15 +255,27 @@
 
 				.view-coach-response-save {
 					cursor: pointer;
+
+					&:hover {
+						color: #096dd9;
+					}
 				}
 
 				.view-coach-response-cancel {
 					cursor: pointer;
 					margin-left: 2.4rem;
+
+					&:hover {
+						color: #096dd9;
+					}
 				}
 
 				.view-coach-response-edit {
 					cursor: pointer;
+
+					&:hover {
+						color: #096dd9;
+					}
 				}
 			}
 		}
