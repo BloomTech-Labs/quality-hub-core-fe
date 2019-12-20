@@ -10,6 +10,7 @@ import { Codeqicon } from '../../../icons/codeqicon';
 import { Recruiterqicon } from '../../../icons/recruiterqicon';
 import { Networkqicon } from '../../../icons/networkqicon';
 import { Gridicon } from '../../../icons/gridicon';
+import { InterviewQColoredIcon } from '../../../../global/icons/interviewqcoloredicon';
 
 const GridDropdown = () => {
 	const node = useRef();
@@ -45,7 +46,8 @@ const GridDropdown = () => {
 								className='box'
 								onClick={() => setOpen(false)}>
 								{Interviewqicon()}
-								<p>InterviewQ</p>
+			{/* <div className="grid-dropdown-interviewq"><p>Interview&nbsp;</p>{InterviewQColoredIcon()}</div> */}
+			<p>InterviewQ</p>
 							</Link>
 
 							<Link
