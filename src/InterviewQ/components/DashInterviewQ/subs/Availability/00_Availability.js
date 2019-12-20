@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SmallCalendar from '../../../../../global/components/Calendar/SmallCalendar';
 import { timeObjs } from '../../../../../global/utils/TimeArrays';
 import './00_Availability.scss';
@@ -16,6 +16,7 @@ import {
 } from '../../../../../global/utils/TZHelpers';
 
 const Availability = () => {
+	const [toolTip, showToolTip] = useState(false);
 	const [setter, setSetter] = useState(true);
 	const [selectedCell, setSelectedCell] = useState(new Date());
 	const [dateAvails, setDateAvails] = useState();
@@ -32,6 +33,27 @@ const Availability = () => {
 	});
 
 	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const node = useRef();
+
+	useEffect(() => {
+		if (toolTip) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [toolTip]);
+	
+	const handleOutsideClick = e => {
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				showToolTip(false);
+			}
+		} else {
+			showToolTip(false);
+		}
+	};
 
 	useEffect(() => {
 		console.log(selectedCell);
@@ -59,6 +81,21 @@ const Availability = () => {
 			});
 		return returnvar;
 	};
+
+	const isBooked = (h, m) => {
+		let returnvar = false;
+		availabilities &&
+			dateAvails &&
+			dateAvails.forEach(({ hour, minute, isOpen }) => {
+				if (h === hour && minute === m && isOpen === false) {
+					// if (isOpen === false){
+					// 	returnvar = false;
+					// }
+					returnvar = true;
+				}
+			});
+		return returnvar;
+	}
 
 	const createAvail = (hour, minute) => {
 		let newObj = { ...availability, hour: hour, minute: minute };
@@ -118,6 +155,11 @@ const Availability = () => {
 	};
 
 	const toggleAvail = (e, h, m) => {
+		if (e.target.className.includes('booked-slot')){
+			console.log('bookedslot')
+			showToolTip(true);
+			return
+		}
 		if (e.target.className === 'available-slot interview-slot') {
 			deleteAvail(h, m);
 			e.target.className = 'unavailable-slot interview-slot';
@@ -145,6 +187,7 @@ const Availability = () => {
 
 	return (
 		<div id='interviewq-availability-header'>
+			{/* <div id='overlay-confirm-interview'></div> */}
 			<h2>Availability</h2>
 			<div className='availability-container'>
 				<div className='coach-availability'>
@@ -163,13 +206,18 @@ const Availability = () => {
 										timeFilter(time.hour, time.minute)
 											? 'available-slot'
 											: 'unavailable-slot'
-									} interview-slot`}
+									} 
+									${isBooked(time.hour, time.minute) ? 'booked-slot' : 'open-slot'}
+									interview-slot`}
 									onClick={e => toggleAvail(e, time.hour, time.minute)}>
 									{time.display}
+									
 								</div>
 							);
 						})}
 					</div>
+					{toolTip ? <div className='booked-tooltip' ref={node}>
+						<span>You cannot remove an availability slot that is currently booked</span> </div> : null}
 				</div>
 			</div>
 		</div>
