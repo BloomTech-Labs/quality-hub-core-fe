@@ -16,7 +16,7 @@ const DoneModal = ({ closeWindow, setAvailability }) => {
 				/>
 			</button>
 			<div className='done-modal-content'>
-				<div className='done-modal-checkcircle'>{checkcircle()}</div>
+			<img className = 'done-modal-img' src='/images/confirmed.svg' />
 				<div className='done-modal-all-text'>
 					<p className='done-modal-text-1'>Your coach post is live!</p>
 					<p className='done-modal-text-2'>

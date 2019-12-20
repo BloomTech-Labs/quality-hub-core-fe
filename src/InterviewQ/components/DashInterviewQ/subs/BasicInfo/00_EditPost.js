@@ -2,13 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import PostButtons from './01_PostButtons';
-import {
-	GET_COACH_POST,
-	GET_INDUSTRIES,
-	UPDATE_POST,
-	REMOVE_TAG,
-} from '../Resolvers';
+import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST, REMOVE_TAG } from '../Resolvers';
 import './00_EditForm.scss';
 import PreviewCard from './02_CoachDashPreviewModal';
 import CompanyInput from './03_CompanyInput';
@@ -17,6 +11,7 @@ import IndustryInput from './05_IndustryInput';
 import TagInput from './06_TagInput';
 import DescInput from './07_DescInput';
 import PriceInput from './08_PriceInput';
+import Availability from '../Availability';
 
 const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
@@ -36,17 +31,12 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		false,
 		false,
 	]);
-	// const [post, setPost] = useState({
-	// 	id: coachPost.postByCoach.id,
-	// 	tagString: '',
-  // });
 	let coachObj = coachPost && coachPost.postByCoach;
-	const [post, setPost] = useState(coachObj);
+	const [post, setPost] = useState({...coachObj, tagString: ''});
 	const [deleteTags, setDelete] = useState([]);
-	//Component State
-	let tagArray =
-		coachPost &&
-		coachPost.postByCoach.tags.map(tag => (
+  //Component State
+  function createTagElements(tags) {
+    return tags.map(tag => (
 			<button key={tag.id} className='tag-button'>
 				{tag.name}
 				<span
@@ -58,6 +48,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 				</span>
 			</button>
 		));
+  }
+	let tagArray = coachPost && createTagElements(coachPost.postByCoach.tags);
 	const [original, setOriginal] = useState(coachObj);
 
 	useEffect(() => {
@@ -69,6 +61,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//Handler Functions
 	const handleChange = e => {
 		if (e.target.name === 'price') {
+      console.log('hi');
 			if (/^\$[0-9]*$/gm.test(e.target.value)) {
 				let newPrice = e.target.value.split('$');
 				setPost({
@@ -111,20 +104,8 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 
 	useEffect(() => {
 		if (original.tagString) {
-			let tags = original.tags;
-			let newTags = tags.map(tag => (
-				<button key={tag.id} className='tag-button'>
-					{tag.name}
-					<span
-						className={editing[5] ? '' : 'hidden'}
-						id={tag.id}
-						onClick={handleTagRemove}>
-						{' '}
-						x{' '}
-					</span>
-				</button>
-			));
-			setOriginal({ ...original, tagString: newTags });
+      let tags = createTagElements(original.tags);
+			setOriginal({ ...original, tagString: tags });
 		}
 		// eslint-disable-next-line
 	}, [editing[5], original.tags]);
@@ -139,27 +120,15 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 			.then(res => {
 				if (keyval[1] === 'tagString') {
 					let tags = res.data.updatePost.tags;
-					tags.map(tag => (
-						<button key={tag.id} className='tag-button'>
-							{tag.name}
-							<span
-								className={editing[5] ? '' : 'hidden'}
-								id={tag.id}
-								onClick={handleTagRemove}>
-								{' '}
-								x{' '}
-							</span>
-							}
-						</button>
-					));
-					setOriginal({ ...original, tags: tags });
+          setOriginal({ ...original, tags: tags });
 				} else {
           setOriginal({ ...original, [keyval[1]]: post[keyval[1]] });
 				}
 				let newEditing = [...editing];
 				newEditing[index] = false;
         setEditing(newEditing);
-        setPost({ ...original, [keyval[1]]: post[keyval[1]] });
+        setPost({ ...original, [keyval[1]]: post[keyval[1]], tagString: '' });
+        setDelete([]);
 			})
 			.catch(err => {
 				console.log(err);
@@ -236,10 +205,9 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
         handleCancel={handleCancel}
         handleSubmit={handleSubmit} 
       />
+			<Availability />
 			<div className='post-input-last'>
-				<div className='see-preview'>
-					<PreviewCard setOpen={setOpen} open={open} post={original} />
-				</div>
+        <PreviewCard setOpen={setOpen} open={open} post={original} />
 			</div>
 		</div>
 	);

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Styles && Icons
 import './CoachForm.scss';
 import { lightbulb } from '../../../global/icons/lightbulb';
-import { lightbulb2 } from '../../../global/icons/lightbulb2';
+// import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Query
 import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';
@@ -89,7 +89,7 @@ const CoachForm = props => {
 		//close 2nd modal
 		setDone(false);
 	};
- 
+
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
@@ -97,7 +97,7 @@ const CoachForm = props => {
 
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className='become-a-coach-btn'>
-				{lightbulb2()}
+				{/* {lightbulb2()} */}
 				<span className='add-coach-form-button'>Become a coach</span>
 			</button>
 

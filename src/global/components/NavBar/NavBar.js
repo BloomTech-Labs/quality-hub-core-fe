@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -11,6 +11,7 @@ import { Bellicon } from '../../icons/bellicon';
 import { Hamburger } from '../../icons/hamburger';
 
 // Components
+import BecomeCoach from './subs/BecomeCoach';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
 
@@ -25,8 +26,8 @@ const GET_USER = gql`
 
 const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const location = useLocation();
-	const [getUser, { client, error, data, loading }] = useLazyQuery(GET_USER);
-	const [errorCount, setErrorCount] = useState(0);
+	const [getUser, { client, data, loading }] = useLazyQuery(GET_USER);
+	// const [errorCount, setErrorCount] = useState(0);
 
 	const title = location.pathname.match(/\/(.*?)q/);
 	const navtitle =
@@ -78,6 +79,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			</div>
 
 			<div className='nav-right'>
+				<BecomeCoach />
+
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>

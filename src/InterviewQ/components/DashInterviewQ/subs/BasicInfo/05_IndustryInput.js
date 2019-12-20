@@ -9,36 +9,34 @@ const IndustryInput = ({ editing, setEditing, original, post, handleChange, hand
       <span className='IQ-dash-heading'>
         <h4 className="tag-title">INDUSTRY</h4>
       </span>
+      <div>
       {editing[2] ? (
-        <div>
-          <select
-            id='edit-post-2'
-            name='industryName'
-            value={post.industryName}
-            onChange={handleChange}>
-            <option>
-              {' '}
-              {original && original.industryName
-                ? original && original.industryName
-                : original && original.industry.name}
-            </option>
-            {industries &&
-              industries.industries.map(industry => (
-                <option value={industry.name} key={industry.id}>
-                  {industry.name}
-                </option>
-              ))}
-          </select>
-        </div>
-      ) : (
-        <div>
-          <p>
+        <select
+          id='edit-post-2'
+          name='industryName'
+          value={post.industryName}
+          onChange={handleChange}>
+          <option>
+            {' '}
             {original && original.industryName
               ? original && original.industryName
               : original && original.industry.name}
-          </p>
-        </div>
+          </option>
+          {industries &&
+            industries.industries.map(industry => (
+              <option value={industry.name} key={industry.id}>
+                {industry.name}
+              </option>
+            ))}
+        </select>
+      ) : (
+        <p>
+          {original && original.industryName
+            ? original && original.industryName
+            : original && original.industry.name}
+        </p>
       )}
+      </div>
     </div>
     <div className='edit-btns'></div>
     <PostButtons
