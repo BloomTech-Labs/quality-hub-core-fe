@@ -16,14 +16,9 @@ import {
 	getYear,
 	getHours,
 	getMinutes,
-	formatDistanceStrict,
-	isFirstDayOfMonth,
-	isLastDayOfMonth,
-	differenceInCalendarMonths,
-	differenceInMonths
+	formatDistanceStrict
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
-import { date } from 'yup';
 
 const SmallCells = ({
 	onDateClick,
