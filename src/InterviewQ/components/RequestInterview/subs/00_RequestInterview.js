@@ -14,7 +14,8 @@ const RequestInteview = props => {
 		variables: { coach_id: coachId },
 	});
 
-	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	console.log(props.history);
+	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	const [resumeURL, setResumeURL] = useState(null);
 	const [resume, setResume] = useState(null);
@@ -26,7 +27,7 @@ const RequestInteview = props => {
 	const [currentDate, setCurrentDate] = useState();
 
 	const validateFile = checkFile => {
-		if (checkFile.type == 'application/pdf') {
+		if (checkFile.type === 'application/pdf') {
 			return true;
 		} else {
 			return false;
@@ -72,14 +73,14 @@ const RequestInteview = props => {
 		});
 	};
 	const createBooking = (e, slot) => {
-		console.log(e.target.id)
-		console.log(slot.id)
+		console.log(e.target.id);
+		console.log(slot.id);
 		setPrevId(e.target.id);
 		let prevSlot = document.getElementById(prevId);
 		if (prevId && prevSlot !== null) {
 			prevSlot.className = 'interview-slot';
 		}
-		if (e.target.id === slot.id){
+		if (e.target.id === slot.id) {
 			e.target.className = 'available-slot interview-slot';
 		}
 
@@ -112,7 +113,6 @@ const RequestInteview = props => {
 			bookedSlot.classList.add('available-slot');
 		}
 	}, [currentSlots]);
-	
 
 	useEffect(() => {
 		availabilities
@@ -141,15 +141,17 @@ const RequestInteview = props => {
 	const getAvailableSlots = () => {
 		let bookingArray = [];
 		const convertMinute = oldMinute => {
-			return oldMinute == 0 ? '00' : '50';
+			return oldMinute === 0 ? '00' : '50';
 		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
 				if (dateAvails[x].year === dateAvails[y].year) {
-					if (dateAvails[x].day == dateAvails[y].day) {
+					if (dateAvails[x].day === dateAvails[y].day) {
 						if (
 							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-								`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
+								`${dateAvails[y].hour}${convertMinute(
+									dateAvails[y].minute,
+								)}` ===
 							-50
 						) {
 							bookingArray.push(dateAvails[x]);
@@ -179,39 +181,71 @@ const RequestInteview = props => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, [])
+	}, []);
 
 	return (
-		<div className="booking-content-section">
-			<div className="formsection">
-				<div className="booking-header-container">
-					<h2 className='booking-first-header'>Select a Date</h2>
+		<div className='booking-content-section'>
+			<div className='formsection'>
+				<div className='booking-header-container'>
+					<h2 className='booking-first-header'>
+						Select a Date - Coach{' '}
+						{props.history.location.state &&
+						props.history.location.state.coachName
+							? props.history.location.state.coachName
+							: props.history.location.state &&
+							  props.history.location.state.bookingCoach
+							? props.history.location.state.bookingCoach
+							: ' '}
+					</h2>
 				</div>
 				<div className='booking-subheading'>
-				<p>Please select a date and timeslot for your mock interview</p>
+					<p>Please select a date and timeslot for your mock interview</p>
 				</div>
-				<div className="interviewq-content-container">
-					<div className="coach-availability">
+				<div className='interviewq-content-container'>
+					<div className='coach-availability'>
 						<SmallCalendar
 							availabilities={availabilities}
 							selectedCell={props.selectedCell}
 							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
-						<div className="interview-slot-list">
+						<div className='interview-slot-list'>
 							{currentSlots ? (
 								currentSlots.map(time => {
 									if (time.isOpen === true) {
-										const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-interview-slot" : "";
-										const inPast = (e) => differenceInMilliseconds(new Date(time.year, time.month - 1, time.day, time.hour, time.minute), new Date()) < 0 ? console.log('true') : createBooking(e, time);
-										
+										const isPast = time =>
+											differenceInMilliseconds(time, new Date()) < 0
+												? 'disabled-interview-slot'
+												: '';
+										const inPast = e =>
+											differenceInMilliseconds(
+												new Date(
+													time.year,
+													time.month - 1,
+													time.day,
+													time.hour,
+													time.minute,
+												),
+												new Date(),
+											) < 0
+												? console.log('true')
+												: createBooking(e, time);
+
 										return (
 											<div
 												key={time.id}
 												id={time.id}
-												className={`interview-slot ${isPast(new Date(time.year, time.month - 1, time.day, time.hour, time.minute))}`}
+												className={`interview-slot ${isPast(
+													new Date(
+														time.year,
+														time.month - 1,
+														time.day,
+														time.hour,
+														time.minute,
+													),
+												)}`}
 												onClick={inPast}>
-													{/* inPast ? "" : createBooking(e, time) */}
+												{/* inPast ? "" : createBooking(e, time) */}
 												{time.hour === 0
 													? 12
 													: time.hour > 12
@@ -237,38 +271,41 @@ const RequestInteview = props => {
 			)} */}
 				</div>
 			</div>
-			<div className="formsection">
-				<div className="booking-header-container">
+			<div className='formsection'>
+				<div className='booking-header-container'>
 					<h2>Additional Information</h2>
 				</div>
 				<div className='booking-subheading'>
-					<p>Please respond to these prompts to give your interview coach a better sense of who you are and what your goals and motivations are.</p>
+					<p>
+						Please respond to these prompts to give your interview coach a
+						better sense of who you are and what your goals and motivations are.
+					</p>
 				</div>
-				<div className="interviewq-content-container">
-					<div className="interviewq-booking-input">
+				<div className='interviewq-content-container'>
+					<div className='interviewq-booking-input'>
 						<h3>Resume Upload</h3>
 						<input
-							className=""
-							type="file"
-							id="resumeInput"
-							accept="application/pdf"
+							className=''
+							type='file'
+							id='resumeInput'
+							accept='application/pdf'
 							onChange={e => setResume(e.target.files[0])}
 						/>
 					</div>
-					<div className="interviewq-booking-input">
+					<div className='interviewq-booking-input'>
 						<h3>What do you want to get out of mock interviews?</h3>
 						<textarea
-							placeholder="e.g. More confidence, preparation for upcoming interview etc...."
-							name="interviewGoals"
+							placeholder='e.g. More confidence, preparation for upcoming interview etc....'
+							name='interviewGoals'
 							value={props.booking.interviewGoals}
 							onChange={handleChange}
 						/>
 					</div>
-					<div className="interviewq-booking-input">
+					<div className='interviewq-booking-input'>
 						<h3>What kind of interview questions do you want to focus on?</h3>
 						<textarea
-							placeholder="e.g. Technical questions, soft skill questions etc"
-							name="interviewQuestions"
+							placeholder='e.g. Technical questions, soft skill questions etc'
+							name='interviewQuestions'
 							value={props.booking.interviewQuestions}
 							onChange={handleChange}
 						/>
@@ -285,15 +322,17 @@ const RequestInteview = props => {
     </div> */}
 
 			{props.booking && props.booking.minute !== undefined ? (
-				<div className="booking-button-container">
-					<Link className="book-interview-button" to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className="book-interview-button">
+				<div className='booking-button-container'>
+					<Link
+						className='book-interview-button'
+						to={`/interviewq/booking/${coachId}/confirm`}>
+						<button className='book-interview-button'>
 							<p>Next</p>
-							</button>
+						</button>
 					</Link>
 				</div>
 			) : (
-				<div className="booking-bottom">
+				<div className='booking-bottom'>
 					<p> Please select a time slot above to continue</p>
 				</div>
 			)}

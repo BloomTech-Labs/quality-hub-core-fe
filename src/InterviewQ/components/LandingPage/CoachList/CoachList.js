@@ -23,7 +23,7 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 
 	return (
 		<div className='coach-list-container'>
-			<div className={toggleFilter ? '' : 'hidden'}>
+			{/* <div className={toggleFilter ? '' : 'hidden'}> */}
 				<Search
 					setFields={setFields}
 					fields={fields}
@@ -31,7 +31,7 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 					toggleFilter={toggleFilter}
 					setToggleFilter={setToggleFilter}
 				/>
-			</div>
+			{/* </div> */}
 			{loading && <Loading />}
 			{!loading && data && (
 				<div className='coach-list'>

@@ -7,7 +7,7 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 import ConfirmedInterview from './02_ConfirmedInterview';
 //import { convertToUTC } from '../../../../global/utils/TZHelpers'
 
-const ConfirmInterview = ({ booking, history, match, selectedCell }) => {
+const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) => {
 	const coachId = match.params.coachId;
   console.log(booking)
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -109,9 +109,14 @@ useEffect(() => {
    </div>
    </div>
    <div className='booking-button-container'>
-   <Link className="interview-a-secondary" to={`/interviewq/booking/${coachId}/`}>
+   {/* <Link className="interview-a-secondary" to={`/interviewq/booking/${coachId}/`}>
      <button className='interview-button-secondary'><p>Back</p></button>
-     </Link>
+     </Link> */}
+     <Link className="interview-a-secondary" to={{
+							pathname: `/interviewq/booking/${coachId}`,
+							state: { bookingCoach: `${booking.coachName}`}
+						}}>
+              <button className='interview-button-secondary'>Back</button></Link>
    <button className='book-interview-button' onClick={submitBooking}><p>Confirm</p></button>
    </div>
    </div>
