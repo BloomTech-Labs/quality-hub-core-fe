@@ -144,7 +144,7 @@ body {
 	.coachcard-header-expand-longname {
 		flex-wrap: wrap;
 		flex-direction: column-reverse;
-
+	
 }
 	.coachcard-info-expand {
 		margin-bottom: 1.28rem;
@@ -265,6 +265,9 @@ body {
 				font-weight: 500;
 				font-size: 14px;
 				line-height: 22px;
+			}
+			&:hover {
+				background-color: #0050b3;
 			}
 		}
 	}
