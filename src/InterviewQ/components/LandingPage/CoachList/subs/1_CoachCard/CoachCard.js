@@ -63,11 +63,15 @@ const CoachCard = ({ post }) => {
 	let maxWidth = 100;
 
 	const { data } = useQuery(GET_COACHRATING, {
-		variables: { coach_id: coach.id },
-	});
+    variables: { coach_id: coach.id },
+    fetchPolicy: "network-only"
+  });
+  
 	const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
-		variables: { coach_id: coach.id },
-	});
+    variables: { coach_id: coach.id },
+    fetchPolicy: "network-only"
+  });
+  
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
