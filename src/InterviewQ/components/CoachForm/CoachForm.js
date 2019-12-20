@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Styles && Icons
 import './CoachForm.scss';
 import { lightbulb } from '../../../global/icons/lightbulb';
-import { lightbulb2 } from '../../../global/icons/lightbulb2';
+// import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Query
 import { GET_USER, INDUSTRIES, ADD_POST } from './subs/CoachFormQueries';

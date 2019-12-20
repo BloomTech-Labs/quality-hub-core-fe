@@ -60,6 +60,7 @@
 		color: #3c4043;
 		display: flex;
 		align-items: center;
+		overflow-x: scroll;
 	}
 
 	.view-report,
@@ -254,15 +255,27 @@
 
 				.view-coach-response-save {
 					cursor: pointer;
+
+					&:hover {
+						color: #096dd9;
+					}
 				}
 
 				.view-coach-response-cancel {
 					cursor: pointer;
 					margin-left: 2.4rem;
+
+					&:hover {
+						color: #096dd9;
+					}
 				}
 
 				.view-coach-response-edit {
 					cursor: pointer;
+
+					&:hover {
+						color: #096dd9;
+					}
 				}
 			}
 		}
@@ -286,6 +299,21 @@
 			line-height: 3rem;
 
 			color: #3c4043;
+		}
+	}
+}
+
+.history-review {
+	.history-review-rating-container {
+		display: flex;
+		margin-top: 1.6rem;
+		margin-bottom: 4.8rem;
+
+		.history-review-stars-container {
+			width: 19.4rem;
+			margin-right: 2.6rem;
+			display: flex;
+			justify-content: space-between;
 		}
 	}
 }

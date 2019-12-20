@@ -75,15 +75,19 @@ export default function Search({ fields, setFields, refetch }) {
   };
   
 	return (
+		<div className='search-container'>
+		<h2>Search Coach</h2>
 		<div className='search-dropdowns'>
+			
 			<div className='search-field'>
-				<label>Industry</label>
+				{/* <label>Industry</label> */}
 				<select
 					name='industry'
 					placeholder='Industry'
 					onChange={handleChange}
 					value={fields.industry}
 					required>
+						<option value="" disabled hidden>Industry</option>
 					<option value=''>All</option>
 					{ind_data &&
 						ind_data.industries.map(({ name }) => (
@@ -94,13 +98,14 @@ export default function Search({ fields, setFields, refetch }) {
 				</select>
 			</div>
 			<div className='search-field'>
-				<label>Price</label>
+				{/* <label>Price</label> */}
 				<select
 					name='price'
 					placeholder='Price'
 					onChange={handleChange}
 					value={fields.price}
 					required>
+						<option value="" disabled hidden>Price</option>
 					<option value=''>All</option>
 					<option value='0, 20'>$0-$20</option>
 					<option value='21, 50'>$21-$50</option>
@@ -110,13 +115,14 @@ export default function Search({ fields, setFields, refetch }) {
 				</select>
 			</div>
 			<div className='search-field'>
-				<label>Sort results by</label>
+				{/* <label>Sort results by</label> */}
 				<select
 					name='orderBy'
 					placeholder='Order By'
 					onChange={handleChange}
 					value={fields.orderBy}
 					required>
+						<option value="" disabled hidden>Sort by</option>
 					<option value='id_ASC'>None</option>
 					{/* <option value="asdf">Most reviews</option>
           <option value="fasdfasdf">Least reviews</option> */}
@@ -126,10 +132,10 @@ export default function Search({ fields, setFields, refetch }) {
 					<option value='lastUpdated_ASC'>Oldest</option>
 				</select>
 			</div>
-			<div className='search-field-bottom'>
+			{/* <div className='search-field-bottom'> */}
 				<div className='search-field-keyword'>
-					<div className='search-input-search-icon'>{search()}</div>
-					<label className='search-label-keywords'>Keywords</label>
+					
+					{/* <label className='search-label-keywords'>Keywords</label> */}
 					<input
 						className='search-by-keyword-input'
 						type='text'
@@ -139,19 +145,22 @@ export default function Search({ fields, setFields, refetch }) {
 						placeholder={`Search by Keyword`}
 						onKeyDown={handlePress}
 					/>
-				</div>
-				<div className='search-buttons'>
+			
+				{/* <div className='search-buttons'> */}
 					<button className='search-apply' onClick={e => handleSubmit(e)}>
-						Search
+						{search()}
 					</button>
+					</div>
 					<button className='search-reset' onClick={handleReset}>
-						Reset Filters
+						Reset
 					</button>
-				</div>
-			</div>
+				{/* </div> */}
+			{/* </div> */}
 			{/* <div className="search-tags-container">
 				<p className="search-tags"> {fields.tags} X </p>
 				</div> */}
 		</div>
+		</div>
 	);
 }
+

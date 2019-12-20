@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -8,9 +8,10 @@ import { useQuery } from '@apollo/react-hooks';
 import './CoachCard.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
-
+import { star, greystar } from '../../../../../../global/icons/star';
 //Component
 import CoachModal from '../2_CoachCardModal/CoachCardModal';
+import ReviewModal from '../03_ReviewModal/ReviewModal';
 
 const GET_COACHRATING = gql`
 	query RatingByCoach($coach_id: String!) {
@@ -18,14 +19,54 @@ const GET_COACHRATING = gql`
 	}
 `;
 
+const GET_COACHREVIEWS = gql`
+	query reviewsByCoach($coach_id: String!) {
+		reviewsByCoach(coach_id: $coach_id) {
+			id
+			seeker {
+				first_name
+				last_name
+			}
+			createdAt
+			review
+			rating
+		}
+	}
+`;
+
 const CoachCard = ({ post }) => {
+	const [reviewModal, openReviewModal] = useState(false);
+	const node = useRef();
+
+	useEffect(() => {
+		if (reviewModal) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [reviewModal]);
+
+	const handleOutsideClick = e => {
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				openReviewModal(false);
+			}
+		} else {
+			openReviewModal(false);
+		}
+	};
+
 	let { coach } = post;
 	let maxWidth = 100;
 
 	const { data } = useQuery(GET_COACHRATING, {
 		variables: { coach_id: coach.id },
 	});
-
+	const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
+		variables: { coach_id: coach.id },
+	});
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
@@ -40,6 +81,7 @@ const CoachCard = ({ post }) => {
 
 	return (
 		<div className='coach-card'>
+			<div id='overlay-confirm-interview'></div>
 			<div className='coachcard-header'>
 				<div className='coachcard-header-txt'>
 					<h3>
@@ -69,7 +111,7 @@ const CoachCard = ({ post }) => {
 			<div className='coachcard-info'>
 				<p>
 					<span className='coachcard-icon industry'>
-						<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
+						<Icon icon={ICONS.BAG} width={18} height={18} color='#595959' />
 					</span>
 					<span className='text'>{`${post.company} - ${post.position}`}</span>
 				</p>
@@ -77,8 +119,8 @@ const CoachCard = ({ post }) => {
 					<span className='coachcard-icon'>
 						<Icon
 							icon={ICONS.LOCATION}
-							width={16}
-							height={22}
+							width={18}
+							height={18}
 							color='#595959'
 						/>
 					</span>
@@ -86,21 +128,48 @@ const CoachCard = ({ post }) => {
 						{coach.city}, {coach.state}
 					</span>
 				</p>
-				<p>
+				{/* <p>
 					<span className='coachcard-icon'>
 						<Icon icon={ICONS.STAR} width={19} height={20} color='#595959' />
 					</span>
 					<span>{data && data.ratingByCoach ? data.ratingByCoach : '-'}</span>
-				</p>
+				</p> */}
 			</div>
 			<div className='coachcard-description'>
 				<div className='p-ellipsis'>
 					{post.description.substring(0, maxWidth)}
 					<span>
 						{post.description.length >= maxWidth ? '...' : ''}{' '}
-						<CoachModal post={post} />
+						<CoachModal post={post} openReviewModal={openReviewModal} />
 					</span>
 				</div>
+			</div>
+			<div className='coachcard-rating' onClick={() => openReviewModal(true)}>
+				{data && data.ratingByCoach ? (
+					<span className='coachcard-stars'>
+						{data.ratingByCoach >= 0.5 ? star() : greystar()}
+						{data.ratingByCoach >= 1.5 ? star() : greystar()}
+						{data.ratingByCoach >= 2.5 ? star() : greystar()}
+						{data.ratingByCoach >= 3.5 ? star() : greystar()}
+						{data.ratingByCoach >= 4.5 ? star() : greystar()}
+					</span>
+				) : (
+					<span className='coachcard-stars'>
+						{star()}
+						{star()}
+						{star()}
+						{star()}
+						{star()}
+					</span>
+				)}
+				<span className='text rating-score'>
+					{data && data.ratingByCoach ? data.ratingByCoach : '--'}
+					<span>{` (${
+						coachReviews && coachReviews.reviewsByCoach
+							? coachReviews.reviewsByCoach.length
+							: ' '
+					} Reviews)`}</span>
+				</span>
 			</div>
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
@@ -116,18 +185,30 @@ const CoachCard = ({ post }) => {
 					)}
 				</div>
 				{coach.id === localStorage.getItem('id') ? (
-					<button className='interview-button-disabled'>
-						Request Interview
-					</button>
+					<button className='interview-button-disabled'>Request</button>
 				) : (
 					<button className='interview-button'>
-						<Link to={{
-							pathname: `interviewq/booking/${coach.id}`,
-							state: { coachName: `${post.coach.first_name} ${post.coach.last_name}`}
-						}}>Request Interview</Link>
+						<Link
+							to={{
+								pathname: `interviewq/booking/${coach.id}`,
+								state: {
+									coachName: `${post.coach.first_name} ${post.coach.last_name}`,
+								},
+							}}>
+							Request
+						</Link>
 					</button>
 				)}
 			</div>
+			{reviewModal && (
+				<ReviewModal
+					reviewnode={node}
+					openReviewModal={openReviewModal}
+					reviewList={coachReviews.reviewsByCoach}
+					rating={data.ratingByCoach}
+					reviewModal={reviewModal}
+				/>
+			)}
 		</div>
 	);
 };

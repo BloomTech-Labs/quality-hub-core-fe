@@ -11,7 +11,7 @@ const ConfirmedInterview = ({ node }) => {
 
 	return (
 		<div ref={node}>
-			<img src='/images/confirmed.svg' onLoad={handleLoad} />
+			<img src='/images/confirmed.svg' onLoad={handleLoad} alt='Confirmed' />
 			{loading === false ? (
 				<>
 					<h2>You scheduled an interview!</h2>
