@@ -180,7 +180,7 @@ const SmallCells = ({
 					id={cellId}
 					className={`small-col  ${
 						isBefore(addDays(day, 1), new Date()) ? 'past-day' : 'small-cell'
-					} ${getDate(day) === getDate(new Date()) ? 'today' : ' '}`}
+					} ${format(day, 'Mdyyyy') === format(new Date(), 'Mdyyyy') ? 'today' : ' '}`}
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
 					<div
