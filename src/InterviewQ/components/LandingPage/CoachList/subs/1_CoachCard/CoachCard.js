@@ -30,6 +30,12 @@ const GET_COACHREVIEWS = gql`
 			createdAt
 			review
 			rating
+			booking {
+				uniquecheck
+			}
+			response {
+				id
+			}
 		}
 	}
 `;
