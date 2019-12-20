@@ -36,7 +36,7 @@ const CoachPostStatus = () => {
           <button
             className='update-post-btn'
             onClick={handleSubmit}>
-            {published ? 'Unpublish' : 'Published'}
+            {published ? 'Unpublish' : 'Publish'}
           </button>
         </div>
       }
