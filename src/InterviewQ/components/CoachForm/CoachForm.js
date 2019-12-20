@@ -116,7 +116,6 @@ const CoachForm = props => {
 						<div className='add-coach-form'>
 							<CloseButton closeWindow={closeWindow} />
 							<TopText lightbulb={lightbulb} />
-
 							<StepOne
 								setFormState={setFormState}
 								formState={formState}
