@@ -13,6 +13,7 @@ export default function QNav() {
 	const { pathname } = useLocation();
 
 	return (
+	
 		<div className='QNav'>
 			<NavLink to='/interviewq' exact activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
@@ -38,7 +39,7 @@ export default function QNav() {
 				</div>
 			</NavLink> */}
 
-			{/* <NavLink to='/interviewq/history' activeClassName='QNav-row-highlight'>
+			<NavLink to='/interviewq/history' activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
 					<Icon
 						icon={ICONS.CLOCK}
@@ -48,7 +49,7 @@ export default function QNav() {
 					/>
 					<div className='QNav-btn'>History</div>
 				</div>
-			</NavLink> */}
+			</NavLink>
 
 			<NavLink to='/interviewq/settings' activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
@@ -62,5 +63,6 @@ export default function QNav() {
 				</div>
 			</NavLink>
 		</div>
+	
 	);
 }

@@ -19,7 +19,7 @@ export default function FeedbackModal({ isShowing }) {
 			{isShowing &&
 				createPortal(
 					<div>
-						<div id='overlay-feedback-modal'></div>
+						<div id='overlay-feedback-modal' onClick={close}></div>
 						<div className='feedback-modal-wrapper'>
 							<div className='feedback-modal-close' onClick={close}>
 								<Icon

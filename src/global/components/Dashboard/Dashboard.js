@@ -12,7 +12,7 @@ import LeftNavBar from './subs/LeftNavBar';
 import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './subs/Schedule';
 import Settings from './subs/Settings';
-
+import Payments from './subs/PersonalInfo/subs/PaymentInfo'
 // GraphQuaiL Query
 const GET_USER = gql`
 	query {
@@ -55,7 +55,9 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route path='/dashboard/schedule'>
 						<Schedule />
 					</Route>
-					<Route path='/dashboard/payments'></Route>
+					<Route path='/dashboard/payments'>
+						<Payments />
+					</Route>
 					<Route
 						path='/dashboard/settings'
 						render={props => <Settings {...props} setLoggedin={setLoggedin} />}

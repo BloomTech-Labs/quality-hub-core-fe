@@ -61,6 +61,28 @@
 	display: flex;
 	margin-right: 1.2rem;
 }
+.grid-dropdown-interviewq{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.become-coach-wrapper {
+	.become-a-coach-btn {
+		cursor: pointer;
+
+		.add-coach-form-button {
+			// 	// display: inline-block;
+			// 	// margin-left: 1rem;
+			// 	// width: 11rem;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+			color: #202124;
+		}
+	}
+}
 
 .dropdown-content {
 	position: absolute;

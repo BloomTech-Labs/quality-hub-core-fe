@@ -416,6 +416,22 @@ padding-left: 40%;
 	display: flex;
 	flex-direction: column;
 }
+
+.today{
+	
+	//border-radius: 100px;
+	//border: 1px solid goldenrod;
+	//color: goldenrod;
+	div{
+		border-radius: 100px;
+		border: 1px solid $main-cal-color;
+		width: 50px;
+		display: flex;
+		height: 50px;
+		justify-content: center;
+		align-items: center;
+	}
+}
 // .time-block{
 // 	padding-top: 10px;
 // 	display: flex;
