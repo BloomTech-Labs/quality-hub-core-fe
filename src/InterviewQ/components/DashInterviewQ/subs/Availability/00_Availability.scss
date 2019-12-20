@@ -80,3 +80,37 @@ $neutral-cal-color: #fff;
   background-color: $main-cal-color;
   color: white
 }
+
+.booked-slot{
+  background-color: #efefef;
+  text-align: center;
+  color: #5f6368;
+  border: 1px solid #5f6368;
+
+}
+
+.booked-slot:hover{
+  cursor: default;
+  background-color: #efefef;
+  text-align: center;
+  color: #5f6368;
+  border: 1px solid #5f6368;
+}
+
+.booked-tooltip{
+  z-index: 9999;
+  position: absolute;
+  width: 20rem;
+  bottom: 10px;
+  right: 30px;
+  padding: 8px;
+  background-color: white;
+  color: #5F6368;
+  border-radius: 4px;
+  border: 1px solid #5F6368;
+  span{
+    font-size: 15px;;
+  }
+}
+
+
