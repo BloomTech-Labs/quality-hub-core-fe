@@ -114,7 +114,7 @@ body {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-    margin-bottom: 20px;
+    	margin-bottom: 20px;
 		.coachcard-header-txt-expand {
 			text-align: left;
 		
@@ -144,7 +144,8 @@ body {
 	.coachcard-header-expand-longname {
 		flex-wrap: wrap;
 		flex-direction: column-reverse;
-	}
+
+}
 	.coachcard-info-expand {
 		margin-bottom: 1.28rem;
 		p {
