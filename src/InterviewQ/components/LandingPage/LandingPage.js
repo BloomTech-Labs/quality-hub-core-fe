@@ -1,18 +1,18 @@
 // Library
-import React, { useState } from 'react';
+import React from 'react';
 
 // Styles & Icons
 import './LandingPage.scss';
-import Icon from '../../../global/icons/Icon';
-import { ICONS } from '../../../global/icons/iconConstants';
+// import Icon from '../../../global/icons/Icon';
+// import { ICONS } from '../../../global/icons/iconConstants';
 
 // Components
-import LandingPageHeader from './LandingPageHeader';
+// import LandingPageHeader from './LandingPageHeader';
 import CoachList from './CoachList';
 
 export default function InterviewLandingPage() {
 	// Component State
-	const [toggleFilter, setToggleFilter] = useState(true);
+	// const [toggleFilter, setToggleFilter] = useState(true);
 
 	// console.log(localStorage.getItem('token'));
 
@@ -42,7 +42,7 @@ export default function InterviewLandingPage() {
 					</div>
 				</div> */}
 				<div className='landingpage-container'>
-					<CoachList toggleFilter={toggleFilter} />
+					<CoachList />
 				</div>
 			</div>
 		</div>

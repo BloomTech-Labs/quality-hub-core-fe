@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 // import { CoachBooking } from './CoachBooking';
 // import { SeekerBooking } from './SeekerBooking';
-import {DisplayBookings} from './DisplayBookings';
+import { DisplayBookings } from './DisplayBookings';
 import {
 	format,
 	isSameMonth,
@@ -15,7 +15,6 @@ import {
 } from 'date-fns';
 
 const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
-
 	const monthStart = startOfMonth(currentMonth);
 	const monthEnd = endOfMonth(monthStart);
 	const startDate = startOfWeek(monthStart);
@@ -34,7 +33,6 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 			days.push(
 				<div
 					id={cellId}
-				
 					className={`col cell ${
 						!isSameMonth(day, monthStart)
 							? 'disabled'
@@ -43,8 +41,8 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 							: ''
 					}`}
 					key={day}
-					onClick={() => onDateClick(toDate(cloneDay))}>					
-					<span className='number'>{formattedDate}</span>					
+					onClick={() => onDateClick(toDate(cloneDay))}>
+					<span className='number'>{formattedDate}</span>
 				</div>,
 			);
 			day = addDays(day, 1);
@@ -56,17 +54,17 @@ const Cells = ({ onDateClick, currentMonth, selectedDate }) => {
 		);
 		days = [];
 	}
-	
-	useEffect(() => {
-		console.log('changin')
-	}, [currentMonth])
 
-DisplayBookings(currentMonth);
- 
-	return( 
-	<>
-	<div className='calendar-body'>{rows}</div>
-	</>
+	useEffect(() => {
+		console.log('changin');
+	}, [currentMonth]);
+
+	DisplayBookings(currentMonth);
+
+	return (
+		<>
+			<div className='calendar-body'>{rows}</div>
+		</>
 	);
 };
 

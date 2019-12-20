@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import './CoachCard.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
-import { star, greystar } from '../../../../../../global/icons/star'
+import { star, greystar } from '../../../../../../global/icons/star';
 //Component
 import CoachModal from '../2_CoachCardModal/CoachCardModal';
 import ReviewModal from '../03_ReviewModal/ReviewModal';
@@ -20,22 +20,27 @@ const GET_COACHRATING = gql`
 `;
 
 const GET_COACHREVIEWS = gql`
-query reviewsByCoach($coach_id: String!) {
-	reviewsByCoach(coach_id: $coach_id){
-		id
-		seeker{
-			first_name
-			last_name
+	query reviewsByCoach($coach_id: String!) {
+		reviewsByCoach(coach_id: $coach_id) {
+			id
+			seeker {
+				first_name
+				last_name
+			}
+			createdAt
+			review
+			rating
+			booking {
+				uniquecheck
+			}
+			response {
+				id
+			}
 		}
-		createdAt
-		review
-		rating
 	}
-}
-`
+`;
 
 const CoachCard = ({ post }) => {
-
 	const [reviewModal, openReviewModal] = useState(false);
 	const node = useRef();
 
@@ -46,7 +51,7 @@ const CoachCard = ({ post }) => {
 			document.removeEventListener('mousedown', handleOutsideClick);
 		}
 	}, [reviewModal]);
-	
+
 	const handleOutsideClick = e => {
 		if (node.current) {
 			if (node.current.contains(e.target)) {
@@ -190,9 +195,7 @@ const CoachCard = ({ post }) => {
 					)}
 				</div>
 				{coach.id === localStorage.getItem('id') ? (
-					<button className='interview-button-disabled'>
-						Request
-					</button>
+					<button className='interview-button-disabled'>Request</button>
 				) : (
 					<button className='interview-button'>
 						<Link

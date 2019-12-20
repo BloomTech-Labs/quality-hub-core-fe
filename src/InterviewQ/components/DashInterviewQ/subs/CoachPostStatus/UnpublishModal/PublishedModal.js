@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
 
@@ -28,7 +28,7 @@ const PublishedModal = ({ node, setSuccess, handleSubmit }) => {
 			</p>
 			<div className='unpublish-button-container'>
 				<button className='unpublish-modal-cancel'>
-					<span onClick={()=> setSuccess(false)}>Cancel</span>
+					<span onClick={() => setSuccess(false)}>Cancel</span>
 				</button>
 				<button className='unpublish-modal-confirm'>
 					<span onClick={handleSubmit}>Publish</span>
