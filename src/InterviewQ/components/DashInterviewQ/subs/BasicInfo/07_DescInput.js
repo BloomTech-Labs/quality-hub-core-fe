@@ -8,21 +8,19 @@ const DescInput = ({ editing, setEditing, original, post, handleChange, handleCa
         <span className='IQ-dash-heading'>
           <h4 className="tag-title">DESCRIPTION</h4>
         </span>
+        <div className='post-desc'>
         {editing[3] ? (
-          <div>
-            <textarea
-              id='edit-post-3'
-              type='textarea'
-              name='description'
-              value={post.description}
-              onChange={handleChange}
-            />
-          </div>
+          <textarea
+            id='edit-post-3'
+            type='textarea'
+            name='description'
+            value={post.description}
+            onChange={handleChange}
+          />
         ) : (
-          <div className='post-desc'>
-            <p>{original && original.description}</p>
-          </div>
+          <p>{original && original.description}</p>
         )}
+        </div>
       </div>
       <div className='edit-btns'>
         <PostButtons

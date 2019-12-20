@@ -44,4 +44,7 @@
 .close {
   display: flex;
   justify-content: flex-end;
+  &:hover {
+    cursor: pointer;
+  }
 }
