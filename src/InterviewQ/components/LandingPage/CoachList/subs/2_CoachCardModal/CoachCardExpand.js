@@ -1,11 +1,21 @@
 // Libraries
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
 // Styles & Icons
 import '../../CoachCardModal.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
+
+
+const GET_COACHRATING = gql`
+	query RatingByCoach($coach_id: String!) {
+		ratingByCoach(coach_id: $coach_id)
+	}
+`;
+
 
 const CoachCard = ({ post, setOpen, open }) => {
 	const node = useRef();
@@ -13,6 +23,11 @@ const CoachCard = ({ post, setOpen, open }) => {
   const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
   const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
   const fullName = `${coach.first_name} ${coach.last_name}`;
+
+  const { data } = useQuery(GET_COACHRATING, {
+	variables: { coach_id: coach.id },
+});
+
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -92,9 +107,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 									color='#595959'
 								/>
 							</span>
-							<span>
-							4.9
-							</span>
+							<span>{data && data.ratingByCoach ? data.ratingByCoach : '-'}</span>
 						</p>
 					</div>
 					<div className='coachcard-description-expand preview-desc'>
