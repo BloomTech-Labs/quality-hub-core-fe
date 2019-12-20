@@ -187,7 +187,7 @@ const CoachCard = ({ post }) => {
 				</div>
 				{coach.id === localStorage.getItem('id') ? (
 					<button className='interview-button-disabled'>
-						Request Interview
+						Request
 					</button>
 				) : (
 					<button className='interview-button'>

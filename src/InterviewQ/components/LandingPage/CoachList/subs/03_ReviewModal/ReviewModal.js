@@ -34,7 +34,7 @@ const ReviewModal = ({ reviewnode, openReviewModal, reviewModal, reviewList, rat
 			<div className='iq-review-modal-subheader'>
 				<div className='iq-review-modal-subheader-left'>
 					<p className='average'>{rating}</p>
-					<p className='badge'>Solid!</p>
+  <p className='badge'>{rating <= 1.4 ? 'Never Again!' : rating <= 2.4 ? 'Meh' : rating <= 3.4 ? 'Not Bad' : rating <= 4.4 ? 'Solid!' : rating > 4.4 ? 'Super Great!' : '' }</p>
 				</div>
 				<div className='iq-review-modal-subheader-right'>
 					<div className='iq-review-modal-stars'>
