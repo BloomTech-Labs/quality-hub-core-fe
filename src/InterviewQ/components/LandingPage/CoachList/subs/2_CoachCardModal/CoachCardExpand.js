@@ -46,6 +46,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 			? coach.linkedin
 			: `http://${coach.twitter_url}`);
 	const fullName = `${coach.first_name} ${coach.last_name}`;
+
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -64,7 +65,8 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	return (
 		<div ref={node}>
 			<div id='overlay-coachcard-expand' onClick={() => setOpen(false)}></div>
-			<div className='coachcard-expand'>
+			<div className='coachcard-expand-background'>
+			{/* <div className='coachcard-expand'> */}
 				<button
 					className='close-coachcard-expand'
 					onClick={() => setOpen(false)}>
@@ -75,6 +77,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 						color='rgba(0, 0, 0, 0.54)'
 					/>
 				</button>
+			<div className='coachcard-expand'>
 				<div className='coachcard-expand-inner'>
 					<div
 						className={
@@ -146,23 +149,23 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 
 					<div className='coachcard-footer-expand'>
 						<div className='coachcard-expand-rating'>
-							<span className='coachcard-icon-expand coachcard-expand-stars'>
+							<span className='coachcard-expand-stars'>
 								{data && data.ratingByCoach ? (
-									<span className='coachcard-stars' onClick={swapModals}>
+									<div className='coachcard-stars' onClick={swapModals}>
 										{data.ratingByCoach >= 0.5 ? star() : greystar()}
 										{data.ratingByCoach >= 1.5 ? star() : greystar()}
 										{data.ratingByCoach >= 2.5 ? star() : greystar()}
 										{data.ratingByCoach >= 3.5 ? star() : greystar()}
 										{data.ratingByCoach >= 4.5 ? star() : greystar()}
-									</span>
+									</div>
 								) : (
-									<span className='coachcard-stars'>
+									<div className='coachcard-stars'>
 										{star()}
 										{star()}
 										{star()}
 										{star()}
 										{star()}
-									</span>
+									</div>
 								)}
 							</span>
 							<span className='text rating-score'>
@@ -217,6 +220,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 				</div>
 			</div>
 		</div>
+	</div>
 	);
 };
 

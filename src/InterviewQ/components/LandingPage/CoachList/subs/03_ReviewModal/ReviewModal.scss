@@ -134,3 +134,38 @@
 	background-color: rgba(72, 72, 72, 0.4);
 	z-index: 999;
 }
+
+.review-modal-coach-reply {
+	margin-left: 1.6rem;
+
+	.review-modal-reply-toggle {
+		cursor: pointer;
+		margin-top: 1.6rem;
+		font-size: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.arrow-icon {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.coach-reply-header {
+		display: flex;
+		align-items: center;
+		margin-top: 1.6rem;
+		margin-bottom: 1.6rem;
+
+		h4 {
+			text-decoration: underline;
+			font-size: 1.4rem;
+		}
+
+		.coach-reply-date {
+			margin-left: 1.6rem;
+			font-size: 1.2rem;
+		}
+	}
+}
