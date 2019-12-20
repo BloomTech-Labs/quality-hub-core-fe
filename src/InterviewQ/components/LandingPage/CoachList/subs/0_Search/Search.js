@@ -87,7 +87,7 @@ export default function Search({ fields, setFields, refetch }) {
 					onChange={handleChange}
 					value={fields.industry}
 					required>
-						<option value="" disabled selected hidden>Industry</option>
+						<option value="" disabled hidden>Industry</option>
 					<option value=''>All</option>
 					{ind_data &&
 						ind_data.industries.map(({ name }) => (
@@ -105,7 +105,7 @@ export default function Search({ fields, setFields, refetch }) {
 					onChange={handleChange}
 					value={fields.price}
 					required>
-						<option value="" disabled selected hidden>Price</option>
+						<option value="" disabled hidden>Price</option>
 					<option value=''>All</option>
 					<option value='0, 20'>$0-$20</option>
 					<option value='21, 50'>$21-$50</option>
@@ -122,7 +122,7 @@ export default function Search({ fields, setFields, refetch }) {
 					onChange={handleChange}
 					value={fields.orderBy}
 					required>
-						<option value="" disabled selected hidden>Sort by</option>
+						<option value="" disabled hidden>Sort by</option>
 					<option value='id_ASC'>None</option>
 					{/* <option value="asdf">Most reviews</option>
           <option value="fasdfasdf">Least reviews</option> */}

@@ -14,7 +14,7 @@ export default function InterviewLandingPage() {
 	// Component State
 	const [toggleFilter, setToggleFilter] = useState(true);
 
-	console.log(localStorage.getItem('token'));
+	// console.log(localStorage.getItem('token'));
 
 	return (
 		<div className='interview-container' id='interview-container'>

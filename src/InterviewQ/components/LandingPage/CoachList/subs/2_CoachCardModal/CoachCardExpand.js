@@ -1,16 +1,31 @@
 // Libraries
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
 // Styles & Icons
 import '../../CoachCardModal.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
-import { star } from '../../../../../../global/icons/star';
+import { star, greystar } from '../../../../../../global/icons/star';
 
-const CoachCard = ({ post, setOpen, open }) => {
+const GET_COACHRATING = gql`
+	query RatingByCoach($coach_id: String!) {
+		ratingByCoach(coach_id: $coach_id)
+	}
+`;
+
+
+const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	const node = useRef();
 	let { coach } = post;
+
+	const { data } = useQuery(GET_COACHRATING, {
+		variables: { coach_id: coach.id },
+	});
+
+
   const linkedin = coach.linkedin_url && (coach.linkedin_url.startsWith('http') ? coach.linkedin : `http://${coach.linkedin_url}`)
   const twitter = coach.twitter_url && (coach.twitter_url.startsWith('http') ? coach.linkedin: `http://${coach.twitter_url}`)
   const fullName = `${coach.first_name} ${coach.last_name}`;
@@ -23,6 +38,11 @@ const CoachCard = ({ post, setOpen, open }) => {
 				'none';
 		}
 	}, [open]);
+
+	const swapModals = () => {
+		openReviewModal(true);
+		setOpen(false);
+	}
 
 	return (
 		<div ref={node}>
@@ -86,19 +106,6 @@ const CoachCard = ({ post, setOpen, open }) => {
 							{coach.city}, {coach.state}
 							</span> */}
 						</p>
-						{/* <p>
-							<span className='coachcard-icon-expand'>
-								<Icon
-									icon={ICONS.STAR}
-									width={19}
-									height={20}
-									color='#595959'
-								/>
-							</span>
-							<span className='text'>
-							4.9
-							</span>
-						</p> */}
 					</div>
 					<div className='coachcard-description-expand preview-desc'>
 						<p>{post.description}</p>
@@ -114,11 +121,23 @@ const CoachCard = ({ post, setOpen, open }) => {
 					<div className='coachcard-footer-expand'>
 					<div className='coachcard-expand-rating'>
 							<span className='coachcard-icon-expand coachcard-expand-stars'>
-								{star()}
-								{star()}
-								{star()}
-								{star()}
-								{star()}
+									{data && data.ratingByCoach ? (
+					<span className='coachcard-stars' onClick={swapModals}>
+						{data.ratingByCoach >= 0.5 ? star() : greystar()}
+						{data.ratingByCoach >= 1.5 ? star() : greystar()}
+						{data.ratingByCoach >= 2.5 ? star() : greystar()}
+						{data.ratingByCoach >= 3.5 ? star() : greystar()}
+						{data.ratingByCoach >= 4.5 ? star() : greystar()}
+					</span>
+				) : (
+					<span className='coachcard-stars'>
+						{star()}
+						{star()}
+						{star()}
+						{star()}
+						{star()}
+					</span>
+				)}
 							</span>
 							<span className='text rating-score'>
 							4.9

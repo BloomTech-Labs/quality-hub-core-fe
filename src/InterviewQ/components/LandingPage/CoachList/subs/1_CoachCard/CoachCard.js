@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -8,9 +8,10 @@ import { useQuery } from '@apollo/react-hooks';
 import './CoachCard.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
-import { star } from '../../../../../../global/icons/star'
+import { star, greystar } from '../../../../../../global/icons/star'
 //Component
 import CoachModal from '../2_CoachCardModal/CoachCardModal';
+import ReviewModal from '../03_ReviewModal/ReviewModal';
 
 const GET_COACHRATING = gql`
 	query RatingByCoach($coach_id: String!) {
@@ -22,11 +23,42 @@ const GET_COACHREVIEWS = gql`
 query reviewsByCoach($coach_id: String!) {
 	reviewsByCoach(coach_id: $coach_id){
 		id
+		seeker{
+			first_name
+			last_name
+		}
+		createdAt
+		review
+		rating
 	}
 }
 `
 
 const CoachCard = ({ post }) => {
+
+	const [reviewModal, openReviewModal] = useState(false);
+	const node = useRef();
+
+	useEffect(() => {
+		if (reviewModal) {
+			document.addEventListener('mousedown', handleOutsideClick);
+		} else {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		}
+	}, [reviewModal]);
+	
+	const handleOutsideClick = e => {
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				openReviewModal(false);
+			}
+		} else {
+			openReviewModal(false);
+		}
+	};
+
 	let { coach } = post;
 	let maxWidth = 100;
 
@@ -36,7 +68,6 @@ const CoachCard = ({ post }) => {
 	const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
 		variables: { coach_id: coach.id },
 	});
-console.log(coachReviews && coachReviews.reviewsByCoach.length)
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
@@ -51,6 +82,7 @@ console.log(coachReviews && coachReviews.reviewsByCoach.length)
 
 	return (
 		<div className='coach-card'>
+			<div id='overlay-confirm-interview'></div>
 			<div className='coachcard-header'>
 				<div className='coachcard-header-txt'>
 					<h3>
@@ -109,23 +141,37 @@ console.log(coachReviews && coachReviews.reviewsByCoach.length)
 					{post.description.substring(0, maxWidth)}
 					<span>
 						{post.description.length >= maxWidth ? '...' : ''}{' '}
-						<CoachModal post={post} />
+						<CoachModal post={post} openReviewModal={openReviewModal} />
 					</span>
 				</div>
 			</div>
-			<div className='coachcard-rating'>
-							<span className='coachcard-stars'>
-								{star()}
-								{star()}
-								{star()}
-								{star()}
-								{star()}
-							</span>
-							<span className='text rating-score'>
-						{data && data.ratingByCoach ? data.ratingByCoach : '-'} 
-							<span>{` (${coachReviews && coachReviews.reviewsByCoach ? coachReviews.reviewsByCoach.length : ' '} Reviews)`}</span>
-							</span>
-						</div>
+			<div className='coachcard-rating' onClick={() => openReviewModal(true)}>
+				{data && data.ratingByCoach ? (
+					<span className='coachcard-stars'>
+						{data.ratingByCoach >= 0.5 ? star() : greystar()}
+						{data.ratingByCoach >= 1.5 ? star() : greystar()}
+						{data.ratingByCoach >= 2.5 ? star() : greystar()}
+						{data.ratingByCoach >= 3.5 ? star() : greystar()}
+						{data.ratingByCoach >= 4.5 ? star() : greystar()}
+					</span>
+				) : (
+					<span className='coachcard-stars'>
+						{star()}
+						{star()}
+						{star()}
+						{star()}
+						{star()}
+					</span>
+				)}
+				<span className='text rating-score'>
+					{data && data.ratingByCoach ? data.ratingByCoach : '--'}
+					<span>{` (${
+						coachReviews && coachReviews.reviewsByCoach
+							? coachReviews.reviewsByCoach.length
+							: ' '
+					} Reviews)`}</span>
+				</span>
+			</div>
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
 					{post.coach.linkedin_url && (
@@ -145,13 +191,27 @@ console.log(coachReviews && coachReviews.reviewsByCoach.length)
 					</button>
 				) : (
 					<button className='interview-button'>
-						<Link to={{
-							pathname: `interviewq/booking/${coach.id}`,
-							state: { coachName: `${post.coach.first_name} ${post.coach.last_name}`}
-						}}>Request</Link>
+						<Link
+							to={{
+								pathname: `interviewq/booking/${coach.id}`,
+								state: {
+									coachName: `${post.coach.first_name} ${post.coach.last_name}`,
+								},
+							}}>
+							Request
+						</Link>
 					</button>
 				)}
 			</div>
+			{reviewModal && (
+				<ReviewModal
+					reviewnode={node}
+					openReviewModal={openReviewModal}
+					reviewList={coachReviews.reviewsByCoach}
+					rating={data.ratingByCoach}
+					reviewModal={reviewModal}
+				/>
+			)}
 		</div>
 	);
 };
