@@ -144,7 +144,7 @@
 	// flex-direction: column;
 	// justify-content: center;
 	// align-items: center;
-	.done-modal-img{
+	.done-modal-img {
 		position: relative;
 		bottom: 16rem;
 		left: 4rem;
@@ -177,25 +177,25 @@
 	justify-content: center;
 }
 .done-modal-all-text {
-position: relative;
-bottom: 22rem;
-text-align: center;
+	position: relative;
+	bottom: 22rem;
+	text-align: center;
 }
 
-.done-modal-text-1{
+.done-modal-text-1 {
 	font-style: normal;
-font-weight: 600;
-font-size: 30px;
-line-height: 38px;
-color: #202124;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 38px;
+	color: #202124;
 }
 
-.done-modal-text-2{
+.done-modal-text-2 {
 	font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-color: #3C4043;
-margin-bottom: 4.8rem;
+	font-size: 16px;
+	line-height: 24px;
+	color: #3c4043;
+	margin-bottom: 4.8rem;
 }
 
 .done-modal-content {
@@ -227,7 +227,13 @@ margin-bottom: 4.8rem;
 	color: black;
 	outline: none;
 }
-
+.red-span {
+	color: #cf1322;
+}
+.red-span-key {
+	color: #cf1322;
+	font-size: 14px;
+}
 .add-coach-form-header {
 	color: #096dd9;
 	font-size: 3rem;
@@ -345,12 +351,12 @@ textarea.add-coach-form-row-7 {
 		border-radius: 8px;
 		margin-left: 0 !important;
 		margin-right: 0 !important;
-	
+
 		font-style: normal;
 		font-weight: 600;
 		font-size: 16px;
 		line-height: 24px;
-	
+
 		//cursor: pointer;
 	}
 }
@@ -426,8 +432,6 @@ textarea.add-coach-form-row-7 {
 	}
 }
 
-
-
 .add-coach-form-preview-top {
 	margin-top: 20px;
 	display: flex;
@@ -455,10 +459,10 @@ textarea.add-coach-form-row-7 {
 	width: 131px;
 	height: 54px;
 	font-weight: 600;
-font-size: 16px;
-text-align: center;
-	color: #5F6368;
-	border: 1px solid #5F6368;
+	font-size: 16px;
+	text-align: center;
+	color: #5f6368;
+	border: 1px solid #5f6368;
 }
 
 .add-coach-form-publish {
