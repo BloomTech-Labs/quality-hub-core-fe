@@ -14,8 +14,8 @@ const RequestInteview = props => {
 		variables: { coach_id: coachId },
 	});
 
-	console.log(props.history)
-	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	console.log(props.history);
+	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	const [resumeURL, setResumeURL] = useState(null);
 	const [resume, setResume] = useState(null);
@@ -27,7 +27,7 @@ const RequestInteview = props => {
 	const [currentDate, setCurrentDate] = useState();
 
 	const validateFile = checkFile => {
-		if (checkFile.type == 'application/pdf') {
+		if (checkFile.type === 'application/pdf') {
 			return true;
 		} else {
 			return false;
@@ -73,14 +73,14 @@ const RequestInteview = props => {
 		});
 	};
 	const createBooking = (e, slot) => {
-		console.log(e.target.id)
-		console.log(slot.id)
+		console.log(e.target.id);
+		console.log(slot.id);
 		setPrevId(e.target.id);
 		let prevSlot = document.getElementById(prevId);
 		if (prevId && prevSlot !== null) {
 			prevSlot.className = 'interview-slot';
 		}
-		if (e.target.id === slot.id){
+		if (e.target.id === slot.id) {
 			e.target.className = 'available-slot interview-slot';
 		}
 
@@ -113,7 +113,6 @@ const RequestInteview = props => {
 			bookedSlot.classList.add('available-slot');
 		}
 	}, [currentSlots]);
-	
 
 	useEffect(() => {
 		availabilities
@@ -142,15 +141,17 @@ const RequestInteview = props => {
 	const getAvailableSlots = () => {
 		let bookingArray = [];
 		const convertMinute = oldMinute => {
-			return oldMinute == 0 ? '00' : '50';
+			return oldMinute === 0 ? '00' : '50';
 		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
 				if (dateAvails[x].year === dateAvails[y].year) {
-					if (dateAvails[x].day == dateAvails[y].day) {
+					if (dateAvails[x].day === dateAvails[y].day) {
 						if (
 							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-								`${dateAvails[y].hour}${convertMinute(dateAvails[y].minute)}` ==
+								`${dateAvails[y].hour}${convertMinute(
+									dateAvails[y].minute,
+								)}` ===
 							-50
 						) {
 							bookingArray.push(dateAvails[x]);
@@ -180,7 +181,7 @@ const RequestInteview = props => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, [])
+	}, []);
 
 	return (
 		<div className='booking-content-section'>
@@ -188,9 +189,11 @@ const RequestInteview = props => {
 				<div className='booking-header-container'>
 					<h2 className='booking-first-header'>
 						Select a Date - Coach{' '}
-						{props.history.location.state && props.history.location.state.coachName
+						{props.history.location.state &&
+						props.history.location.state.coachName
 							? props.history.location.state.coachName
-							: props.history.location.state && props.history.location.state.bookingCoach
+							: props.history.location.state &&
+							  props.history.location.state.bookingCoach
 							? props.history.location.state.bookingCoach
 							: ' '}
 					</h2>
