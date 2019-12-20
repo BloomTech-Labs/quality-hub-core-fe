@@ -14,15 +14,15 @@ export default function InterviewLandingPage() {
 	// Component State
 	const [toggleFilter, setToggleFilter] = useState(true);
 
-	console.log(localStorage.getItem('token'));
+	// console.log(localStorage.getItem('token'));
 
 	return (
 		<div className='interview-container' id='interview-container'>
 			<div
 				className='interview-landing-page'
 				style={{ margin: !localStorage.getItem('token') && '0 auto' }}>
-				<div className='interviewq-header-container'>
-					<LandingPageHeader />
+				{/* <div className='interviewq-search-header-container'>
+					{/* <LandingPageHeader /> 
 					<div className='interviewq-header-btns'>
 						<button
 							onClick={() => setToggleFilter(!toggleFilter)}
@@ -40,7 +40,7 @@ export default function InterviewLandingPage() {
 							<span className='filters-btn'>Filters </span>
 						</button>
 					</div>
-				</div>
+				</div> */}
 				<div className='landingpage-container'>
 					<CoachList toggleFilter={toggleFilter} />
 				</div>

@@ -27,7 +27,11 @@ const CREATE_RESPONSE = gql`
 	}
 `;
 
-export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
+export default function AddCoachResponse({
+	setShowResponse,
+	uniqueBooking,
+	setHasResponse,
+}) {
 	const [response, setResponse] = useState('');
 	const { data } = useQuery(GET_REVIEW, { variables: { uniqueBooking } });
 	const [createResponse] = useMutation(CREATE_RESPONSE);
@@ -51,7 +55,8 @@ export default function AddCoachResponse({ setShowResponse, uniqueBooking }) {
 				text: response,
 			},
 		});
-		window.location.reload(true);
+		// window.location.reload(true);
+		setHasResponse(true);
 	};
 
 	return (

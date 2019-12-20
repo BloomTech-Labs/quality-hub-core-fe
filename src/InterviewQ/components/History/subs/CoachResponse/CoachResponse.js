@@ -14,15 +14,17 @@ const HAVE_RESPONSE = gql`
 `;
 
 export default function CoachResponse({ uniqueBooking }) {
+	const [hasResponse, setHasResponse] = useState(false);
 	const [showResponse, setShowResponse] = useState(false);
 
 	const { data, refetch } = useQuery(HAVE_RESPONSE, {
 		variables: { uniqueBooking },
 	});
 
-	// useEffect(() => {
-	// 	refetch();
-	// }, [hasResponse]);
+	useEffect(() => {
+		refetch();
+		setShowResponse(!showResponse);
+	}, [hasResponse]);
 
 	return (
 		<div className='coach-response'>
@@ -41,6 +43,7 @@ export default function CoachResponse({ uniqueBooking }) {
 						<AddCoachResponse
 							setShowResponse={setShowResponse}
 							uniqueBooking={uniqueBooking}
+							setHasResponse={setHasResponse}
 						/>
 					)}
 				</>

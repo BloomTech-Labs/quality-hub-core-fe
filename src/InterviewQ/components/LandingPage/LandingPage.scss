@@ -9,7 +9,7 @@
 
 .interview-landing-page {
     width: 94%;
-    max-width: 97.8rem;
+    max-width: 108rem;
     margin: 0 auto;
     margin-bottom: 3.2rem;
     
@@ -66,6 +66,48 @@
         line-height: 3.2rem;
 
         color: #202124;
+    }
+}
+
+.interview-header-search {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    width: 108rem;
+    // .red-circle {
+    //     background-color: #cf1322;
+    //     width: 60px;
+    //     height: 60px;
+    //     border-radius: 50%;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     margin-right: 1.8rem;
+    // }
+
+    h2 {
+        // display: flex;
+        // flex-wrap: wrap;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+
+        color: #202124;
+    }
+}
+.interviewq-search-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #dadce0;
+    margin-bottom: 2.019rem;
+    width: 100%;
+    max-width: 108rem;
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 

@@ -4,7 +4,7 @@ import CoachCard from './CoachCardExpand';
 //Styles
 import '../../CoachCardModal.scss';
 
-const CoachCardModal = ({ post }) => {
+const CoachCardModal = ({ post, openReviewModal }) => {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -12,7 +12,7 @@ const CoachCardModal = ({ post }) => {
 			<button className='coach-card-modal-text' onClick={() => setOpen(!open)}>
 				<p className='coach-card-modal-text coachcard-seemore'>See more </p>
 			</button>
-			{open && <CoachCard setOpen={setOpen} open={open} post={post} />}
+			{open && <CoachCard setOpen={setOpen} open={open} post={post} openReviewModal={openReviewModal}/>}
 		</div>
 	);
 };
