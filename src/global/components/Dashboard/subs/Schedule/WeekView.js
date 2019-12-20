@@ -23,6 +23,8 @@ import CalendarDetail from './CalendarDetail';
 import { nextArrow } from '../../../../icons/nextArrow';
 import { backArrow } from '../../../../icons/backArrow';
 
+import { convertToLocal } from '../../../../utils/TZHelpers'
+
 const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const [open, setOpen] = useState(false);
 	const node = useRef();
@@ -134,9 +136,12 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 		}
 		};
 
-		const onBookingClick = day => {
+		const onBookingClick = utcday => {
+			let day =convertToLocal(utcday);
+			console.log(day)
 			setOpen(true);
 			setSelectedDate(new Date(day.year, day.month -1, day.day, day.hour, day.minute));
+			console.log(selectedDate)
 		};
 
 	useEffect(() => {
