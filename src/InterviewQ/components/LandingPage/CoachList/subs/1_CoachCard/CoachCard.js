@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import './CoachCard.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
-
+import { star } from '../../../../../../global/icons/star'
 //Component
 import CoachModal from '../2_CoachCardModal/CoachCardModal';
 
@@ -18,6 +18,14 @@ const GET_COACHRATING = gql`
 	}
 `;
 
+const GET_COACHREVIEWS = gql`
+query reviewsByCoach($coach_id: String!) {
+	reviewsByCoach(coach_id: $coach_id){
+		id
+	}
+}
+`
+
 const CoachCard = ({ post }) => {
 	let { coach } = post;
 	let maxWidth = 100;
@@ -25,7 +33,10 @@ const CoachCard = ({ post }) => {
 	const { data } = useQuery(GET_COACHRATING, {
 		variables: { coach_id: coach.id },
 	});
-
+	const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
+		variables: { coach_id: coach.id },
+	});
+console.log(coachReviews && coachReviews.reviewsByCoach.length)
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
@@ -69,7 +80,7 @@ const CoachCard = ({ post }) => {
 			<div className='coachcard-info'>
 				<p>
 					<span className='coachcard-icon industry'>
-						<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
+						<Icon icon={ICONS.BAG} width={18} height={18} color='#595959' />
 					</span>
 					<span className='text'>{`${post.company} - ${post.position}`}</span>
 				</p>
@@ -77,8 +88,8 @@ const CoachCard = ({ post }) => {
 					<span className='coachcard-icon'>
 						<Icon
 							icon={ICONS.LOCATION}
-							width={16}
-							height={22}
+							width={18}
+							height={18}
 							color='#595959'
 						/>
 					</span>
@@ -86,12 +97,12 @@ const CoachCard = ({ post }) => {
 						{coach.city}, {coach.state}
 					</span>
 				</p>
-				<p>
+				{/* <p>
 					<span className='coachcard-icon'>
 						<Icon icon={ICONS.STAR} width={19} height={20} color='#595959' />
 					</span>
 					<span>{data && data.ratingByCoach ? data.ratingByCoach : '-'}</span>
-				</p>
+				</p> */}
 			</div>
 			<div className='coachcard-description'>
 				<div className='p-ellipsis'>
@@ -102,6 +113,19 @@ const CoachCard = ({ post }) => {
 					</span>
 				</div>
 			</div>
+			<div className='coachcard-rating'>
+							<span className='coachcard-stars'>
+								{star()}
+								{star()}
+								{star()}
+								{star()}
+								{star()}
+							</span>
+							<span className='text rating-score'>
+						{data && data.ratingByCoach ? data.ratingByCoach : '-'} 
+							<span>{` (${coachReviews && coachReviews.reviewsByCoach ? coachReviews.reviewsByCoach.length : ' '} Reviews)`}</span>
+							</span>
+						</div>
 			<div className='coachcard-footer'>
 				<div className='coachcard-links'>
 					{post.coach.linkedin_url && (
@@ -124,7 +148,7 @@ const CoachCard = ({ post }) => {
 						<Link to={{
 							pathname: `interviewq/booking/${coach.id}`,
 							state: { coachName: `${post.coach.first_name} ${post.coach.last_name}`}
-						}}>Request Interview</Link>
+						}}>Request</Link>
 					</button>
 				)}
 			</div>

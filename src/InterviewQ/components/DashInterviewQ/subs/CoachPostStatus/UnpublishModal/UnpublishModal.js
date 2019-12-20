@@ -19,8 +19,7 @@ const UnpublishModal = ({ handleSubmit, setOpen, node }) => {
 			</div>
 
 			<p>
-				Clicking ‘Unpublish’ will remove your coach posting from search results
-				and is not reversible.
+				Clicking ‘Unpublish’ will remove your coach posting from search results.
 			</p>
 			<div className='unpublish-button-container'>
 				<button className='unpublish-modal-cancel'>

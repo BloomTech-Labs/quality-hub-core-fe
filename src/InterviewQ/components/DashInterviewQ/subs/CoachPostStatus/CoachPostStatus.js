@@ -63,7 +63,7 @@ const CoachPostStatus = () => {
           console.log('published is true')
           setOpen(false)
         } else if (published === false){
-          setSuccess(true);
+          setSuccess(false);
           console.log('published is false')
         }
 			})
@@ -75,7 +75,7 @@ const CoachPostStatus = () => {
   return (
 		<div className='coach-post-status'>
 			<div id='overlay-confirm-interview'></div>
-			<h2>Coach Post Status</h2>
+			<h2 className='coach-post-status-header'>Coach Post Status</h2>
 			{!loading && (
 				<div className='coach-post-status-row'>
 					<p>
@@ -88,7 +88,7 @@ const CoachPostStatus = () => {
 							Unpublish
 						</button>
 					) : (
-						<button onClick={handleSubmit} className='update-post-btn'>Publish</button>
+						<button onClick={() => setSuccess(true)} className='update-post-btn'>Publish</button>
 					)}
 				</div>
 			)}
@@ -103,7 +103,8 @@ const CoachPostStatus = () => {
       	{success && (
 				<PublishedModal
 					node={node}
-					setSuccess={setSuccess}
+          setSuccess={setSuccess}
+          handleSubmit={handleSubmit}
 				/>
 			)}
 		</div>

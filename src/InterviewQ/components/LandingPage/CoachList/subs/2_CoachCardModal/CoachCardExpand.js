@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import '../../CoachCardModal.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
+import { star } from '../../../../../../global/icons/star';
 
 const CoachCard = ({ post, setOpen, open }) => {
 	const node = useRef();
@@ -61,7 +62,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 						</div>
 					</div>
 					<div className='coachcard-info-expand'>
-						<p>
+						<p >
 						<span className='coachcard-icon-industry'>
 								<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 							</span>
@@ -69,7 +70,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 							{post.company} - {post.position}
 							</span>
 						</p>
-						<p>
+						<p className='text'>
 							<span className='coachcard-icon-expand'>
 								<Icon
 									icon={ICONS.LOCATION}
@@ -78,12 +79,14 @@ const CoachCard = ({ post, setOpen, open }) => {
 									color='#595959'
 								/>
 							</span>
+							<span className='text'>
 							{coach.city}, {coach.state}
+							</span>
 							{/* <span className='coachcard-posloc'>
 							{coach.city}, {coach.state}
 							</span> */}
 						</p>
-						<p>
+						{/* <p>
 							<span className='coachcard-icon-expand'>
 								<Icon
 									icon={ICONS.STAR}
@@ -92,10 +95,10 @@ const CoachCard = ({ post, setOpen, open }) => {
 									color='#595959'
 								/>
 							</span>
-							<span>
+							<span className='text'>
 							4.9
 							</span>
-						</p>
+						</p> */}
 					</div>
 					<div className='coachcard-description-expand preview-desc'>
 						<p>{post.description}</p>
@@ -109,13 +112,25 @@ const CoachCard = ({ post, setOpen, open }) => {
 						</div>
 					
 					<div className='coachcard-footer-expand'>
+					<div className='coachcard-expand-rating'>
+							<span className='coachcard-icon-expand coachcard-expand-stars'>
+								{star()}
+								{star()}
+								{star()}
+								{star()}
+								{star()}
+							</span>
+							<span className='text rating-score'>
+							4.9
+							</span>
+						</div>
 						<div className='coachcard-links-expand'>
 							{post.coach.linkedin_url && (
 								<a
 									href={linkedin}
 									target='_blank'
 									rel='noopener noreferrer'>
-									<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
+									<Icon icon={ICONS.LINKEDIN} width={24} height={24} color={'#5F6368'} />
 								</a>
 							)}
 							{post.coach.twitter_url && (
@@ -123,7 +138,7 @@ const CoachCard = ({ post, setOpen, open }) => {
 									href={twitter}
 									target='_blank'
 									rel='noopener noreferrer'>
-									<Icon icon={ICONS.TWITTER} width={24} height={24} />
+									<Icon icon={ICONS.TWITTER} width={24} height={24} color={'#5F6368'} />
 								</a>
 							)}
 						</div>
