@@ -17,8 +17,13 @@ import {
 	getHours,
 	getMinutes,
 	formatDistanceStrict,
+	isFirstDayOfMonth,
+	isLastDayOfMonth,
+	differenceInCalendarMonths,
+	differenceInMonths
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
+import { date } from 'yup';
 
 const SmallCells = ({
 	onDateClick,
@@ -47,7 +52,7 @@ const SmallCells = ({
 			for (let y = 0; y < dateAvails.length; y++) {
 				let date1 = new Date(
 					dateAvails[x].year,
-					dateAvails[x].month,
+					dateAvails[x].month - 1,
 					dateAvails[x].day,
 					dateAvails[x].hour,
 					dateAvails[x].minute,
@@ -55,7 +60,7 @@ const SmallCells = ({
 				);
 				let date2 = new Date(
 					dateAvails[y].year,
-					dateAvails[y].month,
+					dateAvails[y].month - 1,
 					dateAvails[y].day,
 					dateAvails[y].hour,
 					dateAvails[y].minute,
@@ -79,8 +84,7 @@ const SmallCells = ({
 		if (availabilities) {
 			let someArray = availabilities.availabilitiesByCoach
 				.map(avail => convertToLocal(avail))
-				.filter(avail => avail.month === integerMonth && avail.isOpen === true);
-
+				.filter(avail => avail.isOpen === true);
 			getAvailableSlots(someArray);
 		}
 	}, [availabilities, currentMonth]);
