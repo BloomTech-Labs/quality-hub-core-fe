@@ -16,6 +16,7 @@ import {
 	getYear,
 	getHours,
 	getMinutes,
+	formatDistanceStrict
 } from 'date-fns';
 import { convertToLocal } from '../../../global/utils/TZHelpers';
 
@@ -42,23 +43,31 @@ const SmallCells = ({
 
 	const getAvailableSlots = dateAvails => {
 		let bookingArray = [];
-		const convertMinute = oldMinute => {
-			return oldMinute === 0 ? '00' : '50';
-		};
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
-				if (dateAvails[x].year === dateAvails[y].year) {
-					if (dateAvails[x].day === dateAvails[y].day) {
-						if (
-							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-								`${dateAvails[y].hour}${convertMinute(
-									dateAvails[y].minute,
-								)}` ===
-							-50
-						) {
-							bookingArray.push(dateAvails[x]);
-							break;
-						}
+				let date1 = new Date(
+					dateAvails[x].year,
+					dateAvails[x].month - 1,
+					dateAvails[x].day,
+					dateAvails[x].hour,
+					dateAvails[x].minute,
+					0,
+				);
+				let date2 = new Date(
+					dateAvails[y].year,
+					dateAvails[y].month - 1,
+					dateAvails[y].day,
+					dateAvails[y].hour,
+					dateAvails[y].minute,
+					0,
+				);
+				let distanceInMinutes = formatDistanceStrict(date1, date2, {
+					unit: 'minute',
+				});
+				if (distanceInMinutes == '30 minutes') {
+					if (isBefore(date1, date2)) {
+						bookingArray.push(dateAvails[x])
+						break;
 					}
 				}
 			}
@@ -70,49 +79,10 @@ const SmallCells = ({
 		if (availabilities) {
 			let someArray = availabilities.availabilitiesByCoach
 				.map(avail => convertToLocal(avail))
-				.filter(avail => avail.month === integerMonth && avail.isOpen === true);
-
+				.filter(avail => avail.isOpen === true);
 			getAvailableSlots(someArray);
 		}
 	}, [availabilities, currentMonth]);
-
-	// const availsExist = someDate => {
-	// 	//let availTime= someDate.getTime();
-	// 	//let currentTime = Date.now();
-	// 	let currentHour = getHours(new Date());
-	// 	let currentMin = getMinutes(new Date());
-	// 	let currentDay = format(new Date(), 'Mdyyyy');
-	// 	let availDay = format(someDate, 'Mdyyyy');
-	// 	let integerDate = getDate(someDate);
-	// 	let match = false;
-	// 	if (allTheAvails) {
-	// 		for (let i = 0; i < allTheAvails.length; i++) {
-	// 			if (currentDay === availDay) {
-
-	// 				if (allTheAvails[i].hour >= currentHour) {
-
-	// 					if (allTheAvails[i].hour === currentHour && allTheAvails[i].minute > currentMin) {
-	// 						match = true;
-	// 						break;
-
-	// 					} else if (allTheAvails[i].hour > currentHour){
-	// 						match = true;
-	// 						break;
-	// 					}
-	// 				}
-
-	// 			} else if (
-	// 				allTheAvails[i].year === integerYear &&
-	// 				allTheAvails[i].month === integerMonth &&
-	// 				allTheAvails[i].day === integerDate
-	// 			) {
-	// 				match = true;
-	// 				break;
-	// 			}
-	// 		}
-	// 		return match;
-	// 	}
-	// };
 
 	const availsExist = someDate => {
 		let currentHour = getHours(new Date());
@@ -152,24 +122,6 @@ const SmallCells = ({
 		}
 	};
 
-	// 	const availsExist = someDate => {
-	// 	let integerDate = getDate(someDate);
-	// 	let match = false;
-	// 	if (allTheAvails) {
-	// 		for (let i = 0; i < allTheAvails.length; i++) {
-	// 			if (
-	// 				allTheAvails[i].year === integerYear &&
-	// 				allTheAvails[i].month === integerMonth &&
-	// 				allTheAvails[i].day === integerDate
-	// 			) {
-	// 				match = true;
-	// 				break;
-	// 			}
-	// 		}
-	// 		return match;
-	// 	}
-	// };
-
 	while (day <= endDate) {
 		for (let i = 0; i < 7; i++) {
 			formattedDate = format(day, dateFormat);
@@ -180,7 +132,7 @@ const SmallCells = ({
 					id={cellId}
 					className={`small-col  ${
 						isBefore(addDays(day, 1), new Date()) ? 'past-day' : 'small-cell'
-					} ${getDate(day) === getDate(new Date()) ? 'today' : ' '}`}
+					} ${format(day, 'Mdyyyy') === format(new Date(), 'Mdyyyy') ? 'today' : ' '}`}
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
 					<div

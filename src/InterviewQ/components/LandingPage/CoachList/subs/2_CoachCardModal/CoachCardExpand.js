@@ -46,6 +46,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 			? coach.linkedin
 			: `http://${coach.twitter_url}`);
 	const fullName = `${coach.first_name} ${coach.last_name}`;
+
 	useEffect(() => {
 		if (open) {
 			document.getElementById('overlay-coachcard-expand').style.display =
@@ -64,7 +65,8 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	return (
 		<div ref={node}>
 			<div id='overlay-coachcard-expand' onClick={() => setOpen(false)}></div>
-			<div className='coachcard-expand'>
+			<div className='coachcard-expand-background'>
+			{/* <div className='coachcard-expand'> */}
 				<button
 					className='close-coachcard-expand'
 					onClick={() => setOpen(false)}>
@@ -75,6 +77,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 						color='rgba(0, 0, 0, 0.54)'
 					/>
 				</button>
+			<div className='coachcard-expand'>
 				<div className='coachcard-expand-inner'>
 					<div
 						className={
@@ -217,6 +220,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 				</div>
 			</div>
 		</div>
+	</div>
 	);
 };
 
