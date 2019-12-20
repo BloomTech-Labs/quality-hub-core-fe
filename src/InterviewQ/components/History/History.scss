@@ -317,3 +317,45 @@
 		}
 	}
 }
+
+.seeker-history-review {
+	.coach-reply {
+		text-align: left;
+		padding-left: 1.6rem;
+		padding-bottom: 4rem;
+		border-bottom: 1px solid #dadce0;
+
+		.coach-reply-header {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1.5rem;
+
+			h4 {
+				font-style: normal;
+				font-weight: 600;
+				font-size: 1.4rem;
+				line-height: 2.2rem;
+				text-decoration-line: underline;
+
+				color: #202124;
+			}
+
+			.coach-reply-date {
+				margin-left: 2.4rem;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 1.4rem;
+				line-height: 3rem;
+				color: #3c4043;
+			}
+		}
+
+		p {
+			font-style: normal;
+			font-weight: normal;
+			font-size: 1.6rem;
+			line-height: 3rem;
+			color: #3c4043;
+		}
+	}
+}
