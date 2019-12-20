@@ -114,12 +114,12 @@ body {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-    margin-bottom: 20px;
+    	margin-bottom: 20px;
 		.coachcard-header-txt-expand {
 			text-align: left;
 		
 			h3 {
-				max-width: 210px;
+				// max-width: 210px;
 				font-size: 2rem;
 				font-weight: 600;
 				font-style: normal;
@@ -144,7 +144,8 @@ body {
 	.coachcard-header-expand-longname {
 		flex-wrap: wrap;
 		flex-direction: column-reverse;
-	}
+	
+}
 	.coachcard-info-expand {
 		margin-bottom: 1.28rem;
 		p {
@@ -264,6 +265,9 @@ body {
 				font-weight: 500;
 				font-size: 14px;
 				line-height: 22px;
+			}
+			&:hover {
+				background-color: #0050b3;
 			}
 		}
 	}
