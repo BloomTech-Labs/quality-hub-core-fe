@@ -100,8 +100,8 @@ const ReviewForm = props => {
         </div>
       </div>
       <div className='button-container'>
-        <Link to ='/interviewq/history' className='review-button button cancel'><button>Cancel</button></Link>
-        <p className='review-button button submit' onClick={handleSubmit}><button>Submit</button></p>
+        <Link to ='/interviewq/history' className='review-button button cancel'>Cancel</Link>
+        <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
 		</form>
 	);

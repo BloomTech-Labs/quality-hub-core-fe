@@ -10,7 +10,7 @@
 	right: 0;
 	bottom: 0;
 	background-color: rgba(72, 72, 72, 0.4);
-	z-index: 999;
+	z-index: 1040;
 }
 
 .profile-img-coach-form {
@@ -393,16 +393,21 @@ textarea.add-coach-form-row-7 {
 }
 
 .add-coach-form-preview-description {
+	p{
 	margin-top: 17px;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 16px;
 	line-height: 30px;
-
 	display: flex;
 	align-items: center;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	width: 400px;
+	margin-bottom: 10px;
 
 	color: #3c4043;
+	}
 }
 
 .coachformcard-footer {
