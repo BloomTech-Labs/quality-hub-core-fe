@@ -21,6 +21,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-hash-link": "^1.2.2",
     "react-scripts": "3.2.0",
+    "react-stripe-checkout": "^2.6.3",
     "styled-components": "^4.4.1",
     "waait": "^1.0.5",
     "yup": "^0.27.0"
