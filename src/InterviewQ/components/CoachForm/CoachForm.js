@@ -31,12 +31,7 @@ const CoachForm = props => {
 	//Done is the second modal that pops up after you publish a coach form
 	const [done, setDone] = useState(false);
 
-	const [requiredState, setRequiredState] = useState({
-		company: false,
-		position: false,
-		description: false,
-		any: false
-	})
+	
 
 	const [addPost] = useMutation(ADD_POST, {
 		// after a post is added, refetch the data with the current filter parameters
@@ -74,6 +69,13 @@ const CoachForm = props => {
 		isPublished: true,
 	});
 
+	const [requiredState, setRequiredState] = useState({
+		company: false,
+		position: false,
+		description: false,
+		any: false
+	})
+
 	const closeWindow = e => {
 		props.refetch();
 		setFormState({
@@ -87,6 +89,12 @@ const CoachForm = props => {
 		});
 		setOpen(false);
 		setDone(false);
+		setRequiredState({
+			company: false,
+			position: false,
+			description: false,
+			any: false
+		})
 	};
 
 	const setAvailability = e => {
