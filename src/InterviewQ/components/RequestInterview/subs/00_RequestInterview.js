@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
 import { format, getMonth, getYear, differenceInMilliseconds } from 'date-fns';
@@ -7,6 +7,7 @@ import { GET_AVAILABILITIES } from './Resolvers';
 import './00_RequestInterview.scss';
 import axios from 'axios';
 import { convertToLocal } from '../../../../global/utils/TZHelpers';
+import Dropzone from 'react-dropzone';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -25,6 +26,7 @@ const RequestInteview = props => {
 	const [dateAvails, setDateAvails] = useState();
 	const [currentMonth, setCurrentMonth] = useState();
 	const [currentDate, setCurrentDate] = useState();
+	const [dragOver, setDragOver] = useState(false);
 
 	const validateFile = checkFile => {
 		if (checkFile.type === 'application/pdf') {
@@ -183,11 +185,19 @@ const RequestInteview = props => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	const dragFunction = () => {
+		setDragOver(true);
+	};
+
+	const offDragFunction = () =>{
+		setDragOver(false);
+	}
+
 	return (
-		<div className='booking-content-section'>
-			<div className='formsection'>
-				<div className='booking-header-container'>
-					<h2 className='booking-first-header'>
+		<div className="booking-content-section">
+			<div className="formsection">
+				<div className="booking-header-container">
+					<h2 className="booking-first-header">
 						Select a Date - Coach{' '}
 						{props.history.location.state &&
 						props.history.location.state.coachName
@@ -198,18 +208,18 @@ const RequestInteview = props => {
 							: ' '}
 					</h2>
 				</div>
-				<div className='booking-subheading'>
+				<div className="booking-subheading">
 					<p>Please select a date and timeslot for your mock interview</p>
 				</div>
-				<div className='interviewq-content-container'>
-					<div className='coach-availability'>
+				<div className="interviewq-content-container">
+					<div className="coach-availability">
 						<SmallCalendar
 							availabilities={availabilities}
 							selectedCell={props.selectedCell}
 							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
-						<div className='interview-slot-list'>
+						<div className="interview-slot-list">
 							{currentSlots ? (
 								currentSlots.map(time => {
 									if (time.isOpen === true) {
@@ -271,41 +281,63 @@ const RequestInteview = props => {
 			)} */}
 				</div>
 			</div>
-			<div className='formsection'>
-				<div className='booking-header-container'>
+			<div className="formsection">
+				<div className="booking-header-container">
 					<h2>Additional Information</h2>
 				</div>
-				<div className='booking-subheading'>
+				<div className="booking-subheading">
 					<p>
 						Please respond to these prompts to give your interview coach a
 						better sense of who you are and what your goals and motivations are.
 					</p>
 				</div>
-				<div className='interviewq-content-container'>
-					<div className='interviewq-booking-input'>
+				<div className="interviewq-content-container">
+					<div className="interviewq-booking-input">
+
+
+						<div className="interviewq-create-booking-dropzone"
+						onDragOver={()=>dragFunction()}
+						onDragLeave={()=>offDragFunction()}>
+							<Dropzone
+								onDrop={acceptedFiles => {
+									console.log(acceptedFiles);
+								}}>
+								{({ getRootProps, getInputProps }) => (
+									<section>
+										<div {...getRootProps()}>
+											<input {...getInputProps()} />
+											<p>
+												{!dragOver ? "Drag 'n' drop some files here, or click to select files" : "DROP THAT FILE YO!"}
+											</p>
+										</div>
+									</section>
+								)}
+							</Dropzone>
+						</div>
+
 						<h3>Resume Upload</h3>
 						<input
-							className=''
-							type='file'
-							id='resumeInput'
-							accept='application/pdf'
+							className=""
+							type="file"
+							id="resumeInput"
+							accept="application/pdf"
 							onChange={e => setResume(e.target.files[0])}
 						/>
 					</div>
-					<div className='interviewq-booking-input'>
+					<div className="interviewq-booking-input">
 						<h3>What do you want to get out of mock interviews?</h3>
 						<textarea
-							placeholder='e.g. More confidence, preparation for upcoming interview etc....'
-							name='interviewGoals'
+							placeholder="e.g. More confidence, preparation for upcoming interview etc...."
+							name="interviewGoals"
 							value={props.booking.interviewGoals}
 							onChange={handleChange}
 						/>
 					</div>
-					<div className='interviewq-booking-input'>
+					<div className="interviewq-booking-input">
 						<h3>What kind of interview questions do you want to focus on?</h3>
 						<textarea
-							placeholder='e.g. Technical questions, soft skill questions etc'
-							name='interviewQuestions'
+							placeholder="e.g. Technical questions, soft skill questions etc"
+							name="interviewQuestions"
 							value={props.booking.interviewQuestions}
 							onChange={handleChange}
 						/>
@@ -322,17 +354,17 @@ const RequestInteview = props => {
     </div> */}
 
 			{props.booking && props.booking.minute !== undefined ? (
-				<div className='booking-button-container'>
+				<div className="booking-button-container">
 					<Link
-						className='book-interview-button'
+						className="book-interview-button"
 						to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className='book-interview-button'>
+						<button className="book-interview-button">
 							<p>Next</p>
 						</button>
 					</Link>
 				</div>
 			) : (
-				<div className='booking-bottom'>
+				<div className="booking-bottom">
 					<p> Please select a time slot above to continue</p>
 				</div>
 			)}
