@@ -185,15 +185,6 @@ const node = useRef();
 		// eslint-disable-next-line
 	}, [setter || availabilities, selectedCell]);
 
-// 	const xcoordinate = (event) =>{
-// 		let x = event.clientX;     // Get the horizontal coordinate
-// // let y = event.clientY;     // Get the vertical coordinate
-// 	}
-// 	let ycoordinate=(event)=>{
-// 		let y = event.clientY;
-// 		console.log(y)
-// 	}
-
 	return (
 		<div id='interviewq-availability-header'>
 			{/* <div id='overlay-confirm-interview'></div> */}
