@@ -295,15 +295,11 @@ const RequestInteview = props => {
 				</div>
 				<div className="interviewq-content-container">
 					<div className="interviewq-booking-input">
-						{/* <div className="interviewq-create-booking-dropzone"
-						onDragOver={()=>dragFunction()}
-						onDragLeave={()=>offDragFunction()}> */}
 								<h3>Resume Upload</h3>
 						<Dropzone
 							onDrop={acceptedFiles => {
 								console.log(acceptedFiles);
 								setResume(acceptedFiles[0]);
-								// setDropped(true);
 								offDragFunction();
 							}}>
 							{({ getRootProps, getInputProps }) => (
@@ -327,15 +323,6 @@ const RequestInteview = props => {
 								</section>
 							)}
 						</Dropzone>
-						{/* </div> */}
-
-						{/* <input
-							className=""
-							type="file"
-							id="resumeInput"
-							accept="application/pdf"
-							onChange={e => setResume(e.target.files[0])}
-						/> */}
 					</div>
 					<div className="interviewq-booking-input">
 						<h3>What do you want to get out of mock interviews?</h3>
