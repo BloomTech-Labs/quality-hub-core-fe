@@ -53,6 +53,7 @@ const RequestInteview = props => {
 					)
 					.then(res => {
 						setResumeURL(res.data.secure_url);
+						setDropped(true);
 					})
 					.catch(err => {
 						console.log(err);
@@ -302,7 +303,7 @@ const RequestInteview = props => {
 							onDrop={acceptedFiles => {
 								console.log(acceptedFiles);
 								setResume(acceptedFiles[0]);
-								setDropped(true);
+								// setDropped(true);
 								offDragFunction();
 							}}>
 							{({ getRootProps, getInputProps }) => (
@@ -318,9 +319,9 @@ const RequestInteview = props => {
 												
 												{dropped ? checkcircle() : DropzoneIcon()}
 											<p className="interviewq-dropzone-text">
-												{'Click or drag file to this area to upload your resume'}
+												{'Click or drag PDF file to this area to upload your resume'}
 											</p>
-											{resume && `Attached file: ${resume.name}`}
+											{dropped && `Attached file: ${resume.name}`}
 										</div>
 									</div>
 								</section>
