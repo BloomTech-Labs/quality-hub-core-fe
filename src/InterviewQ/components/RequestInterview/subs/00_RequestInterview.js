@@ -8,6 +8,8 @@ import './00_RequestInterview.scss';
 import axios from 'axios';
 import { convertToLocal } from '../../../../global/utils/TZHelpers';
 import Dropzone from 'react-dropzone';
+import { DropzoneIcon } from '../../../../global/icons/dropzone';
+import { checkcircle } from '../../../../global/icons/checkcircle';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -15,7 +17,7 @@ const RequestInteview = props => {
 		variables: { coach_id: coachId },
 	});
 
-	console.log(props.history);
+	// console.log(props.history);
 	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	const [resumeURL, setResumeURL] = useState(null);
@@ -27,6 +29,7 @@ const RequestInteview = props => {
 	const [currentMonth, setCurrentMonth] = useState();
 	const [currentDate, setCurrentDate] = useState();
 	const [dragOver, setDragOver] = useState(false);
+	const [dropped, setDropped] = useState(false);
 
 	const validateFile = checkFile => {
 		if (checkFile.type === 'application/pdf') {
@@ -75,8 +78,6 @@ const RequestInteview = props => {
 		});
 	};
 	const createBooking = (e, slot) => {
-		console.log(e.target.id);
-		console.log(slot.id);
 		setPrevId(e.target.id);
 		let prevSlot = document.getElementById(prevId);
 		if (prevId && prevSlot !== null) {
@@ -189,9 +190,9 @@ const RequestInteview = props => {
 		setDragOver(true);
 	};
 
-	const offDragFunction = () =>{
+	const offDragFunction = () => {
 		setDragOver(false);
-	}
+	};
 
 	return (
 		<div className="booking-content-section">
@@ -293,36 +294,47 @@ const RequestInteview = props => {
 				</div>
 				<div className="interviewq-content-container">
 					<div className="interviewq-booking-input">
-
-
-						<div className="interviewq-create-booking-dropzone"
+						{/* <div className="interviewq-create-booking-dropzone"
 						onDragOver={()=>dragFunction()}
-						onDragLeave={()=>offDragFunction()}>
-							<Dropzone
-								onDrop={acceptedFiles => {
-									console.log(acceptedFiles);
-								}}>
-								{({ getRootProps, getInputProps }) => (
-									<section>
-										<div {...getRootProps()}>
-											<input {...getInputProps()} />
-											<p>
-												{!dragOver ? "Drag 'n' drop some files here, or click to select files" : "DROP THAT FILE YO!"}
+						onDragLeave={()=>offDragFunction()}> */}
+								<h3>Resume Upload</h3>
+						<Dropzone
+							onDrop={acceptedFiles => {
+								console.log(acceptedFiles);
+								setResume(acceptedFiles[0]);
+								setDropped(true);
+								offDragFunction();
+							}}>
+							{({ getRootProps, getInputProps }) => (
+								<section>
+									<div {...getRootProps()}>
+										<input {...getInputProps()} accept="application/pdf"/>
+										<div
+											className={`interviewq-create-booking-dropzone ${dragOver ? 'interviewq-dropped-file' : ''}`}
+											onDragOver={() => dragFunction()}
+											onMouseLeave={() => offDragFunction()}
+											onDragLeave={() => offDragFunction()}
+											>
+												
+												{dropped ? checkcircle() : DropzoneIcon()}
+											<p className="interviewq-dropzone-text">
+												{'Click or drag file to this area to upload your resume'}
 											</p>
+											{resume && `Attached file: ${resume.name}`}
 										</div>
-									</section>
-								)}
-							</Dropzone>
-						</div>
+									</div>
+								</section>
+							)}
+						</Dropzone>
+						{/* </div> */}
 
-						<h3>Resume Upload</h3>
-						<input
+						{/* <input
 							className=""
 							type="file"
 							id="resumeInput"
 							accept="application/pdf"
 							onChange={e => setResume(e.target.files[0])}
-						/>
+						/> */}
 					</div>
 					<div className="interviewq-booking-input">
 						<h3>What do you want to get out of mock interviews?</h3>
