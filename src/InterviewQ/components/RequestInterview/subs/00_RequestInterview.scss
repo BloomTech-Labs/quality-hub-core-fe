@@ -31,9 +31,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	transition: 1s;
 }
 		.interviewq-dropped-file{
 			background-color: #D9D9D9;
+			transition: 1s;
 			
 		}
 .interviewq-dropzone-text{
