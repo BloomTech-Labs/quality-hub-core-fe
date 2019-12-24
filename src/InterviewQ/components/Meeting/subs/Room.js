@@ -11,7 +11,7 @@ const Room = () => {
     var chatArea = document.querySelector('#chatArea')
     var signalingArea = document.querySelector("#signalingArea")
 
-    let io = socketIOClient.connect(); 
+    let io = socketIOClient.connect('http://localhost:4000'); 
     var ROOM = "chat";
     var SIGNALING_ROOM = 'room_name'
     var configuration = {
@@ -194,10 +194,11 @@ const Room = () => {
 	return (
         <div>
             <h1>Quail Chat</h1>
-            <video id="myVideoTag" autoplay></video>
+            <p>My Video</p>
+            <video id="myVideoTag" autoPlay></video>
 		<p>Their Video</p>
-		<video id="theirVideoTag" autoplay></video>
-        <div class="cum">
+		<video id="theirVideoTag" autoPlay></video>
+        <div className="cum">
 			<label>Your Name</label><input id="myName" type="text" />
 			<label>Your Message</label><input id="myMessage" type="text" />
 			<input id="sendMessage" type="submit" onClick={sendMessageFunction}/>
