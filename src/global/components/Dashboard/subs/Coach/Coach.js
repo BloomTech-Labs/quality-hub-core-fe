@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
 
 import './Coach.scss';
 
-// const UPDATE_STRIPECOACHCODE = gql`
-// `;
+const UPDATE_USER = gql`
+	mutation update($stripeCoachCode: String) {
+		update(stripeCoachCode: $stripeCoachCode) {
+			id
+			stripeCoachCode
+		}
+	}
+`;
 
 export default function Coach() {
 	const { search } = useLocation();
+	const [updateUser] = useMutation(UPDATE_USER);
 
-	// console.log(search);
 	const code = search.match(/code=(.*?)&/)
 		? search.match(/code=(.*?)&/)[1]
 		: null;
 
-	console.log(code);
+	useEffect(() => {
+		if (code !== null) {
+			console.log('YAS');
+			updateUser({ variables: { stripeCoachCode: code } });
+		}
+	}, [code]);
 
 	return (
 		<div className='dash-coach'>
