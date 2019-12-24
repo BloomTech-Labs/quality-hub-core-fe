@@ -15,11 +15,12 @@ const getToken = () => {
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	uri: 'http://localhost:4001',
+	uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
 	request: operation => {
 		operation.setContext({
 			headers: {
 				Authorization: getToken(),
+			
 			},
 		});
 	},

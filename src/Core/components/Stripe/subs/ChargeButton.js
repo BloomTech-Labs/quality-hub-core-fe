@@ -18,7 +18,8 @@ export default function ChargeButton() {
     // const token = localStorage.getItem('token')
     // const { email } = jwt.verify(token, JWT_SECRET)
     return (
-            //This is the button/modal where the user enters their card info and email.
+    <div>
+        {/* //This is the button/modal where the user enters their card info and email. */}
             <StripeCheckout 
                 token = {async token => {
                     // token is an object containing the Stripe Token (token.id)
@@ -38,6 +39,9 @@ export default function ChargeButton() {
                 }}
                 stripeKey="pk_test_yP59PDrJaptb867ZCzVqoedq00f1OoVqtj"
             />
-
+             <button>
+                 <a href='https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:3000/charge&client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'> Connect </a>
+             </button>
+      </div>     
     )
 }

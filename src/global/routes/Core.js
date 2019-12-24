@@ -39,6 +39,7 @@ function Core({ loggedin, setLoggedin }) {
 				setLoggedin={setLoggedin}
 			/>
 			<Route path='/charge' component={ChargeButton}/>
+			{/* <Route path='/dashboard' */}
 		</Switch>
 	);
 }
