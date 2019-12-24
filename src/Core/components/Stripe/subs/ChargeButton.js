@@ -3,8 +3,8 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-const createCharge= gql`
-    mutation createCharge($source: String!, $email: String!) {
+const createChargeMutation = gql`
+    mutation CreateChargeMutation($source: String!, $email: String!) {
         createCharge(source: $source, email: $email) {
             id
             email

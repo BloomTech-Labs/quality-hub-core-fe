@@ -27,17 +27,21 @@ const PaymentInfo = () => {
 
 	return (
 		<div className='dash-personalinfo'>
-		<div className='personalinfo-header'>
-			<h2>Payments</h2>
-		</div>
-		<div className='editform'>
-			<h3>Payment Info</h3>
-			{loading && <p>Loading...</p>}
-			{data &&
-				keys.map(item => (
-					<DashboardInput key={item} userKey={item} userValue={data.me[item]} />
-				))}
-		</div>
+			<div className='personalinfo-header'>
+				<h2>Payments</h2>
+			</div>
+			<div className='editform'>
+				<h3>Payment Info</h3>
+				{loading && <p>Loading...</p>}
+				{data &&
+					keys.map(item => (
+						<DashboardInput
+							key={item}
+							userKey={item}
+							userValue={data.me[item]}
+						/>
+					))}
+			</div>
 		</div>
 	);
 };
