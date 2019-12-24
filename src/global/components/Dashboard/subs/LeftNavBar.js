@@ -28,9 +28,25 @@ export default function LeftNavBar() {
 						icon={ICONS.SCHEDULE}
 						width={24}
 						height={24}
-						color={pathname === '/dashboard/schedule' || pathname === '/dashboard/schedule/week' ? 'white' : '#096dd9'}
+						color={
+							pathname === '/dashboard/schedule' ||
+							pathname === '/dashboard/schedule/week'
+								? 'white'
+								: '#096dd9'
+						}
 					/>
 					<div className='dashnav-txt'> Schedule</div>
+				</div>
+			</NavLink>
+			<NavLink activeClassName='dashnavactive' to='/dashboard/coach'>
+				<div className='dash-left-menu-btn'>
+					<Icon
+						icon={ICONS.PAYMENTS}
+						width={24}
+						height={24}
+						color={pathname.includes('/dashboard/coach') ? 'white' : '#096dd9'}
+					/>
+					<div className='dashnav-txt'> Coach</div>
 				</div>
 			</NavLink>
 			<NavLink activeClassName='dashnavactive' to='/dashboard/payments'>

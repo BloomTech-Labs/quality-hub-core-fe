@@ -481,7 +481,12 @@ input:focus#coach-form-price-slider {
 	width: 354px;
 	margin: 0 auto;
 	justify-content: space-between;
-	margin-bottom: 99px;
+	margin-bottom: 5px;
+}
+
+.missing-required-fields {
+	margin: 15px auto 40px;
+	text-align: center;
 }
 
 //Range slider code ****
@@ -573,3 +578,4 @@ input[type='range']:focus::-ms-fill-upper {
 }
 
 // End range slider code ***
+
