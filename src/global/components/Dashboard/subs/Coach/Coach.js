@@ -5,18 +5,20 @@ import { useLocation } from 'react-router-dom';
 
 import './Coach.scss';
 
-const UPDATE_USER = gql`
-	mutation update($stripeCoachCode: String) {
-		update(stripeCoachCode: $stripeCoachCode) {
+const UPDATE_STRIPEID = gql`
+	mutation addCoachStripeID($code: String) {
+		addCoachStripeID(code: $code) {
 			id
-			stripeCoachCode
+			stripeId
 		}
 	}
 `;
 
 export default function Coach() {
 	const { search } = useLocation();
-	const [updateUser] = useMutation(UPDATE_USER);
+	const [updateStripeID] = useMutation(UPDATE_STRIPEID);
+
+	console.log(search);
 
 	const code = search.match(/code=(.*?)&/)
 		? search.match(/code=(.*?)&/)[1]
@@ -24,8 +26,8 @@ export default function Coach() {
 
 	useEffect(() => {
 		if (code !== null) {
-			console.log('YAS');
-			updateUser({ variables: { stripeCoachCode: code } });
+			// console.log('YAS');
+			updateStripeID({ variables: { stripeCoachCode: code } });
 		}
 	}, [code]);
 
