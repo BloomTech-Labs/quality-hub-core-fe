@@ -209,7 +209,7 @@ const RequestInteview = props => {
 							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
-						<div className='interview-slot-list'>
+						<div className='request-interview-slot-list'>
 							{currentSlots ? (
 								currentSlots.map(time => {
 									if (time.isOpen === true) {

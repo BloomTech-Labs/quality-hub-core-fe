@@ -154,19 +154,18 @@ const node = useRef();
 		}
 	};
 
+
 	const toggleAvail = (e, h, m) => {
-		if (e.target.className.includes('booked-slot')){
-			console.log('bookedslot')
-			showToolTip(true);
+		if (e.target.className.includes('booked')){
 			return
 		}
-		if (e.target.className === 'available-slot interview-slot') {
-			deleteAvail(h, m);
-			e.target.className = 'unavailable-slot interview-slot';
+		 if (e.target.className.includes('unavailable-slot')) {
+			createAvail(h, m);
+			e.target.className = 'available-slot interview-slot'
 			return;
-		}
-		createAvail(h, m);
-		e.target.className = 'available-slot interview-slot';
+		} 
+		deleteAvail(h, m);
+		e.target.className = 'unavailable-slot interview-slot';		
 	};
 
 	useEffect(() => {
@@ -205,19 +204,20 @@ const node = useRef();
 									className={`${
 										timeFilter(time.hour, time.minute)
 											? 'available-slot'
-											: 'unavailable-slot'
+										 	: 'unavailable-slot'
 									} 
-									${isBooked(time.hour, time.minute) ? 'booked-slot' : 'open-slot'}
+									${isBooked(time.hour, time.minute) ? 'booked-slot booked' : ' '}
 									interview-slot`}
 									onClick={e => toggleAvail(e, time.hour, time.minute)}>
 									{time.display}
-									
+									<div className='booked-tooltip booked' ref={node}>
+					You cannot remove an availability slot that is currently booked </div>
+				
 								</div>
 							);
 						})}
 					</div>
-					{toolTip ? <div className='booked-tooltip' ref={node}>
-						<span>You cannot remove an availability slot that is currently booked</span> </div> : null}
+					
 				</div>
 			</div>
 		</div>
