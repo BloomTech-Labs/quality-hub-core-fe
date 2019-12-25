@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import socketIOClient from "socket.io-client";
 
 const Room = () => {
@@ -8,7 +8,7 @@ const Room = () => {
     var myName = document.querySelector('#myName')
     var myMessage = document.querySelector('#myMessage')
     var sendMessage = document.querySelector('#sendMessage')
-    var chatArea = document.querySelector('#chatArea')
+    // var chatArea = document.querySelector('#chatArea')
     var signalingArea = document.querySelector("#signalingArea")
 
     let io = socketIOClient.connect('http://localhost:4000'); 
@@ -33,6 +33,7 @@ const Room = () => {
         }
     };
 
+    var [announcements, setAnnouncements] = useState([]);
     function onError(error) {
         console.log("Error!", error)
     }
@@ -141,14 +142,18 @@ const Room = () => {
     }
 
     function displayMessage(message) {
-        chatArea.innerHTML = chatArea.innerHTML + "<br/>" + message;
+        // alert(message);
+        document.querySelector('#chatArea').textContent += "\r\n"  + message;
+        document.querySelector('#chatArea').setAttribute('style', 'white-space: pre;');
+        // chatArea.textContent = chatArea.textContent + "<br/>" + message;
     }
 
     function displaySignalingMessage(message) {
-        signalingArea.innerHTML = signalingArea.innerHTML + "<br/>" + message;
+        signalingArea.setAttribute('style', 'white-space: pre;');
+        signalingArea.textContent += '\r\n' + message;
     }
 
-    io.emit('ready', {"chat_room": ROOM, "signaling_room": SIGNALING_ROOM});
+    io.emit('ready', {"chat_room": ROOM, "signaling_room": SIGNALING_ROOM, "my_name":"Ryan"});
 
     io.emit('signal', {"type": "user_here", "message": "Are you ready for a call?", "room": SIGNALING_ROOM});
 
@@ -173,22 +178,33 @@ const Room = () => {
         }
     })
 
+    // io.on('connection', data=>{
+    //     console.log('connected on the frontend')
+    // })
     io.on('announce', data => {
+        // setAnnouncements([...announcements, data.message]);
+        console.log('announce recieved')
         displayMessage(data.message)
     })
 
-    io.on('message', data => displayMessage(data.author + ": " + data.message))
+ 
 
     // sendMessage.addEventListener('click', event => {
-    //     io.emit('send', {"author":myName.value, "message":myMessage.value, "room":ROOM});
+    //     io.emit('send', {"author":document.querySelector('#myName').value, "message": document.querySelector('#myMessage').value, "room":ROOM});
     //     event.preventDefault();
     // }, false);
 
     const sendMessageFunction = (e) =>{
         
         e.preventDefault();
-        io.emit('send', {"author":myName.value, "message":myMessage.value, "room":ROOM});
+        console.log('send message function');
+        io.emit('send', {"author":document.querySelector('#myName').value, "message": document.querySelector('#myMessage').value, "room":SIGNALING_ROOM});
     }
+
+    io.on('message', data => {
+        
+       displayMessage(data.author + ": " + data.message)
+    })
 
 
 	return (
@@ -202,7 +218,11 @@ const Room = () => {
 			<label>Your Name</label><input id="myName" type="text" />
 			<label>Your Message</label><input id="myMessage" type="text" />
 			<input id="sendMessage" type="submit" onClick={sendMessageFunction}/>
-			<div id="chatArea">Message Output:</div>
+    <div id="chatArea">Message Output: 
+    {/* {announcements && announcements.map(an=>{
+        return <p>{an}</p>
+    })} */}
+    </div>
 			<div id="signalingArea">Signaling Messages:</div>
 		</div>
         </div>
