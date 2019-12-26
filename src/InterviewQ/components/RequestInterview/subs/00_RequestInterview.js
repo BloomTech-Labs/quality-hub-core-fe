@@ -1,7 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
-import { format, getMonth, getYear, differenceInMilliseconds } from 'date-fns';
+import {
+	format,
+	isSameMonth,
+	isSameDay,
+	toDate,
+	endOfMonth,
+	startOfWeek,
+	endOfWeek,
+	addDays,
+	startOfMonth,
+	getDate,
+	getMonth,
+	isBefore,
+	isAfter,
+	getYear,
+	getHours,
+	getMinutes,
+	formatDistanceStrict,
+	differenceInMilliseconds
+} from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import './00_RequestInterview.scss';
@@ -125,9 +144,9 @@ const RequestInteview = props => {
 						.map(avail => convertToLocal(avail))
 						.filter(
 							avail =>
-								avail.year === getYear(props.selectedCell) &&
-								avail.day === currentDate &&
-								avail.month === currentMonth &&
+								// avail.year === getYear(props.selectedCell) &&
+								// avail.day === currentDate &&
+								// avail.month === currentMonth &&
 								avail.isOpen === true,
 						),
 			  )
@@ -144,27 +163,58 @@ const RequestInteview = props => {
 
 	const getAvailableSlots = () => {
 		let bookingArray = [];
-		const convertMinute = oldMinute => {
-			return oldMinute === 0 ? '00' : '50';
-		};
+
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
-				if (dateAvails[x].year === dateAvails[y].year) {
-					if (dateAvails[x].day === dateAvails[y].day) {
-						if (
-							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-								`${dateAvails[y].hour}${convertMinute(
-									dateAvails[y].minute,
-								)}` ===
-							-50
-						) {
-							bookingArray.push(dateAvails[x]);
-							break;
-						}
+				let date1 = new Date(
+					dateAvails[x].year,
+					dateAvails[x].month - 1,
+					dateAvails[x].day,
+					dateAvails[x].hour,
+					dateAvails[x].minute,
+					0,
+				);
+				let date2 = new Date(
+					dateAvails[y].year,
+					dateAvails[y].month - 1,
+					dateAvails[y].day,
+					dateAvails[y].hour,
+					dateAvails[y].minute,
+					0,
+				);
+				let distanceInMinutes = formatDistanceStrict(date1, date2, {
+					unit: 'minute',
+				});
+				if (distanceInMinutes == '30 minutes') {
+					if (isBefore(date1, date2)) {
+						bookingArray.push(dateAvails[x])
+						break;
 					}
 				}
 			}
 		}
+
+		// const convertMinute = oldMinute => {
+		// 	return oldMinute === 0 ? '00' : '50';
+		// };
+		// for (let x = 0; x < dateAvails.length; x++) {
+		// 	for (let y = 0; y < dateAvails.length; y++) {
+		// 		if (dateAvails[x].year === dateAvails[y].year) {
+		// 			if (dateAvails[x].day === dateAvails[y].day) {
+		// 				if (
+		// 					`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
+		// 						`${dateAvails[y].hour}${convertMinute(
+		// 							dateAvails[y].minute,
+		// 						)}` ===
+		// 					-50
+		// 				) {
+		// 					bookingArray.push(dateAvails[x]);
+		// 					break;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 		setCurrentSlots(bookingArray);
 	};
 
@@ -221,9 +271,16 @@ const RequestInteview = props => {
 							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
-						<div className="interview-slot-list">
+						<div className='request-interview-slot-list'>
 							{currentSlots ? (
 								currentSlots.map(time => {
+									console.log(time);
+									console.log(currentDate);
+									console.log(currentMonth);
+									console.log(getYear(props.selectedCell));
+									if(time.day == currentDate && time.month == currentMonth && time.year == getYear(props.selectedCell)){
+
+									
 									if (time.isOpen === true) {
 										const isPast = time =>
 											differenceInMilliseconds(time, new Date()) < 0
@@ -268,6 +325,7 @@ const RequestInteview = props => {
 											</div>
 										);
 									}
+								}
 									return null;
 								})
 							) : (

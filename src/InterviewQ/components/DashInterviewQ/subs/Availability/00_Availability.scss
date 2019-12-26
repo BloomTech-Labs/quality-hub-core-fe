@@ -8,14 +8,17 @@ $bg-cal-color: #f9f9f9;
 $neutral-cal-color: #fff;
 
 .availability-container{
+  z-index: 1;
   padding: 1.7rem 3.2rem;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
 }
 // .coach-availability{
 //   display: flex;
 // }
 .interview-slot{
+  
+  z-index: 99999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +39,11 @@ $neutral-cal-color: #fff;
 }
 
 .interview-slot-list{
+  background-color: transparent;
+  //position: relative;
+  // padding-left: 100px;
+  
+  z-index: 100;
   margin-top: 28px;
   margin-right: 20px;
   height:350px;
@@ -44,6 +52,8 @@ $neutral-cal-color: #fff;
 }
 
 .coach-availability{
+  z-index: 1;
+  //position: relative;
   display: flex;
   justify-content: space-around;
 }
@@ -82,10 +92,11 @@ $neutral-cal-color: #fff;
 }
 
 .booked-slot{
+  position:  relative ;
   background-color: #efefef;
   text-align: center;
-  color: #5f6368;
-  border: 1px solid #5f6368;
+  color:  #808080;
+  border: 1px solid #efefef;
 
 }
 
@@ -93,24 +104,50 @@ $neutral-cal-color: #fff;
   cursor: default;
   background-color: #efefef;
   text-align: center;
-  color: #5f6368;
-  border: 1px solid #5f6368;
+  color:  #808080;
+  border: 1px solid #efefef;
 }
 
 .booked-tooltip{
-  z-index: 9999;
+  z-index: 999;
+  visibility: hidden;
   position: absolute;
   width: 20rem;
-  bottom: -60px;
-  right: 30px;
+ 
+  left: 15px;
   padding: 8px;
   background-color: white;
-  color: #5F6368;
+  color: #717375;
   border-radius: 4px;
-  border: 1px solid #5F6368;
+  border: 1px solid #717375;
+  line-height: 14px;
   span{
-    font-size: 15px;;
+    z-index: 9999;
+    font-size: 12px;;
+    line-height: 1px;
   }
 }
 
+.booked-slot:hover .booked-tooltip{
+  visibility: visible;
+  
+}
 
+
+ .booked-tooltip ::after {
+//   content: " ";
+//   position: absolute;
+//   top: 100%; /* At the bottom of the tooltip */
+//   left: 50%;
+//   margin-left: -5px;
+//   border-width: 5px;
+//   border-style: solid;
+//   border-color: #717375 transparent transparent transparent;
+opacity: 0; /* define initial transition property */
+    -webkit-transition: opacity 5s ease-in-out; /* define transitions */
+    transition: opacity 3s ease-in-out;
+ }
+
+//  .booked-tooltip:hover:after {
+//   opacity: 1; /* provide only the final transition property */
+// }

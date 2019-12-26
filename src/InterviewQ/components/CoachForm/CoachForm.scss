@@ -89,7 +89,7 @@
 	select {
 		width: 100%;
 	}
-	z-index: 1001;
+	// z-index: 1050;
 	margin-bottom: 1px;
 }
 
@@ -106,7 +106,7 @@
 	transform: translate(-50%);
 	background: white;
 	border-radius: 10px;
-	z-index: 1000;
+	z-index: 1050;
 	@media screen and (max-width: 550px) {
 		min-width: 550px;
 	}
@@ -128,7 +128,7 @@
 	border-radius: 10px;
 	text-align: left;
 
-	z-index: 1000;
+	z-index: 1050;
 
 	// display: flex;
 	// flex-direction: column;
