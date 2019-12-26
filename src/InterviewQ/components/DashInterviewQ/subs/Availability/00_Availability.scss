@@ -134,7 +134,7 @@ $neutral-cal-color: #fff;
 }
 
 
-// .booked-tooltip ::after {
+ .booked-tooltip ::after {
 //   content: " ";
 //   position: absolute;
 //   top: 100%; /* At the bottom of the tooltip */
@@ -143,5 +143,11 @@ $neutral-cal-color: #fff;
 //   border-width: 5px;
 //   border-style: solid;
 //   border-color: #717375 transparent transparent transparent;
+opacity: 0; /* define initial transition property */
+    -webkit-transition: opacity 5s ease-in-out; /* define transitions */
+    transition: opacity 3s ease-in-out;
+ }
+
+//  .booked-tooltip:hover:after {
+//   opacity: 1; /* provide only the final transition property */
 // }
-// =
