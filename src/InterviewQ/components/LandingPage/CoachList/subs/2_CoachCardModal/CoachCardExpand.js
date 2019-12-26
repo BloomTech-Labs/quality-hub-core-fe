@@ -111,7 +111,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 						</div>
 					</div>
 					<div className='coachcard-info-expand'>
-						<p>
+						<p className="coachcard-icon-and-company-position">
 							<span className='coachcard-icon-industry'>
 								<Icon icon={ICONS.BAG} width={16} height={20} color='#595959' />
 							</span>

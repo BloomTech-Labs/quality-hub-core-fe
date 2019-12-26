@@ -146,6 +146,16 @@ body {
 		flex-direction: column-reverse;
 	
 }
+.coachcard-icon-and-company-position{
+	// border: 1px solid red;
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+	// align-content: center;
+	// p{
+	// 	border: 1px solid blue;
+	// }
+}
 	.coachcard-info-expand {
 		margin-bottom: 1.28rem;
 		p {
@@ -159,12 +169,14 @@ body {
 			width: 40rem;
 			
 			.coachcard-icon-industry {
-				display: inline-block;
+				// display: inline-block;
 				width: 3.0rem;
+				display:flex;
+
        
       }
 			.coachcard-icon-expand {
-				display: inline-block;
+				display: flex;
 				width: 3.0rem;
      
       }
