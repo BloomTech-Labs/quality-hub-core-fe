@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import './Coach.scss';
 
 const UPDATE_STRIPEID = gql`
-	mutation addCoachStripeID($code: String) {
+	mutation addCoachStripeID($code: String!) {
 		addCoachStripeID(code: $code) {
 			id
 			stripeId
@@ -18,18 +18,25 @@ export default function Coach() {
 	const { search } = useLocation();
 	const [updateStripeID] = useMutation(UPDATE_STRIPEID);
 
-	console.log(search);
+	console.log(search.match(/code=(.*?)&/));
 
 	const code = search.match(/code=(.*?)&/)
 		? search.match(/code=(.*?)&/)[1]
 		: null;
 
+
+	// const submit = (e) => {
+	// 	e.preventDefault();
+	
+	// }
 	useEffect(() => {
 		if (code !== null) {
-			// console.log('YAS');
+			console.log('YAS');
 			updateStripeID({ variables: { stripeCoachCode: code } });
 		}
 	}, [code]);
+
+
 
 	return (
 		<div className='dash-coach'>
@@ -38,7 +45,7 @@ export default function Coach() {
 			</div>
 			<div className='dash-coach-connectstripe'>
 				<button>
-					<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
+					<a href='https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:3000/dashboard/coach&client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
 						Connect to Stripe
 					</a>
 				</button>

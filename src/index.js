@@ -21,7 +21,6 @@ const client = new ApolloClient({
 		operation.setContext({
 			headers: {
 				Authorization: getToken(),
-			
 			},
 		});
 	},
