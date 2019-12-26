@@ -7,7 +7,7 @@ import Room from './subs/Room';
 export default function Meeting() {
 	return (
 		<>
-			<Route path='/interviewq/meeting' component={Waiting} />
+			<Route exact path='/interviewq/meeting' component={Waiting} />
 			<Route path='/interviewq/meeting/room' component={Room} />
 		</>
 	);
