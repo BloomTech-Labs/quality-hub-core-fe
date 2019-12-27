@@ -46,8 +46,9 @@ $neutral-cal-color: #fff;
 	margin-top: 28px;
 	margin-right: 20px;
 	height: 350px;
-	overflow: scroll;
+	overflow-y: scroll;
 	overflow-x: hidden;
+	position: relative;
 }
 
 .coach-availability {
@@ -55,8 +56,6 @@ $neutral-cal-color: #fff;
 	//position: relative;
 	display: flex;
 	justify-content: space-around;
-	border: 1px solid green;
-	overflow-y: hidden;
 }
 
 #interviewq-availability-header {
