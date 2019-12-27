@@ -1,6 +1,6 @@
 // Libraries
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -25,6 +25,10 @@ const GET_COACHREVIEWS = gql`
 `;
 
 const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
+	const { pathname } = useLocation();
+
+	console.log(pathname);
+
 	const node = useRef();
 	let { coach } = post;
 
@@ -58,51 +62,53 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	}, [open]);
 
 	const swapModals = () => {
-		openReviewModal(true);
-		setOpen(false);
+		if (!pathname.includes('settings')) {
+			openReviewModal(true);
+			setOpen(false);
+		}
 	};
 
 	return (
 		<div ref={node}>
-			<div id="overlay-coachcard-expand" onClick={() => setOpen(false)}></div>
-			<div className="coachcard-expand-background">
+			<div id='overlay-coachcard-expand' onClick={() => setOpen(false)}></div>
+			<div className='coachcard-expand-background'>
 				{/* <div className='coachcard-expand'> */}
 				<button
-					className="close-coachcard-expand"
+					className='close-coachcard-expand'
 					onClick={() => setOpen(false)}>
 					<Icon
 						icon={ICONS.CLOSE}
 						width={24}
 						height={24}
-						color="rgba(0, 0, 0, 0.54)"
+						color='rgba(0, 0, 0, 0.54)'
 					/>
 				</button>
-				<div className="coachcard-expand">
-					<div className="coachcard-expand-inner">
+				<div className='coachcard-expand'>
+					<div className='coachcard-expand-inner'>
 						<div
 							className={
 								coach.first_name.length > 25 || coach.last_name.length > 25
 									? 'coachcard-header-expand coachcard-header-expand-longname'
 									: 'coachcard-header-expand'
 							}>
-							<div className="coachcard-header-txt-expand">
+							<div className='coachcard-header-txt-expand'>
 								<h3>
 									{fullName.length > 25
 										? `${fullName.substring(0, 25)}...`
 										: fullName}
 								</h3>
-								<h4 className="coach-price">
+								<h4 className='coach-price'>
 									{post.price === 0 ? 'Free' : `$${post.price} per hour`}
 								</h4>
 							</div>
-							<div className="coach-photo-expand">
+							<div className='coach-photo-expand'>
 								{coach.image_url ? (
-									<img src={coach.image_url} alt="Coach Profile Pic" />
+									<img src={coach.image_url} alt='Coach Profile Pic' />
 								) : (
-									<div className="blank-image">
+									<div className='blank-image'>
 										<Icon
 											icon={ICONS.BLANK_AVATAR}
-											color="white"
+											color='white'
 											width={80}
 											height={90}
 										/>
@@ -110,30 +116,30 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 								)}
 							</div>
 						</div>
-						<div className="coachcard-info-expand">
-							<p className="coachcard-icon-and-company-position">
-								<span className="coachcard-icon-industry">
+						<div className='coachcard-info-expand'>
+							<p className='coachcard-icon-and-company-position'>
+								<span className='coachcard-icon-industry'>
 									<Icon
 										icon={ICONS.BAG}
 										width={16}
 										height={20}
-										color="#595959"
+										color='#595959'
 									/>
 								</span>
-								<span className="text">
+								<span className='text'>
 									{post.company} - {post.position}
 								</span>
 							</p>
-							<p className="text">
-								<span className="coachcard-icon-expand">
+							<p className='text'>
+								<span className='coachcard-icon-expand'>
 									<Icon
 										icon={ICONS.LOCATION}
 										width={16}
 										height={22}
-										color="#595959"
+										color='#595959'
 									/>
 								</span>
-								<span className="text">
+								<span className='text'>
 									{coach.city}, {coach.state}
 								</span>
 								{/* <span className='coachcard-posloc'>
@@ -141,22 +147,24 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 							</span> */}
 							</p>
 						</div>
-						<div className="coachcard-description-expand preview-desc">
+						<div className='coachcard-description-expand preview-desc'>
 							<p>{post.description}</p>
 						</div>
-						<div className="coachcard-tags-container-expand">
+						<div className='coachcard-tags-container-expand'>
 							{post.tags.map(tag => (
-								<p className="coachcard-tag-button-expand" key={tag.id}>
+								<p className='coachcard-tag-button-expand' key={tag.id}>
 									{tag.name}
 								</p>
 							))}
 						</div>
 
-						<div className="coachcard-footer-expand">
-							<div className="coachcard-expand-rating">
-								<span className="coachcard-expand-stars">
+						<div className='coachcard-footer-expand'>
+							<div
+								className='coachcard-expand-rating'
+								style={{ cursor: pathname.includes('settings') && 'default' }}>
+								<span className='coachcard-expand-stars'>
 									{data && data.ratingByCoach ? (
-										<div className="coachcard-stars" onClick={swapModals}>
+										<div className='coachcard-stars' onClick={swapModals}>
 											{data.ratingByCoach >= 0.5 ? star() : greystar()}
 											{data.ratingByCoach >= 1.5 ? star() : greystar()}
 											{data.ratingByCoach >= 2.5 ? star() : greystar()}
@@ -164,7 +172,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 											{data.ratingByCoach >= 4.5 ? star() : greystar()}
 										</div>
 									) : (
-										<div className="text rating-score" onClick={swapModals}>
+										<div className='text rating-score' onClick={swapModals}>
 											{/* {star()}
 										{star()}
 										{star()}
@@ -174,7 +182,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 										</div>
 									)}
 								</span>
-								<span className="text rating-score" onClick={swapModals}>
+								<span className='text rating-score' onClick={swapModals}>
 									{data && data.ratingByCoach}
 									<span>{` (${
 										coachReviews && coachReviews.reviewsByCoach
@@ -183,9 +191,9 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 									} Reviews)`}</span>
 								</span>
 							</div>
-							<div className="coachcard-links-expand">
+							<div className='coachcard-links-expand'>
 								{post.coach.linkedin_url && (
-									<a href={linkedin} target="_blank" rel="noopener noreferrer">
+									<a href={linkedin} target='_blank' rel='noopener noreferrer'>
 										<Icon
 											icon={ICONS.LINKEDIN}
 											width={24}
@@ -195,7 +203,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 									</a>
 								)}
 								{post.coach.twitter_url && (
-									<a href={twitter} target="_blank" rel="noopener noreferrer">
+									<a href={twitter} target='_blank' rel='noopener noreferrer'>
 										<Icon
 											icon={ICONS.TWITTER}
 											width={24}
@@ -206,7 +214,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 								)}
 							</div>
 							{coach.id === localStorage.getItem('id') ? (
-								<button className="interview-button-disabled-expand">
+								<button className='interview-button-disabled-expand'>
 									Request Interview
 								</button>
 							) : (
@@ -219,13 +227,13 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 													coachName: `${post.coach.first_name} ${post.coach.last_name}`,
 												},
 											}}>
-											<button className="interview-button-expand">
+											<button className='interview-button-expand'>
 												Request Interview
 											</button>
 										</Link>
 									) : (
-										<Link to="/signin">
-											<button className="interview-button-expand">
+										<Link to='/signin'>
+											<button className='interview-button-expand'>
 												Request Interview
 											</button>
 										</Link>
