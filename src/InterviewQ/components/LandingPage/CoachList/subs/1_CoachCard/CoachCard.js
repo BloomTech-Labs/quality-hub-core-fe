@@ -164,12 +164,13 @@ const CoachCard = ({ post }) => {
 						{data.ratingByCoach >= 4.5 ? star() : greystar()}
 					</span>
 				) : (
-					<span className="coachcard-stars">
+					<span className='text rating-score'>
+						{/* {star()}
 						{star()}
 						{star()}
 						{star()}
-						{star()}
-						{star()}
+						{star()} */}
+						No Rating
 					</span>
 				)}
 				<span className="text rating-score">
@@ -197,8 +198,9 @@ const CoachCard = ({ post }) => {
 				{coach.id === localStorage.getItem('id') ? (
 					<button className="interview-button-disabled">Request</button>
 				) : (
-					<button className="interview-button">
+					<>
 						{localStorage.getItem('token') ? (
+							
 							<Link
 								to={{
 									pathname: `interviewq/booking/${coach.id}`,
@@ -206,12 +208,17 @@ const CoachCard = ({ post }) => {
 										coachName: `${post.coach.first_name} ${post.coach.last_name}`,
 									},
 								}}>
+									<button className="interview-button">
 								Request
+									</button>
 							</Link>
 						) : (
-							<Link to="/signin">Request</Link>
+							<Link to="/signin"><button className="interview-button">
+								Request
+								</button>
+								</Link>
 						)}
-					</button>
+</>
 				)}
 			</div>
 			{reviewModal && (
