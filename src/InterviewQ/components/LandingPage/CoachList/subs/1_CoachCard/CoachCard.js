@@ -68,16 +68,14 @@ const CoachCard = ({ post }) => {
 	let maxWidth = 100;
 
 	const { data } = useQuery(GET_COACHRATING, {
-    variables: { coach_id: coach.id },
-    fetchPolicy: "network-only"
-  });
-  
+		variables: { coach_id: coach.id },
+		fetchPolicy: 'network-only',
+	});
+
 	const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
-    variables: { coach_id: coach.id },
-    fetchPolicy: "network-only"
-  });
-	
-	console.log(data && data.ratingByCoach);
+		variables: { coach_id: coach.id },
+		fetchPolicy: 'network-only',
+	});
 
 	const linkedin =
 		coach.linkedin_url &&
@@ -92,27 +90,27 @@ const CoachCard = ({ post }) => {
 	const fullName = `${coach.first_name} ${coach.last_name}`;
 
 	return (
-		<div className='coach-card'>
-			<div id='overlay-confirm-interview'></div>
-			<div className='coachcard-header'>
-				<div className='coachcard-header-txt'>
+		<div className="coach-card">
+			<div id="overlay-confirm-interview"></div>
+			<div className="coachcard-header">
+				<div className="coachcard-header-txt">
 					<h3>
 						{fullName.length > 25
 							? `${fullName.substring(0, 25)}...`
 							: fullName}
 					</h3>
-					<h4 className='coach-price'>
+					<h4 className="coach-price">
 						{post.price === 0 ? 'Free' : `$${post.price} per hour`}
 					</h4>
 				</div>
-				<div className='coach-photo'>
+				<div className="coach-photo">
 					{coach.image_url ? (
-						<img src={coach.image_url} alt='Coach Profile Pic' />
+						<img src={coach.image_url} alt="Coach Profile Pic" />
 					) : (
-						<div className='blank-image'>
+						<div className="blank-image">
 							<Icon
 								icon={ICONS.BLANK_AVATAR}
-								color='white'
+								color="white"
 								width={80}
 								height={90}
 							/>
@@ -120,23 +118,23 @@ const CoachCard = ({ post }) => {
 					)}
 				</div>
 			</div>
-			<div className='coachcard-info'>
+			<div className="coachcard-info">
 				<p>
-					<span className='coachcard-icon industry'>
-						<Icon icon={ICONS.BAG} width={18} height={18} color='#595959' />
+					<span className="coachcard-icon industry">
+						<Icon icon={ICONS.BAG} width={18} height={18} color="#595959" />
 					</span>
-					<span className='text'>{`${post.company} - ${post.position}`}</span>
+					<span className="text">{`${post.company} - ${post.position}`}</span>
 				</p>
 				<p>
-					<span className='coachcard-icon'>
+					<span className="coachcard-icon">
 						<Icon
 							icon={ICONS.LOCATION}
 							width={18}
 							height={18}
-							color='#595959'
+							color="#595959"
 						/>
 					</span>
-					<span className='coachcard-posloc'>
+					<span className="coachcard-posloc">
 						{coach.city}, {coach.state}
 					</span>
 				</p>
@@ -147,8 +145,8 @@ const CoachCard = ({ post }) => {
 					<span>{data && data.ratingByCoach ? data.ratingByCoach : '-'}</span>
 				</p> */}
 			</div>
-			<div className='coachcard-description'>
-				<div className='p-ellipsis'>
+			<div className="coachcard-description">
+				<div className="p-ellipsis">
 					{post.description.substring(0, maxWidth)}
 					<span>
 						{post.description.length >= maxWidth ? '...' : ''}{' '}
@@ -156,9 +154,9 @@ const CoachCard = ({ post }) => {
 					</span>
 				</div>
 			</div>
-			<div className='coachcard-rating' onClick={() => openReviewModal(true)}>
+			<div className="coachcard-rating" onClick={() => openReviewModal(true)}>
 				{data && data.ratingByCoach ? (
-					<span className='coachcard-stars'>
+					<span className="coachcard-stars">
 						{data.ratingByCoach >= 0.5 ? star() : greystar()}
 						{data.ratingByCoach >= 1.5 ? star() : greystar()}
 						{data.ratingByCoach >= 2.5 ? star() : greystar()}
@@ -175,7 +173,7 @@ const CoachCard = ({ post }) => {
 						No Rating
 					</span>
 				)}
-				<span className='text rating-score'>
+				<span className="text rating-score">
 					{data && data.ratingByCoach ? data.ratingByCoach : '--'}
 					<span>{` (${
 						coachReviews && coachReviews.reviewsByCoach
@@ -184,33 +182,43 @@ const CoachCard = ({ post }) => {
 					} Reviews)`}</span>
 				</span>
 			</div>
-			<div className='coachcard-footer'>
-				<div className='coachcard-links'>
+			<div className="coachcard-footer">
+				<div className="coachcard-links">
 					{post.coach.linkedin_url && (
-						<a href={linkedin} target='_blank' rel='noopener noreferrer'>
+						<a href={linkedin} target="_blank" rel="noopener noreferrer">
 							<Icon icon={ICONS.LINKEDIN} width={24} height={24} />
 						</a>
 					)}
 					{post.coach.twitter_url && (
-						<a href={twitter} target='_blank' rel='noopener noreferrer'>
+						<a href={twitter} target="_blank" rel="noopener noreferrer">
 							<Icon icon={ICONS.TWITTER} width={24} height={24} />
 						</a>
 					)}
 				</div>
 				{coach.id === localStorage.getItem('id') ? (
-					<button className='interview-button-disabled'>Request</button>
+					<button className="interview-button-disabled">Request</button>
 				) : (
-					<button className='interview-button'>
-						<Link
-							to={{
-								pathname: `interviewq/booking/${coach.id}`,
-								state: {
-									coachName: `${post.coach.first_name} ${post.coach.last_name}`,
-								},
-							}}>
-							Request
-						</Link>
-					</button>
+					<>
+						{localStorage.getItem('token') ? (
+							
+							<Link
+								to={{
+									pathname: `interviewq/booking/${coach.id}`,
+									state: {
+										coachName: `${post.coach.first_name} ${post.coach.last_name}`,
+									},
+								}}>
+									<button className="interview-button">
+								Request
+									</button>
+							</Link>
+						) : (
+							<Link to="/signin"><button className="interview-button">
+								Request
+								</button>
+								</Link>
+						)}
+</>
 				)}
 			</div>
 			{reviewModal && (
