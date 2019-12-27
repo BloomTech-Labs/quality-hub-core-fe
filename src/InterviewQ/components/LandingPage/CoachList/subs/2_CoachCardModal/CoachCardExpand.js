@@ -159,16 +159,17 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 										{data.ratingByCoach >= 4.5 ? star() : greystar()}
 									</div>
 								) : (
-									<div className='coachcard-stars'>
+									<div className='text rating-score' onClick={swapModals}>
+										{/* {star()}
 										{star()}
 										{star()}
 										{star()}
-										{star()}
-										{star()}
+										{star()} */}
+										No Rating
 									</div>
 								)}
 							</span>
-							<span className='text rating-score'>
+							<span className='text rating-score' onClick={swapModals}>
 								{data && data.ratingByCoach}
 								<span>{` (${
 									coachReviews && coachReviews.reviewsByCoach
