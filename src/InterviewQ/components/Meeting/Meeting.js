@@ -5,6 +5,7 @@ import Waiting from './subs/Waiting';
 import Room from './subs/Room';
 
 export default function Meeting() {
+
 	return (
 		<>
 			<Route exact path='/interviewq/meeting' component={Waiting} />
