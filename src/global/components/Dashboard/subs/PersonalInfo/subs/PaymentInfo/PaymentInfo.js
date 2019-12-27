@@ -11,7 +11,7 @@ const GET_PAYMENTINFO = gql`
 	query {
 		me {
 			id
-			payment_info
+			# payment_info
 		}
 	}
 `;
