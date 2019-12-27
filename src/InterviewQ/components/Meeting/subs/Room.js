@@ -48,8 +48,8 @@ const Room = () => {
         video:
         {
             mandatory: {
-                minWidth: 500,
-                maxWidth: 500,
+                minWidth: 750,
+                maxWidth: 750,
                 minHeight: 500,
                 maxHeight: 500,
             }
@@ -58,8 +58,8 @@ const Room = () => {
 
     var videoProps = {
         mandatory: {
-            minWidth: 500,
-            maxWidth: 500,
+            minWidth: 750,
+            maxWidth: 750,
             minHeight: 500,
             maxHeight: 500,
         }
