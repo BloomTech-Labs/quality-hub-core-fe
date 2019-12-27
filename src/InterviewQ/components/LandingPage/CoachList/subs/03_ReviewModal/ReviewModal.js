@@ -43,6 +43,7 @@ const ReviewModal = ({
 				<div className='iq-review-modal-subheader'>
 					<div className='iq-review-modal-subheader-left'>
 						<p className='average'>{rating}</p>
+            {rating ? 
 						<p className='badge'>
 							{rating <= 1.4
 								? 'Never Again!'
@@ -56,6 +57,7 @@ const ReviewModal = ({
 								? 'Super Great!'
 								: ''}
 						</p>
+            :<p className='badge'>No Rating</p> }
 					</div>
 					<div className='iq-review-modal-subheader-right'>
 						<div className='iq-review-modal-stars'>
