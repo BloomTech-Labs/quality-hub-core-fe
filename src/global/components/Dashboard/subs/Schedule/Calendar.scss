@@ -730,12 +730,10 @@ padding-left: 40%;
 .small-cell-disabled{
 	position: relative;
 	height: 50px;
-	//border-right: 1px solid var(--border-color);
 	overflow: hidden;
 	cursor: not-allowed;
 	background: $neutral-cal-color;
 	transition: 0.25s ease-out;
-	//border-bottom: 1px solid var(--border-color);
 	margin-bottom: 3px;
 	pointer-events: none;
 }
