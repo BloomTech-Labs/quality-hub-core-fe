@@ -33,7 +33,7 @@ const Availability = () => {
 	});
 
 	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const node = useRef();
+	const node = useRef();
 
 	useEffect(() => {
 		if (toolTip) {
@@ -42,7 +42,7 @@ const node = useRef();
 			document.removeEventListener('mousedown', handleOutsideClick);
 		}
 	}, [toolTip]);
-	
+
 	const handleOutsideClick = e => {
 		if (node.current) {
 			if (node.current.contains(e.target)) {
@@ -95,7 +95,7 @@ const node = useRef();
 				}
 			});
 		return returnvar;
-	}
+	};
 
 	const createAvail = (hour, minute) => {
 		let newObj = { ...availability, hour: hour, minute: minute };
@@ -154,18 +154,17 @@ const node = useRef();
 		}
 	};
 
-
 	const toggleAvail = (e, h, m) => {
-		if (e.target.className.includes('booked')){
-			return
-		}
-		 if (e.target.className.includes('unavailable-slot')) {
-			createAvail(h, m);
-			e.target.className = 'available-slot interview-slot'
+		if (e.target.className.includes('booked')) {
 			return;
-		} 
+		}
+		if (e.target.className.includes('unavailable-slot')) {
+			createAvail(h, m);
+			e.target.className = 'available-slot interview-slot';
+			return;
+		}
 		deleteAvail(h, m);
-		e.target.className = 'unavailable-slot interview-slot';		
+		e.target.className = 'unavailable-slot interview-slot';
 	};
 
 	useEffect(() => {
@@ -204,20 +203,20 @@ const node = useRef();
 									className={`${
 										timeFilter(time.hour, time.minute)
 											? 'available-slot'
-										 	: 'unavailable-slot'
+											: 'unavailable-slot'
 									} 
 									${isBooked(time.hour, time.minute) ? 'booked-slot booked' : ' '}
 									interview-slot`}
 									onClick={e => toggleAvail(e, time.hour, time.minute)}>
 									{time.display}
 									<div className='booked-tooltip booked' ref={node}>
-					You cannot remove an availability slot that is currently booked </div>
-				
+										You cannot remove an availability slot that is currently
+										booked{' '}
+									</div>
 								</div>
 							);
 						})}
 					</div>
-					
 				</div>
 			</div>
 		</div>
