@@ -76,7 +76,9 @@ const CoachCard = ({ post }) => {
     variables: { coach_id: coach.id },
     fetchPolicy: "network-only"
   });
-  
+	
+	console.log(data && data.ratingByCoach);
+
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
@@ -164,12 +166,13 @@ const CoachCard = ({ post }) => {
 						{data.ratingByCoach >= 4.5 ? star() : greystar()}
 					</span>
 				) : (
-					<span className='coachcard-stars'>
+					<span className='text rating-score'>
+						{/* {star()}
 						{star()}
 						{star()}
 						{star()}
-						{star()}
-						{star()}
+						{star()} */}
+						No Rating
 					</span>
 				)}
 				<span className='text rating-score'>
