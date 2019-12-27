@@ -205,6 +205,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 							</button>
 						) : (
 							<button className='interview-button-expand'>
+								{localStorage.getItem('token') ?
 								<Link
 									to={{
 										pathname: `interviewq/booking/${coach.id}`,
@@ -213,7 +214,11 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 										},
 									}}>
 									Request Interview
+								</Link> : <Link
+									to='/signin'>
+									Request Interview
 								</Link>
+}
 							</button>
 						)}
 					</div>
