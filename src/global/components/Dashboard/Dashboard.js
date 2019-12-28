@@ -60,9 +60,9 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route path='/dashboard/coach'>
 						<Coach />
 					</Route>
-					<Route path='/dashboard/payments'>
+					{/* <Route path='/dashboard/payments'>
 						<Payments />
-					</Route>
+					</Route> */}
 					<Route
 						path='/dashboard/settings'
 						render={props => <Settings {...props} setLoggedin={setLoggedin} />}

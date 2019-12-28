@@ -727,6 +727,17 @@ padding-left: 40%;
 	margin-bottom: 3px;
 }
 
+.small-cell-disabled{
+	position: relative;
+	height: 50px;
+	overflow: hidden;
+	cursor: not-allowed;
+	background: $neutral-cal-color;
+	transition: 0.25s ease-out;
+	margin-bottom: 3px;
+	pointer-events: none;
+}
+
 .small-col {
 	display: flex;
 	justify-content: center;

@@ -18,13 +18,25 @@ export default function HistoryReview({ booking }) {
 
 	for (let i = 1; i <= booking.review.rating; i++) {
 		starsfilled.push(
-			<Icon icon={ICONS.STAR_YELLOW} width={30} height={30} color='#fa8c16' />,
+			<Icon
+				key={i}
+				icon={ICONS.STAR_YELLOW}
+				width={30}
+				height={30}
+				color='#fa8c16'
+			/>,
 		);
 	}
 
 	for (let i = 1; i <= 5 - booking.review.rating; i++) {
 		starsblank.push(
-			<Icon icon={ICONS.STAR_FILL} width={30} height={30} color='#efefef' />,
+			<Icon
+				key={i}
+				icon={ICONS.STAR_FILL}
+				width={30}
+				height={30}
+				color='#efefef'
+			/>,
 		);
 	}
 
