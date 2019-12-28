@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
 
-const Room = () => {
+const Room = (props) => {
 	const [textchat, setTextchat] = useState('');
 	let io = socketIOClient.connect('https://qh-test-web-rtc.herokuapp.com');
-	var ROOM = 'chat';
+	var ROOM = window.localStorage.getItem('uniquecheckid');
 	let mute = false;
-	var SIGNALING_ROOM = 'room_name';
+	var SIGNALING_ROOM = `${window.localStorage.getItem('uniquecheckid')}z`;
 	var configuration = {
 		iceServers: [
 			{
@@ -232,7 +232,7 @@ const Room = () => {
 					This is your awesome conversation:
 				</div>
 				{/* <div id='signalingArea'></div> */}
-                <form>
+                <form className="videoChat">
                     <label>Your Message</label>
                     <input id='myMessage' type='text' />
                     <input id='sendMessage' type='submit' onClick={sendMessageFunction} />

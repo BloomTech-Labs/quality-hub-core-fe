@@ -9,7 +9,7 @@ export default function Meeting() {
 	return (
 		<>
 			<Route exact path='/interviewq/meeting' component={Waiting} />
-			<Route path='/interviewq/meeting/room' component={Room} />
+			<Route path='/interviewq/meeting/4815162342' component={Room} />
 		</>
 	);
 }
