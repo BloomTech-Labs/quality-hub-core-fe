@@ -832,8 +832,12 @@ justify-content: center;
 		justify-content: space-between;
 	align-items: center;
 	}
-.delete-booking-btn {
-	width: 31.1rem;
+
+
+.calandar-detail-modal-button-grouping {
+	display: flex;
+	justify-content: space-between;
+	width: 65rem!important;
 	height: 3.6rem;
 	margin: 0 auto;
 	//margin-bottom: 42px;
@@ -841,11 +845,25 @@ justify-content: center;
 	border-top: 1px solid #DADCE0;
 	background-color: white !important;
 	border-radius: 0.4rem;
+}
+
+.calandar-detail-modal-buttons {
+	width: 31.1rem!important;
+	text-decoration: none;
+	width: 45%;
 	text-align: center;
-	color: #cf1322;
-	font-size: 1.2rem;
+	font-size: 1.2rem!important;
 	font-weight: 600;
 	cursor: pointer;
+}
+
+.delete-booking-btn {
+	color: #cf1322;
+}
+
+.go-to-meeting-button {
+	display: block;
+	color: blue;
 }
 
 .disabled-delete-booking-btn {
