@@ -5,9 +5,9 @@ import '../Meeting.scss';
 const Room = (props) => {
 	const [textchat, setTextchat] = useState('');
 	let io = socketIOClient.connect('https://qh-test-web-rtc.herokuapp.com');
-	var ROOM = window.localStorage.getItem('uniquecheckid');
+	var ROOM = `${window.localStorage.getItem('uniquecheckid')}z`;
 	let mute = false;
-	var SIGNALING_ROOM = `${window.localStorage.getItem('uniquecheckid')}z`;
+	var SIGNALING_ROOM = window.localStorage.getItem('uniquecheckid');
 	var configuration = {
 		iceServers: [
 			{
