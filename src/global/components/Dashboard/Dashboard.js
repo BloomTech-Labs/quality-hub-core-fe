@@ -12,7 +12,7 @@ import LeftNavBar from './subs/LeftNavBar';
 import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './subs/Schedule';
 import Coach from './subs/Coach';
-import Payments from './subs/PersonalInfo/subs/PaymentInfo';
+// import Payments from './subs/PersonalInfo/subs/PaymentInfo';
 import Settings from './subs/Settings';
 
 // GraphQuaiL Query
@@ -33,7 +33,7 @@ const GET_USER = gql`
 			gender
 			twitter_url
 			blog_url
-			payment_info
+			# payment_info
 		}
 	}
 `;

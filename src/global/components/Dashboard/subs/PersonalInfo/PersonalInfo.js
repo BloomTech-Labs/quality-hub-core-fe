@@ -4,7 +4,7 @@ import React from 'react';
 // Components
 import BasicInfo from './subs/BasicInfo';
 import Accounts from './subs/Accounts';
-import PaymentInfo from './subs/PaymentInfo';
+// import PaymentInfo from './subs/PaymentInfo';
 
 export default function PersonalInfo() {
 	return (

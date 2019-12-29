@@ -416,7 +416,7 @@ const RequestInteview = props => {
 					<Link
 						className="book-interview-button"
 						to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className="book-interview-button">
+						<button>
 							<p>Next</p>
 						</button>
 					</Link>
