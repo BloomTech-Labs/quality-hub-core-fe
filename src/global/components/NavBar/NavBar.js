@@ -24,7 +24,7 @@ const GET_USER = gql`
 	}
 `;
 
-const NavBar = ({ loggedin, setLoggedin, history }) => {
+const NavBar = ({ loggedin, setLoggedin, history}) => {
 	const location = useLocation();
 	const [getUser, { client, data, loading }] = useLazyQuery(GET_USER);
 	// const [errorCount, setErrorCount] = useState(0);
@@ -42,10 +42,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	// On render, pull stored token. If you have a token, log yourself in.
 	useEffect(() => {
 		//if you have a token, pull some user data to make sure it's valid
-		if (
-			localStorage.getItem('token') &&
-			!location.pathname.includes('interviewq/meeting')
-		) {
+		if (localStorage.getItem('token') && !location.pathname.includes('interviewq/meeting')) {
+			console.log('you wont')
 			getUser();
 		}
 		// eslint-disable-next-line
