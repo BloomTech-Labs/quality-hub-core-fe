@@ -12,7 +12,7 @@ import LeftNavBar from './subs/LeftNavBar';
 import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './subs/Schedule';
 import Coach from './subs/Coach';
-// import Payments from './subs/PersonalInfo/subs/PaymentInfo';
+import Payments from './subs/PersonalInfo/subs/PaymentInfo';
 import Settings from './subs/Settings';
 
 // GraphQuaiL Query
@@ -60,9 +60,9 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route path='/dashboard/coach'>
 						<Coach />
 					</Route>
-					{/* <Route path='/dashboard/payments'>
+					<Route path='/dashboard/payments'>
 						<Payments />
-					</Route> */}
+					</Route>
 					<Route
 						path='/dashboard/settings'
 						render={props => <Settings {...props} setLoggedin={setLoggedin} />}
