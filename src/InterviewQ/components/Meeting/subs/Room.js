@@ -4,6 +4,8 @@ import '../Meeting.scss';
 
 const Room = () => {
     const [textchat, setTextchat] = useState('');
+    const [theParty, setTheParty] = useState(false);
+    // var theParty = false;
         // const [constraints, setConstraints] = useState({
         //     let constraints = {
         //     audio: true,
@@ -22,7 +24,6 @@ const Room = () => {
         e.preventDefault();
         setTextchat(e.target.value);
     }
-
 
     // io = io.connect();
     var myVideoArea = document.querySelector("#myVideoTag");
@@ -67,6 +68,7 @@ const Room = () => {
         }
     }
     var [announcements, setAnnouncements] = useState([]);
+    
     function onError(error) {
         console.log("Error!", error)
     }
@@ -276,6 +278,12 @@ const Room = () => {
     
     }
 
+    function startTheParty() {
+        //What will this do?!
+        setTheParty(true);
+        start()
+        //The party is not the the party.... HMmmmmmmMM...
+    }
     // setTimeout(start, 3000)
     // start();
     // const second = () =>{
@@ -287,28 +295,35 @@ const Room = () => {
 
 	return (
         <div>
-            <button className="begin-interview-button" onClick={()=>start()}>Click here to begin interview</button>
+            <p>Meeting will begin at 7:00 PM EST</p>
+            <button className="begin-interview-button" onClick={startTheParty}>Click here to begin interview</button>
             {/* <h1>Sexy erotic quail chat cam squirt show</h1> */}
-            <div className="interviewq-two-video-screens">
-                <video id="myVideoTag" autoPlay="true" muted="muted"></video>
-		        <video id="theirVideoTag" autoPlay="true"></video>
-                <div className="interviewq-video-controls">
-                    <button onClick={toggleVideo}>Video off/on</button>
-                    <button onClick={toggleAudio}>Mute</button>
-                    <button onClick={''}>End</button>
+            {(theParty) && (
+            <>
+                <div className="interviewq-two-video-screens">
+                    <video id="myVideoTag" autoPlay="true" muted="muted"></video>
+                    <video id="theirVideoTag" autoPlay="true"></video>
+                    <div className="interviewq-video-controls">
+                        <button onClick={toggleVideo}>Video off/on</button>
+                        <button onClick={toggleAudio}>Mute</button>
+                        <button onClick={''}>End</button>
+                    </div>
                 </div>
-            </div>
-        <div className="the-secret-is-cumin">
-			{/* <label>Your Name</label><input id="myName" type="text" /> */}
-            <form>
-    <label>Your Message</label><input id="myMessage" type="text"/>
-			<input id="sendMessage" type="submit" onClick={sendMessageFunction}/>
-            </form>
-    <div id="chatArea" className="interviewq-meeting-chatbox">This is your awesome conversation: 
-    </div>
-			<div id="signalingArea"></div>
-            <footer>copyright</footer>
-		</div>
+                <div className="the-secret-is-cumin">
+                    {/* <label>Your Name</label><input id="myName" type="text" /> */}
+                    <div id="chatArea" className="interviewq-meeting-chatbox">
+                        This is your awesome conversation: 
+                    </div>
+                    <div id="signalingArea"></div>
+                    <form>
+                        <label>Your Message</label><input id="myMessage" type="text"/>
+                        <input id="sendMessage" type="submit" onClick={sendMessageFunction}/>
+                    </form>
+                    <footer>copyright</footer>
+                </div>
+            </>
+            )}           
+            
         </div>
 	);
 };
