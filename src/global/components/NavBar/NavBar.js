@@ -42,7 +42,10 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	// On render, pull stored token. If you have a token, log yourself in.
 	useEffect(() => {
 		//if you have a token, pull some user data to make sure it's valid
-		if (localStorage.getItem('token')) {
+		if (
+			localStorage.getItem('token') &&
+			!location.pathname.includes('interviewq/meeting')
+		) {
 			getUser();
 		}
 		// eslint-disable-next-line
