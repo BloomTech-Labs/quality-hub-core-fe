@@ -228,9 +228,13 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 								</p>
 								{info.id && (
 									<div className='calandar-detail-modal-button-grouping'>
-										<NavLink to="/interviewq/meeting" className="go-to-meeting-button calandar-detail-modal-buttons" onClick={uniquecheckToLocalStorage}>
-											Go to Meeting
-										</NavLink>
+										<NavLink className="go-to-meeting-button calandar-detail-modal-buttons" onClick={uniquecheckToLocalStorage}
+										to={{
+											pathname: "/interviewq/meeting",
+											meetingProps: {
+												date: new Date(info.year, info.month - 1, info.day, info.hour, info.minute)
+											}
+										}} > Go to Meeting </NavLink>
 										<button
 											className={`${info.id} calandar-detail-modal-buttons delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
 											data-id={`${info.uniquecheck}`}
