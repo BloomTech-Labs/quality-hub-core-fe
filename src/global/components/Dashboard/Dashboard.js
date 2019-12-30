@@ -11,7 +11,7 @@ import './Dashboard.scss';
 import LeftNavBar from './subs/LeftNavBar';
 import PersonalInfo from './subs/PersonalInfo/PersonalInfo';
 import Schedule from './subs/Schedule';
-import Coach from './subs/Coach';
+// import Coach from './subs/Coach';
 import Payments from './subs/PersonalInfo/subs/PaymentInfo';
 import Settings from './subs/Settings';
 
@@ -57,9 +57,9 @@ const Dashboard = ({ setLoggedin }) => {
 					<Route path='/dashboard/schedule'>
 						<Schedule />
 					</Route>
-					<Route path='/dashboard/coach'>
+					{/* <Route path='/dashboard/coach'>
 						<Coach />
-					</Route>
+					</Route> */}
 					<Route path='/dashboard/payments'>
 						<Payments />
 					</Route>
