@@ -38,9 +38,9 @@ export default function Coach() {
 
 	return (
 		<div className='dash-coach'>
-			<div className='dash-coach-header'>
+			{/* <div className='dash-coach-header'>
 				<h2>Coach</h2>
-			</div>
+			</div> */}
 			<div className='dash-coach-connectstripe'>
 				<h3>Set up Coach Dashboard on Stripe</h3>
 				<div className='dash-coach-row'>

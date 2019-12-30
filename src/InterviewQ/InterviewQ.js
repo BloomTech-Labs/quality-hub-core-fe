@@ -16,7 +16,7 @@ const InterviewQContainer = (props) => {
 	console.log(props.location.pathname)
 	return (
 		<>
-			{(!props.location.pathname.includes('meeting/room') && localStorage.getItem('token')) && <LeftNav />}
+			{(!props.location.pathname.includes('meeting') && localStorage.getItem('token')) && <LeftNav />}
 			<div>
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
