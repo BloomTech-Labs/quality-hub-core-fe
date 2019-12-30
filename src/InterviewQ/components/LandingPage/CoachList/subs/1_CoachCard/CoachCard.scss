@@ -134,6 +134,9 @@
 		align-items: center;
 		// margin-top: 2rem;
 		margin-top: 2.4rem;
+		a{
+			text-decoration: none;
+		}
 		.coachcard-links {
 			align-items: flex-end;
 			width: 6.2rem;
@@ -164,6 +167,7 @@
 			width: 8.1rem;
 			height: 2.9rem;
 			padding: 0;
+			cursor: pointer;
 			a {
 				text-decoration: none;
 				color: #ffffff;

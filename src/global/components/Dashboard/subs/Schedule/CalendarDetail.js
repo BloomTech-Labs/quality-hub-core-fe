@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, differenceInHours, differenceInMilliseconds } from 'date-fns';
@@ -107,6 +108,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 				console.log(err.message);
 			});
 	};
+
 	return (
 		<div className='booking-container'>
 			<span className='cal-detail-header' onClick={() => setOpen(false)}>
@@ -117,6 +119,11 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 					{booking.map((info, index) => {
 						console.log('info:', info);
 						console.log(booking.length)
+
+						const uniquecheckToLocalStorage = (id) => {
+							window.localStorage.setItem('uniquecheckid', info.uniquecheck)
+						}
+
 						// const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-delete-booking-btn" : "";
 						return info.coach.id === localStorage.getItem('id') ? (
 							<div className='coach-detail' key={index}>
@@ -174,17 +181,22 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 								</div>
 								{console.log('jargon', info)}
 								{info.id && (
-									<button
-									className={`${info.id} delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
-										data-id={`${info.uniquecheck}`}
-										data-year={info.year}
-										data-month={info.month}
-										data-day={info.day}
-										data-hour={info.hour}
-										data-minute={info.minute}
-										onClick={(event) => handleDelete(info.uniquecheck, event)}>
-										Cancel Appointment
-									</button>
+									<div className='calandar-detail-modal-button-grouping'>
+										<NavLink to="/interviewq/meeting" className="go-to-meeting-button calandar-detail-modal-buttons" onClick={uniquecheckToLocalStorage}>
+											Go to Meeting
+										</NavLink>
+										<button
+										className={`${info.id} calandar-detail-modal-buttons delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
+											data-id={`${info.uniquecheck}`}
+											data-year={info.year}
+											data-month={info.month}
+											data-day={info.day}
+											data-hour={info.hour}
+											data-minute={info.minute}
+											onClick={(event) => handleDelete(info.uniquecheck, event)}>
+											Cancel Appointment
+										</button>
+									</div>
 								)}
 							</div>
 						) : (
@@ -215,17 +227,22 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 									)}
 								</p>
 								{info.id && (
-									<button
-										className={`${info.id} delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
-										data-id={`${info.uniquecheck}`}
-										data-year={info.year}
-										data-month={info.month}
-										data-day={info.day}
-										data-hour={info.hour}
-										data-minute={info.minute}
-										onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
-										Cancel Appointment
-									</button>
+									<div className='calandar-detail-modal-button-grouping'>
+										<NavLink to="/interviewq/meeting" className="go-to-meeting-button calandar-detail-modal-buttons" onClick={uniquecheckToLocalStorage}>
+											Go to Meeting
+										</NavLink>
+										<button
+											className={`${info.id} calandar-detail-modal-buttons delete-booking-btn ${lessThan24(new Date(info.year, info.month - 1, info.day, info.hour, info.minute))}`}
+											data-id={`${info.uniquecheck}`}
+											data-year={info.year}
+											data-month={info.month}
+											data-day={info.day}
+											data-hour={info.hour}
+											data-minute={info.minute}
+											onClick={(event) => canDelete ? handleDelete(info.uniquecheck, event) : event.preventDefault}>
+											Cancel Appointment
+										</button>	
+									</div>
 								)}
 							</div>
 						);

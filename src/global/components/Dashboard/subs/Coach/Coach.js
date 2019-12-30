@@ -18,8 +18,6 @@ export default function Coach() {
 	const { search } = useLocation();
 	const [updateStripeID] = useMutation(UPDATE_STRIPEID);
 
-	console.log(search.match(/code=(.*?)&/));
-
 	const code = search.match(/code=(.*?)&/)
 		? search.match(/code=(.*?)&/)[1]
 		: null;
@@ -44,11 +42,15 @@ export default function Coach() {
 				<h2>Coach</h2>
 			</div>
 			<div className='dash-coach-connectstripe'>
-				<button>
-					<a href='https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:3000/dashboard/coach&client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
-						Connect to Stripe
-					</a>
-				</button>
+				<h3>Set up Coach Dashboard on Stripe</h3>
+				<div className='dash-coach-row'>
+					<p>Click above to set up your Coach Dashboard to receive payments</p>
+					<button>
+						<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
+							Connect to Stripe
+						</a>
+					</button>
+				</div>
 			</div>
 		</div>
 	);

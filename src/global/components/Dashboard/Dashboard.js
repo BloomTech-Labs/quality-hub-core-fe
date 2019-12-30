@@ -33,7 +33,7 @@ const GET_USER = gql`
 			gender
 			twitter_url
 			blog_url
-			payment_info
+			# payment_info
 		}
 	}
 `;

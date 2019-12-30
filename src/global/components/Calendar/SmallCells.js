@@ -131,7 +131,7 @@ const SmallCells = ({
 				<div
 					id={cellId}
 					className={`small-col  ${
-						isBefore(addDays(day, 1), new Date()) ? 'past-day' : 'small-cell'
+						isBefore(addDays(day, 1), new Date()) ? 'past-day' : isSameMonth(day, monthStart) ? 'small-cell' : 'small-cell-disabled'
 					} ${format(day, 'Mdyyyy') === format(new Date(), 'Mdyyyy') ? 'today' : ' '}`}
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>

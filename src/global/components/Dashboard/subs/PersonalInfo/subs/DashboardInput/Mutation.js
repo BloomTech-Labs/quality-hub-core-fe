@@ -16,7 +16,7 @@ export const EDIT_USER = gql`
 		$github_url: String
 		$portfolio_url: String
 		$bio: String
-		$payment_info: Boolean
+		# $payment_info: Boolean
 	) {
 		update(
 			first_name: $first_name
@@ -32,7 +32,7 @@ export const EDIT_USER = gql`
 			github_url: $github_url
 			portfolio_url: $portfolio_url
 			bio: $bio
-			payment_info: $payment_info
+			# payment_info: $payment_info
 		) {
 			id
 			first_name
@@ -48,7 +48,7 @@ export const EDIT_USER = gql`
 			github_url
 			portfolio_url
 			bio
-			payment_info
+			# payment_info
 		}
 	}
 `;
