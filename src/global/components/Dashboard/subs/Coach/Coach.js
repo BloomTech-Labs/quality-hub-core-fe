@@ -42,6 +42,7 @@ export default function Coach() {
 						Connect to Stripe
 					</a>
 				</button>
+				<p>Click above to set up your Coach Dashboard to receive payments</p>
 			</div>
 		</div>
 	);

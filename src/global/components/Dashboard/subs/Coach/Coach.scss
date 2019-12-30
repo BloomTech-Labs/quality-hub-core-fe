@@ -22,5 +22,16 @@
 		border-radius: 0.8rem;
 		padding: 2.4rem;
 		margin-top: 3.2rem;
+
+		a {
+			text-decoration: none;
+			display: inline-block;
+			color: #5f6368;
+			margin-bottom: 2.4rem;
+
+			&:hover {
+				color: #096dd9;
+			}
+		}
 	}
 }
