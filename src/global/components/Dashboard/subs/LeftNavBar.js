@@ -49,7 +49,7 @@ export default function LeftNavBar() {
 					<div className='dashnav-txt'> Coach</div>
 				</div>
 			</NavLink>
-			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/payments'>
+			<NavLink activeClassName='dashnavactive' to='/dashboard/payments'>
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.PAYMENTS}
@@ -59,7 +59,7 @@ export default function LeftNavBar() {
 					/>
 					<div className='dashnav-txt'> Payments</div>
 				</div>
-			</NavLink> */}
+			</NavLink>
 			<NavLink activeClassName='dashnavactive' to='/dashboard/settings'>
 				<div className='dash-left-menu-btn'>
 					<Icon
