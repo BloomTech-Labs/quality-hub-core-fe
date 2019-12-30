@@ -81,9 +81,9 @@ const StepThree = ({data, image, formState}) => {
 										4.9
 									</p> */}
 								</div>
-								<p className='add-coach-form-preview-description'>
-									{formState.description}
-								</p>
+								<div className='add-coach-form-preview-description'>
+									<p>{formState.description}</p>
+								</div>
 								<div className='coachformcard-footer'>
 									<div className='coachcard-links'>
 										{data && data.me.linkedin_url && (

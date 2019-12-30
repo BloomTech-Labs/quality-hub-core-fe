@@ -18,21 +18,21 @@ export default function HistoryReview({ booking }) {
 
 	for (let i = 1; i <= booking.review.rating; i++) {
 		starsfilled.push(
-			<Icon icon={ICONS.STAR_YELLOW} width={26} height={24} color='#fa8c16' />,
+			<Icon icon={ICONS.STAR_YELLOW} width={30} height={30} color='#fa8c16' />,
 		);
 	}
 
 	for (let i = 1; i <= 5 - booking.review.rating; i++) {
 		starsblank.push(
-			<Icon icon={ICONS.STAR_FILL} width={26} height={24} color='#efefef' />,
+			<Icon icon={ICONS.STAR_FILL} width={30} height={30} color='#efefef' />,
 		);
 	}
 
 	return (
 		<div className='history-review'>
 			<h4>Rating</h4>
-			<div className='rating-container'>
-				<div className={'stars-container'}>
+			<div className='history-review-rating-container'>
+				<div className={'history-review-stars-container'}>
 					{starsfilled}
 					{starsblank}
 				</div>
