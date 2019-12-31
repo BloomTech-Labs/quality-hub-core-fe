@@ -37,7 +37,9 @@ const InterviewQContainer = (props) => {
 					path='/interviewq/history/review/:id'
 					component={ReviewPage}
 				/>
-				<Route path='/interviewq/meeting' component={Room} />
+				{/* <Route path='/interviewq/meeting' component={Room} /> */}
+				<Route path='/interviewq/meeting' render={props => <Room {...props} unique={window.localStorage.getItem('uniquecheckid')}/>} />
+				{/* render={props => <LandingPage {...props} />} */}
 			</div>
 		</>
 	);
