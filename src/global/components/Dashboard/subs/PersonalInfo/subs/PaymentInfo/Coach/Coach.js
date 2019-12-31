@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom';
 
 import './Coach.scss';
 
+import StripeButton from '../../../../../../../stripe_assets/light-on-light.png';
+
 const UPDATE_STRIPEID = gql`
 	mutation addCoachStripeID($code: String) {
 		addCoachStripeID(code: $code) {
@@ -37,12 +39,13 @@ export default function Coach() {
 			<div className='dash-coach-connectstripe'>
 				<h3>Set up Coach Dashboard on Stripe</h3>
 				<div className='dash-coach-row'>
-					<p>Click above to set up your Coach Dashboard to receive payments</p>
-					<button>
-						<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
-							Connect to Stripe
-						</a>
-					</button>
+					<p>Click to set up your Coach Dashboard to receive payments</p>
+					{/* <button> */}
+					<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
+						{/* Connect to Stripe */}
+						<img src={StripeButton} />
+					</a>
+					{/* </button> */}
 				</div>
 			</div>
 		</div>
