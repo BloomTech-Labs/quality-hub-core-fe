@@ -75,15 +75,24 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 				convertToLocal(booking),
 			);
 			setBooking(
+				sortBookingsFunction(
 				convertedBookings.filter(month => {
 					return (
 						month.day === Number(selectedDay) &&
 						month.month === Number(selectedMonth)
 					);
-				}),
+				}))
 			);
 		}
 	}, [allBookings]);
+
+
+	// useEffect(()=>{
+	// 	if(booking){
+	// 		console.log('sort booking')
+	// 		setBooking(sortBookingsFunction(booking));
+	// 	}
+	// },[booking])
 
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -130,41 +139,27 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 			{booking[0] ? (
 				<div>
 					{booking.map((info, index) => {
-						console.log(
-							isAfter(
-								new Date(),
-								new Date(
-									info.year,
-									info.month - 1,
-									info.day,
-									info.hour,
-									info.minute,
-								),
-							),
-						);
-						console.log(
-							isBefore(
-								new Date(),
-								addHours(
-									new Date(
-										info.year,
-										info.month - 1,
-										info.day,
-										info.hour,
-										info.minute,
-									),
-									1,
-								),
-							),
-						);
+						console.log(info)
 						const uniquecheckToLocalStorage = id => {
 							window.localStorage.setItem('uniquecheckid', info.uniquecheck);
 							if (info.coach.id === localStorage.getItem('id')) {
-								history.push(
-									`/interviewq/history/coachreport/${info.uniquecheck}`,
-								);
+								// history.push(
+								// 	`/interviewq/history/coachreport/${info.uniquecheck}`,
+								// );
+								// history.pushState({firstName: "Hello"}, `/interviewq/history/coachreport/${info.uniquecheck}`)
+								history.push({
+									pathname: `/interviewq/history/coachreport/${info.uniquecheck}`,
+									search: '?query=abc',
+									state: { firstName: "Hello" }
+								  })
 							} else {
-								history.push(`/interviewq/history/review/${info.uniquecheck}`);
+								// history.push(`/interviewq/history/review/${info.uniquecheck}`);
+								// history.pushState({firstName: "Hello2"}, `/interviewq/review/coachreport/${info.uniquecheck}`)
+								history.push({
+									pathname: `/interviewq/history/review/${info.uniquecheck}`,
+									search: '?query=abc',
+									state: { firstName: "Hello2" }
+								  })
 							}
 						};
 
@@ -220,8 +215,29 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 								{console.log('jargon', info)}
 								{info.id && (
 									<div className="calandar-detail-modal-button-grouping">
-										{(isAfter(new Date(), new Date( info.year, info.month - 1, info.day, info.hour, info.minute), ) &&
-											isBefore( new Date(), addHours( new Date( info.year, info.month - 1, info.day, info.hour, info.minute), 1, ), )) && (
+										{isAfter(
+											new Date(),
+											new Date(
+												info.year,
+												info.month - 1,
+												info.day,
+												info.hour,
+												info.minute,
+											),
+										) &&
+											isBefore(
+												new Date(),
+												addHours(
+													new Date(
+														info.year,
+														info.month - 1,
+														info.day,
+														info.hour,
+														info.minute,
+													),
+													1,
+												),
+											) && (
 												<NavLink
 													to="/interviewq/meeting"
 													target="_blank"
@@ -298,8 +314,29 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 											Go to Meeting{' '}
 										</NavLink> */}
 
-{(isAfter(new Date(), new Date( info.year, info.month - 1, info.day, info.hour, info.minute), ) &&
-											isBefore( new Date(), addHours( new Date( info.year, info.month - 1, info.day, info.hour, info.minute), 1, ), )) && (
+										{isAfter(
+											new Date(),
+											new Date(
+												info.year,
+												info.month - 1,
+												info.day,
+												info.hour,
+												info.minute,
+											),
+										) &&
+											isBefore(
+												new Date(),
+												addHours(
+													new Date(
+														info.year,
+														info.month - 1,
+														info.day,
+														info.hour,
+														info.minute,
+													),
+													1,
+												),
+											) && (
 												<NavLink
 													to="/interviewq/meeting"
 													target="_blank"
@@ -308,8 +345,6 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 													Go to Meeting
 												</NavLink>
 											)}
-
-
 
 										<button
 											className={`${
