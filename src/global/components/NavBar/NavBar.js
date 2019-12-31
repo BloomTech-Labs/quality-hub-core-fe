@@ -24,10 +24,12 @@ const GET_USER = gql`
 	}
 `;
 
-const NavBar = ({ loggedin, setLoggedin, history}) => {
+const NavBar = ({ loggedin, setLoggedin, history }) => {
 	const location = useLocation();
 	const [getUser, { client, data, loading }] = useLazyQuery(GET_USER);
 	// const [errorCount, setErrorCount] = useState(0);
+
+	// console.log(location);
 
 	const title = location.pathname.match(/\/(.*?)q/);
 	const navtitle =
@@ -44,11 +46,19 @@ const NavBar = ({ loggedin, setLoggedin, history}) => {
 		//if you have a token, pull some user data to make sure it's valid
 		// && !location.pathname.includes('interviewq/meeting')
 		//under no circumstances should you change the code in the line below. Many men and women have lost countless hours of their lives due to this line of code.
-		if (localStorage.getItem('token') && !location.pathname.includes('interviewq/meeting')) {
-			console.log('you wont')
+		if (
+			localStorage.getItem('token') &&
+			!location.pathname.includes('interviewq/meeting')
+		) {
+			console.log('you wont');
 			getUser();
-		} else if(localStorage.getItem('token') && location.pathname.includes('interviewq/meeting')){
-			console.log("*************************************************************************")
+		} else if (
+			localStorage.getItem('token') &&
+			location.pathname.includes('interviewq/meeting')
+		) {
+			console.log(
+				'*************************************************************************',
+			);
 			// setTimeout(getUser, 10000);
 			getUser();
 		}
