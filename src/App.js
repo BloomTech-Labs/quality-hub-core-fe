@@ -8,17 +8,17 @@ import Core from './global/routes/Core';
 function App() {
 	const [loggedin, setLoggedin] = useState(false);
 	let { pathname } = useLocation();
-console.log(pathname);
+
 	return (
 		<div className='App'>
-			{!pathname.includes('/meeting') &&
-			<Route
-				path='/'
-				render={props => (
-					<NavBar {...props} loggedin={loggedin} setLoggedin={setLoggedin} />
-				)}
-			/>
-			}
+			{!pathname.includes('/meeting') && (
+				<Route
+					path='/'
+					render={props => (
+						<NavBar {...props} loggedin={loggedin} setLoggedin={setLoggedin} />
+					)}
+				/>
+			)}
 			<div className='not-nav'>
 				<Core loggedin={loggedin} setLoggedin={setLoggedin} />
 				<InterviewQ loggedin={loggedin} setLoggedin={setLoggedin} />

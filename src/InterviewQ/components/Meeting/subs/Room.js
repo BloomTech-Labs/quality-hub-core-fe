@@ -155,9 +155,9 @@ const Room = (props) => {
 	const sendMessageFunction = e => {
 		e.preventDefault();
 		if (document.querySelector('#myMessage').value != '') {
-			displayMessage(`User : ${document.querySelector('#myMessage').value}`);
+			displayMessage(`${props.myName} : ${document.querySelector('#myMessage').value}`);
 			io.emit('send', {
-				author: 'User',
+				author: props.myName,
 				message: document.querySelector('#myMessage').value,
 				room: SIGNALING_ROOM,
 			});
@@ -168,7 +168,7 @@ const Room = (props) => {
 	io.emit('ready', {
 		chat_room: ROOM,
 		signaling_room: SIGNALING_ROOM,
-		my_name: 'Ryan',
+		my_name: props.myName,
 	});
 
 	io.emit('signal', {
