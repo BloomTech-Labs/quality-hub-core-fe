@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
-import axios from 'axios';
+// import axios from 'axios';
 import { Gear } from '../../../icons/gear';
 import { Signout } from '../../../icons/signout';
 
