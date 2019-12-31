@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { ALL_BOOKINGS } from './Queries';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { format, differenceInHours, differenceInMilliseconds } from 'date-fns';
@@ -21,6 +21,8 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 			}
 		}
 	`;
+
+	const history = useHistory();
 
 	const { data, refetch } = useQuery(ALL_BOOKINGS, {
 		variables: {
@@ -122,6 +124,11 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 
 						const uniquecheckToLocalStorage = (id) => {
 							window.localStorage.setItem('uniquecheckid', info.uniquecheck)
+							if(info.coach.id === localStorage.getItem('id')){
+								history.push(`/interviewq/history/coachreport/${info.uniquecheck}`);
+							} else{
+								history.push(`/interviewq/history/review/${info.uniquecheck}`);
+							}
 						}
 
 						// const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-delete-booking-btn" : "";
@@ -182,7 +189,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 								{console.log('jargon', info)}
 								{info.id && (
 									<div className='calandar-detail-modal-button-grouping'>
-										<NavLink to="/interviewq/meeting" className="go-to-meeting-button calandar-detail-modal-buttons" onClick={uniquecheckToLocalStorage}>
+										<NavLink to="/interviewq/meeting" target="_blank" className="go-to-meeting-button calandar-detail-modal-buttons" onClick={uniquecheckToLocalStorage}>
 											Go to Meeting
 										</NavLink>
 										<button

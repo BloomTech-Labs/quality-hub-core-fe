@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
 
-const Room = () => {
+const Room = (props) => {
 	// const [textchat, setTextchat] = useState('');
 	const [theParty, setTheParty] = useState(false);
 
@@ -11,22 +11,20 @@ const Room = () => {
 	// 	setTextchat(e.target.value);
 	// };
 
-
-
 	let io = socketIOClient.connect('https://qh-test-web-rtc.herokuapp.com');
 	// var ROOM = "chat";
-	var ROOM = `${window.localStorage.getItem('uniquecheckid')}z`;
-	var SIGNALING_ROOM = window.localStorage.getItem('uniquecheckid');
-	// var SIGNALING_ROOM = 'room_name'
-	var configuration = {
+	let ROOM = `${props.unique}z`;
+	let SIGNALING_ROOM = props.unique;
+	// let SIGNALING_ROOM = 'room_name'
+	let configuration = {
 		iceServers: [
 			{
 				url: 'stun:stun.l.google.com:19302',
 			},
 		],
 	};
-	var rtcPeerConn;
-	var constraints = {
+	let rtcPeerConn;
+	let constraints = {
 		audio: true,
 		video: {
 			mandatory: {
@@ -69,6 +67,7 @@ const Room = () => {
 		displaySignalingMessage('staring signaling...');
 
 		rtcPeerConn = new RTCPeerConnection(configuration);
+		// console.log(rtcPeerConn);
 		// rtcPeerConn = new webkitRTCPeerConnection(configuration)
 
 		rtcPeerConn.onicecandidate = function(event) {
@@ -157,6 +156,7 @@ const Room = () => {
 			.then(stream => {
 				document.querySelector('#myVideoTag').srcObject = stream;
 				rtcPeerConn.addStream(stream);
+				// window.rtcPeerConn.addStream(stream);
 				document.querySelector('#myVideoTag').play();
 			})
 			.catch(onError);
@@ -187,19 +187,46 @@ const Room = () => {
 		}
 	};
 
-	function start() {
-		io.emit('ready', {
-			chat_room: ROOM,
-			signaling_room: SIGNALING_ROOM,
-			my_name: 'Ryan',
-		});
+	io.emit('ready', {
+		chat_room: ROOM,
+		signaling_room: SIGNALING_ROOM,
+		my_name: 'Ryan',
+	});
 
-		io.emit('signal', {
-			type: 'user_here',
-			message: 'Are you ready for a call?',
-			room: SIGNALING_ROOM,
-		});
+	io.emit('signal', {
+		type: 'user_here',
+		message: 'Are you ready for a call?',
+		room: SIGNALING_ROOM,
+	});
 
+	// io.on('signaling_message', data => {
+	// 	if(theParty){
+
+	// 		displaySignalingMessage('Signal received: ' + data.message);
+	// 		if (!rtcPeerConn) {
+	// 			startSignaling();
+	// 		}
+			
+	// 		if (data.type !== 'user_here') {
+	// 			var message = JSON.parse(data.message);
+	// 			if (message.sdp) {
+	// 				rtcPeerConn.setRemoteDescription(
+	// 					new RTCSessionDescription(message.sdp),
+	// 					function() {
+	// 						if (rtcPeerConn.remoteDescription.type === 'offer') {
+	// 							rtcPeerConn.createAnswer(sendLocalDesc, logError);
+	// 						}
+	// 					},
+	// 					logError,
+	// 					);
+	// 				} else {
+	// 					rtcPeerConn.addIceCandidate(new RTCIceCandidate(message.candidate));
+	// 				}
+	// 			}
+	// 		}
+	// });
+
+	// function start() {
 		io.on('signaling_message', data => {
 			displaySignalingMessage('Signal received: ' + data.message);
 			if (!rtcPeerConn) {
@@ -225,7 +252,6 @@ const Room = () => {
 		});
 
 		// io.on('connection', data=>{
-		//     console.log('connected on the frontend')
 		// })
 		io.on('announce', data => {
 			// setAnnouncements([...announcements, data.message]);
@@ -240,56 +266,59 @@ const Room = () => {
 		io.on('message', data => {
 			displayMessage(data.author + ': ' + data.message);
 		});
-	}
+	// }
 
 	const endConnection = () => {
 		console.log('END CONNECTION');
 		io.disconnect();
+		// rtcPeerConn.disconnect();
 	};
 
-	function startTheParty() {
-		if (!theParty) {
-			setTheParty(true);
-			start();
-		}
-	}
+	// function startTheParty() {
+	// 	if (!theParty) {
+	// 		setTheParty(true);
+	// 		start();
+	// 	}
+	// }
 
 	return (
 		<div>
 			<p>Meeting will begin at 7:00 PM EST</p>
-			<button className="begin-interview-button" onClick={startTheParty}>
-				Click here to begin interview
-			</button>
-			{theParty && (
-				<>
-					<div className="interviewq-two-video-screens">
-						<video id="myVideoTag" autoPlay={true} muted="muted"></video>
-						<video id="theirVideoTag" autoPlay={true}></video>
-						<div className="interviewq-video-controls">
-							<button onClick={toggleVideo}>Video off/on</button>
-							<button onClick={toggleAudio}>Mute</button>
-							<button onClick={endConnection}>End</button>
-						</div>
+			{/* {!theParty && (
+				<button className="begin-interview-button" onClick={startTheParty}>
+					Click here to begin interview
+				</button>
+			)} */}
+			{/* {theParty && ( */}
+			<>
+				<div className="interviewq-two-video-screens">
+					<video id="myVideoTag" autoPlay="false" muted="muted"></video>
+					<video id="theirVideoTag" autoPlay="false"></video>
+					<div className="interviewq-video-controls">
+						<button onClick={toggleVideo}>Video off/on</button>
+						<button onClick={toggleAudio}>Mute</button>
+						<button onClick={endConnection}>End</button>
 					</div>
-					<div className="the-secret-is-cumin">
-						{/* <label>Your Name</label><input id="myName" type="text" /> */}
-						<div id="chatArea" className="interviewq-meeting-chatbox">
-							This is your awesome conversation:
-						</div>
-						<div id="signalingArea"></div>
-						<form>
-							<label>Your Message</label>
-							<input id="myMessage" type="text" />
-							<input
-								id="sendMessage"
-								type="submit"
-								onClick={sendMessageFunction}
-							/>
-						</form>
-						<footer>copyright</footer>
+				</div>
+				<div className="the-secret-is-cumin">
+					{/* <label>Your Name</label><input id="myName" type="text" /> */}
+					<div id="chatArea" className="interviewq-meeting-chatbox">
+						This is your awesome conversation:
 					</div>
-				</>
-			)}
+					<div id="signalingArea"></div>
+					<form>
+						<label>Your Message</label>
+						<input id="myMessage" type="text" />
+						<input
+							id="sendMessage"
+							type="submit"
+							onClick={sendMessageFunction}
+						/>
+					</form>
+					<footer>copyright</footer>
+				</div>
+			</>
+			{/* )} */}
 		</div>
 	);
 };
