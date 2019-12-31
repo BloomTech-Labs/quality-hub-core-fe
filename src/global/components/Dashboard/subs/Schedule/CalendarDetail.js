@@ -150,7 +150,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 								history.push({
 									pathname: `/interviewq/history/coachreport/${info.uniquecheck}`,
 									search: '?query=abc',
-									state: { firstName: "Hello" }
+									state: { firstName: info.seeker.first_name }
 								  })
 							} else {
 								// history.push(`/interviewq/history/review/${info.uniquecheck}`);
@@ -158,7 +158,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 								history.push({
 									pathname: `/interviewq/history/review/${info.uniquecheck}`,
 									search: '?query=abc',
-									state: { firstName: "Hello2" }
+									state: { firstName: info.coach.first_name }
 								  })
 							}
 						};
