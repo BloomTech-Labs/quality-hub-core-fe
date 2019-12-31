@@ -3,19 +3,11 @@ import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
 
 const Room = (props) => {
-	// const [textchat, setTextchat] = useState('');
 	const [theParty, setTheParty] = useState(false);
 
-	// const handleChange = e => {
-	// 	e.preventDefault();
-	// 	setTextchat(e.target.value);
-	// };
-
 	let io = socketIOClient.connect('https://qh-test-web-rtc.herokuapp.com');
-	// var ROOM = "chat";
 	let ROOM = `${props.unique}z`;
 	let SIGNALING_ROOM = props.unique;
-	// let SIGNALING_ROOM = 'room_name'
 	let configuration = {
 		iceServers: [
 			{
@@ -28,8 +20,8 @@ const Room = (props) => {
 		audio: true,
 		video: {
 			mandatory: {
-				minWidth: 500,
-				maxWidth: 500,
+				minWidth: 750,
+				maxWidth: 750,
 				minHeight: 500,
 				maxHeight: 500,
 			},
@@ -38,30 +30,16 @@ const Room = (props) => {
 
 	var videoProps = {
 		mandatory: {
-			minWidth: 500,
-			maxWidth: 500,
+			minWidth: 750,
+			maxWidth: 750,
 			minHeight: 500,
 			maxHeight: 500,
 		},
 	};
-	// var [announcements, setAnnouncements] = useState([]);
 
 	function onError(error) {
 		console.log('Error!', error);
 	}
-
-	// function startStream() {
-	//     // Sets navigator.mediaDevices.getUserMedia based on browser type [chrome, firefox, mozilla].
-	//     navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia || navigator.mediaDevices.mozGetUserMedia;
-	//     navigator.mediaDevices.getUserMedia(constraints)
-	//     .then((stream) => {
-	//         document.querySelector("#myVideoTag").srcObject = stream;
-	//         rtcPeerConn.addStream(stream)
-	//         document.querySelector("#myVideoTag").play();
-	//         console.log("Success! We have a stream!");
-	//     })
-	//     .catch(onError);
-	// }
 
 	function startSignaling() {
 		displaySignalingMessage('staring signaling...');
@@ -225,8 +203,6 @@ const Room = (props) => {
 	// 			}
 	// 		}
 	// });
-
-	// function start() {
 		io.on('signaling_message', data => {
 			displaySignalingMessage('Signal received: ' + data.message);
 			if (!rtcPeerConn) {
@@ -251,17 +227,9 @@ const Room = (props) => {
 			}
 		});
 
-		// io.on('connection', data=>{
-		// })
 		io.on('announce', data => {
-			// setAnnouncements([...announcements, data.message]);
 			displayMessage(data.message);
 		});
-
-		// sendMessage.addEventListener('click', event => {
-		//     io.emit('send', {"author":document.querySelector('#myName').value, "message": document.querySelector('#myMessage').value, "room":ROOM});
-		//     event.preventDefault();
-		// }, false);
 
 		io.on('message', data => {
 			displayMessage(data.author + ': ' + data.message);
@@ -271,55 +239,33 @@ const Room = (props) => {
 	const endConnection = () => {
 		console.log('END CONNECTION');
 		io.disconnect();
-		// rtcPeerConn.disconnect();
 	};
 
-	// function startTheParty() {
-	// 	if (!theParty) {
-	// 		setTheParty(true);
-	// 		start();
-	// 	}
-	// }
-
 	return (
-		<div>
-			<p>Meeting will begin at 7:00 PM EST</p>
-			{/* {!theParty && (
-				<button className="begin-interview-button" onClick={startTheParty}>
-					Click here to begin interview
-				</button>
-			)} */}
-			{/* {theParty && ( */}
-			<>
-				<div className="interviewq-two-video-screens">
-					<video id="myVideoTag" autoPlay="false" muted="muted"></video>
-					<video id="theirVideoTag" autoPlay="false"></video>
-					<div className="interviewq-video-controls">
-						<button onClick={toggleVideo}>Video off/on</button>
-						<button onClick={toggleAudio}>Mute</button>
-						<button onClick={endConnection}>End</button>
-					</div>
-				</div>
-				<div className="the-secret-is-cumin">
-					{/* <label>Your Name</label><input id="myName" type="text" /> */}
-					<div id="chatArea" className="interviewq-meeting-chatbox">
-						This is your awesome conversation:
-					</div>
-					<div id="signalingArea"></div>
-					<form>
-						<label>Your Message</label>
-						<input id="myMessage" type="text" />
-						<input
-							id="sendMessage"
-							type="submit"
-							onClick={sendMessageFunction}
-						/>
-					</form>
-					<footer>copyright</footer>
-				</div>
-			</>
-			{/* )} */}
-		</div>
+        <>
+            <div className="interviewq-two-video-screens">
+                <video id="myVideoTag" autoPlay="false" muted="muted"></video>
+                <video id="theirVideoTag" autoPlay="false"></video>
+                <div className="the-secret-is-cumin">
+                    <div id="chatArea" className="interviewq-meeting-chatbox">
+                    </div>
+                    <div id="signalingArea"></div>
+                    <form>
+                        <input id="myMessage" type="text" />
+                        <input
+                            id="sendMessage"
+                            type="submit"
+                            onClick={sendMessageFunction}
+                        />
+                    </form>
+                </div>
+            </div>
+            <div className="interviewq-video-controls">
+                    <button onClick={toggleVideo}>Video off/on</button>
+                    <button onClick={toggleAudio}>Mute</button>
+                    <button onClick={endConnection}>End</button>
+            </div>
+        </>
 	);
 };
 
