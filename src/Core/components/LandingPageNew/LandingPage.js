@@ -12,10 +12,10 @@ import Services from './subs/3_Services';
 import UserStories from './subs/4_UserStories';
 import Footer from './subs/5_Footer';
 
-export default function LandingPage() {
+export default function LandingPage(props) {
 	return (
 		<div className='landing-page'>
-			<NavBar />
+			<NavBar {...props} />
 			<Header />
 			<AboutQualityHub />
 			<Services />

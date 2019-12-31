@@ -12,7 +12,17 @@ import ChargeButton from '../../Core/components/Stripe/subs/ChargeButton';
 function Core({ loggedin, setLoggedin }) {
 	return (
 		<Switch>
-			<Route exact path='/' render={props => <LandingPage {...props} />} />
+			<Route
+				exact
+				path='/'
+				render={props => (
+					<LandingPage
+						{...props}
+						loggedin={loggedin}
+						setLoggedin={setLoggedin}
+					/>
+				)}
+			/>
 			<Route
 				path='/signin'
 				render={props => (

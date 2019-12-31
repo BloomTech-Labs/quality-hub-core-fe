@@ -6,7 +6,7 @@ import ServiceCard from './3a_ServiceCard';
 
 export default function Services() {
 	return (
-		<div className='landing-page-services'>
+		<div className='landing-page-services' id='services'>
 			<div className='landing-page-services-header'>
 				<h2>Pick the service you want to improve</h2>
 				<p>

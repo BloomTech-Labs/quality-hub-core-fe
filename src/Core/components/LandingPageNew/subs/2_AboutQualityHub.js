@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function AboutQualityHub() {
 	return (
-		<div className='landing-page-about'>
+		<div className='landing-page-about' id='about'>
 			<div className='landing-page-about-top'>
 				<h2>
 					Learn more. Earn more. <span className='main-blue'>QualityHub.</span>

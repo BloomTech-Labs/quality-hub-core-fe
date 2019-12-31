@@ -23,13 +23,13 @@ const GET_USER = gql`
 	}
 `;
 
-const EDIT_IMG = gql`
-	mutation EditImage($image_url: String) {
-		update(image_url: $image_url) {
-			image_url
-		}
-	}
-`;
+// const EDIT_IMG = gql`
+// 	mutation EditImage($image_url: String) {
+// 		update(image_url: $image_url) {
+// 			image_url
+// 		}
+// 	}
+// `;
 
 const AvatarDropdown = props => {
 	const [getUser, { client, data }] = useLazyQuery(GET_USER);
@@ -38,22 +38,22 @@ const AvatarDropdown = props => {
 
 	const node = useRef();
 
-	const [editImage] = useMutation(EDIT_IMG, {
-		update(
-			cache,
-			{
-				data: {
-					update: { image_url },
-				},
-			},
-		) {
-			const { me } = cache.readQuery({ query: GET_USER });
-			cache.writeQuery({
-				query: GET_USER,
-				data: { me: { ...me, image_url } },
-			});
-		},
-	});
+	// const [editImage] = useMutation(EDIT_IMG, {
+	// 	update(
+	// 		cache,
+	// 		{
+	// 			data: {
+	// 				update: { image_url },
+	// 			},
+	// 		},
+	// 	) {
+	// 		const { me } = cache.readQuery({ query: GET_USER });
+	// 		cache.writeQuery({
+	// 			query: GET_USER,
+	// 			data: { me: { ...me, image_url } },
+	// 		});
+	// 	},
+	// });
 
 	const logout = () => {
 		client.clearStore(); //remove token from cache
