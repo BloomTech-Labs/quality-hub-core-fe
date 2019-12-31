@@ -15,7 +15,6 @@ import Footer from './subs/5_Footer';
 export default function LandingPage() {
 	return (
 		<div>
-			<div>NEW LANDING PAGE</div>
 			<NavBar />
 			<Header />
 			<AboutQualityHub />
