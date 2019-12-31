@@ -1,15 +1,15 @@
-// Library
-import React from 'react';
-import { Route } from 'react-router-dom';
-import Waiting from './subs/Waiting';
-import Room from './subs/Room';
+// // Library
+// import React from 'react';
+// import { Route } from 'react-router-dom';
+// import Waiting from './subs/Waiting';
+// // import Room from './subs/Room';
 
-export default function Meeting() {
+// export default function Meeting() {
 
-	return (
-		<>
-			<Route exact path='/interviewq/meeting' component={Waiting} />
-			<Route path='/interviewq/meeting/4815162342' component={Room} />
-		</>
-	);
-}
+// 	return (
+// 		<>
+// 			{/* <Route exact path='/interviewq/meeting' component={Waiting} /> */}
+// 			{/* <Route path='/interviewq/meeting/4815162342' component={Room} /> */}
+// 		</>
+// 	);
+// }
