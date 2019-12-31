@@ -23,14 +23,10 @@ export default function Coach() {
 		: null;
 
 
-	// const submit = (e) => {
-	// 	e.preventDefault();
-	
-	// }
 	useEffect(() => {
 		if (code !== null) {
 			console.log('YAS');
-			updateStripeID({ variables: { stripeCoachCode: code } });
+			updateStripeID({ variables: { stripeId: code } });
 		}
 	}, [code]);
 
