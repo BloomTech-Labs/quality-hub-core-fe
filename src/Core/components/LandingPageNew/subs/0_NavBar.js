@@ -1,7 +1,10 @@
+// Libraries
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// Components
 import AvatarDropdown from '../../../../global/components/NavBar/subs/AvatarDropdown';
+import GridDropdown from '../../../../global/components/NavBar/subs/GridDropdown';
 
 export default function NavBar({ loggedin, setLoggedin, history }) {
 	const logout = () => {
@@ -30,6 +33,9 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 						</NavLink>
 					</>
 				)}
+				<div className='landing-page-nav-grid-dropdown'>
+					<GridDropdown />
+				</div>
 				{localStorage.getItem('token') && (
 					<div className='landing-page-nav-avatar'>
 						<AvatarDropdown

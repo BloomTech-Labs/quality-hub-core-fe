@@ -17,10 +17,19 @@ export default function AboutQualityHub() {
 				<div>
 					<h2>How does QualityHub work?</h2>
 					<ul>
-						<li>Choose a Quality you want to improve</li>
-						<li>Connect with real professionals</li>
-						<li>Iterate on your skills</li>
-						<li>Become career ready</li>
+						<li>
+							<span className='bullet'></span>Choose a Quality you want to
+							improve
+						</li>
+						<li>
+							<span className='bullet'></span>Connect with real professionals
+						</li>
+						<li>
+							<span className='bullet'></span>Iterate on your skills
+						</li>
+						<li>
+							<span className='bullet'></span>Become career ready
+						</li>
 					</ul>
 				</div>
 				<div className='landing-page-about-sample-cards'></div>
