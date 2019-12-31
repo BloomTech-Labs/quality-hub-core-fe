@@ -23,7 +23,7 @@ export default function AboutQualityHub() {
 						<li>Become career ready</li>
 					</ul>
 				</div>
-				<div></div>
+				<div className='landing-page-about-sample-cards'></div>
 			</div>
 		</div>
 	);
