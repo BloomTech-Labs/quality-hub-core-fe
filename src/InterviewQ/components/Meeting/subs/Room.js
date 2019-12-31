@@ -3,6 +3,7 @@ import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
 
 const Room = (props) => {
+	console.log(props);
 	// const [textchat, setTextchat] = useState('');
 	const [theParty, setTheParty] = useState(false);
 
@@ -28,8 +29,8 @@ const Room = (props) => {
 		audio: true,
 		video: {
 			mandatory: {
-				minWidth: 500,
-				maxWidth: 500,
+				minWidth: 750,
+				maxWidth: 750,
 				minHeight: 500,
 				maxHeight: 500,
 			},
@@ -38,8 +39,8 @@ const Room = (props) => {
 
 	var videoProps = {
 		mandatory: {
-			minWidth: 500,
-			maxWidth: 500,
+			minWidth: 750,
+			maxWidth: 750,
 			minHeight: 500,
 			maxHeight: 500,
 		},
@@ -177,9 +178,9 @@ const Room = (props) => {
 	const sendMessageFunction = e => {
 		e.preventDefault();
 		if (document.querySelector('#myMessage').value != '') {
-			displayMessage(`User : ${document.querySelector('#myMessage').value}`);
+			displayMessage(`${props.myName} : ${document.querySelector('#myMessage').value}`);
 			io.emit('send', {
-				author: 'User',
+				author: props.myName,
 				message: document.querySelector('#myMessage').value,
 				room: SIGNALING_ROOM,
 			});
@@ -190,7 +191,7 @@ const Room = (props) => {
 	io.emit('ready', {
 		chat_room: ROOM,
 		signaling_room: SIGNALING_ROOM,
-		my_name: 'Ryan',
+		my_name: props.myName,
 	});
 
 	io.emit('signal', {
@@ -315,7 +316,6 @@ const Room = (props) => {
 							onClick={sendMessageFunction}
 						/>
 					</form>
-					<footer>copyright</footer>
 				</div>
 			</>
 			{/* )} */}
