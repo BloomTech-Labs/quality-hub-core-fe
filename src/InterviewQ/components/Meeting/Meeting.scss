@@ -1,3 +1,62 @@
+// .meetingContainer {
+//     position: relative;
+// }
+
+// .videoContainer {
+
+// }
+
+// #theirVideoTag {
+//     height: 90vh;
+//     width: 100%!important;
+//     border: 1px solid red;
+
+// }
+
+// #myVideoTag {
+//     width: 20%!important;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     border: 1px solid blue;
+//     vertical-align: top;
+// }
+
+// #chatArea {
+//     overflow-y: scroll;
+// }
+
+// .interviewq-meeting-chatbox{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     border: 1px solid green;
+//     height: 600px;
+//     width: 200px;
+//     transform-origin: top right;
+//     position: absolute;
+//     top: 100px;
+//     right: 0;
+// }
+
+// .interviewq-video-controls {
+//     display: flex;
+//     justify-content: space-around;
+// }
+
+// footer {
+//     width: 100vw;
+//     position: fixed;
+//     bottom: 0;
+//     height: 2%;
+//     background: white;
+// }
+
+// .videoChat {
+//     position: absolute;
+//     bottom: 0;
+// }
+
 .interviewq-two-video-screens{
     // border: 1px solid red;
     display: flex;
@@ -23,4 +82,8 @@ footer {
     bottom: 0;
     height: 2%;
     background: white;
+}
+
+.begin-interview-button{
+    border: 1px solid red;
 }

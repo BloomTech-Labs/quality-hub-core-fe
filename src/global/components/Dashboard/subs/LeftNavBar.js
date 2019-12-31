@@ -38,7 +38,7 @@ export default function LeftNavBar() {
 					<div className='dashnav-txt'> Schedule</div>
 				</div>
 			</NavLink>
-			<NavLink activeClassName='dashnavactive' to='/dashboard/coach'>
+			{/* <NavLink activeClassName='dashnavactive' to='/dashboard/coach'>
 				<div className='dash-left-menu-btn'>
 					<Icon
 						icon={ICONS.PAYMENTS}
@@ -48,7 +48,7 @@ export default function LeftNavBar() {
 					/>
 					<div className='dashnav-txt'> Coach</div>
 				</div>
-			</NavLink>
+			</NavLink> */}
 			<NavLink activeClassName='dashnavactive' to='/dashboard/payments'>
 				<div className='dash-left-menu-btn'>
 					<Icon

@@ -1,49 +1,44 @@
 // Libraries
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
+
+// Styles & Images
+import './Payment.scss';
+import StripeBadge from '../../../../../../stripe_assets/powered_by_stripe.png';
 
 // Components
-import DashboardInput from '../DashboardInput';
+import Coach from './Coach';
+import Customer from './Customer';
 
 // Query
-const GET_PAYMENTINFO = gql`
+export const CHECK_COACH_STATUS = gql`
 	query {
 		me {
 			id
-			payment_info
+			post {
+				id
+			}
 		}
 	}
 `;
 
-const PaymentInfo = () => {
-	const { data, loading, error } = useQuery(GET_PAYMENTINFO);
-
-	error && console.log(error);
-
-	const keys =
-		data &&
-		Object.keys(data.me).filter(item => item !== 'id' && item !== '__typename');
+export default function PaymentInfo() {
+	const { data, loading } = useQuery(CHECK_COACH_STATUS);
 
 	return (
-		<div className='dash-personalinfo'>
-			<div className='personalinfo-header'>
+		<div className='dash-payment'>
+			<div className='dash-payment-header'>
 				<h2>Payments</h2>
+				<img src={StripeBadge} alt='Powered by Stripe' />
 			</div>
-			<div className='editform'>
-				<h3>Payment Info</h3>
-				{loading && <p>Loading...</p>}
-				{data &&
-					keys.map(item => (
-						<DashboardInput
-							key={item}
-							userKey={item}
-							userValue={data.me[item]}
-						/>
-					))}
-			</div>
+			{loading ? (
+				<p className='dash-payment-loading'>Loading...</p>
+			) : data && data.me.post ? (
+				<Coach />
+			) : (
+				<Customer />
+			)}
 		</div>
 	);
-};
-
-export default PaymentInfo;
+}

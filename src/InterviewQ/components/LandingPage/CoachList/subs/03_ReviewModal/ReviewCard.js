@@ -23,13 +23,15 @@ const ReviewCard = ({ review }) => {
 				<div className='iq-review-time'>
 					<span>{format(new Date(review.createdAt), 'PPP  p ')}</span>
 				</div>
+          {review.rating ? 
 				<div className='iq-review-stars'>
 					{review.rating >= 0.5 ? star() : greystar()}
 					{review.rating >= 1.5 ? star() : greystar()}
 					{review.rating >= 2.5 ? star() : greystar()}
 					{review.rating >= 3.5 ? star() : greystar()}
-					{review.rating >= 4.5 ? star() : greystar()}
+          {review.rating >= 4.5 ? star() : greystar()}
 				</div>
+          :<div className='iq-review-stars'> No Rating </div> }
 			</div>
 			<div className='iq-review-content'>
 				<p>{review.review}</p>

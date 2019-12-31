@@ -9,16 +9,12 @@ import ConfirmedInterview from './02_ConfirmedInterview';
 
 const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) => {
 	const coachId = match.params.coachId;
-  console.log(booking)
   const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const convertToUTC = (obj) => {
     let localAvail = new Date(obj.year, obj.month - 1, obj.day, obj.hour, obj.minute)
-    //  console.log(localAvail)
     let utc = zonedTimeToUtc(localAvail, localTime);
-    // console.log(utc)
     let utcArr = utc.toISOString().split(/[T:-]/g);
-    // console.log(utcArr);
     const availAMin = obj.minute === 30 ? 30 : 0;
     const availAHour = utcArr[3].charAt(0) === '0' ? utcArr[3].substr(1, 1) : utcArr[3];
     
@@ -42,7 +38,7 @@ const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) 
       hour: Number(utcArr[3]),
       minute: Number(utcArr[4])
     }
-    // console.log(UTCdate)
+
     return UTCdate
   }
 
@@ -53,13 +49,11 @@ const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) 
 
   const submitBooking = () => {
     const utcBooking = convertToUTC(booking)
-    console.log(utcBooking)
     newBooking({ variables: utcBooking })
   .then(res => {
     client.clearStore();
     setOpen(true)
     // setDateAvails([...dateAvails, availability])
-    console.log('successful post')
     //history.push('/interviewq/interviewconfirmed')
   })
   .catch(err => console.log(err))
@@ -71,7 +65,6 @@ const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) 
     // const { year, month, day, hour, minute } = booking;
 
     bookingDate = format(new Date(booking.year, booking.month - 1, booking.day, booking.hour, booking.minute), "PPPP - p ");
-  console.log(bookingDate)
   	//This sets the darkened overlay behind the modals
    
   }
