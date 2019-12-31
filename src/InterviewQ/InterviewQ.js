@@ -10,12 +10,13 @@ import ReviewPage from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
-import Meeting from './components/Meeting';
+import Room from './components/Meeting/subs/Room';
 
-const InterviewQContainer = () => {
+const InterviewQContainer = (props) => {
+	console.log(props.location.pathname)
 	return (
 		<>
-			{localStorage.getItem('token') && <LeftNav />}
+			{(!props.location.pathname.includes('meeting') && localStorage.getItem('token')) && <LeftNav />}
 			<div>
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
@@ -36,7 +37,7 @@ const InterviewQContainer = () => {
 					path='/interviewq/history/review/:id'
 					component={ReviewPage}
 				/>
-				<Route path='/interviewq/meeting' component={Meeting} />
+				<Route path='/interviewq/meeting' component={Room} />
 			</div>
 		</>
 	);

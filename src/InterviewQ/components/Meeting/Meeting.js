@@ -5,10 +5,11 @@ import Waiting from './subs/Waiting';
 import Room from './subs/Room';
 
 export default function Meeting() {
+
 	return (
 		<>
-			<Route path='/interviewq/meeting' component={Waiting} />
-			<Route path='/interviewq/meeting/room' component={Room} />
+			<Route exact path='/interviewq/meeting' component={Waiting} />
+			<Route path='/interviewq/meeting/4815162342' component={Room} />
 		</>
 	);
 }

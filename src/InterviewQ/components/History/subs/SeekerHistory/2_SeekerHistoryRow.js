@@ -52,16 +52,20 @@ export default function SeekerHistoryRow({ booking }) {
 						</Link>
 					)}
 				</div>
-				<div
-					className='history-col history-content-toggle'
-					onClick={() => setShowReport(!showReport)}>
-					{showReport ? 'Hide' : 'View'} Report{' '}
+				{!booking.report ? (
+					<div className='history-col'>Pending Report</div>
+				) : (
 					<div
-						className='arrow-icon'
-						style={{ transform: `scaleY(${showReport ? '-1' : '1'})` }}>
-						<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+						className='history-col history-content-toggle'
+						onClick={() => setShowReport(!showReport)}>
+						{showReport ? 'Hide' : 'View'} Report{' '}
+						<div
+							className='arrow-icon'
+							style={{ transform: `scaleY(${showReport ? '-1' : '1'})` }}>
+							<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 			{showReview && <SeekerHistoryReview booking={booking} />}
 			{showReport && <SeekerHistoryReport booking={booking} />}

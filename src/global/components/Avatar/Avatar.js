@@ -75,33 +75,36 @@ export default function Avatar() {
 	return (
 		<div>
 			<input
-				className='image-input'
-				type='file'
-				id='imageInput'
+				className="image-input"
+				type="file"
+				id="imageInput"
 				onChange={e => setPicture(e.target.files[0])}
 			/>
-			<label htmlFor='imageInput'>
-				<div className='img-wrapper'>
+			<div className="dashboard-avatar-image-button">
+			<label htmlFor="imageInput">
+				<div className="img-wrapper">
 					<div
-						className='profile-img'
+						className="profile-img"
 						style={{
 							backgroundImage: `url('${data && data.me.image_url}')`,
 						}}>
-						{!data && <p className='add-image'>Add Image</p>}
+						{!data && <p className="add-image">Add Image</p>}
 						{data && !data.me.image_url && (
 							<Icon
 								icon={ICONS.PERSONALINFOBIG}
 								width={26}
 								height={28}
-								color='white'
+								color="white"
 							/>
 						)}
 					</div>
-					<div className='edit-image'>
+					<div className="edit-image">
 						<p>Edit Image</p>
 					</div>
 				</div>
 			</label>
+			{(data && data.me.image_url) && <button className="avatar-delete-image-button" onClick={()=>editImage({ variables: { image_url: null } })}>Remove Image</button>}
+			</div>
 		</div>
 	);
 }

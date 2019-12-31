@@ -1,12 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
-import { format, getMonth, getYear, differenceInMilliseconds } from 'date-fns';
+import {
+	format,
+	isSameMonth,
+	isSameDay,
+	toDate,
+	endOfMonth,
+	startOfWeek,
+	endOfWeek,
+	addDays,
+	startOfMonth,
+	getDate,
+	getMonth,
+	isBefore,
+	isAfter,
+	getYear,
+	getHours,
+	getMinutes,
+	formatDistanceStrict,
+	differenceInMilliseconds
+} from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import './00_RequestInterview.scss';
 import axios from 'axios';
 import { convertToLocal } from '../../../../global/utils/TZHelpers';
+import Dropzone from 'react-dropzone';
+import { DropzoneIcon } from '../../../../global/icons/dropzone';
+import { checkcircle } from '../../../../global/icons/checkcircle';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -14,7 +36,6 @@ const RequestInteview = props => {
 		variables: { coach_id: coachId },
 	});
 
-	console.log(props.history);
 	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	const [resumeURL, setResumeURL] = useState(null);
@@ -25,6 +46,8 @@ const RequestInteview = props => {
 	const [dateAvails, setDateAvails] = useState();
 	const [currentMonth, setCurrentMonth] = useState();
 	const [currentDate, setCurrentDate] = useState();
+	const [dragOver, setDragOver] = useState(false);
+	const [dropped, setDropped] = useState(false);
 
 	const validateFile = checkFile => {
 		if (checkFile.type === 'application/pdf') {
@@ -48,6 +71,7 @@ const RequestInteview = props => {
 					)
 					.then(res => {
 						setResumeURL(res.data.secure_url);
+						setDropped(true);
 					})
 					.catch(err => {
 						console.log(err);
@@ -73,8 +97,6 @@ const RequestInteview = props => {
 		});
 	};
 	const createBooking = (e, slot) => {
-		console.log(e.target.id);
-		console.log(slot.id);
 		setPrevId(e.target.id);
 		let prevSlot = document.getElementById(prevId);
 		if (prevId && prevSlot !== null) {
@@ -121,9 +143,9 @@ const RequestInteview = props => {
 						.map(avail => convertToLocal(avail))
 						.filter(
 							avail =>
-								avail.year === getYear(props.selectedCell) &&
-								avail.day === currentDate &&
-								avail.month === currentMonth &&
+								// avail.year === getYear(props.selectedCell) &&
+								// avail.day === currentDate &&
+								// avail.month === currentMonth &&
 								avail.isOpen === true,
 						),
 			  )
@@ -140,27 +162,58 @@ const RequestInteview = props => {
 
 	const getAvailableSlots = () => {
 		let bookingArray = [];
-		const convertMinute = oldMinute => {
-			return oldMinute === 0 ? '00' : '50';
-		};
+
 		for (let x = 0; x < dateAvails.length; x++) {
 			for (let y = 0; y < dateAvails.length; y++) {
-				if (dateAvails[x].year === dateAvails[y].year) {
-					if (dateAvails[x].day === dateAvails[y].day) {
-						if (
-							`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-								`${dateAvails[y].hour}${convertMinute(
-									dateAvails[y].minute,
-								)}` ===
-							-50
-						) {
-							bookingArray.push(dateAvails[x]);
-							break;
-						}
+				let date1 = new Date(
+					dateAvails[x].year,
+					dateAvails[x].month - 1,
+					dateAvails[x].day,
+					dateAvails[x].hour,
+					dateAvails[x].minute,
+					0,
+				);
+				let date2 = new Date(
+					dateAvails[y].year,
+					dateAvails[y].month - 1,
+					dateAvails[y].day,
+					dateAvails[y].hour,
+					dateAvails[y].minute,
+					0,
+				);
+				let distanceInMinutes = formatDistanceStrict(date1, date2, {
+					unit: 'minute',
+				});
+				if (distanceInMinutes == '30 minutes') {
+					if (isBefore(date1, date2)) {
+						bookingArray.push(dateAvails[x])
+						break;
 					}
 				}
 			}
 		}
+
+		// const convertMinute = oldMinute => {
+		// 	return oldMinute === 0 ? '00' : '50';
+		// };
+		// for (let x = 0; x < dateAvails.length; x++) {
+		// 	for (let y = 0; y < dateAvails.length; y++) {
+		// 		if (dateAvails[x].year === dateAvails[y].year) {
+		// 			if (dateAvails[x].day === dateAvails[y].day) {
+		// 				if (
+		// 					`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
+		// 						`${dateAvails[y].hour}${convertMinute(
+		// 							dateAvails[y].minute,
+		// 						)}` ===
+		// 					-50
+		// 				) {
+		// 					bookingArray.push(dateAvails[x]);
+		// 					break;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 		setCurrentSlots(bookingArray);
 	};
 
@@ -183,11 +236,19 @@ const RequestInteview = props => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	const dragFunction = () => {
+		setDragOver(true);
+	};
+
+	const offDragFunction = () => {
+		setDragOver(false);
+	};
+
 	return (
-		<div className='booking-content-section'>
-			<div className='formsection'>
-				<div className='booking-header-container'>
-					<h2 className='booking-first-header'>
+		<div className="booking-content-section">
+			<div className="formsection">
+				<div className="booking-header-container">
+					<h2 className="booking-first-header">
 						Select a Date - Coach{' '}
 						{props.history.location.state &&
 						props.history.location.state.coachName
@@ -198,20 +259,23 @@ const RequestInteview = props => {
 							: ' '}
 					</h2>
 				</div>
-				<div className='booking-subheading'>
+				<div className="booking-subheading">
 					<p>Please select a date and timeslot for your mock interview</p>
 				</div>
-				<div className='interviewq-content-container'>
-					<div className='coach-availability'>
+				<div className="interviewq-content-container">
+					<div className="coach-availability">
 						<SmallCalendar
 							availabilities={availabilities}
 							selectedCell={props.selectedCell}
 							setSelectedCell={props.setSelectedCell}
 							refetchAvails={refetch}
 						/>
-						<div className='interview-slot-list'>
+						<div className='request-interview-slot-list'>
 							{currentSlots ? (
 								currentSlots.map(time => {
+									if(time.day == currentDate && time.month == currentMonth && time.year == getYear(props.selectedCell)){
+
+									
 									if (time.isOpen === true) {
 										const isPast = time =>
 											differenceInMilliseconds(time, new Date()) < 0
@@ -256,6 +320,7 @@ const RequestInteview = props => {
 											</div>
 										);
 									}
+								}
 									return null;
 								})
 							) : (
@@ -271,41 +336,60 @@ const RequestInteview = props => {
 			)} */}
 				</div>
 			</div>
-			<div className='formsection'>
-				<div className='booking-header-container'>
+			<div className="formsection">
+				<div className="booking-header-container">
 					<h2>Additional Information</h2>
 				</div>
-				<div className='booking-subheading'>
+				<div className="booking-subheading">
 					<p>
 						Please respond to these prompts to give your interview coach a
 						better sense of who you are and what your goals and motivations are.
 					</p>
 				</div>
-				<div className='interviewq-content-container'>
-					<div className='interviewq-booking-input'>
-						<h3>Resume Upload</h3>
-						<input
-							className=''
-							type='file'
-							id='resumeInput'
-							accept='application/pdf'
-							onChange={e => setResume(e.target.files[0])}
-						/>
+				<div className="interviewq-content-container">
+					<div className="interviewq-booking-input">
+								<h3>Resume Upload</h3>
+						<Dropzone
+							onDrop={acceptedFiles => {
+								setResume(acceptedFiles[0]);
+								offDragFunction();
+							}}>
+							{({ getRootProps, getInputProps }) => (
+								<section>
+									<div {...getRootProps()}>
+										<input {...getInputProps()} accept="application/pdf"/>
+										<div
+											className={`interviewq-create-booking-dropzone ${dragOver ? 'interviewq-dropped-file' : ''}`}
+											onDragOver={() => dragFunction()}
+											onMouseLeave={() => offDragFunction()}
+											onDragLeave={() => offDragFunction()}
+											>
+												
+												{dropped ? checkcircle() : DropzoneIcon()}
+											<p className="interviewq-dropzone-text">
+												{'Click or drag PDF file to this area to upload your resume'}
+											</p>
+											{dropped && `Attached file: ${resume.name}`}
+										</div>
+									</div>
+								</section>
+							)}
+						</Dropzone>
 					</div>
-					<div className='interviewq-booking-input'>
+					<div className="interviewq-booking-input">
 						<h3>What do you want to get out of mock interviews?</h3>
 						<textarea
-							placeholder='e.g. More confidence, preparation for upcoming interview etc....'
-							name='interviewGoals'
+							placeholder="e.g. More confidence, preparation for upcoming interview etc...."
+							name="interviewGoals"
 							value={props.booking.interviewGoals}
 							onChange={handleChange}
 						/>
 					</div>
-					<div className='interviewq-booking-input'>
+					<div className="interviewq-booking-input">
 						<h3>What kind of interview questions do you want to focus on?</h3>
 						<textarea
-							placeholder='e.g. Technical questions, soft skill questions etc'
-							name='interviewQuestions'
+							placeholder="e.g. Technical questions, soft skill questions etc"
+							name="interviewQuestions"
 							value={props.booking.interviewQuestions}
 							onChange={handleChange}
 						/>
@@ -322,17 +406,17 @@ const RequestInteview = props => {
     </div> */}
 
 			{props.booking && props.booking.minute !== undefined ? (
-				<div className='booking-button-container'>
+				<div className="booking-button-container">
 					<Link
-						className='book-interview-button'
+						className="book-interview-button"
 						to={`/interviewq/booking/${coachId}/confirm`}>
-						<button className='book-interview-button'>
+						<button>
 							<p>Next</p>
 						</button>
 					</Link>
 				</div>
 			) : (
-				<div className='booking-bottom'>
+				<div className="booking-bottom">
 					<p> Please select a time slot above to continue</p>
 				</div>
 			)}
