@@ -38,7 +38,7 @@ const InterviewQContainer = (props) => {
 					component={ReviewPage}
 				/>
 				{/* <Route path='/interviewq/meeting' component={Room} /> */}
-				<Route path='/interviewq/meeting' render={props => <Room {...props} unique={window.localStorage.getItem('uniquecheckid')}/>} />
+				<Route path='/interviewq/meeting' render={props => <Room {...props} unique={window.localStorage.getItem('uniquecheckid')} myName={localStorage.getItem('first_name')} />}  />
 				{/* render={props => <LandingPage {...props} />} */}
 			</div>
 		</>

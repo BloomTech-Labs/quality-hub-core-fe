@@ -20,6 +20,7 @@ const GET_USER = gql`
 	query dropdownMenu {
 		me {
 			id
+			first_name
 		}
 	}
 `;
@@ -57,6 +58,7 @@ const NavBar = ({ loggedin, setLoggedin, history}) => {
 
 	//If user query came back with data and you have a token in localStorage, log in.
 	if (data && localStorage.getItem('token')) {
+		// localStorage.setItem('first_name', data.first_name)
 		setLoggedin(true);
 	}
 
