@@ -10,7 +10,9 @@ import Avatar from '../../../../../../Avatar';
 export default function DashboardAvatar() {
 	return (
 		<div className='dash-avatar-wrapper'>
-			<h4 className='dash-heading'>Photo</h4>
+			<span className='dash-heading'>
+				<h4>Photo</h4>
+			</span>
 			<Avatar />
 		</div>
 	);
