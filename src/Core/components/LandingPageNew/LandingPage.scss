@@ -43,6 +43,12 @@
 			margin-top: 1.2rem;
 		}
 
+		@media screen and (max-width: 400px) {
+			.landing-page-nav-grid-dropdown {
+				display: none;
+			}
+		}
+
 		.landing-page-nav-link {
 			font-style: normal;
 			font-weight: 600;
@@ -58,15 +64,15 @@
 				margin-left: 0;
 			}
 
-			@media screen and (max-width: 400px) {
-				&:first-of-type {
-					display: none;
-				}
+			// @media screen and (max-width: 400px) {
+			// 	&:first-of-type {
+			// 		display: none;
+			// 	}
 
-				&:nth-of-type(2) {
-					display: none;
-				}
-			}
+			// 	&:nth-of-type(2) {
+			// 		display: none;
+			// 	}
+			// }
 		}
 
 		.landing-page-nav-grid-dropdown,
