@@ -36,7 +36,6 @@ const RequestInteview = props => {
 		variables: { coach_id: coachId },
 	});
 
-	// console.log(props.history);
 	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	const [resumeURL, setResumeURL] = useState(null);
@@ -274,10 +273,6 @@ const RequestInteview = props => {
 						<div className='request-interview-slot-list'>
 							{currentSlots ? (
 								currentSlots.map(time => {
-									console.log(time);
-									console.log(currentDate);
-									console.log(currentMonth);
-									console.log(getYear(props.selectedCell));
 									if(time.day == currentDate && time.month == currentMonth && time.year == getYear(props.selectedCell)){
 
 									
@@ -356,7 +351,6 @@ const RequestInteview = props => {
 								<h3>Resume Upload</h3>
 						<Dropzone
 							onDrop={acceptedFiles => {
-								console.log(acceptedFiles);
 								setResume(acceptedFiles[0]);
 								offDragFunction();
 							}}>
