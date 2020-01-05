@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardElement, injectStripe } from 'react-stripe-elements';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+
+import { PAYMENT} from './Resolvers';
 
 const CheckoutForm = props => {
+
 	const [complete, setComplete] = useState(false);
-	const { coachId } = useParams();
-	console.log(coachId);
 
-	const handleSubmit = async ev => {
-		let { token } = await props.stripe.createToken({ name: 'Name' });
+	const [makePayment , {loading, error, called}] = useMutation(PAYMENT)
 
-		console.log(token);
-		// let response = await fetch('/charge', {
-		// 	method: 'POST',
-		// 	headers: { 'Content-Type': 'text/plain' },
-		// 	body: token.id,
-		// });
-
-		// if (response.ok) setComplete(true);
-
-		// // Logic in this area: should make mutation to stripeDirectCharge
-		// // source is token
+	const handleSubmit = async e => {
+		let { token, error } = await props.stripe.createToken({
+			type: 'card'
+		});
+		if (error) {
+			alert(error.message)
+		} else {
+			makePayment({variables: {amount: props.price * 100, source: token.id, coach: props.coachId}})
+				.then(res => setComplete(true))
+				.catch(err => alert(err.message))
+		}
 	};
-
 	return (
 		<div className='checkout'>
 			<div className='checkout-header'>
@@ -32,6 +32,7 @@ const CheckoutForm = props => {
 				{complete ? (
 					<h3>Purchase Complete!</h3>
 				) : (
+					loading ? 'Processing payment...' :
 					<>
 						<p>Would you like to complete the purchase?</p>
 						<CardElement />

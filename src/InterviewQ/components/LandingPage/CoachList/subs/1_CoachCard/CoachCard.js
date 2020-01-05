@@ -206,6 +206,7 @@ const CoachCard = ({ post }) => {
 									pathname: `interviewq/booking/${coach.id}`,
 									state: {
 										coachName: `${post.coach.first_name} ${post.coach.last_name}`,
+										price: post.price
 									},
 								}}>
 									<button className="interview-button">
