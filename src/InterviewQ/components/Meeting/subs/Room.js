@@ -113,7 +113,15 @@ const Room = (props) => {
 	}
 
 	function displayMessage(message) {
-		document.querySelector('#chatArea').textContent += '\r\n' + message;
+		let newMessage = message;
+		let charAmmount = 40
+		let amount = Math.floor(message.length/charAmmount);
+		if(amount > 0){
+			for(let i=amount; i>0; i--){
+				newMessage = newMessage.slice(0, i*charAmmount) + '-\r\n' + newMessage.slice(i*charAmmount);
+			}
+		} 
+		document.querySelector('#chatArea').textContent += '\r\n' + newMessage;
 		document
 			.querySelector('#chatArea')
 			.setAttribute('style', 'white-space: pre;');
@@ -283,7 +291,8 @@ const Room = (props) => {
 				<div id="chatArea" className="interviewq-meeting-chatbox"></div>
 				<div id="signalingArea"></div>
 				<form>
-					<textarea id="myMessage" 
+					<input id="myMessage" 
+						type='text'
 					// onClick={e => {
 					// 	// e.preventDefault()
 					// 	e.stopPropagation()
