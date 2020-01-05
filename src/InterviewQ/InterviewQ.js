@@ -11,6 +11,7 @@ import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedI
 import History from './components/History';
 import CoachReport from './components/CoachReport';
 import Meeting from './components/Meeting';
+import Inbox from '../Core/components/Messaging/Inbox';
 
 const InterviewQContainer = (props) => {
 	console.log(props.location.pathname)
@@ -38,6 +39,7 @@ const InterviewQContainer = (props) => {
 					component={ReviewPage}
 				/>
 				<Route path='/interviewq/meeting' component={Meeting} />
+				<Route path='/interviewq/inbox' component={Inbox} />
 			</div>
 		</>
 	);

@@ -1,0 +1,38 @@
+.inbox-container{
+  padding: 24px 0;
+  display: flex;
+  margin-left: 240px;
+  height: 500px;
+  .inbox-left-sidebar{
+    color: #096dd9;
+    font-size: 14px;
+    width: 340px;
+    .chat-list{
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      text-align: left;
+      li{
+        cursor: pointer;
+        list-style: none;
+       
+      }
+      li:hover{
+        font-weight: bolder;
+      }
+    }
+  }
+  .chat-screen{
+    margin: 0 4rem;
+    .chat-messages{
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      li{
+        list-style: none;
+      }
+    }
+  }
+}
