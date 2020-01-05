@@ -63,10 +63,10 @@ const Inbox = () => {
     <div className='inbox-container'>
       <aside className="inbox-left-sidebar">
         <h3>My Conversations</h3>
-        {convList ? <ChatList convList={convList} setCurrentRoom={setCurrentRoom} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
+        {convList ? <ChatList convList={convList} setCurrentRoom={setCurrentRoom} currentRoom={currentRoom} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
       </aside>
             <section className="chat-screen">
-              <header className="chat-header">{currentRoom.displayName}</header>
+              {/* <header className="chat-header">{currentRoom.displayName}</header> */}
               <ul className="chat-messages" id='message-list-div'>
                 {/* <li className='messageDiv'>This is a test message</li>
                 <li className='messageDiv sentMessage'>Sent Message</li> */}
