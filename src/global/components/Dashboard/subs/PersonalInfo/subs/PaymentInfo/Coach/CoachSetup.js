@@ -15,7 +15,7 @@ const UPDATE_STRIPEID = gql`
 	}
 `;
 
-export default function CoachSetup() {
+export default function CoachSetup({ refetch }) {
 	const { search } = useLocation();
 	const [updateStripeId] = useMutation(UPDATE_STRIPEID);
 
@@ -27,7 +27,7 @@ export default function CoachSetup() {
 		if (code !== null) {
 			// console.log('YAS');
 			console.log('code: ', code);
-			updateStripeId({ variables: { code } });
+			updateStripeId({ variables: { code } }).then(res => refetch());
 		}
 	}, [code]);
 

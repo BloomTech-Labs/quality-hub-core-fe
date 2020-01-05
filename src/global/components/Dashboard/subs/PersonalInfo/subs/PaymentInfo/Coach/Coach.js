@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import './Coach.scss';
 
 import CoachSetup from './CoachSetup';
-import CoachLink from './CoachLink';
+import CoachStripeDashboard from './CoachStripeDashboard';
 
 const CHECK_COACH_STATUS = gql`
 	query user($id: ID!) {
@@ -16,13 +16,19 @@ const CHECK_COACH_STATUS = gql`
 `;
 
 export default function Coach() {
-	const { data } = useQuery(CHECK_COACH_STATUS, {
+	const { data, loading, refetch } = useQuery(CHECK_COACH_STATUS, {
 		variables: { id: localStorage.getItem('id') },
 	});
 
+	if (loading) return null;
+
 	return (
 		<div className='dash-coach'>
-			{data && data.user.stripeCoachConnected ? <CoachLink /> : <CoachSetup />}
+			{data && data.user.stripeCoachConnected ? (
+				<CoachStripeDashboard />
+			) : (
+				<CoachSetup refetch={refetch} />
+			)}
 		</div>
 	);
 }
