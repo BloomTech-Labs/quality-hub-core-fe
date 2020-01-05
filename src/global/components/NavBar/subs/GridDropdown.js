@@ -19,7 +19,8 @@ const GridDropdown = () => {
 	const [open, setOpen] = useState(false);
 
 	const handleOutsideClick = e => {
-		if (node.current.contains(e.target)) {
+
+		if (node && node.current && node.current.contains(e.target)) {
 			return;
 		}
 		setOpen(false);
