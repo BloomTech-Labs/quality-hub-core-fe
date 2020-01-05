@@ -7,5 +7,9 @@ export const PAYMENT = gql`
       source: $source
       coachId: $coach
     )
+    {
+      success
+      error
+    }
   }
 `
