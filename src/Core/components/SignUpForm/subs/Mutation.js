@@ -37,3 +37,11 @@ export const SIGN_UP = gql`
 		}
 	}
 `;
+
+export const CREATE_CHATUSER = gql`
+  mutation createChatUser($userName: String!, $userId: String!) { 
+    createChatUser(
+			userName: $userName
+			userId: $userId 
+    )
+}`;

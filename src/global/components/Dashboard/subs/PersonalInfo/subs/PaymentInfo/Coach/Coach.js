@@ -17,7 +17,7 @@ const UPDATE_STRIPEID = gql`
 
 export default function Coach() {
 	const { search } = useLocation();
-	const [updateStripeID] = useMutation(UPDATE_STRIPEID);
+	const [updateStripeId] = useMutation(UPDATE_STRIPEID);
 
 	const code = search.match(/code=(.*?)&/)
 		? search.match(/code=(.*?)&/)[1]
@@ -26,7 +26,8 @@ export default function Coach() {
 
 	useEffect(() => {
 		if (code !== null) {
-			console.log('YAS');
+			// console.log('YAS');
+			console.log('code: ', code);
 			updateStripeId({ variables: { code } });
 		}
 	}, [code]);
@@ -45,7 +46,7 @@ export default function Coach() {
 					{/* <button> */}
 					<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
 						{/* Connect to Stripe */}
-						<img src={StripeButton} />
+						<img src={StripeButton} alt='Stripe Button' />
 					</a>
 					{/* </button> */}
 				</div>
