@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
+import Draggable from 'react-draggable';
 
 const Room = (props) => {
 	const [theParty, setTheParty] = useState(false);
@@ -244,8 +245,11 @@ const Room = (props) => {
 	return (
         <>
             <div className="interviewq-two-video-screens">
+				<Draggable>
                 <video id="myVideoTag" autoPlay="false" muted="muted"></video>
+				</Draggable>
                 <video id="theirVideoTag" autoPlay="false"></video>
+						</div>
                 <div className="the-secret-is-cumin">
                     <div id="chatArea" className="interviewq-meeting-chatbox">
                     </div>
@@ -259,7 +263,6 @@ const Room = (props) => {
                         />
                     </form>
                 </div>
-            </div>
             <div className="interviewq-video-controls">
                     <button onClick={toggleVideo}>Video off/on</button>
                     <button onClick={toggleAudio}>Mute</button>
