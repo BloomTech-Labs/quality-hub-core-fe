@@ -4,7 +4,7 @@ import MessageInput from './MessageInput';
 import ChatList from './ChatList';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import { tokenUrl, instanceLocator } from './config';
-import { startDM, connectToRoom } from './methods.js';
+import { startDM, connectToRoom, getRooms } from './methods.js';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_QH_USER, CREATE_CHATUSER } from './resolvers';
 import './Messaging.scss';
@@ -24,23 +24,24 @@ const Inbox = () => {
     })
   })
 
-  const getRooms = () => {
-    chatManager.connect({
-      onAddedToRoom: room => {
-        console.log(room)
-      }
-    }).then(currentUser => {
-      console.log(currentUser.rooms)
-      setConvList(currentUser.rooms.map(channel => {
-        return { name: channel.name, id: channel.id }
-      }))
-    })
-  }
+  // const getRooms = () => {
+  //   chatManager.connect({
+  //     onAddedToRoom: room => {
+  //       console.log(room)
+  //     }
+  //   }).then(currentUser => {
+  //     console.log(currentUser.rooms)
+  //     setConvList(currentUser.rooms.map(channel => {
+  //       return { name: channel.name, id: channel.id }
+  //     }))
+  //   })
+  // }
   console.log(convList)
   
 
     useEffect(() => {
-      getRooms();
+      getRooms(setConvList);
+      console.log(getRooms);
     }, [])
 
     const sendMessage = (text, roomId) => {
@@ -61,7 +62,7 @@ const Inbox = () => {
       return(
     <div className='inbox-container'>
       <aside className="inbox-left-sidebar">
-        <ChatList convList={convList} setCurrentRoom={setCurrentRoom} />
+        {convList && <ChatList convList={convList} setCurrentRoom={setCurrentRoom} />}
       </aside>
             <section className="chat-screen">
               <header className="chat-header"></header>

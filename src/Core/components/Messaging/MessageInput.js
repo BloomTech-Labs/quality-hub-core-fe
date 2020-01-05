@@ -3,7 +3,7 @@ import { handleSubmit } from '../../../InterviewQ/components/CoachForm/subs/Func
 
 const MessageInput = ({ sendMessage, currentRoom }) => {
 
-  const [message, setMessage] = useState()
+  const [message, setMessage] = useState('')
 
   const handleChange = (e) => {
     setMessage(e.target.value)

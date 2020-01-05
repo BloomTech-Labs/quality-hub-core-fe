@@ -53,11 +53,11 @@ const chatManager = new ChatManager({
   })
 })
 
-export  const startDM = (recipient, recipientId, sender) => {
+export  const startDM = (recipient, recipientId, sender, history) => {
   const userId = localStorage.getItem('id')
   
   // const sender = await `${data.me.first_name} ${data.me.last_name}`
-  console.log(userId, recipientId, recipient)
+  // console.log(userId, recipientId, recipient)
   chatManager.connect()
   .then(currentUser => {
     currentUser.createRoom({
@@ -66,11 +66,37 @@ export  const startDM = (recipient, recipientId, sender) => {
     private: true,
     addUserIds: [userId, recipientId],
   }).then(room => {
-    console.log(`Created room called ${room.id}`)
+    history.push('/interviewq/inbox')
   })
   .catch(err => {
     console.log(`Error creating room ${err}`)
   })
+})
+}
+
+export const getRooms = (setConvList) => {
+  chatManager.connect({
+    onAddedToRoom: room => {
+      // console.log("room", room)
+    }
+  // }).then(currentUser => {
+  //   // console.log("currentuser.rooms", currentUser.rooms)
+  //   setConvList(currentUser.rooms.map(channel => {
+  //     console.log(channel)
+      
+  //     return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId }
+  //   }))
+  // })
+}).then(currentUser => {
+  // console.log("currentuser.rooms", currentUser.rooms)
+  setConvList(currentUser.rooms.map(channel => {
+    const splitName= channel.name.split('-');
+  if (channel.createdByUserId === localStorage.getItem('id')){
+    return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId, displayName: splitName[1] }
+  }
+    
+    return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId, displayName: splitName[0] }
+  }))
 })
 }
 
@@ -86,7 +112,7 @@ export const connectToRoom = (roomId, chatLog, setChatLog) => {
       // messageLimit: 0,
      hooks: {
          onMessage: message => {
-           console.log(message.sender)
+          //  console.log(message.sender)
            messageObj = { text: message.text, senderId: message.senderId };
            messageArray.push(messageObj);
             setChatLog(messageArray);
