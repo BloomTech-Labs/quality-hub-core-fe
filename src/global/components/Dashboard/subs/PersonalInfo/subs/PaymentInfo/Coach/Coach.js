@@ -8,17 +8,16 @@ import './Coach.scss';
 import StripeButton from '../../../../../../../stripe_assets/light-on-light.png';
 
 const UPDATE_STRIPEID = gql`
-	mutation addCoachStripeID($code: String) {
-		addCoachStripeID(code: $code) {
+	mutation addCoachStripeId($code: String!) {
+		addCoachStripeId(code: $code) {
 			id
-			stripeId
 		}
 	}
 `;
 
 export default function Coach() {
 	const { search } = useLocation();
-	const [updateStripeID] = useMutation(UPDATE_STRIPEID);
+	const [updateStripeId] = useMutation(UPDATE_STRIPEID);
 
 	const code = search.match(/code=(.*?)&/)
 		? search.match(/code=(.*?)&/)[1]
@@ -27,7 +26,8 @@ export default function Coach() {
 	useEffect(() => {
 		if (code !== null) {
 			// console.log('YAS');
-			updateStripeID({ variables: { stripeCoachCode: code } });
+			console.log('code: ', code);
+			updateStripeId({ variables: { code } });
 		}
 	}, [code]);
 
@@ -43,7 +43,7 @@ export default function Coach() {
 					{/* <button> */}
 					<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
 						{/* Connect to Stripe */}
-						<img src={StripeButton} />
+						<img src={StripeButton} alt='Stripe Button' />
 					</a>
 					{/* </button> */}
 				</div>

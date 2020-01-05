@@ -17,18 +17,26 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 		<div className='landing-page-nav'>
 			<h1>QualityHub</h1>
 			<div className='landing-page-nav-right'>
-				<a className='landing-page-nav-link' href='#about'>
+				<a
+					className='landing-page-nav-link landing-page-nav-about'
+					href='#about'>
 					About
 				</a>
-				<a className='landing-page-nav-link' href='#services'>
+				<a
+					className='landing-page-nav-link landing-page-nav-link'
+					href='#services'>
 					Services
 				</a>
 				{!localStorage.getItem('token') && (
 					<>
-						<NavLink className='landing-page-nav-link' to='/signin'>
+						<NavLink
+							className='landing-page-nav-link landing-page-nav-signin'
+							to='/signin'>
 							Sign in
 						</NavLink>
-						<NavLink className='landing-page-nav-link' to='/signup'>
+						<NavLink
+							className='landing-page-nav-link landing-page-nav-signup'
+							to='/signup'>
 							Sign up
 						</NavLink>
 					</>
