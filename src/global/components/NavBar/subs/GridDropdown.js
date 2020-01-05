@@ -1,6 +1,6 @@
 // Libraries
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //Icons
 import { Interviewqicon } from '../../../icons/interviewqicon';
@@ -10,17 +10,14 @@ import { Codeqicon } from '../../../icons/codeqicon';
 import { Recruiterqicon } from '../../../icons/recruiterqicon';
 import { Networkqicon } from '../../../icons/networkqicon';
 import { Gridicon } from '../../../icons/gridicon';
-import { Gridicon_white } from '../../../icons/gridicon_white';
-// import { InterviewQColoredIcon } from '../../../../global/icons/interviewqcoloredicon';
+import { InterviewQColoredIcon } from '../../../../global/icons/interviewqcoloredicon';
 
 const GridDropdown = () => {
 	const node = useRef();
-	const location = useLocation();
 	const [open, setOpen] = useState(false);
 
 	const handleOutsideClick = e => {
-
-		if (node && node.current && node.current.contains(e.target)) {
+		if (node.current.contains(e.target)) {
 			return;
 		}
 		setOpen(false);
@@ -37,7 +34,7 @@ const GridDropdown = () => {
 	return (
 		<div ref={node}>
 			<div className='grid-menu grid-icon' onClick={() => setOpen(!open)}>
-				{location.pathname === '/' ? Gridicon_white() : Gridicon()}
+				{Gridicon()}
 			</div>
 
 			{open && (
@@ -49,8 +46,8 @@ const GridDropdown = () => {
 								className='box'
 								onClick={() => setOpen(false)}>
 								{Interviewqicon()}
-								{/* <div className="grid-dropdown-interviewq"><p>Interview&nbsp;</p>{InterviewQColoredIcon()}</div> */}
-								<p>InterviewQ</p>
+			{/* <div className="grid-dropdown-interviewq"><p>Interview&nbsp;</p>{InterviewQColoredIcon()}</div> */}
+			<p>InterviewQ</p>
 							</Link>
 
 							<Link

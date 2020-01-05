@@ -1,5 +1,5 @@
 // Libraries
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
@@ -24,10 +24,6 @@ const GET_BASICINFO = gql`
 
 const BasicInfo = () => {
 	const { data, loading, error } = useQuery(GET_BASICINFO);
-
-	useEffect(()=>{
-		data && localStorage.setItem("first_name", data.me.first_name);
-	},[data])
 
 	error && console.log(error);
 
