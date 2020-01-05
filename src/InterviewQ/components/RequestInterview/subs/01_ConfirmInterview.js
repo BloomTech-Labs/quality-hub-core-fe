@@ -27,9 +27,12 @@ const ConfirmInterview = ({ booking, history, match, selectedCell, coachName }) 
     const availAHour = utcArr[3].charAt(0) === '0' ? utcArr[3].substr(1, 1) : utcArr[3];
     const availAMonth = utcArr[2].charAt(0) === '0' ? utcArr[2].substr(1, 1) : utcArr[2];
 
-    let item3 = utcArr[1].charAt(0) ==='0' ? utcArr2[1].substr(1,1) : utcArr2[1];
-    const availBHour = utcArr2[3].charAt(0) === '0' ? utcArr2[3].substr(1, 1) : utcArr2[3];
-    const availBMonth = utcArr2[2].charAt(0) === '0' ? utcArr2[2].substr(1, 1) : utcArr2[2];
+    let item3 = utcArr2[1].charAt(0) =='0' ? utcArr2[1].substr(1,1) : utcArr2[1];
+    console.log(utcArr2[1], item3);
+    console.log(utcArr2[1].charAt(0));
+    console.log(utcArr2[1].substr(1, 1))
+    const availBHour = utcArr2[3].charAt(0) == '0' ? utcArr2[3].substr(1, 1) : utcArr2[3];
+    const availBMonth = utcArr2[2].charAt(0) == '0' ? utcArr2[2].substr(1, 1) : utcArr2[2];
  
     if(utcArr[1].charAt(0)==="0"){
       utcArr[1]=utcArr[1].charAt(1);
