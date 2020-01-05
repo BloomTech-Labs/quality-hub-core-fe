@@ -70,7 +70,8 @@ const Room = (props) => {
 		rtcPeerConn.onaddstream = function(event) {
 			console.log('on add stream');
 			displaySignalingMessage('going to add their stream...');
-			document.querySelector('#theirVideoTag').srcObject = event.stream;
+            document.querySelector('#theirVideoTag').srcObject = event.stream;
+            console.log('')
 		};
 
 		navigator.mediaDevices.getUserMedia =
@@ -143,10 +144,12 @@ const Room = (props) => {
 
 	function toggleAudio() {
 		constraints.audio = !constraints.audio;
+		document.querySelector('.interviewq-bottom-nav-button-mute').classList.toggle('interviewq-video-button-toggle-color')
 		restartStream();
 	}
 
 	function toggleVideo() {
+		document.querySelector('.interviewq-bottom-nav-button-video').classList.toggle('interviewq-video-button-toggle-color')
 		constraints.video === false
 			? (constraints.video = videoProps)
 			: (constraints.video = false);
@@ -239,36 +242,74 @@ const Room = (props) => {
 
 	const endConnection = () => {
 		console.log('END CONNECTION');
-		io.disconnect();
+		// io.disconnect();
+		window.close();
 	};
 
+	const style = {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		border: "solid 1px #ddd",
+		background: "#f0f0f0"
+	  };
+
 	return (
-        <>
+		<>
+			{/* <Resizable className="qwerty"
+    style={style}
+    defaultSize={{
+      width: 200,
+      height: 200
+    }}
+  >
+    001
+  </Resizable> */}
+        <div className="video-container">
             <div className="interviewq-two-video-screens">
-				<Draggable>
-                <video id="myVideoTag" autoPlay="false" muted="muted"></video>
-				</Draggable>
-                <video id="theirVideoTag" autoPlay="false"></video>
-						</div>
-                <div className="the-secret-is-cumin">
-                    <div id="chatArea" className="interviewq-meeting-chatbox">
-                    </div>
-                    <div id="signalingArea"></div>
-                    <form>
-                        <input id="myMessage" type="text" />
-                        <input
-                            id="sendMessage"
-                            type="submit"
-                            onClick={sendMessageFunction}
-                        />
-                    </form>
-                </div>
-            <div className="interviewq-video-controls">
-                    <button onClick={toggleVideo}>Video off/on</button>
-                    <button onClick={toggleAudio}>Mute</button>
-                    <button onClick={endConnection}>End</button>
-            </div>
-        </>
+					<Draggable>
+						<video id="myVideoTag" autoPlay="false" muted="muted"></video>
+					</Draggable>
+                <div className="theirVideoDiv">
+					<video id="theirVideoTag" autoPlay="false"></video>
+					<div className="interviewq-video-controls">
+						<button className="interviewq-bottom-nav-button-video" onClick={toggleVideo}>Video off/on</button>
+						<button className="interviewq-bottom-nav-button-mute" onClick={toggleAudio}>Mute</button>
+						<button className="interviewq-bottom-nav-button" onClick={endConnection}>End</button>
+					</div>
+				</div>
+			</div>
+			<Draggable>
+
+			<div className="the-secret-is-cumin">
+				<div id="chatArea" className="interviewq-meeting-chatbox"></div>
+				<div id="signalingArea"></div>
+				<form>
+					<textarea id="myMessage" 
+					// onClick={e => {
+					// 	// e.preventDefault()
+					// 	e.stopPropagation()
+					// }} 
+					onMouseDown={e => {
+						// e.preventDefault()
+						e.stopPropagation()
+					}} 
+					// onMouseUp={e => {
+					// 	// e.preventDefault()
+					// 	e.stopPropagation()
+					// }}
+					/>
+					<input
+						id="sendMessage"
+						type="submit"
+						onClick={sendMessageFunction}
+					/>
+				</form>
+			</div>
+			</Draggable>
+
+        </div>
+		</>
 	);
 };
 
