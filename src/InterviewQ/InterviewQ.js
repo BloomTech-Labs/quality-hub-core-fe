@@ -10,13 +10,17 @@ import ReviewPage from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
+import Meeting from './components/Meeting/subs/Room';
+import Inbox from '../Core/components/Messaging/Inbox';
 import Room from './components/Meeting/subs/Room';
+// import Stripe from '../global/components/Stripe';
 
-const InterviewQContainer = (props) => {
-	console.log(props.location.pathname)
+const InterviewQContainer = props => {
+	// console.log(props.location.pathname);
 	return (
 		<>
-			{(!props.location.pathname.includes('meeting') && localStorage.getItem('token')) && <LeftNav />}
+			{!props.location.pathname.includes('meeting') &&
+				localStorage.getItem('token') && <LeftNav />}
 			<div>
 				<Route exact path='/interviewq' component={InterviewLandingPage} />
 				<Route path='/interviewq/addcoach' component={CoachForm} />
@@ -37,7 +41,23 @@ const InterviewQContainer = (props) => {
 					path='/interviewq/history/review/:id'
 					component={ReviewPage}
 				/>
-				<Route path='/interviewq/meeting' component={Room} />
+				{/* <Route path='/interviewq/meeting' component={Meeting} /> */}
+				<Route path='/interviewq/inbox' component={Inbox} />
+				{/* <Route path='/interviewq/meeting' component={Room} /> */}
+				<Route
+					path='/interviewq/meeting'
+					render={props => (
+						<Room
+							{...props}
+							unique={window.localStorage.getItem('uniquecheckid')}
+							myName={localStorage.getItem('first_name')}
+						/>
+					)}
+				/>
+				{/* render={props => <LandingPage {...props} />} */}
+				{/* <Route path='/interviewq/stripe'>
+					<Stripe />
+				</Route> */}
 			</div>
 		</>
 	);
