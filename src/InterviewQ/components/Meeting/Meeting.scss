@@ -65,7 +65,15 @@
 
 .interviewq-meeting-chatbox{
     overflow-y: scroll;
+    // overflow-x: none !important;
+    font-size: 1.5rem;
+    text-align: left;
+    padding-left: 15px;
 }
+
+// .pMessage {
+//     text-overflow: clip;
+// }
 
 .theirVideoDiv {
     height: 100vh;
@@ -148,5 +156,5 @@
     top: 0;
     background: white;
     border: 1px solid black;
-    padding: 0 5px 5px;
+    padding: 5px;
 }

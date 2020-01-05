@@ -15,13 +15,15 @@ import AccountsSignUp from './subs/2_SignupForms/4_AccountsSignUp';
 import CompletedSignUp from './subs/2_SignupForms/5_CompletedSignUp';
 
 // Mutation
-import { SIGN_UP } from './subs/Mutation';
+import { SIGN_UP, CREATE_CHATUSER } from './subs/Mutation';
 
 // User Schema
 import { userSchema } from './subs/UserSchema';
+import { responsePathAsArray } from 'graphql';
 
 const SignUpForm = props => {
 	const [signup, error] = useMutation(SIGN_UP);
+	const [newChatUser] = useMutation(CREATE_CHATUSER);
 
 	// Validation
 	const [emailTouched, setEmailTouched] = useState(false);
@@ -98,6 +100,7 @@ const SignUpForm = props => {
 		signup({ variables: submitUser })
 			.then(results => {
 				// console.log(results);
+				newChatUser({ variables: { userName: `${submitUser.first_name} ${submitUser.last_name}`, userId: results.data.signup.user.id.toString() }});
 				let token = results.data.signup.token;
 				localStorage.setItem('token', token);
 				localStorage.setItem('id', results.data.signup.user.id);
