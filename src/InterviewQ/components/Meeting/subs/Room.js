@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
 import Draggable from 'react-draggable';
-import { Resizable } from 're-resizable';
 
 const Room = (props) => {
 	const [theParty, setTheParty] = useState(false);
@@ -145,10 +144,12 @@ const Room = (props) => {
 
 	function toggleAudio() {
 		constraints.audio = !constraints.audio;
+		document.querySelector('.interviewq-bottom-nav-button-mute').classList.toggle('interviewq-video-button-toggle-color')
 		restartStream();
 	}
 
 	function toggleVideo() {
+		document.querySelector('.interviewq-bottom-nav-button-video').classList.toggle('interviewq-video-button-toggle-color')
 		constraints.video === false
 			? (constraints.video = videoProps)
 			: (constraints.video = false);
@@ -241,7 +242,8 @@ const Room = (props) => {
 
 	const endConnection = () => {
 		console.log('END CONNECTION');
-		io.disconnect();
+		// io.disconnect();
+		window.close();
 	};
 
 	const style = {
@@ -271,9 +273,9 @@ const Room = (props) => {
                 <div className="theirVideoDiv">
 					<video id="theirVideoTag" autoPlay="false"></video>
 					<div className="interviewq-video-controls">
-						<button onClick={toggleVideo}>Video off/on</button>
-						<button onClick={toggleAudio}>Mute</button>
-						<button onClick={endConnection}>End</button>
+						<button className="interviewq-bottom-nav-button-video" onClick={toggleVideo}>Video off/on</button>
+						<button className="interviewq-bottom-nav-button-mute" onClick={toggleAudio}>Mute</button>
+						<button className="interviewq-bottom-nav-button" onClick={endConnection}>End</button>
 					</div>
 				</div>
 			</div>
