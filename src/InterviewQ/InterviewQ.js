@@ -41,7 +41,7 @@ const InterviewQContainer = props => {
 					path='/interviewq/history/review/:id'
 					component={ReviewPage}
 				/>
-				<Route path='/interviewq/meeting' component={Meeting} />
+				{/* <Route path='/interviewq/meeting' component={Meeting} /> */}
 				<Route path='/interviewq/inbox' component={Inbox} />
 				{/* <Route path='/interviewq/meeting' component={Room} /> */}
 				<Route
