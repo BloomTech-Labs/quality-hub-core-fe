@@ -8,10 +8,9 @@ import './Coach.scss';
 import StripeButton from '../../../../../../../stripe_assets/light-on-light.png';
 
 const UPDATE_STRIPEID = gql`
-	mutation addCoachStripeID($code: String!) {
-		addCoachStripeID(code: $code) {
+	mutation addCoachStripeId($code: String!) {
+		addCoachStripeId(code: $code) {
 			id
-			stripeId
 		}
 	}
 `;
@@ -28,7 +27,7 @@ export default function Coach() {
 	useEffect(() => {
 		if (code !== null) {
 			console.log('YAS');
-			updateStripeID({ variables: { stripeId: code } });
+			updateStripeId({ variables: { code } });
 		}
 	}, [code]);
 
