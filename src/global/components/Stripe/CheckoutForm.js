@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 
-import { PAYMENT} from './Resolvers';
+import { PAYMENT } from './Resolvers';
 
 const CheckoutForm = props => {
-
 	const [complete, setComplete] = useState(false);
 
-	const [makePayment , {loading, error, called}] = useMutation(PAYMENT)
+	const [makePayment, { loading, error, called }] = useMutation(PAYMENT);
 
 	const handleSubmit = async e => {
 		let { token, error } = await props.stripe.createToken({
-			type: 'card'
+			type: 'card',
 		});
 		if (error) {
-			alert(error.message)
+			alert(error.message);
 		} else {
-			makePayment({variables: {amount: props.price * 100, source: token.id, coach: props.coachId}})
+			makePayment({
+				variables: {
+					amount: props.price * 100,
+					source: token.id,
+					coach: props.coachId,
+				},
+			})
 				.then(res => setComplete(true))
-				.catch(err => alert(err.message))
+				.catch(err => alert(err.message));
 		}
 	};
 	return (
@@ -31,8 +35,9 @@ const CheckoutForm = props => {
 			<div className='checkout-box'>
 				{complete ? (
 					<h3>Purchase Complete!</h3>
+				) : loading ? (
+					'Processing payment...'
 				) : (
-					loading ? 'Processing payment...' :
 					<>
 						<p>Would you like to complete the purchase?</p>
 						<CardElement />
