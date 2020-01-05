@@ -13,6 +13,7 @@ const getToken = () => {
 	return token ? `Bearer ${token}` : '';
 };
 
+const stripeKey = process.env.REACT_APP_STRIPE_KEY || "stripe"
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
@@ -39,7 +40,7 @@ cache.writeData({
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
-		<StripeProvider apiKey='pk_test_33Vr8d8lQvI5B1z4TYuOQ2kF00ufosuuTA'>
+		<StripeProvider apiKey={stripeKey}>
 			<Router>
 				<App />
 			</Router>
