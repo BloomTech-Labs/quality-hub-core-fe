@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import '../Meeting.scss';
+import Draggable from 'react-draggable';
+import { Resizable } from 're-resizable';
 
 const Room = (props) => {
 	const [theParty, setTheParty] = useState(false);
@@ -69,7 +71,8 @@ const Room = (props) => {
 		rtcPeerConn.onaddstream = function(event) {
 			console.log('on add stream');
 			displaySignalingMessage('going to add their stream...');
-			document.querySelector('#theirVideoTag').srcObject = event.stream;
+            document.querySelector('#theirVideoTag').srcObject = event.stream;
+            console.log('')
 		};
 
 		navigator.mediaDevices.getUserMedia =
@@ -241,31 +244,70 @@ const Room = (props) => {
 		io.disconnect();
 	};
 
+	const style = {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		border: "solid 1px #ddd",
+		background: "#f0f0f0"
+	  };
+
 	return (
-        <>
+		<>
+			{/* <Resizable className="qwerty"
+    style={style}
+    defaultSize={{
+      width: 200,
+      height: 200
+    }}
+  >
+    001
+  </Resizable> */}
+        <div className="video-container">
             <div className="interviewq-two-video-screens">
-                <video id="myVideoTag" autoPlay="false" muted="muted"></video>
-                <video id="theirVideoTag" autoPlay="false"></video>
-                <div className="the-secret-is-cumin">
-                    <div id="chatArea" className="interviewq-meeting-chatbox">
-                    </div>
-                    <div id="signalingArea"></div>
-                    <form>
-                        <input id="myMessage" type="text" />
-                        <input
-                            id="sendMessage"
-                            type="submit"
-                            onClick={sendMessageFunction}
-                        />
-                    </form>
-                </div>
-            </div>
-            <div className="interviewq-video-controls">
-                    <button onClick={toggleVideo}>Video off/on</button>
-                    <button onClick={toggleAudio}>Mute</button>
-                    <button onClick={endConnection}>End</button>
-            </div>
-        </>
+					<Draggable>
+						<video id="myVideoTag" autoPlay="false" muted="muted"></video>
+					</Draggable>
+                <div className="theirVideoDiv">
+					<video id="theirVideoTag" autoPlay="false"></video>
+					<div className="interviewq-video-controls">
+						<button onClick={toggleVideo}>Video off/on</button>
+						<button onClick={toggleAudio}>Mute</button>
+						<button onClick={endConnection}>End</button>
+					</div>
+				</div>
+			</div>
+			<Draggable>
+
+			<div className="the-secret-is-cumin">
+				<div id="chatArea" className="interviewq-meeting-chatbox"></div>
+				<div id="signalingArea"></div>
+				<form>
+					<textarea id="myMessage" 
+					// onClick={e => {
+					// 	// e.preventDefault()
+					// 	e.stopPropagation()
+					// }} 
+					onMouseDown={e => {
+						// e.preventDefault()
+						e.stopPropagation()
+					}} 
+					// onMouseUp={e => {
+					// 	// e.preventDefault()
+					// 	e.stopPropagation()
+					// }}
+					/>
+					<input
+						id="sendMessage"
+						type="submit"
+						onClick={sendMessageFunction}
+					/>
+				</form>
+			</div>
+			</Draggable>
+
+        </div>
+		</>
 	);
 };
 
