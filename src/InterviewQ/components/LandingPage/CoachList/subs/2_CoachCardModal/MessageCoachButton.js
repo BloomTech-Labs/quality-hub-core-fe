@@ -30,12 +30,25 @@ const MessageCoachButton = ({ post, coach }) => {
   }, [data])
 
   const messageCoach = () => {
+    console.log(chatArray)
 		if (
 			chatArray.includes(
-				`${coach.id}-${userId}` || chatArray.includes(`${userId}-${coach.id}`),
+				`${coach.id}-${userId}`) || chatArray.includes(`${userId}-${coach.id}`)
 			)
-		) {
-			history.push('/interviewq/inbox');
+		 {
+			history.push({
+				pathname: '/interviewq/inbox',
+				state: {
+					createdChannel: {
+						name: `${fullname}-${post.coach.first_name} ${post.coach.last_name}`,
+            id: `${userId}-${coach.id}`,
+            createdByUserId: `${userId}`,
+            displayName: `${post.coach.first_name} ${post.coach.last_name}`
+					},
+				},
+      });
+
+      return
 		} else {
 			startDM(
 				`${post.coach.first_name} ${post.coach.last_name}`,

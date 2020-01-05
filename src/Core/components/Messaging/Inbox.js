@@ -36,18 +36,18 @@ const Inbox = () => {
   //     }))
   //   })
   // }
-  console.log(convList)
+  // console.log(convList)
   
 
     useEffect(() => {
       getRooms(setConvList);
-      console.log(getRooms);
+      
     }, [])
 
     const sendMessage = (text, roomId) => {
       chatManager.connect()
     .then(currentUser => {
-      console.log(currentUser)
+      // console.log(currentUser)
       currentUser.sendMessage({
         text: text,
         roomId: roomId
@@ -55,24 +55,26 @@ const Inbox = () => {
     })
   }
 
-
+// console.log(convList)
 
   //   // console.log(chatLog)
 
       return(
     <div className='inbox-container'>
       <aside className="inbox-left-sidebar">
-        {convList && <ChatList convList={convList} setCurrentRoom={setCurrentRoom} />}
+        <h3>My Conversations</h3>
+        {convList ? <ChatList convList={convList} setCurrentRoom={setCurrentRoom} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
       </aside>
             <section className="chat-screen">
-              <header className="chat-header"></header>
+              <header className="chat-header">{currentRoom.displayName}</header>
               <ul className="chat-messages" id='message-list-div'>
+                {/* <li className='messageDiv'>This is a test message</li>
+                <li className='messageDiv sentMessage'>Sent Message</li> */}
               </ul>
               <div className="chat-footer">
               {currentRoom === 'none' ? <h3>Select a conversation to chat</h3> : <MessageInput sendMessage={sendMessage} currentRoom={currentRoom}/>}
               </div>
             </section>
-            <aside className="sidebar right-sidebar"></aside>
   </div>
   )
 }

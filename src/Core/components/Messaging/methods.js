@@ -70,6 +70,7 @@ export  const startDM = (recipient, recipientId, sender, history) => {
   })
   .catch(err => {
     console.log(`Error creating room ${err}`)
+    // history.push('/interviewq/inbox')
   })
 })
 }
@@ -120,6 +121,9 @@ export const connectToRoom = (roomId, chatLog, setChatLog) => {
            messageDiv.textContent = `${message.sender.name}: ${message.text}`
            messageDiv.id = message.id
            document.querySelector('.chat-messages').appendChild(messageDiv);
+           if (message.senderId === localStorage.getItem('id')){
+             messageDiv.classList.add('sentMessage')
+           }
            return
          },
        },
