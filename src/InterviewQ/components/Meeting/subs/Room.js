@@ -152,7 +152,9 @@ const Room = (props) => {
 
 	function toggleAudio() {
 		constraints.audio = !constraints.audio;
-		document.querySelector('.interviewq-bottom-nav-button-mute').classList.toggle('interviewq-video-button-toggle-color')
+		document.querySelector('.interviewq-bottom-nav-button-mute').classList.toggle('interviewq-video-button-toggle-color');
+		document.querySelector('.interviewq-bottom-nav-button-mute').textContent === "Mute" ? document.querySelector('.interviewq-bottom-nav-button-mute').textContent = "Muted" : document.querySelector('.interviewq-bottom-nav-button-mute').textContent = "Mute";
+		
 		restartStream();
 	}
 
