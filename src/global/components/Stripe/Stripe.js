@@ -4,10 +4,10 @@ import './Stripe.scss';
 
 import CheckoutForm from './CheckoutForm';
 
-export default function Stripe() {
+export default function Stripe(props) {
 	return (
 		<Elements>
-			<CheckoutForm />
+			<CheckoutForm {...props} />
 		</Elements>
 	);
 }

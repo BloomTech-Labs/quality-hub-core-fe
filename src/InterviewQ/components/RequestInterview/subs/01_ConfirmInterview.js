@@ -15,6 +15,7 @@ const ConfirmInterview = ({
 	match,
 	selectedCell,
 	coachName,
+	...rest
 }) => {
 	const coachId = match.params.coachId;
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -104,7 +105,7 @@ const ConfirmInterview = ({
 	}, [open]);
 	return (
 		<div className='booking-content-section'>
-			<Stripe coachId={coachId} />
+			<Stripe coachId={coachId} price={rest.location.state.price}/>
 			<div id='overlay-confirm-interview'></div>
 			<div className='formsection'>
 				<div className='interviewq-header-container interviewq-conf-heading'>
