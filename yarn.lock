@@ -8915,8 +8915,6 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-<<<<<<< HEAD
-=======
 re-resizable@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.1.1.tgz#7ff7cfe92c0b9d8b0bceaa578aadaeeff8931eaf"
@@ -8924,7 +8922,6 @@ re-resizable@^6.1.1:
   dependencies:
     fast-memoize "^2.5.1"
 
->>>>>>> beb113b43f148d035313535492f99b5d46eaa129
 react-apollo-test-utils@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/react-apollo-test-utils/-/react-apollo-test-utils-0.0.1.tgz#3045c7108737bb8ef5655c49e5d8bf4d96a26585"
