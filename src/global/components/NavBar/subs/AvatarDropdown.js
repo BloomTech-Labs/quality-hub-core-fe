@@ -2,7 +2,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useMutation, useLazyQuery } from '@apollo/react-hooks';
+import axios from 'axios';
 import { Gear } from '../../../icons/gear';
 import { Signout } from '../../../icons/signout';
 
@@ -22,12 +23,37 @@ const GET_USER = gql`
 	}
 `;
 
+const EDIT_IMG = gql`
+	mutation EditImage($image_url: String) {
+		update(image_url: $image_url) {
+			image_url
+		}
+	}
+`;
+
 const AvatarDropdown = props => {
 	const [getUser, { client, data }] = useLazyQuery(GET_USER);
 
 	const [open, setOpen] = useState(false);
 
 	const node = useRef();
+
+	const [editImage] = useMutation(EDIT_IMG, {
+		update(
+			cache,
+			{
+				data: {
+					update: { image_url },
+				},
+			},
+		) {
+			const { me } = cache.readQuery({ query: GET_USER });
+			cache.writeQuery({
+				query: GET_USER,
+				data: { me: { ...me, image_url } },
+			});
+		},
+	});
 
 	const logout = () => {
 		client.clearStore(); //remove token from cache

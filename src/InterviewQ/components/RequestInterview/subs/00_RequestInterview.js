@@ -409,13 +409,7 @@ const RequestInteview = props => {
 				<div className="booking-button-container">
 					<Link
 						className="book-interview-button"
-						to={{
-							pathname: `/interviewq/booking/${coachId}/confirm`,
-							state: {
-								price: props.location.state.price
-							}
-							}}>
-
+						to={`/interviewq/booking/${coachId}/confirm`}>
 						<button>
 							<p>Next</p>
 						</button>

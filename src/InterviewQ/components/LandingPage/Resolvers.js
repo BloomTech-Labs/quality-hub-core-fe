@@ -50,8 +50,6 @@ export const GET_USER = gql`
 	query {
 		me {
 			id
-			first_name
-			last_name
 			post {
 				id
 			}

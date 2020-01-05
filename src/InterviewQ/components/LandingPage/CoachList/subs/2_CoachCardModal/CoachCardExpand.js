@@ -9,7 +9,6 @@ import '../../CoachCardModal.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
 import { star, greystar } from '../../../../../../global/icons/star';
-import MessageCoachButton from './MessageCoachButton';
 
 const GET_COACHRATING = gql`
 	query RatingByCoach($coach_id: String!) {
@@ -241,7 +240,6 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 									)}
 								</>
 							)}
-						<MessageCoachButton coach={coach} post={post}/>
 						</div>
 					</div>
 				</div>

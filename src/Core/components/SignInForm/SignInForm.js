@@ -50,12 +50,10 @@ const SignInForm = props => {
 		let { email, password } = user;
 		login({ variables: { email, password } })
 			.then(res => {
-				console.log(res);
 				setLoading(false);
 				let token = res.data.login.token;
 				localStorage.setItem('token', token);
 				localStorage.setItem('id', res.data.login.user.id);
-				localStorage.setItem('first_name', res.data.login.user.first_name);
 				props.history.push('/dashboard');
 				props.setLoggedin(true);
 			})

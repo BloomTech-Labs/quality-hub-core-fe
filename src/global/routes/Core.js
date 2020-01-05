@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import LandingPage from '../../Core/components/LandingPage';
-import LandingPage from '../../Core/components/LandingPageNew';
+import LandingPage from '../../Core/components/LandingPage';
 import Dashboard from '../components/Dashboard';
 import SignInForm from '../../Core/components/SignInForm';
 import SignUpForm from '../../Core/components/SignUpForm';
@@ -12,17 +11,7 @@ import ChargeButton from '../../Core/components/Stripe/subs/ChargeButton';
 function Core({ loggedin, setLoggedin }) {
 	return (
 		<Switch>
-			<Route
-				exact
-				path='/'
-				render={props => (
-					<LandingPage
-						{...props}
-						loggedin={loggedin}
-						setLoggedin={setLoggedin}
-					/>
-				)}
-			/>
+			<Route exact path='/' render={props => <LandingPage {...props} />} />
 			<Route
 				path='/signin'
 				render={props => (
@@ -49,7 +38,7 @@ function Core({ loggedin, setLoggedin }) {
 				component={Dashboard}
 				setLoggedin={setLoggedin}
 			/>
-			<Route path='/charge' component={ChargeButton} />
+			<Route path='/charge' component={ChargeButton}/>
 		</Switch>
 	);
 }

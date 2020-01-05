@@ -9,7 +9,7 @@ export default function HistoryReport({ booking }) {
 			<p>{booking.report.growthAreas}</p>
 			<h4>Suggestions</h4>
 			<p>{booking.report.suggestions}</p>
-			<h4>{booking.report.additionalComments && 'Additional Feedback'}</h4>
+			<h4>Additional Feedback</h4>
 			<p>{booking.report.additionalComments}</p>
 		</div>
 	);
