@@ -13,6 +13,8 @@
       flex-direction: column;
       justify-content: start;
       text-align: left;
+      	overflow: scroll;
+	overflow-x: hidden;
       li{
         cursor: pointer;
         list-style: none;
@@ -38,6 +40,8 @@
       align-items: flex-end;
       justify-content: flex-end;
       margin-bottom: 2rem;
+      	overflow: scroll;
+	    overflow-x: hidden;
       li{
         list-style: none;
         font-size: 1.5rem;

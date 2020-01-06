@@ -9,9 +9,11 @@ import './CoachCard.scss';
 import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
 import { star, greystar } from '../../../../../../global/icons/star';
+import { message } from '../../../../../../global/icons/message';
 //Component
 import CoachModal from '../2_CoachCardModal/CoachCardModal';
 import ReviewModal from '../03_ReviewModal/ReviewModal';
+import MessageCoachButton from '../2_CoachCardModal/MessageCoachButton';
 
 const GET_COACHRATING = gql`
 	query RatingByCoach($coach_id: String!) {
@@ -114,9 +116,13 @@ const CoachCard = ({ post }) => {
 								width={80}
 								height={90}
 							/>
+
 						</div>
 					)}
+				
 				</div>
+					{/* <div className='message-icon'>{message()}</div> */}
+					<MessageCoachButton coach={coach} post={post}/>
 			</div>
 			<div className="coachcard-info">
 				<p>
@@ -138,6 +144,7 @@ const CoachCard = ({ post }) => {
 						{coach.city}, {coach.state}
 					</span>
 				</p>
+			
 				{/* <p>
 					<span className='coachcard-icon'>
 						<Icon icon={ICONS.STAR} width={19} height={20} color='#595959' />
@@ -182,6 +189,7 @@ const CoachCard = ({ post }) => {
 					} Reviews)`}</span>
 				</span>
 			</div>
+			
 			<div className="coachcard-footer">
 				<div className="coachcard-links">
 					{post.coach.linkedin_url && (
