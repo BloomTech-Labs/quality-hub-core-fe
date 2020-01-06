@@ -27,6 +27,19 @@ export const EDIT_IMG = gql`
 	}
 `;
 
+
+// export const axiosWithAuth = () => {
+// 	const token = localStorage.getItem('token');
+
+// 	return axios.create({
+// 		baseURL: `https://us1.pusherplatform.io/services/chatkit/v6/5526fd62-fe46-429a-a138-79bac026c3ff/users/`,
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			Authorization: `Bearer ${token}`,
+// 		},
+// 	});
+// };
+
 export default function Avatar() {
 	const [picture, setPicture] = useState(null);
 
@@ -63,13 +76,13 @@ export default function Avatar() {
 					`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
 					formData,
 				)
-				.then(res => {
-					editImage({ variables: { image_url: res.data.secure_url } });
-					// axios.put(`https://us1.pusherplatform.io/services/chatkit/v6/:instance_id/users/${localStorage.getItem('id')}`, { avatar_url: res.data.secure_url })
-					// .then(response => {
-					// 	console.log(response)
-					// })
-				})
+				// .then(res => {
+				// 	editImage({ variables: { image_url: res.data.secure_url } });
+				// 	axios.put(`https://us1.pusherplatform.io/services/chatkit/v6/5526fd62-fe46-429a-a138-79bac026c3ff/users/ck43dd34v021n0794b1ebnvqk`, { avatar_url: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjF65LSx-7mAhWHtlkKHYzAAigQjRx6BAgBEAQ&url=https%3A%2F%2Fsupport.gliffy.com%2Fhc%2Fen-us%2Farticles%2F218653427-Unauthorized-to-Access-Drive-401-Error-&psig=AOvVaw16PDJEiIiHmTAl7gFHdiUJ&ust=1578385851360658" })
+				// 	.then(response => {
+				// 		console.log(response)
+				// 	})
+				// })
 				.catch(err => {
 					console.log(err);
 				});

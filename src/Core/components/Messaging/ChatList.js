@@ -17,11 +17,17 @@ const ChatList = ({ setCurrentRoom, currentRoom, convList}) => {
 
   const [chatLog, setChatLog] = useState([]);
 
+  useEffect(() => {
+    if (currentRoom && currentRoom.id){
+      connectToRoom(currentRoom.id, chatLog, setChatLog)
+    }
+  },[currentRoom])
+
   const onConvoClick = (channel) => {
    const messageElements = document.getElementById('message-list-div').childNodes;
   //  if (messageElements !== undefined && chatLog !== undefined){
 
-       console.log(messageElements.length)
+      //  console.log(messageElements.length)
    for(let x=0; x < messageElements.length; x++){
      for(let y=0; y< messageElements.length; y++){
        if(messageElements[x] && messageElements[x].id !== chatLog[y].id){
