@@ -133,7 +133,8 @@ export const connectToRoom = (roomId, chatLog, setChatLog) => {
            messageArray.push(messageObj);
             setChatLog(messageArray);
            const messageDiv = document.createElement('li');
-           messageDiv.textContent = `${message.sender.name}: ${message.text}`
+          //  messageDiv.textContent = `${message.sender.name}: ${message.text}`
+          messageDiv.textContent = `${message.text}`
            messageDiv.id = message.id
         let check = false;
            for(let x=0; x < messageElements.length; x++){
