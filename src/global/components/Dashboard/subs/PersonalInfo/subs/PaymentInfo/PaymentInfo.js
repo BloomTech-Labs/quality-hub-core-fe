@@ -9,7 +9,7 @@ import StripeBadge from '../../../../../../stripe_assets/powered_by_stripe.png';
 
 // Components
 import Coach from './Coach';
-import Customer from './Customer';
+// import Customer from './Customer';
 
 export default function PaymentInfo() {
 	return (
@@ -19,7 +19,7 @@ export default function PaymentInfo() {
 				<img src={StripeBadge} alt='Powered by Stripe' />
 			</div>
 			<Coach />
-			<Customer />
+			{/* <Customer /> */}
 		</div>
 	);
 }
