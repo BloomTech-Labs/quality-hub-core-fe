@@ -129,18 +129,30 @@ export const connectToRoom = (roomId, chatLog, setChatLog) => {
       // messageLimit: 0,
      hooks: {
          onMessage: message => {
-          //  console.log(message.sender)
-          console.log('running')
+          const  messageElements =  document.getElementById('message-list-div').childNodes;
+          //  console.log(messageArray);
+          // console.log(message)
+          // console.log('running')
            messageObj = { text: message.text, senderId: message.senderId };
            messageArray.push(messageObj);
             setChatLog(messageArray);
+            // console.log(chatLog);
+            console.log(message);
            const messageDiv = document.createElement('li');
            messageDiv.textContent = `${message.sender.name}: ${message.text}`
            messageDiv.id = message.id
-           document.querySelector('.chat-messages').appendChild(messageDiv);
-           if (message.senderId === localStorage.getItem('id')){
-             messageDiv.classList.add('sentMessage')
-           }
+        let check = false;
+           for(let x=0; x < messageElements.length; x++){
+              if(messageElements[x].id == message.id){
+                check = true;
+              }
+            }
+            if(!check){
+              document.querySelector('.chat-messages').appendChild(messageDiv);
+              if (message.senderId === localStorage.getItem('id')){
+                messageDiv.classList.add('sentMessage')
+              }
+            }
            return
          },
        },

@@ -24,19 +24,35 @@ const ChatList = ({ setCurrentRoom, currentRoom, convList}) => {
   },[currentRoom])
 
   const onConvoClick = (channel) => {
-   const messageElements = document.getElementById('message-list-div').childNodes;
+     const  messageElements =  document.getElementById('message-list-div').childNodes;
+   console.log(messageElements);
   //  if (messageElements !== undefined && chatLog !== undefined){
 
-      //  console.log(messageElements.length)
-   for(let x=0; x < messageElements.length; x++){
-     for(let y=0; y< messageElements.length; y++){
-       if(messageElements[x] && messageElements[x].id !== chatLog[y].id){
-        messageElements[x].remove()
-       }
-     }
-   }
+    //Krishan commented this out
+  //  for(let x=0; x < messageElements.length; x++){
+  //    for(let y=0; y< messageElements.length; y++){
+  //      if(messageElements[x] &&  chatLog[y] && messageElements[x].id !== chatLog[y].id){
+  //       messageElements[x].remove()
+  //      }
+  //    }
   //  }
-      connectToRoom(channel.id, chatLog, setChatLog)
+
+console.log(messageElements.length);
+
+
+  for(let x=0; x < messageElements.length; x++){
+    for(let y=0; y< chatLog.length; y++){
+      if(messageElements[x] &&  chatLog[y] && messageElements[x].id !== chatLog[y].id){
+       messageElements[x].remove()
+      }
+    }
+   
+   
+  }
+   
+  //  }
+  // Krishan commented out
+      // connectToRoom(channel.id, chatLog, setChatLog)
       setCurrentRoom(channel)
       
       
