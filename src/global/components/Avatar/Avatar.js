@@ -65,6 +65,10 @@ export default function Avatar() {
 				)
 				.then(res => {
 					editImage({ variables: { image_url: res.data.secure_url } });
+					// axios.put(`https://us1.pusherplatform.io/services/chatkit/v6/:instance_id/users/${localStorage.getItem('id')}`, { avatar_url: res.data.secure_url })
+					// .then(response => {
+					// 	console.log(response)
+					// })
 				})
 				.catch(err => {
 					console.log(err);

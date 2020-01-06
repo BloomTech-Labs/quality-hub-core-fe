@@ -26,3 +26,11 @@ export const GET_RECIPIENT = gql`
     }
   }
 `
+
+export const GET_CHAT_IMG = gql`
+  query user($id: String!){
+    user(id: id){
+      image_url
+    }
+  }
+`
