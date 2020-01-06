@@ -6,14 +6,21 @@ import { useQuery } from '@apollo/react-hooks';
 const ChatList = ({ setCurrentRoom, currentRoom, convList}) => {
 
 
+const [clickFast, setClickFast] = useState();
 
   const history= useHistory();
-  //  console.log(history)
+  
   useEffect(() => {
     if (history.location.state && history.location.state.createdChannel){
       setCurrentRoom(history.location.state.createdChannel)
     }
   }, [])
+
+  useEffect(()=>{
+    if(clickFast){
+      onConvoClick(clickFast)
+    }
+  },[clickFast])
 
   const [chatLog, setChatLog] = useState([]);
 
@@ -25,7 +32,7 @@ const ChatList = ({ setCurrentRoom, currentRoom, convList}) => {
 
   const onConvoClick = (channel) => {
      const  messageElements =  document.getElementById('message-list-div').childNodes;
-   console.log(messageElements);
+   
   //  if (messageElements !== undefined && chatLog !== undefined){
 
     //Krishan commented this out
@@ -37,7 +44,6 @@ const ChatList = ({ setCurrentRoom, currentRoom, convList}) => {
   //    }
   //  }
 
-console.log(messageElements.length);
 
 
   for(let x=0; x < messageElements.length; x++){
@@ -57,7 +63,6 @@ console.log(messageElements.length);
       
       
   }
-// console.log(chatLog)
 // const selectedStyle = { fontWeight: '900'}
   return(
     <div className='chat-list'>
@@ -67,7 +72,8 @@ console.log(messageElements.length);
       })} */}
         {convList && convList.map((channel, idx) => {
           
-        return <li onClick={()=> onConvoClick(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
+        return <li onClick={()=> setClickFast(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
+        // return <li onClick={()=> onConvoClick(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
       })}
 </div>
   )

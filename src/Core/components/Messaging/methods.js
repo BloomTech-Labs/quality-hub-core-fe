@@ -57,7 +57,6 @@ export  const startDM = (recipient, recipientId, sender, history) => {
   const userId = localStorage.getItem('id')
   
   // const sender = await `${data.me.first_name} ${data.me.last_name}`
-  // console.log(userId, recipientId, recipient)
   chatManager.connect()
   .then(currentUser => {
     currentUser.createRoom({
@@ -130,14 +129,9 @@ export const connectToRoom = (roomId, chatLog, setChatLog) => {
      hooks: {
          onMessage: message => {
           const  messageElements =  document.getElementById('message-list-div').childNodes;
-          //  console.log(messageArray);
-          // console.log(message)
-          // console.log('running')
            messageObj = { text: message.text, senderId: message.senderId };
            messageArray.push(messageObj);
             setChatLog(messageArray);
-            // console.log(chatLog);
-            console.log(message);
            const messageDiv = document.createElement('li');
            messageDiv.textContent = `${message.sender.name}: ${message.text}`
            messageDiv.id = message.id
