@@ -10,7 +10,11 @@
     // border: 1px solid red;
 }
 
-
+.interviewq-video-button-toggle-color{
+    color: white !important;
+    background-color: red !important;
+    border: none !important;
+}
 
 .mybox{
 }
@@ -65,7 +69,15 @@
 
 .interviewq-meeting-chatbox{
     overflow-y: scroll;
+    // overflow-x: none !important;
+    font-size: 1.5rem;
+    text-align: left;
+    padding-left: 15px;
 }
+
+// .pMessage {
+//     text-overflow: clip;
+// }
 
 .theirVideoDiv {
     height: 100vh;
@@ -99,8 +111,8 @@
 #myVideoTag {
     width: 30vh!important;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 2px;
+    left: 2px;
     z-index: 10000;
 }
 
@@ -133,20 +145,17 @@
     border: 1px solid rgb(2, 84, 172);
 }
 
-.interviewq-video-button-toggle-color{
-    color: red !important;
-}
 
 .the-secret-is-cumin {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 33vh;
-    height: 25vh!important;
+    width: 42vh;
+    height: 35vh!important;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 2px;
+    top: 65px;
     background: white;
     border: 1px solid black;
-    padding: 0 5px 5px;
+    padding: 5px;
 }

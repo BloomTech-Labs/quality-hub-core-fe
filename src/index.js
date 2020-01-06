@@ -13,7 +13,8 @@ const getToken = () => {
 	return token ? `Bearer ${token}` : '';
 };
 
-const stripeKey = process.env.REACT_APP_STRIPE_KEY || "stripe"
+const stripeKey = process.env.REACT_APP_STRIPE_KEY || 'stripe';
+
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
