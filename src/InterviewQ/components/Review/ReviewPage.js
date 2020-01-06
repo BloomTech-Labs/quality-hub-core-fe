@@ -16,7 +16,7 @@ const ReviewPage = (props) => {
 	const [open, setOpen] = useState(false);
 
   const closeWindow = () => {
-    setOpen(false)
+    setOpen(true)
     setTimeout( () => {
       props.history.push('/interviewq/history');
     }, 200)

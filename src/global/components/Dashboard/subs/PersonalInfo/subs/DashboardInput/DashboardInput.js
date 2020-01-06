@@ -169,20 +169,23 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 		);
 	};
 	let newURL = user[userKey];
-	if(user[userKey]){
-
+	if (user[userKey]) {
 		let splitURL = user[userKey].split(':');
-		if(splitURL.length == 1){
-			newURL = `http://${user[userKey]}`
-		} 
+		if (splitURL.length === 1) {
+			newURL = `http://${user[userKey]}`;
+		}
 	}
-	
+
 	return (
 		<div className='dash-input'>
 			<div className='dash-row'>
 				<span className='dash-heading'>
-					{userKey.includes('_url') && <div className='account-icon'><AccountIcon userKey={userKey} /></div>}
-					<h4>{userKey && capitalize((userKey.split('_url'))[0])}</h4>
+					{userKey.includes('_url') && (
+						<div className='account-icon'>
+							<AccountIcon userKey={userKey} />
+						</div>
+					)}
+					<h4>{userKey && capitalize(userKey.split('_url')[0])}</h4>
 				</span>
 				{/* <div> */}
 				{editing ? (

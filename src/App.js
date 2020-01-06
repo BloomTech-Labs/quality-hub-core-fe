@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-import NavBar from './global/components/NavBar';
 import './global/styles/index.scss';
+import NavBar from './global/components/NavBar';
 import InterviewQ from './global/routes/InterviewQ';
 import ResumeQ from './global/routes/ResumeQ';
 import Core from './global/routes/Core';

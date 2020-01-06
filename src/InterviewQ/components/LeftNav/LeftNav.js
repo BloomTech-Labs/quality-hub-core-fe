@@ -13,6 +13,7 @@ export default function QNav() {
 	const { pathname } = useLocation();
 
 	return (
+	
 		<div className='QNav'>
 			<NavLink to='/interviewq' exact activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
@@ -62,5 +63,6 @@ export default function QNav() {
 				</div>
 			</NavLink>
 		</div>
+	
 	);
 }
