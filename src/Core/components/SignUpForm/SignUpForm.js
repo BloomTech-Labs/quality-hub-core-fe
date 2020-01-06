@@ -100,15 +100,20 @@ const SignUpForm = props => {
 		signup({ variables: submitUser })
 			.then(results => {
 				// console.log(results);
-				newChatUser({ variables: { userName: `${submitUser.first_name} ${submitUser.last_name}`, userId: results.data.signup.user.id.toString() }});
+				newChatUser({
+					variables: {
+						userName: `${submitUser.first_name} ${submitUser.last_name}`,
+						userId: results.data.signup.user.id.toString(),
+					},
+				});
 				let token = results.data.signup.token;
 				localStorage.setItem('token', token);
 				localStorage.setItem('id', results.data.signup.user.id);
 				props.setLoggedin(true);
 				setProgress(progress + 1);
-				setTimeout(() => {
-					props.history.push('/dashboard');
-				}, 3000);
+				// setTimeout(() => {
+				// 	props.history.push('/dashboard');
+				// }, 3000);
 			})
 			.catch(err => {
 				console.log(err);
@@ -144,11 +149,11 @@ const SignUpForm = props => {
 					passwordTouched={passwordTouched}
 				/>
 			)}
-			
+
 			{progress === 0 && <GetStarted setProgress={setProgress} />}
 
 			{progress > 0 && (
-				<div className="sign-up-form">
+				<div className='sign-up-form'>
 					<ProgressBar progress={progress} />
 					<form>
 						{(function() {
@@ -185,7 +190,7 @@ const SignUpForm = props => {
 														return (
 															<p
 																key={message}
-																className="validation-error-message">
+																className='validation-error-message'>
 																{message}
 															</p>
 														);
