@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { startDM, getRooms } from '../../../../../../Core/components/Messaging/methods';
 import { GET_USER } from '../../../Resolvers';
 import { useHistory } from 'react-router-dom';
+import { message } from '../../../../../../global/icons/message';
 
 const MessageCoachButton = ({ post, coach }) => {
 
@@ -54,13 +55,14 @@ const MessageCoachButton = ({ post, coach }) => {
 				`${post.coach.first_name} ${post.coach.last_name}`,
 				coach.id,
         fullname,
-        history
+        history,
 			);
 		}
   };
   
 return(
-  <button onClick={()=> messageCoach()}>Questions? Send {`${post.coach.first_name}`} a message</button>
+  // <button onClick={()=> messageCoach()}>Questions? Send {`${post.coach.first_name}`} a message</button>
+  <div className='message-icon'  onClick={()=> messageCoach()}>{message()}</div>
   )
 }
 
