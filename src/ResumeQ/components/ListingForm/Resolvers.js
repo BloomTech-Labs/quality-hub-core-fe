@@ -1,4 +1,4 @@
-import gql from 'apollo-boost'
+import { gql } from 'apollo-boost'
 
 export const CREATE_REVIEWER_LISTING = gql`
 	mutation createReviewerListing(
@@ -6,20 +6,16 @@ export const CREATE_REVIEWER_LISTING = gql`
 		$position: String!
 		$industry: String!
 		$description: String!
-        $createdAt: DateTime
-        $updatedAt: DateTime
 		$company: String!
 		$isPublished: Boolean!
 	) {
 		createReviewerListing(
-			$price: Int!
-            $position: String!
-            $industry: String!
-            $description: String!
-            $createdAt: DateTime
-            $updatedAt: DateTime
-            $company: String!
-            $isPublished: Boolean!
+			price: $price
+			position: $position
+			industry: $industry
+			description: $description
+			company: $company
+			isPublished: $isPublished
 		) {
 			id
 			price
@@ -39,3 +35,30 @@ export const CREATE_REVIEWER_LISTING = gql`
 		}
 	}
 `
+
+export const INDUSTRIES = gql`
+	query {
+		industries {
+			name
+		}
+	}
+`;
+
+export const GET_USER = gql`
+	query {
+		me {
+			id
+			first_name
+			last_name
+			linkedin_url
+			twitter_url
+			city
+			state
+			image_url
+			reviewerListing {
+				id
+				description
+			}
+		}
+	}
+`;

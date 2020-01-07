@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 //local imports 
 import Marketplace from './components/Marketplace'
+import ListingForm from './components/ListingForm'
 
 
 
@@ -15,8 +16,8 @@ const ResumeQContainer = () => {
         <h3>Resumé Q</h3>
         <p>Welcome to Resumé Q</p>
         <div>
-          <Route path='resumeq/reviewers' component={Marketplace} />
-          <Marketplace/>
+          <Route path='/resumeq/reviewers' component={Marketplace} />
+          <Route path='/resumeq/becomeacoach' component={ListingForm} />
         </div>
       </div>
     </>
