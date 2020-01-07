@@ -16,7 +16,7 @@ const cache = new InMemoryCache();
 
 const client = new ApolloClient({
 	//https://quality-hub-gateway-staging.herokuapp.com/
-	uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
+	uri: 'http://quality-hub-gateway.herokuapp.com/',
 	request: operation => {
 		operation.setContext({
 			headers: {
