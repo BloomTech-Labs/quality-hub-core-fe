@@ -14,6 +14,7 @@
 	justify-content: space-between;
 	text-align: left;
 	.coachcard-header {
+		position: relative;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -240,4 +241,22 @@
 	span {
 		font-weight: normal;
 	}
+}
+
+.message-icon{
+	cursor: pointer;
+	width: 26px;
+	height: 26px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	color: blue;
+	// z-index: 9999;
+	position: absolute;
+	top: 65%;
+	right: -1%;
+	background-color: rgb(255, 255, 255);
+	border-radius: 50%;
+
 }

@@ -115,7 +115,9 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 										/>
 									</div>
 								)}
+									<MessageCoachButton coach={coach} post={post}/>
 							</div>
+						
 						</div>
 						<div className='coachcard-info-expand'>
 							<p className='coachcard-icon-and-company-position'>
@@ -241,7 +243,7 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 									)}
 								</>
 							)}
-						<MessageCoachButton coach={coach} post={post}/>
+						
 						</div>
 					</div>
 				</div>

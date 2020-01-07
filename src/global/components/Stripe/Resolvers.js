@@ -1,8 +1,13 @@
 import { gql } from 'apollo-boost';
 
 export const PAYMENT = gql`
-	mutation PAYMENT($amount: Int!, $currency: String, $source: String!, $coach: String!) {
-		stripeDirectCharge(amount: $amount, currency: $currency, source: $source, coachId: $coach) {
+	mutation PAYMENT($amount: Int!, $source: String!, $coach: String!) {
+		stripeDirectCharge(
+			amount: $amount
+			source: $source
+			coachId: $coach
+			currency: "USD"
+		) {
 			success
 			error
 		}

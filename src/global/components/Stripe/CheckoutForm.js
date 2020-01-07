@@ -13,6 +13,7 @@ const CheckoutForm = props => {
 		let { token, error } = await props.stripe.createToken({
 			type: 'card',
 		});
+
 		if (error) {
 			alert(error.message);
 		} else {
@@ -24,10 +25,17 @@ const CheckoutForm = props => {
 					coach: props.coachId,
 				},
 			})
-				.then(res => {console.log('here',res);setComplete(true)})
+				.then(res => {
+					if (res.data.stripeDirectCharge.error) {
+						alert(res.data.stripeDirectCharge.error);
+					} else {
+						setComplete(true);
+					}
+				})
 				.catch(err => alert(err.message));
 		}
 	};
+
 	return (
 		<div className='checkout'>
 			<div className='checkout-header'>
@@ -37,7 +45,7 @@ const CheckoutForm = props => {
 				{complete ? (
 					<h3>Purchase Complete!</h3>
 				) : loading ? (
-					'Processing payment...'
+					<h3>Processing payment...</h3>
 				) : (
 					<>
 						<p>Would you like to complete the purchase?</p>
