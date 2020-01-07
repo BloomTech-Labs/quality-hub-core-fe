@@ -35,6 +35,7 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 			{loading && <Loading />}
 			{!loading && data && (
 				<div className='coach-list'>
+					{console.log(data.posts[0])}
 					{data.posts.map(post => (
 						<CoachCard key={post.id} post={post} history={history} />
 					))}
