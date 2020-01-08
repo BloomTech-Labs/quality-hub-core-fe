@@ -7,8 +7,7 @@ export default function Header() {
 		<div className='landing-page-header'>
 			<div className='landing-page-header-content'>
 				<h2 className='landing-page-header-text'>
-					Power up your career
-					<br />
+					Power up your career <br />
 					with help from the best.
 				</h2>
 				<CallToActionButton />
