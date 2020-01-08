@@ -8,8 +8,9 @@ import { lightbulb } from '../../../global/icons/lightbulb';
 // import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Query
-import { CREATE_REVIEWER_LISTING, INDUSTRIES, GET_USER } from './Resolvers';
-import {GET_REVIEWER_LISTINGS} from '../Marketplace/ReviewerList/Resolvers'
+import { CREATE_REVIEWER_LISTING, INDUSTRIES } from './Resolvers';
+import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
+import { GET_USER } from '../Marketplace/Resolvers'
 
 //Modal that pops up when done filling out listing form
 import DoneModal from './subs/DoneModal';
@@ -32,7 +33,7 @@ const ListingForm = props => {
 	//Done is the second modal that pops up after you publish a listing form
 	const [done, setDone] = useState(false);
 
-	
+
 
 	const [createListing] = useMutation(CREATE_REVIEWER_LISTING, {
 		// after a post is added, refetch the data with the current filter parameters
@@ -69,8 +70,6 @@ const ListingForm = props => {
 		tagString: '',
 		isPublished: true,
 	});
-
-	console.log('formState', formState)
 
 	const [requiredState, setRequiredState] = useState({
 		company: false,
@@ -117,14 +116,14 @@ const ListingForm = props => {
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className='become-a-listing-btn'>
 				{/* {lightbulb2()} */}
-				<span className='add-listing-form-button'>Become a listing</span>
+				{/* <span className='add-listing-form-button'>Become a Reviewer</span> */}
 			</button>
 
 			{/* This is the 2nd modal that pops up after you publish a post */}
 			{done && (
 				<DoneModal
 					closeWindow={closeWindow}
-					// setAvailability={setAvailability}
+				// setAvailability={setAvailability}
 				/>
 			)}
 

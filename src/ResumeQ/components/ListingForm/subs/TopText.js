@@ -6,13 +6,13 @@ const TopText = ({ lightbulb }) => {
 			<div className='add-listing-form-row-1'>
 				<div>{lightbulb()}</div>{' '}
 				<div className='add-listing-form-header'>
-					Create your listing posting here!
+					Create your listing here!
 				</div>
 			</div>
 			<p className='add-listing-form-row-2'>
-				Please fill the following fields to be listed as a listing on InterviewQ.
+				Please fill the following fields to create a listing on the ResumeQ marketplace.
 				<br />
-				This information will help seekers decide which listinges to select, so be
+				This information will help seekers decide which listing to select, so be
 				sure to sell yourself well!
 			</p>
 		</div>

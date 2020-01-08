@@ -26,6 +26,7 @@ export const GET_REVIEWER_LISTINGS = gql`
             company
             isPublished
             coach {
+                id
                 last_name
                 first_name
                 bio

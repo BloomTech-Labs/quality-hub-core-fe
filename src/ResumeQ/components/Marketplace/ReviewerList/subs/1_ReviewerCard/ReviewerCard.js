@@ -188,16 +188,15 @@ const ReviewerCard = ({ listing }) => {
 					<button className='interview-button-disabled'>Request</button>
 				) : (
 					<button className='interview-button'>
-						{/* <Link
+						<Link
 							to={{
-								pathname: `interviewq/booking/${coach.id}`,
+								pathname: `/resumeq/request/${coach.id}`,
 								state: {
 									coachName: `${listing.coach.first_name} ${listing.coach.last_name}`,
 								},
 							}}>
 							Request
-						</Link> */}
-            Request
+						</Link>
 					</button>
 				)}
 			</div>
