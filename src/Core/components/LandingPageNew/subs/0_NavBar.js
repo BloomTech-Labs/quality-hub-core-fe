@@ -1,17 +1,42 @@
 // Libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
 // Components
 import AvatarDropdown from '../../../../global/components/NavBar/subs/AvatarDropdown';
 import GridDropdown from '../../../../global/components/NavBar/subs/GridDropdown';
 
+// Query
+const CHECK_TOKEN = gql`
+	query {
+		checkToken {
+			token
+			valid
+		}
+	}
+`;
+
 export default function NavBar({ loggedin, setLoggedin, history }) {
+	const { data } = useQuery(CHECK_TOKEN);
+
 	const logout = () => {
 		localStorage.clear();
 		setLoggedin(false);
 		history.push('/');
 	};
+
+	useEffect(() => {
+		console.log(data);
+		if (data) {
+			if (data.checkToken.valid) {
+				localStorage.setItem('token', data.checkToken.token);
+			} else {
+				logout();
+			}
+		}
+	}, [data]);
 
 	return (
 		<div className='landing-page-nav'>
