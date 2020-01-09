@@ -8,7 +8,7 @@ import { lightbulb } from '../../../global/icons/lightbulb';
 // import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Query
-import { CREATE_REVIEWER_LISTING, INDUSTRIES } from './Resolvers';
+import { CREATE_REVIEWER_LISTING } from './Resolvers';
 // import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
 import { GET_USER } from '../Marketplace/Resolvers'
 
@@ -33,7 +33,7 @@ const ListingForm = props => {
 	//Done is the second modal that pops up after you publish a listing form
 	const [done, setDone] = useState(false);
 
-	const [hasListing, setHasListing] = useState();
+	// const [hasListing, setHasListing] = useState();
 
 	const [createListing] = useMutation(CREATE_REVIEWER_LISTING, {
 		// after a post is added, refetch the data with the current filter parameters
@@ -42,15 +42,15 @@ const ListingForm = props => {
 	});
 
 	//This sets the darkened overlay behind the modals
-	// useEffect(() => {
-	// 	if (open) {
-	// 		document.getElementById('overlay-listing-form').style.display = 'block';
-	// 	} else if (done) {
-	// 		document.getElementById('overlay-listing-form').style.display = 'block';
-	// 	} else {
-	// 		document.getElementById('overlay-listing-form').style.display = 'none';
-	// 	}
-	// }, [open, done]);
+	useEffect(() => {
+		if (open) {
+			document.getElementById('overlay-listing-form').style.display = 'block';
+		} else if (done) {
+			document.getElementById('overlay-listing-form').style.display = 'block';
+		} else {
+			document.getElementById('overlay-listing-form').style.display = 'none';
+		}
+	}, [open, done]);
 
 	// This is the avatar image in the preview post section
 	let image;
@@ -99,14 +99,7 @@ const ListingForm = props => {
 		})
 	};
 
-	// const setAvailability = e => {
-	// 	//Get new data
-	// 	props.refetch();
-	// 	//turn off overlay
-	// 	document.getElementById('overlay-listing-form').style.display = 'none';
-	// 	//close 2nd modal
-	// 	setDone(false);
-	// };
+
 
 	return (
 		<div>

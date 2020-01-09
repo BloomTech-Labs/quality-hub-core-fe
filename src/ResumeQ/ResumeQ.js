@@ -15,7 +15,7 @@ const ResumeQContainer = () => {
         <h3>Resumé Q</h3>
         <p>Welcome to Resumé Q</p>
         <div>
-          <Route path='/resumeq/reviewers' component={Marketplace} />
+          <Route path='/resumeq' component={Marketplace} />
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
           {/* <Route path='/resumeq/request' component={RequestReview} /> */}
         </div>
