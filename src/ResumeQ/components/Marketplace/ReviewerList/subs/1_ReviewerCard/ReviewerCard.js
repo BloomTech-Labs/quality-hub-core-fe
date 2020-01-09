@@ -66,7 +66,7 @@ const ReviewerCard = ({ listing }) => {
 
 	let { coach } = listing;
 	let maxWidth = 100;
-  
+	
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
@@ -193,6 +193,7 @@ const ReviewerCard = ({ listing }) => {
 								pathname: `/resumeq/request/${coach.id}`,
 								state: {
 									coachName: `${listing.coach.first_name} ${listing.coach.last_name}`,
+									listing: listing
 								},
 							}}>
 							Request

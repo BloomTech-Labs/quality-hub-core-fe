@@ -4,7 +4,6 @@ export const CREATE_REVIEWER_LISTING = gql`
 	mutation createReviewerListing(
 		$price: Int!
 		$position: String!
-		$industry: String!
 		$description: String!
 		$company: String!
 		$isPublished: Boolean!
@@ -12,7 +11,6 @@ export const CREATE_REVIEWER_LISTING = gql`
 		createReviewerListing(
 			price: $price
 			position: $position
-			industry: $industry
 			description: $description
 			company: $company
 			isPublished: $isPublished
@@ -20,9 +18,6 @@ export const CREATE_REVIEWER_LISTING = gql`
 			id
 			price
 			position
-			industry {
-				name
-			}
 			description
 			createdAt
             updatedAt

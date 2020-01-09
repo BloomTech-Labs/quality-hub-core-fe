@@ -38,7 +38,7 @@ export default function BecomeCoachResumeQ() {
 					hasListing ? (
 						//if you have a post made, show edit
 						<Link
-							to='/interviewq/settings'
+							to='/resumeq/becomeacoach'
 							className='become-a-coach-reroute-to-signin'>
 							<button className='become-a-coach-btn'>
 								<span className='add-coach-form-button'>Edit Listing</span>
@@ -52,7 +52,7 @@ export default function BecomeCoachResumeQ() {
 				null
 			) : (
 				//if no token link to signin
-				<Link to='/signup' className='become-a-coach-reroute-to-signin'>
+				<Link to='/resumeq' className='become-a-coach-reroute-to-signin'>
 					<button className='become-a-coach-btn'>
 						<span className='add-coach-form-button'>Create a listing</span>
 					</button>

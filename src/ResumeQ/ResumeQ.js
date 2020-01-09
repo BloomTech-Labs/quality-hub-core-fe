@@ -4,8 +4,7 @@ import { Route } from 'react-router-dom';
 //local imports 
 import Marketplace from './components/Marketplace'
 import ListingForm from './components/ListingForm'
-
-
+import RequestReview from './components/Marketplace/RequestReview'
 
 const ResumeQContainer = () => {
 
@@ -18,6 +17,7 @@ const ResumeQContainer = () => {
         <div>
           <Route path='/resumeq/reviewers' component={Marketplace} />
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
+          {/* <Route path='/resumeq/request' component={RequestReview} /> */}
         </div>
       </div>
     </>

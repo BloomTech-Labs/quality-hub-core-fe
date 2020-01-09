@@ -33,7 +33,7 @@ const ListingForm = props => {
 	//Done is the second modal that pops up after you publish a listing form
 	const [done, setDone] = useState(false);
 
-
+	const [hasListing, setHasListing] = useState();
 
 	const [createListing] = useMutation(CREATE_REVIEWER_LISTING, {
 		// after a post is added, refetch the data with the current filter parameters
@@ -116,7 +116,7 @@ const ListingForm = props => {
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className='become-a-listing-btn'>
 				{/* {lightbulb2()} */}
-				{/* <span className='add-listing-form-button'>Become a Reviewer</span> */}
+				<span className='add-listing-form-button'>Become a Reviewer</span>
 			</button>
 
 			{/* This is the 2nd modal that pops up after you publish a post */}
