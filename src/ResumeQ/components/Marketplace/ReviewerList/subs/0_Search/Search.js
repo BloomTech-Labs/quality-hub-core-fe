@@ -19,21 +19,7 @@ const Search = ({ fields, setFields, refetch }) => {
 
         <div className='search-field'>
           {/* <label>Industry</label> */}
-          <select
-            name='industry'
-            placeholder='Industry'
-            onChange={handleChange}
-            value={fields.industry}
-            required>
-            <option value="" disabled hidden>Industry</option>
-            <option value=''>All</option>
-            {ind_data &&
-              ind_data.industries.map(({ name }) => (
-                <option key={name} value={name}>
-                  {name}
-                </option>
-              ))}
-          </select>
+
         </div>
         <div className='search-field'>
           {/* <label>Price</label> */}

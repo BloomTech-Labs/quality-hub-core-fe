@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-
 import { useQuery } from '@apollo/react-hooks'
 
+import Loading from '../../../../global/components/Loading';
 import ReviewerCard from './subs/1_ReviewerCard'
 // import Search from './subs/0_Search'
 
@@ -21,7 +21,7 @@ const ReviewerList = () => {
   })
 
 
-  const { refect, loading, data } = useQuery(GET_REVIEWER_LISTINGS, {
+  const { refetch, loading, data } = useQuery(GET_REVIEWER_LISTINGS, {
     fetchPolicy: 'network-only'
   });
 
@@ -29,16 +29,16 @@ const ReviewerList = () => {
 
   // const listings = useQuery(GET_REVIEWER_LISTINGS);
   return (
-    <>
-      <div>
-        {/* add routes for components as they're built out */}
-        <h1>ReviewerList Component</h1>
-        {data && (
-          data.reviewerListings.map(listing => {
-            return <ReviewerCard key={listing.id} listing={listing} />
-          }))}
-      </div>
-    </>
+    <div className='coach-list-container'>
+      {/* add routes for components as they're built out */}
+      <h1>ReviewerList Component</h1>
+      {loading && <Loading />}
+
+      {!loading && data && (
+        data.reviewerListings.map(listing => {
+          return <ReviewerCard key={listing.id} listing={listing} />
+        }))}
+    </div>
   )
 }
 
