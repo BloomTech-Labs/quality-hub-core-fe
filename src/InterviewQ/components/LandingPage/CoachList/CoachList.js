@@ -19,51 +19,53 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 		orderBy: 'id_ASC',
 	});
 
-	const { refetch, loading, data } = useQuery(GET_POSTS, { fetchPolicy: "network-only"});
+	const { refetch, loading, data } = useQuery(GET_POSTS, {
+		fetchPolicy: 'network-only',
+	});
 
-	return ( 
+	return (
 		<>
-		 {!localStorage.getItem('token') ?
-		<div className='coach-list-container-signedout'> 
-		<Search
-					setFields={setFields}
-					fields={fields}
-					refetch={refetch}
-					toggleFilter={toggleFilter}
-					setToggleFilter={setToggleFilter}
-				/>
-				
-			{loading && <Loading />}
-			{!loading && data && (
-				<div className='coach-list'>
-					{data.posts.map(post => (
-						<CoachCard key={post.id} post={post} history={history} />
-					))}
+			{!localStorage.getItem('token') ? (
+				<div className='coach-list-container-signedout'>
+					<Search
+						setFields={setFields}
+						fields={fields}
+						refetch={refetch}
+						toggleFilter={toggleFilter}
+						setToggleFilter={setToggleFilter}
+					/>
+
+					{loading && <Loading />}
+					{!loading && data && (
+						<div className='coach-list'>
+							{data.posts.map(post => (
+								<CoachCard key={post.id} post={post} history={history} />
+							))}
+						</div>
+					)}
+				</div>
+			) : (
+				<div className='coach-list-container'>
+					{/* <div className={toggleFilter ? '' : 'hidden'}> */}
+					<Search
+						setFields={setFields}
+						fields={fields}
+						refetch={refetch}
+						toggleFilter={toggleFilter}
+						setToggleFilter={setToggleFilter}
+					/>
+
+					{/* </div> */}
+					{loading && <Loading />}
+					{!loading && data && (
+						<div className='coach-list'>
+							{data.posts.map(post => (
+								<CoachCard key={post.id} post={post} history={history} />
+							))}
+						</div>
+					)}
 				</div>
 			)}
-</div>
-		  : 	
-			<div className='coach-list-container'>
-			{/* <div className={toggleFilter ? '' : 'hidden'}> */}
-				<Search
-					setFields={setFields}
-					fields={fields}
-					refetch={refetch}
-					toggleFilter={toggleFilter}
-					setToggleFilter={setToggleFilter}
-				/> )
-			
-			{/* </div> */}
-			{loading && <Loading />}
-			{!loading && data && (
-				<div className='coach-list'>
-					{data.posts.map(post => (
-						<CoachCard key={post.id} post={post} history={history} />
-					))}
-				</div>
-			)}
-		</div>
-	}
 		</>
 	);
 };
