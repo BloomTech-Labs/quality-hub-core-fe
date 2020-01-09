@@ -33,8 +33,6 @@ const ListingForm = props => {
 	//Done is the second modal that pops up after you publish a listing form
 	const [done, setDone] = useState(false);
 
-	const [hasListing, setHasListing] = useState();
-
 	const [createListing] = useMutation(CREATE_REVIEWER_LISTING, {
 		// after a post is added, refetch the data with the current filter parameters
 		refetchQueries: ['GET_REVIEWER_LISTINGS'],

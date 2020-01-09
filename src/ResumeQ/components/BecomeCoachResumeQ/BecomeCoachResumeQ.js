@@ -38,7 +38,7 @@ export default function BecomeCoachResumeQ() {
 					hasListing ? (
 						//if you have a post made, show edit
 						<Link
-							to='/resumeq/becomeacoach'
+							to='/resumeq/settings'
 							className='become-a-coach-reroute-to-signin'>
 							<button className='become-a-coach-btn'>
 								<span className='add-coach-form-button'>Edit Listing</span>

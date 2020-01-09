@@ -51,7 +51,7 @@ const GridDropdown = () => {
 							</Link>
 
 							<Link
-								to='/resumeq'
+								to='/resumeq/reviewers'
 								className='box'
 								onClick={() => setOpen(false)}>
 								{Resumeq()}
