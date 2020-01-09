@@ -11,14 +11,14 @@ import { ICONS } from '../../../../../../global/icons/iconConstants';
 import { star, greystar } from '../../../../../../global/icons/star';
 
 const GET_COACHRATING = gql`
-	query RatingByCoach($coach_id: String!) {
-		ratingByCoach(coach_id: $coach_id)
+	query RatingByCoach($id: String!) {
+		ratingByCoach(id: $id)
 	}
 `;
 
 const GET_COACHREVIEWS = gql`
-	query reviewsByCoach($coach_id: String!) {
-		reviewsByCoach(coach_id: $coach_id) {
+	query reviewsByCoach($id: String!) {
+		reviewsByCoach(id: $id) {
 			id
 		}
 	}
@@ -29,10 +29,10 @@ const CoachCard = ({ post, setOpen, open, openReviewModal }) => {
 	let { coach } = post;
 
 	const { data } = useQuery(GET_COACHRATING, {
-		variables: { coach_id: coach.id },
+		variables: { id: coach.id },
 	});
 	const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
-		variables: { coach_id: coach.id },
+		variables: { id: coach.id },
 	});
 
 	const linkedin =

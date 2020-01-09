@@ -8,8 +8,8 @@ import { lightbulb } from '../../../global/icons/lightbulb';
 // import { lightbulb2 } from '../../../global/icons/lightbulb2';
 
 // Query
-import { CREATE_REVIEWER_LISTING, INDUSTRIES } from './Resolvers';
-import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
+import { CREATE_REVIEWER_LISTING } from './Resolvers';
+// import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
 import { GET_USER } from '../Marketplace/Resolvers'
 
 //Modal that pops up when done filling out listing form
@@ -25,13 +25,15 @@ import { handleChange, handleSubmit, handleSave } from './subs/Functions';
 
 const ListingForm = props => {
 	const { data } = useQuery(GET_USER);
-	const { data: industriesData } = useQuery(INDUSTRIES);
+	// const { data: industriesData } = useQuery(INDUSTRIES);
 
 	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
 
 	//Done is the second modal that pops up after you publish a listing form
 	const [done, setDone] = useState(false);
+
+	// const [hasListing, setHasListing] = useState();
 
 	const [createListing] = useMutation(CREATE_REVIEWER_LISTING, {
 		// after a post is added, refetch the data with the current filter parameters
@@ -40,15 +42,15 @@ const ListingForm = props => {
 	});
 
 	//This sets the darkened overlay behind the modals
-	// useEffect(() => {
-	// 	if (open) {
-	// 		document.getElementById('overlay-listing-form').style.display = 'block';
-	// 	} else if (done) {
-	// 		document.getElementById('overlay-listing-form').style.display = 'block';
-	// 	} else {
-	// 		document.getElementById('overlay-listing-form').style.display = 'none';
-	// 	}
-	// }, [open, done]);
+	useEffect(() => {
+		if (open) {
+			document.getElementById('overlay-listing-form').style.display = 'block';
+		} else if (done) {
+			document.getElementById('overlay-listing-form').style.display = 'block';
+		} else {
+			document.getElementById('overlay-listing-form').style.display = 'none';
+		}
+	}, [open, done]);
 
 	// This is the avatar image in the preview post section
 	let image;
@@ -62,10 +64,10 @@ const ListingForm = props => {
 		company: '',
 		position: '',
 		//We leave a default industry so users are FORCED to pick something
-		industryName: 'Architecture and Construction',
+		// industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
-		tagString: '',
+		// tagString: '',
 		isPublished: true,
 	});
 
@@ -81,10 +83,10 @@ const ListingForm = props => {
 		setFormState({
 			company: '',
 			position: '',
-			industryName: 'Architecture and Construction',
+			// industryName: 'Architecture and Construction',
 			description: '',
 			price: 30,
-			tagString: '',
+			// tagString: '',
 			isPublished: true,
 		});
 		setOpen(false);
@@ -97,14 +99,7 @@ const ListingForm = props => {
 		})
 	};
 
-	// const setAvailability = e => {
-	// 	//Get new data
-	// 	props.refetch();
-	// 	//turn off overlay
-	// 	document.getElementById('overlay-listing-form').style.display = 'none';
-	// 	//close 2nd modal
-	// 	setDone(false);
-	// };
+
 
 	return (
 		<div>
@@ -136,7 +131,7 @@ const ListingForm = props => {
 								setFormState={setFormState}
 								formState={formState}
 								handleChange={handleChange}
-								industriesData={industriesData}
+								// industriesData={industriesData}
 								requiredState={requiredState}
 								setRequiredState={setRequiredState}
 							/>

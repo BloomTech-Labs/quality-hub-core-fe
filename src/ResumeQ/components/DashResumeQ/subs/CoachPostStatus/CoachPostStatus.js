@@ -7,7 +7,7 @@ import PublishedModal from './UnpublishModal/PublishedModal';
 
 const CoachPostStatus = () => {
   const { loading, data: coachPost } = useQuery(GET_COACH_POST, {
-		variables: { coach_id: localStorage.getItem('id') },
+		variables: { id: localStorage.getItem('id') },
   });
   
   const [updatePost] = useMutation(UPDATE_POST)

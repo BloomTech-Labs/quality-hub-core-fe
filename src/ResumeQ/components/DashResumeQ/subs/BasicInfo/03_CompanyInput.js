@@ -20,10 +20,7 @@ const CompanyInput = ({ editing, setEditing, original, post, handleChange, handl
               onChange={handleChange}
             />
           ) : (
-              <>
                 <p>{original && original.company}</p>
-                <p>adfasdfasdf</p>
-              </>
             )}
         </div>
       </div>
