@@ -36,7 +36,7 @@ export default function CoachSetup({ refetch }) {
 			<div className='dash-coach-connectstripe'>
 				<h3>Set up Coach Dashboard on Stripe</h3>
 				<div className='dash-coach-row'>
-					<p>Click to set up your Coach Dashboard to receive payments</p>
+					<p>Click to set up your coach dashboard to receive payments.</p>
 					<a href='https://connect.stripe.com/express/oauth/authorize?client_id=ca_GKVyZQTkuxAMwbF3TPVvax4ZBwoafQea&state={STATE_VALUE}'>
 						<img src={StripeButton} alt='Stripe Button' />
 					</a>

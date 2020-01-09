@@ -17,7 +17,7 @@ export default function DeletePost() {
 				<h2>Delete Coach Post</h2>
 				<div className='delete-post'>
 					<span className='delete-warning'>
-						<p>If you delete your post, you can't reverse this action</p>
+						<p>If you delete your post, you can't reverse this action.</p>
 					</span>
 					<button className='delete-post-btn' onClick={toggle}>
 						<p>Delete Post</p>
