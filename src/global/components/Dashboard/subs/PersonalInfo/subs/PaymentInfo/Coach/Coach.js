@@ -22,6 +22,8 @@ export default function Coach() {
 
 	if (loading) return null;
 
+
+
 	return (
 		<div className='dash-coach'>
 			{data && data.user.stripeCoachConnected ? (

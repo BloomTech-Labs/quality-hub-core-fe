@@ -20,6 +20,7 @@ const CheckoutForm = props => {
 			makePayment({
 				variables: {
 					amount: props.price * 100,
+					currency: 'USD',
 					source: token.id,
 					coach: props.coachId,
 				},

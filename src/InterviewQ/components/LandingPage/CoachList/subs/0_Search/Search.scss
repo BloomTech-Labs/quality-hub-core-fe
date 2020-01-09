@@ -4,14 +4,17 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
 	background-color: white;
 	padding: 2.4rem 0;
-
 	position: fixed;
 	top: 6.4rem;
 	z-index: 400;
-	width: 107.4rem;
+
+	width: 100vw;
+	max-width: 107.4rem;
+	// border: 1px solid purple;
+	// margin: 0 0;
+
 
 	h2 {
 		font-weight: normal;
@@ -20,12 +23,12 @@
 		white-space: nowrap;
 		text-align: left;
 	}
+@media screen  and (max-width: 1270px){
+	margin: 0 auto;	
+}
+
 }
 .search-dropdowns {
-	// margin-left: 8%;
-	// border: 1px solid silver;
-	// border-radius: 1rem;
-	// padding: 2rem 2%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
@@ -37,6 +40,7 @@
 
 	@media screen and (max-width: 600px) {
 		justify-content: space-around;
+		
 	}
 }
 
@@ -61,7 +65,9 @@
 	// width: 32%;
 	margin-right: 0.8rem;
 	text-align: left;
-	//margin-bottom: 2rem;
+	flex-shrink: 2;
+	//margin-bottom: 2rem; 
+
 	select {
 		width: 100%;
 		border: 1px solid #dadce0;
