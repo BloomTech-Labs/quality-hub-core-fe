@@ -31,13 +31,15 @@ const ReviewerList = () => {
   return (
     <div className='coach-list-container'>
       {/* add routes for components as they're built out */}
-      <h1>ReviewerList Component</h1>
       {loading && <Loading />}
-
       {!loading && data && (
-        data.reviewerListings.map(listing => {
-          return <ReviewerCard key={listing.id} listing={listing} />
-        }))}
+        <div className='coach-list'>
+          {data.reviewerListings.map(listing => (
+            <ReviewerCard key={listing.id} listing={listing} />
+          )
+          )}
+        </div>
+      )}
     </div>
   )
 }
