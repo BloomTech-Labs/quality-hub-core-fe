@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 
 import Loading from '../../../../global/components/Loading';
 import ReviewerCard from './subs/1_ReviewerCard'
-// import Search from './subs/0_Search'
+import Search from './subs/0_Search'
 
 import './ReviewerList.scss'
 
@@ -14,12 +14,12 @@ import {
 
 // this is a stateful component which will hold the list of reviewers and render each to a card component
 
-const ReviewerList = () => {
+const ReviewerList = ({ history }) => {
   const [fields, setFields] = useState({
     price: '',
     orderBy: "id_ASC"
   })
-
+  console.log(`history object`, history)
 
   const { refetch, loading, data } = useQuery(GET_REVIEWER_LISTINGS, {
     fetchPolicy: 'network-only'
@@ -31,6 +31,13 @@ const ReviewerList = () => {
   return (
     <div className='coach-list-container'>
       {/* add routes for components as they're built out */}
+      <Search
+        setFields={setFields}
+        fields={fields}
+        refetch={refetch}
+      // toggleFilter={toggleFilter}
+      // setToggleFilter={setToggleFilter}
+      />
       {loading && <Loading />}
       {!loading && data && (
         <div className='coach-list'>
