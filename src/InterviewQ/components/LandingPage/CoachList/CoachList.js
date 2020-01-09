@@ -21,8 +21,29 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 
 	const { refetch, loading, data } = useQuery(GET_POSTS, { fetchPolicy: "network-only"});
 
-	return (
-		<div className='coach-list-container'>
+	return ( 
+		<>
+		 {!localStorage.getItem('token') ?
+		<div className='coach-list-container-signedout'> 
+		<Search
+					setFields={setFields}
+					fields={fields}
+					refetch={refetch}
+					toggleFilter={toggleFilter}
+					setToggleFilter={setToggleFilter}
+				/>
+				
+			{loading && <Loading />}
+			{!loading && data && (
+				<div className='coach-list'>
+					{data.posts.map(post => (
+						<CoachCard key={post.id} post={post} history={history} />
+					))}
+				</div>
+			)}
+</div>
+		  : 	
+			<div className='coach-list-container'>
 			{/* <div className={toggleFilter ? '' : 'hidden'}> */}
 				<Search
 					setFields={setFields}
@@ -30,7 +51,8 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 					refetch={refetch}
 					toggleFilter={toggleFilter}
 					setToggleFilter={setToggleFilter}
-				/>
+				/> )
+			
 			{/* </div> */}
 			{loading && <Loading />}
 			{!loading && data && (
@@ -41,6 +63,8 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 				</div>
 			)}
 		</div>
+	}
+		</>
 	);
 };
 
