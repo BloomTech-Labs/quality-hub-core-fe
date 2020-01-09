@@ -9,7 +9,7 @@ import { lightbulb } from '../../../global/icons/lightbulb';
 
 // Query
 import { CREATE_REVIEWER_LISTING, INDUSTRIES } from './Resolvers';
-import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
+// import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
 import { GET_USER } from '../Marketplace/Resolvers'
 
 //Modal that pops up when done filling out listing form
@@ -25,7 +25,7 @@ import { handleChange, handleSubmit, handleSave } from './subs/Functions';
 
 const ListingForm = props => {
 	const { data } = useQuery(GET_USER);
-	const { data: industriesData } = useQuery(INDUSTRIES);
+	// const { data: industriesData } = useQuery(INDUSTRIES);
 
 	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
@@ -64,10 +64,10 @@ const ListingForm = props => {
 		company: '',
 		position: '',
 		//We leave a default industry so users are FORCED to pick something
-		industryName: 'Architecture and Construction',
+		// industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
-		tagString: '',
+		// tagString: '',
 		isPublished: true,
 	});
 
@@ -83,10 +83,10 @@ const ListingForm = props => {
 		setFormState({
 			company: '',
 			position: '',
-			industryName: 'Architecture and Construction',
+			// industryName: 'Architecture and Construction',
 			description: '',
 			price: 30,
-			tagString: '',
+			// tagString: '',
 			isPublished: true,
 		});
 		setOpen(false);
@@ -138,7 +138,7 @@ const ListingForm = props => {
 								setFormState={setFormState}
 								formState={formState}
 								handleChange={handleChange}
-								industriesData={industriesData}
+								// industriesData={industriesData}
 								requiredState={requiredState}
 								setRequiredState={setRequiredState}
 							/>
