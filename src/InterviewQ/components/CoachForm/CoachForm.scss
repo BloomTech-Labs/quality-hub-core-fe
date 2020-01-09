@@ -82,6 +82,8 @@
 	background: white;
 	border-radius: 10px;
 	text-align: left;
+	// padding-bottom: 8.8rem;
+
 	input {
 		width: 100%;
 	}
@@ -110,6 +112,7 @@
 	@media screen and (max-width: 550px) {
 		min-width: 550px;
 	}
+	padding-bottom: 8.8rem;
 }
 
 .done-modal {
@@ -222,7 +225,12 @@
 }
 .red-span-key {
 	color: #cf1322;
-	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 2rem;
+	line-height: 2.8rem;
+	text-align: right;
+	margin: 1.2rem 0 1.6rem;
 }
 .add-coach-form-header {
 	color: #096dd9;
@@ -242,6 +250,7 @@
 	font-size: 20px;
 	line-height: 28px;
 	margin-top: 15px;
+	color: #3c4043;
 }
 
 .add-coach-form-step-title {
@@ -250,7 +259,7 @@
 	font-size: 20px;
 	line-height: 28px;
 	color: #5f6368;
-	margin-top: 40px;
+	// margin-top: 40px;
 }
 
 .add-coach-form-sub-title {
