@@ -1,4 +1,4 @@
-import {gql} from 'apollo-boost'
+import { gql } from 'apollo-boost'
 
 export const GET_USER = gql`
 	query {
@@ -18,6 +18,9 @@ export const GET_USER = gql`
 		}
 	}
 `;
+
+
+
 
 export const CREATE_RESUME_REVIEW = gql`
 	mutation createResumeReview(

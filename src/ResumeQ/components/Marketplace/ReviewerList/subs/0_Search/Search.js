@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+
+import './Search.scss';
+
+import { search } from '../../../../../../global/icons/search';
+
 
 
 
@@ -96,3 +102,5 @@ const Search = ({ fields, setFields, refetch }) => {
 
   )
 }
+
+export default Search;
