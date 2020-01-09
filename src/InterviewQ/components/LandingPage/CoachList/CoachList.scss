@@ -61,3 +61,23 @@
 		margin-top: 3rem;
 	}
 }
+
+.coach-list-container-signedout {
+	width:100%;
+	.hidden {
+		display: none;
+	}
+
+	margin-top: 15.8rem;
+	// hr {
+	// 	margin: 5% auto;
+	// 	border: 1px solid rgba(0, 0, 0, 0.2);
+	// 	width: 30%;
+	// 
+	@media screen and (max-width: 1270px){
+		// margin-top: .5rem;
+	}
+	@media screen and (max-width: 700px){
+		margin-top: 3rem;
+	}
+}
