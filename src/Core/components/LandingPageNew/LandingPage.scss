@@ -201,7 +201,8 @@
 		margin-bottom: 14.1rem;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
+		// justify-content: space-evenly;
+		justify-content: center;
 		align-items: center;
 
 		@media screen and (max-width: 800px) {
@@ -249,10 +250,16 @@
 			background-image: url('./images/CoachCards.png');
 			background-repeat: no-repeat;
 			background-size: contain;
+			margin-left: 11.2rem;
+
+			// @media screen and (max-width: 1210px) {
+			// margin-left: 0rem;
+			// }
 
 			@media screen and (max-width: 800px) {
 				width: 100%;
 				height: 65vw;
+				margin-left: 0rem;
 			}
 		}
 	}

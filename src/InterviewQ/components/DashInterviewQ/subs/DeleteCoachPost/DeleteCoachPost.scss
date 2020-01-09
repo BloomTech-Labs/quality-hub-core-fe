@@ -24,6 +24,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		color: #5f6368;
 	}
 
 	.delete-warning {
@@ -35,8 +36,7 @@
 		color: #5f6368;
 	}
 
-	.delete-post-btn
-		{
+	.delete-post-btn {
 		color: white;
 		cursor: pointer;
 		text-align: center;
