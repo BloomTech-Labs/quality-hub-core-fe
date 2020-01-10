@@ -16,20 +16,27 @@ const Search = ({ fields, setFields, refetch }) => {
   //   refetch({ ...fields, ids });
   // };
 
-  useEffect(() => {
-    if (
-      lastChanged === 'orderBy' ||
-      lastChanged === 'price' ||
-      !lastChanged
-    ) {
-      getUsers({ variables: { tags: fields.tags } });
-      let ids = user_data && user_data.users.map(user => user.id);
-      refetch({ ...fields, ids });
+
+  // getUser unnecessary without tags feature
+  // useEffect(() => {
+  //   if (
+  //     lastChanged === 'orderBy' ||
+  //     lastChanged === 'price' ||
+  //     !lastChanged
+  //   ) {
+  //     getUsers({ variables: { tags: fields.tags } });
+  //     let ids = user_data && user_data.users.map(user => user.id);
+  //     refetch({ ...fields, ids });
+  //   }
+  // }, [fields]);
+
+  const handleChange = e => {
+    e.preventDefault();
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value
     }
-  }, [fields]);
-
-  const handleChange = () => {
-
+    )
   }
 
   // execute handleSubmit when 'enter' is pressed

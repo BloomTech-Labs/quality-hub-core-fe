@@ -14,7 +14,11 @@ export const RESUME_Q = gql`
 `
 
 export const GET_REVIEWER_LISTINGS = gql`
-    query {
+    query GET_REVIEWER_LISTINGS(
+        $price: String
+        $description: String
+        $orderBy: String
+    )  {
         reviewerListings{
             id
             price
