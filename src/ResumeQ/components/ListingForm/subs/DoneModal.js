@@ -4,7 +4,7 @@ import { ICONS } from '../../../../global/icons/iconConstants';
 import { checkcircle } from '../../../../global/icons/checkcircle';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const DoneModal = ({ closeWindow, setAvailability }) => {
+const DoneModal = ({ closeWindow }) => {
 	return (
 		<div className='done-modal'>
 			<button className='close-listing-form-button' onClick={() => closeWindow()}>
@@ -34,11 +34,6 @@ const DoneModal = ({ closeWindow, setAvailability }) => {
 						smooth
 						to='/interviewq/settings#interviewq-availability-header'
 						className='add-listing-set-availability-link'>
-						<button
-							onClick={() => setAvailability()}
-							className='done-modal-set-availability-btn'>
-							Set Availability
-						</button>
 					</Link>
 				</div>
 			</div>

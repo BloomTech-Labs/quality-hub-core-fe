@@ -19,7 +19,13 @@ export const GET_USER = gql`
 	}
 `;
 
-
+export const GET_INDUSTRIES = gql`
+	query {
+		industries {
+			name
+		}
+	}
+`
 
 
 export const CREATE_RESUME_REVIEW = gql`

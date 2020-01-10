@@ -1,6 +1,9 @@
+// Libraries
 import React, { useState, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
+// Styles
 import './Search.scss';
 
 import { search } from '../../../../../../global/icons/search';
