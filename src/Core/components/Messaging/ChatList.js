@@ -72,7 +72,13 @@ const [clickFast, setClickFast] = useState();
       })} */}
         {convList && convList.map((channel, idx) => {
           
-        return <li onClick={()=> setClickFast(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
+        return <li onClick={()=> setClickFast(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900', backgroundColor: '#e7f2fe'} : { fontWeight: '100'}} >{channel.displayName} 
+        {/* <div className='chat-unread'>
+          <span>
+          {channel.unreadCount}
+          </span>
+          </div> */}
+          </li>
         // return <li onClick={()=> onConvoClick(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
       })}
 </div>

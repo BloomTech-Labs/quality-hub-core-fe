@@ -93,9 +93,9 @@ export const getRooms = (setConvList) => {
   setConvList(currentUser.rooms.map(channel => {
     const splitName= channel.name.split('-');
   if (channel.createdByUserId === localStorage.getItem('id')){
-    return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId, displayName: splitName[1] }
+    return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId, displayName: splitName[1], unreadCount: channel.unreadCount }
   }  
-    return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId, displayName: splitName[0] }
+    return { name: channel.name, id: channel.id, createdByUserId: channel.createdByUserId, displayName: splitName[0], unreadCount: channel.unreadCount }
   }))
 })
 }
@@ -120,6 +120,7 @@ export const connectToRoom = (roomId, chatLog, setChatLog) => {
   //window.location.reload();
   chatManager.connect()
   .then(currentUser => {
+    // console.log(currentUser)
     let messageObj;
     let messageArray = [];
     currentUser.subscribeToRoom({
