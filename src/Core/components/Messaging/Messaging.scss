@@ -7,8 +7,14 @@
     color: #096dd9;
     font-size: 14px;
     width: 340px;
+    overflow: scroll;
+  overflow-x: hidden;
+  .chat-sidebar-header{
+    margin: 1.7rem;
+  }
     .chat-list{
       margin-top: 3rem;
+      
       display: flex;
       flex-direction: column;
       justify-content: start;
@@ -16,8 +22,14 @@
       	overflow: scroll;
 	overflow-x: hidden;
       li{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        color: black;
         cursor: pointer;
         list-style: none;
+        padding: 1.7rem;
+        border: 1px solid #dadce0;
        
       }
       li:hover{
@@ -29,7 +41,9 @@
     margin: 0 2.4rem;
     width: 100%;
     .chat-messages{
-      background-color: #e7f2fe;
+      background-color: white;
+      border: 1px solid #dadce0;
+      // border: 1px solid #dadce0;
       border-radius: 4px;
       width: 100%;
       max-width: 550px;
@@ -47,6 +61,7 @@
         font-size: 1.5rem;
         width: 100%;
         text-align: left;
+        color: black;
       }
       .messageDiv{
         width: 100%;
@@ -59,12 +74,13 @@
     .chat-footer{
       width: 100%;
       max-width: 550px;
-      background-color: #cee5fd;
+      background-color: white;
       border-radius: 4px;
       padding: 24px;
       height: 60px;
       display: flex;
       align-items: center;
+      border: 1px solid #dadce0;
       .send-message-form{
         width: 100%;
         input{
@@ -76,15 +92,33 @@
 }
 
 .inbox-left-sidebar{
-  background-color: #cee5fd;
+  background-color: white;
   border-radius: 4px;
-  padding: 2.4rem;
+  border: 1px solid #dadce0;
+  // padding: 2.4rem;
   height: 500px;
   h3{
+    text-align: left;
+    color: black;
+  }
+  p{
+    color: black;
     text-align: left;
   }
 }
 
 .no-messages{
   margin-top: 5rem;
+}
+
+.chat-unread{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #096DD9;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  text-align: center;
 }

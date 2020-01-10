@@ -62,7 +62,10 @@ const Inbox = () => {
       return(
     <div className='inbox-container'>
       <aside className="inbox-left-sidebar">
-        <h3>My Conversations</h3>
+        <div className='chat-sidebar-header'>
+        <h3>Chat</h3>
+        <p>Select a conversation to chat</p>
+        </div>
         {convList ? <ChatList convList={convList} setCurrentRoom={setCurrentRoom} currentRoom={currentRoom} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
       </aside>
             <section className="chat-screen">
