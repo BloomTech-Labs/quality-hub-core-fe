@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_COACH_POST } from './subs/Resolvers';
+import { GET_USERS_LISTING } from './subs/Resolvers';
 import { GET_USER } from '../Marketplace/Resolvers'
 
 // Icons
@@ -16,12 +16,12 @@ import CoachDash from './subs/CoachDash';
 
 export default function DashResumeQ() {
 
-	const { data, loading } = useQuery(GET_USER)
-	const reviewerListing = data
+	const { data, loading } = useQuery(GET_USERS_LISTING)
+	const reviewerListing = data.listingByReviewer
 
 	return (
 		<div className='lower-dashboard'>
-			{loading ? null : reviewerListing && reviewerListing.me.reviewerListing ? (
+			{loading ? null : reviewerListing && reviewerListing ? (
 				<CoachDash />
 			) : (
 					<div className='not-a-coach'>

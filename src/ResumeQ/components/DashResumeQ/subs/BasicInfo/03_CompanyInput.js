@@ -3,8 +3,6 @@ import PostButtons from './01_PostButtons';
 
 const CompanyInput = ({ editing, setEditing, original, post, handleChange, handleCancel, handleSubmit }) => {
 
-
-
   return (
     <div className='IQ-dash-input'>
       <div className='IQ-dash-row post-row'>

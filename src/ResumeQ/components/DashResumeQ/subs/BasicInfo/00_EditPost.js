@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { GET_COACH_POST, GET_INDUSTRIES, UPDATE_POST } from '../Resolvers';
+import { GET_USERS_LISTING, GET_INDUSTRIES, UPDATE_POST } from '../Resolvers';
 import {GET_USER} from '../../../Marketplace/Resolvers'
 import './00_EditForm.scss';
 import PreviewCard from './02_CoachDashPreviewModal';
@@ -16,9 +16,9 @@ import PriceInput from './08_PriceInput';
 const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 	//GraphQL Queries/Mutations
 	// const { data: industries } = useQuery(GET_INDUSTRIES);
-	const { data, loading } = useQuery(GET_USER)
-	const reviewerListing = data
-
+	const { data, loading } = useQuery(GET_USERS_LISTING)
+	const reviewerListing = data.listingByReviewer
+	console.log('my listing', reviewerListing)
 	const [changeField] = useMutation(UPDATE_POST);
 
 	const [editing, setEditing] = useState([
@@ -29,7 +29,7 @@ const CoachBasicInfo = ({ myArray, userData, setOpen, open }) => {
 		false,
 		false,
 	]);
-	let coachObj = reviewerListing && reviewerListing.me.reviewerListing;
+	let coachObj = reviewerListing && reviewerListing;
 	const [post, setPost] = useState({...coachObj, tagString: ''});
 	const [deleteTags, setDelete] = useState([]);
   //Component State

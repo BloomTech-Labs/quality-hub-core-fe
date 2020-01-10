@@ -35,6 +35,18 @@ export const GET_INDUSTRIES = gql`
 	}
 `;
 
+export const GET_USERS_LISTING = gql`
+query {
+  listingByReviewer{
+    id
+    company
+    price
+    position
+    description
+    isPublished
+  }
+}
+`
 
 export const GET_COACH_POST = gql`
 query reviewerListing ($id: String!){
