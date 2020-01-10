@@ -1,11 +1,11 @@
 import React from "react"
 
-
 const PriceInput = () => {
 
-
   return (
-    <h1>DescriptionInput</h1>
+    <div>
+      <h1>DescriptionInput</h1>
+    </div>
   )
 }
 
