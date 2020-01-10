@@ -9,20 +9,42 @@ import { search } from '../../../../../../global/icons/search';
 
 
 const Search = ({ fields, setFields, refetch }) => {
+  const [lastChanged, setChanged] = useState();
+
+  // const makeArray = data => {
+  //   let ids = data.users.map(user => user.id);
+  //   refetch({ ...fields, ids });
+  // };
+
+  useEffect(() => {
+    if (
+      lastChanged === 'orderBy' ||
+      lastChanged === 'price' ||
+      !lastChanged
+    ) {
+      getUsers({ variables: { tags: fields.tags } });
+      let ids = user_data && user_data.users.map(user => user.id);
+      refetch({ ...fields, ids });
+    }
+  }, [fields]);
 
   const handleChange = () => {
 
   }
 
-  const handlePress = () => {
-
+  // execute handleSubmit when 'enter' is pressed
+  const handlePress = e => {
+    if (e.keyCode === 13) {
+      handleSubmit(e)
+    }
   }
 
   const handleSubmit = () => {
 
   }
 
-  const handleReset = () => {
+  const handleReset = e => {
+    e.preventDefault();
 
   }
 

@@ -9,7 +9,6 @@ import './ReviewerList.scss'
 
 import {
   GET_REVIEWER_LISTINGS,
-
 } from './Resolvers'
 
 // this is a stateful component which will hold the list of reviewers and render each to a card component
@@ -17,6 +16,7 @@ import {
 const ReviewerList = ({ history }) => {
   const [fields, setFields] = useState({
     price: '',
+    description: '',
     orderBy: "id_ASC"
   })
   console.log(`history object`, history)
