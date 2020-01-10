@@ -27,6 +27,10 @@ const ReviewerList = ({ history }) => {
 
   console.log(`REVIEWER_LISTINGS query data`, data)
 
+  console.log(`loading`, loading)
+
+  !loading && data && data.reviewerListings.map(listing => console.log(`reviewerListings.map`, listing))
+
   // const listings = useQuery(GET_REVIEWER_LISTINGS);
   return (
     <div className='coach-list-container'>
