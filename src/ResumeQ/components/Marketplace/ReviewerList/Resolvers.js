@@ -27,7 +27,6 @@ export const GET_REVIEWER_LISTINGS = gql`
             isPublished
             coach {
                 id
-
             }
         }
     }

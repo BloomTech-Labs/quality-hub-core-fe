@@ -4,7 +4,7 @@ const CoachDashPreviewModal = () => {
 
   return (
     <div>
-      <h1>DescriptionInput</h1>
+      <h4>Preview Modal</h4>
     </div>
   )
 }

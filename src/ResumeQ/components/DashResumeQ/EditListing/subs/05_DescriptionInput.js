@@ -1,10 +1,19 @@
 import React from "react"
 
-const DescriptionInput = () => {
+
+const DescriptionInput = ({ listing, setListing, handleChange }) => {
+
 
   return (
     <div>
-      <h1>DescriptionInput</h1>
+      <p>Description:{listing.description}</p>
+      <textarea
+        id='edit-post-3'
+        type='textarea'
+        name='description'
+        value={listing.description}
+        onChange={handleChange}
+      />
     </div>
   )
 }

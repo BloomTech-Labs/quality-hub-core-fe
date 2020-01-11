@@ -4,7 +4,7 @@ const PostButtons = () => {
 
   return (
     <div>
-      <h3>PostButtons</h3>
+
     </div>
   )
 }
