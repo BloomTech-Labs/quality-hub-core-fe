@@ -9,7 +9,7 @@ export default function Delete({ setLoggedin }) {
 
 	return (
 		<div className='settings-del-account'>
-			<h3>Delete Account</h3>
+			{/* <h3>Delete Account</h3>
 			<div className='settings-del-account-row'>
 				<p>If you delete your account, you can't reverse this action.</p>
 				<button onClick={toggle}>Delete Account</button>
@@ -18,7 +18,7 @@ export default function Delete({ setLoggedin }) {
 				isShowing={isShowing}
 				hide={toggle}
 				setLoggedin={setLoggedin}
-			/>
+			/> */}
 		</div>
 	);
 }
