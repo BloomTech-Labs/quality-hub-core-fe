@@ -57,7 +57,7 @@
       // border: 1px solid #dadce0;
       border-radius: 4px;
       width: 100%;
-      max-width: 550px;
+      max-width: 650px;
       padding: 24px 40px;
       height: 420px;
       // min-height: 420px;
@@ -66,9 +66,9 @@
       align-items: flex-end;
       justify-content: flex-end;
       margin-bottom: 2rem;
-        // overflow: scroll !important;
-        // overflow-y: scroll !important;
-        // overflow-x: scroll;
+        overflow: hidden;
+        overflow-y: scroll;
+        overflow-x: scroll;
 
       li{
         list-style: none;
