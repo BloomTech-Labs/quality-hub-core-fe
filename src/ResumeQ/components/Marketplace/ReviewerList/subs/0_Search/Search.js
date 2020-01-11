@@ -13,25 +13,9 @@ import { search } from '../../../../../../global/icons/search';
 
 const Search = ({ fields, setFields, refetch }) => {
   const [lastChanged, setChanged] = useState();
+  console.log(`Search / fields`, fields)
+  // console.log(`ReviewerList / makeArray`, typeof makeArray)
 
-  // const makeArray = data => {
-  //   let ids = data.users.map(user => user.id);
-  //   refetch({ ...fields, ids });
-  // };
-
-
-  // getUser unnecessary without tags feature
-  // useEffect(() => {
-  //   if (
-  //     lastChanged === 'orderBy' ||
-  //     lastChanged === 'price' ||
-  //     !lastChanged
-  //   ) {
-  //     getUsers({ variables: { tags: fields.tags } });
-  //     let ids = user_data && user_data.users.map(user => user.id);
-  //     refetch({ ...fields, ids });
-  //   }
-  // }, [fields]);
 
   const handleChange = e => {
     e.preventDefault();
@@ -49,13 +33,18 @@ const Search = ({ fields, setFields, refetch }) => {
     }
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = e => {
+    e.preventDefault()
+    refetch(fields);
   }
 
   const handleReset = e => {
     e.preventDefault();
-
+    setFields({
+      price: '',
+      description: '',
+      orderBy: "id_ASC"
+    })
   }
 
   return (
