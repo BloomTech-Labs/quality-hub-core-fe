@@ -18,6 +18,7 @@ const ResumeQContainer = () => {
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
           {/* <Route path='/resumeq/request' component={RequestReview} /> */}
           <Route path='/resumeq/settings' component={DashResumeQ} />
+          <Route path='/resumeq/request' component={RequestReview} />
         </div>
       </div>
     </>
