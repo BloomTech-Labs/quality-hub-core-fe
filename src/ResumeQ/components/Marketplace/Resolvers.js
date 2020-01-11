@@ -29,17 +29,12 @@ export const GET_INDUSTRIES = gql`
 
 
 export const CREATE_RESUME_REVIEW = gql`
-	mutation createResumeReview(
+	mutation CREATE_RESUME_REVIEW(
 		$coach: String!
 		
 		) {
 		createResumeReview(
 			coach: $coach
-			
-			isPending: true
-			isDenied: false
-			isComplete: false
-			isAccepted: false
 		) {
 			id
 			coach {
