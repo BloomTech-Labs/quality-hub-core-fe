@@ -7,7 +7,6 @@ const Marketplace = () => {
 
   return (
     <>
-      <h1>Marketplace component</h1>
       <ReviewerList />
     </>
   )
