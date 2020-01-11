@@ -90,7 +90,7 @@ const ReviewerCard = ({ listing }) => {
 							: fullName}
 					</h3>
 					<h4 className='coach-price'>
-						{listing.price === 0 ? 'Free' : `$${listing.price} per hour`}
+						{listing.price === 0 ? 'Free' : `$${listing.price}`}
 					</h4>
 				</div>
 				<div className='coach-photo'>
