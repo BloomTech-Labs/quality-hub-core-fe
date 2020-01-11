@@ -14,8 +14,16 @@ export const RESUME_Q = gql`
 `
 
 export const GET_REVIEWER_LISTINGS = gql`
-    query GET_REVIEWER_LISTINGS  {
-        reviewerListings{
+    query GET_REVIEWER_LISTINGS(
+        $description: String
+        $price: String
+        $orderBy: String
+    )  {
+        reviewerListings(
+            description: $description
+            price: $price
+            orderBy: $orderBy
+            ){
             id
             price
             position
@@ -27,20 +35,18 @@ export const GET_REVIEWER_LISTINGS = gql`
             isPublished
             coach {
                 id
+                last_name
+                first_name
+                bio
+                city
+                state
+                image_url
+                portfolio_url
+                linkedin_url
+                github_url
+                personal_url
+                blog_url
             }
         }
     }
 `
-
-// return to GET_REV_LISTINGS
-// last_name
-// first_name
-// bio
-// city
-// state
-// image_url
-// portfolio_url
-// linkedin_url
-// github_url
-// personal_url
-// blog_url

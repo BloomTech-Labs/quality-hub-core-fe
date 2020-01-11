@@ -13,33 +13,28 @@ import { search } from '../../../../../../global/icons/search';
 
 const Search = ({ fields, setFields, refetch }) => {
   const [lastChanged, setChanged] = useState();
+  console.log(`Search / fields`, fields)
+  // console.log(`ReviewerList / makeArray`, typeof makeArray)
 
-  // const makeArray = data => {
-  //   let ids = data.users.map(user => user.id);
-  //   refetch({ ...fields, ids });
-  // };
-
-
-  // getUser unnecessary without tags feature
-  // useEffect(() => {
-  //   if (
-  //     lastChanged === 'orderBy' ||
-  //     lastChanged === 'price' ||
-  //     !lastChanged
-  //   ) {
-  //     getUsers({ variables: { tags: fields.tags } });
-  //     let ids = user_data && user_data.users.map(user => user.id);
-  //     refetch({ ...fields, ids });
-  //   }
-  // }, [fields]);
+  useEffect(() => {
+    if (
+      lastChanged === 'industry' ||
+      lastChanged === 'orderBy' ||
+      lastChanged === 'price' ||
+      !lastChanged
+    ) {
+      refetch({ ...fields });
+    }
+  }, [fields]);
 
   const handleChange = e => {
     e.preventDefault();
     setFields({
       ...fields,
       [e.target.name]: e.target.value
-    }
-    )
+    })
+    setChanged(e.target.name);
+
   }
 
   // execute handleSubmit when 'enter' is pressed
@@ -49,13 +44,20 @@ const Search = ({ fields, setFields, refetch }) => {
     }
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = e => {
+    e.preventDefault()
+    refetch(fields);
   }
 
+  // resets fields and runs query with fields
   const handleReset = e => {
     e.preventDefault();
-
+    setFields({
+      price: '',
+      description: '',
+      orderBy: "id_ASC"
+    })
+    setChanged('')
   }
 
   return (
@@ -109,8 +111,8 @@ const Search = ({ fields, setFields, refetch }) => {
           <input
             className='search-by-keyword-input'
             type='text'
-            name='tags'
-            value={fields.tags}
+            name='description'
+            value={fields.description}
             onChange={handleChange}
             placeholder={`Search by Keyword`}
             onKeyDown={handlePress}
