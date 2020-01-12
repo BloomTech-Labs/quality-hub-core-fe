@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connectToRoom } from './methods';
 import { useHistory } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { format } from 'date-fns';
 
-const ChatList = ({ setCurrentRoom, currentRoom, convList}) => {
-
+const ChatList = ({ setCurrentRoom, currentRoom, convList, theCurrentUser, setTheCurrentUser}) => {
 
 const [clickFast, setClickFast] = useState();
-
+const [prevRoom, setPrevRoom] = useState();
   const history= useHistory();
   
   useEffect(() => {
@@ -25,58 +24,64 @@ const [clickFast, setClickFast] = useState();
   const [chatLog, setChatLog] = useState([]);
 
   useEffect(() => {
-    if (currentRoom && currentRoom.id){
-      connectToRoom(currentRoom.id, chatLog, setChatLog)
+    if (currentRoom && currentRoom.id && theCurrentUser && theCurrentUser.roomSubscriptions[prevRoom.id] ){ 
+      theCurrentUser.roomSubscriptions[prevRoom.id].cancel();
+      connectToRoom(currentRoom.id, chatLog, setChatLog, setTheCurrentUser)
+    }
+   else if (currentRoom && currentRoom.id){
+      connectToRoom(currentRoom.id, chatLog, setChatLog, setTheCurrentUser)
     }
   },[currentRoom])
 
+
   const onConvoClick = (channel) => {
      const  messageElements =  document.getElementById('message-list-div').childNodes;
-   
-  //  if (messageElements !== undefined && chatLog !== undefined){
-
-    //Krishan commented this out
-  //  for(let x=0; x < messageElements.length; x++){
-  //    for(let y=0; y< messageElements.length; y++){
-  //      if(messageElements[x] &&  chatLog[y] && messageElements[x].id !== chatLog[y].id){
-  //       messageElements[x].remove()
-  //      }
-  //    }
-  //  }
-
-
 
   for(let x=0; x < messageElements.length; x++){
     for(let y=0; y< chatLog.length; y++){
       if(messageElements[x] &&  chatLog[y] && messageElements[x].id !== chatLog[y].id){
        messageElements[x].remove()
       }
-    }
-   
-   
+    }    
   }
-   
-  //  }
-  // Krishan commented out
-      // connectToRoom(channel.id, chatLog, setChatLog)
       setCurrentRoom(channel)
-      
-      
+      setPrevRoom(currentRoom);      
   }
-// const selectedStyle = { fontWeight: '900'}
-  return(
-    <div className='chat-list'>
-      {/* <h3>Conversations</h3> */}
-      {/* {props.convList && props.convList.map((channel, idx) => {
-        return <li onClick={()=> onConvoClick(channel)} key={idx}>{channel.name}</li>
-      })} */}
-        {convList && convList.map((channel, idx) => {
-          
-        return <li onClick={()=> setClickFast(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
-        // return <li onClick={()=> onConvoClick(channel)} key={idx} style ={channel.id === currentRoom.id ? { fontWeight: '900'} : { fontWeight: '100'}} >{channel.displayName}</li>
-      })}
-</div>
-  )
+  return (
+		<div className='chat-list'>
+			{convList &&
+				convList.map((channel, idx) => {
+					return (
+						<li
+							onClick={() => setClickFast(channel)}
+							key={idx}
+							style={
+								channel.id === currentRoom.id
+									? { fontWeight: '900', backgroundColor: '#e7f2fe' }
+									: { fontWeight: '100' }
+							}>
+							<div className='chat-conv-detail'>
+								<span>{channel.displayName}</span>
+								<span className='chat-timestamp'>
+                  {channel.lastMessageAt ?
+                  format(new Date(), 'Mdyy') ===
+									format(new Date(channel.lastMessageAt), 'Mdyy')
+										? format(new Date(channel.lastMessageAt), 'p')
+										: format(new Date(channel.lastMessageAt), 'M/d/yy') : null}
+								</span>
+							</div>
+
+							{channel.id === currentRoom.id ? null : channel.unreadCount ===
+							  0 ? null : (
+								<div className='chat-unread'>
+									<span>{channel.unreadCount}</span>
+								</div>
+							)}
+						</li>
+					);
+				})}
+		</div>
+	);
 }
 
 export default ChatList;

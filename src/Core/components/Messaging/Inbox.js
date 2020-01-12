@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
 import ChatList from './ChatList';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import { tokenUrl, instanceLocator } from './config';
-import { startDM, connectToRoom, getRooms } from './methods.js';
+import { getRooms } from './methods.js';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_QH_USER, CREATE_CHATUSER } from './resolvers';
 import './Messaging.scss';
@@ -15,6 +15,9 @@ const Inbox = () => {
   
   const [convList, setConvList] = useState();
   const [currentRoom, setCurrentRoom] = useState('none');
+  const [theCurrentUser, setTheCurrentUser] = useState();
+  const [toggle, setToggle]  = useState(0);
+  const [scrolled, setScrolled] = useState(false)
 
   const chatManager = new ChatManager({
     instanceLocator,
@@ -27,27 +30,23 @@ const Inbox = () => {
   // const getRooms = () => {
   //   chatManager.connect({
   //     onAddedToRoom: room => {
-  //       console.log(room)
   //     }
   //   }).then(currentUser => {
-  //     console.log(currentUser.rooms)
   //     setConvList(currentUser.rooms.map(channel => {
   //       return { name: channel.name, id: channel.id }
   //     }))
   //   })
   // }
-  // console.log(convList)
-  
+  const [roomList, setRoomList] = useState();
 
     useEffect(() => {
-      getRooms(setConvList);
+      getRooms(setConvList, setTheCurrentUser, setToggle, toggle, roomList, setRoomList);
       
-    }, [])
+    }, [toggle])
 
     const sendMessage = (text, roomId) => {
       chatManager.connect()
     .then(currentUser => {
-      // console.log(currentUser)
       currentUser.sendMessage({
         text: text,
         roomId: roomId
@@ -55,22 +54,39 @@ const Inbox = () => {
     })
   }
 
-// console.log(convList)
+  useEffect(() => {
+    document.querySelector('#messageContainer').scrollTop = 10000000;
+  }, [theCurrentUser])
+// const chatContainer=document.getElementsByName('messageContainer');
+// // const chatAnchor = document.getElementsByName('chatAnchor');
+// const chatAnchor = useRef();
+// // const chatContainer = useRef();
+// useEffect(() => {
+//   chatContainer[0].scrollTo(0, chatContainer[0].scrollHeight);
+//   // console.log(chatContainer[0].scrollHeight)
 
-  //   // console.log(chatLog)
-
+//   // chatAnchor.scrollIntoView({ behavior: "smooth" })
+// }, [currentRoom, convList]);
       return(
     <div className='inbox-container'>
       <aside className="inbox-left-sidebar">
-        <h3>My Conversations</h3>
-        {convList ? <ChatList convList={convList} setCurrentRoom={setCurrentRoom} currentRoom={currentRoom} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
+        <div className='chat-sidebar-header'>
+        <h3>Chat</h3>
+        <p>Select a conversation to chat</p>
+        </div>
+        {convList ? <ChatList convList={convList} theCurrentUser={theCurrentUser} setCurrentRoom={setCurrentRoom} currentRoom={currentRoom} setTheCurrentUser={setTheCurrentUser} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
       </aside>
             <section className="chat-screen">
               {/* <header className="chat-header">{currentRoom.displayName}</header> */}
+              <div className='message-container-container'>
+              <div className='message-container'  id='messageContainer'>
               <ul className="chat-messages" id='message-list-div'>
                 {/* <li className='messageDiv'>This is a test message</li>
                 <li className='messageDiv sentMessage'>Sent Message</li> */}
               </ul>
+              <div name='chatAnchor' ></div>
+              </div>
+              </div>
               <div className="chat-footer">
               {currentRoom === 'none' ? <h3>Select a conversation to chat</h3> : <MessageInput sendMessage={sendMessage} currentRoom={currentRoom}/>}
               </div>

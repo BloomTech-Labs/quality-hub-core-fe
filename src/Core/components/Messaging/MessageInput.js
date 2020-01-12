@@ -21,7 +21,7 @@ const MessageInput = ({ sendMessage, currentRoom }) => {
         <input
           onChange={handleChange}
           value={message}
-          placeholder="Type your message and hit ENTER"
+          placeholder="Type a message..."
           type="text" />
       </form>
   )
