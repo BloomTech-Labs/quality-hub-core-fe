@@ -144,6 +144,7 @@ export const connectToRoom = (roomId, chatLog, setChatLog, setTheCurrentUser) =>
             position: message.id,
 
           });
+          document.querySelector('#messageContainer').scrollTop = 10000000;
           //return;
 				},
 			},
