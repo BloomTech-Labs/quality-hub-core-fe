@@ -54,6 +54,9 @@ const Inbox = () => {
     })
   }
 
+  useEffect(() => {
+    document.querySelector('#messageContainer').scrollTop = 10000000;
+  }, [theCurrentUser])
 // const chatContainer=document.getElementsByName('messageContainer');
 // // const chatAnchor = document.getElementsByName('chatAnchor');
 // const chatAnchor = useRef();
@@ -67,23 +70,23 @@ const Inbox = () => {
       return(
     <div className='inbox-container'>
       <aside className="inbox-left-sidebar">
-        <div className='moardivs'>
         <div className='chat-sidebar-header'>
         <h3>Chat</h3>
         <p>Select a conversation to chat</p>
         </div>
         {convList ? <ChatList convList={convList} theCurrentUser={theCurrentUser} setCurrentRoom={setCurrentRoom} currentRoom={currentRoom} setTheCurrentUser={setTheCurrentUser} /> : <p className='no-messages'> You don't have any conversations yet! </p>}
-        </div>
       </aside>
             <section className="chat-screen">
               {/* <header className="chat-header">{currentRoom.displayName}</header> */}
-              {/* <div className='message-container'  > */}
+              <div className='message-container-container'>
+              <div className='message-container'  id='messageContainer'>
               <ul className="chat-messages" id='message-list-div'>
                 {/* <li className='messageDiv'>This is a test message</li>
                 <li className='messageDiv sentMessage'>Sent Message</li> */}
               </ul>
               <div name='chatAnchor' ></div>
-              {/* </div> */}
+              </div>
+              </div>
               <div className="chat-footer">
               {currentRoom === 'none' ? <h3>Select a conversation to chat</h3> : <MessageInput sendMessage={sendMessage} currentRoom={currentRoom}/>}
               </div>
