@@ -5,11 +5,10 @@ const StepTwo = ({ formState, handleChange, setFormState }) => {
 		<>
 			<p className='add-listing-form-step-title'>STEP 2</p>
 			<p className='add-listing-form-sub-title'>
-				Hourly Rate <span className='red-span'>*</span>
+				Rate Per Review<span className='red-span'>*</span>
 			</p>
 			<p className='add-listing-form-description'>
-				Please set a price per session. Usually a session is 1 hour long. To get
-				the most clients, we recomment setting your rate between $20 and $50.
+				Please set a price to charge per review.
 			</p>
 			<div className='slider'>
 				<div className='slider-inner-boxes'>
