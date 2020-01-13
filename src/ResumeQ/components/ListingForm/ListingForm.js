@@ -42,15 +42,15 @@ const ListingForm = props => {
 	});
 
 	//This sets the darkened overlay behind the modals
-	useEffect(() => {
-		if (open) {
-			document.getElementById('overlay-listing-form').style.display = 'block';
-		} else if (done) {
-			document.getElementById('overlay-listing-form').style.display = 'block';
-		} else {
-			document.getElementById('overlay-listing-form').style.display = 'none';
-		}
-	}, [open, done]);
+	// useEffect(() => {
+	// 	if (open) {
+	// 		document.getElementById('overlay-listing-form').style.display = 'block';
+	// 	} else if (done) {
+	// 		document.getElementById('overlay-listing-form').style.display = 'block';
+	// 	} else {
+	// 		document.getElementById('overlay-listing-form').style.display = 'none';
+	// 	}
+	// }, [open, done]);
 
 	// This is the avatar image in the preview post section
 	let image;

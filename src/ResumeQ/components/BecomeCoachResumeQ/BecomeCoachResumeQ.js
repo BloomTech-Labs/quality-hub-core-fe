@@ -11,6 +11,7 @@ import { GET_USER } from '../Marketplace/Resolvers';
 
 export default function BecomeCoachResumeQ() {
 	const [hasListing, setHasListing] = useState();
+	console.log(`BecomeCoachResumeQ / hasListing`, hasListing);
 
 	const [getUser, { refetch, loading, data: userData }] = useLazyQuery(
 		GET_USER,
@@ -45,19 +46,19 @@ export default function BecomeCoachResumeQ() {
 							</button>
 						</Link>
 					) : (
-						//if no post made, allow to create a post
-						<ListingForm refetch={refetch} />
-					)
+							//if no post made, allow to create a post
+							<ListingForm refetch={refetch} />
+						)
 				) : //while checking if user has a post, leave button off page
-				null
+					null
 			) : (
-				//if no token link to signin
-				<Link to='/resumeq' className='become-a-coach-reroute-to-signin'>
-					<button className='become-a-coach-btn'>
-						<span className='add-coach-form-button'>Create a listing</span>
-					</button>
-				</Link>
-			)}
+					//if no token link to signin
+					<Link to='/resumeq' className='become-a-coach-reroute-to-signin'>
+						<button className='become-a-coach-btn'>
+							<span className='add-coach-form-button'>Create a listing</span>
+						</button>
+					</Link>
+				)}
 		</div>
 	);
 }

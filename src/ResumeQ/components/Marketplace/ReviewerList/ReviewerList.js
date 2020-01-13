@@ -9,7 +9,6 @@ import './ReviewerList.scss'
 
 import {
   GET_REVIEWER_LISTINGS,
-
 } from './Resolvers'
 
 // this is a stateful component which will hold the list of reviewers and render each to a card component
@@ -17,6 +16,7 @@ import {
 const ReviewerList = ({ history }) => {
   const [fields, setFields] = useState({
     price: '',
+    description: '',
     orderBy: "id_ASC"
   })
   console.log(`history object`, history)
@@ -25,7 +25,10 @@ const ReviewerList = ({ history }) => {
     fetchPolicy: 'network-only'
   });
 
-  console.log(`REVIEWER_LISTINGS query data`, data)
+  console.log(`ReviewerList / data`, data)
+  console.log(`ReviewerList / loading`, loading)
+
+  !loading && data && data.reviewerListings.map(listing => console.log(`reviewerListings.map`, listing))
 
   // const listings = useQuery(GET_REVIEWER_LISTINGS);
   return (

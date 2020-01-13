@@ -9,21 +9,52 @@ import './Search.scss';
 import { search } from '../../../../../../global/icons/search';
 
 const Search = ({ fields, setFields, refetch }) => {
+  const [lastChanged, setChanged] = useState();
+  console.log(`Search / fields`, fields)
+  // console.log(`ReviewerList / makeArray`, typeof makeArray)
 
-  const handleChange = () => {
+  useEffect(() => {
+    if (
+      lastChanged === 'industry' ||
+      lastChanged === 'orderBy' ||
+      lastChanged === 'price' ||
+      !lastChanged
+    ) {
+      refetch({ ...fields });
+    }
+  }, [fields]);
+
+  const handleChange = e => {
+    e.preventDefault();
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value
+    })
+    setChanged(e.target.name);
 
   }
 
-  const handlePress = () => {
-
+  // execute handleSubmit when 'enter' is pressed
+  const handlePress = e => {
+    if (e.keyCode === 13) {
+      handleSubmit(e)
+    }
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = e => {
+    e.preventDefault()
+    refetch(fields);
   }
 
-  const handleReset = () => {
-
+  // resets fields and runs query with fields
+  const handleReset = e => {
+    e.preventDefault();
+    setFields({
+      price: '',
+      description: '',
+      orderBy: "id_ASC"
+    })
+    setChanged('')
   }
 
   return (
@@ -77,8 +108,8 @@ const Search = ({ fields, setFields, refetch }) => {
           <input
             className='search-by-keyword-input'
             type='text'
-            name='tags'
-            value={fields.tags}
+            name='description'
+            value={fields.description}
             onChange={handleChange}
             placeholder={`Search by Keyword`}
             onKeyDown={handlePress}

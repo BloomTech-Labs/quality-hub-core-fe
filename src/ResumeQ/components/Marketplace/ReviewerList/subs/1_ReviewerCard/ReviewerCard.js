@@ -66,7 +66,7 @@ const ReviewerCard = ({ listing }) => {
 
 	let { coach } = listing;
 	let maxWidth = 100;
-	
+
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
@@ -90,22 +90,22 @@ const ReviewerCard = ({ listing }) => {
 							: fullName}
 					</h3>
 					<h4 className='coach-price'>
-						{listing.price === 0 ? 'Free' : `$${listing.price} per hour`}
+						{listing.price === 0 ? 'Free' : `$${listing.price}`}
 					</h4>
 				</div>
 				<div className='coach-photo'>
 					{coach.image_url ? (
 						<img src={coach.image_url} alt='Coach Profile Pic' />
 					) : (
-						<div className='blank-image'>
-							<Icon
-								icon={ICONS.BLANK_AVATAR}
-								color='white'
-								width={80}
-								height={90}
-							/>
-						</div>
-					)}
+							<div className='blank-image'>
+								<Icon
+									icon={ICONS.BLANK_AVATAR}
+									color='white'
+									width={80}
+									height={90}
+								/>
+							</div>
+						)}
 				</div>
 			</div>
 			<div className='coachcard-info'>
@@ -187,19 +187,19 @@ const ReviewerCard = ({ listing }) => {
 				{coach.id === localStorage.getItem('id') ? (
 					<button className='interview-button-disabled'>Request</button>
 				) : (
-					<button className='interview-button'>
-						<Link
-							to={{
-								pathname: `/resumeq/request/${coach.id}`,
-								state: {
-									coachName: `${listing.coach.first_name} ${listing.coach.last_name}`,
-									listing: listing
-								},
-							}}>
-							Request
+						<button className='interview-button'>
+							<Link
+								to={{
+									pathname: `/resumeq/request/${coach.id}`,
+									state: {
+										coachName: `${listing.coach.first_name} ${listing.coach.last_name}`,
+										listing: listing
+									},
+								}}>
+								Request
 						</Link>
-					</button>
-				)}
+						</button>
+					)}
 			</div>
 			{/* {reviewModal && (
 				<ReviewModal
