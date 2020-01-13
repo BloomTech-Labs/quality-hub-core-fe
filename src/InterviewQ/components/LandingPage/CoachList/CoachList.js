@@ -19,18 +19,20 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 		orderBy: 'id_ASC',
 	});
 
-	const { refetch, loading, data } = useQuery(GET_POSTS, { fetchPolicy: "network-only"});
+	const { refetch, loading, data } = useQuery(GET_POSTS, { fetchPolicy: "network-only" });
+
+	console.log(`CoachList / data`, data)
 
 	return (
 		<div className='coach-list-container'>
 			{/* <div className={toggleFilter ? '' : 'hidden'}> */}
-				<Search
-					setFields={setFields}
-					fields={fields}
-					refetch={refetch}
-					toggleFilter={toggleFilter}
-					setToggleFilter={setToggleFilter}
-				/>
+			<Search
+				setFields={setFields}
+				fields={fields}
+				refetch={refetch}
+				toggleFilter={toggleFilter}
+				setToggleFilter={setToggleFilter}
+			/>
 			{/* </div> */}
 			{loading && <Loading />}
 			{!loading && data && (
