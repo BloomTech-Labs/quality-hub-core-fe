@@ -17,7 +17,10 @@ import CoachDash from './subs/CoachDash';
 export default function DashResumeQ() {
 
 	const { data, loading } = useQuery(GET_USERS_LISTING)
+	console.log('user listing data',data)
 	const reviewerListing = data.listingByReviewer
+
+	
 
 	return (
 		<div className='lower-dashboard'>

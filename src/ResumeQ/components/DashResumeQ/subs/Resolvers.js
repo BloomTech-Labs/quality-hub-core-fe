@@ -62,7 +62,6 @@ query reviewerListing ($id: String!){
       id
       first_name
       last_name
-      email
       reviewerListing{
         id
         price

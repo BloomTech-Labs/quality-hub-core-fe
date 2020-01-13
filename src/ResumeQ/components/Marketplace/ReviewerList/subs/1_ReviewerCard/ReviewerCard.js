@@ -66,7 +66,7 @@ const ReviewerCard = ({ listing }) => {
 
 	let { coach } = listing;
 	let maxWidth = 100;
-	console.log(listing, 'listing')
+	
 	const linkedin =
 		coach.linkedin_url &&
 		(coach.linkedin_url.startsWith('http')
