@@ -7,7 +7,7 @@ import { DECLINED_RESUME_REVIEWS } from '../../Resolvers'
 
 const DeclinedRequests = () => {
 
-    const { refetch, loading, data } = useQuery(DECLINED_RESUME_REVIEWS, {
+    const { loading, data } = useQuery(DECLINED_RESUME_REVIEWS, {
         fetchPolicy: 'network-only'
     })
 

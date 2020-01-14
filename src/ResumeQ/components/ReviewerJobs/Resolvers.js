@@ -121,9 +121,19 @@ export const RESPOND_RESUME_REVIEW = gql`
     isAccepted: Boolean!
     isDenied: Boolean!
     ){
+      id: $ID
+      isPending: $isPending
+      isAccepted: $isAccepted
+      isDenied: $isDenied
+    } {
       id
       isPending
       isAccepted
-      dateAccepted
+      isDenied
     }
+`
+export const UPDATE_RESUME_REVIEW = gql`
+    mutation updateResumeReview(
+
+    )
 `
