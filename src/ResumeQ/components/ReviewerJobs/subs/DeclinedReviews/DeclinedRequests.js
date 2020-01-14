@@ -23,7 +23,9 @@ const DeclinedRequests = () => {
 
     return (
         <div>
-
+            {!loading && declinedArray.map(request => (
+                <ResumeReviewEntry request={request} key={request.id} />
+            ))}
         </div>
     )
 }
