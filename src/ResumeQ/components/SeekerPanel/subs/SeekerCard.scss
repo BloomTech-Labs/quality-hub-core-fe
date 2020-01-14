@@ -1,0 +1,21 @@
+
+.seeker-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.seeker-card {
+    
+	width: 35%;
+	height: 20%;
+	padding: 2.4rem;
+	box-shadow: 2px 2px 5px gray;
+	border: 1px solid #dadce0;
+	border-radius: 0.8rem;
+	margin-bottom: 1.2rem;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: left;
+	
+}
