@@ -33,8 +33,8 @@ const RequestedReviews = () => {
 
     return (
         <div>
-            {!loading && requestArray.map(request => (
-                <ResumeReviewEntry request={request} key={request.id} submitResponse={submitResponse} />
+            {!loading && requestArray.map(entry => (
+                <ResumeReviewEntry entry={entry} key={entry.id} submitResponse={submitResponse} />
             ))}
         </div>
     )

@@ -137,7 +137,7 @@ export const RESPOND_RESUME_REVIEW = gql`
 export const UPDATE_RESUME_REVIEW = gql`
     mutation updateResumeReview(
           $id: String!
-          $isCompleted: Boolean
+          $isComplete: Boolean
     ) { 
       updateResumeReview (
       id: $id

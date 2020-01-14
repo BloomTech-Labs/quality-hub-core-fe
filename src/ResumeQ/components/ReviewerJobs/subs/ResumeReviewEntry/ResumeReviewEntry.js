@@ -1,9 +1,10 @@
 import React from 'react';
 
 const ResumeReviewEntry = ({
-  request,
-  request: { seeker, createdAt },
-  submitResponse
+  entry,
+  entry: { seeker, createdAt },
+  submitResponse,
+  updateResumeReview
 }) => {
 
   console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
@@ -13,7 +14,7 @@ const ResumeReviewEntry = ({
 
     submitResponse({
       variables: {
-        id: request.id,
+        id: entry.id,
         isAccepted: true,
         isPending: false,
         isDenied: false
@@ -27,13 +28,25 @@ const ResumeReviewEntry = ({
 
     submitResponse({
       variables: {
-        id: request.id,
+        id: entry.id,
         isAccepted: false,
         isPending: false,
+        isDenied: true
       }
     })
   }
 
+
+  const handleUpdate = e => {
+    e.preventDefault();
+
+    updateResumeReview({
+      variables: {
+        id: entry.id,
+        isComplete: true
+      }
+    })
+  }
 
   return (
     <div>
@@ -41,8 +54,19 @@ const ResumeReviewEntry = ({
         <p>{createdAt}</p>
         <p>{seeker.first_name} {seeker.last_name}</p>
         <p>{seeker.email}</p>
-        <button onClick={handleAccept}>Accept</button>
+        {entry.status === 'Pending' &&
+          <div>
+            <button onClick={handleAccept}>Accept</button>}
         <button onClick={handleDecline}>Decline</button>
+          </div>
+        }
+        {entry.status === 'In Progress' &&
+          <div>
+            <button onClick={handleUpdate}>Mark Completed</button>
+          </div>
+
+        }
+
       </div>
     </div>
   );
