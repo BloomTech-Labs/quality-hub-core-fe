@@ -34,19 +34,14 @@ export const GET_REVIEWER_LISTINGS = gql`
             company
             isPublished
             coach {
-                id
-                last_name
-                first_name
-                bio
-                city
-                state
-                image_url
-                portfolio_url
-                linkedin_url
-                github_url
-                personal_url
-                blog_url
+            id
+            first_name
+            last_name
+            city
+            state
+            image_url
             }
         }
+
     }
 `
