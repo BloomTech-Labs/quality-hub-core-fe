@@ -116,24 +116,37 @@ export const DECLINED_RESUME_REVIEWS = gql`
 
 export const RESPOND_RESUME_REVIEW = gql`
   mutation respondResumeReview(
-    id: String!
-    isPending: Boolean!
-    isAccepted: Boolean!
-    isDenied: Boolean!
+    $id: String!
+    $isPending: Boolean!
+    $isAccepted: Boolean!
+    $isDenied: Boolean!
     ){
-      id: $ID
+      respondResumeReview(
+      id: $id
       isPending: $isPending
       isAccepted: $isAccepted
       isDenied: $isDenied
-    } {
+    ) {
       id
       isPending
       isAccepted
       isDenied
     }
+  }
 `
 export const UPDATE_RESUME_REVIEW = gql`
     mutation updateResumeReview(
-
-    )
+          $id: String!
+          $isCompleted: Boolean
+    ) { 
+      updateResumeReview (
+      id: $id
+      isComplete: $isComplete
+     ) {
+      id
+      isPending
+      isAccepted
+      isDenied
+     }
+    }
 `

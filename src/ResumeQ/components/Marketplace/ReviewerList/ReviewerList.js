@@ -26,7 +26,7 @@ const ReviewerList = ({ history }) => {
   });
 
   console.log(`ReviewerList / data`, data)
-  console.log(`ReviewerList / loading`, loading)
+  // console.log(`ReviewerList / loading`, loading)
 
   !loading && data && data.reviewerListings.map(listing => console.log(`reviewerListings.map`, listing))
 

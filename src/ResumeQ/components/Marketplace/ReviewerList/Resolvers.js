@@ -35,9 +35,11 @@ export const GET_REVIEWER_LISTINGS = gql`
             isPublished
             coach {
             id
-                reviewerListing {
-                    id
-                }
+            first_name
+            last_name
+            city
+            state
+            image_url
             }
         }
 

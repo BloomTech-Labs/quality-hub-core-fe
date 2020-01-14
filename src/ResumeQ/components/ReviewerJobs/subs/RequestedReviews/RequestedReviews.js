@@ -11,7 +11,7 @@ const RequestedReviews = () => {
         fetchPolicy: 'network-only'
     });
 
-    const submitResponse = useMutation(RESPOND_RESUME_REVIEW,
+    const [submitResponse] = useMutation(RESPOND_RESUME_REVIEW,
         {
             refetchQueries: [`REQUESTED_RESUME_REVIEWS`],
             awaitRefetchQueries: true

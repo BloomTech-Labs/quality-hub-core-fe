@@ -2,8 +2,11 @@ import React from 'react';
 
 const ResumeReviewEntry = ({
   request,
-  request: { coach, seeker, createdAt, submitResponse }
+  request: { coach, seeker, createdAt },
+  submitResponse
 }) => {
+
+  console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
 
   const handleAccept = e => {
     e.preventDefault()
@@ -13,6 +16,7 @@ const ResumeReviewEntry = ({
         id: request.id,
         isAccepted: true,
         isPending: false,
+        isDenied: false
       }
     })
   }
