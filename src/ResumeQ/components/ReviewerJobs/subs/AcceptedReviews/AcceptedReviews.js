@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import Loading from '../../../../../global/components/Loading'
 
 import ResumeReviewEntry from '../ResumeReviewEntry'
 import { ACCEPTED_RESUME_REVIEWS, UPDATE_RESUME_REVIEW } from '../../Resolvers'
@@ -28,13 +29,16 @@ const AcceptedReviews = () => {
         }
     })
 
-    console.log(`RequestedReview / acceptedArray`, acceptedArray)
-
     return (
         <div>
-            {!loading && acceptedArray.map(entry => (
-                <ResumeReviewEntry entry={entry} key={entry.id} updateResumeReview={updateResumeReview} />
-            ))}
+            {loading && <Loading/>}
+            {!loading && acceptedArray && (
+            <div>
+                {acceptedArray.map(entry => (
+                    <ResumeReviewEntry entry={entry} key={entry.id} updateResumeReview={updateResumeReview}/>
+                ))}
+            </div>
+            )}
         </div>
     )
 }

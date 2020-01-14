@@ -3,6 +3,8 @@ import React from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
 import ResumeReviewEntry from '../ResumeReviewEntry'
+import Loading from '../../../../../global/components/Loading'
+
 import { REQUESTED_RESUME_REVIEWS, RESPOND_RESUME_REVIEW } from '../../Resolvers'
 
 const RequestedReviews = () => {

@@ -2,6 +2,8 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
 import ResumeReviewEntry from '../ResumeReviewEntry'
+import Loading from '../../../../../global/components/Loading'
+
 import { DECLINED_RESUME_REVIEWS } from '../../Resolvers'
 
 
@@ -23,9 +25,14 @@ const DeclinedRequests = () => {
 
     return (
         <div>
-            {!loading && declinedArray.map(request => (
-                <ResumeReviewEntry request={request} key={request.id} />
-            ))}
+            {loading && <Loading/>}
+            {!loading && declinedArray && (
+            <div>
+                {declinedArray.map(entry => (
+                    <ResumeReviewEntry entry={entry} key={entry.id} />
+                ))}
+            </div>
+            )}
         </div>
     )
 }
