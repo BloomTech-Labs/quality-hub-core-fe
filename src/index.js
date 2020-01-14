@@ -12,11 +12,15 @@ const getToken = () => {
 	return token ? `Bearer ${token}` : '';
 };
 
+const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://quality-hub-gateway-staging.herokuapp.com/`
+
+console.log(`FEDERATION_URI`, federationURI)
+
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
 	//https://quality-hub-gateway-staging.herokuapp.com/
-	uri: 'http://localhost:3232',
+	uri: federationURI,
 	request: operation => {
 		operation.setContext({
 			headers: {
