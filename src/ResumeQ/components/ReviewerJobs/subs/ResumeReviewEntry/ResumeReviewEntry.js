@@ -2,7 +2,7 @@ import React from 'react';
 
 const ResumeReviewEntry = ({
   request,
-  request: { coach, seeker, createdAt },
+  request: { seeker, createdAt },
   submitResponse
 }) => {
 
