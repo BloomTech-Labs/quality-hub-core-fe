@@ -12,6 +12,7 @@ const RequestReview = props => {
 
     const [requestResumeReview] = useMutation(CREATE_RESUME_REVIEW);
 
+    console.log(`RequestReview / coach.id`, coach.id)
 
     const handleCancel = e => {
         e.preventDefault()
