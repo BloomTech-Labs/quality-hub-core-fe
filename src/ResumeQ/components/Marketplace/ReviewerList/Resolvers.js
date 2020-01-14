@@ -1,12 +1,5 @@
 import { gql } from 'apollo-boost'
 
-// export const GET_INDUSTRIES = gql`
-// 	query {
-// 		industries {
-// 			name
-// 		}
-// 	}
-// `
 export const RESUME_Q = gql`
     query {
         resumeQinfo
