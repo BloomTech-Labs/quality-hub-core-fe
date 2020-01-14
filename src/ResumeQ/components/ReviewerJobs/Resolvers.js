@@ -109,9 +109,44 @@ export const DECLINED_RESUME_REVIEWS = gql`
   }}
 `
 
+
 // mutations for ResumeReviews
 
-//    requestedResumeReviews,
-// acceptedResumeReviews,
- // completedResumeReviews,
-  // declinedResumeReviews,
+// accept or deny request
+
+export const RESPOND_RESUME_REVIEW = gql`
+  mutation respondResumeReview(
+    $id: String!
+    $isPending: Boolean!
+    $isAccepted: Boolean!
+    $isDenied: Boolean!
+    ){
+      respondResumeReview(
+      id: $id
+      isPending: $isPending
+      isAccepted: $isAccepted
+      isDenied: $isDenied
+    ) {
+      id
+      isPending
+      isAccepted
+      isDenied
+    }
+  }
+`
+export const UPDATE_RESUME_REVIEW = gql`
+    mutation updateResumeReview(
+          $id: String!
+          $isComplete: Boolean
+    ) { 
+      updateResumeReview (
+      id: $id
+      isComplete: $isComplete
+     ) {
+      id
+      isPending
+      isAccepted
+      isDenied
+     }
+    }
+`
