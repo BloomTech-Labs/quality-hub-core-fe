@@ -70,7 +70,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	return (
 		<div className='styled-nav' id='main-navbar'>
 			<div className='nav-left'>
-				<NavLink to='/'>
+				<NavLink to={navtitle ? `/${navtitle.toLowerCase()}q` : '/'}>
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
 						<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
@@ -80,7 +80,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 			<div className='nav-right'>
 				<BecomeCoach />
-				
+				<NavLink to='/resumeq/seekerpanel'>Seeker Panel</NavLink>
+				<NavLink to='/resumeq/reviewerjobs'>Reviewer Jobs</NavLink>
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>
