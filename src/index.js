@@ -13,7 +13,7 @@ const getToken = () => {
 	return token ? `Bearer ${token}` : '';
 };
 
-const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://quality-hub-gateway-staging.herokuapp.com/`
+const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
 
 console.log(`FEDERATION_URI`, federationURI)
 
