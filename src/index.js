@@ -15,7 +15,7 @@ const getToken = () => {
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
+	uri: process.env.REACT_APP_FEDERATION_URI,
 	request: operation => {
 		operation.setContext({
 			headers: {
