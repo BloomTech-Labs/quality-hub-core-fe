@@ -1,5 +1,6 @@
 import { gql } from 'apollo-boost'
 
+
 export const RESUME_Q = gql`
     query {
         resumeQinfo
