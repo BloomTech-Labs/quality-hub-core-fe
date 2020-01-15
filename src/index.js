@@ -7,6 +7,7 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 require('dotenv').config();
 
+
 const getToken = () => {
 	let token = localStorage.getItem('token');
 	return token ? `Bearer ${token}` : '';
