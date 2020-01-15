@@ -4,10 +4,12 @@ const ResumeReviewEntry = ({
   entry,
   entry: { seeker, createdAt },
   submitResponse,
-  updateResumeReview
+  updateResumeReview,
+  refetch
 }) => {
 
   console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
+  console.log(`ResumeReviewEntry / entry`, entry)
 
   const handleAccept = e => {
     e.preventDefault()
@@ -34,6 +36,7 @@ const ResumeReviewEntry = ({
         isDenied: true
       }
     })
+    
   }
 
 
@@ -66,6 +69,10 @@ const ResumeReviewEntry = ({
           </div>
 
         }
+        {entry.status === 'Completed' && 
+          <div>
+            <p>Completed at {entry.dateCompleted}</p>
+            </div>}
 
       </div>
     </div>

@@ -9,7 +9,7 @@ import { ACCEPTED_RESUME_REVIEWS, UPDATE_RESUME_REVIEW } from '../../Resolvers'
 
 const AcceptedReviews = () => {
 
-    const { loading, data } = useQuery(
+    const { loading, data, refetch } = useQuery(
         ACCEPTED_RESUME_REVIEWS, {
         fetchPolicy: 'network-only'
     }
@@ -35,7 +35,7 @@ const AcceptedReviews = () => {
             {!loading && acceptedArray && (
             <div>
                 {acceptedArray.map(entry => (
-                    <ResumeReviewEntry entry={entry} key={entry.id} updateResumeReview={updateResumeReview}/>
+                    <ResumeReviewEntry entry={entry} key={entry.id} updateResumeReview={updateResumeReview} refetch={refetch}/>
                 ))}
             </div>
             )}

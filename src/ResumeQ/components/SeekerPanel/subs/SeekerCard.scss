@@ -10,15 +10,15 @@
 .seeker-list {
 	display: flex;
     flex-wrap: wrap;
-	width: 1080px;
+	min-width: 1280px;
 	// flex-direction: row;
     // justify-content: space-evenly;
-    margin-top: 2.4rem;
+    margin: 5%;
 }
 
 .seeker-card {
 	display: flex;
-    width: 36.1rem;
+    width: 35.2rem;
     height: 35.2rem;
     padding: 2.4rem;
     border: 1px solid #dadce0;

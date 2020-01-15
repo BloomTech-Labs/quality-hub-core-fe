@@ -2,15 +2,11 @@
     display: flex;
     flex-wrap: wrap;
 	width: 1080px;
-	// flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-top: 2.4rem;
-    .accepted-container {
-        flex-wrap: wrap;
-        // background-color: tan;
-    }
-    .denied-container {
-        // background-color: wheat;
+
+    .seeker-card{
+        margin: 2.5rem;
     }
 }
 

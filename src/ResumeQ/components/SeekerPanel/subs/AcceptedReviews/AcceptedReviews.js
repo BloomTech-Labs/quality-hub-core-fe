@@ -7,9 +7,8 @@ import '../../subs/SeekerCard.scss'
 
 // Global Imports
 import Loading from '../../../../../global/components/Loading'
-import { ICONS } from '../../../../../global/icons/iconConstants';
-import Icon from '../../../../../global/icons/Icon';
-
+import { ICONS } from '../../../../../global/icons/iconConstants'
+import Icon from '../../../../../global/icons/Icon'
 
 
 const AcceptedReviews = () => {
@@ -20,22 +19,28 @@ const AcceptedReviews = () => {
 
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
-    return(
 
-        <div className="seeker-container">
-            <div className="seeker-list">
+    if(loading){
+        return (
+            <div><p>Loading...</p></div>
+        )
+    } else {
+
+    return(
+            <div>
+            {!loading && (!data.acceptedReviewsBySeeker.length && (<div><p>You currently have no accepted or denied reviews...</p></div>))}
             {loading && <Loading />}
             {!loading && data.acceptedReviewsBySeeker && (
-                    <div>
+                    <div className="seeker-list">
                         {data.acceptedReviewsBySeeker.map(reviews => (
 
-                            <div>
+    
                             
                                 <div className="seeker-card">
                                     <div className='seeker-header-container'>
                                         <div className='seeker-card-header'>
                                             <h2>{reviews.seeker.first_name} {reviews.seeker.last_name}</h2>
-                                            <p>Email: {reviews.seeker.email}</p>
+                                            <p>{reviews.seeker.email}</p>
                                         </div>
                                         
                                         <div className='coach-photo'>
@@ -65,16 +70,15 @@ const AcceptedReviews = () => {
                                     <p>Email: {reviews.coach.email}</p>
                                 </div>
                             </div>
-                            </div>
                         ))}
                     </div>
                 
                 )}
                 
             </div>    
-        </div>
         
     )
+}
 }
 
 export default AcceptedReviews
