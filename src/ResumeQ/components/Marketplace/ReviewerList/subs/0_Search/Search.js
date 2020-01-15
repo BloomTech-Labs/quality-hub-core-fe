@@ -8,9 +8,6 @@ import './Search.scss';
 
 import { search } from '../../../../../../global/icons/search';
 
-
-
-
 const Search = ({ fields, setFields, refetch }) => {
   const [lastChanged, setChanged] = useState();
   console.log(`Search / fields`, fields)
