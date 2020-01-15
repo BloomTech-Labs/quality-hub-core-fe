@@ -1,8 +1,15 @@
 import React from 'react';
-import { useQuery } from '@apollo/fedaration'
-import Loading from '../../../../../global/components/Loading'
+import { useQuery } from '@apollo/react-hooks'
 import { DENIED_REVIEWS_BY_SEEKER} from '../../Resolvers'
-import './DeniedReviews.scss'
+
+// Styling
+import '../../subs/SeekerCard.scss'
+
+// Global Imports
+import Loading from '../../../../../global/components/Loading'
+import { ICONS } from '../../../../../global/icons/iconConstants';
+import Icon from '../../../../../global/icons/Icon';
+
 
 const DeniedReviews = () => {
 
@@ -13,28 +20,52 @@ const DeniedReviews = () => {
     console.log('DENIED data', data)
     
     return(
-        <div className="denied-by-seeker">
-        {loading && <Loading />}
-        {!loading && data.deniedReviewsBySeeker && (
-            <div>
-                {data.deniedReviewsBySeeker.map(reviews => (
-                    <div className="denied-by-seeker-card">
-                        <p>ID: {reviews.id}</p>
-                        <p>Denied: {reviews.isDenied}</p>
-                        <p>Date Created: {reviews.createdAt}</p>
-                        <p>Date Updated:{reviews.updatedAt}</p>
-                        <p>Coach ID{reviews.coach.id}</p>
-                        <p>Coach Name:{reviews.coach.first_name} {reviews.coach.last_name}</p>
-                        <p>{reviews.coach.last_name}</p>
-                        <p>{reviews.coach.email}</p>
-                        <p>{reviews.seeker.id}</p>
-                        <p>{reviews.seeker.first_name}</p>
-                        <p>{reviews.seeker.last_name}</p>
-                        <p>{reviews.seeker.email}</p>
+        <div className="seeker-container">
+            <div className="seeker-list">
+                {loading && <Loading />}
+                {!loading && data.deniedReviewsBySeeker && (
+                    <div>
+                    
+                        {data.deniedReviewsBySeeker.map(denied => (
+
+                            <div className="seeker-card">
+                                <div className="seeker-header-container">
+                                    <div className="seeker-card-header">
+                                        <h2>{denied.seeker.first_name} {denied.seeker.last_name}</h2>
+                                        <p>Email: {denied.seeker.email}</p>
+                                    </div>
+
+                                    <div className='coach-photo'>
+                                    {denied.seeker.image_url ? (
+                                        <img src={denied.seeker.image_url} alt='Coach Profile Pic' />
+                                    ) : (
+                                            <div className='blank-image'>
+                                                <Icon
+                                                    icon={ICONS.BLANK_AVATAR}
+                                                    color='white'
+                                                    width={80}
+                                                    height={90}
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                    </div>   
+                                    <div>
+                                        <p>Created: {denied.createdAt}</p>
+                                        <p>Last Update:{denied.updatedAt}</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3>Coach Info:</h3>
+                                        <p>Name: {denied.coach.first_name} {denied.coach.last_name}</p>
+                                        <p>Email: {denied.coach.email}</p>
+                                    </div>
+                                   
+                            </div>
+                        ))}
                     </div>
-                ))}
+                )}
             </div>
-        )}
         </div>
     )
 }

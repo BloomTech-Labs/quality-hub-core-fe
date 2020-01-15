@@ -14,12 +14,14 @@ query{
             first_name
             last_name
             email
+            image_url
         }
         seeker{
             id
             first_name
             last_name
             email
+            image_url
         }
     }
 }
@@ -38,12 +40,14 @@ query{
             first_name
             last_name
             email
+            image_url
         }
         seeker{
             id
             first_name
             last_name
             email
+            image_url
         }
     }
 }

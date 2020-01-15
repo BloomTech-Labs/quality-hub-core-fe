@@ -1,3 +1,3 @@
-import DeniedReviews from './AcceptedReviews'
+import DeniedReviews from './DeniedReviews'
 
 export default DeniedReviews
