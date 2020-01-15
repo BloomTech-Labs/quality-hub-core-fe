@@ -35,6 +35,7 @@ const RequestedReviews = () => {
 
     return (
         <div>
+            {!loading && (!data.requestedResumeReviews.length && (<div><p>You currently have no pending reviews at this time...</p></div>))}
             {!loading && requestArray.map(entry => (
                 <ResumeReviewEntry entry={entry} key={entry.id} submitResponse={submitResponse} />
             ))}

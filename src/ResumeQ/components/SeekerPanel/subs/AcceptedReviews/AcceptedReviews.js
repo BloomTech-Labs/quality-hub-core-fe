@@ -20,11 +20,11 @@ const AcceptedReviews = () => {
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
 
-    if(loading){
-        return (
-            <div><p>Loading...</p></div>
-        )
-    } else {
+    // if(loading){
+    //     return (
+    //         <div><p>Loading...</p></div>
+    //     )
+    // } else {
 
     return(
             <div>
@@ -79,7 +79,7 @@ const AcceptedReviews = () => {
         
     )
 }
-}
+// }
 
 export default AcceptedReviews
 
