@@ -97,8 +97,8 @@ const Search = ({ fields, setFields, refetch }) => {
           <option value="fasdfasdf">Least reviews</option> */}
             <option value='price_ASC'>Price, low to high</option>
             <option value='price_DESC'>Price, high to low</option>
-            <option value='lastUpdated_DESC'>Newest</option>
-            <option value='lastUpdated_ASC'>Oldest</option>
+            <option value='updatedAt_DESC'>Newest</option>
+            <option value='updatedAt_ASC'>Oldest</option>
           </select>
         </div>
         {/* <div className='search-field-bottom'> */}
