@@ -23,7 +23,7 @@ const ReviewsHistory = () => {
     const completedArray = !loading && data.completedResumeReviews.map(review => {
         return {
             ...review,
-            status: "In Progress"
+            status: "Completed"
         }
     })
 

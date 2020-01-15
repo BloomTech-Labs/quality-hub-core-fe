@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { DENIED_REVIEWS_BY_SEEKER} from '../../Resolvers'
 
@@ -7,8 +7,8 @@ import '../../subs/SeekerCard.scss'
 
 // Global Imports
 import Loading from '../../../../../global/components/Loading'
-import { ICONS } from '../../../../../global/icons/iconConstants';
-import Icon from '../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../global/icons/iconConstants'
+import Icon from '../../../../../global/icons/Icon'
 
 
 const DeniedReviews = () => {
@@ -18,21 +18,20 @@ const DeniedReviews = () => {
     })
 
     console.log('DENIED data', data)
-    
+
     return(
-        <div className="seeker-container">
-            <div className="seeker-list">
+            <div>
+                {!loading && (!data.deniedReviewsBySeeker.length && (<div><p>You currently have no accepted or denied reviews...</p></div>))}
                 {loading && <Loading />}
                 {!loading && data.deniedReviewsBySeeker && (
-                    <div>
-                    
+                    <div className="seeker-list">
                         {data.deniedReviewsBySeeker.map(denied => (
 
                             <div className="seeker-card">
                                 <div className="seeker-header-container">
                                     <div className="seeker-card-header">
                                         <h2>{denied.seeker.first_name} {denied.seeker.last_name}</h2>
-                                        <p>Email: {denied.seeker.email}</p>
+                                        <p>{denied.seeker.email}</p>
                                     </div>
 
                                     <div className='coach-photo'>
@@ -66,8 +65,8 @@ const DeniedReviews = () => {
                     </div>
                 )}
             </div>
-        </div>
     )
 }
+
 
 export default DeniedReviews
