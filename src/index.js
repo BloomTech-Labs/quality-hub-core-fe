@@ -13,15 +13,16 @@ const getToken = () => {
 	return token ? `Bearer ${token}` : '';
 };
 
+
 const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
 
 console.log(`FEDERATION_URI`, federationURI)
 
+
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	//https://quality-hub-gateway-staging.herokuapp.com/
-	uri: federationURI,
+	uri: 'https://qhub-federation.herokuapp.com/',
 	request: operation => {
 		operation.setContext({
 			headers: {
