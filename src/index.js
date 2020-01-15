@@ -12,10 +12,11 @@ const getToken = () => {
 	return token ? `Bearer ${token}` : '';
 };
 
+
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	uri: process.env.REACT_APP_FEDERATION_URI,
+	uri: 'https://qhub-federation.herokuapp.com/',
 	request: operation => {
 		operation.setContext({
 			headers: {
