@@ -6,6 +6,7 @@ import SignInForm from '../../Core/components/SignInForm';
 import SignUpForm from '../../Core/components/SignUpForm';
 import ForgotPassword from '../../Core/components/SignInForm/subs/ForgotPassword';
 import PrivateRoute from '../../global/components/PrivateRoute';
+import ChargeButton from '../../Core/components/Stripe/subs/ChargeButton';
 
 function Core({ loggedin, setLoggedin }) {
 	return (
@@ -37,6 +38,7 @@ function Core({ loggedin, setLoggedin }) {
 				component={Dashboard}
 				setLoggedin={setLoggedin}
 			/>
+			<Route path='/charge' component={ChargeButton}/>
 		</Switch>
 	);
 }
