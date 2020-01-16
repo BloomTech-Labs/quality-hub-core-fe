@@ -21,16 +21,13 @@ const RequestReview = props => {
     }
 
     const handleSubmit = e => {
-        console.log(`RequestReview > handleSubmit`)
         requestResumeReview({
             variables: {
                 coach: coach.id
             }
         }).then(res => {
-            console.log(`RequestReview >> handleSubmit / res`, res)
         }).catch(err => {
             const errStr = err.toString().replace('Error: GraphQL error: ', '')
-            console.log(`RequestReview >> handleSubmit / err`, err)
             errStr.includes('Request between seeker and coach already exists') && setError(`You have already sent ${coach.first_name} a request. Please wait for them to respond or complete their review.`)
         })
     }
