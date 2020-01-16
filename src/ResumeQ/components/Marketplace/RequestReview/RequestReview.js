@@ -1,18 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { CREATE_RESUME_REVIEW, GET_USER } from '../../Marketplace/Resolvers'
 
 const RequestReview = props => {
-
+    // console.log(`RequestReview / props`, props)
     const { history } = props
-    console.log(`RequestReview / props`, props)
-    const { listing } = props.location.state
+    const { location: { state: { listing } } } = props
     const { coach } = listing
-    console.log(`RequestReview / listing`, listing)
-
+    // console.log(`RequestReview / listing`, listing)
+    const [error, setError] = useState('')
     const [requestResumeReview] = useMutation(CREATE_RESUME_REVIEW);
 
-    console.log(`RequestReview / coach.id`, coach.id)
+    // console.log(`RequestReview / coach.id`, coach.id)
 
     const handleCancel = e => {
         e.preventDefault()
@@ -27,6 +26,12 @@ const RequestReview = props => {
             variables: {
                 coach: coach.id
             }
+        }).then(res => {
+            console.log(`RequestReview >> handleSubmit / res`, res)
+        }).catch(err => {
+            const errStr = err.toString().replace('Error: GraphQL error: ', '')
+            console.log(`RequestReview >> handleSubmit / err`, err)
+            errStr.includes('Request between seeker and coach already exists') && setError(`You have already sent ${coach.first_name} a request. Please wait for them to respond.`)
         })
     }
 
@@ -37,6 +42,10 @@ const RequestReview = props => {
                 <p>You are requesting a resumé review from {coach.first_name} {coach.last_name}.</p>
                 <hr />
                 <p>You will be charged ${listing.price} after {coach.first_name} accepts the review.</p>
+            </div>
+            {/* error message container*/}
+            <div>
+                <p>{error}</p>
             </div>
             {/* // buttons for cancelling or confirming request. */}
             <div>
