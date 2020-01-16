@@ -31,6 +31,7 @@ const AcceptedReviews = () => {
 
     return (
         <div>
+            {!loading && (!data.acceptedResumeReviews.length && (<div><p>You currently have no accepted reviews at this time...</p></div>))}
             {loading && <Loading/>}
             {!loading && acceptedArray && (
             <div>

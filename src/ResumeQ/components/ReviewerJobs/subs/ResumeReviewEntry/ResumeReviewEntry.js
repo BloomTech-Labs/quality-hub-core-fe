@@ -58,14 +58,15 @@ const ResumeReviewEntry = ({
         <p>{seeker.first_name} {seeker.last_name}</p>
         <p>{seeker.email}</p>
         {entry.status === 'Pending' &&
-          <div>
-            <button onClick={handleAccept}>Accept</button>}
-        <button onClick={handleDecline}>Decline</button>
+          <div >
+            <button className='default-btn'
+            onClick={handleAccept}>Accept</button>
+        <button className='default-btn' onClick={handleDecline}>Decline</button>
           </div>
         }
         {entry.status === 'In Progress' &&
           <div>
-            <button onClick={handleUpdate}>Mark Completed</button>
+            <button className='default-btn' onClick={handleUpdate}>Mark Completed</button>
           </div>
 
         }

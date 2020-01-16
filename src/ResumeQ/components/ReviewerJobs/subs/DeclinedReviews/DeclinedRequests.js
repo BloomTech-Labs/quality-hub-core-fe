@@ -25,6 +25,7 @@ const DeclinedRequests = () => {
 
     return (
         <div>
+            {!loading && (!data.declinedResumeReviews.length && (<div><p>You currently have no declined reviews at this time...</p></div>))}
             {loading && <Loading/>}
             {!loading && declinedArray && (
             <div>

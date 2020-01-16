@@ -29,6 +29,7 @@ const ReviewsHistory = () => {
 
     return (
         <div>
+            {!loading && (!data.completedResumeReviews.length && (<div><p>You have not had any reviews yet...</p></div>))}
             {loading && <Loading/>}
             {!loading && completedArray && (
             <div>
