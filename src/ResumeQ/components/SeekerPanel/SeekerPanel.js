@@ -4,6 +4,7 @@ import AcceptedReviews from './subs/AcceptedReviews'
 import DeniedReviews from './subs/DeniedReviews'
 
 import './SeekerPanel.scss'
+import { MarketplacePanels } from '../Marketplace/ReviewerList/subs/2_Panels/MarketplacePanels'
 
 const SeekerPanel = () => {
 
@@ -18,6 +19,7 @@ const SeekerPanel = () => {
     return ( 
 
         <div className="seeker-panel-list">
+            <MarketplacePanels />
 
             <div className='QNav-row'>
                 <button onClick={() => openTab('accepted')} className='QNav-btn'>Accepted</button>

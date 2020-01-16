@@ -41,28 +41,6 @@ import { star, greystar } from '../../../../../../global/icons/star';
 // `;
 
 const ReviewerCard = ({ listing }) => {
-	// const [reviewModal, openReviewModal] = useState(false);
-	// const node = useRef();
-
-	// useEffect(() => {
-	// 	if (reviewModal) {
-	// 		document.addEventListener('mousedown', handleOutsideClick);
-	// 	} else {
-	// 		document.removeEventListener('mousedown', handleOutsideClick);
-	// 	}
-	// }, [reviewModal]);
-
-	// const handleOutsideClick = e => {
-	// 	if (node.current) {
-	// 		if (node.current.contains(e.target)) {
-	// 			return;
-	// 		} else {
-	// 			openReviewModal(false);
-	// 		}
-	// 	} else {
-	// 		openReviewModal(false);
-	// 	}
-	// };
 
 	let { coach } = listing;
 	let maxWidth = 100;
@@ -80,6 +58,7 @@ const ReviewerCard = ({ listing }) => {
 	const fullName = `${coach.first_name} ${coach.last_name}`;
 
 	return (
+		<div className='coach-container'>
 		<div className='coach-card'>
 			<div id='overlay-confirm-interview'></div>
 			<div className='coachcard-header'>
@@ -210,7 +189,10 @@ const ReviewerCard = ({ listing }) => {
 					reviewModal={reviewModal}
 				/>
 			)} */}
+			
 		</div>
+		</div>
+		
 	);
 };
 

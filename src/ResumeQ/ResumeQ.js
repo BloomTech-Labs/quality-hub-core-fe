@@ -8,6 +8,7 @@ import RequestReview from './components/Marketplace/RequestReview'
 import DashResumeQ from './components/DashResumeQ'
 import SeekerPanel from './components/SeekerPanel/SeekerPanel'
 import ReviewerJobs from './components/ReviewerJobs'
+import BecomeCoachResumeQ from './components/BecomeCoachResumeQ/BecomeCoachResumeQ';
 
 const ResumeQContainer = () => {
 
@@ -23,6 +24,7 @@ const ResumeQContainer = () => {
           <Route path='/resumeq/request' component={RequestReview} />
           <Route path='/resumeq/seekerpanel' component={SeekerPanel} />
           <Route path='/resumeq/reviewerjobs' component={ReviewerJobs} />
+          <Route path='/resumeq/becomeacoach' component={ListingForm} />
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import RequestedReview from './subs/RequestedReviews'
 import AcceptedReviews from './subs/AcceptedReviews'
 import DeclinedReviews from './subs/DeclinedReviews'
 import ReviewsHistory from './subs/ReviewsHistory'
+import { MarketplacePanels } from '../Marketplace/ReviewerList/subs/2_Panels/MarketplacePanels'
 
 const ReviewerJobs = () => {
 
@@ -23,6 +24,7 @@ const ReviewerJobs = () => {
 
     return (
         <div>
+            <MarketplacePanels />
             <div className='QNav-row'>
                 <button onClick={() => openTab('requests')} className='QNav-btn'>Pending</button>
                 <button onClick={() => openTab('accepted')} className='QNav-btn'>Accepted</button>

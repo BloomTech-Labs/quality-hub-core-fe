@@ -1,6 +1,8 @@
 @import '../../../../../../global/styles/variables';
 
 .search-container{
+	width: 92%;
+	padding-top: 25px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -31,11 +33,11 @@ text-align: left;
 	}
 }
 
-.search-input-search-icon {
-	// margin-bottom: -56px;
-	// padding-left: 10px;
-	// z-index: 30000;
-}
+// .search-input-search-icon {
+// 	// margin-bottom: -56px;
+// 	// padding-left: 10px;
+// 	// z-index: 30000;
+// }
 
 .search-by-keyword-input {
 	// padding-left: 40px;

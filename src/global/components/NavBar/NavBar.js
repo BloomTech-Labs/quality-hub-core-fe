@@ -80,8 +80,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 
 			<div className='nav-right'>
 				<BecomeCoach />
-				<NavLink to='/resumeq/seekerpanel'>Seeker Panel</NavLink>
-				<NavLink to='/resumeq/reviewerjobs'>Reviewer Jobs</NavLink>
+				{/* <NavLink to='/resumeq/seekerpanel'>Seeker Panel</NavLink>
+				<NavLink to='/resumeq/reviewerjobs'>Reviewer Jobs</NavLink> */}
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>
