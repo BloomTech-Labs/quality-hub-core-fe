@@ -8,10 +8,12 @@ const RequestReview = props => {
     const { location: { state: { listing } } } = props
     const { coach } = listing
     // console.log(`RequestReview / listing`, listing)
-    const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const [requestResumeReview] = useMutation(CREATE_RESUME_REVIEW);
 
     // console.log(`RequestReview / coach.id`, coach.id)
+
+
 
     const handleCancel = e => {
         e.preventDefault()
@@ -26,9 +28,13 @@ const RequestReview = props => {
                 coach: coach.id
             }
         }).then(res => {
+            setMessage(`Request sent!`)
+            setTimeout(() => {
+                history.push('/resumeq')
+            }, 1250)
         }).catch(err => {
             const errStr = err.toString().replace('Error: GraphQL error: ', '')
-            errStr.includes('Request between seeker and coach already exists') && setError(`You have already sent ${coach.first_name} a request. Please wait for them to respond or complete their review.`)
+            errStr.includes('Request between seeker and coach already exists') && setMessage(`You have already sent ${coach.first_name} a request. Please wait for them to respond or complete their review.`)
         })
     }
 
@@ -42,7 +48,7 @@ const RequestReview = props => {
             </div>
             {/* error message container*/}
             <div>
-                <p>{error}</p>
+                <p>{message}</p>
             </div>
             {/* // buttons for cancelling or confirming request. */}
             <div>
