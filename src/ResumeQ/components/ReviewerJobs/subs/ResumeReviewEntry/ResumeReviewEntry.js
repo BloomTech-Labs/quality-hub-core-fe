@@ -1,4 +1,5 @@
 import React from 'react';
+import './ResumeReviewEntry.scss'
 
 const ResumeReviewEntry = ({
   entry,
@@ -53,28 +54,30 @@ const ResumeReviewEntry = ({
 
   return (
     <div>
-      <div>
-        <p>{createdAt}</p>
-        <p>{seeker.first_name} {seeker.last_name}</p>
-        <p>{seeker.email}</p>
-        {entry.status === 'Pending' &&
-          <div >
-            <button className='default-btn'
-            onClick={handleAccept}>Accept</button>
-        <button className='default-btn' onClick={handleDecline}>Decline</button>
-          </div>
-        }
-        {entry.status === 'In Progress' &&
-          <div>
-            <button className='default-btn' onClick={handleUpdate}>Mark Completed</button>
-          </div>
+      <div className="reviewer-jobs-list">
+        <div className="reviewer-jobs-card">
+          <p>{createdAt}</p>
+          <p>{seeker.first_name} {seeker.last_name}</p>
+          <p>{seeker.email}</p>
+          {entry.status === 'Pending' &&
+            <div >
+              <button className='default-btn'
+              onClick={handleAccept}>Accept</button>
+          <button className='default-btn' onClick={handleDecline}>Decline</button>
+            </div>
+          }
+          {entry.status === 'In Progress' &&
+            <div>
+              <button className='default-btn' onClick={handleUpdate}>Mark Completed</button>
+            </div>
 
-        }
-        {entry.status === 'Completed' && 
-          <div>
-            <p>Completed at {entry.dateCompleted}</p>
-            </div>}
+          }
+          {entry.status === 'Completed' && 
+            <div>
+              <p>Completed at {entry.dateCompleted}</p>
+              </div>}
 
+        </div>
       </div>
     </div>
   );

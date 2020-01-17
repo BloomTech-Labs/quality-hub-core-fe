@@ -1,19 +1,20 @@
 
-.seeker-container {
-	display: flex;
-	margin: 0;
-    padding: 0;
-    // box-sizing: border-box;
-	max-width: 100%;
-}
+// .seeker-container {
+// 	display: flex;
+// 	margin: 0;
+//     padding: 0;
+//     // box-sizing: border-box;
+// 	max-width: 100%;
+// }
 
 .seeker-list {
+	// background-color: lightblue;
 	display: flex;
     flex-wrap: wrap;
-	min-width: 1280px;
-	// flex-direction: row;
-    // justify-content: space-evenly;
-    margin: 5%;
+	min-width: 50%;
+    padding: 5rem;
+	margin: 0 5% 0 15%;
+	justify-content: flex-start;
 }
 
 .seeker-card {
@@ -23,7 +24,8 @@
     padding: 2.4rem;
     border: 1px solid #dadce0;
     border-radius: 0.8rem;
-    margin-bottom: 1.2rem;
+	margin-bottom: 1.2rem;
+	margin-right: 1.2rem;
     flex-direction: column;
     justify-content: space-between;
 	text-align: left;

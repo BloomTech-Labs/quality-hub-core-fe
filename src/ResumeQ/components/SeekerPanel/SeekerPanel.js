@@ -4,6 +4,12 @@ import AcceptedReviews from './subs/AcceptedReviews'
 import DeniedReviews from './subs/DeniedReviews'
 
 import './SeekerPanel.scss'
+import { MarketplacePanels } from '../Marketplace/ReviewerList/subs/2_Panels/MarketplacePanels'
+
+//SVG IMAGE
+import resumeQ2 from '../../../global/icons/resumeQ2.svg'
+
+
 
 const SeekerPanel = () => {
 
@@ -16,12 +22,13 @@ const SeekerPanel = () => {
       }
 
     return ( 
-
+    <div className="seeker-panel-container">
         <div className="seeker-panel-list">
+            <MarketplacePanels />
 
-            <div className='QNav-row'>
-                <button onClick={() => openTab('accepted')} className='QNav-btn'>Accepted</button>
-                <button onClick={() => openTab('denied')} className='QNav-btn'>Denied</button>
+            <div className='SeekerQNav-row'>
+                <button onClick={() => openTab('accepted')} className='SeekerQNav-btn'>Accepted</button>
+                <button onClick={() => openTab('denied')} className='SeekerQNav-btn'>Denied</button>
             </div>
 
             <div id='accepted' className='requestTab'>
@@ -32,6 +39,12 @@ const SeekerPanel = () => {
                 <h1>Denied Reviews</h1>
                 <DeniedReviews />
             </div>
+        </div>
+
+        <div className='resumeQ1'>
+            <img src={resumeQ2} />
+        </div>
+
         </div>
         )}
 

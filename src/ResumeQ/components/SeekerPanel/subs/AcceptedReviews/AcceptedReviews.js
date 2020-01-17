@@ -20,12 +20,6 @@ const AcceptedReviews = () => {
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
 
-    // if(loading){
-    //     return (
-    //         <div><p>Loading...</p></div>
-    //     )
-    // } else {
-
     return(
             <div>
             {!loading && (!data.acceptedReviewsBySeeker.length && (<div><p>You currently have no accepted or denied reviews...</p></div>))}
@@ -33,9 +27,6 @@ const AcceptedReviews = () => {
             {!loading && data.acceptedReviewsBySeeker && (
                     <div className="seeker-list">
                         {data.acceptedReviewsBySeeker.map(reviews => (
-
-    
-                            
                                 <div className="seeker-card">
                                     <div className='seeker-header-container'>
                                         <div className='seeker-card-header'>
@@ -69,6 +60,7 @@ const AcceptedReviews = () => {
                                     <p>Name: {reviews.coach.first_name} {reviews.coach.last_name}</p>
                                     <p>Email: {reviews.coach.email}</p>
                                 </div>
+                                <button className="">Contact</button>
                             </div>
                         ))}
                     </div>
@@ -79,7 +71,6 @@ const AcceptedReviews = () => {
         
     )
 }
-// }
 
 export default AcceptedReviews
 
