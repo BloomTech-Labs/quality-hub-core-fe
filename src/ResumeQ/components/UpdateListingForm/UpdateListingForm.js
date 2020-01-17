@@ -7,7 +7,7 @@ import './ListingForm.scss';
 import { lightbulb } from '../../../global/icons/lightbulb';
 
 // Query
-import { CREATE_REVIEWER_LISTING } from './Resolvers';
+import { UPDATE_REVIEWER_LISTING } from './Resolvers';
 // import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
 import { GET_USER } from '../Marketplace/Resolvers'
 
@@ -22,7 +22,7 @@ import BottomButtons from './subs/BottomButtons';
 import TopText from './subs/TopText';
 import { handleChange, handleSubmit, handleSave } from './subs/Functions';
 
-const ListingForm = props => {
+const UpdateListingForm = props => {
 	const { data } = useQuery(GET_USER);
 	// const { data: industriesData } = useQuery(INDUSTRIES);
 
@@ -34,13 +34,13 @@ const ListingForm = props => {
 
 	// const [hasListing, setHasListing] = useState();
 
-	const [createListing] = useMutation(CREATE_REVIEWER_LISTING, {
+	const [updateListing] = useMutation(UPDATE_REVIEWER_LISTING, {
 		// after a post is added, refetch the data with the current filter parameters
 		refetchQueries: ['GET_REVIEWER_LISTINGS'],
 		awaitRefetchQueries: true,
 	});
 
-	// This sets the darkened overlay behind the modals
+	//This sets the darkened overlay behind the modals
 	// useEffect(() => {
 	// 	if (open) {
 	// 		document.getElementById('overlay-listing-form').style.display = 'block';
@@ -62,11 +62,8 @@ const ListingForm = props => {
 	const [formState, setFormState] = useState({
 		company: '',
 		position: '',
-		//We leave a default industry so users are FORCED to pick something
-		// industryName: 'Architecture and Construction',
 		description: '',
 		price: 30,
-		// tagString: '',
 		isPublished: true,
 	});
 
@@ -98,8 +95,6 @@ const ListingForm = props => {
 		})
 	};
 
-
-
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
@@ -108,7 +103,7 @@ const ListingForm = props => {
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className='become-a-listing-btn'>
 				{/* {lightbulb2()} */}
-				<span className='add-listing-form-button'>Become a Coach</span>
+				<span className='add-listing-form-button'>Update Info</span>
 			</button>
 
 			{/* This is the 2nd modal that pops up after you publish a post */}
@@ -146,7 +141,7 @@ const ListingForm = props => {
 								formState={formState}
 								setDone={setDone}
 								setOpen={setOpen}
-								createListing={createListing}
+								updateListing={updateListing}
 								closeWindow={closeWindow}
 								requiredState={requiredState}
 								setRequiredState={setRequiredState}
@@ -159,4 +154,4 @@ const ListingForm = props => {
 	);
 };
 
-export default ListingForm;
+export default UpdateListingForm;

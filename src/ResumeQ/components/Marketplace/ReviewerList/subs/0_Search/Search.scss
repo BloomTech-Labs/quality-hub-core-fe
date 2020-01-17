@@ -1,13 +1,14 @@
 @import '../../../../../../global/styles/variables';
 
 .search-container{
-	width: 92%;
+	width: 1080px;
 	padding-top: 25px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	h2{
 		font-weight: normal;
+		margin-left: 1%;
 font-size: 24px;
 line-height: 32px;
 white-space: nowrap;
@@ -110,6 +111,7 @@ text-align: left;
 }
 
 .search-reset {
+	margin-right: 1%;
 	// width: 15%;
 	// flex-grow: 1;
 	// font-size: 1.4rem;

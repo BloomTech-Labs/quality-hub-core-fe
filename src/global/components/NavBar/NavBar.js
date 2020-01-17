@@ -14,6 +14,8 @@ import { Hamburger } from '../../icons/hamburger';
 import BecomeCoach from './subs/BecomeCoach';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
+import ListingForm from '../../../ResumeQ/components/ListingForm';
+import UpdateListingForm from '../../../ResumeQ/components/UpdateListingForm';
 
 // Query
 const GET_USER = gql`
@@ -79,7 +81,8 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			</div>
 
 			<div className='nav-right'>
-				<BecomeCoach />
+				<ListingForm />
+				<UpdateListingForm />
 				{/* <NavLink to='/resumeq/seekerpanel'>Seeker Panel</NavLink>
 				<NavLink to='/resumeq/reviewerjobs'>Reviewer Jobs</NavLink> */}
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}

@@ -9,7 +9,9 @@ import './MarketplacePanels.scss';
 // Icons
 import Icon from '../../../../../../global/icons/Icon'
 import { ICONS } from '../../../../../../global/icons/iconConstants'
-import { buildExecutionContext } from 'graphql/execution/execute';
+// import { buildExecutionContext } from 'graphql/execution/execute';
+import ListingForm from '../../../../ListingForm';
+import UpdateListingForm from '../../../../UpdateListingForm';
 
 export const MarketplacePanels = () => {
     
@@ -17,20 +19,44 @@ export const MarketplacePanels = () => {
 
     return (
 
-
-
     <div className="RQNav">
-            <div className='RQNav-row'>
-                <BecomeCoach />
-            </div>
 
-    <NavLink to='/resumeq' exact activeClassName='RQNav-row-highlight'>
+        <NavLink to='/resumeq/marketplace'>
             <div className='RQNav-row'>
                 <Icon
                     icon={ICONS.STAR}
                     width={24}
                     height={22}
-                    color={pathname.includes('/resumeq') ? 'white' : '#096dd9'}
+                    color={pathname.includes('/resumeq') ? '#FB2046' : '#FB2046'}
+                />
+                <div className='RQNav-btn'>
+                    <ListingForm />
+                </div>
+            </div>
+        </NavLink>
+     
+            
+        <NavLink to='/resumeq/marketplace'>
+            <div className='RQNav-row'>
+                <Icon
+                    icon={ICONS.STAR}
+                    width={24}
+                    height={22}
+                    color={pathname.includes('/resumeq') ? '#FB2046' : '#FB2046'}
+                />
+                <div className='RQNav-btn'>
+                    <UpdateListingForm />
+                </div>
+            </div>
+        </NavLink>
+     
+        <NavLink to='/resumeq/marketplace' strict activeClassName='RQNav-row-highlight'>
+            <div className='RQNav-row'>
+                <Icon
+                    icon={ICONS.STAR}
+                    width={24}
+                    height={22}
+                    color={pathname.includes('/resumeq/marketplace') ? 'white' : '#FB2046'}
                 />
                 <div className='RQNav-btn'>Marketplace</div>
             </div>
@@ -42,27 +68,23 @@ export const MarketplacePanels = () => {
                     icon={ICONS.STAR}
                     width={24}
                     height={21}
-                    color={pathname.includes('star') ? 'white' : '#096dd9'}
+                    color={pathname.includes('resumeq/seekerpanel') ? 'white' : '#FB2046'}
                 />
                 <div className='RQNav-btn'>Seeker Panel</div>
             </div>
         </NavLink>
 
-        <NavLink to='/resumeq/reviewerjobs' activeClassName='RQNav-row-highlight'>
+        <NavLink to='/resumeq/reviewerjobs' exact activeClassName='RQNav-row-highlight'>
             <div className='RQNav-row'>
                 <Icon
                     icon={ICONS.STAR}
                     width={24}
                     height={22}
-                    color={pathname.includes('star') ? 'white' : '#096dd9'}
+                    color={pathname.includes('resumeq/reviewerjobs') ? 'white' : '#FB2046'}
                 />
                 <div className='RQNav-btn'>Reviewer Jobs</div>
             </div>
         </NavLink>
-
-        
-
-   
 
     </div>
 
