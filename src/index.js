@@ -22,7 +22,7 @@ console.log(`FEDERATION_URI`, federationURI)
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	uri: 'https://qhub-federation.herokuapp.com/',
+	uri: federationURI,
 	request: operation => {
 		operation.setContext({
 			headers: {
