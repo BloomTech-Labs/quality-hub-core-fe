@@ -4,7 +4,7 @@ import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // Styles
-import './Search.scss';
+import './RQSearch.scss';
 
 import { search } from '../../../../../../global/icons/search';
 
@@ -58,15 +58,15 @@ const Search = ({ fields, setFields, refetch }) => {
   }
 
   return (
-    <div className='search-container'>
+    <div className='RQsearch-container'>
       <h2>Search Coach</h2>
-      <div className='search-dropdowns'>
+      <div className='RQsearch-dropdowns'>
 
-        <div className='search-field'>
+        <div className='RQsearch-field'>
           {/* <label>Industry</label> */}
 
         </div>
-        <div className='search-field'>
+        <div className='RQsearch-field'>
           {/* <label>Price</label> */}
           <select
             name='price'
@@ -83,7 +83,7 @@ const Search = ({ fields, setFields, refetch }) => {
             <option value='101, 1000000'> > $100~</option>
           </select>
         </div>
-        <div className='search-field'>
+        <div className='RQsearch-field'>
           {/* <label>Sort results by</label> */}
           <select
             name='orderBy'
@@ -102,25 +102,27 @@ const Search = ({ fields, setFields, refetch }) => {
           </select>
         </div>
         {/* <div className='search-field-bottom'> */}
-        <div className='search-field-keyword'>
+        <div className='RQsearch-field-keyword'>
 
           {/* <label className='search-label-keywords'>Keywords</label> */}
           <input
-            className='search-by-keyword-input'
+            className='RQsearch-by-keyword-input'
             type='text'
             name='description'
             value={fields.description}
             onChange={handleChange}
             placeholder={`Search by Keyword`}
             onKeyDown={handlePress}
+            
+            
           />
 
           {/* <div className='search-buttons'> */}
-          <button className='search-apply' onClick={e => handleSubmit(e)}>
+          <button className='RQsearch-apply' onClick={e => handleSubmit(e)}>
             {search()}
           </button>
         </div>
-        <button className='search-reset' onClick={handleReset}>
+        <button className='RQsearch-reset' onClick={handleReset}>
           Reset
 					</button>
         {/* </div> */}

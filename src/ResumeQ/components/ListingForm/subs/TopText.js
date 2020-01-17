@@ -1,15 +1,15 @@
 import React from 'react';
 
-const TopText = ({ lightbulb }) => {
+const TopText = ({ lightbulbRQ }) => {
 	return (
-		<div className='add-listing-form-top-fixed'>
-			<div className='add-listing-form-row-1'>
-				<div>{lightbulb()}</div>{' '}
-				<div className='add-listing-form-header'>
+		<div className='RQadd-listing-form-top-fixed'>
+			<div className='RQadd-listing-form-row-1'>
+				<div>{lightbulbRQ()}</div>{' '}
+				<div className='RQadd-listing-form-header'>
 					Create your listing here!
 				</div>
 			</div>
-			<p className='add-listing-form-row-2'>
+			<p className='RQadd-listing-form-row-2'>
 				Please fill the following fields to create a listing on the ResumeQ marketplace.
 				<br />
 				This information will help seekers decide which listing to select, so be

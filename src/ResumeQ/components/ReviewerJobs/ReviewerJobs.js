@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { useQuery } from '@apollo/react-hooks'
-
 import './LeftNav.scss'
 
 import RequestedReview from './subs/RequestedReviews'
@@ -9,9 +7,6 @@ import AcceptedReviews from './subs/AcceptedReviews'
 import DeclinedReviews from './subs/DeclinedReviews'
 import ReviewsHistory from './subs/ReviewsHistory'
 import { MarketplacePanels } from '../Marketplace/ReviewerList/subs/2_Panels/MarketplacePanels'
-
-//SVG IMAGE
-import resumeQ1 from '../../../global/icons/resumeQ1.svg'
 
 const ReviewerJobs = () => {
 
@@ -50,13 +45,7 @@ const ReviewerJobs = () => {
                 <h1>Completed Reviews</h1>
                 <ReviewsHistory />
             </div>
-            
-            <br></br>
-            <div className='resumeQ1'>
-            <img src={resumeQ1} />
-            </div>
-         
-            </div>
+        </div>
     )
 }
 

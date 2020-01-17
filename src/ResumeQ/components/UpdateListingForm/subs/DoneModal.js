@@ -6,8 +6,8 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 const DoneModal = ({ closeWindow }) => {
 	return (
-		<div className='done-modal'>
-			<button className='close-listing-form-button' onClick={() => closeWindow()}>
+		<div className='RQdone-modal'>
+			<button className='RQclose-listing-form-button' onClick={() => closeWindow()}>
 				<Icon
 					icon={ICONS.CLOSE}
 					width={24}
@@ -15,16 +15,16 @@ const DoneModal = ({ closeWindow }) => {
 					color='rgba(0, 0, 0, 0.54)'
 				/>
 			</button>
-			<div className='done-modal-content'>
-			<img className = 'done-modal-img' src='/images/confirmed.svg' />
-				<div className='done-modal-all-text'>
-					<p className='done-modal-text-1'>Your listing is live!</p>
-					<p className='done-modal-text-2'>
+			<div className='RQdone-modal-content'>
+			<img className = 'RQdone-modal-img' src='/images/confirmed.svg' />
+				<div className='RQdone-modal-all-text'>
+					<p className='RQdone-modal-text-1'>Your listing is live!</p>
+					<p className='RQdone-modal-text-2'>
 						You can edit your listing and set your availability in your
 						dashboard.
 					</p>
 				</div>
-				<div className='done-modal-buttons'>
+				<div className='RQdone-modal-buttons'>
 					<button onClick={() => closeWindow()}>Skip for now</button>
 					<Link
 						scroll={el => {
@@ -33,7 +33,7 @@ const DoneModal = ({ closeWindow }) => {
 						}}
 						smooth
 						to='/interviewq/settings#interviewq-availability-header'
-						className='add-listing-set-availability-link'>
+						className='RQadd-listing-set-availability-link'>
 					</Link>
 				</div>
 			</div>

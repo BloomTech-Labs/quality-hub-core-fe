@@ -8,17 +8,17 @@ const BottomButtons = ({ hasListing, setHasListing, handleSave, handleSubmit, fo
 
 	return (
 		<div>
-			<div className="add-listing-form-bottom-buttons">
+			<div className="RQadd-listing-form-bottom-buttons">
 				<button
-					className="add-listing-form-save-and-exit"
+					className="RQadd-listing-form-save-and-exit"
 					onClick={e => handleSave(e, formState, closeWindow, createListing)}>
 					Save and exit
 				</button>
-				<button className="add-listing-form-publish" onClick={requiredMet}>
+				<button className="RQadd-listing-form-publish" onClick={requiredMet}>
 					Publish
 				</button>
 			</div>
-			{requiredState.any && <p className="missing-required-fields">Missing required fields</p>}
+			{requiredState.any && <p className="RQmissing-required-fields">Missing required fields</p>}
 		</div>
 
 	);

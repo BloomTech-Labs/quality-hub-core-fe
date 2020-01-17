@@ -33,19 +33,19 @@
 	.seeker-header-container{
 		display: flex;
 		align-items: center;
-		justify-content: flex-end;
+		justify-content: flex-start;
 		// background-color: salmon;
 
 		.seeker-card-header{
 			// background-color: peru;
-			text-align: right;
+			text-align: left;
 			margin-right: 1.6rem;
-			width: 50%;
+			width: 72%;
 
 		}
 		.coach-photo {
-			width: 5.1rem;
-			height: 5.1rem;
+			width: 6.1rem;
+			height: 6.1rem;
 			border-radius: 50%;
 			overflow: hidden;
 		}

@@ -6,8 +6,7 @@ import DeniedReviews from './subs/DeniedReviews'
 import './SeekerPanel.scss'
 import { MarketplacePanels } from '../Marketplace/ReviewerList/subs/2_Panels/MarketplacePanels'
 
-//SVG IMAGE
-import resumeQ2 from '../../../global/icons/resumeQ2.svg'
+
 
 
 
@@ -41,9 +40,6 @@ const SeekerPanel = () => {
             </div>
         </div>
 
-        <div className='resumeQ1'>
-            <img src={resumeQ2} />
-        </div>
 
         </div>
         )}
