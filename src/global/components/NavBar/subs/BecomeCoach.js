@@ -11,7 +11,11 @@ export default function BecomeCoach() {
 	return (
 		<div className='become-coach-wrapper'>
 			{pathname.includes('interviewq') && <BecomeCoachInterviewQ />}
+<<<<<<< HEAD
 			{pathname.includes('/resumeq') && <BecomeCoachResumeQ />}
+=======
+			{pathname.includes('resumeq') && <BecomeCoachResumeQ />}
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 		</div>
 	);
 }

@@ -14,8 +14,11 @@ import { Hamburger } from '../../icons/hamburger';
 import BecomeCoach from './subs/BecomeCoach';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
+<<<<<<< HEAD
 import ListingForm from '../../../ResumeQ/components/ListingForm';
 import UpdateListingForm from '../../../ResumeQ/components/UpdateListingForm';
+=======
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 
 // Query
 const GET_USER = gql`
@@ -72,7 +75,11 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	return (
 		<div className='styled-nav' id='main-navbar'>
 			<div className='nav-left'>
+<<<<<<< HEAD
 				<NavLink to={navtitle ? `/${navtitle.toLowerCase()}q` : '/'}>
+=======
+				<NavLink to='/'>
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
 						<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
@@ -81,10 +88,15 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			</div>
 
 			<div className='nav-right'>
+<<<<<<< HEAD
 				<ListingForm />
 				<UpdateListingForm />
 				{/* <NavLink to='/resumeq/seekerpanel'>Seeker Panel</NavLink>
 				<NavLink to='/resumeq/reviewerjobs'>Reviewer Jobs</NavLink> */}
+=======
+				<BecomeCoach />
+				
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>

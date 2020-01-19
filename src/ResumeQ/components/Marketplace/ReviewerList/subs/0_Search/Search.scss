@@ -1,14 +1,20 @@
 @import '../../../../../../global/styles/variables';
 
 .search-container{
+<<<<<<< HEAD
 	width: 1080px;
 	padding-top: 25px;
+=======
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	h2{
 		font-weight: normal;
+<<<<<<< HEAD
 		margin-left: 1%;
+=======
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 font-size: 24px;
 line-height: 32px;
 white-space: nowrap;
@@ -34,11 +40,19 @@ text-align: left;
 	}
 }
 
+<<<<<<< HEAD
 // .search-input-search-icon {
 // 	// margin-bottom: -56px;
 // 	// padding-left: 10px;
 // 	// z-index: 30000;
 // }
+=======
+.search-input-search-icon {
+	// margin-bottom: -56px;
+	// padding-left: 10px;
+	// z-index: 30000;
+}
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 
 .search-by-keyword-input {
 	// padding-left: 40px;
@@ -111,7 +125,10 @@ text-align: left;
 }
 
 .search-reset {
+<<<<<<< HEAD
 	margin-right: 1%;
+=======
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 	// width: 15%;
 	// flex-grow: 1;
 	// font-size: 1.4rem;

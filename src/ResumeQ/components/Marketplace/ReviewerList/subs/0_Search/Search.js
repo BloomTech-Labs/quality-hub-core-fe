@@ -8,6 +8,12 @@ import './Search.scss';
 
 import { search } from '../../../../../../global/icons/search';
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 const Search = ({ fields, setFields, refetch }) => {
   const [lastChanged, setChanged] = useState();
   console.log(`Search / fields`, fields)
@@ -97,8 +103,13 @@ const Search = ({ fields, setFields, refetch }) => {
           <option value="fasdfasdf">Least reviews</option> */}
             <option value='price_ASC'>Price, low to high</option>
             <option value='price_DESC'>Price, high to low</option>
+<<<<<<< HEAD
             <option value='updatedAt_DESC'>Newest</option>
             <option value='updatedAt_ASC'>Oldest</option>
+=======
+            <option value='lastUpdated_DESC'>Newest</option>
+            <option value='lastUpdated_ASC'>Oldest</option>
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
           </select>
         </div>
         {/* <div className='search-field-bottom'> */}

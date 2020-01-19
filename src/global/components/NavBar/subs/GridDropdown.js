@@ -51,7 +51,11 @@ const GridDropdown = () => {
 							</Link>
 
 							<Link
+<<<<<<< HEAD
 								to='/resumeq/marketplace'
+=======
+								to='/resumeq'
+>>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 								className='box'
 								onClick={() => setOpen(false)}>
 								{Resumeq()}

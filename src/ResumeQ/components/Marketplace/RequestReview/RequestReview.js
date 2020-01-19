@@ -38,7 +38,9 @@ const RequestReview = props => {
     const handleCancel = e => {
         e.preventDefault()
         console.log(`ReviewerList > handleCancel`)
+
         history.push('/resumeq/marketplace')
+
         // if this component is a modal then it should simply close the modal w/o making a push to history. That way the current list of reviewrs are displayed according to their most recent filters
     }
 
