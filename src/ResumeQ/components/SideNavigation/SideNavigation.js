@@ -1,6 +1,7 @@
 // Libraries
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
+import { useLazyQuery } from '@apollo/react-hooks'
 
 // Styles
 import './SideNavigation.scss'
@@ -9,10 +10,17 @@ import './SideNavigation.scss'
 import Icon from '../../../global/icons/Icon'
 import { ICONS } from '../../../global/icons/iconConstants'
 
+import { GET_USER } from './Resolvers';
 
 const SideNavigation = () => {
-
   const { pathname } = useLocation()
+  // state to control display of links to edit reviewer listing
+  const [hasListing, setHasListing] = useState();
+
+  const [getUser, { refetch, loading, data: userData }] = useLazyQuery(
+    GET_USER,
+  );
+
 
   return (
 
