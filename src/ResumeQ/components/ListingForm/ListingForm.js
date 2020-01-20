@@ -5,10 +5,6 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 // Styles && Icons
 import './ListingForm.scss';
 import { lightbulb } from '../../../global/icons/lightbulb';
-<<<<<<< HEAD
-=======
-// import { lightbulb2 } from '../../../global/icons/lightbulb2';
->>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 
 // Query
 import { CREATE_REVIEWER_LISTING } from './Resolvers';
@@ -44,11 +40,7 @@ const ListingForm = props => {
 		awaitRefetchQueries: true,
 	});
 
-<<<<<<< HEAD
 	// This sets the darkened overlay behind the modals
-=======
-	//This sets the darkened overlay behind the modals
->>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 	// useEffect(() => {
 	// 	if (open) {
 	// 		document.getElementById('overlay-listing-form').style.display = 'block';
@@ -116,11 +108,7 @@ const ListingForm = props => {
 			{/* This is the Button that is rendered on the landing page */}
 			<button onClick={() => setOpen(!open)} className='become-a-listing-btn'>
 				{/* {lightbulb2()} */}
-<<<<<<< HEAD
 				<span className='add-listing-form-button'>Become a Coach</span>
-=======
-				<span className='add-listing-form-button'>Become a Reviewer</span>
->>>>>>> fafd99157e8199bf78ef9bbe3fe47523bd4a2665
 			</button>
 
 			{/* This is the 2nd modal that pops up after you publish a post */}
