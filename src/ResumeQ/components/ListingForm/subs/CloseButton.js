@@ -6,7 +6,7 @@ import { ICONS } from '../../../../global/icons/iconConstants';
 
 const CloseButton = ({closeWindow}) => {
 	return (
-		<button className="close-listing-form-button" onClick={() => closeWindow()}>
+		<button className="RQclose-listing-form-button" onClick={() => closeWindow()}>
 			<Icon
 				icon={ICONS.CLOSE}
 				width={24}

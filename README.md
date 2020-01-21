@@ -1,4 +1,5 @@
-# QualityHub Core
+# QualityHub Core #
+
 
 You can find the deployed project at [https://qualityhub-staging.netlify.com/](https://qualityhub-staging.netlify.com/).
 

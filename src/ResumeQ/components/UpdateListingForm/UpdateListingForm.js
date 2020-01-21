@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Styles && Icons
 import './ListingForm.scss';
-import { lightbulb } from '../../../global/icons/lightbulb';
+import { lightbulbRQ } from '../../../global/icons/lightbulbRQ';
 
 // Query
 import { UPDATE_REVIEWER_LISTING } from './Resolvers';
@@ -41,15 +41,15 @@ const UpdateListingForm = props => {
 	});
 
 	//This sets the darkened overlay behind the modals
-	// useEffect(() => {
-	// 	if (open) {
-	// 		document.getElementById('overlay-listing-form').style.display = 'block';
-	// 	} else if (done) {
-	// 		document.getElementById('overlay-listing-form').style.display = 'block';
-	// 	} else {
-	// 		document.getElementById('overlay-listing-form').style.display = 'none';
-	// 	}
-	// }, [open, done]);
+	useEffect(() => {
+		if (open) {
+			document.getElementById('RQoverlay-listing-form').style.display = 'block';
+		} else if (done) {
+			document.getElementById('RQoverlay-listing-form').style.display = 'block';
+		} else {
+			document.getElementById('RQoverlay-listing-form').style.display = 'none';
+		}
+	}, [open, done]);
 
 	// This is the avatar image in the preview post section
 	let image;
@@ -98,12 +98,12 @@ const UpdateListingForm = props => {
 	return (
 		<div>
 			{/* Overlay is the darkened area behind the popup modal */}
-			<div id='overlay-listing-form' onClick={e => closeWindow(e)}></div>
+			<div id='RQoverlay-listing-form' onClick={e => closeWindow(e)}></div>
 
 			{/* This is the Button that is rendered on the landing page */}
-			<button onClick={() => setOpen(!open)} className='become-a-listing-btn'>
+			<button onClick={() => setOpen(!open)} className='RQbecome-a-listing-btn'>
 				{/* {lightbulb2()} */}
-				<span className='add-listing-form-button'>Update Info</span>
+				<span className='RQadd-listing-form-button'>Update Info</span>
 			</button>
 
 			{/* This is the 2nd modal that pops up after you publish a post */}
@@ -117,10 +117,10 @@ const UpdateListingForm = props => {
 			{/* The create listing post form */}
 			{open && (
 				<>
-					<div className='add-listing-form-background'>
-						<div className='add-listing-form'>
+					<div className='RQadd-listing-form-background'>
+						<div className='RQadd-listing-form'>
 							<CloseButton closeWindow={closeWindow} />
-							<TopText lightbulb={lightbulb} />
+							<TopText lightbulbRQ={lightbulbRQ} />
 							<StepOne
 								setFormState={setFormState}
 								formState={formState}

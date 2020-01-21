@@ -10,6 +10,8 @@ import Loading from '../../../../../global/components/Loading'
 import { ICONS } from '../../../../../global/icons/iconConstants'
 import Icon from '../../../../../global/icons/Icon'
 
+//SVG
+import ResumeQ2 from '../../../../../../src/global/icons/resumeQ2.svg'
 
 const AcceptedReviews = () => {
 
@@ -22,7 +24,16 @@ const AcceptedReviews = () => {
 
     return(
             <div>
-            {!loading && (!data.acceptedReviewsBySeeker.length && (<div><p>You currently have no accepted or denied reviews...</p></div>))}
+            {!loading && (!data.acceptedReviewsBySeeker.length && (
+            <div>
+            <div className='resumeQ1'>
+                <img src={ResumeQ2} />
+                <p>You currently have no accepted or denied reviews...</p>
+
+            </div>
+        
+            </div>
+            ))}
             {loading && <Loading />}
             {!loading && data.acceptedReviewsBySeeker && (
                     <div className="seeker-list">
