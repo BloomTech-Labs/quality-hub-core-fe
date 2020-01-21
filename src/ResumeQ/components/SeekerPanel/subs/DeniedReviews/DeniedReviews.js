@@ -27,11 +27,9 @@ const DeniedReviews = () => {
                 {!loading && (!data.deniedReviewsBySeeker.length && (
 
                 <div>
-                    <div>
-                        <p>You currently have no accepted or denied reviews...</p>
-                    </div>
                     <div className='resumeQ1'>
                         <img src={ResumeQ2} />
+                        <p>You currently have no accepted or denied reviews...</p>
                     </div>
                 </div>
                 
