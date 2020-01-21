@@ -4,17 +4,17 @@ import { NavLink, useLocation, Link } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/react-hooks'
 
 // Local Imports
-import ListingForm from '../../ListingForm';
-import UpdateListingForm from '../../UpdateListingForm'
+import ListingForm from '../ListingForm';
+import UpdateListingForm from '../UpdateListingForm'
 
 // Styles
 import './SideNavigation.scss'
 
 // Icons
-import Icon from '../../../../global/icons/Icon'
-import { ICONS } from '../../../../global/icons/iconConstants'
+import Icon from '../../../global/icons/Icon'
+import { ICONS } from '../../../global/icons/iconConstants'
 
-import { GET_USER } from '../Resolvers';
+import { GET_USER } from '../Marketplace/Resolvers';
 
 const SideNavigation = () => {
   const { pathname } = useLocation()
@@ -63,8 +63,6 @@ const SideNavigation = () => {
   return (
 
     <div className='RQNav'>
-      <h1>h1h1</h1>
-
       {!hasListing && (
         <NavLink to='/resumeq/marketplace'>
           <div className='RQNav-row'>
@@ -142,80 +140,6 @@ const SideNavigation = () => {
     </div>
 
 
-    // Become a Coach
-    // ---display when user is not logged in
-    // ---display iff user doesn't have lising
-
-
-    // Edit Listing 
-    // ---display iff user has listing
-
-    // MarketPlace
-    // ---display always
-
-    // Seeker Panel
-    // ---display iff user has ResumeReviews
-
-    // ReviewerJobs
-    // ---display iff user has listing
-
-    // <div>
-    //   <h1>SideNavigation</h1>
-    //   {localStorage.getItem('token') ? (
-    //     //if user data is done loading...
-    //     !loading ? (
-    //       hasListing ? (
-    //         //if you have a post made, show edit
-    //         <Link
-    //           to='/resumeq/settings'
-    //           className='become-a-coach-reroute-to-signin'>
-    //           <button className='become-a-coach-btn'>
-    //             <span className='add-coach-form-button'>Edit Listing</span>
-    //           </button>
-    //         </Link>
-    //       ) : (
-    //           //if no post made, allow to create a post
-    //           <ListingForm refetch={refetch} />
-    //         )
-    //     ) : //while checking if user has a post, leave button off page
-    //       null
-    //   ) : (
-    //       //if no token link to signin
-    //       <Link to='/resumeq' className='become-a-coach-reroute-to-signin'>
-    //         <button className='become-a-coach-btn'>
-    //           <span className='add-coach-form-button'>Create a listing</span>
-    //         </button>
-    //       </Link>
-    //     )
-
-    //   }
-
-    //   <div className="RQNav">
-    //     {isSeeker && (<NavLink to='/resumeq/seekerpanel' activeClassName='RQNav-row-highlight'>
-    //       <div className='RQNav-row'>
-    //         <Icon
-    //           icon={ICONS.STAR}
-    //           width={24}
-    //           height={21}
-    //           color={pathname.includes('star') ? 'white' : '#096dd9'}
-    //         />
-    //         <div className='RQNav-btn'>Seeker Panel</div>
-    //       </div>
-    //     </NavLink>)}
-
-    //     {isReviewer && (<NavLink to='/resumeq/reviewerjobs' activeClassName='RQNav-row-highlight'>
-    //       <div className='RQNav-row'>
-    //         <Icon
-    //           icon={ICONS.STAR}
-    //           width={24}
-    //           height={22}
-    //           color={pathname.includes('star') ? 'white' : '#096dd9'}
-    //         />
-    //         <div className='RQNav-btn'>Reviewer Jobs</div>
-    //       </div>
-    //     </NavLink>)}
-    //   </div>
-    // </div>
   )
 }
 
