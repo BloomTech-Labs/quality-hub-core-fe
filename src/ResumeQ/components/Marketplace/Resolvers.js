@@ -15,6 +15,20 @@ export const GET_USER = gql`
 				id
 				description
 			}
+			coach_resume_reviews{
+				id
+				isPending
+				isAccepted
+				isDenied
+				isComplete
+    }
+    	seeker_resume_reviews{
+				id
+				isPending
+				isAccepted
+				isDenied
+				isComplete
+    }
 		}
 	}
 `;
