@@ -19,9 +19,9 @@ import { GET_USER } from '../Marketplace/Resolvers';
 const SideNavigation = () => {
   const { pathname } = useLocation()
   // state to control display of links to edit reviewer listing
-  const [hasListing, setHasListing] = useState();
-  const [isSeeker, setIsSeeker] = useState();
-  const [isReviewer, setIsReviewer] = useState();
+  const [hasListing, setHasListing] = useState(false);
+  const [isSeeker, setIsSeeker] = useState(false);
+  const [isReviewer, setIsReviewer] = useState(false);
 
   const [getUser, { refetch, loading, data: userData }] = useLazyQuery(
     GET_USER,
@@ -36,20 +36,21 @@ const SideNavigation = () => {
   }, []);
 
   useEffect(() => {
-    if (userData) {
-      setHasListing(userData.me.reviewerListing);
+    if (userData && userData.me.reviewerListing) {
+      console.log(`useEffect in userData.me.reviewerListing`)
+      setHasListing(true);
     }
   }, [userData]);
 
   useEffect(() => {
-    if (userData) {
-      setIsSeeker(userData.me.seeker_resume_reviews)
+    if (userData && userData.me.seeker_resume_reviews.length > 0) {
+      setIsSeeker(true)
     }
   }, [userData])
 
   useEffect(() => {
-    if (userData) {
-      setIsReviewer(userData.me.coach_resume_reviews)
+    if (userData && userData.me.coach_resume_reviews > 0) {
+      setIsReviewer(true)
     }
   }, [userData])
 
