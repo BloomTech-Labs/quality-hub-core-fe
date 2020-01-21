@@ -8,8 +8,7 @@ import RequestReview from './components/Marketplace/RequestReview'
 import DashResumeQ from './components/DashResumeQ'
 import SeekerPanel from './components/SeekerPanel/SeekerPanel'
 import ReviewerJobs from './components/ReviewerJobs'
-import SideNavigation from './components/SideNavigation'
-import SideNaviation from './components/SideNavigation';
+
 
 const ResumeQContainer = () => {
 
@@ -18,7 +17,7 @@ const ResumeQContainer = () => {
       <div>
         <div>
           <Route exact path='/resumeq/marketplace' component={Marketplace} />
-          <SideNaviation />
+
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
           <Route path='/resumeq/settings' component={DashResumeQ} />
           <Route path='/resumeq/request' component={RequestReview} />
