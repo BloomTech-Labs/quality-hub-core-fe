@@ -1,4 +1,5 @@
 import React from 'react';
+import * as moment from 'moment';
 import '../ReviewJobsCard.scss'
 
 const ResumeReviewEntry = ({
@@ -11,6 +12,8 @@ const ResumeReviewEntry = ({
 
   console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
   console.log(`ResumeReviewEntry / entry`, entry)
+
+  var format = 'MMM Do YYYY';
 
   const handleAccept = e => {
     e.preventDefault()
@@ -56,7 +59,7 @@ const ResumeReviewEntry = ({
     <div>
       <div >
         <div className="reviewer-jobs-card">
-          <p>{createdAt}</p>
+          <p>Requested on {moment(createdAt).format(format)}</p>
           <p>{seeker.first_name} {seeker.last_name}</p>
           <p>{seeker.email}</p>
           {entry.status === 'Pending' &&
@@ -73,7 +76,7 @@ const ResumeReviewEntry = ({
           }
           {entry.status === 'Completed' && 
             <div>
-              <p>Completed at {entry.dateCompleted}</p>
+              <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
               </div>}
 
         </div>

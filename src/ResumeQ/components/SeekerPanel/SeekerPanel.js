@@ -8,8 +8,6 @@ import { MarketplacePanels } from '../Marketplace/ReviewerList/subs/2_Panels/Mar
 
 
 
-
-
 const SeekerPanel = () => {
 
     function openTab(tab) {
