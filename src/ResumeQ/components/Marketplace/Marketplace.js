@@ -8,7 +8,7 @@ const Marketplace = () => {
 
   return (
     <>
-      <SideNavigation />
+      {/* <SideNavigation /> */}
       <ReviewerList />
     </>
   )

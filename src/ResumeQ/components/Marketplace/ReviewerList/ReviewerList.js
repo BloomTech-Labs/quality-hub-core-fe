@@ -10,7 +10,6 @@ import './ReviewerList.scss'
 import {
   GET_REVIEWER_LISTINGS,
 } from './Resolvers'
-import { MarketplacePanels } from './subs/2_Panels/MarketplacePanels';
 
 // this is a stateful component which will hold the list of reviewers and render each to a card component
 
