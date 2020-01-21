@@ -32,11 +32,9 @@ const DeclinedRequests = () => {
         <div>
             {!loading && (!data.declinedResumeReviews.length && (
             <div>
-                <div>
-                    <p>You currently have no declined reviews at this time...</p>
-                </div>
                 <div className='resumeQ1'>
                     <img src={resumeQ1} />
+                    <p>You currently have no declined reviews at this time...</p>
                 </div>
             </div>
             ))}

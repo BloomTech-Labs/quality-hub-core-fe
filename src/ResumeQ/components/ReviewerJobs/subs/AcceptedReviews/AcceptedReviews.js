@@ -37,11 +37,9 @@ const AcceptedReviews = () => {
         <div>
             {!loading && (!data.acceptedResumeReviews.length && (
             <div>
-                <div>
-                    <p>You currently have no accepted reviews at this time...</p>
-                </div>
                 <div className='resumeQ1'>
                     <img src={resumeQ1} />
+                    <p>You currently have no accepted reviews at this time...</p>
                 </div>
             </div>
                 ))}
