@@ -49,7 +49,7 @@ const SideNavigation = () => {
   }, [userData])
 
   useEffect(() => {
-    if (userData && userData.me.coach_resume_reviews > 0) {
+    if (userData && userData.me.coach_resume_reviews.length > 0) {
       setIsReviewer(true)
     }
   }, [userData])
