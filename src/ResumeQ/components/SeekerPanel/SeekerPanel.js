@@ -7,8 +7,6 @@ import './SeekerPanel.scss'
 
 
 
-
-
 const SeekerPanel = () => {
 
     function openTab(tab) {

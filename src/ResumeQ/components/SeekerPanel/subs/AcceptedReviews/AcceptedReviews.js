@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks'
 import { ACCEPTED_REVIEWS_BY_SEEKER } from '../../Resolvers'
+import * as moment from 'moment';
+
 
 // Styling
 import '../../subs/SeekerCard.scss'
@@ -13,6 +15,8 @@ import Icon from '../../../../../global/icons/Icon'
 //SVG
 import ResumeQ2 from '../../../../../../src/global/icons/resumeQ2.svg'
 
+
+
 const AcceptedReviews = () => {
 
     const { refetch, loading, data } = useQuery(ACCEPTED_REVIEWS_BY_SEEKER, {
@@ -21,6 +25,8 @@ const AcceptedReviews = () => {
 
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
+
+    var format = 'MMM Do YYYY';
 
     return(
             <div>
@@ -61,9 +67,9 @@ const AcceptedReviews = () => {
                                         </div>
                                     </div>
                                 <div>
-                                    <p>Date Accepted: {reviews.dateAccepted}</p>
-                                    <p>Date Created: {reviews.createdAt}</p>
-                                    <p>Date Updated: {reviews.updatedAt}</p>
+                                    <p>Date Accepted: {moment(reviews.dateAccepted).format(format)}</p>
+                                    <p>Date Created: {moment(reviews.createdAt).format(format)}</p>
+                                    <p>Date Updated: {moment(reviews.updatedAt).format(format)}</p>
                                 </div>
 
                                 <div>
