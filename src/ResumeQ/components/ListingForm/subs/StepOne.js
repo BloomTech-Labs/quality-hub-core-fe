@@ -10,18 +10,18 @@ const StepOne = ({ formState, handleChange, industriesData, setFormState, requir
 
 	return (
 		<>
-			<p className='add-listing-form-step-title'>
+			<p className='RQadd-listing-form-step-title'>
 				STEP 1 <span className='red-span-key'>* required field</span>
 			</p>
-			<p className='add-listing-form-sub-title'>Profile</p>
-			<p className='add-listing-form-description'>
+			<p className='RQadd-listing-form-sub-title'>Profile</p>
+			<p className='RQadd-listing-form-description'>
 				Please tell us about your career so far and your accomplishments.
 			</p>
-			<p className='add-listing-form-row-6'>
+			<p className='RQadd-listing-form-row-6'>
 				Company <span className='red-span'>*</span>
 			</p>
 			<input
-				className='add-listing-form-row-7'
+				className='RQadd-listing-form-row-7'
 				type='text'
 				name='company'
 				placeholder='e.g Google, Facebook...'
@@ -31,11 +31,11 @@ const StepOne = ({ formState, handleChange, industriesData, setFormState, requir
 			/>
 			{requiredState.company && <p>Field is required</p>}
 
-			<p className='add-listing-form-row-6'>
+			<p className='RQadd-listing-form-row-6'>
 				Position <span className='red-span'>*</span>
 			</p>
 			<input
-				className='add-listing-form-row-7'
+				className='RQadd-listing-form-row-7'
 				type='text'
 				name='position'
 				placeholder='e.g UX Designer, Software Engineer...'
@@ -46,11 +46,11 @@ const StepOne = ({ formState, handleChange, industriesData, setFormState, requir
 			{requiredState.position && <p>Field is required</p>}
 
 
-			<p className='add-listing-form-row-6'>
+			<p className='RQadd-listing-form-row-6'>
 				Description <span className='red-span'>*</span>
 			</p>
 			<textarea
-				className='add-listing-form-row-7'
+				className='RQadd-listing-form-row-7'
 				type='text'
 				name='description'
 				placeholder='eg. I am a software developer at Google with 12 years of experience under my belt...'
@@ -61,7 +61,7 @@ const StepOne = ({ formState, handleChange, industriesData, setFormState, requir
 			{requiredState.description && <p>Field is required</p>}
 
 
-			<hr className='add-listing-form-hr-1' />
+			<hr className='RQadd-listing-form-hr-1' />
 		</>
 	);
 };

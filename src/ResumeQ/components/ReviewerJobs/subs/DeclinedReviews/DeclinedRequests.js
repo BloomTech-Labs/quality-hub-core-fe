@@ -6,6 +6,11 @@ import Loading from '../../../../../global/components/Loading'
 
 import { DECLINED_RESUME_REVIEWS } from '../../Resolvers'
 
+import '../ReviewJobsCard.scss'
+
+
+//SVG IMAGE
+import resumeQ1 from '../../../../../global/icons/resumeQ1.svg'
 
 const DeclinedRequests = () => {
 
@@ -25,10 +30,17 @@ const DeclinedRequests = () => {
 
     return (
         <div>
-            {!loading && (!data.declinedResumeReviews.length && (<div><p>You currently have no declined reviews at this time...</p></div>))}
+            {!loading && (!data.declinedResumeReviews.length && (
+            <div>
+                <div className='resumeQ1'>
+                    <img src={resumeQ1} />
+                    <p>You currently have no declined reviews at this time...</p>
+                </div>
+            </div>
+            ))}
             {loading && <Loading/>}
             {!loading && declinedArray && (
-            <div>
+            <div className="reviewer-jobs-list">
                 {declinedArray.map(entry => (
                     <ResumeReviewEntry entry={entry} key={entry.id} />
                 ))}

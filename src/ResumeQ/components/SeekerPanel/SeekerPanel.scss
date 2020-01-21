@@ -1,12 +1,25 @@
-.seeker-panel-list {
-    display: flex;
-    flex-wrap: wrap;
-	width: 1080px;
-    justify-content: space-between;
-    margin-top: 2.4rem;
+.seeker-panel-container{
+    
+.SeekerQNav-btn {
 
-    .seeker-card{
-        margin: 2.5rem;
-    }
+    padding: 10px;
+    color: #FB2046;
+    font-size: 2.4rem;
+
+}
 }
 
+
+.resumeQ1{
+    opacity: 0.8;
+    
+    img{
+        margin-top: 15rem;
+        height: 25rem;
+        width: 25rem;
+    }
+
+}
+
+
+        

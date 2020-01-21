@@ -8,17 +8,18 @@ import RequestReview from './components/Marketplace/RequestReview'
 import DashResumeQ from './components/DashResumeQ'
 import SeekerPanel from './components/SeekerPanel/SeekerPanel'
 import ReviewerJobs from './components/ReviewerJobs'
+import SideNavigation from './components/SideNavigation';
+
 
 const ResumeQContainer = () => {
 
   return (
     <>
       <div>
-        {/* add routes for components as they're built out */}
         <div>
-          <Route exact path='/resumeq' component={Marketplace} />
+          <SideNavigation />
+          <Route exact path='/resumeq/marketplace' component={Marketplace} />
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
-          {/* <Route path='/resumeq/request' component={RequestReview} /> */}
           <Route path='/resumeq/settings' component={DashResumeQ} />
           <Route path='/resumeq/request' component={RequestReview} />
           <Route path='/resumeq/seekerpanel' component={SeekerPanel} />
@@ -28,6 +29,5 @@ const ResumeQContainer = () => {
     </>
   )
 }
-
 
 export default ResumeQContainer;

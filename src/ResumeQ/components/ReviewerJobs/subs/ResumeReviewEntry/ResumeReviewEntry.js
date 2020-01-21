@@ -1,4 +1,6 @@
 import React from 'react';
+import * as moment from 'moment';
+import '../ReviewJobsCard.scss'
 
 const ResumeReviewEntry = ({
   entry,
@@ -10,6 +12,8 @@ const ResumeReviewEntry = ({
 
   console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
   console.log(`ResumeReviewEntry / entry`, entry)
+
+  var format = 'MMM Do YYYY';
 
   const handleAccept = e => {
     e.preventDefault()
@@ -53,28 +57,29 @@ const ResumeReviewEntry = ({
 
   return (
     <div>
-      <div>
-        <p>{createdAt}</p>
-        <p>{seeker.first_name} {seeker.last_name}</p>
-        <p>{seeker.email}</p>
-        {entry.status === 'Pending' &&
-          <div >
-            <button className='default-btn'
-            onClick={handleAccept}>Accept</button>
-        <button className='default-btn' onClick={handleDecline}>Decline</button>
-          </div>
-        }
-        {entry.status === 'In Progress' &&
-          <div>
-            <button className='default-btn' onClick={handleUpdate}>Mark Completed</button>
-          </div>
+      <div >
+        <div className="reviewer-jobs-card">
+          <p>Requested on {moment(createdAt).format(format)}</p>
+          <p>{seeker.first_name} {seeker.last_name}</p>
+          <p>{seeker.email}</p>
+          {entry.status === 'Pending' &&
+            <div className="reviewer-btn-container">
+              <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
+              <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
+            </div>
+          }
+          {entry.status === 'In Progress' &&
+            <div className="reviewer-card-footer">
+              <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
+            </div>
 
-        }
-        {entry.status === 'Completed' && 
-          <div>
-            <p>Completed at {entry.dateCompleted}</p>
-            </div>}
+          }
+          {entry.status === 'Completed' && 
+            <div>
+              <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
+              </div>}
 
+        </div>
       </div>
     </div>
   );

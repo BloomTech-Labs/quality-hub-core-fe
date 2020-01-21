@@ -3,21 +3,21 @@ import React from 'react';
 const StepTwo = ({ formState, handleChange, setFormState }) => {
 	return (
 		<>
-			<p className='add-listing-form-step-title'>STEP 2</p>
-			<p className='add-listing-form-sub-title'>
+			<p className='RQadd-listing-form-step-title'>STEP 2</p>
+			<p className='RQadd-listing-form-sub-title'>
 				Rate Per Review<span className='red-span'>*</span>
 			</p>
-			<p className='add-listing-form-description'>
+			<p className='RQadd-listing-form-description'>
 				Please set a price to charge per review.
 			</p>
-			<div className='slider'>
-				<div className='slider-inner-boxes'>
-					<div className='slider-dollar-amounts'>
+			<div className='RQslider'>
+				<div className='RQslider-inner-boxes'>
+					<div className='RQslider-dollar-amounts'>
 						<p>$0</p>
 						<p>$200</p>
 					</div>
 					<input
-						id='listing-form-price-slider'
+						id='RQlisting-form-price-slider'
 						name='price-slider'
 						type='range'
 						min='0'
@@ -29,7 +29,7 @@ const StepTwo = ({ formState, handleChange, setFormState }) => {
 					/>
 				</div>
 			</div>
-			<div className='add-listing-form-range-input'>
+			<div className='RQadd-listing-form-range-input'>
 				<input
 					type='text'
 					name='price'
@@ -38,7 +38,7 @@ const StepTwo = ({ formState, handleChange, setFormState }) => {
 					onChange={e => handleChange(e, setFormState, formState)}
 				/>
 			</div>
-			<hr className='add-listing-form-hr-1' />
+			<hr className='RQadd-listing-form-hr-1' />
 		</>
 	);
 };

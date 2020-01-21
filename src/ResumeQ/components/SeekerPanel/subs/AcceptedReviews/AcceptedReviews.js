@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks'
 import { ACCEPTED_REVIEWS_BY_SEEKER } from '../../Resolvers'
+import * as moment from 'moment';
+
 
 // Styling
 import '../../subs/SeekerCard.scss'
@@ -9,6 +11,10 @@ import '../../subs/SeekerCard.scss'
 import Loading from '../../../../../global/components/Loading'
 import { ICONS } from '../../../../../global/icons/iconConstants'
 import Icon from '../../../../../global/icons/Icon'
+
+//SVG
+import ResumeQ2 from '../../../../../../src/global/icons/resumeQ2.svg'
+
 
 
 const AcceptedReviews = () => {
@@ -20,22 +26,24 @@ const AcceptedReviews = () => {
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
 
-    // if(loading){
-    //     return (
-    //         <div><p>Loading...</p></div>
-    //     )
-    // } else {
+    var format = 'MMM Do YYYY';
 
     return(
             <div>
-            {!loading && (!data.acceptedReviewsBySeeker.length && (<div><p>You currently have no accepted or denied reviews...</p></div>))}
+            {!loading && (!data.acceptedReviewsBySeeker.length && (
+            <div>
+            <div className='resumeQ1'>
+                <img src={ResumeQ2} />
+                <p>You currently have no accepted or denied reviews...</p>
+
+            </div>
+        
+            </div>
+            ))}
             {loading && <Loading />}
             {!loading && data.acceptedReviewsBySeeker && (
                     <div className="seeker-list">
                         {data.acceptedReviewsBySeeker.map(reviews => (
-
-    
-                            
                                 <div className="seeker-card">
                                     <div className='seeker-header-container'>
                                         <div className='seeker-card-header'>
@@ -59,9 +67,9 @@ const AcceptedReviews = () => {
                                         </div>
                                     </div>
                                 <div>
-                                    <p>Date Accepted: {reviews.dateAccepted}</p>
-                                    <p>Date Created: {reviews.createdAt}</p>
-                                    <p>Date Updated: {reviews.updatedAt}</p>
+                                    <p>Date Accepted: {moment(reviews.dateAccepted).format(format)}</p>
+                                    <p>Date Created: {moment(reviews.createdAt).format(format)}</p>
+                                    <p>Date Updated: {moment(reviews.updatedAt).format(format)}</p>
                                 </div>
 
                                 <div>
@@ -69,6 +77,7 @@ const AcceptedReviews = () => {
                                     <p>Name: {reviews.coach.first_name} {reviews.coach.last_name}</p>
                                     <p>Email: {reviews.coach.email}</p>
                                 </div>
+                                <button className="">Contact</button>
                             </div>
                         ))}
                     </div>
@@ -79,7 +88,6 @@ const AcceptedReviews = () => {
         
     )
 }
-// }
 
 export default AcceptedReviews
 
