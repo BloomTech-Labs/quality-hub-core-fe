@@ -35,7 +35,6 @@ const ReviewerList = ({ history }) => {
   return (
     <div className='coach-list-container'>
       {/* add routes for components as they're built out */}
-      <MarketplacePanels />
       <Search
         setFields={setFields}
         fields={fields}
