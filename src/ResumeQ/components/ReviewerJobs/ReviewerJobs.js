@@ -13,13 +13,7 @@ const ReviewerJobs = () => {
 
     // This component holds components for each type of ResumeReview entry. Each entry contains its own state and queries
 
-    function openTab(tab) {
-        let tabs = document.getElementsByClassName('requestTab');
-        for (let i = 0; i < tabs.length; i++) {
-            tabs[i].style.display = 'none';
-        }
-        document.getElementById(tab).style.display = 'block';
-    }
+
 
     return (
         <div className="reviewer-jobs-container">
@@ -32,10 +26,6 @@ const ReviewerJobs = () => {
                 <NavLink to='/resumeq/reviewerjobs/history' className='SeekerQNav-btn'>History</NavLink>
 
 
-                {/* <button onClick={() => openTab('requests')} className='SeekerQNav-btn'>Pending</button>
-                <button onClick={() => openTab('accepted')} className='SeekerQNav-btn'>Accepted</button>
-                <button onClick={() => openTab('declined')} className='SeekerQNav-btn'>Declined</button>
-                <button onClick={() => openTab('history')} className='SeekerQNav-btn'>History</button> */}
             </div>
 
             <Route exact path='/resumeq/reviewerjobs/'>
