@@ -19,37 +19,43 @@ const AcceptedReviews = () => {
     }
     )
 
-    const [updateResumeReview] = useMutation(UPDATE_RESUME_REVIEW, {
-        refetchQueries: [`ACCEPTED_RESUME_REVIEWS`],
-        awaitRefetchQueries: true
-    })
+    const [updateResumeReview] = useMutation(UPDATE_RESUME_REVIEW,
+        {
+            refetchQueries: [{
+                query: ACCEPTED_RESUME_REVIEWS,
+                variables: {
+                    awaitRefetchQueries: true,
+                    fetchPolicy: 'network-only'
+                },
+            }],
+            onCompleted: () => {
+                console.log(`updateResumeReview completed`)
+                console.log(`updateResumeReview >> refetchQueries // data`, data)
+            },
+
+        });
 
     console.log(`AcceptedReviews / data`, data)
 
-    const acceptedArray = !loading && data.acceptedResumeReviews.map(review => {
-        return {
-            ...review,
-            status: "In Progress"
-        }
-    })
+
 
     return (
         <div>
             {!loading && (!data.acceptedResumeReviews.length && (
-            <div>
-                <div className='resumeQ1'>
-                    <img src={resumeQ1} />
-                    <p>You currently have no accepted reviews at this time...</p>
+                <div>
+                    <div className='resumeQ1'>
+                        <img src={resumeQ1} />
+                        <p>You currently have no accepted reviews at this time...</p>
+                    </div>
                 </div>
-            </div>
-                ))}
-            {loading && <Loading/>}
-            {!loading && acceptedArray && (
-            <div className="reviewer-jobs-list">
-                {acceptedArray.map(entry => (
-                    <ResumeReviewEntry entry={entry} key={entry.id} updateResumeReview={updateResumeReview} refetch={refetch}/>
-                ))}
-            </div>
+            ))}
+            {loading && <Loading />}
+            {!loading && data.acceptedResumeReviews && (
+                <div className="reviewer-jobs-list">
+                    {data.acceptedResumeReviews.map(entry => (
+                        <ResumeReviewEntry entry={entry} key={entry.id} updateResumeReview={updateResumeReview} refetch={refetch} status={'In Progress'} />
+                    ))}
+                </div>
             )}
         </div>
     )

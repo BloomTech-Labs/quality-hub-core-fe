@@ -74,8 +74,13 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<NavLink to={navtitle ? `/${navtitle.toLowerCase()}q` : '/'}>
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
-						<h1>Resume</h1>
-						<img src={resumeQLogo} />
+						{navtitle && (<>
+							<h1>{navtitle} </h1> <img src={resumeQLogo} alt="QualityHub logo" />
+						</>
+						)}
+						{!navtitle && <h1>QualityHub</h1>}
+
+
 					</div>
 				</NavLink>
 			</div>
