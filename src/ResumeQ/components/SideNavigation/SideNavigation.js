@@ -18,6 +18,7 @@ import { GET_USER } from '../Marketplace/Resolvers';
 
 const SideNavigation = () => {
   const { pathname } = useLocation()
+  console.log(`SideNavigation // pathname`, pathname)
   // state to control display of links to edit reviewer listing
   const [hasListing, setHasListing] = useState(false);
   const [isSeeker, setIsSeeker] = useState(false);
@@ -119,13 +120,13 @@ const SideNavigation = () => {
       )}
 
       {isReviewer && (
-        <NavLink to='/resumeq/reviewerjobs' exact activeClassName='RQNav-row-highlight'>
+        <NavLink to='/resumeq/reviewerjobs' activeClassName='RQNav-row-highlight'>
           <div className='RQNav-row'>
             <Icon
               icon={ICONS.STAR}
               width={24}
               height={22}
-              color={pathname.includes('resumeq/reviewerjobs') ? 'white' : '#FB2046'}
+              color={pathname.includes('reviewerjobs') ? 'white' : '#FB2046'}
             />
             <div className='RQNav-btn'>Reviewer Jobs</div>
           </div>
