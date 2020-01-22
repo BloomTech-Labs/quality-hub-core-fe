@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink, Route } from 'react-router-dom'
 
 import './LeftNav.scss'
 
@@ -24,27 +25,34 @@ const ReviewerJobs = () => {
         <div className="reviewer-jobs-container">
 
             <div className='QNav-row'>
-                <button onClick={() => openTab('requests')} className='SeekerQNav-btn'>Pending</button>
+
+                <NavLink to='/resumeq/reviewerjobs/' className='SeekerQNav-btn'>Requests</NavLink>
+                <NavLink to='/resumeq/reviewerjobs/accepted' className='SeekerQNav-btn'>Accepted</NavLink>
+                <NavLink to='/resumeq/reviewerjobs/declined' className='SeekerQNav-btn'>Declined</NavLink>
+                <NavLink to='/resumeq/reviewerjobs/history' className='SeekerQNav-btn'>History</NavLink>
+
+
+                {/* <button onClick={() => openTab('requests')} className='SeekerQNav-btn'>Pending</button>
                 <button onClick={() => openTab('accepted')} className='SeekerQNav-btn'>Accepted</button>
                 <button onClick={() => openTab('declined')} className='SeekerQNav-btn'>Declined</button>
-                <button onClick={() => openTab('history')} className='SeekerQNav-btn'>History</button>
+                <button onClick={() => openTab('history')} className='SeekerQNav-btn'>History</button> */}
             </div>
-            <div id='requests' className='requestTab'>
-                <h1>Requested Reviews</h1>
+
+            <Route exact path='/resumeq/reviewerjobs/'>
                 <RequestedReview />
-            </div>
-            <div id='accepted' className='requestTab' style={{ display: 'none' }}>
-                <h1>Reviews in Progress</h1>
+            </Route>
+
+            <Route exact path='/resumeq/reviewerjobs/accepted'>
                 <AcceptedReviews />
-            </div>
-            <div id='declined' className='requestTab' style={{ display: 'none' }}>
-                <h1>Declined Reviews</h1>
+            </Route>
+
+            <Route exact path='/resumeq/reviewerjobs/declined'>
                 <DeclinedReviews />
-            </div>
-            <div id='history' className='requestTab' style={{ display: 'none' }}>
-                <h1>Completed Reviews</h1>
+            </Route>
+
+            <Route exact path='/resumeq/reviewerjobs/history'>
                 <ReviewsHistory />
-            </div>
+            </Route>
         </div>
     )
 }
