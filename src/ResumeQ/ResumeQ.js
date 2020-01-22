@@ -21,7 +21,7 @@ const ResumeQContainer = () => {
           <Route exact path='/resumeq/marketplace' component={Marketplace} />
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
           <Route path='/resumeq/settings' component={DashResumeQ} />
-          <Route path='/resumeq/request' component={RequestReview} />
+          <Route exact path='/resumeq/request/:id' component={RequestReview} />
           <Route path='/resumeq/seekerpanel' component={SeekerPanel} />
           <Route path='/resumeq/reviewerjobs' component={ReviewerJobs} />
         </div>

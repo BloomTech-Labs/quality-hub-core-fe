@@ -6,11 +6,12 @@ const ResumeReviewEntry = ({
   entry: { seeker, createdAt },
   submitResponse,
   updateResumeReview,
-  refetch
+  status
 }) => {
 
-  console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
-  console.log(`ResumeReviewEntry / entry`, entry)
+  // console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
+  // console.log(`ResumeReviewEntry / entry`, entry)
+  // console.log(`ResumeReviewEntry / status`, status)
 
   const handleAccept = e => {
     e.preventDefault()
@@ -23,6 +24,7 @@ const ResumeReviewEntry = ({
         isDenied: false
       }
     })
+
   }
 
 
@@ -35,7 +37,7 @@ const ResumeReviewEntry = ({
         isAccepted: false,
         isPending: false,
         isDenied: true
-      }
+      },
     })
 
   }
@@ -50,6 +52,7 @@ const ResumeReviewEntry = ({
         isComplete: true
       }
     })
+
   }
 
   return (
@@ -59,19 +62,19 @@ const ResumeReviewEntry = ({
           <p>{createdAt}</p>
           <p>{seeker.first_name} {seeker.last_name}</p>
           <p>{seeker.email}</p>
-          {entry.status === 'Pending' &&
+          {status === 'Pending' &&
             <div className="reviewer-btn-container">
               <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
               <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
             </div>
           }
-          {entry.status === 'In Progress' &&
+          {status === 'In Progress' &&
             <div className="reviewer-card-footer">
               <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
             </div>
 
           }
-          {entry.status === 'Completed' &&
+          {status === 'Completed' &&
             <div>
               <p>Completed at {entry.dateCompleted}</p>
             </div>}

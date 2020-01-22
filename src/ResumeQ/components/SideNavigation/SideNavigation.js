@@ -37,7 +37,6 @@ const SideNavigation = () => {
 
   useEffect(() => {
     if (userData && userData.me.reviewerListing) {
-      console.log(`useEffect in userData.me.reviewerListing`)
       setHasListing(true);
     }
   }, [userData]);
@@ -53,11 +52,6 @@ const SideNavigation = () => {
       setIsReviewer(true)
     }
   }, [userData])
-
-  console.log(`SideNavigation / userData`, userData)
-  console.log(`SideNavigation / hasListing`, hasListing)
-  console.log(`SideNavigation / isSeeker`, isSeeker)
-  console.log(`SideNavigation / isReviewer`, isReviewer)
 
 
 
