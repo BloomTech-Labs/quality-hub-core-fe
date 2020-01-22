@@ -35,6 +35,7 @@ const RequestReview = props => {
 
     // handleSubmit attempts a mutation to initiate a ResumeReview. If errors are returned, submitFeedback will update.
     const handleSubmit = e => {
+        e.preventDefault()
         requestResumeReview({
             variables: {
                 coach: coach.id

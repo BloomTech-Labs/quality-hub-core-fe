@@ -40,7 +40,7 @@ const ResumeReviewEntry = ({
         isDenied: true
       }
     })
-    
+
   }
 
 
@@ -74,7 +74,7 @@ const ResumeReviewEntry = ({
             </div>
 
           }
-          {entry.status === 'Completed' && 
+          {entry.status === 'Completed' &&
             <div>
               <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
               </div>}
