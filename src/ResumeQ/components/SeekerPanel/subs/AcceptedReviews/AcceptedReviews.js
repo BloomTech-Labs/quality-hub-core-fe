@@ -66,18 +66,18 @@ const AcceptedReviews = () => {
                                             )}
                                         </div>
                                     </div>
-                                <div>
-                                    <p>Date Accepted: {moment(reviews.dateAccepted).format(format)}</p>
-                                    <p>Date Created: {moment(reviews.createdAt).format(format)}</p>
-                                    <p>Date Updated: {moment(reviews.updatedAt).format(format)}</p>
+                                <div className="seeker-date">
+                                    <p>Accepted on: {moment(reviews.dateAccepted).format(format)}</p>
+                                    <p>Created on: {moment(reviews.createdAt).format(format)}</p>
+                                    <p>Updated on: {moment(reviews.updatedAt).format(format)}</p>
                                 </div>
 
-                                <div>
+                                <div className="seeker-coach-info">
                                     <h3>Coach Info:</h3>
-                                    <p>Name: {reviews.coach.first_name} {reviews.coach.last_name}</p>
-                                    <p>Email: {reviews.coach.email}</p>
+                                    <p><b>{reviews.coach.first_name} {reviews.coach.last_name}</b></p>
+                                    <p>{reviews.coach.email}</p>
                                 </div>
-                                <button className="">Contact</button>
+                                <button className="contact-seeker-btn">Contact</button>
                             </div>
                         ))}
                     </div>
