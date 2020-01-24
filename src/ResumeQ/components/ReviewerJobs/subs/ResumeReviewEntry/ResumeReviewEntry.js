@@ -80,7 +80,7 @@ const ResumeReviewEntry = ({
           {status === 'Completed' &&
             <div>
               <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
-              </div>}
+            </div>}
 
         </div>
       </div>
