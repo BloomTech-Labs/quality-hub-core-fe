@@ -46,12 +46,12 @@ const GridDropdown = () => {
 								className='box'
 								onClick={() => setOpen(false)}>
 								{Interviewqicon()}
-			{/* <div className="grid-dropdown-interviewq"><p>Interview&nbsp;</p>{InterviewQColoredIcon()}</div> */}
-			<p>InterviewQ</p>
+								{/* <div className="grid-dropdown-interviewq"><p>Interview&nbsp;</p>{InterviewQColoredIcon()}</div> */}
+								<p>InterviewQ</p>
 							</Link>
 
 							<Link
-								to='/resumeq'
+								to='/resumeq/marketplace'
 								className='box'
 								onClick={() => setOpen(false)}>
 								{Resumeq()}

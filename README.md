@@ -1,6 +1,8 @@
-# QualityHub Core
+# QualityHub Core #
+
 
 You can find the deployed project at [https://qualityhub-staging.netlify.com/](https://qualityhub-staging.netlify.com/).
+Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](https://qualityhub19.netlify.com/).
 
 ## Contributors
 

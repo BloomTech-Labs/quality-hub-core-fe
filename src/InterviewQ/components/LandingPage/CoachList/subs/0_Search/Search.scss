@@ -1,6 +1,11 @@
 @import '../../../../../../global/styles/variables';
 
+
+.search-container{
+	margin: 0 auto;
+
 .search-container {
+  
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -210,4 +215,5 @@
 // }
 label {
 	font-weight: bold;
+	}
 }

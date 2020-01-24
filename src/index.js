@@ -7,17 +7,22 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 require('dotenv').config();
 
+
 const getToken = () => {
 	let token = localStorage.getItem('token');
 	return token ? `Bearer ${token}` : '';
 };
 
+
+const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
+
+console.log(`FEDERATION_URI`, federationURI)
+
+
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	//https://quality-hub-gateway-staging.herokuapp.com/
-	// uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
-	uri: 'https://quality-hub-gateway.herokuapp.com/',
+	uri: federationURI,
 	request: operation => {
 		operation.setContext({
 			headers: {
