@@ -11,6 +11,8 @@ export default function CoachHistoryRow({ booking }) {
 	const [showReport, setShowReport] = useState(false);
 	const [showReview, setShowReview] = useState(false);
 
+	console.log(booking.review);
+
 	return (
 		<div>
 			<div className='coach-history-row'>
@@ -52,16 +54,20 @@ export default function CoachHistoryRow({ booking }) {
 						</Link>
 					)}
 				</div>
-				<div
-					className='history-col history-content-toggle'
-					onClick={() => setShowReview(!showReview)}>
-					{showReview ? 'Hide' : 'View'} Review{' '}
+				{!booking.review ? (
+					<div className='history-col'>Pending Review</div>
+				) : (
 					<div
-						className='arrow-icon'
-						style={{ transform: `scaleY(${showReview ? '-1' : '1'})` }}>
-						<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+						className='history-col history-content-toggle'
+						onClick={() => setShowReview(!showReview)}>
+						{showReview ? 'Hide' : 'View'} Review{' '}
+						<div
+							className='arrow-icon'
+							style={{ transform: `scaleY(${showReview ? '-1' : '1'})` }}>
+							<Icon icon={ICONS.MORE} width={24} height={24} color='#757575' />
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 			{showReport && <CoachHistoryReport booking={booking} />}
 			{showReview && <CoachHistoryReview booking={booking} />}

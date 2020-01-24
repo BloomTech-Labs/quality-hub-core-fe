@@ -70,7 +70,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-
 }
 
 .add-coach-form {
@@ -89,7 +88,7 @@
 	select {
 		width: 100%;
 	}
-	z-index: 1001;
+	// z-index: 1050;
 	margin-bottom: 1px;
 }
 
@@ -100,13 +99,14 @@
 	align-content: flex-end;
 	align-items: flex-end;
 	width: 85rem;
-	height: 81.7rem;
+	height: 85vh;
+	// height: 81.7rem;
 	left: 50%;
 	top: 6.4rem;
 	transform: translate(-50%);
 	background: white;
 	border-radius: 10px;
-	z-index: 1000;
+	z-index: 1050;
 	@media screen and (max-width: 550px) {
 		min-width: 550px;
 	}
@@ -128,7 +128,7 @@
 	border-radius: 10px;
 	text-align: left;
 
-	z-index: 1000;
+	z-index: 1050;
 
 	// display: flex;
 	// flex-direction: column;
@@ -393,20 +393,20 @@ textarea.add-coach-form-row-7 {
 }
 
 .add-coach-form-preview-description {
-	p{
-	margin-top: 17px;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 30px;
-	display: flex;
-	align-items: center;
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	width: 400px;
-	margin-bottom: 10px;
+	p {
+		margin-top: 17px;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 30px;
+		display: flex;
+		align-items: center;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		width: 400px;
+		margin-bottom: 10px;
 
-	color: #3c4043;
+		color: #3c4043;
 	}
 }
 
@@ -578,4 +578,3 @@ input[type='range']:focus::-ms-fill-upper {
 }
 
 // End range slider code ***
-

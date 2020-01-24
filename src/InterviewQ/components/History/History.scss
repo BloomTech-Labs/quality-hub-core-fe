@@ -22,6 +22,14 @@
 
 .coach-history {
 	margin-bottom: 7.2rem;
+	@media screen and (max-width: 1600px) {
+        margin-left: 7rem;
+    }
+}
+.interviewq-seeker-history{
+	@media screen and (max-width: 1600px) {
+        margin-left: 7rem;
+    }
 }
 
 .coach-history-headings,
