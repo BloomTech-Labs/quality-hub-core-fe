@@ -18,6 +18,9 @@
 	button {
 		margin:  auto;
 	}
+	.gone {
+		visibility: visible;
+	}
 }
 
 .seeker-card {
@@ -59,7 +62,7 @@
 			font-size: x-small;
 		}
 	}
-	
+
 	.seeker-date {
 		display: flex;
 		justify-content: space-around;
@@ -76,13 +79,25 @@
 			height: 50px;
 		}
 	}
-	.seeker-coach-info {
-		border-top: 1px solid #dadce0;
-		h3 {
-			margin-top: 20px;
-			color: gray;
+	
+	.seeker-date-denied {
+		display: flex;
+		justify-content: space-around;
+		text-align: center;
+		padding-bottom: 50px;
+		p {
+			font-size: xx-small;
+			margin: auto;
+		} 
+		.acc-text {
+			margin: auto auto auto 0px;
+		}
+		.v1 {
+			border-left: 1px solid lightgray;
+			height: 50px;
 		}
 	}
+
 	.contact-seeker-btn{
 		border-radius: 0.5rem;
 		font-size: 1.8rem;
@@ -102,12 +117,24 @@
 .green {
 	color: green;
 }
+.red {
+	color: red;
+}
 
-.dot {	
+.dot1 {	
 	height: 5px;
 	width: 5px;
 	background-color: green;
 	border-radius: 50%;
 	display: inline-block;
 	margin: auto 5px auto 10px;
+}
+
+.dot2 {	
+	height: 5px;
+	width: 5px;
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+	margin: auto 5px auto 15px;
 }

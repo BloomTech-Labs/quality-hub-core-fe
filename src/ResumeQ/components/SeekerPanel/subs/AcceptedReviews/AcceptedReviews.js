@@ -72,7 +72,7 @@ const AcceptedReviews = () => {
                                 <div className="seeker-date">
                                     <p><b>Created on </b>{moment(reviews.createdAt).format(format)}</p>
                                     <div className="v1"></div>
-                                    <span class="dot"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
+                                    <span class="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
                                 </div>
 
                                 
