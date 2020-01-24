@@ -21,9 +21,7 @@ export default function Search({ fields, setFields, refetch }) {
 		refetch({ ...fields, ids });
 	};
 
-	console.log(`IQ Search / user_data`, user_data)
-	console.log(`IQ Search / fields`, fields)
-	console.log(`ReviewerList / makeArray`, typeof makeArray)
+
 
 	useEffect(() => {
 		if (
