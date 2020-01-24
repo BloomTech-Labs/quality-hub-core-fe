@@ -14,7 +14,7 @@ import becomecoach from '../../../global/icons/becomecoach.png';
 import CoachDash from './subs/CoachDash';
 import { spacecoach } from '../../../global/icons/SpaceCoach.js';
 
-export default function DashResumeQ() {
+export default function DashInterviewQ() {
 	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
