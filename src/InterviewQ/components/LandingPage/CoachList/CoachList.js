@@ -21,7 +21,6 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 
 	const { refetch, loading, data } = useQuery(GET_POSTS, { fetchPolicy: "network-only" });
 
-	console.log(`CoachList / data`, data)
 
 	return (
 		<div className='coach-list-container'>
@@ -37,7 +36,7 @@ const CoachList = ({ history, toggleFilter, setToggleFilter }) => {
 			{loading && <Loading />}
 			{!loading && data && (
 				<div className='coach-list'>
-					{console.log(data.posts[0])}
+					
 					{data.posts.map(post => (
 						<CoachCard key={post.id} post={post} history={history} />
 					))}
