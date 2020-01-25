@@ -55,7 +55,7 @@ const AcceptedReviews = () => {
                                                     <Icon
                                                         icon={ICONS.BLANK_AVATAR}
                                                         color='white'
-                                                        width={80}
+                                                        width={90}
                                                         height={90}
                                                     />
                                                 </div>

@@ -10,61 +10,76 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  height: 40rem;
 }
 
 .rq-requested-coach {
-  width: 62rem;
-  height: 35.2rem;
-  padding: 2.4rem;
-  // box-shadow: 2px 2px 5px gray;
+  width: 52rem;
+  height: 49.2rem;
   border: 1px solid #dadce0;
   border-radius: 0.8rem;
-  // margin: 4px;
   margin-bottom: 1.2rem;
-  justify-content: space-between;
-  text-align: left;
+ 
   .rq-requested-coachcard-header {
+    background: linear-gradient(to bottom left, #fa789a 0%, #db013a 100%);
+		border-radius: 0.7rem 0.7rem 0 0;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    height: 80%;
+
+    .rq-info-container {
+      background-color: white;
+      border-radius: 0.7rem;
+      margin: 10rem auto 2rem auto;
+      width: 35rem;
+      height: 20rem;
+			box-shadow: 3px 3px 15px rgba($color: (#000000), $alpha: 0.5);
+
+    }
+
+    .coach-photo {
+      position: absolute;
+      margin-top: -6rem;
+      margin-left: 11rem;
+			width: 14.1rem;
+			height: 14.1rem;
+			border-radius: 50%;
+			overflow: hidden;
+			box-shadow: 3px 3px 15px rgba($color: (#000000), $alpha: 0.5);
+    }
 
     .rq-requested-coachcard-header-txt {
-      text-align: left;
+      width: 100%;
+      text-align: center;
       margin-top: 1.6rem;
-      margin-bottom: 4rem;
+      margin-bottom: .8rem;
 
-      h3 {
-        font-size: 2.5rem;
+      h1 {
         font-weight: 600;
         font-style: normal;
         line-height: 2.8rem;
         color: #262626;
-        max-width: 12rem;
         white-space: nowrap;
+        margin: 28% auto 0 auto;
       }
     }
   }
   .coachcard-info {
-    // margin-top: 1.2rem;
-
-    p {
+    display: flex;
+    flex-direction: column;
+    .info-content {
       font-style: normal;
       font-weight: normal;
       font-size: 1.2rem;
-      //	line-height: 2.4rem;
       color: #3c4043;
-      max-width: 26.3rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
+     
       .coachcard-icon {
         display: inline-block;
         width: 1.8em;
-        // margin-top: 0.2rem;
       }
       .text {
-        margin: 0 auto;
+        margin: auto;
         width: 90%;
         white-space: nowrap;
         overflow: hidden;
@@ -73,31 +88,32 @@
     }
 
     .coachcard-posloc {
-      display: inline-block;
-      max-width: 20rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
   }
   .coachcard-description {
-    // margin-top: 0.4rem;
     p {
       font-style: normal;
       font-weight: normal;
       font-size: 1.6rem;
       line-height: 2.4rem;
-      color: #3c4043;
+      color: white;
+      width: 70%;
+      margin: auto;
     }
   }
 }
 
+.rq-confirm-container {
+  margin: 12rem auto;
+
+}
+
 .rq-confirm-coach-bio {
-  margin-top: 4rem;
-  h2 {
-    font-weight: 500;
-    font-size: 2rem;
-  }
+  text-align: left;
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin:2rem auto 2rem auto;
+  width: 70%;
 }
 
 .blank-image {
@@ -109,8 +125,6 @@
   display: flex;
   align-self: flex-start;
   align-items: center;
-  // margin-bottom: 2.4rem;
-  // margin-top: 0.5rem;
   cursor: pointer;
   .text {
     font-weight: 600;
@@ -118,8 +132,22 @@
   }
 }
 
+.price-tag {
+  font-size: 2.0rem;
+  position: absolute;
+  margin: auto 22.4rem;
+  padding: 0.8rem;
+  background-color: white;
+  border-radius: 0 0.7rem 0 0;
+  width: 7rem;
+  color: #fb2046;
+}
+
 .confirmation-container {
-  margin: 1.2rem;
+  display: flex;
+  margin: 1.2rem auto;
+  width: 17%;
+  justify-content: space-between;
 }
 
 .rq-cancel-request-button {
