@@ -62,9 +62,13 @@ const ResumeReviewEntry = ({
     <div>
       <div >
         <div className="reviewer-jobs-card">
-          <p>Requested on {moment(createdAt).format(format)}</p>
-          <p>{seeker.first_name} {seeker.last_name}</p>
+
+        <div className="reviewer-info">
+          <h1>{seeker.first_name} {seeker.last_name}</h1>
           <p>{seeker.email}</p>
+          <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
+        </div>
+
           {status === 'Pending' &&
             <div className="reviewer-btn-container">
               <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
