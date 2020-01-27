@@ -37,7 +37,7 @@ body {
 }
 
 .coachcard-expand-background {
-	position: absolute;
+	position: fixed;
 	display: flex;
 	justify-content: center;
 	align-content: flex-end;
@@ -145,16 +145,16 @@ body {
 		flex-wrap: wrap;
 		flex-direction: column-reverse;
 	}
-	.coachcard-icon-and-company-position {
-		// border: 1px solid red;
-		// display: flex;
-		// justify-content: center;
-		// align-items: center;
-		// align-content: center;
-		// p{
-		// 	border: 1px solid blue;
-		// }
-	}
+	// .coachcard-icon-and-company-position {
+	// 	// border: 1px solid red;
+	// 	// display: flex;
+	// 	// justify-content: center;
+	// 	// align-items: center;
+	// 	// align-content: center;
+	// 	// p{
+	// 	// 	border: 1px solid blue;
+	// 	// }
+	// }
 	.coachcard-info-expand {
 		margin-bottom: 1.28rem;
 		p {
