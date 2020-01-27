@@ -102,7 +102,7 @@ const CoachCard = ({ post }) => {
 							: fullName}
 					</h3>
 					<h4 className="coach-price">
-						{post.price === 0 ? 'Free' : `$${post.price} per hour`}
+						{post.price === 0 ? 'Free' : `$${post.price} per session`}
 					</h4>
 				</div>
 				<div className="coach-photo">
