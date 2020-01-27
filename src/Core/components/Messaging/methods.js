@@ -115,15 +115,22 @@ export const connectToRoom = (roomId, chatLog, setChatLog, setTheCurrentUser) =>
         hooks: {
           onMessage: message => {
             const messageElements = document.getElementById('message-list-div')
-						.childNodes;
-            messageObj = { text: message.text, senderId: message.senderId };
+            .childNodes;
+            console.log(message, 'msg')
+            messageObj = { text: message.text, senderId: message.senderId, createdAt: message.createdAt};
             messageArray.push(messageObj);
             setChatLog(messageArray);
             setTheCurrentUser(currentUser);
-					const messageDiv = document.createElement('li');
+          const messageDiv = document.createElement('li');
+          const dateDiv = document.createElement('li')
           messageDiv.textContent = `${message.text}`;
+          dateDiv.textContent = `${message.createdAt}`
           
-					messageDiv.id = message.id;
+          console.log(messageArray, 'msgArray')
+          messageDiv.id = message.id;
+          dateDiv.id = message.id;
+          
+          
 					let check = false;
 					for (let x = 0; x < messageElements.length; x++) {
 						if (messageElements[x].id == message.id) {
@@ -131,9 +138,11 @@ export const connectToRoom = (roomId, chatLog, setChatLog, setTheCurrentUser) =>
 						}
 					}
 					if (!check) {
-						document.querySelector('.chat-messages').appendChild(messageDiv);
+            document.querySelector('.chat-messages').appendChild(messageDiv);
+            document.querySelector('.chat-messages').appendChild(dateDiv);
 						if (message.senderId === localStorage.getItem('id')) {
-							messageDiv.classList.add('sentMessage');
+              messageDiv.classList.add('sentMessage');
+              dateDiv.classList.add('sentMessage')
 						}
 					}
           // return;
