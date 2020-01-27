@@ -63,6 +63,4 @@ const InterviewQContainer = props => {
 	);
 };
 
-// test comment for git commit
-
 export default InterviewQContainer;
