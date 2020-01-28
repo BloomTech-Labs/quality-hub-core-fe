@@ -21,7 +21,7 @@ export default function DeletePostModal({ isShowing, hide }) {
 		deleteCoachPost().then(res => {
 			client.clearStore();
 			client.resetStore();
-			history.push('/dashboard');
+			history.push('/interviewq');
 		});
 	};
 
