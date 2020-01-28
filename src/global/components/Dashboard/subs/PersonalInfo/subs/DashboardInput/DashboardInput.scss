@@ -1,6 +1,6 @@
 .editform {
 	display: flex;
-	margin: 3.2rem auto;
+	margin: 4rem auto;
 	justify-content: space-between;
 	width: 100%;
 	flex-direction: column;
@@ -46,7 +46,7 @@
 	align-items: center;
 	// height: 5rem;
 	border-bottom: 1px solid #dadce0;
-	padding: .8rem 2.4rem;
+	padding: 0.8rem 2.4rem;
 
 	@media screen and (max-width: 380px) {
 		flex-direction: column;
@@ -86,7 +86,7 @@
 		margin: 0;
 		flex-shrink: 1;
 		font-weight: normal;
-    font-size: 16px;
+		font-size: 16px;
 		@media screen and (max-width: 940px) {
 			margin: 0 1rem 0 0;
 		}
@@ -100,12 +100,9 @@
 	display: flex;
 	align-items: center;
 
-	// h4 {
-	// 	margin-left: 0.8rem;
-	// }
-		.account-icon {
-			margin-right: 0.8rem;
-		}
+	.account-icon {
+		margin-right: 0.8rem;
+	}
 }
 
 .edit-button {

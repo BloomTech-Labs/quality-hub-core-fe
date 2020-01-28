@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { StripeProvider } from 'react-stripe-elements';
 require('dotenv').config();
 
 
@@ -15,9 +16,7 @@ const getToken = () => {
 
 
 const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
-
-console.log(`FEDERATION_URI`, federationURI)
-
+const stripeKey = process.env.REACT_APP_STRIPE_KEY || 'stripe';
 
 const cache = new InMemoryCache();
 
@@ -43,9 +42,11 @@ cache.writeData({
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
-		<Router>
-			<App />
-		</Router>
+		<StripeProvider apiKey={stripeKey}>
+			<Router>
+				<App />
+			</Router>
+		</StripeProvider>
 	</ApolloProvider>,
 	document.getElementById('root'),
 );

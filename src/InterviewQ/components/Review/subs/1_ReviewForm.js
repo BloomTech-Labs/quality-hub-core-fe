@@ -19,6 +19,7 @@ const ReviewForm = props => {
         }
         return booking
       })
+      console.log(newBookings);
       cache.writeQuery({query: GET_SEEKER_BOOKINGS, data: {...data, bookingsBySeeker: newBookings}})
     }
   });

@@ -22,6 +22,26 @@
 	margin-bottom: 11.9rem;
 	margin-top: 0;
 }
+.interviewq-create-booking-dropzone {
+	border: 1px dashed #d9d9d9;
+	width: 738px;
+	height: 174px;
+	background-color: #f5f5f5;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: 1s;
+	border-radius: 0.4rem;
+}
+.interviewq-dropped-file {
+	background-color: #d9d9d9;
+	transition: 1s;
+}
+.interviewq-dropzone-text {
+	margin-top: 17px;
+	// border: 1px solid red;
+}
 .formsection {
 	display: flex;
 	//margin: 40px auto;
@@ -71,9 +91,12 @@
 	}
 }
 
-.interview-slot-list {
+.request-interview-slot-list {
 	width: 25rem;
 	margin-left: 5.6rem;
+	height: 40rem;
+	overflow-y: scroll;
+	position: relative;
 }
 
 .disabled-interview-slot {
@@ -97,7 +120,13 @@
 
 .booking-subheading {
 	margin-bottom: 4.8rem;
+
+	p {
+		font-size: 1.6rem;
+		color: #3c4043;
+	}
 }
+
 .interviewq-booking-input {
 	display: flex;
 	justify-content: flex-start;
@@ -205,11 +234,16 @@
 	padding: 6px;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
+	:hover {
+		background-color: #0050b3;
+	}
 	p {
 		text-decoration: none;
 		font-weight: 500;
 		font-size: 15px;
 		//margin: 6px;
+		cursor: pointer;
 	}
 }
 
@@ -218,6 +252,7 @@
 	font-weight: 500;
 	font-size: 15px;
 	color: #5f6368;
+	margin-right: 48px;
 }
 
 .book-interview-button:hover {
@@ -226,7 +261,7 @@
 
 .interview-button-secondary {
 	height: 4.5rem;
-	margin-right: 48px;
+
 	border: 1px solid #5f6368;
 	border-radius: 4px;
 	width: 13.1rem;
@@ -235,6 +270,7 @@
 	padding: 6px;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 	p {
 		text-decoration: none;
 		font-weight: 500;
@@ -271,6 +307,7 @@
 	p {
 		font-size: 16px;
 		// margin-bottom: 25px;
+		color: #3c4043;
 	}
 	button {
 		margin-top: 5.4rem;
@@ -280,5 +317,6 @@
 		width: 21.6rem;
 		height: 5.4rem;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 }

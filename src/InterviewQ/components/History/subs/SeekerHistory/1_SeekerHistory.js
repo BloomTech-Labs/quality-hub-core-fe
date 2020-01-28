@@ -58,7 +58,7 @@ export default function SeekerHistory() {
 		: [];
 
 	return (
-		<div>
+		<div className="interviewq-seeker-history">
 			<h2>Seeker History</h2>
 			{filteredData && filteredData.length ? (
 				<div className='seeker-history-headings'>

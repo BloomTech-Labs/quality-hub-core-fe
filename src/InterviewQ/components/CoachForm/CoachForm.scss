@@ -70,7 +70,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-
 }
 
 .add-coach-form {
@@ -83,13 +82,15 @@
 	background: white;
 	border-radius: 10px;
 	text-align: left;
+	// padding-bottom: 8.8rem;
+
 	input {
 		width: 100%;
 	}
 	select {
 		width: 100%;
 	}
-	z-index: 1001;
+	// z-index: 1050;
 	margin-bottom: 1px;
 }
 
@@ -100,16 +101,18 @@
 	align-content: flex-end;
 	align-items: flex-end;
 	width: 85rem;
-	height: 81.7rem;
+	height: 85vh;
+	// height: 81.7rem;
 	left: 50%;
 	top: 6.4rem;
 	transform: translate(-50%);
 	background: white;
 	border-radius: 10px;
-	z-index: 1000;
+	z-index: 1050;
 	@media screen and (max-width: 550px) {
 		min-width: 550px;
 	}
+	padding-bottom: 8.8rem;
 }
 
 .done-modal {
@@ -128,7 +131,7 @@
 	border-radius: 10px;
 	text-align: left;
 
-	z-index: 1000;
+	z-index: 1050;
 
 	// display: flex;
 	// flex-direction: column;
@@ -186,6 +189,7 @@
 	line-height: 24px;
 	color: #3c4043;
 	margin-bottom: 4.8rem;
+	margin-top: 1.6rem;
 }
 
 .done-modal-content {
@@ -222,7 +226,12 @@
 }
 .red-span-key {
 	color: #cf1322;
-	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 2rem;
+	line-height: 2.8rem;
+	text-align: right;
+	margin: 1.2rem 0 1.6rem;
 }
 .add-coach-form-header {
 	color: #096dd9;
@@ -242,6 +251,7 @@
 	font-size: 20px;
 	line-height: 28px;
 	margin-top: 15px;
+	color: #3c4043;
 }
 
 .add-coach-form-step-title {
@@ -250,7 +260,7 @@
 	font-size: 20px;
 	line-height: 28px;
 	color: #5f6368;
-	margin-top: 40px;
+	// margin-top: 40px;
 }
 
 .add-coach-form-sub-title {
@@ -393,20 +403,20 @@ textarea.add-coach-form-row-7 {
 }
 
 .add-coach-form-preview-description {
-	p{
-	margin-top: 17px;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 30px;
-	display: flex;
-	align-items: center;
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	width: 400px;
-	margin-bottom: 10px;
+	p {
+		margin-top: 17px;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 30px;
+		display: flex;
+		align-items: center;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		width: 400px;
+		margin-bottom: 10px;
 
-	color: #3c4043;
+		color: #3c4043;
 	}
 }
 
@@ -578,4 +588,3 @@ input[type='range']:focus::-ms-fill-upper {
 }
 
 // End range slider code ***
-
