@@ -65,69 +65,86 @@ const RequestReview = props => {
         <>
             <div>
                 <h1 id='rq-confirm-title'>Confirm Request</h1>
+
                 <div className="rq-request-coach-container">
+
                     <div className='rq-requested-coach'>
+
                         <div className='rq-requested-coachcard-header'>
-                            {/* adjust style sheet so that the full name will be displayed */}
-                            <div className='rq-requested-coachcard-header-txt'>
-                                <h3>
-                                    {coach.first_name} {coach.last_name}
-                                </h3>
-                                <h4 className='coach-price'>
-                                    {listing.price === 0 ? 'Free' : `$${listing.price}`}
-                                </h4>
-                            </div>
-                            <div className='coach-photo'>
-                                {coach.image_url ? (
-                                    <img src={coach.image_url} alt='Coach Profile Pic' />
-                                ) : (
-                                        <div className='blank-image'>
+
+                            <div className="rq-info-container">
+                                <div className='coach-photo'>
+                                    {coach.image_url ? (
+                                        <img src={coach.image_url} alt='Coach Profile Pic' />
+                                    ) : (
+                                            <div className='blank-image'>
+                                                <Icon
+                                                    icon={ICONS.BLANK_AVATAR}
+                                                    color='white'
+                                                    width={160}
+                                                    height={160}
+                                                />
+                                            </div>
+                                        )}
+                                </div>
+
+                                {/* adjust style sheet so that the full name will be displayed */}
+                                <div className='rq-requested-coachcard-header-txt'>
+                                    <h1>
+                                        {coach.first_name} {coach.last_name}
+                                    </h1>
+                                   
+                                </div>
+
+                                <div className='coachcard-info'>
+                                    <div className="info-content">
+                                        <span className='coachcard-icon industry'>
+                                            <Icon icon={ICONS.BAG} width={18} height={18} color='#595959' />
+                                        </span>
+                                        <span className='text'>{`${listing.company} - ${listing.position}`}</span>
+                                    </div>
+                                    
+                                    <div className="info-content">
+                                        <span className='coachcard-icon'>
                                             <Icon
-                                                icon={ICONS.BLANK_AVATAR}
-                                                color='white'
-                                                width={80}
-                                                height={90}
+                                                icon={ICONS.LOCATION}
+                                                width={18}
+                                                height={17}
+                                                color='#595959'
                                             />
-                                        </div>
-                                    )}
+                                        </span>
+                                        <span className='coachcard-posloc'>
+                                            {coach.city}, {coach.state}
+                                        </span>
+                                     </div>
+                                    
+                                </div>
+
                             </div>
-                        </div>
-                        <div className='coachcard-info'>
-                            <p>
-                                <span className='coachcard-icon industry'>
-                                    <Icon icon={ICONS.BAG} width={18} height={18} color='#595959' />
-                                </span>
-                                <span className='text'>{`${listing.company} - ${listing.position}`}</span>
-                            </p>
-                            <p>
-                                <span className='coachcard-icon'>
-                                    <Icon
-                                        icon={ICONS.LOCATION}
-                                        width={18}
-                                        height={18}
-                                        color='#595959'
-                                    />
-                                </span>
-                                <span className='coachcard-posloc'>
-                                    {coach.city}, {coach.state}
-                                </span>
-                            </p>
+                            
+                                    <div className='coachcard-description'>
+                                        <p>{listing.description}</p>
+                                    </div>
+
+                                    <span className="price-tag">{listing.price === 0 ? 'Free' : `$${listing.price}`}</span>
 
                         </div>
-                        <div className='coachcard-description'>
-                            <div >
-                                <p>{listing.description}</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className='rq-confirm-coach-bio'>
-                            <h2>About {coach.first_name}</h2>
+                        
+                       
+                       
+
+                         <div className='rq-confirm-coach-bio'>
+                            <h3>About {coach.first_name}</h3>
                             <p>{coach.bio}</p>
                         </div>
+                       
+
                     </div>
                 </div>
+
+
                 {/* feedback message container*/}
-                <div>
+                <div className="rq-confirm-container">
                     <div>
                         {submitFeedback.success === null && (<p>You are requesting a resumé review from {coach.first_name}. Once they have accepted your request, you will be charged ${listing.price}</p>)}
 
@@ -141,7 +158,7 @@ const RequestReview = props => {
                         </div>
                     </div>)}
                     <p className={submitFeedback.success ? 'rq-confirm-success' : 'rq-confirm-failure'}>{submitFeedback.message}</p>
-                </div>
+               
                 {/* // buttons for cancelling or confirming request. */}
                 <div className='confirmation-container'>
 
@@ -153,6 +170,7 @@ const RequestReview = props => {
                         Confirm Request
             </button>
                 </div>
+            </div>
             </div>
         </>
     )

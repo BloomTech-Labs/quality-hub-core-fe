@@ -10,34 +10,29 @@
 	justify-content: flex-start;
 }
     .reviewer-jobs-card {
-        .reviewer-jobs-header{
-            display: flex;
-            width: 100%;
-            border-bottom: 1px solid #dadce0;
-            p {
-                width: 50%;
-                text-align: right;
-                margin-left: 100px;
-                color: #bebfc2;
-                margin-bottom: 5%;
-               
-            }
-        }
+        padding: 15px;
         display: flex;
-        width: 26.2rem;
+        width: 28.2rem;
         height: 25.2rem;
-        padding: 2.4rem;
         border: 1px solid #dadce0;
         border-radius: 0.8rem;
         margin-bottom: 1.2rem;
         margin-right: 1.2rem;
         flex-direction: column;
-        justify-content: space-between;
-        text-align: left;
-
+        .reviewer-info {
+            margin: auto;
+            h1 {
+                margin-bottom: 2%;
+            }
+            p:nth-of-type(2) {
+                margin-top: 5%;
+                font-size: xx-small;
+            }
+        }
         .reviewer-btn-container{
             display: flex;
-            // justify-content: space-around;
+            justify-content: center;
+            margin-bottom: 10%;
             .acc-reviewer-btn {
                 margin-right: 10px;
                 border-radius: 0.5rem;
@@ -80,7 +75,8 @@
     }
     .reviewer-card-footer{
         display: flex;
-        // justify-content: flex-end;
+        justify-content: center;
+        margin-bottom: 5%;
         .com-reviewer-btn {
             border-radius: 0.5rem;
             font-size: 1.2rem;
@@ -96,6 +92,7 @@
             width: 12rem;
             height: 2.9rem;
             padding: 0;
+            margin-bottom: 5%;
             cursor: pointer;
      }
     }

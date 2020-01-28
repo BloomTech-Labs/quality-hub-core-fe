@@ -46,10 +46,6 @@ const AcceptedReviews = () => {
                         {data.acceptedReviewsBySeeker.map(reviews => (
                                 <div className="seeker-card">
                                     <div className='seeker-header-container'>
-                                        <div className='seeker-card-header'>
-                                            <h2>{reviews.seeker.first_name} {reviews.seeker.last_name}</h2>
-                                            <p>{reviews.seeker.email}</p>
-                                        </div>
                                         
                                         <div className='coach-photo'>
                                         {reviews.seeker.image_url ? (
@@ -59,24 +55,27 @@ const AcceptedReviews = () => {
                                                     <Icon
                                                         icon={ICONS.BLANK_AVATAR}
                                                         color='white'
-                                                        width={80}
+                                                        width={90}
                                                         height={90}
                                                     />
                                                 </div>
                                             )}
                                         </div>
+
                                     </div>
+
+                                    <div className='seeker-card-info'>
+                                        <h1>{reviews.coach.first_name} {reviews.coach.last_name}</h1>
+                                        <p>{reviews.coach.email}</p>
+                                    </div>
+
                                 <div className="seeker-date">
-                                    <p>Accepted on: {moment(reviews.dateAccepted).format(format)}</p>
-                                    <p>Created on: {moment(reviews.createdAt).format(format)}</p>
-                                    <p>Updated on: {moment(reviews.updatedAt).format(format)}</p>
+                                    <p><b>Created on </b>{moment(reviews.createdAt).format(format)}</p>
+                                    <div className="v1"></div>
+                                    <span class="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
                                 </div>
 
-                                <div className="seeker-coach-info">
-                                    <h3>Coach Info:</h3>
-                                    <p><b>{reviews.coach.first_name} {reviews.coach.last_name}</b></p>
-                                    <p>{reviews.coach.email}</p>
-                                </div>
+                                
                                 <button className="contact-seeker-btn">Contact</button>
                             </div>
                         ))}
