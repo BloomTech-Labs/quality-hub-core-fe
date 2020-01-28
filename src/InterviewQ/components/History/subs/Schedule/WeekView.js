@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { times as timeArray, months, years } from '../../../../utils/TimeArrays';
+import { times as timeArray, months, years } from '../../../../../global/utils/TimeArrays';
 
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
@@ -20,10 +20,10 @@ import {
 import WeekBooking from './WeekBooking';
 import CalendarDetail from './CalendarDetail';
 
-import { nextArrow } from '../../../../icons/nextArrow';
-import { backArrow } from '../../../../icons/backArrow';
+import { nextArrow } from '../../../../../global/icons/nextArrow';
+import { backArrow } from '../../../../../global/icons/backArrow';
 
-import { convertToLocal } from '../../../../utils/TZHelpers'
+import { convertToLocal } from '../../../../../global/utils/TZHelpers'
 
 const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const [open, setOpen] = useState(false);

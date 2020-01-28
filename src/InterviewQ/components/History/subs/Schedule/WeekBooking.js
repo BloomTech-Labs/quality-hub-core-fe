@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { convertToLocal } from '../../../../utils/TZHelpers';
+import { convertToLocal } from '../../../../../global/utils/TZHelpers';
 
 const WeekBooking = ({ booking, onBookingClick }) => {
 

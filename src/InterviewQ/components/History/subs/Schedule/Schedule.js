@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import Calendar from './Calendar.js'
 import WeekView from './WeekView.js';
-import Icon from '../../../../icons/Icon';
-import { ICONS } from '../../../../icons/iconConstants';
+import Icon from '../../../../../global/icons/Icon';
+import { ICONS } from '../../../../../global/icons/iconConstants';
 
 const Schedule = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
@@ -17,7 +17,7 @@ const Schedule = () => {
 			</div>
 				 	<Route
 					exact
-					path='/dashboard/schedule'
+					path='/interviewq/schedule'
 					render={props => (
 						<Calendar
 							{...props}
@@ -29,7 +29,7 @@ const Schedule = () => {
       
 				<Route
 					exact
-					path='/dashboard/schedule/week'
+					path='/interviewq/schedule/week'
 					render={props => (
 						<WeekView
 							{...props}

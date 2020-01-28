@@ -10,7 +10,7 @@ import {
 	isBefore,
 	addHours,
 } from 'date-fns';
-import { clock } from '../../../../../global/icons/Clock';
+import { clock } from '../../../../../global/icons/Clock.js';
 import { document } from '../../../../../global/icons/document.js';
 import { paperclip } from '../../../../../global/icons/paperclip.js';
 import { interviewQtie } from '../../../../../global/icons/interviewqtie.js';
