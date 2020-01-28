@@ -78,7 +78,7 @@ export default function Search({ fields, setFields, refetch }) {
 		<div className='search-container'>
 			<h2>Search Coach</h2>
 			<div className='search-dropdowns'>
-				<div className='search-dropdowns'>
+				<div className='search-dropdowns-left'>
 					<div className='search-field'>
 						{/* <label>Industry</label> */}
 						<select
@@ -141,7 +141,7 @@ export default function Search({ fields, setFields, refetch }) {
 
 				</div>
 				{/* <div className='search-field-bottom'> */}
-				<div className='search-dropdowns'>
+				<div className='search-dropdowns-right'>
 					<div className='search-field-keyword'>
 						{/* <label className='search-label-keywords'>Keywords</label> */}
 						<input
