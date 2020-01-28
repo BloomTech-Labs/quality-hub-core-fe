@@ -86,7 +86,7 @@
 		margin-left: 27rem;
 	}
 
-	@media screen and (max-width: 1270px) {
+	@media screen and (max-width: 1340px) {
 		margin: 0 auto;
 	}
 }
@@ -123,6 +123,11 @@
 
 	p {
 		font-size: 1.6rem;
+		color: #3c4043;
+	}
+
+	#booking-note {
+		font-size: 1.3rem;
 		color: #3c4043;
 	}
 }
