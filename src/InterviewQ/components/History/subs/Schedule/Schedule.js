@@ -4,9 +4,15 @@ import Calendar from './Calendar.js'
 import WeekView from './WeekView.js';
 import Icon from '../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../global/icons/iconConstants';
-
+import '../../../../../InterviewQ/components/LeftNav/LeftNav.scss'
 const Schedule = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
+	console.log('Ryans calendar test CAKE');
+
+	const [isMonthly, setIsMonthly] = useState(true);
+	const toggleMonthly = () => {
+		setIsMonthly(!isMonthly)
+	}
   return (
 		<div className='schedule'>
 					<div className='coachinfo-header'>
@@ -14,8 +20,16 @@ const Schedule = () => {
 					<Icon icon={ICONS.SCHEDULE} width={26} height={28} color='white' />
 				</div> */}
 				<h1>Schedule</h1>
-			</div>
-				 	<Route
+			</div> 
+			{isMonthly ? (<Calendar
+							selectedDate={selectedDate}
+							setSelectedDate={setSelectedDate} toggleMonthly={toggleMonthly}
+						/>) : (<WeekView
+						
+						selectedDate={selectedDate}
+						setSelectedDate={setSelectedDate} toggleMonthly={toggleMonthly}
+						/>) }
+				 	{/* <Route
 					exact
 					path='/interviewq/schedule'
 					render={props => (
@@ -26,10 +40,10 @@ const Schedule = () => {
 						/>
 					)}
 				/>
-      
+
 				<Route
 					exact
-					path='/interviewq/schedule/week'
+					path='/interviewq/week'
 					render={props => (
 						<WeekView
 							{...props}
@@ -37,7 +51,7 @@ const Schedule = () => {
 							setSelectedDate={setSelectedDate}
 						/>
 					)}
-				/>
+				/> */}
 		</div>
 	);
 }

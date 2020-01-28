@@ -11,12 +11,13 @@ import { backArrow } from '../../../../../global/icons/backArrow';
 
 import { days, months, years } from '../../../../../global/utils/TimeArrays.js'
 
-const Calendar = ({ selectedDate, setSelectedDate }) => {
+const Calendar = ({ selectedDate, setSelectedDate, toggleMonthly }) => {
 
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const node = useRef();
 	const [open, setOpen] = useState(false);
-
+	
+	
 	useEffect(() => {
 		if (open) {
 			document.addEventListener('mousedown', handleOutsideClick);
@@ -96,13 +97,18 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 							})}
 						</select>
 
-						<Link className='calendar-button' to='/interviewq/schedule/week'>
+						{/* <Link className='calendar-button' to='/interviewq/week'>
 						<button className='calendar-button'>
 							<p>
 							Week
 							</p>
 							</button>
-							</Link>
+							</Link> */}
+							<button onClick={toggleMonthly} className='calendar-button'>
+							<p>
+							Week
+							</p>
+							</button>
 					</div>
 				</div>
 			</header>

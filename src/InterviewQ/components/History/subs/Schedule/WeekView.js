@@ -25,10 +25,11 @@ import { backArrow } from '../../../../../global/icons/backArrow';
 
 import { convertToLocal } from '../../../../../global/utils/TZHelpers'
 
-const WeekView = ({  setSelectedDate, selectedDate }) => {
+const WeekView = ({  setSelectedDate, selectedDate, toggleMonthly }) => {
 	const [open, setOpen] = useState(false);
 	const node = useRef();
-
+	// console.log('THis is ryans test');
+	
 	const handleOutsideClick = e => {
 		if (node.current) {
 			if (node.current.contains(e.target)) {
@@ -178,13 +179,13 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 					})}
 				</select>
 
-						<Link className='calendar-button' to='/dashboard/schedule'>
-				<button className='calendar-button'>
+						
+						<button onClick={toggleMonthly} className='calendar-button'>
 					<p>
 					Month
 					</p>
 					</button>
-					</Link>
+				
 					
 					</div>
 				</div>

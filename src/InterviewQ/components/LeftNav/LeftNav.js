@@ -40,7 +40,7 @@ export default function QNav() {
 								: '#096dd9'
 						}
 					/>
-					<div className='dashnav-txt'> Schedule</div>
+					<div className='dashnav-txt'>Schedule</div>
 				</div>
 			</NavLink>
 
