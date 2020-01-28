@@ -1,0 +1,98 @@
+
+
+.reviewer-jobs-list {
+    // background-color: lightblue;
+    display: flex;
+    flex-wrap: wrap;
+	min-width: 50%;
+    padding: 5rem;
+	margin: 0 5% 0 15%;
+	justify-content: flex-start;
+}
+    .reviewer-jobs-card {
+        padding: 15px;
+        display: flex;
+        width: 28.2rem;
+        height: 25.2rem;
+        border: 1px solid #dadce0;
+        border-radius: 0.8rem;
+        margin-bottom: 1.2rem;
+        margin-right: 1.2rem;
+        flex-direction: column;
+        .reviewer-info {
+            margin: auto;
+            h1 {
+                margin-bottom: 2%;
+            }
+            p:nth-of-type(2) {
+                margin-top: 5%;
+                font-size: xx-small;
+            }
+        }
+        .reviewer-btn-container{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10%;
+            .acc-reviewer-btn {
+                margin-right: 10px;
+                border-radius: 0.5rem;
+                font-size: 1.2rem;
+                font-style: normal;
+                justify-content: center;
+                align-items: center;
+                font-weight: 500;
+                line-height: 2.2rem;
+                background-color: #FB2046;
+                text-align: center;
+                color: white;
+                align-items: center;
+                width: 8.1rem;
+                height: 2.9rem;
+                padding: 0;
+                cursor: pointer;
+
+            }
+            .dec-reviewer-btn {
+                border: solid 1px #FB2046;
+                border-radius: 0.5rem;
+                font-size: 1.2rem;
+                font-style: normal;
+                justify-content: center;
+                align-items: center;
+                font-weight: 500;
+                line-height: 2.2rem;
+                // background-color: #FB2046;
+                text-align: center;
+                color: #FB2046;
+                align-items: center;
+                width: 8.1rem;
+                height: 2.9rem;
+                padding: 0;
+                cursor: pointer;
+
+            }           
+        }
+    }
+    .reviewer-card-footer{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5%;
+        .com-reviewer-btn {
+            border-radius: 0.5rem;
+            font-size: 1.2rem;
+            font-style: normal;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            line-height: 2.2rem;
+            background-color: #FB2046;
+            text-align: center;
+            color: white;
+            align-items: center;
+            width: 12rem;
+            height: 2.9rem;
+            padding: 0;
+            margin-bottom: 5%;
+            cursor: pointer;
+     }
+    }

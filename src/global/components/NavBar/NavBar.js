@@ -9,11 +9,12 @@ import jwt_decode from 'jwt-decode';
 import './NavBar.scss';
 import { Bellicon } from '../../icons/bellicon';
 import { Hamburger } from '../../icons/hamburger';
+import resumeQLogo from '../../icons/resumeQLogo.svg'
 
 // Components
-import BecomeCoach from './subs/BecomeCoach';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
+
 
 // Query
 const GET_USER = gql`
@@ -89,18 +90,21 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 	return (
 		<div className='styled-nav' id='main-navbar'>
 			<div className='nav-left'>
-				<NavLink to='/'>
+				<NavLink to={navtitle ? `/${navtitle.toLowerCase()}q` : '/'}>
 					<div className='navbar-hamburger-and-title'>
 						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
-						<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
+						{navtitle && (<>
+							<h1>{navtitle} </h1> <img src={resumeQLogo} alt="QualityHub logo" />
+						</>
+						)}
+						{!navtitle && <h1>QualityHub</h1>}
+
+
 					</div>
 				</NavLink>
 			</div>
 
 			<div className='nav-right'>
-				<BecomeCoach />
-
-				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
 				{!loggedin && !loading && (
 					<>
 						<NavLink to='/signin'> Sign In </NavLink>

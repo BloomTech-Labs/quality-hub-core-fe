@@ -21,6 +21,10 @@ export default function Search({ fields, setFields, refetch }) {
 		refetch({ ...fields, ids });
 	};
 
+	console.log(`IQ Search / user_data`, user_data)
+	console.log(`IQ Search / fields`, fields)
+	console.log(`ReviewerList / makeArray`, typeof makeArray)
+
 	useEffect(() => {
 		if (
 			lastChanged === 'industry' ||
@@ -78,6 +82,7 @@ export default function Search({ fields, setFields, refetch }) {
 		<div className='search-container'>
 			<h2>Search Coach</h2>
 			<div className='search-dropdowns'>
+
 				<div className='search-field'>
 					{/* <label>Industry</label> */}
 					<select
@@ -106,9 +111,11 @@ export default function Search({ fields, setFields, refetch }) {
 						onChange={handleChange}
 						value={fields.price}
 						required>
+
 						<option value='' disabled hidden>
 							Price
 						</option>
+
 						<option value=''>All</option>
 						<option value='0, 20'>$0-$20</option>
 						<option value='21, 50'>$21-$50</option>
@@ -125,9 +132,11 @@ export default function Search({ fields, setFields, refetch }) {
 						onChange={handleChange}
 						value={fields.orderBy}
 						required>
+
 						<option value='' disabled hidden>
 							Sort by
 						</option>
+
 						<option value='id_ASC'>None</option>
 						{/* <option value="asdf">Most reviews</option>
           <option value="fasdfasdf">Least reviews</option> */}
@@ -139,6 +148,7 @@ export default function Search({ fields, setFields, refetch }) {
 				</div>
 				{/* <div className='search-field-bottom'> */}
 				<div className='search-field-keyword'>
+
 					{/* <label className='search-label-keywords'>Keywords</label> */}
 					<input
 						className='search-by-keyword-input'
@@ -157,9 +167,11 @@ export default function Search({ fields, setFields, refetch }) {
 				</div>
 				<button className='search-reset' onClick={handleReset}>
 					Reset
+
 				</button>
 				{/* </div> */}
 				{/* </div> */}
+
 				{/* <div className="search-tags-container">
 				<p className="search-tags"> {fields.tags} X </p>
 				</div> */}
