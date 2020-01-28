@@ -3,7 +3,9 @@ import React from 'react';
 const BottomButtons = ({ handleSave, handleSubmit, formState, setDone, setOpen, addPost, closeWindow, requiredState, setRequiredState }) => {
 
 	function requiredMet(e) {
-		(formState.company.length === 0 || formState.position.length === 0 || formState.description.length === 0) ? setRequiredState({...requiredState, any: true}) : handleSubmit(e, formState, setDone, setOpen, addPost)
+		(formState.company.length === 0 || formState.position.length === 0 || formState.description.length === 0) ? setRequiredState({...requiredState, any: true}) : handleSubmit(e, formState, setDone, setOpen, addPost);
+
+		window.location.reload();
 	}
 
 	return (
