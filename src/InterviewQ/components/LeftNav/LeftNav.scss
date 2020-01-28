@@ -99,3 +99,60 @@
 		color: white;
 	}
 }
+
+.dash-left-menu-btn {
+	display: flex;
+	width: 18.1rem;
+	height: 4.5rem;
+	padding-left: 2.4rem;
+	align-items: center;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.4rem;
+	line-height: 2.2rem;
+	text-align: center;
+	color: $main-blue;
+	cursor: pointer;
+
+	@media screen and (max-width: 1340px) {
+		flex-shrink: 1;
+		padding: 1rem 0;
+		justify-content: center;
+	}
+}
+
+.dashnav-txt {
+	margin-left: 1.6rem;
+
+	@media screen and (max-width: 1340px) {
+		margin-left: 0.5rem;
+	}
+
+	@media screen and (max-width: 700px) {
+		display: none;
+	}
+}
+
+.dashnavactive {
+	margin-bottom: 1.8rem;
+	height: 4.5rem;
+	background: $main-blue;
+	border-top-right-radius: 2.25rem;
+	border-bottom-right-radius: 2.25rem;
+	width: 18.1rem;
+
+	@media screen and (max-width: 1269px) {
+		border-top-left-radius: 2.25rem;
+		border-bottom-left-radius: 2.25rem;
+		border-top-right-radius: 2.25rem;
+		border-bottom-right-radius: 2.25rem;
+	}
+
+	@media screen and (max-width: 700px) {
+		display: none;
+	}
+
+	.dash-left-menu-btn {
+		color: white;
+	}
+}
