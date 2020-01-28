@@ -1,6 +1,8 @@
 // Libraries
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_COACH_POST } from '../DashInterviewQ/subs/Resolvers';
 
 // Styles
 import './LeftNav.scss';
@@ -11,6 +13,11 @@ import { ICONS } from '../../../global/icons/iconConstants';
 
 export default function QNav() {
 	const { pathname } = useLocation();
+	// This query attempts to check if the current user has created a coach listing
+	// If a coach listing from the current user does exist, the user's current id is stored in the coach_id variable
+	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
+		variables: { coach_id: localStorage.getItem('id') },
+	});
 
 	return (
 	
@@ -51,17 +58,22 @@ export default function QNav() {
 				</div>
 			</NavLink>
 
-			<NavLink to='/interviewq/settings' activeClassName='QNav-row-highlight'>
-				<div className='QNav-row'>
-					<Icon
-						icon={ICONS.SETTING}
-						width={24}
-						height={22}
-						color={pathname.includes('settings') ? 'white' : '#096dd9'}
-					/>
-					<div className='QNav-btn'>Settings</div>
-				</div>
-			</NavLink>
+			{/* If the current user has posted a coach listing, show the "settings" button in the left nav, if not, then hide the "settings" button */}
+			{loading ? null : coachPost && coachPost.postByCoach ? (
+				<NavLink to='/interviewq/settings' activeClassName='QNav-row-highlight'>
+					<div className='QNav-row'>
+						<Icon
+							icon={ICONS.SETTING}
+							width={24}
+							height={22}
+							color={pathname.includes('settings') ? 'white' : '#096dd9'}
+						/>
+						<div className='QNav-btn'>Settings</div>
+					</div>
+				</NavLink>
+			) : (
+				null
+			)}
 		</div>
 	
 	);
