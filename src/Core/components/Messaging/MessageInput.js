@@ -1,18 +1,37 @@
 import React, { useState } from 'react';
 import { handleSubmit } from '../../../InterviewQ/components/CoachForm/subs/Functions';
-
+import { formatRelative, subDays } from 'date-fns'
 const MessageInput = ({ sendMessage, currentRoom }) => {
 
+  
   const [message, setMessage] = useState('')
+  // const [message, setMessage] = useState({
+  //   message: '',
+  //   date: date
+  // })
+
+  
 
   const handleChange = (e) => {
     setMessage(e.target.value)
   }
+
+
+  // const handleChange = (e) => {
+  //   setMessage({ ...message, [e.target.name]: e.target.value })
+  // }
   
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   console.log(date, 'date')
+  //   sendMessage(message, currentRoom.id)
+  //   setMessage('')
+  // }
+  async function handleSubmit(e) {
     e.preventDefault()
-    sendMessage(message, currentRoom.id)
-    setMessage('')
+    await sendMessage(message, currentRoom.id)
+    // await sendMessage(date,currentRoom.id, date )
+      setMessage('')
   }
 
   return(
