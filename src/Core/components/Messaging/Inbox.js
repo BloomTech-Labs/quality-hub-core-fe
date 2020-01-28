@@ -48,9 +48,8 @@ const Inbox = () => {
       chatManager.connect()
     .then(currentUser => {
       currentUser.sendMessage({
-        text,
-        roomId
-        
+        text: text,
+        roomId: roomId
       })
     })
   }
@@ -84,7 +83,6 @@ const Inbox = () => {
               <ul className="chat-messages" id='message-list-div'>
                 {/* <li className='messageDiv'>This is a test message</li>
                 <li className='messageDiv sentMessage'>Sent Message</li> */}
-                
               </ul>
               <div name='chatAnchor' ></div>
               </div>
