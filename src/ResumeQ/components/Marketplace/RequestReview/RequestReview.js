@@ -75,14 +75,14 @@ const RequestReview = props => {
                             <div className="rq-info-container">
                                 <div className='coach-photo'>
                                     {coach.image_url ? (
-                                        <img src={coach.image_url} alt='Coach Profile Pic' />
+                                        <img src={coach.image_url} alt='Coach Profile Pic' height="140" width="140" />
                                     ) : (
                                             <div className='blank-image'>
                                                 <Icon
                                                     icon={ICONS.BLANK_AVATAR}
                                                     color='white'
-                                                    width={160}
-                                                    height={160}
+                                                    width={80}
+                                                    height={90}
                                                 />
                                             </div>
                                         )}

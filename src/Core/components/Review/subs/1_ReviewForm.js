@@ -38,6 +38,11 @@ const ReviewForm = props => {
   const [fieldsError, setError] = useState({ rating: "" })
   // * hoverIdx is associated with a star -- each star has a number value which, when hovered over, triggers the message at that index
   const [hoverIdx, setHover] = useState();
+
+  const [service , setService] = useState({ service_id: "" })
+
+  const [job, setJob] = useState({ job_id: "" })
+
   const messages = [
     '',
     'Never again!',

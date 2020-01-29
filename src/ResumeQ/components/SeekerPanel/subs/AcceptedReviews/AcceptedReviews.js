@@ -49,7 +49,7 @@ const AcceptedReviews = () => {
                                         
                                         <div className='coach-photo'>
                                         {reviews.seeker.image_url ? (
-                                            <img src={reviews.seeker.image_url} alt='Coach Profile Pic' />
+                                            <img src={reviews.seeker.image_url} alt='Coach Profile Pic' width="95" height="95"/>
                                         ) : (
                                                 <div className='blank-image'>
                                                     <Icon
