@@ -34,6 +34,23 @@ export default function QNav() {
 				</div>
 			</NavLink>
 
+			<NavLink activeClassName='dashnavactive' to='/interviewq/schedule'>
+				<div className='dash-left-menu-btn'>
+					<Icon
+						icon={ICONS.SCHEDULE}
+						width={24}
+						height={24}
+						color={
+							pathname === '/interviewq/schedule' ||
+							pathname === '/interviewq/schedule/week'
+								? 'white'
+								: '#096dd9'
+						}
+					/>
+					<div className='dashnav-txt'>Schedule</div>
+				</div>
+			</NavLink>
+
 			<NavLink to='/interviewq/inbox' activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
 					<Icon
