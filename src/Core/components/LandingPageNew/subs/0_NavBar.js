@@ -8,6 +8,9 @@ import { useQuery } from '@apollo/react-hooks';
 import AvatarDropdown from '../../../../global/components/NavBar/subs/AvatarDropdown';
 import GridDropdown from '../../../../global/components/NavBar/subs/GridDropdown';
 
+// auth0
+import auth from '../../../../Auth';
+
 // Query
 const CHECK_TOKEN = gql`
 	query {
@@ -22,8 +25,11 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 	const { data } = useQuery(CHECK_TOKEN);
 
 	const logout = () => {
+		// remove this code later, will be replaced by auth0 logic ***
 		localStorage.clear();
 		setLoggedin(false);
+		// ***
+		auth.logout();
 		history.push('/');
 	};
 

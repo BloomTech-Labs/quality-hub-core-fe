@@ -15,6 +15,9 @@ import BecomeCoach from './subs/BecomeCoach';
 import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
 
+// auth0
+import auth from '../../../Auth';
+
 // Query
 const GET_USER = gql`
 	query dropdownMenu {
@@ -105,7 +108,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<BecomeCoach />
 
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
-				{!loggedin && !loading && (
+				{!auth.isAuthenticated() && !loggedin && !loading && (
 					<>
 						<NavLink to='/signin'> Sign In </NavLink>
 						<NavLink to='/signup' className='signup-link'>
