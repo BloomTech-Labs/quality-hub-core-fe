@@ -13,6 +13,8 @@ import './ReviewForm.scss';
 
 const ReviewForm = props => {
 
+  console.log('PRops for ReviewForm', props)
+
   // * re-factor mutation to create entry in Core
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
     update(cache, { data: { createReview } }) {
@@ -107,7 +109,8 @@ const ReviewForm = props => {
     <form className='review-form'>
       <div className='review-container'>
         <div className='rating-form'>
-          <p className='label'>How did {props.location.state.firstName} do? </p>
+          {console.log('props in reviewForm', props)}
+          <p className='label'>How did  do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='rating-container'>
             <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
@@ -122,7 +125,7 @@ const ReviewForm = props => {
         </div>
       </div>
       <div className='button-container'>
-        <Link to='/interviewq/history' className='review-button button cancel'>Cancel</Link>
+        <Link to='/resumeq/seekerpanel' className='review-button button cancel'>Cancel</Link>
         <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>

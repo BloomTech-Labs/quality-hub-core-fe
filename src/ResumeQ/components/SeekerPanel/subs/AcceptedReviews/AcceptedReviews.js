@@ -44,7 +44,7 @@ const AcceptedReviews = () => {
             {!loading && data.acceptedReviewsBySeeker && (
                     <div className="seeker-list">
                         {data.acceptedReviewsBySeeker.map(reviews => (
-                                <div className="seeker-card">
+                                <div className="seeker-card" key={reviews.id}>
                                     <div className='seeker-header-container'>
                                         
                                         <div className='coach-photo'>
@@ -72,7 +72,7 @@ const AcceptedReviews = () => {
                                 <div className="seeker-date">
                                     <p><b>Created on </b>{moment(reviews.createdAt).format(format)}</p>
                                     <div className="v1"></div>
-                                    <span class="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
+                                    <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
                                 </div>
 
                                 

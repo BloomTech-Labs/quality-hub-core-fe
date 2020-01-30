@@ -8,8 +8,7 @@ import RequestReview from './components/Marketplace/RequestReview'
 import DashResumeQ from './components/DashResumeQ'
 import SeekerPanel from './components/SeekerPanel/SeekerPanel'
 import ReviewerJobs from './components/ReviewerJobs'
-import SideNavigation from './components/SideNavigation';
-
+import SideNavigation from './components/SideNavigation'
 
 const ResumeQContainer = () => {
 

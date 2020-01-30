@@ -12,9 +12,9 @@ import styles from './subs/Modal.module.scss';
 
 const ReviewPage = (props) => {
   // Refreshing causese state to be undefined, so we go back a page
-  if (!props.location.state) {
-    props.history.goBack();
-  }
+  // if (!props.location.state) {
+  //   props.history.push('/resumeq/seekerpanel');
+  // }
 
   //false sets the default to not show the Done modal
   const [open, setOpen] = useState(false);
@@ -22,9 +22,13 @@ const ReviewPage = (props) => {
   const closeWindow = () => {
     setOpen(true)
     setTimeout(() => {
-      props.history.push('/interviewq/history');
+      props.history.push('/resumeq/seekerpanel');
     }, 200)
   }
+
+  // if (window.location.includes('rating')) {
+  //   alert(window.location)
+  // }
 
   //This sets the darkened overlay behind the modals
   useEffect(() => {
@@ -43,7 +47,8 @@ const ReviewPage = (props) => {
         <h2>Rating & Review</h2>
         <hr />
         <p>Your review will help other job seekers find the best coach.</p>
-        <ReviewForm location={props.location} history={props.history} id={props.match.params.id} setOpen={setOpen} />
+        {console.log('props in reviewPage', props)}
+        <ReviewForm location={props.location} history={props.history} setOpen={setOpen} />
       </div>
     </div>
   )

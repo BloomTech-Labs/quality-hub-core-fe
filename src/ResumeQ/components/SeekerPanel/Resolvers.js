@@ -52,3 +52,29 @@ query{
     }
 }
 `
+//COMPLETED
+export const COMPLETED_REVIEWS_BY_SEEKER = gql`
+query{
+    completedResumeReviewsBySeeker{
+        id
+        isAccepted
+        isComplete
+        createdAt
+        updatedAt
+        coach{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+        seeker{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+    }
+}
+`

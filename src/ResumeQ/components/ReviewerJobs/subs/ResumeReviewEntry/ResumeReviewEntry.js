@@ -69,6 +69,8 @@ const ResumeReviewEntry = ({
           <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
         </div>
 
+          
+
           {status === 'Pending' &&
             <div className="reviewer-btn-container">
               <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
