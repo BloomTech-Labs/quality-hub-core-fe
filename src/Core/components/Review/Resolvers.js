@@ -48,3 +48,34 @@ export const GET_SEEKER_BOOKINGS = gql`
 		}
 	}
 `;
+
+export const GET_REVIEWS_BY_SEEKER = gql`
+	query {
+		users {
+			id
+			email
+			seeker_resume_reviews {
+				id
+				isPending
+				isAccepted
+				isDenied
+				isComplete
+				coach {
+					id
+					email
+				}
+			}
+			coach_resume_reviews {
+				id
+				isPending
+				isAccepted
+				isDenied
+				isComplete
+				seeker {
+					id
+					email
+				}
+			}
+		}
+	} 
+`

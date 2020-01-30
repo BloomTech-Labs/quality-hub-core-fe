@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS, GET_REVIEWS_BY_SEEKER } from '../Resolvers';
 import Rating from './2_Rating';
 import './RQReviewForm.scss';
 
@@ -34,10 +34,10 @@ const ReviewForm = props => {
     }
   });
 
-  // const [submitFeedback] = useMutation(CREATE_REVIEW, {
-  //   refetchQueries: ['GET_REVIEWER_LISTINGS'],
-	// 	awaitRefetchQueries: true,
-  // })
+  const [submitFeedback] = useMutation(CREATE_REVIEW, {
+    refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
+		awaitRefetchQueries: true,
+  })
 
   // * fields state controls the star rating and comment left by a reviewer
   const [fields, setFields] = useState({ rating: 0, review: "" })

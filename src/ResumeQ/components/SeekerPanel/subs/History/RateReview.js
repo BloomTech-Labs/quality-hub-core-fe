@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { COMPLETED_REVIEWS_BY_SEEKER } from '../../Resolvers';
 import ReviewForm from '../../../../../Core/components/Review/subs/1_ReviewForm'
-// import ReviewPage from '../../../../../core/compoenents/Reveiw/ReviewPage'
+// import ReviewPage from '../../../../../core/components/Review/ReviewPage'
 import Loading from '../../../../../global/components/Loading'
 import { ICONS } from '../../../../../global/icons/iconConstants'
 import Icon from '../../../../../global/icons/Icon'
@@ -70,7 +70,11 @@ const RateReviews = () => {
                                     <p><b>Created on </b>{moment(review.createdAt).format(format)}</p>
                                     <div className="v1"></div>
                                     <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
-                                </div>
+                            </div>
+
+                            <div className="seeker-review">
+                                <p></p>      
+                            </div>
 
                                 
                                 <Link to={`/resumeq/seekerpanel/rating/${review.id}`} className='review-button button cancel'>Leave Review</Link>
