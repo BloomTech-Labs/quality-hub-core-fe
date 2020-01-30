@@ -16,7 +16,7 @@ import GridDropdown from './subs/GridDropdown';
 import AvatarDropdown from './subs/AvatarDropdown';
 
 // auth0
-import auth from '../../../Auth';
+import auth from '../Auth/Auth';
 
 // Query
 const GET_USER = gql`

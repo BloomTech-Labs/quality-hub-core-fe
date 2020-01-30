@@ -9,7 +9,7 @@ import AvatarDropdown from '../../../../global/components/NavBar/subs/AvatarDrop
 import GridDropdown from '../../../../global/components/NavBar/subs/GridDropdown';
 
 // auth0
-import auth from '../../../../Auth';
+import auth from '../../../../global/components/Auth/Auth';
 
 // Query
 const CHECK_TOKEN = gql`

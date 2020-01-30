@@ -8,8 +8,10 @@ class Auth {
       redirectUri: 'http://localhost:3000/callback',
       audience: 'https://explorequality.auth0.com/userinfo',
       responseType: 'token id_token',
-      scope: 'openid email'
+      scope: 'openid email',
     });
+
+    this.authFlag = 'isLoggedIn';
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -19,6 +21,27 @@ class Auth {
 
   login() {
     this.auth0.authorize();
+  }
+
+  isAuthenticated() {
+    return JSON.parse(localStorage.getItem(this.authFlag));
+  }
+
+  setSession(authResult) {
+    this.idToken = authResult.idToken;
+    localStorage.setItem(this.authFlag, JSON.stringify(true));
+  }
+
+  signIn() {
+    this.auth0.authorize();
+  }
+
+  signOut() {
+    localStorage.setItem(this.authFlag, JSON.stringify(false));
+    this.auth0.logout({
+      returnTo: 'http://localhost:3000',
+      clientID: 'LUft9iOEONnQilP8mFDdmiBHdNljGJ2u',
+    });
   }
 
   getIdToken() {
@@ -53,13 +76,18 @@ class Auth {
   }
 
   silentAuth() {
-    return new Promise((resolve, reject) => {
-      this.auth0.checkSession({}, (err, authResult) => {
-        if (err) return reject(err);
-        this.setSession(authResult);
-        resolve();
+    if(this.isAuthenticated()) {
+      return new Promise((resolve, reject) => {
+        this.auth0.checkSession({}, (err, authResult) => {
+          if (err) {
+            localStorage.removeItem(this.authFlag);
+            return reject(err);
+          }
+          this.setSession(authResult);
+          resolve();
+        });
       });
-    });
+    }
   }
 
   isAuthenticated() {

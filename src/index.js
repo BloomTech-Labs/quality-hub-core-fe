@@ -6,6 +6,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { StripeProvider } from 'react-stripe-elements';
+// auth0
+import auth from './global/components/Auth/Auth';
 require('dotenv').config();
 
 const getToken = () => {
@@ -22,11 +24,12 @@ const client = new ApolloClient({
 	// uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
 	uri: 'https://quality-hub-gateway.herokuapp.com/',
 	request: operation => {
-		operation.setContext({
+		operation.setContext(context => ({
 			headers: {
-				Authorization: getToken(),
+				...context.headers,
+				Authorization: auth.getIdToken(),
 			},
-		});
+		}));
 	},
 	cache,
 	resolvers: {},
