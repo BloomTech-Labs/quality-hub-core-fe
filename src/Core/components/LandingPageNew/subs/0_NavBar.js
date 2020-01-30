@@ -33,16 +33,18 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 		history.push('/');
 	};
 
-	useEffect(() => {
-		console.log(data);
-		if (data) {
-			if (data.checkToken.valid) {
-				localStorage.setItem('token', data.checkToken.token);
-			} else {
-				logout();
-			}
-		}
-	}, [data]);
+	// *** Delete this code later after auth0 is implemented ***
+	// useEffect(() => {
+	// 	console.log(data);
+	// 	if (data) {
+	// 		if (data.checkToken.valid) {
+	// 			localStorage.setItem('token', data.checkToken.token);
+	// 		} else {
+	// 			logout();
+	// 		}
+	// 	}
+	// }, [data]);
+	// *********************************************************
 
 	return (
 		<div className='landing-page-nav'>

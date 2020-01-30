@@ -49,21 +49,25 @@ class Auth {
   }
 
   handleAuthentication() {
-    return new Promise((resolve, reject) => {
-      this.auth0.parseHash((err, authResult) => {
-        if (err) return reject(err);
-        if (!authResult || !authResult.idToken) {
-          return reject(err);
-        }
-        this.setSession(authResult);
-        resolve();
-      });
-    })
+    this.auth0.parseHash((err, authResults) => {
+      console.log(authResults);
+      if (authResults && authResults.idToken) {
+        let expiresAt = JSON.stringify(
+          authResults.expiresIn * 1000 + new Date().getTime()
+        );
+        // localStorage.setItem("access_token", authResults.accessToken);
+        localStorage.setItem("token", authResults.idToken);
+        localStorage.setItem("expires_at", expiresAt);
+        localStorage.setItem("id", authResults.idTokenPayload.sub);
+      } else {
+        console.log(err);
+      }
+    });
   }
 
   setSession(authResult) {
     this.idToken = authResult.idToken;
-    console.log(this.idToken);
+    console.log("setSession()", this.idToken);
     // set the time that the id token will expire at
     this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
   }

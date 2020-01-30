@@ -54,7 +54,6 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			localStorage.getItem('token') &&
 			!location.pathname.includes('interviewq/meeting')
 		) {
-			console.log('you wont');
 			getUser();
 		} else if (
 			localStorage.getItem('token') &&
@@ -108,7 +107,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<BecomeCoach />
 
 				{/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
-				{!auth.isAuthenticated() && !loggedin && !loading && (
+				{!auth.isAuthenticated && !loading && (
 					<>
 						<NavLink to='/signin'> Sign In </NavLink>
 						<NavLink to='/signup' className='signup-link'>
@@ -123,7 +122,7 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 				<GridDropdown />
 
 				{/* If you're logged in, show your avatar with a dropdown menu */}
-				{loggedin && (
+				{auth.isAuthenticated && (
 					<AvatarDropdown
 						logout={logout}
 						loggedin={loggedin}

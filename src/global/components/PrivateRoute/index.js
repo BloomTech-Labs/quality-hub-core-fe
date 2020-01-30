@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return(
     <Route {...rest} 
       render = {props=> {
-        if (!auth.isAuthenticated()) return auth.login();
+        if (!auth.isAuthenticated) return auth.login();
         
         return <Component {...rest} {...props} />;
     }} 
