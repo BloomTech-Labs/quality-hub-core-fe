@@ -27,7 +27,7 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 	const logout = () => {
 		// remove this code later, will be replaced by auth0 logic ***
 		localStorage.clear();
-		setLoggedin(false);
+		// setLoggedin(false);
 		// ***
 		auth.logout();
 		history.push('/');
@@ -60,11 +60,16 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 				</a>
 				{!localStorage.getItem('token') && (
 					<>
-						<NavLink
+						{/* <NavLink
 							className='landing-page-nav-link landing-page-nav-signin'
 							to='/signin'>
 							Sign in
-						</NavLink>
+						</NavLink> */}
+						<button
+							className='landing-page-nav-link landing-page-nav-signin'
+							onClick={auth.login}>
+							Sign in
+						</button>
 						<NavLink
 							className='landing-page-nav-link landing-page-nav-signup'
 							to='/signup'>

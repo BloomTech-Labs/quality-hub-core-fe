@@ -26,7 +26,6 @@ class Core extends Component {
 	}
 
 	render() {
-		console.log("CORE.js", this.props)
 		return (
 			<Switch>
 				<Route
