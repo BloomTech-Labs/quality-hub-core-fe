@@ -1,7 +1,7 @@
-@import '../ReviewPage.scss';
+@import '../RQReviewPage.scss';
 
-.review-form {
-  .review-container {
+.RQreview-form {
+  .RQreview-container {
     border: 1px solid lightgray;
     padding: 5% 6%;
     margin-bottom: 4%;
@@ -9,30 +9,30 @@
   margin-top: 6%;
   text-align: left;
 
-  .label {
+  .RQlabel {
     margin-bottom: 2%;
   }
-  .rating-form {
+  .RQrating-form {
     margin-bottom: 4%;
-    .rating-container {
+    .RQrating-container {
       display: flex;
       .message {
         width: 30%;
         text-align:left;
         margin-left: 4%;
       }
-      .stars-container {
+      .RQstars-container {
         display: flex;
         justify-content: center;
       }
     }
-    .error {
+    .RQerror {
       border: 1px solid red;
     }
   }
 
-  .review-text {
-    .review-text-area {
+  .RQreview-text {
+    .RQreview-text-area {
       background-color: lighten($input-border, 5%);
       margin: 0;
       border: none;
@@ -42,17 +42,17 @@
     }
   }
 
-  .button-container {
+  .RQbutton-container {
     display: flex;
     justify-content: center;
-    .review-button {
+    .RQreview-button {
       text-align: center;
       width: 15%;
       margin: 0 5%;
       border-radius: 8px;
       padding: 2.8% 5%;
     }
-    .cancel {
+    .RQcancel {
       color:gray;
       text-align: center;
       text-decoration: none;
@@ -60,11 +60,11 @@
         text-decoration: none;
       }
     }
-    .submit {
-      background-color:$main-blue;
+    .RQsubmit {
+      background-color:#FB2046;
       color:white;
       &:hover {
-        background-color: $hover-blue;
+        background-color: #FB2046;
       }
     }
   }

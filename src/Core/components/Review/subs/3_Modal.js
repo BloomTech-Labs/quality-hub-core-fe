@@ -4,7 +4,7 @@ import Icon from '../../../../global/icons/Icon';
 import { ICONS } from '../../../../global/icons/iconConstants';
 
 import feedback from '../../../../global/icons/feedback.png';
-import styles from './Modal.module.scss';
+import styles from './RQModal.module.scss';
 
 const Modal = (props) => {
   console.log(props);

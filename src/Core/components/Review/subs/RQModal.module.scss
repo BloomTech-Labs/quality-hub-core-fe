@@ -1,4 +1,4 @@
-.overlay {
+.RQoverlay {
 	position: fixed;
 	display: none;
 	width: 100%;
@@ -11,7 +11,7 @@
 	z-index: 999;
 }
 
-.modal {
+.RQmodal {
 	position: absolute;
 	overflow: auto;
 	overflow-x: hidden;
@@ -26,7 +26,7 @@
   padding: 3rem 1.6rem;
 }
 
-.wrapper {
+.RQwrapper {
   margin: auto;
   padding: 0 4%;
   text-align: center;
@@ -41,7 +41,7 @@
 	margin-bottom: 1.7rem;
 }
 
-.close {
+.RQclose {
   display: flex;
   justify-content: flex-end;
   &:hover {

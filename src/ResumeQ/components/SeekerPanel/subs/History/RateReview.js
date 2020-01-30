@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { COMPLETED_REVIEWS_BY_SEEKER } from '../../Resolvers';
 import ReviewForm from '../../../../../Core/components/Review/subs/1_ReviewForm'
-import ReviewPage from '../../../../../Core/components/Review/ReviewPage'
-
+// import ReviewPage from '../../../../../core/compoenents/Reveiw/ReviewPage'
 import Loading from '../../../../../global/components/Loading'
 import { ICONS } from '../../../../../global/icons/iconConstants'
 import Icon from '../../../../../global/icons/Icon'
@@ -31,7 +30,7 @@ const RateReviews = () => {
         <div>
             <h2>Rate Reviews Here!</h2>
             {/**Use useState to grab id and coach name to pass to reviewForm**/}
-            <ReviewPage location={window.location} history={window.history}/>
+            {/* <ReviewPage location={window.location} history={window.history}/> */}
             {!loading && (!data.completedResumeReviewsBySeeker.length && (
             <div>
             <div className='resumeQ1'>

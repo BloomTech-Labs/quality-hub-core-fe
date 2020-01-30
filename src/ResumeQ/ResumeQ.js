@@ -9,6 +9,7 @@ import DashResumeQ from './components/DashResumeQ'
 import SeekerPanel from './components/SeekerPanel/SeekerPanel'
 import ReviewerJobs from './components/ReviewerJobs'
 import SideNavigation from './components/SideNavigation'
+import ReviewPage from '../Core/components/Review/ReviewPage'
 
 const ResumeQContainer = () => {
 
@@ -21,8 +22,9 @@ const ResumeQContainer = () => {
           <Route path='/resumeq/becomeacoach' component={ListingForm} />
           <Route path='/resumeq/settings' component={DashResumeQ} />
           <Route exact path='/resumeq/request/:id' component={RequestReview} />
-          <Route path='/resumeq/seekerpanel' component={SeekerPanel} />
+          <Route exact path='/resumeq/seekerpanel' component={SeekerPanel} />
           <Route path='/resumeq/reviewerjobs' component={ReviewerJobs} />
+          <Route path='/resumeq/seekerpanel/rating/:id' component={ReviewPage} />
         </div>
       </div>
     </>

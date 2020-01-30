@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost';
 
 import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
 import Rating from './2_Rating';
-import './ReviewForm.scss';
+import './RQReviewForm.scss';
 
 // TODO move comments to global component
 // TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
@@ -33,6 +33,11 @@ const ReviewForm = props => {
       cache.writeQuery({ query: GET_SEEKER_BOOKINGS, data: { ...data, bookingsBySeeker: newBookings } })
     }
   });
+
+  // const [submitFeedback] = useMutation(CREATE_REVIEW, {
+  //   refetchQueries: ['GET_REVIEWER_LISTINGS'],
+	// 	awaitRefetchQueries: true,
+  // })
 
   // * fields state controls the star rating and comment left by a reviewer
   const [fields, setFields] = useState({ rating: 0, review: "" })
@@ -106,27 +111,27 @@ const ReviewForm = props => {
   }, [called, loading])
 
   return (
-    <form className='review-form'>
-      <div className='review-container'>
-        <div className='rating-form'>
+    <form className='RQreview-form'>
+      <div className='RQreview-container'>
+        <div className='RQrating-form'>
           {console.log('props in reviewForm', props)}
-          <p className='label'>How did  do? </p>
+          <p className='RQlabel'>How did  do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
-          <div className='rating-container'>
-            <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
+          <div className='RQrating-container'>
+            <div className={`RQstars-container ${fieldsError.rating ? 'error' : ''}`}>
               {stars}
             </div>
-            <p className='message'>{messages[hoverIdx]}</p>
+            <p className='RQmessage'>{messages[hoverIdx]}</p>
           </div>
         </div>
-        <div className='review-text'>
-          <p className='label'>Any feedback you want to share?</p>
-          <textarea onChange={handleChange} className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review} />
+        <div className='RQreview-text'>
+          <p className='RQlabel'>Any feedback you want to share?</p>
+          <textarea onChange={handleChange} className='RQreview-text-area' name='review' placeholder='I thought the interview was...' value={fields.review} />
         </div>
       </div>
-      <div className='button-container'>
-        <Link to='/resumeq/seekerpanel' className='review-button button cancel'>Cancel</Link>
-        <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
+      <div className='RQbutton-container'>
+        <Link to='/resumeq/seekerpanel' className='RQreview-button button cancel'>Cancel</Link>
+        <p className='RQreview-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>
   );
