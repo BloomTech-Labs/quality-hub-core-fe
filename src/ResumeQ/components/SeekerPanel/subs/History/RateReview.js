@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -72,9 +72,11 @@ const RateReviews = () => {
                                     <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
                             </div>
 
-                            <div className="seeker-review">
-                                <p></p>      
-                            </div>
+                            {/*<div className="seeker-review">
+                                {!data.completedResumeReviewsBySeeker.rating && (
+                                    
+                                ) }   
+                                    </div>*/}
 
                                 
                                 <Link to={`/resumeq/seekerpanel/rating/${review.id}`} className='review-button button cancel'>Leave Review</Link>

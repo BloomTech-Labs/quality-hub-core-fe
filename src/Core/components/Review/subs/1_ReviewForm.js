@@ -23,20 +23,20 @@ const ReviewForm = props => {
       const id = props.id
 
       // ! unsure what the below code accomplishes
-      const newBookings = bookings.map(booking => {
-        if (booking.uniquecheck === id) {
-          return { ...booking, review: createReview }
-        }
-        return booking
-      })
-      console.log(newBookings);
-      cache.writeQuery({ query: GET_SEEKER_BOOKINGS, data: { ...data, bookingsBySeeker: newBookings } })
+      // const newBookings = bookings.map(booking => {
+      //   if (booking.uniquecheck === id) {
+      //     return { ...booking, review: createReview }
+      //   }
+      //   return booking
+      // })
+      // console.log(newBookings);
+      // cache.writeQuery({ query: GET_SEEKER_BOOKINGS, data: { ...data, bookingsBySeeker: newBookings } })
     }
   });
 
   const [submitFeedback] = useMutation(CREATE_REVIEW, {
-    refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
-		awaitRefetchQueries: true,
+    // refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
+		// awaitRefetchQueries: true,
   })
 
   // * fields state controls the star rating and comment left by a reviewer
@@ -81,7 +81,13 @@ const ReviewForm = props => {
     e.preventDefault();
     let id = props.id;
     if (checkError(fields.rating)) {
-      submitReview({ variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id } })
+      let url = props.location.pathname;
+      if (url.includes('resumeq')) {
+        submitReview({ variables: {input: { coach: "apple", seeker: "banana", job_id: "123", microservice: "ResumeQ", review: fields.review, rating: Number(fields.rating)}}});
+      }
+      else if (url.includes('interviewq')) {
+        submitReview({ variables: { coach: "apple", seeker: "banana", job_id: "123", microservice: "InterviewQ", review: fields.review, rating: Number(fields.rating) } })
+      }
     }
   }
 
