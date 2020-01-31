@@ -28,66 +28,64 @@ const AcceptedReviews = () => {
 
     var format = 'MMM Do YYYY';
 
-    return(
-            <div>
-            {!loading && (!data.acceptedReviewsBySeeker.length && (
-            <div>
-            <div className='resumeQ1'>
-                <img src={ResumeQ2} />
-                <p>You currently have no accepted or denied reviews...</p>
+    return (
+        <div>
+            {!loading && (!data.acceptedResumeReviewsBySeeker.length && (
+                <div>
+                    <div className='resumeQ1'>
+                        <img src={ResumeQ2} />
+                        <p>You currently have no accepted or denied reviews...</p>
 
-            </div>
-        
-            </div>
+                    </div>
+
+                </div>
             ))}
             {loading && <Loading />}
-            {!loading && data.acceptedReviewsBySeeker && (
-                    <div className="seeker-list">
-                        {data.acceptedReviewsBySeeker.map(reviews => (
-                                <div className="seeker-card" key={reviews.id}>
-                                    <div className='seeker-header-container'>
-                                        
-                                        <div className='coach-photo'>
-                                        {reviews.seeker.image_url ? (
-                                            <img src={reviews.seeker.image_url} alt='Coach Profile Pic' width="95" height="95"/>
-                                        ) : (
-                                                <div className='blank-image'>
-                                                    <Icon
-                                                        icon={ICONS.BLANK_AVATAR}
-                                                        color='white'
-                                                        width={90}
-                                                        height={90}
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
+            {!loading && data.acceptedResumeReviewsBySeeker && (
+                <div className="seeker-list">
+                    {data.acceptedResumeReviewsBySeeker.map(reviews => (
+                        <div className="seeker-card" key={reviews.id}>
+                            <div className='seeker-header-container'>
 
-                                    </div>
-
-                                    <div className='seeker-card-info'>
-                                        <h1>{reviews.coach.first_name} {reviews.coach.last_name}</h1>
-                                        <p>{reviews.coach.email}</p>
-                                    </div>
-
-                                <div className="seeker-date">
-                                    <p><b>Created on </b>{moment(reviews.createdAt).format(format)}</p>
-                                    <div className="v1"></div>
-                                    <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
+                                <div className='coach-photo'>
+                                    {reviews.seeker.image_url ? (
+                                        <img src={reviews.seeker.image_url} alt='Coach Profile Pic' width="95" height="95" />
+                                    ) : (
+                                            <div className='blank-image'>
+                                                <Icon
+                                                    icon={ICONS.BLANK_AVATAR}
+                                                    color='white'
+                                                    width={90}
+                                                    height={90}
+                                                />
+                                            </div>
+                                        )}
                                 </div>
 
-                                
-                                <button className="contact-seeker-btn">Contact</button>
                             </div>
-                        ))}
-                    </div>
-                
-                )}
-                
-            </div>    
-        
+
+                            <div className='seeker-card-info'>
+                                <h1>{reviews.coach.first_name} {reviews.coach.last_name}</h1>
+                                <p>{reviews.coach.email}</p>
+                            </div>
+
+                            <div className="seeker-date">
+                                <p><b>Created on </b>{moment(reviews.createdAt).format(format)}</p>
+                                <div className="v1"></div>
+                                <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(reviews.dateAccepted).format(format)}</p>
+                            </div>
+
+
+                            <button className="contact-seeker-btn">Contact</button>
+                        </div>
+                    ))}
+                </div>
+
+            )}
+
+        </div>
+
     )
 }
 
 export default AcceptedReviews
-
-

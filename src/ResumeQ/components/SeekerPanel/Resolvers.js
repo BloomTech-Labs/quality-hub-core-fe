@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost'
 //ACCEPTED
 export const ACCEPTED_REVIEWS_BY_SEEKER = gql`
 query{
-    acceptedReviewsBySeeker{
+    acceptedResumeReviewsBySeeker{
         id
         isAccepted
         dateAccepted
@@ -30,7 +30,7 @@ query{
 //DENIED
 export const DENIED_REVIEWS_BY_SEEKER = gql`
 query{
-    deniedReviewsBySeeker{
+    deniedResumeReviewsBySeeker{
         id
         isDenied
         createdAt

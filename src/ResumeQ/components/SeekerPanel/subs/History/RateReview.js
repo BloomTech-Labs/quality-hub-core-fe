@@ -30,7 +30,7 @@ const RateReviews = () => {
             <h2>Rate Reviews Here!</h2>
             {/**Use useState to grab id and coach name to pass to reviewForm**/}
             {/* <ReviewPage location={window.location} history={window.history}/> */}
-            {!loading && (!data.completedResumeReviewsBySeeker.length && (
+            {!loading && (!data.completedResumeReviewsBySeeker[0] && (
                 <div>
                     <div className='resumeQ1'>
                         <img src={ResumeQ2} />
@@ -41,7 +41,7 @@ const RateReviews = () => {
                 </div>
             ))}
             {loading && <Loading />}
-            {!loading && data.completedResumeReviewsBySeeker && (
+            {!loading && data.completedResumeReviewsBySeeker[0] && (
                 <div className="seeker-list">
                     {data.completedResumeReviewsBySeeker.map(review => (
                         <div className="seeker-card" key={review.id}>
