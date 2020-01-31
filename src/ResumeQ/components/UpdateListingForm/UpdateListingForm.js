@@ -25,6 +25,7 @@ import { handleChange, handleSubmit, handleSave } from './subs/Functions';
 const UpdateListingForm = props => {
 	const { data } = useQuery(GET_USER);
 	// const { data: industriesData } = useQuery(INDUSTRIES);
+	// TODO - add query that retrieves logged-in users Listing
 
 	console.log(`UpdateListingForm // props`, props)
 	//false sets the default to not show the Done modal
