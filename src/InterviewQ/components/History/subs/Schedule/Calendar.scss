@@ -8,6 +8,13 @@ $neutral-cal-color: #fff;
 
 /* GENERAL */
 
+.schedule {
+	// flex-grow: 2;
+	width: 100%;
+	max-width: 70%;
+	margin: 0 auto;
+}
+
 .calendar-header {
 	display: flex;
 	align-items: flex-end;
