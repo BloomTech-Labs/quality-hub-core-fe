@@ -25,21 +25,20 @@ const RateReviews = () => {
     console.log('RateReviews', data)
     var format = 'MMM Do YYYY';
 
-
-    return(
+    return (
         <div>
             <h2>Rate Reviews Here!</h2>
             {/**Use useState to grab id and coach name to pass to reviewForm**/}
             {/* <ReviewPage location={window.location} history={window.history}/> */}
             {!loading && (!data.completedResumeReviewsBySeeker.length && (
-            <div>
-            <div className='resumeQ1'>
-                <img src={ResumeQ2} />
-                <p>You currently have no completed reviews...</p>
+                <div>
+                    <div className='resumeQ1'>
+                        <img src={ResumeQ2} />
+                        <p>You currently have no completed reviews...</p>
 
-            </div>
-        
-            </div>
+                    </div>
+
+                </div>
             ))}
             {loading && <Loading />}
             {!loading && data.completedResumeReviewsBySeeker && (
@@ -49,17 +48,17 @@ const RateReviews = () => {
                             <div className="seeker-header-container">
                                 <div className="coach-photo">
                                     {review.seeker.image_url ? (
-                                        <img src={review.seeker.image_url}  alt='Coach Profile Pic' width="95" height="95"/>
+                                        <img src={review.seeker.image_url} alt='Coach Profile Pic' width="95" height="95" />
                                     ) : (
-                                        <div className='blank-image'>
-                                            <Icon
-                                                icon={ICONS.BLANK_AVATAR}
-                                                color='white'
-                                                width={90}
-                                                height={90}
-                                            />
-                                        </div>
-                                    )}
+                                            <div className='blank-image'>
+                                                <Icon
+                                                    icon={ICONS.BLANK_AVATAR}
+                                                    color='white'
+                                                    width={90}
+                                                    height={90}
+                                                />
+                                            </div>
+                                        )}
                                 </div>
                             </div>
                             <div className='seeker-card-info'>
@@ -67,9 +66,9 @@ const RateReviews = () => {
                                 <p>{review.coach.email}</p>
                             </div>
                             <div className="seeker-date">
-                                    <p><b>Created on </b>{moment(review.createdAt).format(format)}</p>
-                                    <div className="v1"></div>
-                                    <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
+                                <p><b>Created on </b>{moment(review.createdAt).format(format)}</p>
+                                <div className="v1"></div>
+                                <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
                             </div>
 
                             {/*<div className="seeker-review">
@@ -78,11 +77,21 @@ const RateReviews = () => {
                                 ) }   
                                     </div>*/}
 
-                                
-                                <Link to={`/resumeq/seekerpanel/rating/${review.id}`} className='review-button button cancel'>Leave Review</Link>
+
+                            <Link to={{
+                                pathname: `/resumeq/seekerpanel/rating/${review.id}`,
+                                aboutProps: {
+                                    coach_id: review.coach.id,
+                                    seeker_id: review.seeker.id,
+                                    job_id: review.id,
+                                    microservice: 'ResumeQ',
+                                    review: '',
+                                    rating: ''
+                                }
+                            }} className='review-button button cancel'>Leave Review</Link>
                         </div>
                     ))}
-                    </div>
+                </div>
             )}
         </div>
     )

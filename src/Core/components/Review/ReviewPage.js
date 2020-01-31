@@ -49,7 +49,7 @@ const ReviewPage = (props) => {
         <hr />
         <p>Your review will help other job seekers find the best coach.</p>
         {console.log('props in reviewPage', props)}
-        <ReviewForm location={props.location} history={props.history} setOpen={setOpen}/>
+        <ReviewForm location={props.location} history={props.history} setOpen={setOpen} reviewProps={props.location.aboutProps}/>
       </div>
     </div>
   )
