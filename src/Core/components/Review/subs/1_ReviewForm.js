@@ -34,10 +34,10 @@ const ReviewForm = props => {
     }
   });
 
-  const [submitFeedback] = useMutation(CREATE_REVIEW, {
-    // refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
-		// awaitRefetchQueries: true,
-  })
+  // const [submitFeedback] = useMutation(CREATE_REVIEW, {
+  //   // refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
+	// 	// awaitRefetchQueries: true,
+  // })
 
   // * fields state controls the star rating and comment left by a reviewer
   const [fields, setFields] = useState({ rating: 0, review: "" })
@@ -83,6 +83,7 @@ const ReviewForm = props => {
     if (checkError(fields.rating)) {
       let url = props.location.pathname;
       if (url.includes('resumeq')) {
+        //pass {...props.reviewProps} as input
         submitReview({ variables: {input: { coach: "apple", seeker: "banana", job_id: "123", microservice: "ResumeQ", review: fields.review, rating: Number(fields.rating)}}});
       }
       else if (url.includes('interviewq')) {
