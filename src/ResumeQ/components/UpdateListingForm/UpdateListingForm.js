@@ -26,6 +26,7 @@ const UpdateListingForm = props => {
 	const { data } = useQuery(GET_USER);
 	// const { data: industriesData } = useQuery(INDUSTRIES);
 
+	console.log(`UpdateListingForm // props`, props)
 	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
 
