@@ -9,7 +9,7 @@ import { lightbulbRQ } from '../../../global/icons/lightbulbRQ';
 // Query
 import { UPDATE_REVIEWER_LISTING } from './Resolvers';
 // import { GET_REVIEWER_LISTINGS } from '../Marketplace/ReviewerList/Resolvers'
-import { GET_USER } from '../Marketplace/Resolvers'
+import { GET_USER_LISTING } from './Resolvers'
 
 //Modal that pops up when done filling out listing form
 import DoneModal from './subs/DoneModal';
@@ -22,12 +22,14 @@ import BottomButtons from './subs/BottomButtons';
 import TopText from './subs/TopText';
 import { handleChange, handleSubmit, handleSave } from './subs/Functions';
 
-const UpdateListingForm = props => {
-	const { data } = useQuery(GET_USER);
+const UpdateListingForm = ({ user }) => {
+	const { data } = useQuery(GET_USER_LISTING);
 	// const { data: industriesData } = useQuery(INDUSTRIES);
+	// TODO -- refactor component to user user data from props instead of using a query
 	// TODO - add query that retrieves logged-in users Listing
 
-	console.log(`UpdateListingForm // props`, props)
+	console.log(`UpdateListingForm / useQuery hook  // data`, data)
+	console.log(`UpdateListingForm // user`, user)
 	//false sets the default to not show the Done modal
 	const [open, setOpen] = useState(false);
 
@@ -55,19 +57,24 @@ const UpdateListingForm = props => {
 
 	// This is the avatar image in the preview post section
 	let image;
-	if (data) {
-		if (data.me.image_url) {
-			image = data.me.image_url;
+	if (user) {
+		if (user.image_url) {
+			image = user.image_url;
 		}
 	}
 
 	const [formState, setFormState] = useState({
+		id: '',
 		company: '',
 		position: '',
 		description: '',
 		price: 30,
 		isPublished: true,
 	});
+
+	useEffect(() => {
+		data && setFormState(data.listingByReviewer)
+	}, [data])
 
 	const [requiredState, setRequiredState] = useState({
 		company: false,
@@ -136,7 +143,7 @@ const UpdateListingForm = props => {
 								setFormState={setFormState}
 								handleChange={handleChange}
 							/>
-							<StepThree data={data} image={image} formState={formState} />
+							<StepThree user={user} image={image} formState={formState} />
 							<BottomButtons
 								handleSave={handleSave}
 								handleSubmit={handleSubmit}
