@@ -1,21 +1,43 @@
+.inbox-container-wrapper {
+  @media screen and (max-width: 1340px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .show-hide-button{
+    // display: none;
+    @media screen and (max-width: 830px) {
+      display: flex;
+    }
+  }
+}
+
 .inbox-container{
   padding: 24px 0;
   display: flex;
   margin-left: 240px;
   height: 500px;
+  @media screen and (max-width: 1340px) {
+    margin-left: 30px;
+  }
+  
   .inbox-left-sidebar{
     color: #096dd9;
     font-size: 14px;
     width: 340px;
     overflow: scroll;
-  overflow-x: hidden;
-  .chat-sidebar-header{
-    width: 100%;
-  
-    border-right: 1px solid #dadce0;
-    padding: 1.7rem;
-    padding-bottom: 4rem;
-  }
+    overflow-x: hidden;
+    @media screen and (max-width: 830px) {
+      position: fixed;
+    }
+    .chat-sidebar-header{
+      width: 100%;
+    
+      border-right: 1px solid #dadce0;
+      padding: 1.7rem;
+      padding-bottom: 4rem;
+    }
     .chat-list{
      
       width: 100%;
@@ -44,6 +66,10 @@
         border-bottom: 1px soliid red;
       }
     }
+  }
+
+  .inbox-left-sidebar-hidden {
+    display: none;
   }
   .chat-screen{
     margin: 0 2.4rem;
