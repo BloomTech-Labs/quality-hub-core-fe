@@ -12,13 +12,14 @@ import styles from './subs/RQModal.module.scss';
 
 
 // * Component recieves location and job object (containing state relevant to review) from History component
-const ReviewPage = ({ location, history, location: { job }
+
+const Review = ({ location, history, job
 }) => {
 
   // console.log(`ReivewPage // props`, props)
-  console.log(`ReviewPage // location`, location.job);
-  console.log(`ReviewPage // history`, history);
-  console.log(`ReviewPage // job`, job)
+  console.log(`Review // location`, location);
+  console.log(`Review // history`, history);
+  console.log(`Review // job`, job)
 
   // Refreshing causese job to be undefined, so we go back a page
   // if (!props.location.job) {
@@ -56,10 +57,10 @@ const ReviewPage = ({ location, history, location: { job }
         <h2>Rating & Review</h2>
         <hr />
         <p>Your review will help other job seekers find the best coach.</p>
-        <ReviewForm location={location} history={history} setOpen={setOpen} />
+        <ReviewForm job={job} history={history} setOpen={setOpen} />
       </div>
     </div>
   )
 }
 
-export default ReviewPage;
+export default Review;

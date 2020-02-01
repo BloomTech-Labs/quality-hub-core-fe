@@ -11,9 +11,13 @@ import './RQReviewForm.scss';
 // TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
 // TODO state that holds the booking_id or ResumeReview_id >> job_id
 
-const ReviewForm = (props) => {
 
-  console.log('1_ReviewForm // props', props)
+// ! Page refresh clears job
+const ReviewForm = (job, history, setOpen) => {
+
+
+  console.log(`1_ReviewForm // history`, history);
+  console.log(`1_ReviewForm // job`, job)
   // console.log(`1_ReviewForm // state`, state)
 
   // * re-factor mutation to create entry in Core
@@ -72,19 +76,19 @@ const ReviewForm = (props) => {
   // * handleSubmit executes submitReview mutation with fields
   const handleSubmit = e => {
     e.preventDefault();
-    let id = props.id;
+    // let id = job.id;
     if (checkError(fields.rating)) {
       submitReview({
         variables: {
           input: {
-            ...props.location.state,
+            ...job,
             rating: Number(fields.rating),
             review: fields.review
           }
         }
       });
     }
-    props.history.push('/resumeq/seekerpanel');
+    history.push('/resumeq/seekerpanel');
   }
 
   // * checks that user has at least given a star rating
@@ -108,7 +112,7 @@ const ReviewForm = (props) => {
   useEffect(() => {
     console.log(loading);
     if (called && !loading && !error) {
-      props.setOpen(true);
+      setOpen(true);
     }
   }, [called, loading])
 
@@ -116,7 +120,6 @@ const ReviewForm = (props) => {
     <form className='RQreview-form'>
       <div className='RQreview-container'>
         <div className='RQrating-form'>
-          {console.log('props in reviewForm', props)}
           <p className='RQlabel'>How did  do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='RQrating-container'>
