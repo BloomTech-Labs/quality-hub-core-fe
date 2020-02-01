@@ -61,6 +61,11 @@ query{
         isComplete
         createdAt
         updatedAt
+        review {
+            id
+            rating
+            review
+        }
         coach{
             id
             first_name

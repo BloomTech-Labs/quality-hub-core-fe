@@ -1,9 +1,11 @@
 import { gql } from 'apollo-boost';
 
 export const CREATE_REVIEW = gql`
-  mutation createReview($input: ReviewInput!) { 
+  mutation createReview( $uniqueBooking: String! $rating: Int! $review: String!) { 
     createReview(
-	  input: $input
+      uniqueBooking: $uniqueBooking 
+      rating: $rating 
+      review: $review
     ){
       id
       rating
@@ -46,15 +48,3 @@ export const GET_SEEKER_BOOKINGS = gql`
 		}
 	}
 `;
-
-export const REVIEW_BY_JOB_ID = gql`
-	query reviewByJobId($id: String!){
-		reviewByJobId(
-			id: $id
-		) {
-			id
-			rating
-			review
-		}
-	} 
-`

@@ -5,6 +5,7 @@ import { Link, Route } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { COMPLETED_REVIEWS_BY_SEEKER } from '../../Resolvers';
 import ReviewForm from '../../../../../Core/components/Review/subs/1_ReviewForm'
+import ReviewPage from '../../../../../Core/components/Review/ReviewPage'
 // import ReviewPage from '../../../../../core/components/Review/ReviewPage'
 import Loading from '../../../../../global/components/Loading'
 import { ICONS } from '../../../../../global/icons/iconConstants'
@@ -71,24 +72,18 @@ const RateReviews = () => {
                                 <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
                             </div>
 
-                            {/*<div className="seeker-review">
-                                {!data.completedResumeReviewsBySeeker.rating && (
-                                    
-                                ) }   
-                                    </div>*/}
-
-
-                            <Link to={{
-                                pathname: `/resumeq/seekerpanel/rating/${review.id}`,
-                                aboutProps: {
-                                    coach_id: review.coach.id,
-                                    seeker_id: review.seeker.id,
-                                    job_id: review.id,
-                                    microservice: 'ResumeQ',
+                          <Link to={{
+                                pathname:`/resumeq/seekerpanel/rating/${review.id}`,
+                                state: {
+                                    coach: review.coach.id,
+                                    seeker: review.seeker.id,
+                                    job: review.id,
+                                    microservice: 'RESUMEQ',
                                     review: '',
                                     rating: ''
                                 }
                             }} className='review-button button cancel'>Leave Review</Link>
+    
                         </div>
                     ))}
                 </div>

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { CREATE_REVIEW, GET_SEEKER_BOOKINGS, REVIEW_BY_JOB_ID } from '../Resolvers';
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
 import Rating from './2_Rating';
-import './RQReviewForm.scss';
+import './ReviewForm.scss';
 
 // TODO move comments to global component
 // TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
@@ -13,31 +13,24 @@ import './RQReviewForm.scss';
 
 const ReviewForm = props => {
 
-  console.log('PRops for ReviewForm', props)
-
   // * re-factor mutation to create entry in Core
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
     update(cache, { data: { createReview } }) {
-      // const data = cache.readQuery({ query: GET_SEEKER_BOOKINGS, variables: { seeker_id: localStorage.getItem('id') } })
-      // const bookings = data.bookingsBySeeker;
-      // const id = props.id
+      const data = cache.readQuery({ query: GET_SEEKER_BOOKINGS, variables: { seeker_id: localStorage.getItem('id') } })
+      const bookings = data.bookingsBySeeker;
+      const id = props.id
 
       // ! unsure what the below code accomplishes
-      // const newBookings = bookings.map(booking => {
-      //   if (booking.uniquecheck === id) {
-      //     return { ...booking, review: createReview }
-      //   }
-      //   return booking
-      // })
-      // console.log(newBookings);
-      // cache.writeQuery({ query: GET_SEEKER_BOOKINGS, data: { ...data, bookingsBySeeker: newBookings } })
+      const newBookings = bookings.map(booking => {
+        if (booking.uniquecheck === id) {
+          return { ...booking, review: createReview }
+        }
+        return booking
+      })
+      console.log(newBookings);
+      cache.writeQuery({ query: GET_SEEKER_BOOKINGS, data: { ...data, bookingsBySeeker: newBookings } })
     }
   });
-
-  // const [submitFeedback] = useMutation(CREATE_REVIEW, {
-  //   // refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
-	// 	// awaitRefetchQueries: true,
-  // })
 
   // * fields state controls the star rating and comment left by a reviewer
   const [fields, setFields] = useState({ rating: 0, review: "" })
@@ -45,11 +38,6 @@ const ReviewForm = props => {
   const [fieldsError, setError] = useState({ rating: "" })
   // * hoverIdx is associated with a star -- each star has a number value which, when hovered over, triggers the message at that index
   const [hoverIdx, setHover] = useState();
-
-  const [service , setService] = useState({ service_id: "" })
-
-  const [job, setJob] = useState({ job_id: "" })
-
   const messages = [
     '',
     'Never again!',
@@ -81,19 +69,8 @@ const ReviewForm = props => {
     e.preventDefault();
     let id = props.id;
     if (checkError(fields.rating)) {
-      let url = props.location.pathname;
-      if (url.includes('resumeq')) {
-        submitReview({variables: {input: {
-          ...props.location.state,
-          rating: Number(fields.rating),
-          review: fields.review
-        }}});
-      }
-      else if (url.includes('interviewq')) {
-        submitReview({ variables: { coach: "apple", seeker: "banana", job: "123", microservice: "InterviewQ", review: fields.review, rating: Number(fields.rating) } })
-      }
+      submitReview({ variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id } })
     }
-    props.history.push('/resumeq/seekerpanel');
   }
 
   // * checks that user has at least given a star rating
@@ -122,27 +99,26 @@ const ReviewForm = props => {
   }, [called, loading])
 
   return (
-    <form className='RQreview-form'>
-      <div className='RQreview-container'>
-        <div className='RQrating-form'>
-          {console.log('props in reviewForm', props)}
-          <p className='RQlabel'>How did  do? </p>
+    <form className='review-form'>
+      <div className='review-container'>
+        <div className='rating-form'>
+          <p className='label'>How did {props.location.state.firstName} do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
-          <div className='RQrating-container'>
-            <div className={`RQstars-container ${fieldsError.rating ? 'error' : ''}`}>
+          <div className='rating-container'>
+            <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
               {stars}
             </div>
-            <p className='RQmessage'>{messages[hoverIdx]}</p>
+            <p className='message'>{messages[hoverIdx]}</p>
           </div>
         </div>
-        <div className='RQreview-text'>
-          <p className='RQlabel'>Any feedback you want to share?</p>
-          <textarea onChange={handleChange} className='RQreview-text-area' name='review' placeholder='I thought the interview was...' value={fields.review} />
+        <div className='review-text'>
+          <p className='label'>Any feedback you want to share?</p>
+          <textarea onChange={handleChange} className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review} />
         </div>
       </div>
-      <div className='RQbutton-container'>
-        <Link to='/resumeq/seekerpanel' className='RQreview-button button cancel'>Cancel</Link>
-        <p className='RQreview-button button submit' onClick={handleSubmit}>Submit</p>
+      <div className='button-container'>
+        <Link to='/interviewq/history' className='review-button button cancel'>Cancel</Link>
+        <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>
   );
