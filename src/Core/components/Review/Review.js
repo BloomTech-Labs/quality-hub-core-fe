@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom'
 import ReviewForm from './subs/1_ReviewForm';
 import Modal from './subs/3_Modal';
-import styled, { keyframes } from 'styled-components';
 
+import { ModalContext } from '../../../global/components/ModalProvider/ModalProvider'
+import { Overlay, Dialog, } from '../../../global/components/ModalProvider/StyledComponents'
 // import './RQReviewPage.scss';
 // import styles from './subs/RQModal.module.scss';
 
@@ -11,34 +12,12 @@ import styled, { keyframes } from 'styled-components';
 // TODO: add state for message relating to service.. 
 // * Important
 
-const Context = React.createContext();
 
-// * Component recieves location and job object (containing state relevant to review) from History component
-
-export const ModalProvider = ({ children }) => {
-  const modalRef = useRef();
-  const [context, setContext] = useState();
-
-  useEffect(() => {
-    setContext(modalRef.current)
-  }, [])
-
-  console.log(`Review >> ModalProvider // children`, children)
-
-  return (
-    <Container>
-      <Context.Provider value={context}>
-        {children}
-      </Context.Provider>
-      <div ref={modalRef} />
-    </Container>
-  )
-}
 
 export const Review = ({ job, modalOpen, setModalOpen,
 }) => {
 
-  const reviewModal = useContext(Context)
+  const reviewModal = useContext(ModalContext)
 
 
   // Refreshing causese job to be undefined, so we go back a page
@@ -89,36 +68,5 @@ export const Review = ({ job, modalOpen, setModalOpen,
 
 }
 
-// * Styling Features
-
-const fadeIn = keyframes`from { opacity: 0; }`;
-
-const Container = styled.div`
-  position: relative;
-  z-index: 0;
-`;
-
-
-const Overlay = styled.div`
-  animation: ${fadeIn} 200ms ease-out;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
-`;
-
-const Dialog = styled.div`
-  background: white;
-  border-radius: 5px;
-  padding: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 33%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-`;
 
 export default Review;

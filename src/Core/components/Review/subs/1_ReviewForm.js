@@ -92,7 +92,7 @@ const ReviewForm = ({ job, history, setModalOpen }) => {
         }
       });
     }
-    // history.push('/resumeq/seekerpanel');
+    setModalOpen(false);
   }
 
   // * checks that user has at least given a star rating

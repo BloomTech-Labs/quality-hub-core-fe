@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { StripeProvider } from 'react-stripe-elements';
-import { ModalProvider } from '././Core/components/Review/Review'
+import { ModalProvider } from './global/components/ModalProvider/ModalProvider'
 require('dotenv').config();
 
 
