@@ -1,11 +1,9 @@
 import { gql } from 'apollo-boost';
 
 export const CREATE_REVIEW = gql`
-  mutation createReview( $uniqueBooking: String! $rating: Int! $review: String!) { 
+  mutation createReview($input: ReviewInput!) { 
     createReview(
-      uniqueBooking: $uniqueBooking 
-      rating: $rating 
-      review: $review
+	  input: $input
     ){
       id
       rating
@@ -48,3 +46,34 @@ export const GET_SEEKER_BOOKINGS = gql`
 		}
 	}
 `;
+
+export const GET_REVIEWS_BY_SEEKER = gql`
+	query {
+		users {
+			id
+			email
+			seeker_resume_reviews {
+				id
+				isPending
+				isAccepted
+				isDenied
+				isComplete
+				coach {
+					id
+					email
+				}
+			}
+			coach_resume_reviews {
+				id
+				isPending
+				isAccepted
+				isDenied
+				isComplete
+				seeker {
+					id
+					email
+				}
+			}
+		}
+	} 
+`

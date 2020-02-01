@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import PostButtons from '../../../DashInterviewQ/subs/BasicInfo/01_PostButtons';
-import Rating from '../../../Review/subs/2_Rating';
+// import Rating from '../../../Review/subs/2_Rating';
 
 import { UPDATE_REVIEW } from '../Resolvers';
 
@@ -73,9 +73,9 @@ export default function HistoryReview({ review }) {
 
   let stars = [];
 
-  for (let i = 0; i < 5; i++) {
-    stars.push(<Rating className={(editing[0] ? '' : `${styles['not-editable']}`)} key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   stars.push(<Rating className={(editing[0] ? '' : `${styles['not-editable']}`)} key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
+  // }
 
 	return (
 		<div className='history-review'>

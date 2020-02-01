@@ -17,7 +17,7 @@ export const UPDATE_REVIEWER_LISTING = gql`
 			company: $company
 			isPublished: $isPublished
 		) {
-			id
+			
 			price
 			position
 			description

@@ -18,6 +18,8 @@ const getToken = () => {
 const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
 const stripeKey = process.env.REACT_APP_STRIPE_KEY || 'stripe';
 
+console.log("Federation URI", federationURI)
+
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({

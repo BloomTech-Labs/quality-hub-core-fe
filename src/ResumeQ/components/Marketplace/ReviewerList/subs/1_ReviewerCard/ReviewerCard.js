@@ -74,7 +74,7 @@ const ReviewerCard = ({ listing }) => {
 				</div>
 				<div className='coach-photo'>
 					{coach.image_url ? (
-						<img src={coach.image_url} alt='Coach Profile Pic' />
+						<img src={coach.image_url} alt='Coach Profile Pic' height="80" width="80"/>
 					) : (
 							<div className='blank-image'>
 								<Icon

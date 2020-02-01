@@ -1,7 +1,8 @@
 import React from 'react'
 
-import AcceptedReviews from './subs/AcceptedReviews'
-import DeniedReviews from './subs/DeniedReviews'
+import AcceptedReviews from './subs/AcceptedReviews';
+import DeniedReviews from './subs/DeniedReviews';
+import RateReview from './subs/History';
 
 import './SeekerPanel.scss'
 
@@ -24,6 +25,7 @@ const SeekerPanel = () => {
                 <div className='SeekerQNav-row'>
                     <button onClick={() => openTab('accepted')} className='SeekerQNav-btn'>Accepted</button>
                     <button onClick={() => openTab('denied')} className='SeekerQNav-btn'>Denied</button>
+                    <button onClick={() => openTab('history')} className='SeekerQNav-btn'>History</button>
                 </div>
 
                 <div id='accepted' className='requestTab'>
@@ -33,6 +35,10 @@ const SeekerPanel = () => {
                 <div id='denied' className='requestTab' style={{ display: 'none' }}>
                     <h1>Denied Reviews</h1>
                     <DeniedReviews />
+                </div>
+                <div id='history' className='requestTab' style={{ display: 'none' }}>
+                    <h1>Rate Reviews</h1>
+                    <RateReview />
                 </div>
             </div>
 

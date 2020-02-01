@@ -4,7 +4,7 @@ import Icon from '../../../../global/icons/Icon';
 import { ICONS } from '../../../../global/icons/iconConstants';
 
 import feedback from '../../../../global/icons/feedback.png';
-import styles from './Modal.module.scss';
+import styles from './RQModal.module.scss';
 
 const Modal = (props) => {
   console.log(props);
@@ -21,8 +21,8 @@ const Modal = (props) => {
         </div>
         <img src={feedback} alt='feedback' />
         <h2 className={styles.h2}>Your feedback has been received!</h2>
-        <p>Thanks for sharing your thoughts with us! 
-          Your feedback will remain anonymouse and will be used to 
+        <p>Thanks for sharing your thoughts with us!
+          Your feedback will remain anonymous and will be used to
           improve the InterviewQ experience for everyone.</p>
       </div>
     </div>
@@ -30,4 +30,3 @@ const Modal = (props) => {
 }
 
 export default Modal;
-

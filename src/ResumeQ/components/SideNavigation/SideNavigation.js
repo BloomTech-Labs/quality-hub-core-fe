@@ -28,6 +28,8 @@ const SideNavigation = () => {
     GET_USER,
   );
 
+  console.log(`SIDENAVIGATION // userData`, userData)
+
   useEffect(() => {
     //only check for current user if there is a token
     if (localStorage.getItem('token')) {
@@ -85,7 +87,7 @@ const SideNavigation = () => {
               color={pathname.includes('/resumeq') ? '#FB2046' : '#FB2046'}
             />
             <div className='RQNav-btn'>
-              <UpdateListingForm />
+              <UpdateListingForm user={userData.me} />
             </div>
           </div>
         </NavLink>

@@ -42,7 +42,7 @@ const ReviewerList = ({ history }) => {
       // setToggleFilter={setToggleFilter}
       />
       {loading && <Loading />}
-      {(!loading && data.reviewerListings) && (
+      {(!loading && data.reviewerListings[0]) && (
         <div className='coach-list'>
           {data.reviewerListings.map(listing => (
             <ReviewerCard key={listing.id} listing={listing} />
