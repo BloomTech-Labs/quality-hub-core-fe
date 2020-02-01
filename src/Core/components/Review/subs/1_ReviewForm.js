@@ -13,10 +13,10 @@ import './RQReviewForm.scss';
 
 
 // ! Page refresh clears job
-const ReviewForm = (job, history, setOpen) => {
+const ReviewForm = ({ job, history, setModalOpen }) => {
 
-
-  console.log(`1_ReviewForm // history`, history);
+  console.log(`1_ReviewForm // setModalOpen`, setModalOpen)
+  // console.log(`1_ReviewForm // history`, history);
   console.log(`1_ReviewForm // job`, job)
   // console.log(`1_ReviewForm // state`, state)
 
@@ -108,13 +108,13 @@ const ReviewForm = (job, history, setOpen) => {
     stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
   }
 
-  // * changes parent component's 'open' state which controls the modal state
-  useEffect(() => {
-    console.log(loading);
-    if (called && !loading && !error) {
-      setOpen(true);
-    }
-  }, [called, loading])
+  // // * changes parent component's 'open' state which controls the modal state
+  // useEffect(() => {
+  //   console.log(loading);
+  //   if (called && !loading && !error) {
+  //     setModalOpen(true);
+  //   }
+  // }, [called, loading])
 
   return (
     <form className='RQreview-form'>
@@ -135,7 +135,7 @@ const ReviewForm = (job, history, setOpen) => {
         </div>
       </div>
       <div className='RQbutton-container'>
-        <Link to='/resumeq/seekerpanel' className='RQreview-button button cancel'>Cancel</Link>
+        <button onClick={() => setModalOpen(false)} className='RQreview-button button cancel'>Cancel</button>
         <p className='RQreview-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>

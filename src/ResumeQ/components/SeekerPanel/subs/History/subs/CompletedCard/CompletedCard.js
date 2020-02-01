@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom'
 import { ICONS } from '../../../../../../../global/icons/iconConstants'
 import Icon from '../../../../../../../global/icons/Icon'
 
-import Review from '../../../../../../../Core/components/Review/'
+import { Review } from '../../../../../../../Core/components/Review/Review'
 
 const CompletedCard = ({ review }) => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -17,17 +17,13 @@ const CompletedCard = ({ review }) => {
     seeker
   }
 
-  const openModal = e => {
-    e.preventDefault();
-    setModalOpen(!modalOpen)
-  }
-
   console.log(`CompletedCard // job`, job)
 
   const format = 'MMM Do YYYY';
 
   // TODO refactor to display data from ResumeReview
   return (
+
     <div className="seeker-card" key={review.id}>
       <div className="seeker-header-container">
         <div className="coach-photo">
@@ -58,17 +54,21 @@ const CompletedCard = ({ review }) => {
       {/* <Route path='/resumeq/seekerpanel/review' /> */}
 
       {/* // TODO onclick to launch modal, default to closed */}
-      <button className='review-button button cancel' onClick={openModal}>Leave a Review</button>
+      <button className='review-button button cancel' onClick={() => setModalOpen(!modalOpen)}>Leave a Review</button>
       <div>
-        {modalOpen && <div>
+        {modalOpen && <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+        {/* {modalOpen && <div>
           {ReactDOM.createPortal(
-            <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+            <>
+              <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+            </>, document.getElementById('review-modal')
           )}
-        </div>}
+        </div>} */}
 
 
       </div>
     </div>
+
   )
 }
 

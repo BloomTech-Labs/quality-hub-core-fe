@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { StripeProvider } from 'react-stripe-elements';
+import { ModalProvider } from '././Core/components/Review/Review'
 require('dotenv').config();
 
 
@@ -45,9 +46,11 @@ cache.writeData({
 ReactDOM.render(
 	<ApolloProvider client={client}>
 		<StripeProvider apiKey={stripeKey}>
-			<Router>
-				<App />
-			</Router>
+			<ModalProvider>
+				<Router>
+					<App />
+				</Router>
+			</ModalProvider>
 		</StripeProvider>
 	</ApolloProvider>,
 	document.getElementById('root'),
