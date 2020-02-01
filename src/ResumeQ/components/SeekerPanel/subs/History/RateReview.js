@@ -48,8 +48,8 @@ const RateReviews = () => {
                         <div className="seeker-card" key={review.id}>
                             <div className="seeker-header-container">
                                 <div className="coach-photo">
-                                    {review.seeker.image_url ? (
-                                        <img src={review.seeker.image_url} alt='Coach Profile Pic' width="95" height="95" />
+                                    {review.coach.image_url ? (
+                                        <img src={review.coach.image_url} alt='Coach Profile Pic' width="95" height="95" />
                                     ) : (
                                             <div className='blank-image'>
                                                 <Icon
@@ -72,18 +72,17 @@ const RateReviews = () => {
                                 <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
                             </div>
 
-                          <Link to={{
-                                pathname:`/resumeq/seekerpanel/rating/${review.id}`,
-                                state: {
+                            <Link to={{
+                                pathname: `/resumeq/seekerpanel/rating/${review.id}`,
+                                // pass to global review component in job object
+                                job: {
                                     coach: review.coach.id,
                                     seeker: review.seeker.id,
                                     job: review.id,
                                     microservice: 'RESUMEQ',
-                                    review: '',
-                                    rating: ''
                                 }
                             }} className='review-button button cancel'>Leave Review</Link>
-    
+
                         </div>
                     ))}
                 </div>

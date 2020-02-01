@@ -11,9 +11,10 @@ import './RQReviewForm.scss';
 // TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
 // TODO state that holds the booking_id or ResumeReview_id >> job_id
 
-const ReviewForm = props => {
+const ReviewForm = (props) => {
 
-  console.log('PRops for ReviewForm', props)
+  console.log('1_ReviewForm // props', props)
+  // console.log(`1_ReviewForm // state`, state)
 
   // * re-factor mutation to create entry in Core
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
@@ -34,10 +35,6 @@ const ReviewForm = props => {
     }
   });
 
-  // const [submitFeedback] = useMutation(CREATE_REVIEW, {
-  //   // refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
-	// 	// awaitRefetchQueries: true,
-  // })
 
   // * fields state controls the star rating and comment left by a reviewer
   const [fields, setFields] = useState({ rating: 0, review: "" })
@@ -45,10 +42,6 @@ const ReviewForm = props => {
   const [fieldsError, setError] = useState({ rating: "" })
   // * hoverIdx is associated with a star -- each star has a number value which, when hovered over, triggers the message at that index
   const [hoverIdx, setHover] = useState();
-
-  const [service , setService] = useState({ service_id: "" })
-
-  const [job, setJob] = useState({ job_id: "" })
 
   const messages = [
     '',
@@ -81,17 +74,15 @@ const ReviewForm = props => {
     e.preventDefault();
     let id = props.id;
     if (checkError(fields.rating)) {
-      let url = props.location.pathname;
-      if (url.includes('resumeq')) {
-        submitReview({variables: {input: {
-          ...props.location.state,
-          rating: Number(fields.rating),
-          review: fields.review
-        }}});
-      }
-      else if (url.includes('interviewq')) {
-        submitReview({ variables: { coach: "apple", seeker: "banana", job: "123", microservice: "InterviewQ", review: fields.review, rating: Number(fields.rating) } })
-      }
+      submitReview({
+        variables: {
+          input: {
+            ...props.location.state,
+            rating: Number(fields.rating),
+            review: fields.review
+          }
+        }
+      });
     }
     props.history.push('/resumeq/seekerpanel');
   }

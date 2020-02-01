@@ -10,10 +10,18 @@ import styles from './subs/RQModal.module.scss';
 // TODO: add state for message relating to service.. 
 // * Important
 
-const ReviewPage = (props) => {
 
-  // Refreshing causese state to be undefined, so we go back a page
-  // if (!props.location.state) {
+// * Component recieves location and job object (containing state relevant to review) from History component
+const ReviewPage = ({ location, history, location: { job }
+}) => {
+
+  // console.log(`ReivewPage // props`, props)
+  console.log(`ReviewPage // location`, location.job);
+  console.log(`ReviewPage // history`, history);
+  console.log(`ReviewPage // job`, job)
+
+  // Refreshing causese job to be undefined, so we go back a page
+  // if (!props.location.job) {
   //   props.history.push('/resumeq/seekerpanel');
   // }
 
@@ -23,7 +31,7 @@ const ReviewPage = (props) => {
   const closeWindow = () => {
     setOpen(true)
     setTimeout(() => {
-      props.history.push('/resumeq/seekerpanel');
+      history.push('/resumeq/seekerpanel');
     }, 200)
   }
 
@@ -48,8 +56,7 @@ const ReviewPage = (props) => {
         <h2>Rating & Review</h2>
         <hr />
         <p>Your review will help other job seekers find the best coach.</p>
-        {console.log('props in reviewPage', props)}
-        <ReviewForm location={props.location} history={props.history} setOpen={setOpen}/>
+        <ReviewForm location={location} history={history} setOpen={setOpen} />
       </div>
     </div>
   )
