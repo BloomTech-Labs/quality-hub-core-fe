@@ -14,6 +14,7 @@ import './RQReviewForm.scss';
 
 // ! Page refresh clears job
 const ReviewForm = ({ job, history, setModalOpen }) => {
+  const { coach, seeker } = job;
 
   console.log(`1_ReviewForm // setModalOpen`, setModalOpen)
   // console.log(`1_ReviewForm // history`, history);
@@ -81,14 +82,17 @@ const ReviewForm = ({ job, history, setModalOpen }) => {
       submitReview({
         variables: {
           input: {
-            ...job,
+            job: job.id,
+            seeker: seeker.id,
+            coach: coach.id,
+            microservice: job.microservice,
             rating: Number(fields.rating),
             review: fields.review
           }
         }
       });
     }
-    history.push('/resumeq/seekerpanel');
+    // history.push('/resumeq/seekerpanel');
   }
 
   // * checks that user has at least given a star rating

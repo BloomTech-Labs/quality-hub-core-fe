@@ -39,14 +39,7 @@ export const Review = ({ job, modalOpen, setModalOpen,
 }) => {
 
   const reviewModal = useContext(Context)
-  console.log(`Review // reviewModal`, reviewModal)
-  console.log(`Review // modalOpen`, modalOpen)
-  console.log(`Review // setModalOpen`, setModalOpen)
 
-  // console.log(`ReivewPage // props`, props)
-  // console.log(`Review // location`, location);
-  // console.log(`Review // props`, props);
-  console.log(`Review // job`, job)
 
   // Refreshing causese job to be undefined, so we go back a page
   // if (!props.location.job) {
@@ -123,6 +116,7 @@ const Dialog = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 33%;
   transform: translate(-50%, -50%);
   z-index: 1;
 `;

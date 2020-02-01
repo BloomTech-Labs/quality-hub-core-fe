@@ -14,7 +14,8 @@ const CompletedCard = ({ review }) => {
   const job = {
     id,
     coach,
-    seeker
+    seeker,
+    microservice: 'RESUMEQ'
   }
 
   console.log(`CompletedCard // job`, job)

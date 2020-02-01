@@ -19,6 +19,7 @@ const History = () => {
     fetchPolicy: 'network-only'
   })
 
+
   // console.log('RateReviews', data)
 
   return (
