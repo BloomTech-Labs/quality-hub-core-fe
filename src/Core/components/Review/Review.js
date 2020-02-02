@@ -14,9 +14,10 @@ import { Overlay, Dialog, } from '../../../global/components/ModalProvider/Style
 
 export const Review = ({ job, modalOpen, setModalOpen,
 }) => {
-
-  const reviewModal = useContext(ModalContext)
-
+  const reviewModal = useContext(ModalContext);
+  const [showReviewForm, setShowReviewForm] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  console.log(`Review // reviewModal`, reviewModal);
 
   // Refreshing causese job to be undefined, so we go back a page
   // if (!props.location.job) {
@@ -27,11 +28,24 @@ export const Review = ({ job, modalOpen, setModalOpen,
   // const [open, setOpen] = useState(false);
 
   // const closeWindow = () => {
-  //   setOpen(true)
+  //   setShowConfirmation(true)
   //   setTimeout(() => {
-  //     history.push('/resumeq/seekerpanel');
+  //     setModalOpen(false)
+  //     setShowConfirmation(false);
   //   }, 200)
   // }
+
+  const closeModal = () => {
+    setModalOpen(false)
+  }
+
+  const afterSubmit = () => {
+    setShowConfirmation(true)
+    setShowReviewForm(false)
+    setTimeout(() => {
+      closeModal()
+    }, 1500)
+  }
 
   // if (window.location.includes('rating')) {
   //   alert(window.location)
@@ -49,7 +63,8 @@ export const Review = ({ job, modalOpen, setModalOpen,
   return reviewModal ? ReactDOM.createPortal(
     <Overlay>
       <Dialog>
-        <ReviewForm job={job} setModalOpen={setModalOpen} />
+        {showReviewForm && <ReviewForm job={job} setShowReviewForm={setShowReviewForm} setShowConfirmation={setShowConfirmation} afterSubmit={afterSubmit} closeModal={closeModal} />}
+        {showConfirmation && <Modal setModalOpen={setModalOpen} closeModal={closeModal} />}
       </Dialog>
     </Overlay>, reviewModal
   )

@@ -13,12 +13,12 @@ import './RQReviewForm.scss';
 
 
 // ! Page refresh clears job
-const ReviewForm = ({ job, history, setModalOpen }) => {
+const ReviewForm = ({ job, closeModal, afterSubmit }) => {
   const { coach, seeker } = job;
 
-  console.log(`1_ReviewForm // setModalOpen`, setModalOpen)
+  // console.log(`1_ReviewForm // setShowReviewForm`, setShowReviewForm)
   // console.log(`1_ReviewForm // history`, history);
-  console.log(`1_ReviewForm // job`, job)
+  // console.log(`1_ReviewForm // job`, job)
   // console.log(`1_ReviewForm // state`, state)
 
   // * re-factor mutation to create entry in Core
@@ -91,8 +91,8 @@ const ReviewForm = ({ job, history, setModalOpen }) => {
           }
         }
       });
+      afterSubmit()
     }
-    setModalOpen(false);
   }
 
   // * checks that user has at least given a star rating
@@ -124,7 +124,7 @@ const ReviewForm = ({ job, history, setModalOpen }) => {
     <form className='RQreview-form'>
       <div className='RQreview-container'>
         <div className='RQrating-form'>
-          <p className='RQlabel'>How did  do? </p>
+          <p className='RQlabel'>How did I do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='RQrating-container'>
             <div className={`RQstars-container ${fieldsError.rating ? 'error' : ''}`}>
@@ -135,11 +135,11 @@ const ReviewForm = ({ job, history, setModalOpen }) => {
         </div>
         <div className='RQreview-text'>
           <p className='RQlabel'>Any feedback you want to share?</p>
-          <textarea onChange={handleChange} className='RQreview-text-area' name='review' placeholder='I thought the interview was...' value={fields.review} />
+          <textarea onChange={handleChange} className='RQreview-text-area' name='review' placeholder='I thought the review provided was...' value={fields.review} />
         </div>
       </div>
       <div className='RQbutton-container'>
-        <button onClick={() => setModalOpen(false)} className='RQreview-button button cancel'>Cancel</button>
+        <button onClick={() => closeModal()} className='RQreview-button button cancel'>Cancel</button>
         <p className='RQreview-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>
