@@ -15,14 +15,14 @@ export const GET_USER = gql`
 				id
 				description
 			}
-			coach_resume_reviews{
+			resume_reviews_as_coach{
 				id
 				isPending
 				isAccepted
 				isDenied
 				isComplete
     }
-    	seeker_resume_reviews{
+    	resume_reviews_as_seeker{
 				id
 				isPending
 				isAccepted
