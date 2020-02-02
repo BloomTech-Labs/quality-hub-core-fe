@@ -30,11 +30,3 @@ export const CREATE_REVIEWER_LISTING = gql`
 		}
 	}
 `
-
-// export const INDUSTRIES = gql`
-// 	query {
-// 		industries {
-// 			name
-// 		}
-// 	}
-// `;
