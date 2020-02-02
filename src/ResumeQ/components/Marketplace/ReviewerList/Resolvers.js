@@ -7,6 +7,7 @@ export const RESUME_Q = gql`
     }
 `
 
+// TODO add sort feature by rating
 export const GET_REVIEWER_LISTINGS = gql`
     query GET_REVIEWER_LISTINGS(
         $description: String
@@ -34,6 +35,7 @@ export const GET_REVIEWER_LISTINGS = gql`
             city
             state
             image_url
+            average_coach_rating(microservice: "RESUMEQ")
             }
         }
 

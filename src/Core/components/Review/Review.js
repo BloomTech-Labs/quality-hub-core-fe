@@ -8,8 +8,8 @@ import { Overlay, Dialog, } from '../../../global/components/ModalProvider/Style
 // import './RQReviewPage.scss';
 // import styles from './subs/RQModal.module.scss';
 
-// TODO move comments to global component
-// TODO: add state for message relating to service.. 
+// // TODO move comments to global component
+// TODO: add state for message relating to service.. and incorporate into ModalProvider
 // * Important
 
 
