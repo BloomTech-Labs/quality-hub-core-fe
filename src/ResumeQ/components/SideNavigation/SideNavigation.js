@@ -24,6 +24,8 @@ const SideNavigation = () => {
   const [isSeeker, setIsSeeker] = useState(false);
   const [isReviewer, setIsReviewer] = useState(false);
 
+  // TODO -- add 'has resumeQ listing query, and ResumeReviewRequests query -- simplifies exchange of data
+
   const [getUser, { refetch, loading, data: userData }] = useLazyQuery(
     GET_USER,
   );
@@ -44,14 +46,16 @@ const SideNavigation = () => {
     }
   }, [userData]);
 
+  // displays Seeker Panel link if user has any ResumeReview entries as a seeker
   useEffect(() => {
-    if (userData && userData.me.seeker_resume_reviews.length > 0) {
+    if (userData && userData.me.resume_reviews_as_seeker.length > 0) {
       setIsSeeker(true)
     }
   }, [userData])
 
+  // displays ReviewrJobs link if user has any ResumeReview entries as a coach
   useEffect(() => {
-    if (userData && userData.me.coach_resume_reviews.length > 0) {
+    if (userData && userData.me.resume_reviews_as_coach.length > 0) {
       setIsReviewer(true)
     }
   }, [userData])

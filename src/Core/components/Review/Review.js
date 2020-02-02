@@ -10,8 +10,6 @@ import { Overlay, Dialog, } from '../../../global/components/ModalProvider/Style
 
 // // TODO move comments to global component
 // TODO: add state for message relating to service.. and incorporate into ModalProvider
-// * Important
-
 
 
 export const Review = ({ job, modalOpen, setModalOpen,
