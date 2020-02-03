@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import * as moment from 'moment';
-import { Route } from 'react-router-dom'
 
 import { ICONS } from '../../../../../../../global/icons/iconConstants'
 import Icon from '../../../../../../../global/icons/Icon'
@@ -11,7 +9,7 @@ import ReviewGiven from './subs/ReviewGiven'
 
 // TODO import star display
 
-const CompletedCard = ({ resumeReview }) => {
+const CompletedCard = ({ resumeReview, query }) => {
   const [modalOpen, setModalOpen] = useState(false)
   const { id, coach, seeker, review } = resumeReview;
   const job = {
@@ -20,6 +18,8 @@ const CompletedCard = ({ resumeReview }) => {
     seeker,
     microservice: 'RESUMEQ'
   }
+
+
 
   console.log(`CompletedCard // resumeReview`, resumeReview)
   console.log(`CompletedCard // job`, job)
@@ -60,7 +60,7 @@ const CompletedCard = ({ resumeReview }) => {
         <button className='review-button button cancel' onClick={() => setModalOpen(!modalOpen)}>Leave a Review</button>
       }
       <div>
-        {modalOpen && <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+        {modalOpen && <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} query={query} />}
       </div>
     </div>
 
