@@ -93,33 +93,25 @@ const ReviewerCard = ({ listing }) => {
 					</span> */}
 					</div>
 				</div>
-				{/* <div className='coachcard-rating' onClick={() => openReviewModal(true)}>
-				{data && data.ratingByCoach ? (
-					<span className='coachcard-stars'>
-						{data.ratingByCoach >= 0.5 ? star() : greystar()}
-						{data.ratingByCoach >= 1.5 ? star() : greystar()}
-						{data.ratingByCoach >= 2.5 ? star() : greystar()}
-						{data.ratingByCoach >= 3.5 ? star() : greystar()}
-						{data.ratingByCoach >= 4.5 ? star() : greystar()}
+				<div className='coachcard-rating' onClick={console.log('')}>
+					{coach.average_coach_rating &&
+						<span className='coachcard-stars'>
+							{coach.average_coach_rating >= 0.5 ? star() : greystar()}
+							{coach.average_coach_rating >= 1.5 ? star() : greystar()}
+							{coach.average_coach_rating >= 2.5 ? star() : greystar()}
+							{coach.average_coach_rating >= 3.5 ? star() : greystar()}
+							{coach.average_coach_rating >= 4.5 ? star() : greystar()}
+						</span>
+					}
+					<span className='text rating-score'>
+						{coach.average_coach_rating && <span>{coach.average_coach_rating}  --  </span>}
+						<span>{` (${
+							coach.average_coach_rating
+								? coach.ratingsReceived
+								: 'No'
+							} Reviews)`}</span>
 					</span>
-				) : (
-					<span className='coachcard-stars'>
-						{star()}
-						{star()}
-						{star()}
-						{star()}
-						{star()}
-					</span>
-				)}
-				<span className='text rating-score'>
-					{data && data.ratingByCoach ? data.ratingByCoach : '--'}
-					<span>{` (${
-						coachReviews && coachReviews.reviewsByCoach
-							? coachReviews.reviewsByCoach.length
-							: ' '
-					} Reviews)`}</span>
-				</span>
-			</div> */}
+				</div>
 				<div className='coachcard-footer'>
 					<div className='coachcard-links'>
 						{listing.coach.linkedin_url && (
