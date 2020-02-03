@@ -5,7 +5,7 @@ import { ICONS } from '../../../../../../../global/icons/iconConstants'
 import Icon from '../../../../../../../global/icons/Icon'
 import { Review } from '../../../../../../../Core/components/Review/Review'
 
-import ReviewGiven from './subs/ReviewGiven'
+import ReviewGiven from '../../../../../../../global/components/ReviewGiven/ReviewGiven'
 
 // TODO import star display
 

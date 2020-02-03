@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Icon from '../../../../../../../../global/icons/Icon'
-import { ICONS } from '../../../../../../../../global/icons/iconConstants'
+import Icon from '../../icons/Icon'
+import { ICONS } from '../../icons/iconConstants'
 
 // this is a reusable component based on InterviewQ HistoryReview component
 const ReviewGiven = ({ review }) => {

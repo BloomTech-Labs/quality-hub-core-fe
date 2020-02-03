@@ -79,6 +79,11 @@ export const COMPLETED_RESUME_REVIEWS = gql`
             last_name
             email
           }
+          review {
+            id
+            rating
+            review
+          }
     }}
 `
 
