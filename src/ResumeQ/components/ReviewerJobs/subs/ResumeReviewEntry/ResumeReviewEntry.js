@@ -86,8 +86,6 @@ const ResumeReviewEntry = ({
           }
           {status === 'Declined' &&
             (<div className="reviewer-card-footer">
-              <h2>Declined</h2>
-              <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
             </div>)
 
           }
