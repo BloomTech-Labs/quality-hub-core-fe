@@ -125,10 +125,10 @@ const RequestReview = props => {
                             <p>{coach.bio || 'User has not uploaded a biography.'}</p>
                         </div>
 
-                        <div className='rq-recent-reviews'>
+                        {coach.reviewsReceived[0] && (<div className='rq-recent-reviews'>
                             <h3>Recent Reviews</h3>
-                            {coach.reviewsReceived && coach.reviewsReceived.map(review => <RecentReviews review={review} key={review.id} />)}
-                        </div>
+                            {coach.reviewsReceived.map(review => <RecentReviews review={review} key={review.id} />)}
+                        </div>)}
                     </div>
                 </div>
 
