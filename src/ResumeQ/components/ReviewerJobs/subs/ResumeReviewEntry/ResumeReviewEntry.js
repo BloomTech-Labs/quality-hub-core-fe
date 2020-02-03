@@ -11,7 +11,9 @@ const ResumeReviewEntry = ({
 }) => {
   const format = 'MMM Do YYYY';
 
+
   const { seeker, createdAt, review, status } = entry
+
 
   console.log(`status status `, status)
 

@@ -1,0 +1,32 @@
+.marketplace-review-container{
+    border-radius: 0.8rem;
+    display: flex;
+    // height: 20rem;
+    width: 40%;
+    margin: 10px auto;
+    
+    .right-div {
+        flex-direction: column;
+        text-align: left;
+        .star-container{
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+
+            .name-div{
+                color: blue;
+            }
+        }
+        .review-div {
+            padding: 0px 1.5rem 1.5rem 1.5rem
+        }
+    }
+    .seeker-photo{
+    
+        padding: 1.5rem;
+        img{
+            border-radius: 50%;
+        }
+    }
+}
+
