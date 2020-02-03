@@ -26,7 +26,7 @@
 .seeker-card {
 	display: flex;
     width: 35.2rem;
-    height: 39.2rem;
+    // height: 39.2rem;
     // padding: 2.4rem;
     border: 1px solid #dadce0;
     border-radius: 0.8rem;
@@ -59,7 +59,7 @@
 		text-align: center;
 		width: 100%;
 		p {
-			font-size: x-small;
+			font-size: small;
 		}
 	}
 
@@ -68,7 +68,7 @@
 		justify-content: space-around;
 		text-align: center;
 		p {
-			font-size: xx-small;
+			font-size: small;
 			margin: auto;
 		} 
 		.acc-text {
