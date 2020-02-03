@@ -352,3 +352,27 @@
     top: 38px;
   }
 }
+
+.review-header{
+  display: flex;
+  justify-content: center;
+
+  margin-right: 28.5%;
+  // margin-right: 55.5rem;
+  h1{
+    margin: 2rem;
+    border-bottom: 1px solid black;
+  }
+
+}
+
+.you-are-requesting{
+  padding: 2rem;
+  width: 40%;
+  margin: auto;
+  p{
+    font-size: 2.4rem;
+  }
+
+
+}
