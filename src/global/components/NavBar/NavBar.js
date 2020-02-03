@@ -91,10 +91,14 @@ const NavBar = ({ loggedin, setLoggedin, history }) => {
 			<div className='nav-left'>
 				<NavLink to='/'>
 					<div className='navbar-hamburger-and-title'>
-						<div className='navbar-hamburger-icon'>{Hamburger()}</div>
-						<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
+						{/* <div className='navbar-hamburger-icon'>{Hamburger()}</div> */}
+						<h1>QualityHub</h1>
 					</div>
 				</NavLink>
+			</div>
+
+			<div className='nav-center'>
+				<h1>{navtitle ? `${navtitle}Q` : 'QualityHub'}</h1>
 			</div>
 
 			<div className='nav-right'>

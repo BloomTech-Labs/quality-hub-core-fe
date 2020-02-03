@@ -261,6 +261,7 @@ const RequestInteview = props => {
 				</div>
 				<div className="booking-subheading">
 					<p>Please select a date and timeslot for your mock interview</p>
+					<p id="booking-note">* A mock interview session is 30 minutes</p>
 				</div>
 				<div className="interviewq-content-container">
 					<div className="coach-availability">
