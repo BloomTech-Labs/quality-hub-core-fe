@@ -3,36 +3,33 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 
 import Icon from '../../../../global/icons/Icon';
 import { ICONS } from '../../../../global/icons/iconConstants';
+import Loading from '../../../../global/components/Loading'
+
+import RecentReviews from './subs/RecentReviews';
+
 import './RequestReview.scss'
 
 import { CREATE_RESUME_REVIEW } from './Resolvers'
 
 const RequestReview = props => {
-    // console.log(`RequestReview / props`, props)
-    const { id } = props.match.params
-
+    console.log(`RequestReview / props`, props)
 
     const { history } = props
     const { location: { state: { listing } } } = props
     const { coach } = listing
-    // console.log(`RequestReview / listing`, listing)
+
+
+
+    // ! rename this state
     const [submitFeedback, setSubmitFeedback] = useState({
         success: null,
         message: '',
     })
     const [requestResumeReview] = useMutation(CREATE_RESUME_REVIEW);
 
-    console.log(`RequestReview // props`, props)
-    console.log(`RequestReview / coach`, coach)
-    console.log(`RequestReview / listing`, listing)
-
-
     const handleCancel = e => {
         e.preventDefault()
-        console.log(`ReviewerList > handleCancel`)
-
         history.push('/resumeq/marketplace')
-
         // if this component is a modal then it should simply close the modal w/o making a push to history. That way the current list of reviewrs are displayed according to their most recent filters
     }
 
@@ -64,17 +61,16 @@ const RequestReview = props => {
         })
     }
 
+
+
     return (
         <>
             <div>
                 <h1 id='rq-confirm-title'>Confirm Request</h1>
 
                 <div className="rq-request-coach-container">
-
                     <div className='rq-requested-coach'>
-
                         <div className='rq-requested-coachcard-header'>
-
                             <div className="rq-info-container">
                                 <div className='coach-photo'>
                                     {coach.image_url ? (
@@ -90,7 +86,6 @@ const RequestReview = props => {
                                             </div>
                                         )}
                                 </div>
-
                                 {/* adjust style sheet so that the full name will be displayed */}
                                 <div className='rq-requested-coachcard-header-txt'>
                                     <h1>
@@ -98,7 +93,6 @@ const RequestReview = props => {
                                     </h1>
 
                                 </div>
-
                                 <div className='coachcard-info'>
                                     <div className="info-content">
                                         <span className='coachcard-icon industry'>
@@ -106,7 +100,6 @@ const RequestReview = props => {
                                         </span>
                                         <span className='text'>{`${listing.company} - ${listing.position}`}</span>
                                     </div>
-
                                     <div className="info-content">
                                         <span className='coachcard-icon'>
                                             <Icon
@@ -120,33 +113,25 @@ const RequestReview = props => {
                                             {coach.city}, {coach.state}
                                         </span>
                                     </div>
-
                                 </div>
-
                             </div>
-
                             <div className='coachcard-description'>
                                 <p>{listing.description}</p>
                             </div>
-
                             <span className="price-tag">{listing.price === 0 ? 'Free' : `$${listing.price}`}</span>
-
                         </div>
-
-
-
-
                         <div className='rq-confirm-coach-bio'>
                             <h3>About {coach.first_name}</h3>
-                            <p>{coach.bio}</p>
+                            <p>{coach.bio || 'User has not uploaded a biography.'}</p>
                         </div>
 
-
+                        <div className='rq-recent-reviews'>
+                            <h3>Recent Reviews</h3>
+                            {coach.reviewsReceived && coach.reviewsReceived.map(review => <RecentReviews review={review} key={review.id} />)}
+                        </div>
                     </div>
                 </div>
 
-
-                {/* feedback message container*/}
                 <div className="rq-confirm-container">
                     <div>
                         {submitFeedback.success === null && (<p>You are requesting a resumé review from {coach.first_name}. Once they have accepted your request, you will be charged ${listing.price}</p>)}
@@ -162,16 +147,13 @@ const RequestReview = props => {
                     </div>)}
                     <p className={submitFeedback.success ? 'rq-confirm-success' : 'rq-confirm-failure'}>{submitFeedback.message}</p>
 
-                    {/* // buttons for cancelling or confirming request. */}
                     <div className='confirmation-container'>
-
                         <button className='rq-cancel-request-button' onClick={handleCancel}>
                             Cancel
-            </button>
-
+                       </button>
                         <button className='rq-confirm-request-button' onClick={handleSubmit}>
                             Confirm Request
-            </button>
+                         </button>
                     </div>
                 </div>
             </div>

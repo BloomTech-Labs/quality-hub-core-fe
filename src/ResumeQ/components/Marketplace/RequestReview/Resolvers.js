@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost'
 
 export const GET_COACH_LISTING_INFO = gql`
-query {
-  user($id: String!){
+query user($id: ID!) {
+  user(id: $id){
     first_name
     last_name
     id
@@ -13,19 +13,17 @@ query {
       description
       industry
     }
-	reviewsReceived(microservice: "RESUMEQ"){
-    id
-    rating
-    review
-    seeker{
-      first_name
-      image_url
+    reviewsReceived(microservice: "RESUMEQ" first: 3){
+      id
+      rating
+      review
+      seeker{
+        first_name
+        image_url
+      }
     }
   }
-  }
-  }
 }
-
 `
 
 export const CREATE_RESUME_REVIEW = gql`

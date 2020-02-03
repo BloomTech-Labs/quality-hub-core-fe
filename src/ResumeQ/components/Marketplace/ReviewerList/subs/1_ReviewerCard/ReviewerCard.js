@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useQuery } from '@apollo/react-hooks'
 
 // Styles & Icons
 import './ReviewerCard.scss';
@@ -9,10 +9,21 @@ import Icon from '../../../../../../global/icons/Icon';
 import { ICONS } from '../../../../../../global/icons/iconConstants';
 import { star, greystar } from '../../../../../../global/icons/star';
 
+
 const ReviewerCard = ({ listing }) => {
 
 	let { coach } = listing;
 	let maxWidth = 100;
+
+	// const { loading, data, client } = useQuery(GET_COACH_REVIEWS,
+	// 	{ 
+	// 		variables: {id : coach.id},
+	// 		fetchPolicy: 'network-only' })
+
+	// !loading && console.log(`ReviewerCard // result of G_C_R query`, data)
+
+
+
 
 	const linkedin =
 		coach.linkedin_url &&
@@ -27,8 +38,8 @@ const ReviewerCard = ({ listing }) => {
 	const fullName = `${coach.first_name} ${coach.last_name}`;
 
 	return (
-		<div className='coach-container'>
-			<div className='coach-card'>
+		<div className='coach-container' >
+			<div className='coach-card' >
 				<div id='overlay-confirm-interview'></div>
 				<div className='coachcard-header'>
 					<div className='coachcard-header-txt'>
@@ -92,7 +103,7 @@ const ReviewerCard = ({ listing }) => {
 					</span> */}
 					</div>
 				</div>
-				<div className='coachcard-rating' onClick={console.log('')}>
+				<div className='coachcard-rating' >
 					{coach.average_coach_rating &&
 						<span className='coachcard-stars'>
 							{coach.average_coach_rating >= 0.5 ? star() : greystar()}
@@ -125,16 +136,13 @@ const ReviewerCard = ({ listing }) => {
 						)}
 					</div>
 					{coach.id === localStorage.getItem('id') ? (
-						<button className='interview-button-disabled'>Request</button>
+						<button className='interview-button-disabled' >Request</button>
 					) : (
-							<button className='interview-button'>
+							<button className='interview-button' >
 								<Link
 									to={{
 										pathname: `/resumeq/request/${coach.id}`,
-										state: {
-											coachName: `${listing.coach.first_name} ${listing.coach.last_name}`,
-											listing: listing
-										},
+										state: { listing }
 									}}>
 									Request
 						</Link>
@@ -152,7 +160,7 @@ const ReviewerCard = ({ listing }) => {
 			)} */}
 
 			</div>
-		</div>
+		</div >
 
 	);
 };
