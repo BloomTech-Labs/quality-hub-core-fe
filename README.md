@@ -17,10 +17,16 @@ You can find the deployed project at [https://qualityhub-staging.netlify.com/](h
 <br>
 <br>
 
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/maintainability)  
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/13baf4470c5774f866a4/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/property-manager-fe/test_coverage)
+
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 
 <!-- ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat) -->
+
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://qualityhub-staging.netlify.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
