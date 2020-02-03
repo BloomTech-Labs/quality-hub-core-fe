@@ -19,9 +19,6 @@ const History = () => {
     fetchPolicy: 'network-only'
   })
 
-
-  // console.log('RateReviews', data)
-
   return (
     <div>
       <h2>Rate Reviews Here!</h2>
@@ -36,8 +33,8 @@ const History = () => {
       {loading && <Loading />}
       {!loading && data.completedResumeReviewsBySeeker[0] && (
         <div className="seeker-list">
-          {data.completedResumeReviewsBySeeker.map(review =>
-            <CompletedCard review={review} key={review.id} />
+          {data.completedResumeReviewsBySeeker.map(resumeReview =>
+            <CompletedCard resumeReview={resumeReview} key={resumeReview.id} />
           )}
         </div >
       )}

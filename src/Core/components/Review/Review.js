@@ -9,7 +9,7 @@ import { Overlay, Dialog, } from '../../../global/components/ModalProvider/Style
 // import styles from './subs/RQModal.module.scss';
 
 // // TODO move comments to global component
-// TODO: add state for message relating to service.. and incorporate into ModalProvider
+// // TODO: add state for message relating to service.. and incorporate into ModalProvider
 
 
 export const Review = ({ job, modalOpen, setModalOpen,

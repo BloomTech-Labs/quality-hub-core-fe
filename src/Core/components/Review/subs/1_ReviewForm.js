@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import { CREATE_REVIEW, GET_SEEKER_BOOKINGS, REVIEW_BY_JOB_ID } from '../Resolvers';
 import Rating from './2_Rating';
 import './RQReviewForm.scss';
 
-// TODO move comments to global component
-// TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
-// TODO state that holds the booking_id or ResumeReview_id >> job_id
+// // TODO move comments to global component
+// // TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
+// // TODO state that holds the booking_id or ResumeReview_id >> job_id
 
+// TODO configure app state update after submission
 
 // ! Page refresh clears job
 const ReviewForm = ({ job, closeModal, afterSubmit }) => {
   const { coach, seeker } = job;
-
-  // console.log(`1_ReviewForm // setShowReviewForm`, setShowReviewForm)
-  // console.log(`1_ReviewForm // history`, history);
-  // console.log(`1_ReviewForm // job`, job)
-  // console.log(`1_ReviewForm // state`, state)
 
   // * re-factor mutation to create entry in Core
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
@@ -112,13 +106,6 @@ const ReviewForm = ({ job, closeModal, afterSubmit }) => {
     stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
   }
 
-  // // * changes parent component's 'open' state which controls the modal state
-  // useEffect(() => {
-  //   console.log(loading);
-  //   if (called && !loading && !error) {
-  //     setModalOpen(true);
-  //   }
-  // }, [called, loading])
 
   return (
     <form className='RQreview-form'>

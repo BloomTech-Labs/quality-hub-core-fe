@@ -5,12 +5,15 @@ import { Route } from 'react-router-dom'
 
 import { ICONS } from '../../../../../../../global/icons/iconConstants'
 import Icon from '../../../../../../../global/icons/Icon'
-
 import { Review } from '../../../../../../../Core/components/Review/Review'
 
-const CompletedCard = ({ review }) => {
+import ReviewGiven from './subs/ReviewGiven'
+
+// TODO import star display
+
+const CompletedCard = ({ resumeReview }) => {
   const [modalOpen, setModalOpen] = useState(false)
-  const { id, coach, seeker } = review;
+  const { id, coach, seeker, review } = resumeReview;
   const job = {
     id,
     coach,
@@ -18,14 +21,15 @@ const CompletedCard = ({ review }) => {
     microservice: 'RESUMEQ'
   }
 
+  console.log(`CompletedCard // resumeReview`, resumeReview)
   console.log(`CompletedCard // job`, job)
 
   const format = 'MMM Do YYYY';
 
-  // TODO refactor to display data from ResumeReview
+  // TODO refactor to display data from ResumeresumeReview
   return (
 
-    <div className="seeker-card" key={review.id}>
+    <div className="seeker-card" key={resumeReview.id}>
       <div className="seeker-header-container">
         <div className="coach-photo">
           {coach.image_url ? (
@@ -47,26 +51,16 @@ const CompletedCard = ({ review }) => {
         <p>{coach.email}</p>
       </div>
       <div className="seeker-date">
-        <p><b>Created on </b>{moment(review.createdAt).format(format)}</p>
+        <p><b>Created on </b>{moment(resumeReview.createdAt).format(format)}</p>
         <div className="v1"></div>
-        <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(review.dateAccepted).format(format)}</p>
+        <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(resumeReview.dateAccepted).format(format)}</p>
       </div>
-
-      {/* <Route path='/resumeq/seekerpanel/review' /> */}
-
-      {/* // TODO onclick to launch modal, default to closed */}
-      <button className='review-button button cancel' onClick={() => setModalOpen(!modalOpen)}>Leave a Review</button>
+      {review ? <ReviewGiven review={review} />
+        :
+        <button className='review-button button cancel' onClick={() => setModalOpen(!modalOpen)}>Leave a Review</button>
+      }
       <div>
         {modalOpen && <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
-        {/* {modalOpen && <div>
-          {ReactDOM.createPortal(
-            <>
-              <Review job={job} modalOpen={modalOpen} setModalOpen={setModalOpen} />
-            </>, document.getElementById('review-modal')
-          )}
-        </div>} */}
-
-
       </div>
     </div>
 
