@@ -26,6 +26,7 @@ const AcceptedReviews = () => {
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
 
+
     var format = 'MMM Do YYYY';
 
     return (
@@ -76,7 +77,7 @@ const AcceptedReviews = () => {
                             </div>
 
 
-                            <button className="contact-seeker-btn">Contact</button>
+                            <button className="contact-seeker-btn"><a href={`mailto:${reviews.coach.email}`}>Contact</a></button>
                         </div>
                     ))}
                 </div>

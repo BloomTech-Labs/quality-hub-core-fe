@@ -6,13 +6,14 @@ import ReviewGiven from '../../../../../global/components/ReviewGiven'
 
 const ResumeReviewEntry = ({
   entry,
+  status,
   submitResponse,
   updateResumeReview,
 }) => {
   const format = 'MMM Do YYYY';
 
 
-  const { seeker, createdAt, review, status } = entry
+  const { seeker, createdAt, review } = entry
 
 
   console.log(`status status `, status)
