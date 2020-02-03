@@ -36,6 +36,7 @@ export const GET_REVIEWER_LISTINGS = gql`
             state
             image_url
             average_coach_rating(microservice: "RESUMEQ")
+            ratingsReceived(microservice: "RESUMEQ")
             }
         }
 

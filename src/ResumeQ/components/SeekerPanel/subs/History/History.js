@@ -13,7 +13,6 @@ import ResumeQ2 from '../../../../../../src/global/icons/resumeQ2.svg'
 
 const History = () => {
 
-  // TODO add state for modal...?
 
   const { refetch, loading, data } = useQuery(COMPLETED_REVIEWS_BY_SEEKER, {
     fetchPolicy: 'network-only'
