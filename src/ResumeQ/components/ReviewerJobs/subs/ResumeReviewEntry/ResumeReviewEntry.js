@@ -4,15 +4,15 @@ import '../ReviewJobsCard.scss'
 
 const ResumeReviewEntry = ({
   entry,
-  entry: { seeker, createdAt },
   submitResponse,
   updateResumeReview,
-  status
 }) => {
 
-  // console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
-  // console.log(`ResumeReviewEntry / entry`, entry)
-  // console.log(`ResumeReviewEntry / status`, status)
+const { seeker, createdAt, review, status } = entry;
+
+  console.log(`ResumeReviewEntry / submitResponse`, submitResponse)
+  console.log(`ResumeReviewEntry / entry`, entry)
+  console.log(`ResumeReviewEntry / status`, status)
 
   var format = 'MMM Do YYYY';
 

@@ -125,15 +125,12 @@ const RequestReview = props => {
                             <p>{coach.bio || 'User has not uploaded a biography.'}</p>
                         </div>
 
-                        {coach.reviewsReceived[0] && (<div className='rq-recent-reviews'>
-                            <h3>Recent Reviews</h3>
-                            {coach.reviewsReceived.map(review => <RecentReviews review={review} key={review.id} />)}
-                        </div>)}
+                        
                     </div>
                 </div>
 
                 <div className="rq-confirm-container">
-                    <div>
+                    <div className="you-are-requesting">
                         {submitFeedback.success === null && (<p>You are requesting a resumé review from {coach.first_name}. Once they have accepted your request, you will be charged ${listing.price}</p>)}
 
                     </div>
@@ -155,6 +152,14 @@ const RequestReview = props => {
                             Confirm Request
                          </button>
                     </div>
+                    
+                    <div className="review-header">
+                        <h1>Recent Reviews</h1>
+                    </div>
+                    
+                    {coach.reviewsReceived[0] && (<div className='rq-recent-reviews'>
+                            {coach.reviewsReceived.map(review => <RecentReviews review={review} key={review.id} />)}
+                        </div>)}
                 </div>
             </div>
         </>
