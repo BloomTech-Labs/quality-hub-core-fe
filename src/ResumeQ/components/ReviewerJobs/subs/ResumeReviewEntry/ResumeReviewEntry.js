@@ -8,14 +8,15 @@ const ResumeReviewEntry = ({
   entry,
   submitResponse,
   updateResumeReview,
+  status
 }) => {
   const format = 'MMM Do YYYY';
 
 
-  const { seeker, createdAt, review, status } = entry
+  const { seeker, createdAt, review } = entry
 
 
-  console.log(`status status `, status)
+  console.log(`status  status  `, status)
 
   const handleAccept = e => {
     e.preventDefault()
@@ -68,15 +69,12 @@ const ResumeReviewEntry = ({
             <p>{seeker.email}</p>
             <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
           </div>
-
-
-
           {status === 'Pending' &&
-            (
-              <div className="reviewer-btn-container">
-                <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
-                <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
-              </div>)
+
+            <div className="reviewer-btn-container">
+              <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
+              <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
+            </div>
           }
           {status === 'In Progress' &&
             (<div className="reviewer-card-footer">
