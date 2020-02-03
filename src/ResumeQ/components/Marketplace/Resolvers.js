@@ -40,26 +40,3 @@ export const GET_INDUSTRIES = gql`
 		}
 	}
 `
-
-
-export const CREATE_RESUME_REVIEW = gql`
-	mutation CREATE_RESUME_REVIEW(
-		$coach: String!
-		) {
-		createResumeReview(
-			coach: $coach
-		) {
-			id
-			coach {
-				id
-				first_name
-				last_name
-			}
-			seeker {
-				id
-				first_name
-				last_name
-			}
-		}
-	}
-`

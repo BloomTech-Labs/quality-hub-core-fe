@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 
 import Icon from '../../../../global/icons/Icon';
 import { ICONS } from '../../../../global/icons/iconConstants';
 import './RequestReview.scss'
 
-import { CREATE_RESUME_REVIEW } from '../../Marketplace/Resolvers'
-
+import { CREATE_RESUME_REVIEW } from './Resolvers'
 
 const RequestReview = props => {
     // console.log(`RequestReview / props`, props)
+    const { id } = props.match.params
+
+
     const { history } = props
     const { location: { state: { listing } } } = props
     const { coach } = listing
@@ -20,6 +22,7 @@ const RequestReview = props => {
     })
     const [requestResumeReview] = useMutation(CREATE_RESUME_REVIEW);
 
+    console.log(`RequestReview // props`, props)
     console.log(`RequestReview / coach`, coach)
     console.log(`RequestReview / listing`, listing)
 
@@ -93,7 +96,7 @@ const RequestReview = props => {
                                     <h1>
                                         {coach.first_name} {coach.last_name}
                                     </h1>
-                                   
+
                                 </div>
 
                                 <div className='coachcard-info'>
@@ -103,7 +106,7 @@ const RequestReview = props => {
                                         </span>
                                         <span className='text'>{`${listing.company} - ${listing.position}`}</span>
                                     </div>
-                                    
+
                                     <div className="info-content">
                                         <span className='coachcard-icon'>
                                             <Icon
@@ -116,28 +119,28 @@ const RequestReview = props => {
                                         <span className='coachcard-posloc'>
                                             {coach.city}, {coach.state}
                                         </span>
-                                     </div>
-                                    
+                                    </div>
+
                                 </div>
 
                             </div>
-                            
-                                    <div className='coachcard-description'>
-                                        <p>{listing.description}</p>
-                                    </div>
 
-                                    <span className="price-tag">{listing.price === 0 ? 'Free' : `$${listing.price}`}</span>
+                            <div className='coachcard-description'>
+                                <p>{listing.description}</p>
+                            </div>
+
+                            <span className="price-tag">{listing.price === 0 ? 'Free' : `$${listing.price}`}</span>
 
                         </div>
-                        
-                       
-                       
 
-                         <div className='rq-confirm-coach-bio'>
+
+
+
+                        <div className='rq-confirm-coach-bio'>
                             <h3>About {coach.first_name}</h3>
                             <p>{coach.bio}</p>
                         </div>
-                       
+
 
                     </div>
                 </div>
@@ -158,19 +161,19 @@ const RequestReview = props => {
                         </div>
                     </div>)}
                     <p className={submitFeedback.success ? 'rq-confirm-success' : 'rq-confirm-failure'}>{submitFeedback.message}</p>
-               
-                {/* // buttons for cancelling or confirming request. */}
-                <div className='confirmation-container'>
 
-                    <button className='rq-cancel-request-button' onClick={handleCancel}>
-                        Cancel
+                    {/* // buttons for cancelling or confirming request. */}
+                    <div className='confirmation-container'>
+
+                        <button className='rq-cancel-request-button' onClick={handleCancel}>
+                            Cancel
             </button>
 
-                    <button className='rq-confirm-request-button' onClick={handleSubmit}>
-                        Confirm Request
+                        <button className='rq-confirm-request-button' onClick={handleSubmit}>
+                            Confirm Request
             </button>
+                    </div>
                 </div>
-            </div>
             </div>
         </>
     )

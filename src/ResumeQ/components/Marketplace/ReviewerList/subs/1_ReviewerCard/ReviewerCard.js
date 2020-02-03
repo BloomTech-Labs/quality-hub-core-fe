@@ -1,8 +1,7 @@
 // Libraries
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+
 
 // Styles & Icons
 import './ReviewerCard.scss';
