@@ -47,33 +47,14 @@ export const GET_SEEKER_BOOKINGS = gql`
 	}
 `;
 
-export const GET_REVIEWS_BY_SEEKER = gql`
-	query {
-		users {
+export const REVIEW_BY_JOB_ID = gql`
+	query reviewByJobId($id: String!){
+		reviewByJobId(
+			id: $id
+		) {
 			id
-			email
-			seeker_resume_reviews {
-				id
-				isPending
-				isAccepted
-				isDenied
-				isComplete
-				coach {
-					id
-					email
-				}
-			}
-			coach_resume_reviews {
-				id
-				isPending
-				isAccepted
-				isDenied
-				isComplete
-				seeker {
-					id
-					email
-				}
-			}
+			rating
+			review
 		}
 	} 
 `

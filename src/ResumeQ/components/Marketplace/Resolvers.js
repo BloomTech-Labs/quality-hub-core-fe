@@ -15,14 +15,14 @@ export const GET_USER = gql`
 				id
 				description
 			}
-			coach_resume_reviews{
+			resume_reviews_as_coach{
 				id
 				isPending
 				isAccepted
 				isDenied
 				isComplete
     }
-    	seeker_resume_reviews{
+    	resume_reviews_as_seeker{
 				id
 				isPending
 				isAccepted
@@ -37,29 +37,6 @@ export const GET_INDUSTRIES = gql`
 	query {
 		industries {
 			name
-		}
-	}
-`
-
-
-export const CREATE_RESUME_REVIEW = gql`
-	mutation CREATE_RESUME_REVIEW(
-		$coach: String!
-		) {
-		createResumeReview(
-			coach: $coach
-		) {
-			id
-			coach {
-				id
-				first_name
-				last_name
-			}
-			seeker {
-				id
-				first_name
-				last_name
-			}
 		}
 	}
 `

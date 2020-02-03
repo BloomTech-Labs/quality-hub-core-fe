@@ -6,12 +6,12 @@ import { ICONS } from '../../../../global/icons/iconConstants';
 import feedback from '../../../../global/icons/feedback.png';
 import styles from './RQModal.module.scss';
 
-const Modal = (props) => {
-  console.log(props);
+const Modal = ({ closeModal }) => {
+  // console.log(props);
   return (
     <div className={styles.modal}>
       <div className={styles.wrapper}>
-        <div className={styles.close} onClick={props.closeWindow}>
+        <div className={styles.close} onClick={closeModal}>
           <Icon
             icon={ICONS.CLOSE}
             width={24}

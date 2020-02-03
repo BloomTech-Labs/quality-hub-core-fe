@@ -1,3 +1,3 @@
-import RateReview from './RateReview'
+import History from './History'
 
-export default RateReview
+export default History

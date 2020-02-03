@@ -7,6 +7,7 @@ export const RESUME_Q = gql`
     }
 `
 
+// TODO add sort feature by rating
 export const GET_REVIEWER_LISTINGS = gql`
     query GET_REVIEWER_LISTINGS(
         $description: String
@@ -28,14 +29,39 @@ export const GET_REVIEWER_LISTINGS = gql`
             company
             isPublished
             coach {
-            id
-            first_name
-            last_name
-            city
-            state
-            image_url
+              id
+              first_name
+              last_name
+              city
+              state
+              image_url
+              average_coach_rating(microservice: "RESUMEQ")
+              ratingsReceived(microservice: "RESUMEQ")
+              reviewsReceived(microservice: "RESUMEQ" first: 3){
+                id
+                rating
+                review
+                seeker{
+                  first_name
+                  image_url
+                  }
+                }
+              }
             }
-        }
-
     }
+`
+export const GET_COACH_REVIEWS = gql`
+query user($id: ID!) {
+  user(id: $id){
+    reviewsReceived(microservice: "RESUMEQ" first: 3){
+      id
+      rating
+      review
+      seeker{
+        first_name
+        image_url
+      }
+    }
+  }
+}
 `

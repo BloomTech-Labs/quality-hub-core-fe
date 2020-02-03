@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
-import { CREATE_REVIEW, GET_SEEKER_BOOKINGS, GET_REVIEWS_BY_SEEKER } from '../Resolvers';
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS, REVIEW_BY_JOB_ID } from '../Resolvers';
 import Rating from './2_Rating';
 import './RQReviewForm.scss';
 
-// TODO move comments to global component
-// TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
-// TODO state that holds the booking_id or ResumeReview_id >> job_id
+// // TODO move comments to global component
+// // TODO state that describes the service this review is being left on (ie ResumeQ or InterviewQ) service_id
+// // TODO state that holds the booking_id or ResumeReview_id >> job_id
 
-const ReviewForm = props => {
+// TODO configure app state update after submission
 
-  console.log('PRops for ReviewForm', props)
+// ! Page refresh clears job
+const ReviewForm = ({ job, closeModal, afterSubmit }) => {
+  const { coach, seeker } = job;
 
   // * re-factor mutation to create entry in Core
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
     update(cache, { data: { createReview } }) {
-      const data = cache.readQuery({ query: GET_SEEKER_BOOKINGS, variables: { seeker_id: localStorage.getItem('id') } })
-      const bookings = data.bookingsBySeeker;
-      const id = props.id
+      // const data = cache.readQuery({ query: GET_SEEKER_BOOKINGS, variables: { seeker_id: localStorage.getItem('id') } })
+      // const bookings = data.bookingsBySeeker;
+      // const id = props.id
 
       // ! unsure what the below code accomplishes
       // const newBookings = bookings.map(booking => {
@@ -34,10 +34,6 @@ const ReviewForm = props => {
     }
   });
 
-  // const [submitFeedback] = useMutation(CREATE_REVIEW, {
-  //   // refetchQueries: ['GET_REVIEWS_BY_SEEKER'],
-	// 	// awaitRefetchQueries: true,
-  // })
 
   // * fields state controls the star rating and comment left by a reviewer
   const [fields, setFields] = useState({ rating: 0, review: "" })
@@ -45,10 +41,6 @@ const ReviewForm = props => {
   const [fieldsError, setError] = useState({ rating: "" })
   // * hoverIdx is associated with a star -- each star has a number value which, when hovered over, triggers the message at that index
   const [hoverIdx, setHover] = useState();
-
-  const [service , setService] = useState({ service_id: "" })
-
-  const [job, setJob] = useState({ job_id: "" })
 
   const messages = [
     '',
@@ -79,16 +71,21 @@ const ReviewForm = props => {
   // * handleSubmit executes submitReview mutation with fields
   const handleSubmit = e => {
     e.preventDefault();
-    let id = props.id;
+    // let id = job.id;
     if (checkError(fields.rating)) {
-      let url = props.location.pathname;
-      if (url.includes('resumeq')) {
-        //pass {...props.reviewProps} as input
-        submitReview({ variables: {input: { coach: "apple", seeker: "banana", job_id: "123", microservice: "ResumeQ", review: fields.review, rating: Number(fields.rating)}}});
-      }
-      else if (url.includes('interviewq')) {
-        submitReview({ variables: { coach: "apple", seeker: "banana", job_id: "123", microservice: "InterviewQ", review: fields.review, rating: Number(fields.rating) } })
-      }
+      submitReview({
+        variables: {
+          input: {
+            job: job.id,
+            seeker: seeker.id,
+            coach: coach.id,
+            microservice: job.microservice,
+            rating: Number(fields.rating),
+            review: fields.review
+          }
+        }
+      });
+      afterSubmit()
     }
   }
 
@@ -109,20 +106,12 @@ const ReviewForm = props => {
     stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
   }
 
-  // * changes parent component's 'open' state which controls the modal state
-  useEffect(() => {
-    console.log(loading);
-    if (called && !loading && !error) {
-      props.setOpen(true);
-    }
-  }, [called, loading])
 
   return (
     <form className='RQreview-form'>
       <div className='RQreview-container'>
         <div className='RQrating-form'>
-          {console.log('props in reviewForm', props)}
-          <p className='RQlabel'>How did  do? </p>
+          <p className='RQlabel'>How did I do? </p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='RQrating-container'>
             <div className={`RQstars-container ${fieldsError.rating ? 'error' : ''}`}>
@@ -133,11 +122,11 @@ const ReviewForm = props => {
         </div>
         <div className='RQreview-text'>
           <p className='RQlabel'>Any feedback you want to share?</p>
-          <textarea onChange={handleChange} className='RQreview-text-area' name='review' placeholder='I thought the interview was...' value={fields.review} />
+          <textarea onChange={handleChange} className='RQreview-text-area' name='review' placeholder='I thought the review provided was...' value={fields.review} />
         </div>
       </div>
       <div className='RQbutton-container'>
-        <Link to='/resumeq/seekerpanel' className='RQreview-button button cancel'>Cancel</Link>
+        <button onClick={() => closeModal()} className='RQreview-button button cancel'>Cancel</button>
         <p className='RQreview-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>

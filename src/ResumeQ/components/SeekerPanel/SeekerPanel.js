@@ -2,7 +2,7 @@ import React from 'react'
 
 import AcceptedReviews from './subs/AcceptedReviews';
 import DeniedReviews from './subs/DeniedReviews';
-import RateReview from './subs/History';
+import History from './subs/History';
 
 import './SeekerPanel.scss'
 
@@ -38,7 +38,7 @@ const SeekerPanel = () => {
                 </div>
                 <div id='history' className='requestTab' style={{ display: 'none' }}>
                     <h1>Rate Reviews</h1>
-                    <RateReview />
+                    <History />
                 </div>
             </div>
 
