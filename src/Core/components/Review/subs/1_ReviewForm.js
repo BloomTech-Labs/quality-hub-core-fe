@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost'
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
 
-import { CREATE_REVIEW, GET_SEEKER_BOOKINGS, REVIEW_BY_JOB_ID } from '../Resolvers';
 import Rating from './2_Rating';
 import './RQReviewForm.scss';
 
@@ -12,27 +13,13 @@ import './RQReviewForm.scss';
 // TODO configure app state update after submission
 
 // ! Page refresh clears job
-const ReviewForm = ({ job, closeModal, afterSubmit }) => {
+const ReviewForm = ({ job, closeModal, afterSubmit, query }) => {
   const { coach, seeker } = job;
 
-  // * re-factor mutation to create entry in Core
-  const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
-    update(cache, { data: { createReview } }) {
-      // const data = cache.readQuery({ query: GET_SEEKER_BOOKINGS, variables: { seeker_id: localStorage.getItem('id') } })
-      // const bookings = data.bookingsBySeeker;
-      // const id = props.id
+  console.log(`1_ReviewForm // query prop`, query)
 
-      // ! unsure what the below code accomplishes
-      // const newBookings = bookings.map(booking => {
-      //   if (booking.uniquecheck === id) {
-      //     return { ...booking, review: createReview }
-      //   }
-      //   return booking
-      // })
-      // console.log(newBookings);
-      // cache.writeQuery({ query: GET_SEEKER_BOOKINGS, data: { ...data, bookingsBySeeker: newBookings } })
-    }
-  });
+  // * re-factor mutation to create entry in Core
+  const [submitReview] = useMutation(CREATE_REVIEW);
 
 
   // * fields state controls the star rating and comment left by a reviewer

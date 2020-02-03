@@ -43,6 +43,8 @@ cache.writeData({
 	},
 });
 
+console.log(`INDEX // cache`, cache)
+
 ReactDOM.render(
 	<ApolloProvider client={client}>
 		<StripeProvider apiKey={stripeKey}>
