@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import Loading from '../../../../../global/components/Loading'
 
-import {COMPLETED_RESUME_REVIEWS, UPDATE_RESUME_REVIEW} from '../../Resolvers'
+import { COMPLETED_RESUME_REVIEWS, UPDATE_RESUME_REVIEW } from '../../Resolvers'
 
 import ResumeReviewEntry from '../ResumeReviewEntry'
 
@@ -16,7 +16,9 @@ const ReviewsHistory = () => {
         COMPLETED_RESUME_REVIEWS, {
         fetchPolicy: 'network-only'
     }
-)
+    )
+
+    console.log(`ReviewsHistory // data`, data)
 
     const [updateResumeReview] = useMutation(UPDATE_RESUME_REVIEW, {
         refetchQueries: [`COMPLETED_RESUME_REVIEWS`],
@@ -30,24 +32,26 @@ const ReviewsHistory = () => {
         }
     })
 
+    console.log(`ReviewsHistory // completedArray`, completedArray)
+
     return (
         <div>
             {!loading && (!data.completedResumeReviews.length && (
-            <div>
-                <div className='resumeQ1'>
-                    <img src={resumeQ1} />
-                    <p>You currently have no accepted reviews at this time...</p>
+                <div>
+                    <div className='resumeQ1'>
+                        <img src={resumeQ1} alt='No reviews' />
+                        <p>You currently have no accepted reviews at this time...</p>
 
+                    </div>
                 </div>
-            </div>
             ))}
-            {loading && <Loading/>}
+            {loading && <Loading />}
             {!loading && completedArray && (
-            <div className="reviewer-jobs-list">
-                {completedArray.map(entry => (
-                    <ResumeReviewEntry entry={entry} key={entry.id} />
-                ))}
-            </div>
+                <div className="reviewer-jobs-list">
+                    {completedArray.map(entry => (
+                        <ResumeReviewEntry entry={entry} key={entry.id} />
+                    ))}
+                </div>
             )}
         </div>
     )
