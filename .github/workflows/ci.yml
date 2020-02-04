@@ -18,6 +18,7 @@ on:
 jobs:
   test:
     name: steve
+    runs-on: macos-latest
     steps: 
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.4.0
