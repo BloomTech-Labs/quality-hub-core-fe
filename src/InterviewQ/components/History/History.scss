@@ -314,10 +314,11 @@
 }
 
 .history-review {
+	width: 90%;
 	.history-review-rating-container {
 		display: flex;
 		margin-top: 1.6rem;
-		margin-bottom: 4.8rem;
+		// margin-bottom: 4.8rem;
 
 		.history-review-stars-container {
 			width: 19.4rem;

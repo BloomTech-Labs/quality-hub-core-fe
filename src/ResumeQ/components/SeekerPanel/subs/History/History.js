@@ -22,7 +22,6 @@ const History = () => {
 
   return (
     <div>
-      <h2>Rate Reviews Here!</h2>
       {!loading && (!data.completedResumeReviewsBySeeker[0] && (
         <div>
           <div className='resumeQ1'>

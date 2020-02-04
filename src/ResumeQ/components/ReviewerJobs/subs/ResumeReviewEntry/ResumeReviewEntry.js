@@ -6,6 +6,7 @@ import ReviewGiven from '../../../../../global/components/ReviewGiven'
 
 const ResumeReviewEntry = ({
   entry,
+  status,
   submitResponse,
   updateResumeReview,
   status
@@ -16,7 +17,8 @@ const ResumeReviewEntry = ({
   const { seeker, createdAt, review } = entry
 
 
-  console.log(`status  status  `, status)
+  console.log(`status status `, status)
+  console.log(`entry entry `, entry)
 
   const handleAccept = e => {
     e.preventDefault()
@@ -63,41 +65,55 @@ const ResumeReviewEntry = ({
   return (
     <div>
       <div >
-        <div className="reviewer-jobs-card">
-          <div className="reviewer-info">
-            <h1>{seeker.first_name} {seeker.last_name}</h1>
+        <details className="reviewer-jobs-card">
+
+          <summary className="reviewer-info">
+            <div className="name-container">
+              <h1>{seeker.first_name} {seeker.last_name}</h1>
+            </div>
             <p>{seeker.email}</p>
             <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
+<<<<<<< HEAD
           </div>
-          {status === 'Pending' &&
+=======
 
-            <div className="reviewer-btn-container">
-              <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
-              <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
-            </div>
-          }
-          {status === 'In Progress' &&
-            (<div className="reviewer-card-footer">
-              <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
-            </div>)
+>>>>>>> 4c5d7d9e731a293579d30b3807357be9117067bc
+        {status === 'Pending' &&
 
-          }
-          {status === 'Declined' &&
-            (<div className="reviewer-card-footer">
-            </div>)
+          <div className="reviewer-btn-container">
+            <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
+            <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
+          </div>
+        }
+        {status === 'In Progress' &&
+          (<div className="reviewer-card-footer">
+            <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
+          </div>)
 
-          }
-          {status === 'Completed' &&
-            (<div>
-              <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
-              {review && (<ReviewGiven review={review} />)}
-            </div>)
+        }
+        {entry.status === 'Declined' &&
+          (<div className="reviewer-card-footer">
+<<<<<<< HEAD
+    </div>)
+=======
+              <h2>Declined</h2> 
+            </div>)}
+>>>>>>> 4c5d7d9e731a293579d30b3807357be9117067bc
 
-          }
+          </summary >
 
-        </div>
-      </div>
-    </div>
+{
+  entry.status === 'Completed' &&
+    (<div className="review-given-container">
+      <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
+      {review && (<ReviewGiven review={review} />)}
+    </div>)
+
+}
+
+        </details >
+      </div >
+    </div >
   );
 };
 

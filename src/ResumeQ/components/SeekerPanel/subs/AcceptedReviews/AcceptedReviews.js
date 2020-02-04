@@ -26,6 +26,7 @@ const AcceptedReviews = () => {
     console.log('Seeker accepted data', data)
     console.log('Seeker loading', loading)
 
+
     var format = 'MMM Do YYYY';
 
     return (
@@ -48,8 +49,8 @@ const AcceptedReviews = () => {
                             <div className='seeker-header-container'>
 
                                 <div className='coach-photo'>
-                                    {reviews.seeker.image_url ? (
-                                        <img src={reviews.seeker.image_url} alt='Coach Profile Pic' width="95" height="95" />
+                                    {reviews.coach.image_url ? (
+                                        <img src={reviews.coach.image_url} alt='Coach Profile Pic' width="95" height="95" />
                                     ) : (
                                             <div className='blank-image'>
                                                 <Icon
@@ -76,7 +77,7 @@ const AcceptedReviews = () => {
                             </div>
 
 
-                            <button className="contact-seeker-btn">Contact</button>
+                            <button className="contact-seeker-btn"><a href={`mailto:${reviews.coach.email}`}>Contact</a></button>
                         </div>
                     ))}
                 </div>
