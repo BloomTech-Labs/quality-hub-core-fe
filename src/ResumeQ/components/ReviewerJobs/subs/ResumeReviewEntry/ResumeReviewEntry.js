@@ -17,6 +17,7 @@ const ResumeReviewEntry = ({
 
 
   console.log(`status status `, status)
+  console.log(`entry entry `, entry)
 
   const handleAccept = e => {
     e.preventDefault()
@@ -63,14 +64,14 @@ const ResumeReviewEntry = ({
   return (
     <div>
       <div >
-        <div className="reviewer-jobs-card">
-          <div className="reviewer-info">
-            <h1>{seeker.first_name} {seeker.last_name}</h1>
+        <details className="reviewer-jobs-card">
+
+          <summary className="reviewer-info">
+            <div className="name-container">
+              <h1>{seeker.first_name} {seeker.last_name}</h1>
+            </div>
             <p>{seeker.email}</p>
             <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
-          </div>
-
-
 
           {status === 'Pending' &&
             (
@@ -85,22 +86,22 @@ const ResumeReviewEntry = ({
             </div>)
 
           }
-          {status === 'Declined' &&
+          {entry.status === 'Declined' &&
             (<div className="reviewer-card-footer">
-              <h2>Declined</h2>
-              <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
-            </div>)
+              <h2>Declined</h2> 
+            </div>)}
 
-          }
-          {status === 'Completed' &&
-            (<div>
+          </summary>
+
+          {entry.status === 'Completed' &&
+            (<div className="review-given-container">
               <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
               {review && (<ReviewGiven review={review} />)}
             </div>)
 
           }
 
-        </div>
+        </details>
       </div>
     </div>
   );

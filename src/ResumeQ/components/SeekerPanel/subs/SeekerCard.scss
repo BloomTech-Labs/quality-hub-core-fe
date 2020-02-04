@@ -16,7 +16,11 @@
 	margin: 0 5% 0 15%;
 	justify-content: flex-start;
 	button {
-		margin:  auto;
+		margin:  2.8rem auto;
+		a {
+			text-decoration: none;
+			color: #db013a;
+		}
 	}
 	.gone {
 		visibility: visible;
@@ -25,7 +29,7 @@
 
 .seeker-card {
 	display: flex;
-    width: 35.2rem;
+    width: 37.2rem;
     // height: 39.2rem;
     // padding: 2.4rem;
     border: 1px solid #dadce0;
