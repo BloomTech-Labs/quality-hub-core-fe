@@ -13,14 +13,12 @@ const ReviewerJobs = () => {
 
     // This component holds components for each type of ResumeReview entry. Each entry contains its own state and queries
 
-
-
     return (
         <div className="reviewer-jobs-container">
 
             <div className='QNav-row'>
 
-                <NavLink to='/resumeq/reviewerjobs/' className='SeekerQNav-btn'>Requests</NavLink>
+                <NavLink exact to='/resumeq/reviewerjobs/' className='SeekerQNav-btn'>Requests</NavLink>
                 <NavLink to='/resumeq/reviewerjobs/accepted' className='SeekerQNav-btn'>Accepted</NavLink>
                 <NavLink to='/resumeq/reviewerjobs/declined' className='SeekerQNav-btn'>Declined</NavLink>
                 <NavLink to='/resumeq/reviewerjobs/history' className='SeekerQNav-btn'>History</NavLink>

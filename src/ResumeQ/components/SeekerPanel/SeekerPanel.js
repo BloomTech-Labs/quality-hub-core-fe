@@ -10,12 +10,15 @@ import './SeekerPanel.scss'
 
 const SeekerPanel = () => {
 
-    function openTab(tab) {
+    function openTab(tab, btn) {
         let tabs = document.getElementsByClassName('requestTab');
+        let btns = document.getElementsByClassName('SeekerQNav-btn');
         for (let i = 0; i < tabs.length; i++) {
             tabs[i].style.display = 'none';
+            btns[i].style.textDecoration = 'none'
         }
         document.getElementById(tab).style.display = 'block';
+        document.getElementById(btn).style.textDecoration = 'underline';
     }
 
     return (
@@ -23,9 +26,9 @@ const SeekerPanel = () => {
             <div className="seeker-panel-list">
 
                 <div className='SeekerQNav-row'>
-                    <button onClick={() => openTab('accepted')} className='SeekerQNav-btn'>Accepted</button>
-                    <button onClick={() => openTab('denied')} className='SeekerQNav-btn'>Denied</button>
-                    <button onClick={() => openTab('history')} className='SeekerQNav-btn'>History</button>
+                    <button onClick={() => openTab('accepted', 'acceptedBtn')} id='acceptedBtn' className='SeekerQNav-btn' style={{textDecoration: 'underline'}}>Accepted</button>
+                    <button onClick={() => openTab('denied', 'deniedBtn')} id='deniedBtn' className='SeekerQNav-btn'>Denied</button>
+                    <button onClick={() => openTab('history', 'historyBtn')} id='historyBtn' className='SeekerQNav-btn'>History</button>
                 </div>
 
                 <div id='accepted' className='requestTab'>

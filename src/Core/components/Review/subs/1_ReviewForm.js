@@ -113,7 +113,7 @@ const ReviewForm = ({ job, closeModal, afterSubmit, query }) => {
         </div>
       </div>
       <div className='RQbutton-container'>
-        <button onClick={() => closeModal()} className='RQreview-button button cancel'>Cancel</button>
+        <p onClick={() => closeModal()} className='RQreview-button button cancel'>Cancel</p>
         <p className='RQreview-button button submit' onClick={handleSubmit}>Submit</p>
       </div>
     </form>

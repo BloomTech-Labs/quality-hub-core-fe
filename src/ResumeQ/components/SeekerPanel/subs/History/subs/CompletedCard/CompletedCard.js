@@ -49,14 +49,16 @@ const CompletedCard = ({ resumeReview, query }) => {
             )}
         </div>
       </div>
-      <div className='seeker-card-info'>
-        <h1>{coach.first_name}{coach.last_name}</h1>
-        <p>{coach.email}</p>
-      </div>
-      <div className="seeker-date">
-        <p><b>Created on </b>{moment(resumeReview.createdAt).format(format)}</p>
-        <div className="v1"></div>
-        <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(resumeReview.dateAccepted).format(format)}</p>
+      <div className='top-content'>
+        <div className='seeker-card-info'>
+          <h1>{coach.first_name}{coach.last_name}</h1>
+          <p>{coach.email}</p>
+        </div>
+        <div className="seeker-date">
+          <p><b>Created on </b>{moment(resumeReview.createdAt).format(format)}</p>
+          <div className="v1"></div>
+          <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(resumeReview.dateAccepted).format(format)}</p>
+        </div>
       </div>
       {review ? 
         <ReviewGiven review={review}
