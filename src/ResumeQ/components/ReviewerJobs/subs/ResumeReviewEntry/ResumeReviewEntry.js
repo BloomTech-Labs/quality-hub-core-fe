@@ -72,41 +72,41 @@ const ResumeReviewEntry = ({
             </div>
             <p>{seeker.email}</p>
             <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
+            {status === 'Pending' &&
 
-          {status === 'Pending' &&
-            (
               <div className="reviewer-btn-container">
                 <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
                 <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
+              </div>
+            }
+            {status === 'In Progress' &&
+              (<div className="reviewer-card-footer">
+                <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
               </div>)
-          }
-          {status === 'In Progress' &&
-            (<div className="reviewer-card-footer">
-              <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
-            </div>)
 
-          }
-          {entry.status === 'Declined' &&
-            (<div className="reviewer-card-footer">
-              <h2>Declined</h2> 
-            </div>)}
-            
-          {entry.status === 'Completed' &&
-            (<div className='completed-review-card'></div>)
-          }
+            }
+            {entry.status === 'Declined' &&
+              (<div className="reviewer-card-footer">
+                <h2>Declined</h2>
+              </div>)}
 
-          </summary>
+            {entry.status === 'Completed' &&
+              (<div className='completed-review-card'></div>)
+            }
 
-          {entry.status === 'Completed' &&
+          </summary >
+
+          {
+            entry.status === 'Completed' &&
             (<div className="review-given-container">
               <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
               {review && (<ReviewGiven review={review} />)}
             </div>)
           }
 
-        </details>
-      </div>
-    </div>
+        </details >
+      </div >
+    </div >
   );
 };
 

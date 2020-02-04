@@ -13,6 +13,8 @@ import CoachReport from './components/CoachReport';
 import Meeting from './components/Meeting/subs/Room';
 import Inbox from '../Core/components/Messaging/Inbox';
 import Room from './components/Meeting/subs/Room';
+import Schedule from './components/History/subs/Schedule/Schedule';
+import WeekView from './components/History/subs/Schedule/WeekView.js'
 // import Stripe from '../global/components/Stripe';
 
 const InterviewQContainer = props => {
@@ -41,6 +43,8 @@ const InterviewQContainer = props => {
 					path='/interviewq/history/review/:id'
 					// component={ReviewPage}
 				/>
+				<Route exact path='/interviewq/schedule' component={Schedule} />
+				<Route exact path='/interviewq/week' component={WeekView} />
 				{/* <Route path='/interviewq/meeting' component={Meeting} /> */}
 				<Route path='/interviewq/inbox' component={Inbox} />
 				{/* <Route path='/interviewq/meeting' component={Room} /> */}
