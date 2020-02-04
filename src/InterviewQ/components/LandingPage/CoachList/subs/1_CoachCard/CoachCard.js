@@ -21,26 +21,26 @@ import MessageCoachButton from "../2_CoachCardModal/MessageCoachButton";
 //   }
 // `;
 
-const GET_COACHREVIEWS = gql`
-  query reviewsByCoach($coach_id: String!) {
-    reviewsByCoach(coach_id: $coach_id) {
-      id
-      seeker {
-        first_name
-        last_name
-      }
-      createdAt
-      review
-      rating
-      booking {
-        uniquecheck
-      }
-      response {
-        id
-      }
-    }
-  }
-`;
+// const GET_COACHREVIEWS = gql`
+//   query reviewsByCoach($coach_id: String!) {
+//     reviewsByCoach(coach_id: $coach_id) {
+//       id
+//       seeker {
+//         first_name
+//         last_name
+//       }
+//       createdAt
+//       review
+//       rating
+//       booking {
+//         uniquecheck
+//       }
+//       response {
+//         id
+//       }
+//     }
+//   }
+// `;
 
 const CoachCard = ({ post }) => {
   const [reviewModal, openReviewModal] = useState(false);

@@ -42,7 +42,7 @@ export const GET_POSTS = gql`
 				linkedin_url
 				github_url
 				average_coach_rating
-				reviewsReceived{
+				reviewsReceived(microservice:"INTERVIEWQ"){
 					id
 					rating
 					review
