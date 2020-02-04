@@ -82,6 +82,10 @@ body {
 
 .not-nav {
 	margin-top: 6.4rem;
+
+	@media screen and (max-width: 740px) {
+		margin-top: 25rem;
+	}
 }
 
 h1 {
