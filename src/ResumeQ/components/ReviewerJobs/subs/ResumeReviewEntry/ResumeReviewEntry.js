@@ -90,6 +90,10 @@ const ResumeReviewEntry = ({
             (<div className="reviewer-card-footer">
               <h2>Declined</h2> 
             </div>)}
+            
+          {entry.status === 'Completed' &&
+            (<div className='completed-review-card'></div>)
+          }
 
           </summary>
 
@@ -98,7 +102,6 @@ const ResumeReviewEntry = ({
               <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
               {review && (<ReviewGiven review={review} />)}
             </div>)
-
           }
 
         </details>

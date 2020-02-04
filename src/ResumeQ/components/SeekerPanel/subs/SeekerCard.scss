@@ -1,4 +1,3 @@
-
 // .seeker-container {
 // 	display: flex;
 // 	margin: 0;
@@ -37,14 +36,17 @@
 	margin-bottom: 1.2rem;
 	margin-right: 1.2rem;
     flex-direction: column;
-    justify-content: space-between;
+    // justify-content: space-between;
 	text-align: left;
+	max-height: 700px;
+	overflow-y: auto;
 	// background-color: seashell;
 	.seeker-header-container{
 		background: linear-gradient(to bottom left, #fa789a 0%, #db013a 100%);
 		border-radius: 0.7rem;
 		display: flex;
 		align-items: center;
+		width: 100%;
 		
 		.coach-photo {
 			margin: 25px auto;

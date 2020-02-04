@@ -137,14 +137,31 @@
         //     }
         // }
     }
+
+    .completed-review-card{
+        &:after {
+            margin: auto 11px auto 0;
+            content: "➕";
+            float: left;
+            text-align: center;
+            font-size: 11px;
+            
+            [open] & {
+                padding: 0 0 12px 0;
+                content: "➖";
+            }
+        }
+    }
     
     details summary::-webkit-details-marker {
         display:none;
       }
-      
-      .review-given-container p {
-          text-align: left;
-          padding-left: 1.6rem;
-          color: black;
-          opacity: 50%;
+
+    .review-given-container {
+          p {
+            text-align: left;
+            padding-left: 1.6rem;
+            color: black;
+            opacity: 50%;
+          }
       }
