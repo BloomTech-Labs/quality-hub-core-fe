@@ -9,7 +9,6 @@ const ResumeReviewEntry = ({
   status,
   submitResponse,
   updateResumeReview,
-  status
 }) => {
   const format = 'MMM Do YYYY';
 
@@ -73,43 +72,34 @@ const ResumeReviewEntry = ({
             </div>
             <p>{seeker.email}</p>
             <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
-<<<<<<< HEAD
-          </div>
-=======
+            {status === 'Pending' &&
 
->>>>>>> 4c5d7d9e731a293579d30b3807357be9117067bc
-        {status === 'Pending' &&
+              <div className="reviewer-btn-container">
+                <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
+                <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
+              </div>
+            }
+            {status === 'In Progress' &&
+              (<div className="reviewer-card-footer">
+                <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
+              </div>)
 
-          <div className="reviewer-btn-container">
-            <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
-            <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
-          </div>
-        }
-        {status === 'In Progress' &&
-          (<div className="reviewer-card-footer">
-            <button className='com-reviewer-btn' onClick={handleUpdate}>Mark Completed</button>
-          </div>)
-
-        }
-        {entry.status === 'Declined' &&
-          (<div className="reviewer-card-footer">
-<<<<<<< HEAD
-    </div>)
-=======
-              <h2>Declined</h2> 
-            </div>)}
->>>>>>> 4c5d7d9e731a293579d30b3807357be9117067bc
+            }
+            {entry.status === 'Declined' &&
+              (<div className="reviewer-card-footer">
+                <h2>Declined</h2>
+              </div>)}
 
           </summary >
 
-{
-  entry.status === 'Completed' &&
-    (<div className="review-given-container">
-      <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
-      {review && (<ReviewGiven review={review} />)}
-    </div>)
+          {
+            entry.status === 'Completed' &&
+            (<div className="review-given-container">
+              <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
+              {review && (<ReviewGiven review={review} />)}
+            </div>)
 
-}
+          }
 
         </details >
       </div >
