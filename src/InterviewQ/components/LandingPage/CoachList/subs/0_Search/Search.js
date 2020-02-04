@@ -145,29 +145,6 @@ export default function Search({ fields, setFields, refetch }) {
 
 				</div>
 				{/* <div className='search-field-bottom'> */}
-<<<<<<< HEAD
-			<div className='search-field-keyword'>
-
-				{/* <label className='search-label-keywords'>Keywords</label> */}
-				<input
-					className='search-by-keyword-input'
-					type='text'
-					name='tags'
-					value={fields.tags}
-					onChange={handleChange}
-					placeholder={`Search by Keyword`}
-					onKeyDown={handlePress}
-				/>
-
-				{/* <div className='search-buttons'> */}
-				<button className='search-apply' onClick={e => handleSubmit(e)}>
-					{search()}
-				</button>
-			</div>
-			<button className='search-reset' onClick={handleReset}>
-				Reset
-
-=======
 				<div className='search-dropdowns-right'>
 					<div className='search-field-keyword'>
 						{/* <label className='search-label-keywords'>Keywords</label> */}
@@ -188,7 +165,6 @@ export default function Search({ fields, setFields, refetch }) {
 					</div>
 					<button className='search-reset' onClick={handleReset}>
 						Reset
->>>>>>> ba672d88668c4852b63e49283ee4f6b40f39d80c
 				</button>
 
 				</div>
