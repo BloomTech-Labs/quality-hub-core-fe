@@ -41,6 +41,16 @@ export const GET_POSTS = gql`
 				portfolio_url
 				linkedin_url
 				github_url
+				average_coach_rating
+				reviewsReceived{
+					id
+					rating
+					review
+					seeker{
+						first_name
+						image_url
+					}
+				}
 			}
 		}
 	}
