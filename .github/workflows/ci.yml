@@ -1,0 +1,30 @@
+name: Code Climate Test Coverage
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - production
+      - github-actions-testing
+  pull_request:
+    branches:
+      - production
+      - github-actions-testing
+  # Also trigger on page_build, as well as release created events
+  page_build:
+  release:
+    types: # This configuration does not affect the page_build event above
+      - created
+jobs:
+  test:
+    name: steve
+    steps: 
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
+        with:
+          coverageCommand: yarn coverage
+          debug: true
+    
+
