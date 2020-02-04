@@ -10,11 +10,11 @@ import ReviewGiven from '../../../../../../../global/components/ReviewGiven/Revi
 // TODO import star display
 
 const CompletedCard = ({ resumeReview, query }) => {
-  
+
   const [modalOpen, setModalOpen] = useState(false)
   const { id, coach, seeker, review } = resumeReview;
   const [dropDown, setDropDown] = useState(false);
-  
+
   const job = {
     id,
     coach,
@@ -51,7 +51,7 @@ const CompletedCard = ({ resumeReview, query }) => {
       </div>
       <div className='top-content'>
         <div className='seeker-card-info'>
-          <h1>{coach.first_name}{coach.last_name}</h1>
+          <h1>{coach.first_name} {coach.last_name}</h1>
           <p>{coach.email}</p>
         </div>
         <div className="seeker-date">
@@ -60,10 +60,10 @@ const CompletedCard = ({ resumeReview, query }) => {
           <span className="dot1"></span><p className="acc-text"> <b className="green">Accepted on</b> {moment(resumeReview.dateAccepted).format(format)}</p>
         </div>
       </div>
-      {review ? 
+      {review ?
         <ReviewGiven review={review}
-        
-      />
+
+        />
         :
         <button className='review-button button cancel' onClick={() => setModalOpen(!modalOpen)}>Leave a Review</button>
       }

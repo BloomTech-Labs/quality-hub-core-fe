@@ -72,12 +72,13 @@ const ResumeReviewEntry = ({
             </div>
             <p>{seeker.email}</p>
             <p><b>Requested on</b> {moment(createdAt).format(format)}</p>
-            {status === 'Pending' &&
 
-              <div className="reviewer-btn-container">
-                <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
-                <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
-              </div>
+            {status === 'Pending' &&
+              (
+                <div className="reviewer-btn-container">
+                  <button className='acc-reviewer-btn' onClick={handleAccept}>Accept</button>
+                  <button className='dec-reviewer-btn' onClick={handleDecline}>Decline</button>
+                </div>)
             }
             {status === 'In Progress' &&
               (<div className="reviewer-card-footer">
@@ -94,19 +95,18 @@ const ResumeReviewEntry = ({
               (<div className='completed-review-card'></div>)
             }
 
-          </summary >
+          </summary>
 
-          {
-            entry.status === 'Completed' &&
+          {entry.status === 'Completed' &&
             (<div className="review-given-container">
               <p>Completed on {moment(entry.dateCompleted).format(format)}</p>
               {review && (<ReviewGiven review={review} />)}
             </div>)
           }
 
-        </details >
-      </div >
-    </div >
+        </details>
+      </div>
+    </div>
   );
 };
 
