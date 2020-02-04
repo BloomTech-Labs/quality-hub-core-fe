@@ -28,7 +28,7 @@ const StepThree = ({ user, image, formState }) => {
 							{user && `${user.first_name} ${user.last_name}`}
 						</p>
 						<p className='RQadd-listing-form-preview-amount'>
-							${formState.price} per hour
+							${formState.price} per review
 										</p>
 					</div>
 					{image ? <img
@@ -86,7 +86,7 @@ const StepThree = ({ user, image, formState }) => {
 					</div>
 				</div>
 				<button className='RQinterview-button' disabled>
-					Request Interview
+					Request
 								</button>
 			</div>
 		</>
