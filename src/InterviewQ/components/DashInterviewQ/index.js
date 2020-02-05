@@ -14,7 +14,7 @@ import becomecoach from '../../../global/icons/becomecoach.png';
 import CoachDash from './subs/CoachDash';
 import { spacecoach } from '../../../global/icons/SpaceCoach.js';
 
-export default function DashResumeQ() {
+export default function DashInteviewQ() {
 	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
 		variables: { coach_id: localStorage.getItem('id') },
 	});
@@ -24,22 +24,22 @@ export default function DashResumeQ() {
 			{loading ? null : coachPost && coachPost.postByCoach ? (
 				<CoachDash />
 			) : (
-				<div className='not-a-coach'>
-					{/* <div className='not-a-coach-header'>
+					<div className='not-a-coach'>
+						{/* <div className='not-a-coach-header'>
 						<h2>Settings</h2>
 					</div> */}
-					{/* <div>{spacecoach()}</div> */}
-					<img src={becomecoach} />
-					{/* <p>
+						{/* <div>{spacecoach()}</div> */}
+						<img src={becomecoach} />
+						{/* <p>
 						You aren't currently a coach! To become a coach, click{' '}
 						<Link className='not-a-coach-here' to='/interviewq'>
 							here
 						</Link>
 						.
 					</p> */}
-					<p>To become a coach, go to any QualityHub service and click the "Become a Coach" button.</p>
-				</div>
-			)}
+						<p>To become a coach, go to any QualityHub service and click the "Become a Coach" button.</p>
+					</div>
+				)}
 		</div>
 	);
 }
