@@ -15,9 +15,7 @@ on:
   release:
     types: # This configuration does not affect the page_build event above
       - created
-jobs:
-  build:
-    
+jobs: 
   test:
     name: steve
     runs-on: macos-latest
