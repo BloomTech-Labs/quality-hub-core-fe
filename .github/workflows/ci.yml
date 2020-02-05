@@ -26,8 +26,8 @@ jobs:
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
-      - uses: paambaati/codeclimate-action@v2.4.0
       - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.4.0
         env:
           CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
         with:
