@@ -25,6 +25,12 @@ jobs:
         npm i -g yarn
         yarn install
         yarn build
+     - uses: paambaati/codeclimate-action@v2.4.0
+       env:
+         CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
+       with:
+         # coverageCommand: yarn coverage
+         debug: true
   test:
     name: steve
     runs-on: macos-latest
