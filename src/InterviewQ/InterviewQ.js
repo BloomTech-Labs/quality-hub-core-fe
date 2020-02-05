@@ -6,7 +6,7 @@ import CoachList from './components/LandingPage/CoachList';
 import LeftNav from './components/LeftNav/LeftNav';
 import { Route } from 'react-router-dom';
 import Booking from './components/RequestInterview';
-import ReviewPage from './components/Review';
+// import ReviewPage from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
 import CoachReport from './components/CoachReport';
@@ -41,7 +41,7 @@ const InterviewQContainer = props => {
 				<Route
 					exact
 					path='/interviewq/history/review/:id'
-					component={ReviewPage}
+					// component={ReviewPage}
 				/>
 				<Route exact path='/interviewq/schedule' component={Schedule} />
 				<Route exact path='/interviewq/week' component={WeekView} />

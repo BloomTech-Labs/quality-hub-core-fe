@@ -21,6 +21,10 @@ export default function Search({ fields, setFields, refetch }) {
 		refetch({ ...fields, ids });
 	};
 
+	console.log(`IQ Search / user_data`, user_data)
+	console.log(`IQ Search / fields`, fields)
+	console.log(`ReviewerList / makeArray`, typeof makeArray)
+
 	useEffect(() => {
 		if (
 			lastChanged === 'industry' ||
@@ -166,6 +170,7 @@ export default function Search({ fields, setFields, refetch }) {
 				</div>
 				{/* </div> */}
 				{/* </div> */}
+
 				{/* <div className="search-tags-container">
 				<p className="search-tags"> {fields.tags} X </p>
 				</div> */}

@@ -1,0 +1,85 @@
+import { gql } from 'apollo-boost'
+
+//ACCEPTED
+export const ACCEPTED_REVIEWS_BY_SEEKER = gql`
+query{
+    acceptedResumeReviewsBySeeker{
+        id
+        isAccepted
+        dateAccepted
+        createdAt
+        updatedAt
+        coach{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+        seeker{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+    }
+}
+`
+
+//DENIED
+export const DENIED_REVIEWS_BY_SEEKER = gql`
+query{
+    deniedResumeReviewsBySeeker{
+        id
+        isDenied
+        createdAt
+        updatedAt
+        coach{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+        seeker{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+    }
+}
+`
+//COMPLETED
+export const COMPLETED_REVIEWS_BY_SEEKER = gql`
+query{
+    completedResumeReviewsBySeeker{
+        id
+        isAccepted
+        isComplete
+        createdAt
+        updatedAt
+        review {
+            id
+            rating
+            review
+        }
+        coach{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+        seeker{
+            id
+            first_name
+            last_name
+            email
+            image_url
+        }
+    }
+}
+`

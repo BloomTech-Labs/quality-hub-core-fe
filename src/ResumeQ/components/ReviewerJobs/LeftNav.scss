@@ -1,0 +1,16 @@
+.rq-reviewer-jobs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SeekerQNav-btn {
+  padding: 10px;
+  color: #fb2046;
+  font-size: 2.4rem;
+  text-decoration: none;
+}
+
+.SeekerQNav-btn.active {
+  text-decoration: underline;
+}
