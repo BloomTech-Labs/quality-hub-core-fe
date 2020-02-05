@@ -15,20 +15,24 @@ on:
   release:
     types: # This configuration does not affect the page_build event above
       - created
-jobs: 
+jobs:
+  build:
+    
   test:
     name: steve
     runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2.0.0
-    - run: npm install -g yarn
-    - run: yarn install
-    - run: yarn build
-    - uses: paambaati/codeclimate-action@v2.2.4
-      env:
-        CC_TEST_REPORTER_ID: 945dfb58a832d233a3caeb84e3e6d3be212e8c7abcb48117fce63b9adcb43647
-      with:
-        coverageCommand: yarn coverage
-      debug: true
+    steps: 
+      - uses: actions/checkout@v2
+      - uses: paambaati/codeclimate-action@v2.4.0
+      - name: Test & publish code coverage
+        run: |
+          npm i -g yarn
+          yarn install
+          yarn build
+        env:
+          CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
+        with:
+          # coverageCommand: yarn coverage
+          debug: true
     
 
