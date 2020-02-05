@@ -20,6 +20,7 @@ jobs:
     name: steve
     runs-on: macos-latest
     steps: 
+      - uses: actions/checkout@v2
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.4.0
         env:
