@@ -47,6 +47,7 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 ## Project Overview
 
 [Trello Board](https://trello.com/b/wDk38mF8/quality-hub)
+[QualityHub](https://trello.com/b/EZzbT94q/labs-19-quality-hub)
 
 [Product Vision Document](https://www.notion.so/Quality-Hub-89af69c8f39848bd8e1861e23d6a0372)
 
@@ -98,6 +99,7 @@ QualityHub creates the fastest way to have anything assessed for its quality in 
 #### dotenv
 
 - Loads environmental variables from a `.env` file into `process.env`
+
 
 #### node-sass
 
@@ -173,6 +175,10 @@ QualityHub creates the fastest way to have anything assessed for its quality in 
 
 - Loads environmental variables from a `.env` file into `process.env`
 
+#### env-cmd
+
+- Allows script to name a specific environment variable (eg development.env, or testing.env) which contains different information than the production env.
+
 ---
 
 # APIs
@@ -223,6 +229,7 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_backendURL - optional for your local development server
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    *  REACT_APP_FEDERATION_URI -- specifies the location of the Apollo Federation. Is set to localhost:5500 in development.env
 
 # 5️⃣ Content Licenses
 
