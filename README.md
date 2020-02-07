@@ -1,5 +1,4 @@
-# QualityHub Core #
-
+# QualityHub Core
 
 You can find the deployed project at [https://qualityhub-staging.netlify.com/](https://qualityhub-staging.netlify.com/).
 Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](https://qualityhub19.netlify.com/).
@@ -25,10 +24,22 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vanorder/) |
 
 <br>
+## ResumeQ Contributors
+
+|                           [Robert Benavidez](https://github.com/AdamPayne238 "Robert Benavidez")                            |                              [Adam Payne](https://github.com/AdamPayne238 "Adam Payne")                              |                                      [Taran Neeld](https://github.com/TaranMNeeld)                                      |                          [Jonathan Mendoza](https://github.com/Jnmendza "Jonathan Mendoza")                          |                                        [Aaron Clark](https://github.com/aapclark)                                         |
+| :-------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars1.githubusercontent.com/u/44792418?s=460&v=4" width="200" />](https://github.com/robertbenavidez) | [<img src="https://avatars3.githubusercontent.com/u/52122395?s=460&v=4" width="200" />](https://github.com/Jnmendza) | [<img src="https://avatars3.githubusercontent.com/u/45437093?s=460&v=4" width="200" />](https://github.com/TaranMNeeld) | [<img src="https://avatars2.githubusercontent.com/u/53712048?s=460&v=4" width="200" />](https://github.com/Jnmendza) |   [<img src="https://avatars2.githubusercontent.com/u/51387046?s=460&v=4" width="200" />](https://github.com/aapclark)    |
+|                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/robertbenavidez)                 |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AdamPayne238)               |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TaranMNeeld)                 |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jnmendza)                 |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aapclark)                   |
+|        [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)        |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)     |      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)      |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)     | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/aapclark/) |
+
+
+
+
+
+<br>
 <br>
 
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/maintainability)  
+[![Maintainability](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/13baf4470c5774f866a4/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/property-manager-fe/test_coverage)
 
@@ -36,7 +47,6 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 
 <!-- ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat) -->
-
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://qualityhub-staging.netlify.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
