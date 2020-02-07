@@ -24,7 +24,10 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vanorder/) |
 
 <br>
+
+
 ## ResumeQ Contributors
+
 
 |                           [Robert Benavidez](https://github.com/AdamPayne238 "Robert Benavidez")                            |                              [Adam Payne](https://github.com/AdamPayne238 "Adam Payne")                              |                                      [Taran Neeld](https://github.com/TaranMNeeld)                                      |                          [Jonathan Mendoza](https://github.com/Jnmendza "Jonathan Mendoza")                          |                                        [Aaron Clark](https://github.com/aapclark)                                         |
 | :-------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
