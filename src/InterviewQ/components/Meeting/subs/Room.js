@@ -55,8 +55,6 @@ const Room = (props) => {
 	}
 
 	function startSignaling() {
-		displaySignalingMessage('staring signaling...');
-
 		rtcPeerConn = new RTCPeerConnection(configuration);
 
 		rtcPeerConn.onicecandidate = function (event) {
@@ -66,16 +64,13 @@ const Room = (props) => {
 					message: JSON.stringify({ candidate: event.candidate, room: SIGNALING_ROOM })
 				});
 			}
-			displaySignalingMessage('completed that ice candidate...');
 		};
 
 		rtcPeerConn.onnegotiationneeded = function () {
-			displaySignalingMessage('on negotiation called');
-			rtcPeerConn.createOffer(sendLocalDesc, logError);
+			rtcPeerConn.createOffer(sendLocalDesc);
 		};
 
 		rtcPeerConn.onaddstream = function (event) {
-			displaySignalingMessage('going to add their stream...');
 			document.querySelector('#theirVideoTag').srcObject = event.stream;
 		};
 
@@ -86,7 +81,6 @@ const Room = (props) => {
 		rtcPeerConn.setLocalDescription(
 			desc,
 			function () {
-				displaySignalingMessage('sending local description');
 				io.emit('signal', {
 					type: 'SDP',
 					message: JSON.stringify({
@@ -94,13 +88,8 @@ const Room = (props) => {
 					}),
 					room: SIGNALING_ROOM,
 				});
-			},
-			logError,
+			}
 		);
-	}
-
-	function logError(error) {
-		displaySignalingMessage(error.name + ': ' + error.message);
 	}
 
 	function displayMessage(message) {
@@ -118,12 +107,6 @@ const Room = (props) => {
 			.setAttribute('style', 'white-space: pre;');
 		document.querySelector('#chatArea').scrollTop = 10000000;
 		// chatArea.textContent = chatArea.textContent + "<br/>" + message;
-	}
-
-	function displaySignalingMessage(message) {
-		// console.log(message)
-		// signalingArea.setAttribute('style', 'white-space: pre;');
-		// signalingArea.textContent += '\r\n' + message;
 	}
 
 	function toggleAudio() {
@@ -194,7 +177,6 @@ const Room = (props) => {
 	// 		}
 	// });
 	io.on('signaling_message', data => {
-		displaySignalingMessage('Signal received: ' + data.message);
 		if (!rtcPeerConn) {
 			startSignaling();
 		}
@@ -206,10 +188,9 @@ const Room = (props) => {
 					new RTCSessionDescription(message.sdp),
 					function () {
 						if (rtcPeerConn.remoteDescription.type === 'offer') {
-							rtcPeerConn.createAnswer(sendLocalDesc, logError);
+							rtcPeerConn.createAnswer(sendLocalDesc);
 						}
-					},
-					logError,
+					}
 				);
 			} else {
 				rtcPeerConn.addIceCandidate(new RTCIceCandidate(message.candidate));
