@@ -8,21 +8,25 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { StripeProvider } from 'react-stripe-elements';
 // auth0
 import auth from './global/components/Auth/Auth';
+import { ModalProvider } from './global/components/ModalProvider/ModalProvider'
 require('dotenv').config();
+
 
 const getToken = () => {
 	let token = localStorage.getItem('token');
 	return token ? `Bearer ${token}` : '';
 };
 
+
+const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
 const stripeKey = process.env.REACT_APP_STRIPE_KEY || 'stripe';
+
+console.log("Federation URI", federationURI)
 
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	//https://quality-hub-gateway-staging.herokuapp.com/
-	// uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
-	uri: 'https://quality-hub-gateway.herokuapp.com/',
+	uri: federationURI,
 	request: operation => {
 		operation.setContext(context => ({
 			headers: {
@@ -42,12 +46,16 @@ cache.writeData({
 	},
 });
 
+console.log(`INDEX // cache`, cache)
+
 ReactDOM.render(
 	<ApolloProvider client={client}>
 		<StripeProvider apiKey={stripeKey}>
-			<Router>
-				<App />
-			</Router>
+			<ModalProvider>
+				<Router>
+					<App />
+				</Router>
+			</ModalProvider>
 		</StripeProvider>
 	</ApolloProvider>,
 	document.getElementById('root'),

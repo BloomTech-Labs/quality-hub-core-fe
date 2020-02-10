@@ -6,10 +6,10 @@ const Loading = props => {
     <div>
       {/* Copied loader off of random site. Would be cool to have our own custom one?! */}
       <img
-        src={LoadingGif}
-        height="100px"
-        width="100px"
-        alt="loading animation"
+        src={require('./loading2.gif')}
+        height='100px'
+        width='100px'
+        alt='loading animation'
       />
     </div>
   );

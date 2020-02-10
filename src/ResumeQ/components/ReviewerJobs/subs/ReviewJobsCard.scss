@@ -1,0 +1,163 @@
+.reviewer-jobs-list {
+  padding: 5rem;
+  margin: 0 5% 0 15%;
+}
+.reviewer-jobs-card {
+  padding: 15px;
+  border-bottom: 1px solid #dadce0;
+  // border-radius: 0.8rem;
+  margin-bottom: 1.2rem;
+  .reviewer-info {
+    display: flex;
+    p {
+      margin: auto 7%;
+      width: 80%;
+    }
+    //    justify-content: space-between;
+    .name-container {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .reviewer-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-bottom: 10%;
+    .acc-reviewer-btn {
+      margin-right: 10px;
+      border-radius: 0.5rem;
+      font-size: 1.2rem;
+      font-style: normal;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      line-height: 2.2rem;
+      background-color: #fb2046;
+      text-align: center;
+      color: white;
+      align-items: center;
+      width: 8.1rem;
+      height: 2.9rem;
+      padding: 0;
+      cursor: pointer;
+    }
+    .dec-reviewer-btn {
+      border: solid 1px #fb2046;
+      border-radius: 0.5rem;
+      font-size: 1.2rem;
+      font-style: normal;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      line-height: 2.2rem;
+      // background-color: #FB2046;
+      text-align: center;
+      color: #fb2046;
+      align-items: center;
+      width: 8.1rem;
+      height: 2.9rem;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+}
+.reviewer-card-footer {
+  display: flex;
+  justify-content: center;
+  color: red;
+  // margin-bottom: 5%;
+  .com-reviewer-btn {
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-style: normal;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    line-height: 2.2rem;
+    background-color: #fb2046;
+    text-align: center;
+    color: white;
+    align-items: center;
+    width: 12rem;
+    height: 2.9rem;
+    // padding: 0;
+    // margin-bottom: 5%;
+    cursor: pointer;
+  }
+}
+
+summary {
+  outline: none;
+  font-size: 16px;
+  padding: 13px;
+
+  &:selection {
+    background: transparent;
+  }
+  p {
+    color: black;
+  // opacity: 50%;
+  }
+
+  // .close {
+  //     display: none;
+
+  //     [open] & {
+  //         display: inline;
+  //     }
+  // }
+
+  // .open {
+  //     display: inline;
+
+  //     [open] & {
+  //         display: none;
+  //     }
+  // }
+
+  // [open] & {
+  //     display: inline;
+  // }
+
+  // &:after {
+  //     margin: auto 11px auto 0;
+  //     content: "➕";
+  //     float: left;
+  //     text-align: center;
+  //     font-size: 11px;
+
+  //     [open] & {
+  //         padding: 0 0 12px 0;
+  //         content: "➖";
+  //     }
+  // }
+}
+
+.completed-review-card {
+  &:after {
+    margin: auto 11px auto 0;
+    content: '➕';
+    float: left;
+    text-align: center;
+    font-size: 11px;
+
+    [open] & {
+      padding: 0 0 12px 0;
+      content: '➖';
+    }
+  }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+.review-given-container {
+  p {
+    text-align: left;
+    padding-left: 1.6rem;
+    color: black;
+    // opacity: 50%;
+  }
+}
