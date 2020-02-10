@@ -1,23 +1,12 @@
+// import {  } from './test';
 import React, { useState, useEffect, useCallback } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
 import {
 	format,
-	isSameMonth,
-	isSameDay,
-	toDate,
-	endOfMonth,
-	startOfWeek,
-	endOfWeek,
-	addDays,
-	startOfMonth,
-	getDate,
 	getMonth,
 	isBefore,
-	isAfter,
 	getYear,
-	getHours,
-	getMinutes,
 	formatDistanceStrict,
 	differenceInMilliseconds
 } from 'date-fns';
@@ -30,12 +19,14 @@ import Dropzone from 'react-dropzone';
 import { DropzoneIcon } from '../../../../global/icons/dropzone';
 import { checkcircle } from '../../../../global/icons/checkcircle';
 
+//functions 
+import {availableSlots, createBookingFunction } from './00_RequestInterview_functions.js';
+
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
 	const { data: availabilities, refetch } = useQuery(GET_AVAILABILITIES, {
 		variables: { coach_id: coachId },
 	});
-
 
 	const [resumeURL, setResumeURL] = useState(null);
 	const [resume, setResume] = useState(null);
@@ -94,29 +85,7 @@ const RequestInteview = props => {
 			[e.target.name]: e.target.value,
 		});
 	};
-	const createBooking = (e, slot) => {
-		setPrevId(e.target.id);
-		let prevSlot = document.getElementById(prevId);
-		if (prevId && prevSlot !== null) {
-			prevSlot.className = 'interview-slot';
-		}
-		if (e.target.id === slot.id) {
-			e.target.className = 'available-slot interview-slot';
-		}
-
-		props.setBooking({
-			...props.booking,
-			hour: slot.hour,
-			minute: slot.minute,
-			coachName: `${availabilities.availabilitiesByCoach[0].coach.first_name} ${availabilities.availabilitiesByCoach[0].coach.last_name}`,
-			price: availabilities.availabilitiesByCoach[0].coach.post.price,
-			coach: coachId,
-			year: Number(format(props.selectedCell, 'yyyy')),
-			month: Number(format(props.selectedCell, 'M')),
-			day: Number(format(props.selectedCell, 'd')),
-			availId: slot.id,
-		});
-	};
+	const createBooking = createBookingFunction (setPrevId, prevId, props, availabilities, coachId);
 
 	useEffect(() => {
 		if (resumeURL) {
@@ -154,41 +123,7 @@ const RequestInteview = props => {
 		}
 	}, [dateAvails]);
 
-	const getAvailableSlots = () => {
-		let bookingArray = [];
-
-		for (let x = 0; x < dateAvails.length; x++) {
-			for (let y = 0; y < dateAvails.length; y++) {
-				let date1 = new Date(
-					dateAvails[x].year,
-					dateAvails[x].month - 1,
-					dateAvails[x].day,
-					dateAvails[x].hour,
-					dateAvails[x].minute,
-					0,
-				);
-				let date2 = new Date(
-					dateAvails[y].year,
-					dateAvails[y].month - 1,
-					dateAvails[y].day,
-					dateAvails[y].hour,
-					dateAvails[y].minute,
-					0,
-				);
-				let distanceInMinutes = formatDistanceStrict(date1, date2, {
-					unit: 'minute',
-				});
-				if (distanceInMinutes == '30 minutes') {
-					if (isBefore(date1, date2)) {
-						bookingArray.push(dateAvails[x])
-						break;
-					}
-				}
-			}
-		}
-
-		setCurrentSlots(bookingArray);
-	};
+	const getAvailableSlots = availableSlots (dateAvails, setCurrentSlots);
 
 	if (currentSlots) {
 		currentSlots.sort((a, b) => {
@@ -390,3 +325,8 @@ const RequestInteview = props => {
 	);
 };
 export default RequestInteview;
+
+
+
+
+
