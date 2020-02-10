@@ -36,13 +36,11 @@ const RequestInteview = props => {
 		variables: { coach_id: coachId },
 	});
 
-	// const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	const [resumeURL, setResumeURL] = useState(null);
 	const [resume, setResume] = useState(null);
 	const [currentSlots, setCurrentSlots] = useState();
 	const [setter, setSetter] = useState(true);
-	// const [selectedCell, setSelectedCell] = useState(new Date());
 	const [dateAvails, setDateAvails] = useState();
 	const [currentMonth, setCurrentMonth] = useState();
 	const [currentDate, setCurrentDate] = useState();
@@ -78,14 +76,14 @@ const RequestInteview = props => {
 					});
 			}
 		}
-		// eslint-disable-next-line
+		
 	}, [resume]);
 
 	useEffect(() => {
 		setCurrentMonth(getMonth(new Date(props.selectedCell)) + 1);
 		setCurrentDate(Number(format(props.selectedCell, 'd')));
 		setSetter(!setter);
-		// eslint-disable-next-line
+		
 	}, [props.selectedCell]);
 
 	const [prevId, setPrevId] = useState();
@@ -143,9 +141,6 @@ const RequestInteview = props => {
 						.map(avail => convertToLocal(avail))
 						.filter(
 							avail =>
-								// avail.year === getYear(props.selectedCell) &&
-								// avail.day === currentDate &&
-								// avail.month === currentMonth &&
 								avail.isOpen === true,
 						),
 			  )
@@ -157,7 +152,6 @@ const RequestInteview = props => {
 		if (dateAvails) {
 			getAvailableSlots();
 		}
-		// eslint-disable-next-line
 	}, [dateAvails]);
 
 	const getAvailableSlots = () => {
@@ -193,32 +187,10 @@ const RequestInteview = props => {
 			}
 		}
 
-		// const convertMinute = oldMinute => {
-		// 	return oldMinute === 0 ? '00' : '50';
-		// };
-		// for (let x = 0; x < dateAvails.length; x++) {
-		// 	for (let y = 0; y < dateAvails.length; y++) {
-		// 		if (dateAvails[x].year === dateAvails[y].year) {
-		// 			if (dateAvails[x].day === dateAvails[y].day) {
-		// 				if (
-		// 					`${dateAvails[x].hour}${convertMinute(dateAvails[x].minute)}` -
-		// 						`${dateAvails[y].hour}${convertMinute(
-		// 							dateAvails[y].minute,
-		// 						)}` ===
-		// 					-50
-		// 				) {
-		// 					bookingArray.push(dateAvails[x]);
-		// 					break;
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
 		setCurrentSlots(bookingArray);
 	};
 
 	if (currentSlots) {
-		// let test = [...currentSlots];
 		currentSlots.sort((a, b) => {
 			if (a.hour > b.hour) {
 				return 1;
@@ -330,11 +302,6 @@ const RequestInteview = props => {
 						</div>
 					</div>
 
-					{/* {props.booking && props.booking.minute !== undefined ? (
-				<p>You've selected {format(new Date(props.booking.year, props.booking.month - 1, props.booking.day, props.booking.hour, props.booking.minute), "PPPP - p ")}</p>
-			) : (
-				<p> Please select a time slot</p>
-			)} */}
 				</div>
 			</div>
 			<div className="formsection">
@@ -397,14 +364,6 @@ const RequestInteview = props => {
 					</div>
 				</div>
 			</div>
-			{/* <div className='formsection'>
-    <div className='interviewq-header-container'>
-   
-      <h2>Payment Info</h2>
-      <div className='interviewq-content-container'>
-      </div>
-      </div>
-    </div> */}
 
 			{props.booking && props.booking.minute !== undefined ? (
 				<div className="booking-button-container">
