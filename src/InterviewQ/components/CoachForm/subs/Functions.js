@@ -4,10 +4,7 @@ export const handleChange = (e, setFormState, formState) => {
 	if (e.target.name === 'price') {
 		//If you try to delete the last number, the price will change to $0
 		if (e.target.value.length < 2) {
-			setFormState({
-				...formState,
-				[e.target.name]: 0,
-			});
+			setFormState({ ...formState, [e.target.name]: 0, });
 			return;
 		}
 
@@ -23,10 +20,7 @@ export const handleChange = (e, setFormState, formState) => {
 			}
 
 			//If price is less than or equal to 200, make changes to state
-			setFormState({
-				...formState,
-				[e.target.name]: parseInt(newPrice[1]),
-			});
+			setFormState({ ...formState, [e.target.name]: parseInt(newPrice[1]) });
 			return;
 		} else {
 			return;
@@ -35,18 +29,12 @@ export const handleChange = (e, setFormState, formState) => {
 
 	//price text input and slider input are both connected to the same state variable
 	if (e.target.name === 'price-slider') {
-		setFormState({
-			...formState,
-			price: parseInt(e.target.value),
-		});
+		setFormState({ ...formState, price: parseInt(e.target.value) });
 		return;
 	}
 
 	// If the input is not about hourly rates, just set the value to state
-	setFormState({
-		...formState,
-		[e.target.name]: e.target.value,
-	});
+	setFormState({ ...formState, [e.target.name]: e.target.value });
 };
 
 export const handleSubmit = (e, formState, setDone, setOpen, addPost) => {
