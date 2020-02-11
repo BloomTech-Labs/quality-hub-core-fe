@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 
 import { format, isBefore, formatDistanceStrict, getMonth } from 'date-fns';
+import { convertToLocal } from '../../../../global/utils/TZHelpers';
 
 export const createBookingFunction = (setPrevId, prevId, props, availabilities, coachId) => {
 	return (e, slot) => {
@@ -99,4 +100,24 @@ export const useEffectResumeUrl = (resumeURL, props) => {
 			});
 		}
 	}, [resumeURL]);
+}
+
+export const useEffectBookedSlot = (props, currentSlots) => {
+	useEffect(() => {
+		const bookedSlot = document.getElementById(props.booking.availId);
+		if (bookedSlot) {
+			bookedSlot.classList.add('available-slot');
+		}
+	}, [currentSlots]);
+}
+
+export const useEffectAvailabilities = (availabilities, setDateAvails, setter) => {
+	useEffect(() => {
+		availabilities
+			? setDateAvails(availabilities.availabilitiesByCoach
+				.map(avail => convertToLocal(avail))
+				.filter(avail => avail.isOpen === true))
+			: setDateAvails([]);
+		// eslint-disable-next-line
+	}, [setter || availabilities]);
 }

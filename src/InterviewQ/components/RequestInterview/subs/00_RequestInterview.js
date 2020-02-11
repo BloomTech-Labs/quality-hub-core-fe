@@ -6,13 +6,13 @@ import { format,getMonth,getYear, differenceInMilliseconds } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import './00_RequestInterview.scss';
-import { convertToLocal } from '../../../../global/utils/TZHelpers';
+
 import Dropzone from 'react-dropzone';
 import { DropzoneIcon } from '../../../../global/icons/dropzone';
 import { checkcircle } from '../../../../global/icons/checkcircle';
 
 //functions 
-import {availableSlots, createBookingFunction, useEffectValidate, useEffectDate, validateFile, useEffectResumeUrl } from './00_RequestInterview_functions.js';
+import {availableSlots, createBookingFunction, useEffectValidate, useEffectDate, validateFile, useEffectResumeUrl, useEffectBookedSlot, useEffectAvailabilities } from './00_RequestInterview_functions.js';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -49,26 +49,9 @@ const RequestInteview = props => {
 
 	useEffectResumeUrl(resumeURL, props);
 
-	useEffect(() => {
-		const bookedSlot = document.getElementById(props.booking.availId);
-		if (bookedSlot) {
-			bookedSlot.classList.add('available-slot');
-		}
-	}, [currentSlots]);
+	useEffectBookedSlot(props, currentSlots);
 
-	useEffect(() => {
-		availabilities
-			? setDateAvails(
-					availabilities.availabilitiesByCoach
-						.map(avail => convertToLocal(avail))
-						.filter(
-							avail =>
-								avail.isOpen === true,
-						),
-			  )
-			: setDateAvails([]);
-		// eslint-disable-next-line
-	}, [setter || availabilities]);
+	useEffectAvailabilities(availabilities, setDateAvails, setter);
 
 	useEffect(() => {
 		if (dateAvails) {
@@ -278,6 +261,10 @@ const RequestInteview = props => {
 	);
 };
 export default RequestInteview;
+
+
+
+
 
 
 
