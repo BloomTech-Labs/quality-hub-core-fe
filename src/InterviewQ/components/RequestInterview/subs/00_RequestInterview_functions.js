@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
-import { format, isBefore, formatDistanceStrict } from 'date-fns';
+import { format, isBefore, formatDistanceStrict, getMonth } from 'date-fns';
 
 export const createBookingFunction = (setPrevId, prevId, props, availabilities, coachId) => {
 	return (e, slot) => {
@@ -50,6 +50,16 @@ export const createBookingFunction = (setPrevId, prevId, props, availabilities, 
 	};
 }
 
+export const validateFile = checkFile => {
+  if (checkFile.type === 'application/pdf') {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// useEffects
+
 export const useEffectValidate = (resume, validateFile, setResumeURL, setDropped) => {
 	useEffect(() => {
 		if (resume) {
@@ -69,4 +79,24 @@ export const useEffectValidate = (resume, validateFile, setResumeURL, setDropped
 			}
 		}
 	}, [resume]);
+}
+
+export const useEffectDate = (setCurrentMonth, props, setCurrentDate, setSetter, setter) => {
+	useEffect(() => {
+		setCurrentMonth(getMonth(new Date(props.selectedCell)) + 1);
+		setCurrentDate(Number(format(props.selectedCell, 'd')));
+		setSetter(!setter);
+	}, [props.selectedCell]);
+}
+
+
+export const useEffectResumeUrl = (resumeURL, props) => {
+	useEffect(() => {
+		if (resumeURL) {
+			props.setBooking({
+				...props.booking,
+				resumeURL: resumeURL,
+			});
+		}
+	}, [resumeURL]);
 }

@@ -12,7 +12,7 @@ import { DropzoneIcon } from '../../../../global/icons/dropzone';
 import { checkcircle } from '../../../../global/icons/checkcircle';
 
 //functions 
-import {availableSlots, createBookingFunction, useEffectValidate } from './00_RequestInterview_functions.js';
+import {availableSlots, createBookingFunction, useEffectValidate, useEffectDate, validateFile, useEffectResumeUrl } from './00_RequestInterview_functions.js';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -30,22 +30,11 @@ const RequestInteview = props => {
 	const [dragOver, setDragOver] = useState(false);
 	const [dropped, setDropped] = useState(false);
 
-	const validateFile = checkFile => {
-		if (checkFile.type === 'application/pdf') {
-			return true;
-		} else {
-			return false;
-		}
-	};
+	
 
-	useEffectValidate (resume, validateFile, setResumeURL, setDropped);
+	useEffectValidate(resume, validateFile, setResumeURL, setDropped);
 
-	useEffect(() => {
-		setCurrentMonth(getMonth(new Date(props.selectedCell)) + 1);
-		setCurrentDate(Number(format(props.selectedCell, 'd')));
-		setSetter(!setter);
-		
-	}, [props.selectedCell]);
+	useEffectDate(setCurrentMonth, props, setCurrentDate, setSetter, setter);
 
 	const [prevId, setPrevId] = useState();
 
@@ -58,14 +47,7 @@ const RequestInteview = props => {
 	
 	const createBooking = createBookingFunction (setPrevId, prevId, props, availabilities, coachId);
 
-	useEffect(() => {
-		if (resumeURL) {
-			props.setBooking({
-				...props.booking,
-				resumeURL: resumeURL,
-			});
-		}
-	}, [resumeURL]);
+	useEffectResumeUrl(resumeURL, props);
 
 	useEffect(() => {
 		const bookedSlot = document.getElementById(props.booking.availId);
@@ -296,5 +278,8 @@ const RequestInteview = props => {
 	);
 };
 export default RequestInteview;
+
+
+
 
 
