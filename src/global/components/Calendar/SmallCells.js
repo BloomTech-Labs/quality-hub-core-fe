@@ -97,7 +97,7 @@ const SmallCells = ({
 				if (
 					currentDay === availDay &&
 					currentDay ===
-						`${allTheAvails[i].month}${allTheAvails[i].day}${allTheAvails[i].year}`
+					`${allTheAvails[i].month}${allTheAvails[i].day}${allTheAvails[i].year}`
 				) {
 					if (allTheAvails[i].hour >= currentHour) {
 						if (
@@ -132,7 +132,7 @@ const SmallCells = ({
 					id={cellId}
 					className={`small-col  ${
 						isBefore(addDays(day, 1), new Date()) ? 'past-day' : isSameMonth(day, monthStart) ? 'small-cell' : 'small-cell-disabled'
-					} ${format(day, 'Mdyyyy') === format(new Date(), 'Mdyyyy') ? 'today' : ' '}`}
+						} ${format(day, 'Mdyyyy') === format(new Date(), 'Mdyyyy') ? 'today' : ' '}`}
 					key={day}
 					onClick={() => onDateClick(toDate(cloneDay))}>
 					<div
@@ -140,11 +140,11 @@ const SmallCells = ({
 							!isSameMonth(day, monthStart)
 								? 'disabled'
 								: isSameDay(day, selectedDate)
-								? 'small-selected'
-								: availsExist(day) && isAfter(addDays(day, 1), new Date())
-								? 'match-light-blue'
-								: ''
-						}`}>
+									? 'small-selected'
+									: availsExist(day) && isAfter(addDays(day, 1), new Date())
+										? 'match-light-blue'
+										: ''
+							}`}>
 						<p>{formattedDate}</p>
 					</div>
 				</div>,
