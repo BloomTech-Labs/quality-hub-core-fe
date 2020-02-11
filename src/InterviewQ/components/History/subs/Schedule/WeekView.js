@@ -28,7 +28,6 @@ import { convertToLocal } from '../../../../../global/utils/TZHelpers'
 const WeekView = ({  setSelectedDate, selectedDate, toggleMonthly }) => {
 	const [open, setOpen] = useState(false);
 	const node = useRef();
-	// console.log('THis is ryans test');
 	
 	const handleOutsideClick = e => {
 		if (node.current) {
