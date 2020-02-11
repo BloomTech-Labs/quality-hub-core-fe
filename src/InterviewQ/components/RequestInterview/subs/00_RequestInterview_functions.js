@@ -1,8 +1,7 @@
-import {
-	format,
-	isBefore,
-	formatDistanceStrict,
-} from 'date-fns';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+
+import { format, isBefore, formatDistanceStrict } from 'date-fns';
 
 export const createBookingFunction = (setPrevId, prevId, props, availabilities, coachId) => {
 	return (e, slot) => {
@@ -49,4 +48,25 @@ export const createBookingFunction = (setPrevId, prevId, props, availabilities, 
 		}
 		setCurrentSlots(bookingArray);
 	};
+}
+
+export const useEffectValidate = (resume, validateFile, setResumeURL, setDropped) => {
+	useEffect(() => {
+		if (resume) {
+			if (validateFile(resume)) {
+				let formData = new FormData();
+				formData.append('file', resume);
+				formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+				axios
+					.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
+					.then(res => {
+						setResumeURL(res.data.secure_url);
+						setDropped(true);
+					})
+					.catch(err => {
+						console.log(err);
+					});
+			}
+		}
+	}, [resume]);
 }

@@ -2,25 +2,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SmallCalendar from '../../../../global/components/Calendar/SmallCalendar';
 import { Link } from 'react-router-dom';
-import {
-	format,
-	getMonth,
-	isBefore,
-	getYear,
-	formatDistanceStrict,
-	differenceInMilliseconds
-} from 'date-fns';
+import { format,getMonth,getYear, differenceInMilliseconds } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_AVAILABILITIES } from './Resolvers';
 import './00_RequestInterview.scss';
-import axios from 'axios';
 import { convertToLocal } from '../../../../global/utils/TZHelpers';
 import Dropzone from 'react-dropzone';
 import { DropzoneIcon } from '../../../../global/icons/dropzone';
 import { checkcircle } from '../../../../global/icons/checkcircle';
 
 //functions 
-import {availableSlots, createBookingFunction } from './00_RequestInterview_functions.js';
+import {availableSlots, createBookingFunction, useEffectValidate } from './00_RequestInterview_functions.js';
 
 const RequestInteview = props => {
 	const coachId = props.match.params.coachId;
@@ -46,29 +38,7 @@ const RequestInteview = props => {
 		}
 	};
 
-	useEffect(() => {
-		if (resume) {
-			if (validateFile(resume)) {
-				let formData = new FormData();
-				formData.append('file', resume);
-				formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
-
-				axios
-					.post(
-						`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-						formData,
-					)
-					.then(res => {
-						setResumeURL(res.data.secure_url);
-						setDropped(true);
-					})
-					.catch(err => {
-						console.log(err);
-					});
-			}
-		}
-		
-	}, [resume]);
+	useEffectValidate (resume, validateFile, setResumeURL, setDropped);
 
 	useEffect(() => {
 		setCurrentMonth(getMonth(new Date(props.selectedCell)) + 1);
@@ -85,6 +55,7 @@ const RequestInteview = props => {
 			[e.target.name]: e.target.value,
 		});
 	};
+	
 	const createBooking = createBookingFunction (setPrevId, prevId, props, availabilities, coachId);
 
 	useEffect(() => {
@@ -325,8 +296,5 @@ const RequestInteview = props => {
 	);
 };
 export default RequestInteview;
-
-
-
 
 
