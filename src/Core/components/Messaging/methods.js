@@ -151,61 +151,59 @@ export const connectToRoom = (
     let messageObj;
     let messageArray = [];
 
-    currentUser.subscribeToRoom({
-      roomId: roomId,
-      hooks: {
-        onMessage: message => {
-          const messageElements = document.getElementById("message-list-div")
-            .childNodes;
-          messageObj = {
-            text: message.text,
-            senderId: message.senderId,
-            dateAdded: message.dateAdded
-          };
-          messageArray.push(messageObj);
-          setChatLog(messageArray);
-          setTheCurrentUser(currentUser);
-
-          const wrapper = document.createElement("div");
-          wrapper.classList.add("message-wrapper");
-          document.querySelector(".chat-messages").appendChild(wrapper);
-
-          const messageDiv = document.createElement("li");
-          messageDiv.textContent = `${message.text}`;
-          wrapper.appendChild(messageDiv);
-
-          const dateDiv = document.createElement("li");
-          dateDiv.classList.add("timestamp");
-          dateDiv.textContent = `${message.createdAt}`;
-          wrapper.appendChild(dateDiv);
-
-          messageDiv.id = message.id;
-          dateDiv.id = message.id;
-
-          let check = false;
-          for (let x = 0; x < messageElements.length; x++) {
-            if (messageElements[x].id == message.id) {
-              check = true;
-            }
-          }
-
-          if (!check) {
-            // document.querySelector(".chat-messages").appendChild(wrapper);
-            if (message.senderId === localStorage.getItem("id")) {
-              messageDiv.classList.add("sentMessage");
-              dateDiv.classList.add("sentMessage");
-            }
-          }
-          // return;
-          currentUser.setReadCursor({
-            roomId: roomId,
-
-            position: message.id
-          });
-          document.querySelector("#messageContainer").scrollTop = 10000000;
-          //return;
-        }
-      }
-    });
+    messageObj = subscribeToRoom(currentUser, roomId, messageObj, messageArray, setChatLog, setTheCurrentUser);
   });
 };
+function subscribeToRoom(currentUser, roomId, messageObj, messageArray, setChatLog, setTheCurrentUser) {
+  currentUser.subscribeToRoom({
+    roomId: roomId,
+    hooks: {
+      onMessage: message => {
+        const messageElements = document.getElementById("message-list-div")
+          .childNodes;
+        messageObj = {
+          text: message.text,
+          senderId: message.senderId,
+          dateAdded: message.dateAdded
+        };
+        messageArray.push(messageObj);
+        setChatLog(messageArray);
+        setTheCurrentUser(currentUser);
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("message-wrapper");
+        document.querySelector(".chat-messages").appendChild(wrapper);
+        const messageDiv = document.createElement("li");
+        messageDiv.textContent = `${message.text}`;
+        wrapper.appendChild(messageDiv);
+        const dateDiv = document.createElement("li");
+        dateDiv.classList.add("timestamp");
+        dateDiv.textContent = `${message.createdAt}`;
+        wrapper.appendChild(dateDiv);
+        messageDiv.id = message.id;
+        dateDiv.id = message.id;
+        let check = false;
+        for (let x = 0; x < messageElements.length; x++) {
+          if (messageElements[x].id == message.id) {
+            check = true;
+          }
+        }
+        if (!check) {
+          // document.querySelector(".chat-messages").appendChild(wrapper);
+          if (message.senderId === localStorage.getItem("id")) {
+            messageDiv.classList.add("sentMessage");
+            dateDiv.classList.add("sentMessage");
+          }
+        }
+        // return;
+        currentUser.setReadCursor({
+          roomId: roomId,
+          position: message.id
+        });
+        document.querySelector("#messageContainer").scrollTop = 10000000;
+        //return;
+      }
+    }
+  });
+  return messageObj;
+}
+
