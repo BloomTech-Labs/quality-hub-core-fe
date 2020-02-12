@@ -21,82 +21,21 @@
       coverage:
         name: Test and publish test coverage
     
-    		# The OS on which the job will run
         runs-on: ubuntu-latest
     
-    		# The steps for the job, executed in sequence
         steps:
     			
-    			# A GitHub action for checking out the current branch
           - uses: actions/checkout@master
     
-    			# A GitHub action to setup Node.js
           - uses: actions/setup-node@master
             with:
               node-version: "12"
     
-    			# Run the NPM install command before proceeding
           - run: yarn
     
-    			# A GitHub action for running tests and publishing coverage
           - uses: paambaati/codeclimate-action@v2.4.0
             env:
     
-    					# An environment variable, the value is a GitHub repo secret
-              CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
+              CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
             with:
-    					# Run our `coverage` command from our `package.json`
               coverageCommand: yarn coverage
-
-
-
-
-
-
-##Below lie our inital efforts, not vain in effort, but in outcome
-
-
-# name: Code Climate Test Coverage
-# on:
-#   # Trigger the workflow on push or pull request,
-#   # but only for the master branch
-#   push:
-#     branches:
-#       - production
-#       - github-actions-testing
-#   pull_request:
-#     branches:
-#       - production
-#       - github-actions-testing
-#   # Also trigger on page_build, as well as release created events
-#   page_build:
-#   release:
-#     types: # This configuration does not affect the page_build event above
-#       - created
-# jobs:
-#   build:
-#     name: woz
-#     runs-on: macos-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - run: |
-#           npm i -g yarn
-#           yarn install
-#           yarn build
-#       - uses: paambaati/codeclimate-action@v2.4.0
-#         env:
-#           CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
-#         with:
-#           # coverageCommand: yarn coverage
-#           debug: true
-#   test:
-#     name: steve
-#     runs-on: macos-latest
-#     steps:
-#       - name: Test & publish code coverage
-#       - uses: paambaati/codeclimate-action@v2.4.0
-#         env:
-#           CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
-#         with:
-#           # coverageCommand: yarn coverage
-#           debug: true
