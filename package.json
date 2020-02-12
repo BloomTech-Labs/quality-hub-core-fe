@@ -37,7 +37,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "nyc --reporter=lcov --reporter=text-summary yarn test a"
+    "coverage": "CI=true yarn test --coverage || true"
   },
   "eslintConfig": {
     "extends": "react-app"
