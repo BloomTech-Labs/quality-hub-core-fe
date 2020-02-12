@@ -51,7 +51,7 @@ export default function BecomeCoachInterviewQ() {
 				) : //while checking if user has a post, leave button off page
 				null
 			) : (
-				//if no token link to signin
+				//if no token, link to signin
 				<Link to='/signup' className='become-a-coach-reroute-to-signin'>
 					<button className='become-a-coach-btn'>
 						<span className='add-coach-form-button'>Become a coach</span>

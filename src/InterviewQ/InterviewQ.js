@@ -18,7 +18,6 @@ import WeekView from './components/History/subs/Schedule/WeekView.js'
 // import Stripe from '../global/components/Stripe';
 
 const InterviewQContainer = props => {
-	// console.log(props.location.pathname);
 	return (
 		<>
 			{!props.location.pathname.includes('meeting') &&

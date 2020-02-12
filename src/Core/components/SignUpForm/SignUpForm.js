@@ -81,13 +81,7 @@ const SignUpForm = props => {
 		e.preventDefault();
 
 		//if URL is left as default, just remove http:// and submit as empty string
-		const urlArray = [
-			'personal_url',
-			'portfolio_url',
-			'twitter_url',
-			'linkedin_url',
-			'github_url',
-		];
+		const urlArray = ['personal_url', 'portfolio_url', 'twitter_url', 'linkedin_url', 'github_url'];
 
 		let submitUser = { ...user };
 

@@ -5,6 +5,7 @@ import { setMonth, getMonth, getYear, addMonths, subMonths, format, isAfter } fr
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
+import { useModalEffect } from '../../../../../global/functions/customHooks';
 
 import { nextArrow } from '../../../../icons/nextArrow';
 import { backArrow } from '../../../../icons/backArrow';
@@ -17,15 +18,11 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 	const node = useRef();
 	const [open, setOpen] = useState(false);
 
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
-		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		}
-	}, [open]);
+	// useModalEffect() and handleOutsideClick() enable modal pop-up functionality
+	useModalEffect(open, handleOutsideClick);
 	
-	const handleOutsideClick = e => {
+	// Upon clicking outside of the modal pop-up, close the modal
+	function handleOutsideClick(e) {
 		if (node.current) {
 			if (node.current.contains(e.target)) {
 				return;
@@ -42,7 +39,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
 	}
 	const lastMonth = () => {
 		if (isAfter(currentMonth, new Date(2019, 0, 1))){
-		 setCurrentMonth(subMonths(currentMonth, 1))
+		setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
 

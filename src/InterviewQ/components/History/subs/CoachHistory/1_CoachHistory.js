@@ -51,31 +51,22 @@ export default function CoachHistory() {
 		fetchPolicy: 'network-only',
 	});
 
-	error && console.log(error);
-
 	const headings = ['Seeker', 'Date', 'Time', 'Price', 'Report', 'Review'];
 
 	const filteredData = data
-		? data.bookingsByCoach
-				.map(booking => convertToLocal(booking))
-				.filter(booking => isPast(booking))
-		: [];
+		? data.bookingsByCoach.map(booking => convertToLocal(booking)).filter(booking => isPast(booking)) : [];
 
 	return (
 		<div className='coach-history'>
 			<h2>Coach History</h2>
 			{filteredData && filteredData.length ? (
 				<div className='coach-history-headings'>
-					{headings.map((heading, index) => (
-						<h3 key={index}>{heading}</h3>
-					))}
-				</div>
-			) : (
-				<p>You have no previous bookings as a Coach</p>
-			)}
+					{headings.map((heading, index) => (<h3 key={index}>{heading}</h3>))}
+				</div>) 
+				: 
+				(<p>You have no previous bookings as a Coach</p>)}
 			{loading && <p>Loading...</p>}
-			{filteredData &&
-				filteredData.map(booking => (
+			{filteredData && filteredData.map(booking => (
 					<CoachHistoryRow key={booking.id} booking={booking} />
 				))}
 		</div>
