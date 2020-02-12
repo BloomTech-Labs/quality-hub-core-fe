@@ -6,6 +6,9 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import { Gear } from '../../../icons/gear';
 import { Signout } from '../../../icons/signout';
 
+// custom hooks/functions
+import { useModalEffect } from '../../../functions/customHooks';
+
 // Icons
 import { blankavatar } from '../../../icons/blankavatar';
 
@@ -49,18 +52,12 @@ const AvatarDropdown = props => {
 		}
 	};
 
+	// useModalEffect() and handleOutsideClick() enable modal pop-up functionality
+	useModalEffect(open, handleOutsideClick);
+
 	useEffect(() => {
 		getUser();
 	}, []);
-
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
-		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		}
-		getUser();
-	}, [open]);
 
 	return (
 		<div ref={node}>

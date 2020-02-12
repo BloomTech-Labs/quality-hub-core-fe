@@ -2,6 +2,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+// custom hooks/functions
+import { useModalEffect } from '../../../../global/functions/customHooks';
+
 //Icons
 import { Interviewqicon } from '../../../icons/interviewqicon';
 import { Resumeq } from '../../../icons/resumeqicon';
@@ -18,21 +21,21 @@ const GridDropdown = () => {
 	const location = useLocation();
 	const [open, setOpen] = useState(false);
 
-	const handleOutsideClick = e => {
+	// useModalEffect() and handleOutsideClick() enable modal pop-up functionality
+	useModalEffect(open, handleOutsideClick);
 
-		if (node && node.current && node.current.contains(e.target)) {
-			return;
-		}
-		setOpen(false);
-	};
-
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
+	// Upon clicking outside of the modal pop-up, close the modal
+	function handleOutsideClick(e) {
+		if (node.current) {
+			if (node.current.contains(e.target)) {
+				return;
+			} else {
+				setOpen(false);
+			}
 		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
+			setOpen(false);
 		}
-	}, [open]);
+	};
 
 	return (
 		<div ref={node}>

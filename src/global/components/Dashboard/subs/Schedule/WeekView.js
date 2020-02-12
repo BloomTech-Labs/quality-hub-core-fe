@@ -19,6 +19,7 @@ import {
 } from 'date-fns';
 import WeekBooking from './WeekBooking';
 import CalendarDetail from './CalendarDetail';
+import { useModalEffect } from '../../../../functions/customHooks';
 
 import { nextArrow } from '../../../../icons/nextArrow';
 import { backArrow } from '../../../../icons/backArrow';
@@ -29,7 +30,11 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 	const [open, setOpen] = useState(false);
 	const node = useRef();
 
-	const handleOutsideClick = e => {
+	// useModalEffect() and handleOutsideClick() enable modal pop-up functionality
+	useModalEffect(open, handleOutsideClick);
+
+	// Upon clicking outside of the modal pop-up, close the modal
+	function handleOutsideClick(e) {
 		if (node.current) {
 			if (node.current.contains(e.target)) {
 				return;
@@ -41,14 +46,6 @@ const WeekView = ({  setSelectedDate, selectedDate }) => {
 		}
 	};
 
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
-		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		}
-	}, [open]);
-	
 	const currentWeek = getWeek(selectedDate);
 	const scheduleBody = document.getElementsByName('weekContainer');
 	const { data } = useQuery(ALL_BOOKINGS, {

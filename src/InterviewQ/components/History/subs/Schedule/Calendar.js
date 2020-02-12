@@ -5,28 +5,24 @@ import { setMonth, getMonth, getYear, addMonths, subMonths, format, isAfter } fr
 
 import Cells from './Cells';
 import CalendarDetail from './CalendarDetail';
+import { useModalEffect } from '../../../../../global/functions/customHooks';
 
 import { nextArrow } from '../../../../../global/icons/nextArrow';
 import { backArrow } from '../../../../../global/icons/backArrow';
 
-import { days, months, years } from '../../../../../global/utils/TimeArrays.js'
+import { days, months, years } from '../../../../../global/utils/TimeArrays.js';
 
 const Calendar = ({ selectedDate, setSelectedDate, toggleMonthly }) => {
 
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const node = useRef();
 	const [open, setOpen] = useState(false);
-	
-	
-	useEffect(() => {
-		if (open) {
-			document.addEventListener('mousedown', handleOutsideClick);
-		} else {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		}
-	}, [open]);
-	
-	const handleOutsideClick = e => {
+
+	// useModalEffect() and handleOutsideClick() enable modal pop-up functionality
+	useModalEffect(open, handleOutsideClick);
+
+	// Upon clicking outside of the modal pop-up, close the modal
+	function handleOutsideClick(e){
 		if (node.current) {
 			if (node.current.contains(e.target)) {
 				return;
@@ -37,13 +33,13 @@ const Calendar = ({ selectedDate, setSelectedDate, toggleMonthly }) => {
 			setOpen(false);
 		}
 	};
-	
+
 	const nextMonth = () => {
 		setCurrentMonth(addMonths(currentMonth, 1))
 	}
 	const lastMonth = () => {
 		if (isAfter(currentMonth, new Date(2019, 0, 1))){
-		 setCurrentMonth(subMonths(currentMonth, 1))
+		setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
 

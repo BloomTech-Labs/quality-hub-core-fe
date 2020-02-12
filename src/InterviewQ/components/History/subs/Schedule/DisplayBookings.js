@@ -7,7 +7,7 @@ import { convertToLocal } from '../../../../../global/utils/TZHelpers';
 
 export const DisplayBookings = currentMonth => {
 	
-	console.log(currentMonth)
+	// console.log(currentMonth)
 	const { data, refetch } = useQuery(ALL_BOOKINGS, {
 		variables: {
 			seekerId: localStorage.getItem('id'),
@@ -19,9 +19,9 @@ export const DisplayBookings = currentMonth => {
 
 	useEffect(() => {
 		refetch();
-		console.log('running')
+		// console.log('running')
 		if (data) {
-			console.log('inner running')
+			// console.log('inner running')
 			setRenderBookings([...data.bookingsByCoach, ...data.bookingsBySeeker]);
 		}
 	}, [data, currentMonth]);
