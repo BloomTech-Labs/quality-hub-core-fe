@@ -23,19 +23,14 @@
     
         runs-on: ubuntu-latest
     
-        steps:
-    			
+        steps:	
           - uses: actions/checkout@master
-    
           - uses: actions/setup-node@master
             with:
               node-version: "12"
-    
           - run: yarn
-    
           - uses: paambaati/codeclimate-action@v2.4.0
             env:
-    
               CC_TEST_REPORTER_ID: 3f47f64eb2151f2f4ff9ac474cfc09644041bf8b322001d511f2f916ef53b1e9
             with:
               coverageCommand: yarn coverage
