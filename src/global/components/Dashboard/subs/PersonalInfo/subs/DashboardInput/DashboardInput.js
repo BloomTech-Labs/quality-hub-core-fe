@@ -191,15 +191,15 @@ const DashboardInput = ({ userKey, userValue, isLink }) => {
 				{editing ? (
 					checkKeyNameForEdit() //when you click edit, check what kind of input field to return based on key name
 				) : //When you're not in edit mode, render this
-				isLink ? (
-					<p>
-						<a href={newURL} target='_blank' rel='noopener noreferrer'>
-							{user[userKey]}
-						</a>
-					</p>
-				) : (
-					<p>{user[userKey]}</p>
-				)}
+					isLink ? (
+						<p>
+							<a href={newURL} target='_blank' rel='noopener noreferrer'>
+								{user[userKey]}
+							</a>
+						</p>
+					) : (
+							<p>{user[userKey]}</p>
+						)}
 				{/* </div> */}
 			</div>
 			<div className='update-btns'>
