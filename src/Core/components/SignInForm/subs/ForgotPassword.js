@@ -17,10 +17,6 @@ const ForgotPassword = () => {
 		});
 	};
 
-	// const handleSubmit = e => {
-	//     e.preventDefault();
-	// };
-
 	return (
 		<div className='forgotPassForm'>
 			<h1>QualityHub</h1>
