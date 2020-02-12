@@ -86,14 +86,6 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 		}
 	}, [allBookings]);
 
-
-	// useEffect(()=>{
-	// 	if(booking){
-	// 		console.log('sort booking')
-	// 		setBooking(sortBookingsFunction(booking));
-	// 	}
-	// },[booking])
-
 	const localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 	var canDelete = true;
@@ -124,7 +116,6 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 				// client.resetStore();
 				//refetch();
 				setOpen(false);
-				console.log(res);
 			})
 			.catch(err => {
 				console.log(err.message);
@@ -139,7 +130,6 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 			{booking[0] ? (
 				<div>
 					{booking.map((info, index) => {
-						console.log(info)
 						const uniquecheckToLocalStorage = id => {
 							window.localStorage.setItem('uniquecheckid', info.uniquecheck);
 							if (info.coach.id === localStorage.getItem('id')) {
@@ -212,7 +202,6 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 										{info.interviewQuestions}
 									</p>
 								</div>
-								{console.log('jargon', info)}
 								{info.id && (
 									<div className="calandar-detail-modal-button-grouping">
 										{isAfter(
