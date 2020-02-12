@@ -35,9 +35,8 @@ export default function Typewriter() {
 
 	return (
 		<div className='typewriter-text'>
-			<h1>
-				The best way to assess the quality of {text.current.text}
-				<span className='blinking-cursor'>|</span>
+			<h1>The best way to assess the quality of {text.current.text}
+        <span className='blinking-cursor'>|</span>
 			</h1>
 		</div>
 	);
