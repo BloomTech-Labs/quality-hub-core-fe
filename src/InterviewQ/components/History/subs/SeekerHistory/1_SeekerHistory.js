@@ -47,15 +47,11 @@ export default function SeekerHistory() {
 		fetchPolicy: 'network-only',
 	});
 
-	error && console.log(error);
 
 	const headings = ['Coach', 'Date', 'Time', 'Price', 'Review', 'Report'];
 
 	const filteredData = data
-		? data.bookingsBySeeker
-				.map(booking => convertToLocal(booking))
-				.filter(booking => isPast(booking))
-		: [];
+		? data.bookingsBySeeker.map(booking => convertToLocal(booking)).filter(booking => isPast(booking)) : [];
 
 	return (
 		<div className="interviewq-seeker-history">
@@ -66,12 +62,9 @@ export default function SeekerHistory() {
 						<h3 key={heading}>{heading}</h3>
 					))}
 				</div>
-			) : (
-				<p>You have no previous bookings as a Seeker</p>
-			)}
+				) : (<p>You have no previous bookings as a Seeker</p>)};
 			{loading && <p>Loading...</p>}
-			{filteredData &&
-				filteredData.map(booking => (
+			{filteredData && filteredData.map(booking => (
 					<SeekerHistoryRow key={booking.id} booking={booking} />
 				))}
 		</div>
