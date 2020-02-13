@@ -20,7 +20,7 @@ You can find the deployed project at [https://qualityhub-staging.netlify.com/](h
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/maintainability)  
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/13baf4470c5774f866a4/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/property-manager-fe/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/test_coverage)
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
