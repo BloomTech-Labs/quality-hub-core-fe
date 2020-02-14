@@ -3,9 +3,17 @@ import { withRouter } from "react-router-dom";
 import loading from "./loading.svg";
 import auth from "./Auth";
 
+// client
+import { client } from '../../../index.js'
+
 class Callback extends Component {
+
+  
+  
   async componentDidMount() {
     await auth.handleAuthentication();
+
+    client.resetStore();
 
     this.props.history.replace("/");
     // if (localStorage.getItem("loginCount") > 1) {
@@ -17,6 +25,8 @@ class Callback extends Component {
     //   console.log("REDIRECTING FROM AUTH0 SIGN UP");
     //   this.props.history.replace("/signup");
     // }
+
+    // if(localStorage.getItem('token'))
   }
 
   render() {
@@ -42,3 +52,4 @@ class Callback extends Component {
 }
 
 export default withRouter(Callback);
+

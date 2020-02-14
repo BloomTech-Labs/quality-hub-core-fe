@@ -36,10 +36,7 @@ const AvatarDropdown = props => {
     client.clearStore(); //remove token from cache
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
-<<<<<<< HEAD
     
-=======
->>>>>>> 12cd8439cc503cffa4e12bec795405a3221cafc6
     props.logout();
     auth.logout();
   };

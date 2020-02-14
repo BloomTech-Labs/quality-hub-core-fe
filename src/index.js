@@ -10,6 +10,7 @@ import { StripeProvider } from "react-stripe-elements";
 import auth from "./global/components/Auth/Auth";
 require("dotenv").config();
 
+
 const addBearerToToken = token => {
   return token ? `Bearer ${token}` : "";
 };
@@ -18,8 +19,7 @@ const stripeKey = process.env.REACT_APP_STRIPE_KEY || "stripe";
 
 const cache = new InMemoryCache();
 
-const client = new ApolloClient({
-<<<<<<< HEAD
+export const client = new ApolloClient({
 	//https://quality-hub-gateway-staging.herokuapp.com/
 	// uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
 	uri: 'http://localhost:5500',
@@ -27,27 +27,13 @@ const client = new ApolloClient({
 		operation.setContext(context => ({
 			headers: {
 				...context.headers,
-				Authorization: auth.getIdToken(),
+        // ...(localStorage.getItem("token") ? {Authorization: addBearerToToken(localStorage.getItem("token"))} : {}),
+        Authorization: localStorage.getItem("token")
 			},
 		}));
 	},
 	cache,
 	resolvers: {},
-=======
-  //https://quality-hub-gateway-staging.herokuapp.com/
-  // uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
-  uri: "https://quality-hub-core-staging.herokuapp.com/",
-  request: operation => {
-    operation.setContext(context => ({
-      headers: {
-        ...context.headers,
-        Authorization: addBearerToToken(auth.getIdToken())
-      }
-    }));
-  },
-  cache,
-  resolvers: {}
->>>>>>> 12cd8439cc503cffa4e12bec795405a3221cafc6
 });
 
 cache.writeData({
@@ -56,6 +42,16 @@ cache.writeData({
     isCoach: false // Needs update
   }
 });
+
+
+client.onResetStore(() => {
+  console.log("HELLO. RESET.");
+  
+	window.location.reload();
+  
+  
+});
+
 
 ReactDOM.render(
   <ApolloProvider client={client}>
