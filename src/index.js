@@ -1,53 +1,43 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+
 import "./index.scss";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import ApolloClient, { InMemoryCache } from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { StripeProvider } from "react-stripe-elements";
-// auth0
-import auth from "./global/components/Auth/Auth";
-require("dotenv").config();
 
-const addBearerToToken = token => {
-  return token ? `Bearer ${token}` : "";
-};
+import { Auth0Provider } from "./global/auth/react-auth0-spa";
+import { StripeProvider } from "react-stripe-elements";
+
+require("dotenv").config();
 
 const stripeKey = process.env.REACT_APP_STRIPE_KEY || "stripe";
 
-const cache = new InMemoryCache();
-
-const client = new ApolloClient({
-  //https://quality-hub-gateway-staging.herokuapp.com/
-  // uri: 'https://quality-hub-gateway-staging.herokuapp.com/',
-  uri: "https://quality-hub-core-staging.herokuapp.com/",
-  request: operation => {
-    operation.setContext(context => ({
-      headers: {
-        ...context.headers,
-        Authorization: addBearerToToken(auth.getIdToken())
-      }
-    }));
-  },
-  cache,
-  resolvers: {}
-});
-
-cache.writeData({
-  data: {
-    isLoggedIn: !!localStorage.getItem("token"), // Logic needs update
-    isCoach: false // Needs update
-  }
-});
+const onRedirectCallback = appState => {
+  createBrowserHistory().push(
+    appState && appState.targetUrl
+      ? appState.targetUrl
+      : window.location.pathname
+  );
+};
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <Auth0Provider
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    client_id={process.env.REACT_APP_CLIENT_ID}
+    redirect_uri="http://localhost:3000/callback"
+    onRedirectCallback={onRedirectCallback}
+    redirectUri="http://localhost:3000/callback"
+    audience="https://explorequality.auth0.com/userinfo"
+    responseType="token id_token"
+    scope="openid email"
+  >
     <StripeProvider apiKey={stripeKey}>
       <Router>
         <App />
       </Router>
     </StripeProvider>
-  </ApolloProvider>,
+  </Auth0Provider>,
+
   document.getElementById("root")
 );
