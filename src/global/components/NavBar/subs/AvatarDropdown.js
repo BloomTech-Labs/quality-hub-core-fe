@@ -6,9 +6,6 @@ import { useLazyQuery } from "@apollo/react-hooks";
 import { Gear } from "../../../icons/gear";
 import { Signout } from "../../../icons/signout";
 
-// auth0
-import auth from "../../../../global/components/Auth/Auth";
-
 // Icons
 import { blankavatar } from "../../../icons/blankavatar";
 
@@ -37,7 +34,7 @@ const AvatarDropdown = props => {
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
     props.logout();
-    auth.logout();
+    // auth.logout();
   };
 
   //If you click outside the dropdown menu, the menu will close.
