@@ -1,53 +1,31 @@
 // Libraries
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import React from 'react';
+
+import { useAuth0 } from "../../../../global/auth/react-auth0-spa";
 
 // Components
 import AvatarDropdown from '../../../../global/components/NavBar/subs/AvatarDropdown';
 import GridDropdown from '../../../../global/components/NavBar/subs/GridDropdown';
 
-// auth0
-import auth from '../../../../global/components/Auth/Auth';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
-// Query
-const CHECK_TOKEN = gql`
-	query {
-		checkToken {
-			token
-			valid
-		}
+const INFO_QUERY = gql`
+  {
+  	info
 	}
 `;
 
 export default function NavBar({ loggedin, setLoggedin, history }) {
-	const { data } = useQuery(CHECK_TOKEN);
+	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+	const { loading, error, data } = useQuery(INFO_QUERY);
 
-	const logout = () => {
-		// remove this code later, will be replaced by auth0 logic ***
-		localStorage.clear();
-		// setLoggedin(false);
-		// ***
-		auth.logout();
-		history.push('/');
-	};
-
-	// *** Delete this code later after auth0 is implemented ***
-	// useEffect(() => {
-	// 	console.log(data);
-	// 	if (data) {
-	// 		if (data.checkToken.valid) {
-	// 			localStorage.setItem('token', data.checkToken.token);
-	// 		} else {
-	// 			logout();
-	// 		}
-	// 	}
-	// }, [data]);
-	// *********************************************************
+	if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
 
 	return (
 		<div className='landing-page-nav'>
+			<h1>{data.info}</h1>
 			<h1>QualityHub</h1>
 			<div className='landing-page-nav-right'>
 				<a
@@ -60,29 +38,28 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 					href='#services'>
 					Services
 				</a>
-				{!localStorage.getItem('token') && (
-					<>
-						{/* <NavLink
-							className='landing-page-nav-link landing-page-nav-signin'
-							to='/signin'>
-							Sign in
-						</NavLink> */}
-						<button
-							className='landing-page-nav-link landing-page-nav-signin'
-							onClick={auth.login}>
-							Sign in
-						</button>
-						<NavLink
-							className='landing-page-nav-link landing-page-nav-signup'
-							to='/signup'>
-							Sign up
-						</NavLink>
-					</>
+
+				{!isAuthenticated && (
+					<button
+						className='landing-page-nav-link landing-page-nav-signin'
+						onClick={() => loginWithRedirect({})}>
+							Log in
+					</button>
 				)}
+
+				{isAuthenticated && (
+					<button
+						className='landing-page-nav-link landing-page-nav-signin'
+						onClick={() => logout()}>
+							Log Out
+					</button>
+				)}
+
 				<div className='landing-page-nav-grid-dropdown'>
 					<GridDropdown />
 				</div>
-				{localStorage.getItem('token') && (
+
+				{isAuthenticated && (
 					<div className='landing-page-nav-avatar'>
 						<AvatarDropdown
 							logout={logout}
