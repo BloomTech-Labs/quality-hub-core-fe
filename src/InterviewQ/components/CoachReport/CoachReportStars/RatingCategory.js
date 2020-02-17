@@ -7,7 +7,12 @@ export const RatingCategory = props => {
   // state
   const [fieldsError, setError] = useState({rating: ""});
   const [hoverIdx, setHover] = useState();
-  const [fields, setFields] = useState({rating: 0, review: ""})
+  const [fields, setFields] = useState({
+    rating: 0,
+    professionalismComment: "",
+    professionalismRating: null,
+    firstImpression: ""
+  });
 
   // var declaration
   const messages = [
@@ -41,6 +46,12 @@ export const RatingCategory = props => {
     checkError(index);
   }
 
+  const handleChange = e => {
+    e.preventDefault();
+    setFields({...fields, [e.target.name]: e.target.value})
+  }
+
+  // stars
   for (let i = 0; i < 5; i++) {
     stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
   }
@@ -54,6 +65,17 @@ export const RatingCategory = props => {
           {stars}
         </div>
         <p className="message">{messages[hoverIdx]}</p>
+      </div>
+
+      <div className="review-text">
+        <label className='coachreport-label'>
+          Additional Feedback (optional)
+        </label>
+        <textarea
+          className='review-text-area'
+          name={props.category}
+          onChange={handleChange}
+        />
       </div>
     </div>
   );

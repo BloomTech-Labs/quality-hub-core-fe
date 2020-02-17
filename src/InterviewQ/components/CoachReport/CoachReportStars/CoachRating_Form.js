@@ -33,17 +33,12 @@ const CoachReviewForm = props => {
   });
   // ***
 
-  const [fields, setFields] = useState({rating: 0, review: ""})
   const [fieldsError, setError] = useState({rating: ""})
   const [hoverIdx, setHover] = useState();
-  const messages = [
-    '',
-    'Never again!',
-    'Meh.',
-    'Not bad.',
-    'Solid!',
-    'Super great!'
-  ]
+  const [fields, setFields] = useState({
+    rating: 0,
+    review: ""
+  })
 
   const handleHover = (e, index) => {
     setHover(index);
