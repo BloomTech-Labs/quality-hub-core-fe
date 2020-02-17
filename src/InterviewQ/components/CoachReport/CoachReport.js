@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 
+// Components
+import CoachReviewForm from './CoachReportStars/CoachRating_Form';
+
 // Styles
 import './CoachReport.scss';
 
@@ -57,9 +60,16 @@ export default function CoachReport(props) {
 		toggle();
 	};
 
+	{console.log("COACH REPORT", props)}
 	return (
 		<div className='coachreport-wrapper'>
-			<h2 className='coachreport-header'>Feedback</h2>
+			{/* This component renders a rubric for the coach to fill out about the seeker they interviewed */}
+				<CoachReviewForm location={props.location} history={props.history} id={props.match.params.key} />
+
+
+
+
+			{/* <h2 className='coachreport-header'>Feedback</h2>
 			<p className='coachreport-txt'>
 				Leave feedback on your interview here. Please make it as detailed as
 				possible.
@@ -127,7 +137,7 @@ export default function CoachReport(props) {
 					</button>
 				</div>
 			</form>
-			<FeedbackModal isShowing={isShowing} />
+			<FeedbackModal isShowing={isShowing} /> */}
 		</div>
 	);
 }

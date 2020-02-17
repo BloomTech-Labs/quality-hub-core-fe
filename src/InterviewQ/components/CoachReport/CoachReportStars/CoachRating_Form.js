@@ -3,11 +3,19 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../Resolvers';
-import Rating from './2_Rating';
-import './ReviewForm.scss';
+// Components
+import { RatingCategory } from './RatingCategory';
+// Dummy Data ************ DELETE LATER (after back-end is functioning properly) ************
+import { categories } from '../../../data/dummyData';
 
-const ReviewForm = props => {
+import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../../Review/Resolvers';
+import Rating from './CoachRating_Stars';
+import '../../Review/subs/ReviewForm.scss';
+
+// This component renders a rubric for the coach to fill out about the seeker they interviewed
+const CoachReviewForm = props => {
+
+  // *** Replace this GraphQL code with dummy data code
   const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
     update(cache, {data: { createReview }}) {
       const data = cache.readQuery({query: GET_SEEKER_BOOKINGS, variables: {seeker_id: localStorage.getItem('id')}})
@@ -23,6 +31,7 @@ const ReviewForm = props => {
       cache.writeQuery({query: GET_SEEKER_BOOKINGS, data: {...data, bookingsBySeeker: newBookings}})
     }
   });
+  // ***
 
   const [fields, setFields] = useState({rating: 0, review: ""})
   const [fieldsError, setError] = useState({rating: ""})
@@ -86,20 +95,28 @@ const ReviewForm = props => {
 		<form className='review-form'>
       <div className='review-container'>
         <div className='rating-form'>
-          <p className='label'>How did {props.location.state.firstName} do? </p>
+          {/* <p className='label'>Category Name Goes Here</p>
           {fieldsError.rating && <p>{fieldsError.rating}</p>}
           <div className='rating-container'>
             <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
               {stars}
             </div>
             <p className='message'>{messages[hoverIdx]}</p>
-          </div> 
+          </div>  */}
+
+          {categories.map(category => (
+            <RatingCategory category={category} />
+          ))}
+
+          
         </div>
-        <div className='review-text'>
+
+        {/* <div className='review-text'>
           <p className='label'>Any feedback you want to share?</p>
           <textarea onChange={handleChange} className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review}/>
-        </div>
+        </div> */}
       </div>
+
       <div className='button-container'>
         <Link to ='/interviewq/history' className='review-button button cancel'>Cancel</Link>
         <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
@@ -108,4 +125,4 @@ const ReviewForm = props => {
 	);
 };
 
-export default ReviewForm;
+export default CoachReviewForm;
