@@ -27,7 +27,7 @@ function App() {
     try {
       const token = await getTokenSilently();
       setAccessToken(token);
-      console.log("Token: ", token);
+      console.log("Token!!!!!!: ", token);
     } catch (e) {
       console.log(e);
     }

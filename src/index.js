@@ -21,9 +21,6 @@ const onRedirectCallback = appState => {
   );
 };
 
-
-
-
 ReactDOM.render(
   <Auth0Provider
     domain={process.env.REACT_APP_AUTH0_DOMAIN}
@@ -31,7 +28,7 @@ ReactDOM.render(
     redirect_uri="http://localhost:3000/callback"
     onRedirectCallback={onRedirectCallback}
     redirectUri="http://localhost:3000/callback"
-    audience="https://explorequality.auth0.com/userinfo"
+    audience={process.env.AUDIENCE}
     responseType="token id_token"
     scope="openid email"
   >
