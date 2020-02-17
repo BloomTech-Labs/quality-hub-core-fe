@@ -33,28 +33,46 @@ const CoachReviewForm = props => {
   });
   // ***
 
-  const [fieldsError, setError] = useState({rating: ""})
+  const [fieldsError, setError] = useState({rating: ""});
   const [hoverIdx, setHover] = useState();
   const [fields, setFields] = useState({
-    rating: 0,
-    review: ""
-  })
+    firstImpression_comment: "",
+    firstImpression_rating: null,
+    resume_comment: "",
+    resume_rating: null,
+    professionalism_comment: "",
+    professionalism_rating: null,
+    generalAttitude_comment: "",
+    generalAttitude_rating: null,
+    technicalProficiency_comment: "",
+    technicalProficiency_rating: null,
+    contentOfAnswers_comment: "",
+    contentOfAnswers_rating: null,
+    communication_comment: "",
+    communication_rating: null,
+    rating: null
+  });
 
-  const handleHover = (e, index) => {
-    setHover(index);
-  }
+  // const handleHover = (e, index) => {
+  //   setHover(index);
+  // }
 
   const handleChange = e => {
     e.preventDefault();
-    setFields({...fields, [e.target.name]: e.target.value})
+    setFields({...fields, [`${e.target.name}_comment`]: e.target.value})
+    console.log(fields);
   }
 
-  const handleClick = (e, index) => {
+  const handleClick = (e, index, name) => {
+    e.preventDefault();
+    // setFields({...fields, [`${name}_rating`]: index })
     setFields({...fields, rating: index })
     setHover(index);
-    checkError(index);
+    // checkError(index);
+    console.log(fields)
   }
 
+  // *** This needs to be adjusted when the back end is functioning ***
   const handleSubmit = e => {
     e.preventDefault();
     let id = props.id;
@@ -73,11 +91,11 @@ const CoachReviewForm = props => {
     }
   }
 
-  let stars = [];
+  // let stars = [];
 
-  for (let i = 0; i < 5; i++) {
-    stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
+  // }
 
   useEffect(() => {
     console.log(loading);
@@ -100,7 +118,7 @@ const CoachReviewForm = props => {
           </div>  */}
 
           {categories.map(category => (
-            <RatingCategory category={category} />
+            <RatingCategory category={category} handleChange={handleChange} handleClick={handleClick} fields={fields}/>
           ))}
 
           

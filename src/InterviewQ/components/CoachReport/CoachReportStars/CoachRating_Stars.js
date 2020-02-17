@@ -12,15 +12,17 @@ const Rating = ({
 	index,
 	handleClick,
 	className = '',
+	name
 }) => {
 	return (
 		<>
 			{hoverIdx >= index ? (
 				<div
 					className={`star ${className}`}
-					onClick={e => handleClick(e, index)}
+					onClick={e => handleClick(e, index, name)}
 					onMouseOver={e => handleHover(e, index)}
-					onMouseLeave={e => handleHover(e, fields.rating)}>
+					onMouseLeave={e => handleHover(e, fields.rating)}
+					>
 					<Icon
 						icon={ICONS.STAR_YELLOW}
 						width={26}

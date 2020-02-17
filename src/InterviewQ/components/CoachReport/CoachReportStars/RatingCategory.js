@@ -7,12 +7,6 @@ export const RatingCategory = props => {
   // state
   const [fieldsError, setError] = useState({rating: ""});
   const [hoverIdx, setHover] = useState();
-  const [fields, setFields] = useState({
-    rating: 0,
-    professionalismComment: "",
-    professionalismRating: null,
-    firstImpression: ""
-  });
 
   // var declaration
   const messages = [
@@ -40,25 +34,25 @@ export const RatingCategory = props => {
     setHover(index);
   }
 
-  const handleClick = (e, index) => {
-    setFields({...fields, rating: index })
-    setHover(index);
-    checkError(index);
-  }
+  // const handleClick = (e, index) => {
+  //   setFields({...fields, rating: index })
+  //   setHover(index);
+  //   checkError(index);
+  // }
 
-  const handleChange = e => {
-    e.preventDefault();
-    setFields({...fields, [e.target.name]: e.target.value})
-  }
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //   setFields({...fields, [e.target.name]: e.target.value})
+  // }
 
   // stars
   for (let i = 0; i < 5; i++) {
-    stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
+    stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={props.handleClick} index={i + 1} fields={props.fields} name={props.category.camel} />)
   }
 
   return (
     <div>
-      <p className="label">{props.category}</p>
+      <p className="label">{props.category.string}</p>
       {fieldsError.rating && <p>{fieldsError.rating}</p>}
       <div className="rating-container">
         <div className={`stars-container ${fieldsError.rating ? "error" : ""}`}>
@@ -73,8 +67,8 @@ export const RatingCategory = props => {
         </label>
         <textarea
           className='review-text-area'
-          name={props.category}
-          onChange={handleChange}
+          name={props.category.camel}
+          onChange={props.handleChange}
         />
       </div>
     </div>
