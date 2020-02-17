@@ -22,13 +22,6 @@ const onRedirectCallback = appState => {
 };
 
 
-client.onResetStore(() => {
-  console.log("HELLO. RESET.");
-  
-	window.location.reload();
-  
-  
-});
 
 
 ReactDOM.render(
