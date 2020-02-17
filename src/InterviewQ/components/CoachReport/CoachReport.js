@@ -52,6 +52,8 @@ export default function CoachReport(props) {
 				isSent: true,
 			},
 		});
+
+		// toggles modal pop-up upon clicking "Send" button
 		toggle();
 	};
 
