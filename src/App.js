@@ -11,6 +11,8 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { setContext } from "apollo-link-context";
 
+import jwt from "jsonwebtoken";
+
 function App() {
   let { pathname } = useLocation();
 
@@ -26,16 +28,24 @@ function App() {
     // getTokenSilently() returns a promise
     try {
       const token = await getTokenSilently();
+      const decoded = jwt.decode(token);
+      console.log("decoded token: ", decoded);
+      localStorage.setItem("loginCount", decoded["http://logins"]);
+      localStorage.setItem("email", decoded["http://email"]);
+
       setAccessToken(token);
       console.log("Token!!!!!!: ", token);
     } catch (e) {
       console.log(e);
     }
   };
-  getAccessToken();
+
+  if (isAuthenticated) {
+    getAccessToken();
+  }
 
   const httpLink = new HttpLink({
-    uri: "https://quality-hub-core-staging.herokuapp.com"
+    uri: "http://localhost:5500"
   });
 
   const authLink = setContext((_, { headers }) => {

@@ -15,7 +15,6 @@ import AccountsSignUp from "./subs/2_SignupForms/4_AccountsSignUp";
 import CompletedSignUp from "./subs/2_SignupForms/5_CompletedSignUp";
 
 // auth0
-import auth from "../../../global/components/Auth/Auth.js";
 
 // Mutation
 import { SIGN_UP, CREATE_CHATUSER } from "./subs/Mutation";
@@ -71,8 +70,6 @@ const SignUpForm = props => {
         setValError(err.errors);
       });
   };
-
-  
 
   const handleChange = e => {
     // console.log(e.target.value);

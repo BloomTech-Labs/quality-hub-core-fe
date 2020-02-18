@@ -101,12 +101,17 @@ const NavBar = ({ history }) => {
         <BecomeCoach />
 
         {!isAuthenticated && (
-          <button onClick={() => loginWithRedirect({})}>Log in</button>
+          <button onClick={() => loginWithRedirect({})}>Sign In</button>
         )}
 
-        {/* {isAuthenticated && (
-          <NavLink onClick={() => logout()}>Log out</NavLink>
-        )} */}
+        {!isAuthenticated && (
+          <NavLink to="/signup" className="signup-link">
+            {" "}
+            Sign Up{" "}
+          </NavLink>
+        )}
+
+        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
 
         {/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
         {/* {!auth.isAuthenticated() && !loading && (
