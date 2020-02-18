@@ -60,7 +60,7 @@ export default function CoachReport(props) {
 		toggle();
 	};
 
-	{console.log("COACH REPORT", props)}
+	// {console.log("COACH REPORT", props)}
 	return (
 		<div className='coachreport-wrapper'>
 			{/* This component renders a rubric for the coach to fill out about the seeker they interviewed */}

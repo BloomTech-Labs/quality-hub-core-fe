@@ -14,14 +14,15 @@ const Rating = ({
 	className = '',
 	name
 }) => {
+	{console.log(fields[`${name}_rating`])}
 	return (
 		<>
 			{hoverIdx >= index ? (
 				<div
-					className={`star ${className}`}
+					className={`star gold`}
 					onClick={e => handleClick(e, index, name)}
 					onMouseOver={e => handleHover(e, index)}
-					onMouseLeave={e => handleHover(e, fields.rating)}
+					onMouseLeave={e => handleHover(e, fields[`${name}_rating`])}
 					>
 					<Icon
 						icon={ICONS.STAR_YELLOW}
@@ -35,7 +36,7 @@ const Rating = ({
 					className='star'
 					onClick={e => handleClick(e, index)}
 					onMouseOver={e => handleHover(e, index)}
-					onMouseLeave={e => handleHover(e, fields.rating)}>
+					onMouseLeave={e => handleHover(e, fields[`${name}_rating`])}>
 					<Icon icon={ICONS.STAR_FILL} width={26} height={24} color='#EFEFEF' />
 				</div>
 			)}

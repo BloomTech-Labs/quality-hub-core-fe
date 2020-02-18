@@ -33,8 +33,8 @@ const CoachReviewForm = props => {
   });
   // ***
 
-  const [fieldsError, setError] = useState({rating: ""});
-  const [hoverIdx, setHover] = useState();
+  // const [fieldsError, setError] = useState({rating: ""});
+  // const [hoverIdx, setHover] = useState();
   const [fields, setFields] = useState({
     firstImpression_comment: "",
     firstImpression_rating: null,
@@ -65,31 +65,32 @@ const CoachReviewForm = props => {
 
   const handleClick = (e, index, name) => {
     e.preventDefault();
-    // setFields({...fields, [`${name}_rating`]: index })
-    setFields({...fields, rating: index })
-    setHover(index);
+    setFields({...fields, [`${name}_rating`]: index });
+    // setFields({...fields, rating: index });
+    // setHover(index);
     // checkError(index);
     console.log(fields)
   }
 
   // *** This needs to be adjusted when the back end is functioning ***
-  const handleSubmit = e => {
-    e.preventDefault();
-    let id = props.id;
-    if (checkError(fields.rating)) {
-      submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
-    }
-  }
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   let id = props.id;
+  //   if (checkError(fields.rating)) {
+  //     submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
+  //   }
+  // }
+  // *** ***
 
-  const checkError = (rating) => {
-    if (!rating) {
-      setError({...fieldsError, rating: "Rating must be at least one star"})
-      return false
-    } else {
-      setError({...fieldsError, rating: ""})
-      return true
-    }
-  }
+  // const checkError = (rating) => {
+  //   if (!rating) {
+  //     setError({...fieldsError, rating: "Rating must be at least one star"})
+  //     return false
+  //   } else {
+  //     setError({...fieldsError, rating: ""})
+  //     return true
+  //   }
+  // }
 
   // let stars = [];
 
@@ -98,7 +99,7 @@ const CoachReviewForm = props => {
   // }
 
   useEffect(() => {
-    console.log(loading);
+    console.log("loading",loading);
     if (called && !loading && !error) {
       props.setOpen(true);
     }
@@ -118,7 +119,7 @@ const CoachReviewForm = props => {
           </div>  */}
 
           {categories.map(category => (
-            <RatingCategory category={category} handleChange={handleChange} handleClick={handleClick} fields={fields}/>
+            <RatingCategory category={category} handleChange={handleChange} handleClick={handleClick} fields={fields} />
           ))}
 
           
@@ -130,10 +131,10 @@ const CoachReviewForm = props => {
         </div> */}
       </div>
 
-      <div className='button-container'>
+      {/* <div className='button-container'>
         <Link to ='/interviewq/history' className='review-button button cancel'>Cancel</Link>
         <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
-      </div>
+      </div> */}
 		</form>
 	);
 };
