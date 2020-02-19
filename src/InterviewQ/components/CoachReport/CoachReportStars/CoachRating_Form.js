@@ -8,7 +8,7 @@ import { RatingCategory } from './RatingCategory';
 // Dummy Data ************ DELETE LATER (after back-end is functioning properly) ************
 import { categories } from '../../../data/dummyData';
 
-import { CREATE_REVIEW, GET_SEEKER_BOOKINGS } from '../../Review/Resolvers';
+import { CREATE_REVIEW_FOR_COACH_TO_USE, GET_SEEKER_BOOKINGS } from '../../Review/Resolvers';
 import Rating from './CoachRating_Stars';
 import '../../Review/subs/ReviewForm.scss';
 
@@ -16,7 +16,7 @@ import '../../Review/subs/ReviewForm.scss';
 const CoachReviewForm = props => {
 
   // *** Replace this GraphQL code with dummy data code
-  const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW, {
+  const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW_FOR_COACH_TO_USE, {
     update(cache, {data: { createReview }}) {
       const data = cache.readQuery({query: GET_SEEKER_BOOKINGS, variables: {seeker_id: localStorage.getItem('id')}})
       const bookings = data.bookingsBySeeker;
@@ -33,7 +33,7 @@ const CoachReviewForm = props => {
   });
   // ***
 
-  // const [fieldsError, setError] = useState({rating: ""});
+  const [fieldsError, setError] = useState({errorMessage: ""});
   // const [hoverIdx, setHover] = useState();
   const [fields, setFields] = useState({
     firstImpression_comment: "",
@@ -49,8 +49,7 @@ const CoachReviewForm = props => {
     contentOfAnswers_comment: "",
     contentOfAnswers_rating: null,
     communication_comment: "",
-    communication_rating: null,
-    rating: null
+    communication_rating: null
   });
 
   // const handleHover = (e, index) => {
@@ -68,35 +67,40 @@ const CoachReviewForm = props => {
     setFields({...fields, [`${name}_rating`]: index });
     // setFields({...fields, rating: index });
     // setHover(index);
-    // checkError(index);
-    console.log(fields)
   }
 
-  // *** This needs to be adjusted when the back end is functioning ***
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   let id = props.id;
-  //   if (checkError(fields.rating)) {
-  //     submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}})
-  //   }
-  // }
+  // *** DO NOT DELETE This needs to be adjusted when the back end is functioning ***
+  const handleSubmit = e => {
+    e.preventDefault();
+    let canItHappen = true;
+    let id = props.id;
+
+    //run through all keys with the term "rating" to ensure they have values
+    for(let key in fields) {
+      if(key.toString().includes('rating')) {
+        //assign either a true or false value to a check variable each iteration of the for loop
+        canItHappen = checkError(fields[key]);
+      }
+      //if the value is ever made falsey, break the loop and continue to the submit review
+      if(!canItHappen) {
+        break;
+      }
+    }
+
+    //only submit the review if the check variable stayed true through the entire loop
+    canItHappen && submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}});
+  }
   // *** ***
 
-  // const checkError = (rating) => {
-  //   if (!rating) {
-  //     setError({...fieldsError, rating: "Rating must be at least one star"})
-  //     return false
-  //   } else {
-  //     setError({...fieldsError, rating: ""})
-  //     return true
-  //   }
-  // }
-
-  // let stars = [];
-
-  // for (let i = 0; i < 5; i++) {
-  //   stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={handleClick} index={i + 1} fields={fields} />)
-  // }
+  const checkError = (rating) => {
+    if (!rating) {
+      setError({...fieldsError, errorMessage: "Rating must be at least one star"})
+      return false
+    } else {
+      setError({...fieldsError, errorMessage: ""})
+      return true
+    }
+  }
 
   useEffect(() => {
     console.log("loading",loading);
@@ -109,32 +113,21 @@ const CoachReviewForm = props => {
 		<form className='review-form'>
       <div className='review-container'>
         <div className='rating-form'>
-          {/* <p className='label'>Category Name Goes Here</p>
-          {fieldsError.rating && <p>{fieldsError.rating}</p>}
-          <div className='rating-container'>
-            <div className={`stars-container ${fieldsError.rating ? 'error' : ''}`}>
-              {stars}
-            </div>
-            <p className='message'>{messages[hoverIdx]}</p>
-          </div>  */}
-
           {categories.map(category => (
             <RatingCategory category={category} handleChange={handleChange} handleClick={handleClick} fields={fields} />
           ))}
-
-          
         </div>
 
-        {/* <div className='review-text'>
-          <p className='label'>Any feedback you want to share?</p>
-          <textarea onChange={handleChange} className='review-text-area' name='review' placeholder='I thought the interview was...' value={fields.review}/>
-        </div> */}
       </div>
-
-      {/* <div className='button-container'>
+      {fieldsError.errorMessage &&
+        <div className='submit-review-error-message'>
+          <p>{fieldsError.errorMessage}</p>
+        </div>
+      }
+      <div className='button-container'>
         <Link to ='/interviewq/history' className='review-button button cancel'>Cancel</Link>
         <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
-      </div> */}
+      </div>
 		</form>
 	);
 };

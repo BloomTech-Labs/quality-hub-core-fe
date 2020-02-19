@@ -14,7 +14,6 @@ const Rating = ({
 	className = '',
 	name
 }) => {
-	{console.log(fields[`${name}_rating`])}
 	return (
 		<>
 			{hoverIdx >= index ? (

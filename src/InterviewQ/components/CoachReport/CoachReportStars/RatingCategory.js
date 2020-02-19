@@ -51,8 +51,8 @@ export const RatingCategory = props => {
   }
 
   return (
-    <div>
-      <p className="label">{props.category.string}</p>
+    <div className="rating-category">
+      <p className="rating-label">{props.category.string}</p>
       {fieldsError.rating && <p>{fieldsError.rating}</p>}
       <div className="rating-container">
         <div className={`stars-container ${fieldsError.rating ? "error" : ""}`}>
