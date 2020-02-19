@@ -24,14 +24,14 @@ export const CREATE_REVIEW_FOR_COACH_TO_USE = gql`
 
     createReview(
       uniqueBooking: $uniqueBooking
-	  	firstImpression_rating: $firstImpression_rating
+	  firstImpression_rating: $firstImpression_rating
       resume_rating: $resume_rating
       professionalism_rating: $professionalism_rating
       generalAttitude_rating: $generalAttitude_rating
       technicalProficiency_rating: $technicalProficiency_rating
       contentOfAnswers_rating: $contentOfAnswers_rating
       communication_rating: $communication_rating
-	  	firstImpression_comment: $firstImpression_comment
+	  firstImpression_comment: $firstImpression_comment
       resume_comment: $resume_comment
       professionalism_comment: $professionalism_comment
       generalAttitude_comment: $generalAttitude_comment

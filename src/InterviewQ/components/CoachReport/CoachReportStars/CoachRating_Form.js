@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 // Components
 import { RatingCategory } from './RatingCategory';
 // Dummy Data ************ DELETE LATER (after back-end is functioning properly) ************
 import { categories } from '../../../data/dummyData';
 
+// GraphQL
 import { CREATE_REVIEW_FOR_COACH_TO_USE, GET_SEEKER_BOOKINGS } from '../../Review/Resolvers';
-import Rating from './CoachRating_Stars';
+
+// Styling
 import '../../Review/subs/ReviewForm.scss';
 
 // This component renders a rubric for the coach to fill out about the seeker they interviewed
@@ -33,8 +34,8 @@ const CoachReviewForm = props => {
   });
   // ***
 
+  // state
   const [fieldsError, setError] = useState({errorMessage: ""});
-  // const [hoverIdx, setHover] = useState();
   const [fields, setFields] = useState({
     firstImpression_comment: "",
     firstImpression_rating: null,
@@ -52,43 +53,52 @@ const CoachReviewForm = props => {
     communication_rating: null
   });
 
-  // const handleHover = (e, index) => {
-  //   setHover(index);
-  // }
-
   const handleChange = e => {
     e.preventDefault();
     setFields({...fields, [`${e.target.name}_comment`]: e.target.value})
-    console.log(fields);
   }
 
   const handleClick = (e, index, name) => {
     e.preventDefault();
     setFields({...fields, [`${name}_rating`]: index });
-    // setFields({...fields, rating: index });
-    // setHover(index);
   }
 
-  // *** DO NOT DELETE This needs to be adjusted when the back end is functioning ***
+  // *** DO NOT DELETE, This needs to be adjusted when the back end is functioning ***
   const handleSubmit = e => {
     e.preventDefault();
     let canItHappen = true;
     let id = props.id;
 
-    //run through all keys with the term "rating" to ensure they have values
+    // run through all keys with the term "rating" to ensure they have values
     for(let key in fields) {
       if(key.toString().includes('rating')) {
-        //assign either a true or false value to a check variable each iteration of the for loop
+        // assign either a true or false value to a check variable each iteration of the for loop
         canItHappen = checkError(fields[key]);
       }
-      //if the value is ever made falsey, break the loop and continue to the submit review
+      // if the value is ever made falsey, break the loop and continue to the submit review
       if(!canItHappen) {
         break;
       }
     }
 
-    //only submit the review if the check variable stayed true through the entire loop
-    canItHappen && submitReview({variables: { review: fields.review, rating: Number(fields.rating), uniqueBooking: id}});
+    // only submit the review if the check variable stayed true through the entire loop
+    canItHappen && submitReview({variables: { 
+      firstImpression_comment: fields.firstImpression_comment,
+      firstImpression_rating: fields.firstImpression_rating,
+      resume_comment: fields.resume_comment,
+      resume_rating: fields.resume_rating,
+      professionalism_comment: fields.professionalism_comment,
+      professionalism_rating: fields.professionalism_rating,
+      generalAttitude_comment: fields.generalAttitude_comment,
+      generalAttitude_rating: fields.generalAttitude_rating,
+      technicalProficiency_comment: fields.technicalProficiency_comment,
+      technicalProficiency_rating: fields.technicalProficiency_rating,
+      contentOfAnswers_comment: fields.contentOfAnswers_comment,
+      contentOfAnswers_rating: fields.contentOfAnswers_rating,
+      communication_comment: fields.communication_comment,
+      communication_rating : fields.communication_rating,
+      uniqueBooking: id
+    }});
   }
   // *** ***
 
@@ -103,7 +113,7 @@ const CoachReviewForm = props => {
   }
 
   useEffect(() => {
-    console.log("loading",loading);
+    console.log("coach rating form loading", loading);
     if (called && !loading && !error) {
       props.setOpen(true);
     }
