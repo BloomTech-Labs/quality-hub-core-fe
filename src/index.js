@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 
@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { Auth0Provider } from "./global/auth/react-auth0-spa";
 import { StripeProvider } from "react-stripe-elements";
+import { set } from "date-fns";
 
 require("dotenv").config();
 
@@ -20,6 +21,7 @@ const onRedirectCallback = appState => {
       : window.location.pathname
   );
 };
+
 
 ReactDOM.render(
   <Auth0Provider

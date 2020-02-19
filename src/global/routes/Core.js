@@ -15,7 +15,16 @@ class Core extends Component {
         <Route exact path="/" render={props => <LandingPage {...props} />} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        <Route path="/signup" render={props => <SignUpForm {...props} />} />
+        <Route
+          path="/signup"
+          render={props => (
+            <SignUpForm
+              {...props}
+              completedRegister={this.props.completedRegister}
+              setCompletedRegister={this.props.setCompletedRegister}
+            />
+          )}
+        />
         <Route path="/charge" component={ChargeButton} />
         <Redirect from="/callback" to="/" />
       </Switch>

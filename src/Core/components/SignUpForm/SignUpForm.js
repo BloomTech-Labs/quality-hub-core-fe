@@ -41,6 +41,7 @@ const SignUpForm = props => {
 
   // Set user object
   const [user, setUser] = useState({
+    authId: "",
     first_name: "",
     last_name: "",
     email: localStorage.getItem("email"),
@@ -52,7 +53,8 @@ const SignUpForm = props => {
     portfolio_url: "",
     twitter_url: "",
     linkedin_url: "",
-    github_url: ""
+    github_url: "",
+    image_url: "https://randomuser.me/api/portraits/lego/1.jpg"
   });
 
   // Form management/validation
@@ -91,7 +93,12 @@ const SignUpForm = props => {
       "github_url"
     ];
 
-    let submitUser = { ...user, email: localStorage.getItem("email") };
+    let submitUser = {
+      ...user,
+      authId: localStorage.getItem("authId"),
+      email: localStorage.getItem("email"),
+      password: "fakepassword"
+    };
     console.log("HERE IS THE USER DATA", submitUser);
 
     urlArray.forEach(item => {
@@ -102,17 +109,20 @@ const SignUpForm = props => {
 
     signup({ variables: submitUser })
       .then(results => {
-        // console.log(results);
+        console.log(results);
         newChatUser({
           variables: {
             userName: `${submitUser.first_name} ${submitUser.last_name}`,
             userId: results.data.signup.user.id.toString()
           }
         });
-        let token = results.data.signup.token;
-        localStorage.setItem("token", token);
-        localStorage.setItem("id", results.data.signup.user.id);
-        props.setLoggedin(true);
+        // let token = results.data.signup.token;
+        // localStorage.setItem("token", token);
+        // localStorage.setItem("id", results.data.signup.user.id);
+        // props.setLoggedin(true);
+        console.log(props.completedRegister);
+        props.setCompletedRegister(true);
+        console.log(props.completedRegister);
         setProgress(progress + 1);
         // setTimeout(() => {
         // 	props.history.push('/dashboard');
@@ -210,12 +220,12 @@ const SignUpForm = props => {
                         handleBack={handleBack}
                         handleNext={handleSubmit}
                       />
-                      {error.error ? (
+                      {/* {error.error ? (
                         <p>
                           This email address is already in use- please enter a
                           unique email address
                         </p>
-                      ) : null}
+                      ) : null} */}
                     </>
                   );
                 case 3:

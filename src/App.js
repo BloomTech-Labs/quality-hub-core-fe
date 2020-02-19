@@ -18,6 +18,8 @@ function App() {
 
   const [accessToken, setAccessToken] = useState("");
 
+  const [completedRegister, setCompletedRegister] = useState(false);
+
   const { loading, getTokenSilently, isAuthenticated, user } = useAuth0();
   if (loading) {
     return "Loading...";
@@ -32,6 +34,7 @@ function App() {
       console.log("decoded token: ", decoded);
       localStorage.setItem("loginCount", decoded["http://logins"]);
       localStorage.setItem("email", decoded["http://email"]);
+      localStorage.setItem("authId", decoded.sub);
 
       setAccessToken(token);
       console.log("Token!!!!!!: ", token);
@@ -74,7 +77,7 @@ function App() {
   console.log("LOGIN COUNT FROM APP.JS", localStorage.getItem("loginCount"));
   const loginCount = localStorage.getItem("loginCount");
 
-  if (loginCount === "1") {
+  if (loginCount === "1" && completedRegister === false) {
     //GO HERE ON SIGN UP
     console.log("REDIRECTING FROM AUTH0 SIGN UP");
     if (window.location.pathname !== "/signup") {
@@ -91,7 +94,10 @@ function App() {
           <Route path="/" render={props => <NavBar {...props} />} />
         )}
         <div className="not-nav">
-          <Core />
+          <Core
+            completedRegister={completedRegister}
+            setCompletedRegister={setCompletedRegister}
+          />
           <InterviewQ />
         </div>
       </div>

@@ -2,6 +2,7 @@ import { gql } from "apollo-boost";
 
 export const SIGN_UP = gql`
   mutation signup(
+    $authId: String!
     $first_name: String!
     $last_name: String!
     $email: String!
@@ -16,6 +17,7 @@ export const SIGN_UP = gql`
     $github_url: String
   ) {
     signup(
+      authId: $authId
       first_name: $first_name
       last_name: $last_name
       email: $email
@@ -29,10 +31,10 @@ export const SIGN_UP = gql`
       linkedin_url: $linkedin_url
       github_url: $github_url
     ) {
-      token
       user {
         first_name
         id
+        authId
       }
     }
   }
