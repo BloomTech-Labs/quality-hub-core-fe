@@ -5,7 +5,6 @@ import Rating from './CoachRating_Stars';
 
 export const RatingCategory = props => {
   // state
-  const [fieldsError, setError] = useState({rating: ""});
   const [hoverIdx, setHover] = useState();
 
   // var declaration
@@ -20,32 +19,12 @@ export const RatingCategory = props => {
   const stars = [];
 
   // methods
-  const checkError = (rating) => {
-    if (!rating) {
-      setError({...fieldsError, rating: "Rating must be at least one star"})
-      return false
-    } else {
-      setError({...fieldsError, rating: ""})
-      return true
-    }
-  }
-
+  // this method tracks which star is being hovered over
   const handleHover = (e, index) => {
     setHover(index);
   }
 
-  // const handleClick = (e, index) => {
-  //   setFields({...fields, rating: index })
-  //   setHover(index);
-  //   checkError(index);
-  // }
-
-  // const handleChange = e => {
-  //   e.preventDefault();
-  //   setFields({...fields, [e.target.name]: e.target.value})
-  // }
-
-  // stars
+  // creates 5 stars that a user can select for grading
   for (let i = 0; i < 5; i++) {
     stars.push(<Rating key={i} hoverIdx={hoverIdx} handleHover={handleHover} handleClick={props.handleClick} index={i + 1} fields={props.fields} name={props.category.camel} />)
   }
@@ -53,9 +32,8 @@ export const RatingCategory = props => {
   return (
     <div className="rating-category">
       <p className="rating-label">{props.category.string}</p>
-      {fieldsError.rating && <p>{fieldsError.rating}</p>}
       <div className="rating-container">
-        <div className={`stars-container ${fieldsError.rating ? "error" : ""}`}>
+        <div className='stars-container'>
           {stars}
         </div>
         <p className="message">{messages[hoverIdx]}</p>
