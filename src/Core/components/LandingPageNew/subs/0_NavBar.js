@@ -40,19 +40,19 @@ export default function NavBar({ loggedin, setLoggedin, history }) {
 				</a>
 
 				{!isAuthenticated && (
-					<button
+					<a
 						className='landing-page-nav-link landing-page-nav-signin'
 						onClick={() => loginWithRedirect({})}>
 							Log in
-					</button>
+					</a>
 				)}
 
 				{isAuthenticated && (
-					<button
+					<a
 						className='landing-page-nav-link landing-page-nav-signin'
 						onClick={() => logout()}>
 							Log Out
-					</button>
+					</a>
 				)}
 
 				<div className='landing-page-nav-grid-dropdown'>

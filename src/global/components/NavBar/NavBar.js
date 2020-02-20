@@ -101,7 +101,7 @@ const NavBar = ({ history }) => {
         <BecomeCoach />
 
         {!isAuthenticated && (
-          <button onClick={() => loginWithRedirect({})}>Sign In</button>
+          <button className="signup-link" onClick={() => loginWithRedirect({})}>Sign In</button>
         )}
 
         {!isAuthenticated && (
