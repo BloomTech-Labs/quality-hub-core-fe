@@ -13,6 +13,38 @@ export const CREATE_REVIEW = gql`
   }
 }`;
 
+export const CREATE_REVIEW_FOR_COACH_TO_USE = gql`
+  mutation createReview( $uniqueBooking: String! $firstImpression_rating: Int! $resume_rating: Int! 
+  $professionalism_rating: Int! $generalAttitude_rating: Int! 
+  $technicalProficiency_rating: Int! $contentOfAnswers_rating: Int! 
+  $communication_rating: Int! $firstImpression_comment: String 
+  $resume_comment: String $professionalism_comment: String 
+  $generalAttitude_comment: String $technicalProficiency_comment: String 
+  $contentOfAnswers_comment: String $communication_comment: String) {
+
+    createReview(
+      uniqueBooking: $uniqueBooking
+	  firstImpression_rating: $firstImpression_rating
+      resume_rating: $resume_rating
+      professionalism_rating: $professionalism_rating
+      generalAttitude_rating: $generalAttitude_rating
+      technicalProficiency_rating: $technicalProficiency_rating
+      contentOfAnswers_rating: $contentOfAnswers_rating
+      communication_rating: $communication_rating
+	  firstImpression_comment: $firstImpression_comment
+      resume_comment: $resume_comment
+      professionalism_comment: $professionalism_comment
+      generalAttitude_comment: $generalAttitude_comment
+      technicalProficiency_comment: $technicalProficiency_comment
+      contentOfAnswers_comment: $contentOfAnswers_comment
+      communication_comment: $communication_comment
+    ){
+      id
+      rating
+      review
+  }
+}`;
+
 export const GET_SEEKER_BOOKINGS = gql`
 	query getSeekerHistory($seeker_id: String!) {
 		bookingsBySeeker(seeker_id: $seeker_id) {

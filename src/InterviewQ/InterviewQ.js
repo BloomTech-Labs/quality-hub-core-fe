@@ -9,7 +9,7 @@ import Booking from './components/RequestInterview';
 import ReviewPage from './components/Review';
 import ConfirmedInterview from './components/RequestInterview/subs/02_ConfirmedInterview';
 import History from './components/History';
-import CoachReport from './components/CoachReport';
+import CoachReport from './components/CoachReport/CoachReport';
 import Meeting from './components/Meeting/subs/Room';
 import Inbox from '../Core/components/Messaging/Inbox';
 import Room from './components/Meeting/subs/Room';
@@ -29,20 +29,10 @@ const InterviewQContainer = props => {
 				<Route path='/interviewq/coachlist' component={CoachList} />
 				<Route path='/interviewq/booking' component={Booking} />
 				<Route path='/interviewq/settings' component={DashInterviewQ} />
-				<Route
-					path='/interviewq/interviewconfirmed'
-					component={ConfirmedInterview}
-				/>
+				<Route path='/interviewq/interviewconfirmed' component={ConfirmedInterview} />
 				<Route exact path='/interviewq/history' component={History} />
-				<Route
-					path='/interviewq/history/coachreport/:key'
-					component={CoachReport}
-				/>
-				<Route
-					exact
-					path='/interviewq/history/review/:id'
-					component={ReviewPage}
-				/>
+				<Route exact path='/interviewq/history/coachreport/:key' component={CoachReport} />
+				<Route exact path='/interviewq/history/review/:id' component={ReviewPage} />
 				<Route exact path='/interviewq/schedule' component={Schedule} />
 				<Route exact path='/interviewq/week' component={WeekView} />
 				{/* <Route path='/interviewq/meeting' component={Meeting} /> */}
