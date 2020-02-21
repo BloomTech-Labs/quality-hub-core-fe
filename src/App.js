@@ -48,7 +48,7 @@ function App() {
   }
 
   const httpLink = new HttpLink({
-    uri: "http://localhost:5500"
+    uri: process.env.BACKEND
   });
 
   const authLink = setContext((_, { headers }) => {
