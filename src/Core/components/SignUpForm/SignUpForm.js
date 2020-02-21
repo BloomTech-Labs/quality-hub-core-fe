@@ -109,11 +109,11 @@ const SignUpForm = props => {
 
     signup({ variables: submitUser })
       .then(results => {
-        console.log(results);
+        console.log("HERE ARE THE SIGN UP RESULTS!!!!!!!!!!!:", results);
         newChatUser({
           variables: {
             userName: `${submitUser.first_name} ${submitUser.last_name}`,
-            userId: results.data.signup.user.id.toString()
+            userId: results.data.signup.user.authId.toString()
           }
         });
         // let token = results.data.signup.token;
@@ -129,7 +129,7 @@ const SignUpForm = props => {
         // }, 3000);
       })
       .catch(err => {
-        console.log(err);
+        console.log("SIGN UP FORM ERROR: ", err);
       });
   };
 

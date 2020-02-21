@@ -142,7 +142,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 						console.log(info)
 						const uniquecheckToLocalStorage = id => {
 							window.localStorage.setItem('uniquecheckid', info.uniquecheck);
-							if (info.coach.id === localStorage.getItem('id')) {
+							if (info.coach.authId === localStorage.getItem('authId')) {
 								// history.push(
 								// 	`/interviewq/history/coachreport/${info.uniquecheck}`,
 								// );
@@ -164,7 +164,7 @@ const CalendarDetail = ({ selectedDate, setOpen, open }) => {
 						};
 
 						// const isPast = (time) => differenceInMilliseconds(time, new Date()) < 0 ? "disabled-delete-booking-btn" : "";
-						return info.coach.id === localStorage.getItem('id') ? (
+						return info.coach.authId === localStorage.getItem('id') ? (
 							<div className="coach-detail" key={index}>
 								<h3>
 									<span className="detail-span">&#x25FC;</span> InterviewQ

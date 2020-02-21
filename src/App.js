@@ -31,7 +31,7 @@ function App() {
     try {
       const token = await getTokenSilently();
       const decoded = jwt.decode(token);
-      console.log("decoded token: ", decoded);
+      // console.log("decoded token: ", decoded);
       localStorage.setItem("loginCount", decoded["http://logins"]);
       localStorage.setItem("email", decoded["http://email"]);
       localStorage.setItem("authId", decoded.sub);
@@ -74,17 +74,17 @@ function App() {
     cache: new InMemoryCache()
   });
 
-  console.log("LOGIN COUNT FROM APP.JS", localStorage.getItem("loginCount"));
+  // console.log("LOGIN COUNT FROM APP.JS", localStorage.getItem("loginCount"));
   const loginCount = localStorage.getItem("loginCount");
 
   if (loginCount === "1" && completedRegister === false) {
     //GO HERE ON SIGN UP
-    console.log("REDIRECTING FROM AUTH0 SIGN UP");
+    // console.log("REDIRECTING FROM AUTH0 SIGN UP");
     if (window.location.pathname !== "/signup") {
       window.location.pathname = "/signup";
     }
   } else {
-    console.log("NOT REDIRECTING");
+    // console.log("NOT REDIRECTING");
   }
 
   return (

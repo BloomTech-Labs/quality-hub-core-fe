@@ -15,7 +15,7 @@ const MessageCoachButton = ({ post, coach }) => {
   const [chatArray, setChatArray] = useState();
   const { data } = useQuery(GET_USER);
   const history = useHistory();
-  const userId = localStorage.getItem("id");
+  const userId = localStorage.getItem("authId");
 
   useEffect(() => {
     checkRooms(setChatList);
@@ -65,14 +65,14 @@ const MessageCoachButton = ({ post, coach }) => {
     //   return
     // } else {
     console.log(chatArray);
-    if (chatArray.find(a => a.includes(`${coach.id}-${userId}`))) {
+    if (chatArray.find(a => a.includes(`${coach.authId}-${userId}`))) {
       console.log("hitting 1");
       history.push({
         pathname: "/interviewq/inbox",
         state: {
           createdChannel: {
             name: `${fullname}-${post.coach.first_name} ${post.coach.last_name}`,
-            id: `${coach.id}-${userId}`,
+            id: `${coach.authId}-${userId}`,
             createdByUserId: `${userId}`,
             displayName: `${post.coach.first_name} ${post.coach.last_name}`
           }
@@ -80,14 +80,14 @@ const MessageCoachButton = ({ post, coach }) => {
       });
 
       return;
-    } else if (chatArray.find(a => a.includes(`${userId}-${coach.id}`))) {
-      console.log("hitting 2");
+    } else if (chatArray.find(a => a.includes(`${userId}-${coach.authId}`))) {
+      console.log("hitting 2")
       history.push({
         pathname: "/interviewq/inbox",
         state: {
           createdChannel: {
             name: `${fullname}-${post.coach.first_name} ${post.coach.last_name}`,
-            id: `${userId}-${coach.id}`,
+            id: `${userId}-${coach.authId}`,
             createdByUserId: `${userId}`,
             displayName: `${post.coach.first_name} ${post.coach.last_name}`
           }
@@ -96,7 +96,7 @@ const MessageCoachButton = ({ post, coach }) => {
     } else {
       startDM(
         `${post.coach.first_name} ${post.coach.last_name}`,
-        coach.id,
+        coach.authId,
         fullname,
         history
       );
