@@ -14,10 +14,7 @@ import { Bellicon } from "../../icons/bellicon";
 // Components
 import BecomeCoach from "./subs/BecomeCoach";
 import GridDropdown from "./subs/GridDropdown";
-// import AvatarDropdown from "./subs/AvatarDropdown";
-
-// auth0
-// import auth from "../Auth/Auth";
+import AvatarDropdown from "./subs/AvatarDropdown";
 
 // Query
 const GET_USER = gql`
@@ -101,7 +98,9 @@ const NavBar = ({ history }) => {
         <BecomeCoach />
 
         {!isAuthenticated && (
-          <button className="signup-link" onClick={() => loginWithRedirect({})}>Sign In</button>
+          <button className="signup-link" onClick={() => loginWithRedirect({})}>
+            Sign In
+          </button>
         )}
 
         {!isAuthenticated && (
@@ -114,29 +113,20 @@ const NavBar = ({ history }) => {
         {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
 
         {/* If you're not logged in, and query is not loading to check if your token is valid, show sign in and sign up buttons */}
-        {/* {!auth.isAuthenticated() && !loading && (
-          <>
-            <NavLink to="/signin"> Sign In </NavLink>
-            <NavLink to="/signup" className="signup-link">
-              {" "}
-              Sign Up{" "}
-            </NavLink>
-          </>
-        )} */}
 
         <div className="bell-icon">{Bellicon()}</div>
         {/* Dropdown list of Q services */}
         <GridDropdown />
 
         {/* If you're logged in, show your avatar with a dropdown menu */}
-        {/* {auth.isAuthenticated() && (
+        {isAuthenticated && (
           <AvatarDropdown
             logout={logout}
             // loggedin={loggedin}
             // setLoggedin={setLoggedin}
             history={history}
           />
-        )} */}
+        )}
       </div>
     </div>
   );
