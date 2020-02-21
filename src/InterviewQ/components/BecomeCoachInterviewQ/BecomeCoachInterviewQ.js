@@ -23,7 +23,7 @@ export default function BecomeCoachInterviewQ() {
 
   useEffect(() => {
     //only check for current user if there is a token
-    if (localStorage.getItem("token")) {
+    if (isAuthenticated) {
       getUser();
     }
     // eslint-disable-next-line

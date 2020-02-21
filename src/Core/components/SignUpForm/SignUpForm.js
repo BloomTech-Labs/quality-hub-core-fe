@@ -116,17 +116,8 @@ const SignUpForm = props => {
             userId: results.data.signup.user.authId.toString()
           }
         });
-        // let token = results.data.signup.token;
-        // localStorage.setItem("token", token);
-        // localStorage.setItem("id", results.data.signup.user.id);
-        // props.setLoggedin(true);
-        console.log(props.completedRegister);
-        props.setCompletedRegister(true);
-        console.log(props.completedRegister);
+        localStorage.setItem("completedRegister", "1");
         setProgress(progress + 1);
-        // setTimeout(() => {
-        // 	props.history.push('/dashboard');
-        // }, 3000);
       })
       .catch(err => {
         console.log("SIGN UP FORM ERROR: ", err);

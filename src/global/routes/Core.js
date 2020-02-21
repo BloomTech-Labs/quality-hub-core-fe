@@ -20,8 +20,7 @@ class Core extends Component {
           render={props => (
             <SignUpForm
               {...props}
-              completedRegister={this.props.completedRegister}
-              setCompletedRegister={this.props.setCompletedRegister}
+              
             />
           )}
         />
