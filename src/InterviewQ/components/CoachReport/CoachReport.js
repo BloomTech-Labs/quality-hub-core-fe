@@ -31,24 +31,6 @@ export default function CoachReport(props) {
 
 	// const [createReport] = useMutation(CREATE_REPORT);
 
-	// const handleSkip = e => {
-	// 	e.preventDefault();
-	// 	history.push('/interviewq/history');
-	// };
-
-	// const handleSend = e => {
-	// 	e.preventDefault();
-	// 	createReport({
-	// 		variables: {
-	// 			uniqueBooking: key,
-	// 			strengths: report.strengths,
-	// 			growthAreas: report.growth,
-	// 			suggestions: report.suggestions,
-	// 			comments: report.comments,
-	// 			isSent: true,
-	// 		},
-	// 	});
-
 		// toggles modal pop-up upon clicking "Send" button
 	// 	toggle();
 	// };

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
+import { useParams, useHistory } from 'react-router-dom';
 
 // Components
 import { RatingCategory } from "./RatingCategory";
+import useModal from '../../../../global/utils/useModal';
+import FeedbackModal from '../../CoachReport/FeedbackModal/FeedbackModal';
+
 // Dummy Data ************ DELETE LATER (after back-end is functioning properly) ************
 import { categories } from "../../../data/dummyData";
 
@@ -14,33 +18,29 @@ import {
 } from "../../Review/Resolvers";
 
 // Styling
-import "../../Review/subs/ReviewForm.scss";
+import '../../Review/subs/ReviewForm.scss';
+import '../CoachReport.scss';
 
 // This component renders a rubric for the coach to fill out about the seeker they interviewed
 const CoachReviewForm = props => {
+  const { key } = useParams();
+  const history = useHistory();
+  const { isShowing, toggle } = useModal();
+
   // *** Replace this GraphQL code with dummy data code
-  const [submitReview, { called, loading, error }] = useMutation(
-    CREATE_REVIEW_FOR_COACH_TO_USE,
-    {
-      update(cache, { data: { createReview } }) {
-        const data = cache.readQuery({
-          query: GET_SEEKER_BOOKINGS,
-          variables: { seeker_id: localStorage.getItem("authId") }
-        });
-        const bookings = data.bookingsBySeeker;
-        const id = props.id;
-        const newBookings = bookings.map(booking => {
-          if (booking.uniquecheck === id) {
-            return { ...booking, review: createReview };
-          }
-          return booking;
-        });
-        console.log(newBookings);
-        cache.writeQuery({
-          query: GET_SEEKER_BOOKINGS,
-          data: { ...data, bookingsBySeeker: newBookings }
-        });
-      }
+  const [submitReview, { called, loading, error }] = useMutation(CREATE_REVIEW_FOR_COACH_TO_USE, {
+    update(cache, {data: { createReview }}) {
+      const data = cache.readQuery({query: GET_SEEKER_BOOKINGS, variables: {seeker_id: localStorage.getItem('id')}});
+      const bookings = data.bookingsBySeeker;
+      const id = props.match.params.key;
+      const newBookings = bookings.map(booking => {
+        if (booking.uniquecheck === id) {
+          return {...booking, review: createReview};
+        }
+        return booking;
+      })
+      console.log(newBookings);
+      cache.writeQuery({query: GET_SEEKER_BOOKINGS, data: {...data, bookingsBySeeker: newBookings}});
     }
   );
   // ***
@@ -78,7 +78,7 @@ const CoachReviewForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     let canItHappen = true;
-    let id = props.id;
+    let id = props.match.params.key;
 
     // run through all keys with the term "rating" to ensure they have values
     for (let key in fields) {
@@ -93,27 +93,27 @@ const CoachReviewForm = props => {
     }
 
     // only submit the review if the check variable stayed true through the entire loop
-    canItHappen &&
-      submitReview({
-        variables: {
-          firstImpression_comment: fields.firstImpression_comment,
-          firstImpression_rating: fields.firstImpression_rating,
-          resume_comment: fields.resume_comment,
-          resume_rating: fields.resume_rating,
-          professionalism_comment: fields.professionalism_comment,
-          professionalism_rating: fields.professionalism_rating,
-          generalAttitude_comment: fields.generalAttitude_comment,
-          generalAttitude_rating: fields.generalAttitude_rating,
-          technicalProficiency_comment: fields.technicalProficiency_comment,
-          technicalProficiency_rating: fields.technicalProficiency_rating,
-          contentOfAnswers_comment: fields.contentOfAnswers_comment,
-          contentOfAnswers_rating: fields.contentOfAnswers_rating,
-          communication_comment: fields.communication_comment,
-          communication_rating: fields.communication_rating,
-          uniqueBooking: id
-        }
-      });
-  };
+    canItHappen && submitReview({variables: { 
+      firstImpression_comment: fields.firstImpression_comment,
+      firstImpression_rating: fields.firstImpression_rating,
+      resume_comment: fields.resume_comment,
+      resume_rating: fields.resume_rating,
+      professionalism_comment: fields.professionalism_comment,
+      professionalism_rating: fields.professionalism_rating,
+      generalAttitude_comment: fields.generalAttitude_comment,
+      generalAttitude_rating: fields.generalAttitude_rating,
+      technicalProficiency_comment: fields.technicalProficiency_comment,
+      technicalProficiency_rating: fields.technicalProficiency_rating,
+      contentOfAnswers_comment: fields.contentOfAnswers_comment,
+      contentOfAnswers_rating: fields.contentOfAnswers_rating,
+      communication_comment: fields.communication_comment,
+      communication_rating : fields.communication_rating,
+      uniqueBooking: id
+    }},
+
+    // toggles modal pop-up upon clicking Submit button
+    toggle());
+  }
   // *** ***
 
   const checkError = rating => {
@@ -136,35 +136,29 @@ const CoachReviewForm = props => {
     }
   }, [called, loading]);
 
-  return (
-    <form className="review-form">
-      <div className="review-container">
-        <div className="rating-form">
-          {categories.map(category => (
-            <RatingCategory
-              category={category}
-              handleChange={handleChange}
-              handleClick={handleClick}
-              fields={fields}
-            />
-          ))}
+	return (
+      <form className='review-form coachreport-wrapper'>
+        <div className='review-container'>
+          <div className='rating-form'>
+            {categories.map(category => (
+              <RatingCategory category={category} handleChange={handleChange} handleClick={handleClick} fields={fields} />
+            ))}
+          </div>
+
         </div>
-      </div>
-      {fieldsError.errorMessage && (
-        <div className="submit-review-error-message">
-          <p>{fieldsError.errorMessage}</p>
+        {fieldsError.errorMessage &&
+          <div className='submit-review-error-message'>
+            <p>{fieldsError.errorMessage}</p>
+          </div>
+        }
+        <div className='button-container'>
+          <Link to ='/interviewq/history' className='review-button button cancel'>Skip for now</Link>
+          <p className='review-button button submit' onClick={handleSubmit}>Submit</p>
         </div>
-      )}
-      <div className="button-container">
-        <Link to="/interviewq/history" className="review-button button cancel">
-          Cancel
-        </Link>
-        <p className="review-button button submit" onClick={handleSubmit}>
-          Submit
-        </p>
-      </div>
-    </form>
-  );
+
+        <FeedbackModal isShowing={isShowing} />
+      </form>
+	);
 };
 
 export default CoachReviewForm;
