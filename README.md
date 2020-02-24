@@ -1,6 +1,6 @@
 # QualityHub Core
 
-You can find the deployed project at [https://qhubfe.herokuapp.com/](https://qhubfe.herokuapp.com/).
+You can find the deployed project at [https://qualityhub-staging.netlify.com/](https://qualityhub-staging.netlify.com/).
 Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](https://qualityhub19.netlify.com/).
 
 ## Contributors
@@ -24,11 +24,27 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vanorder/) |
 
 <br>
+
+
+## ResumeQ Contributors
+
+
+|                           [Robert Benavidez](https://github.com/AdamPayne238 "Robert Benavidez")                            |                              [Adam Payne](https://github.com/AdamPayne238 "Adam Payne")                              |                                      [Taran Neeld](https://github.com/TaranMNeeld)                                      |                          [Jonathan Mendoza](https://github.com/Jnmendza "Jonathan Mendoza")                          |                                        [Aaron Clark](https://github.com/aapclark)                                         |
+| :-------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars1.githubusercontent.com/u/44792418?s=460&v=4" width="200" />](https://github.com/robertbenavidez) | [<img src="https://avatars3.githubusercontent.com/u/52122395?s=460&v=4" width="200" />](https://github.com/Jnmendza) | [<img src="https://avatars3.githubusercontent.com/u/45437093?s=460&v=4" width="200" />](https://github.com/TaranMNeeld) | [<img src="https://avatars2.githubusercontent.com/u/53712048?s=460&v=4" width="200" />](https://github.com/Jnmendza) |   [<img src="https://avatars2.githubusercontent.com/u/51387046?s=460&v=4" width="200" />](https://github.com/aapclark)    |
+|                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/robertbenavidez)                 |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AdamPayne238)               |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TaranMNeeld)                 |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jnmendza)                 |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aapclark)                   |
+|        [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)        |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)     |      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)      |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)     | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/aapclark/) |
+
+
+
+
+
+<br>
 <br>
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/13baf4470c5774f866a4/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/property-manager-fe/test_coverage)
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
@@ -45,6 +61,7 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 ## Project Overview
 
 [Trello Board](https://trello.com/b/wDk38mF8/quality-hub)
+[QualityHub](https://trello.com/b/EZzbT94q/labs-19-quality-hub)
 
 [Product Vision Document](https://www.notion.so/Quality-Hub-89af69c8f39848bd8e1861e23d6a0372)
 
@@ -96,6 +113,7 @@ QualityHub creates the fastest way to have anything assessed for its quality in 
 #### dotenv
 
 - Loads environmental variables from a `.env` file into `process.env`
+
 
 #### node-sass
 
@@ -171,6 +189,10 @@ QualityHub creates the fastest way to have anything assessed for its quality in 
 
 - Loads environmental variables from a `.env` file into `process.env`
 
+#### env-cmd
+
+- Allows script to name a specific environment variable (eg development.env, or testing.env) which contains different information than the production env.
+
 ---
 
 # APIs
@@ -179,7 +201,7 @@ QualityHub creates the fastest way to have anything assessed for its quality in 
 
 🚫Replace text below with a description of the API
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
 ## 2️⃣ Payment API here
 
@@ -221,6 +243,7 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_backendURL - optional for your local development server
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    *  REACT_APP_FEDERATION_URI -- specifies the location of the Apollo Federation. Is set to localhost:5500 in development.env
 
 # 5️⃣ Content Licenses
 

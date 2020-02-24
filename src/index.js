@@ -1,44 +1,59 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.scss';
+import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { StripeProvider } from 'react-stripe-elements';
+import { ModalProvider } from './global/components/ModalProvider/ModalProvider'
+require('dotenv').config();
 
-import "./index.scss";
-import App from "./App";
-import { BrowserRouter as Router } from "react-router-dom";
 
-import { Auth0Provider } from "./global/auth/react-auth0-spa";
-import { StripeProvider } from "react-stripe-elements";
-import { set } from "date-fns";
-
-require("dotenv").config();
-
-const stripeKey = process.env.REACT_APP_STRIPE_KEY || "stripe";
-
-const onRedirectCallback = appState => {
-  createBrowserHistory().push(
-    appState && appState.targetUrl
-      ? appState.targetUrl
-      : window.location.pathname
-  );
+const getToken = () => {
+	let token = localStorage.getItem('token');
+	return token ? `Bearer ${token}` : '';
 };
 
-ReactDOM.render(
-  <Auth0Provider
-    domain={process.env.REACT_APP_AUTH0_DOMAIN}
-    client_id={process.env.REACT_APP_CLIENT_ID}
-    redirect_uri="https://qhubfe.herokuapp.com/callback"
-    onRedirectCallback={onRedirectCallback}
-    redirectUri="https://qhubfe.herokuapp.com/callback"
-    audience={process.env.AUDIENCE}
-    responseType="token id_token"
-    scope="openid email"
-  >
-    <StripeProvider apiKey={stripeKey}>
-      <Router>
-        <App />
-      </Router>
-    </StripeProvider>
-  </Auth0Provider>,
 
-  document.getElementById("root")
+const federationURI = process.env.REACT_APP_FEDERATION_URI || `https://qhub-federation.herokuapp.com/`
+const stripeKey = process.env.REACT_APP_STRIPE_KEY || 'stripe';
+
+console.log("Federation URI", federationURI)
+
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+	uri: federationURI,
+	request: operation => {
+		operation.setContext({
+			headers: {
+				Authorization: getToken(),
+			},
+		});
+	},
+	cache,
+	resolvers: {},
+});
+
+cache.writeData({
+	data: {
+		isLoggedIn: !!localStorage.getItem('token'), // Logic needs update
+		isCoach: false, // Needs update
+	},
+});
+
+console.log(`INDEX // cache`, cache)
+
+ReactDOM.render(
+	<ApolloProvider client={client}>
+		<StripeProvider apiKey={stripeKey}>
+			<ModalProvider>
+				<Router>
+					<App />
+				</Router>
+			</ModalProvider>
+		</StripeProvider>
+	</ApolloProvider>,
+	document.getElementById('root'),
 );

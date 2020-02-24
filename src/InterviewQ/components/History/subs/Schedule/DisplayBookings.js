@@ -10,8 +10,8 @@ export const DisplayBookings = currentMonth => {
 	console.log(currentMonth)
 	const { data, refetch } = useQuery(ALL_BOOKINGS, {
 		variables: {
-			seekerId: localStorage.getItem('authId'),
-			coachId: localStorage.getItem('authId'),
+			seekerId: localStorage.getItem('id'),
+			coachId: localStorage.getItem('id'),
 		},
 	});
 

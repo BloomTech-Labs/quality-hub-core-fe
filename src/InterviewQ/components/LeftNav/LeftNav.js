@@ -16,7 +16,7 @@ export default function QNav() {
 	// This query attempts to check if the current user has created a coach listing
 	// If a coach listing from the current user does exist, the user's current id is stored in the coach_id variable
 	const { data: coachPost, loading } = useQuery(GET_COACH_POST, {
-		variables: { coach_id: localStorage.getItem('authId') },
+		variables: { coach_id: localStorage.getItem('id') },
 	});
 
 	return (

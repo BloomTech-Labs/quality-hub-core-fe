@@ -54,8 +54,8 @@ const WeekView = ({  setSelectedDate, selectedDate, toggleMonthly }) => {
 	const scheduleBody = document.getElementsByName('weekContainer');
 	const { data } = useQuery(ALL_BOOKINGS, {
 		variables: {
-			seekerId: localStorage.getItem('authId'),
-			coachId: localStorage.getItem('authId'),
+			seekerId: localStorage.getItem('id'),
+			coachId: localStorage.getItem('id'),
 		},
 	});
 

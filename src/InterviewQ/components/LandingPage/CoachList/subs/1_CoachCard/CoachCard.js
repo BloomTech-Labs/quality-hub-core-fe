@@ -15,41 +15,36 @@ import CoachModal from "../2_CoachCardModal/CoachCardModal";
 import ReviewModal from "../03_ReviewModal/ReviewModal";
 import MessageCoachButton from "../2_CoachCardModal/MessageCoachButton";
 
-//Auth0
+// const GET_COACHRATING = gql`
+//   query RatingByCoach($coach_id: String!) {
+//     ratingByCoach(coach_id: $coach_id)
+//   }
+// `;
 
-import { useAuth0 } from "../../../../../../global/auth/react-auth0-spa";
-
-const GET_COACHRATING = gql`
-  query RatingByCoach($coach_id: String!) {
-    ratingByCoach(coach_id: $coach_id)
-  }
-`;
-
-const GET_COACHREVIEWS = gql`
-  query reviewsByCoach($coach_id: String!) {
-    reviewsByCoach(coach_id: $coach_id) {
-      id
-      seeker {
-        first_name
-        last_name
-      }
-      createdAt
-      review
-      rating
-      booking {
-        uniquecheck
-      }
-      response {
-        id
-      }
-    }
-  }
-`;
+// const GET_COACHREVIEWS = gql`
+//   query reviewsByCoach($coach_id: String!) {
+//     reviewsByCoach(coach_id: $coach_id) {
+//       id
+//       seeker {
+//         first_name
+//         last_name
+//       }
+//       createdAt
+//       review
+//       rating
+//       booking {
+//         uniquecheck
+//       }
+//       response {
+//         id
+//       }
+//     }
+//   }
+// `;
 
 const CoachCard = ({ post }) => {
   const [reviewModal, openReviewModal] = useState(false);
   const node = useRef();
-  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if (reviewModal) {
@@ -74,15 +69,15 @@ const CoachCard = ({ post }) => {
   let { coach } = post;
   let maxWidth = 100;
 
-  const { data } = useQuery(GET_COACHRATING, {
-    variables: { coach_id: coach.authId },
-    fetchPolicy: "network-only"
-  });
+  // const { data } = useQuery(GET_COACHRATING, {
+  //   variables: { coach_id: coach.id },
+  //   fetchPolicy: "network-only"
+  // });
 
-  const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
-    variables: { coach_id: coach.authId },
-    fetchPolicy: "network-only"
-  });
+  // const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
+  //   variables: { coach_id: coach.id },
+  //   fetchPolicy: "network-only"
+  // });
 
   const linkedin =
     coach.linkedin_url &&
@@ -114,15 +109,15 @@ const CoachCard = ({ post }) => {
           {coach.image_url ? (
             <img src={coach.image_url} alt="Coach Profile Pic" />
           ) : (
-            <div className="blank-image">
-              <Icon
-                icon={ICONS.BLANK_AVATAR}
-                color="white"
-                width={80}
-                height={90}
-              />
-            </div>
-          )}
+              <div className="blank-image">
+                <Icon
+                  icon={ICONS.BLANK_AVATAR}
+                  color="white"
+                  width={80}
+                  height={90}
+                />
+              </div>
+            )}
         </div>
       </div>
       <div className="coachcard-info">
@@ -163,31 +158,31 @@ const CoachCard = ({ post }) => {
         </div>
       </div>
       <div className="coachcard-rating" onClick={() => openReviewModal(true)}>
-        {data && data.ratingByCoach ? (
+        {coach.averate_coach_rating ? (
           <span className="coachcard-stars">
-            {data.ratingByCoach >= 0.5 ? star() : greystar()}
-            {data.ratingByCoach >= 1.5 ? star() : greystar()}
-            {data.ratingByCoach >= 2.5 ? star() : greystar()}
-            {data.ratingByCoach >= 3.5 ? star() : greystar()}
-            {data.ratingByCoach >= 4.5 ? star() : greystar()}
+            {coach.averate_coach_rating >= 0.25 ? star() : greystar()}
+            {coach.averate_coach_rating >= 1.25 ? star() : greystar()}
+            {coach.averate_coach_rating >= 2.25 ? star() : greystar()}
+            {coach.averate_coach_rating >= 3.25 ? star() : greystar()}
+            {coach.averate_coach_rating >= 4.25 ? star() : greystar()}
           </span>
         ) : (
-          <span className="text rating-score">
-            {/* {star()}
+            <span className="text rating-score">
+              {/* {star()}
 						{star()}
 						{star()}
 						{star()}
 						{star()} */}
-            No Rating
+              No Rating
           </span>
-        )}
+          )}
         <span className="text rating-score">
-          {data && data.ratingByCoach ? data.ratingByCoach : "--"}
+          {coach.averate_coach_rating ? coach.averate_coach_rating : "--"}
           <span>{` (${
-            coachReviews && coachReviews.reviewsByCoach
-              ? coachReviews.reviewsByCoach.length
+            coach.reviewsRecieved
+              ? coach.reviewsRecieved.length
               : " "
-          } Reviews)`}</span>
+            } Reviews)`}</span>
         </span>
       </div>
       <div className="coachcard-links">
@@ -206,36 +201,36 @@ const CoachCard = ({ post }) => {
         <div>
           <MessageCoachButton coach={coach} post={post} />
         </div>
-        {coach.authId === localStorage.getItem("authId") ? (
+        {coach.id === localStorage.getItem("id") ? (
           <button className="interview-button-disabled">Request</button>
         ) : (
-          <>
-            {isAuthenticated ? (
-              <Link
-                to={{
-                  pathname: `interviewq/booking/${coach.authId}`,
-                  state: {
-                    coachName: `${post.coach.first_name} ${post.coach.last_name}`,
-                    price: post.price
-                  }
-                }}
-              >
-                <button className="interview-button">Request</button>
-              </Link>
-            ) : (
-              <Link to="/signin">
-                <button className="interview-button">Request</button>
-              </Link>
-            )}
-          </>
-        )}
+            <>
+              {localStorage.getItem("token") ? (
+                <Link
+                  to={{
+                    pathname: `interviewq/booking/${coach.id}`,
+                    state: {
+                      coachName: `${post.coach.first_name} ${post.coach.last_name}`,
+                      price: post.price
+                    }
+                  }}
+                >
+                  <button className="interview-button">Request</button>
+                </Link>
+              ) : (
+                  <Link to="/signin">
+                    <button className="interview-button">Request</button>
+                  </Link>
+                )}
+            </>
+          )}
       </div>
       {reviewModal && (
         <ReviewModal
           reviewnode={node}
           openReviewModal={openReviewModal}
-          reviewList={coachReviews.reviewsByCoach}
-          rating={data.ratingByCoach}
+          reviewList={coach.reviewsRecieved}
+          rating={coach.averate_coach_rating}
           reviewModal={reviewModal}
         />
       )}

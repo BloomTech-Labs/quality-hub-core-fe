@@ -1,33 +1,33 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 export const GET_AVAILABILITIES = gql`
-  query availabilities($coach_id: String!) {
-    availabilitiesByCoach(coach_id: $coach_id) {
+query availabilities ($coach_id: String!){
+  availabilitiesByCoach (coach_id: $coach_id){
+    id
+    year
+    month
+    day
+    hour
+    minute
+    isOpen
+    recurring
+    coach{
       id
-      year
-      month
-      day
-      hour
-      minute
-      isOpen
-      recurring
-      coach {
-        id
-      }
     }
   }
-`;
+  }
+  `
 
-export const CREATE_AVAILABILITY = gql`
+  export const CREATE_AVAILABILITY = gql`
   mutation createAvailability(
-    $hour: Int!
-    $minute: Int!
-    # $coach: String!
-    $year: Int!
-    $month: Int!
-    $day: Int!
-    # $isOpen: Boolean!
-    $recurring: Boolean!
+      $hour: Int!
+      $minute: Int!
+      # $coach: String!
+      $year: Int!
+      $month: Int!
+      $day: Int!
+      # $isOpen: Boolean!
+      $recurring: Boolean!
   ) {
     createAvailability(
       hour: $hour
@@ -43,8 +43,8 @@ export const CREATE_AVAILABILITY = gql`
       uniquecheck
       hour
       minute
-      coach {
-        authId
+      coach{
+        id
       }
       year
       month
@@ -53,20 +53,23 @@ export const CREATE_AVAILABILITY = gql`
       recurring
     }
   }
-`;
+  `
 
-export const DELETE_AVAILABILITY = gql`
-  mutation deleteAvailability($uniquecheck: String!) {
-    deleteAvailability(uniquecheck: $uniquecheck) {
+  export const DELETE_AVAILABILITY = gql`
+    mutation deleteAvailability(
+      $uniquecheck: String!
+    ) { deleteAvailability(
+        uniquecheck: $uniquecheck
+    ) {
       id
     }
   }
-`;
+  `
 
-export const AVAIL_BY_UNIQUE = gql`
-  query availabilityByUniquecheck($uniquecheck: String!) {
-    availabilityByUniquecheck(uniquecheck: $uniquecheck) {
-      id
+  export const AVAIL_BY_UNIQUE = gql`
+    query availabilityByUniquecheck($uniquecheck: String!){
+      availabilityByUniquecheck(uniquecheck: $uniquecheck){
+        id
+      }
     }
-  }
-`;
+  `
