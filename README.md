@@ -24,7 +24,16 @@ Project including ResumeQ is deployed at [https://qualityhub19.netlify.com/](htt
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vanorder/) |
 
 <br>
-<br>
+
+## ResumeQ Contributors
+
+|                           [Robert Benavidez](https://github.com/AdamPayne238 "Robert Benavidez")                            |                              [Adam Payne](https://github.com/AdamPayne238 "Adam Payne")                              |                                      [Taran Neeld](https://github.com/TaranMNeeld)                                      |                          [Jonathan Mendoza](https://github.com/Jnmendza "Jonathan Mendoza")                          |                                        [Aaron Clark](https://github.com/aapclark)                                         |
+| :-------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars1.githubusercontent.com/u/44792418?s=460&v=4" width="200" />](https://github.com/robertbenavidez) | [<img src="https://avatars3.githubusercontent.com/u/52122395?s=460&v=4" width="200" />](https://github.com/Jnmendza) | [<img src="https://avatars3.githubusercontent.com/u/45437093?s=460&v=4" width="200" />](https://github.com/TaranMNeeld) | [<img src="https://avatars2.githubusercontent.com/u/53712048?s=460&v=4" width="200" />](https://github.com/Jnmendza) |   [<img src="https://avatars2.githubusercontent.com/u/51387046?s=460&v=4" width="200" />](https://github.com/aapclark)    |
+|                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/robertbenavidez)                 |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AdamPayne238)               |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TaranMNeeld)                 |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jnmendza)                 |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aapclark)                   |
+|        [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)        |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)     |      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)      |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)     | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/aapclark/) |
+
+<br><br>
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/0866453dd852ec63cf6c/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/quality-hub-core-fe/maintainability)
 
