@@ -42,7 +42,7 @@ const CoachReviewForm = props => {
       console.log(newBookings);
       cache.writeQuery({query: GET_SEEKER_BOOKINGS, data: {...data, bookingsBySeeker: newBookings}});
     }
-  );
+  });
   // ***
 
   // state
