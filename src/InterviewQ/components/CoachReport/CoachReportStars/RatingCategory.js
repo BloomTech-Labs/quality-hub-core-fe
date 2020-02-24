@@ -10,11 +10,11 @@ export const RatingCategory = props => {
   // var declaration
   const messages = [
     '',
-    'Never again!',
-    'Meh.',
+    'Action required',
+    'Needs improvement',
     'Not bad.',
     'Solid!',
-    'Super great!'
+    'Super Great!'
   ];
   const stars = [];
 
