@@ -3,14 +3,16 @@ import { tokenUrl, instanceLocator } from "./config";
 
 const chatManager = new ChatManager({
   instanceLocator,
-  userId: localStorage.getItem("id") ? localStorage.getItem("id") : "none",
+  userId: localStorage.getItem("authId")
+    ? localStorage.getItem("authId")
+    : "none",
   tokenProvider: new TokenProvider({
     url: tokenUrl
   })
 });
 
 export const startDM = (recipient, recipientId, sender, history) => {
-  const userId = localStorage.getItem("id");
+  const userId = localStorage.getItem("authId");
 
   chatManager.connect().then(currentUser => {
     currentUser
@@ -84,7 +86,7 @@ export const getRooms = (
           setConvList(
             list.map(channel => {
               const splitName = channel.name.split("-");
-              if (channel.createdByUserId === localStorage.getItem("id")) {
+              if (channel.createdByUserId === localStorage.getItem("authId")) {
                 return {
                   name: channel.name,
                   id: channel.id,
@@ -118,7 +120,7 @@ export const getRooms = (
       setConvList(
         currentUser.rooms.map(channel => {
           const splitName = channel.name.split("-");
-          if (channel.createdByUserId === localStorage.getItem("id")) {
+          if (channel.createdByUserId === localStorage.getItem("authId")) {
             return {
               name: channel.name,
               id: channel.id,
@@ -191,7 +193,7 @@ export const connectToRoom = (
 
           if (!check) {
             // document.querySelector(".chat-messages").appendChild(wrapper);
-            if (message.senderId === localStorage.getItem("id")) {
+            if (message.senderId === localStorage.getItem("authId")) {
               messageDiv.classList.add("sentMessage");
               dateDiv.classList.add("sentMessage");
             }

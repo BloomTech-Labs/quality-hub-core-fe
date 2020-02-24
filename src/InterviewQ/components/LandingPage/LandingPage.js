@@ -1,27 +1,32 @@
 // Library
-import React from 'react';
+import React from "react";
 
 // Styles & Icons
-import './LandingPage.scss';
+import "./LandingPage.scss";
 // import Icon from '../../../global/icons/Icon';
 // import { ICONS } from '../../../global/icons/iconConstants';
 
 // Components
 // import LandingPageHeader from './LandingPageHeader';
-import CoachList from './CoachList';
+import CoachList from "./CoachList";
+
+//Auth0
+import { useAuth0 } from "../../../global/auth/react-auth0-spa";
 
 export default function InterviewLandingPage() {
-	// Component State
-	// const [toggleFilter, setToggleFilter] = useState(true);
+  const { isAuthenticated } = useAuth0();
+  // Component State
+  // const [toggleFilter, setToggleFilter] = useState(true);
 
-	// console.log(localStorage.getItem('token'));
+  // console.log(localStorage.getItem('token'));
 
-	return (
-		<div className='interview-container' id='interview-container'>
-			<div
-				className='interview-landing-page'
-				style={{ margin: !localStorage.getItem('token') && '0 auto' }}>
-				{/* <div className='interviewq-search-header-container'>
+  return (
+    <div className="interview-container" id="interview-container">
+      <div
+        className="interview-landing-page"
+        style={{ margin: !isAuthenticated && "0 auto" }}
+      >
+        {/* <div className='interviewq-search-header-container'>
 					{/* <LandingPageHeader /> 
 					<div className='interviewq-header-btns'>
 						<button
@@ -41,10 +46,10 @@ export default function InterviewLandingPage() {
 						</button>
 					</div>
 				</div> */}
-				<div className='landingpage-container'>
-					<CoachList />
-				</div>
-			</div>
-		</div>
-	);
+        <div className="landingpage-container">
+          <CoachList />
+        </div>
+      </div>
+    </div>
+  );
 }

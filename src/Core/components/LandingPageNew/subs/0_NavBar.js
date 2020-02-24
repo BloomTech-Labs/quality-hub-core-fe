@@ -1,85 +1,79 @@
 // Libraries
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import React from "react";
+
+import { useAuth0 } from "../../../../global/auth/react-auth0-spa";
 
 // Components
-import AvatarDropdown from '../../../../global/components/NavBar/subs/AvatarDropdown';
-import GridDropdown from '../../../../global/components/NavBar/subs/GridDropdown';
+import AvatarDropdown from "../../../../global/components/NavBar/subs/AvatarDropdown";
+import GridDropdown from "../../../../global/components/NavBar/subs/GridDropdown";
 
-// Query
-const CHECK_TOKEN = gql`
-	query {
-		checkToken {
-			token
-			valid
-		}
-	}
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+
+const INFO_QUERY = gql`
+  {
+    info
+  }
 `;
 
 export default function NavBar({ loggedin, setLoggedin, history }) {
-	const { data } = useQuery(CHECK_TOKEN);
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { loading, error, data } = useQuery(INFO_QUERY);
 
-	const logout = () => {
-		localStorage.clear();
-		setLoggedin(false);
-		history.push('/');
-	};
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
 
-	useEffect(() => {
-		console.log(data);
-		if (data) {
-			if (data.checkToken.valid) {
-				localStorage.setItem('token', data.checkToken.token);
-			} else {
-				logout();
-			}
-		}
-	}, [data]);
+  return (
+    <div className="landing-page-nav">
+      <h1>{data.info}</h1>
+      <h1>QualityHub</h1>
+      <div className="landing-page-nav-right">
+        <a
+          className="landing-page-nav-link landing-page-nav-about"
+          href="#about"
+        >
+          About
+        </a>
+        <a
+          className="landing-page-nav-link landing-page-nav-link"
+          href="#services"
+        >
+          Services
+        </a>
 
-	return (
-		<div className='landing-page-nav'>
-			<h1>QualityHub</h1>
-			<div className='landing-page-nav-right'>
-				<a
-					className='landing-page-nav-link landing-page-nav-about'
-					href='#about'>
-					About
-				</a>
-				<a
-					className='landing-page-nav-link landing-page-nav-link'
-					href='#services'>
-					Services
-				</a>
-				{!localStorage.getItem('token') && (
-					<>
-						<NavLink
-							className='landing-page-nav-link landing-page-nav-signin'
-							to='/signin'>
-							Sign in
-						</NavLink>
-						<NavLink
-							className='landing-page-nav-link landing-page-nav-signup'
-							to='/signup'>
-							Sign up
-						</NavLink>
-					</>
-				)}
-				<div className='landing-page-nav-grid-dropdown'>
-					<GridDropdown />
-				</div>
-				{localStorage.getItem('token') && (
-					<div className='landing-page-nav-avatar'>
-						<AvatarDropdown
-							logout={logout}
-							loggedin={loggedin}
-							setLoggedin={setLoggedin}
-							history={history}
-						/>
-					</div>
-				)}
-			</div>
-		</div>
-	);
+        {!isAuthenticated && (
+          <a
+            className="landing-page-nav-link landing-page-nav-signin"
+            onClick={() => loginWithRedirect({})}
+          >
+            Log in
+          </a>
+        )}
+
+        {isAuthenticated && (
+          <a
+            className="landing-page-nav-link landing-page-nav-signin"
+            onClick={() => logout()}
+          >
+            Log Out
+          </a>
+        )}
+
+        <div className="landing-page-nav-grid-dropdown">
+          <GridDropdown />
+        </div>
+
+        {isAuthenticated && (
+          <div className="landing-page-nav-avatar">
+            <AvatarDropdown
+              logout={logout}
+              loggedin={loggedin}
+              setLoggedin={setLoggedin}
+              history={history}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

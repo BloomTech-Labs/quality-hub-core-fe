@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/react-hooks';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
 import { useParams, useHistory } from 'react-router-dom';
 
 // Components
-import { RatingCategory } from './RatingCategory';
+import { RatingCategory } from "./RatingCategory";
 import useModal from '../../../../global/utils/useModal';
 import FeedbackModal from '../../CoachReport/FeedbackModal/FeedbackModal';
 
 // Dummy Data ************ DELETE LATER (after back-end is functioning properly) ************
-import { categories } from '../../../data/dummyData';
+import { categories } from "../../../data/dummyData";
 
 // GraphQL
-import { CREATE_REVIEW_FOR_COACH_TO_USE, GET_SEEKER_BOOKINGS } from '../../Review/Resolvers';
+import {
+  CREATE_REVIEW_FOR_COACH_TO_USE,
+  GET_SEEKER_BOOKINGS
+} from "../../Review/Resolvers";
 
 // Styling
 import '../../Review/subs/ReviewForm.scss';
@@ -39,11 +42,11 @@ const CoachReviewForm = props => {
       console.log(newBookings);
       cache.writeQuery({query: GET_SEEKER_BOOKINGS, data: {...data, bookingsBySeeker: newBookings}});
     }
-  });
+  );
   // ***
 
   // state
-  const [fieldsError, setError] = useState({errorMessage: ""});
+  const [fieldsError, setError] = useState({ errorMessage: "" });
   const [fields, setFields] = useState({
     firstImpression_comment: "",
     firstImpression_rating: null,
@@ -63,13 +66,13 @@ const CoachReviewForm = props => {
 
   const handleChange = e => {
     e.preventDefault();
-    setFields({...fields, [`${e.target.name}_comment`]: e.target.value})
-  }
+    setFields({ ...fields, [`${e.target.name}_comment`]: e.target.value });
+  };
 
   const handleClick = (e, index, name) => {
     e.preventDefault();
-    setFields({...fields, [`${name}_rating`]: index });
-  }
+    setFields({ ...fields, [`${name}_rating`]: index });
+  };
 
   // *** DO NOT DELETE, This needs to be adjusted when the back end is functioning ***
   const handleSubmit = e => {
@@ -78,13 +81,13 @@ const CoachReviewForm = props => {
     let id = props.match.params.key;
 
     // run through all keys with the term "rating" to ensure they have values
-    for(let key in fields) {
-      if(key.toString().includes('rating')) {
+    for (let key in fields) {
+      if (key.toString().includes("rating")) {
         // assign either a true or false value to a check variable each iteration of the for loop
         canItHappen = checkError(fields[key]);
       }
       // if the value is ever made falsey, break the loop and continue to the submit review
-      if(!canItHappen) {
+      if (!canItHappen) {
         break;
       }
     }
@@ -113,22 +116,25 @@ const CoachReviewForm = props => {
   }
   // *** ***
 
-  const checkError = (rating) => {
+  const checkError = rating => {
     if (!rating) {
-      setError({...fieldsError, errorMessage: "Rating must be at least one star"})
-      return false
+      setError({
+        ...fieldsError,
+        errorMessage: "Rating must be at least one star"
+      });
+      return false;
     } else {
-      setError({...fieldsError, errorMessage: ""})
-      return true
+      setError({ ...fieldsError, errorMessage: "" });
+      return true;
     }
-  }
+  };
 
   useEffect(() => {
     console.log("coach rating form loading", loading);
     if (called && !loading && !error) {
       props.setOpen(true);
     }
-  }, [called, loading])
+  }, [called, loading]);
 
 	return (
       <form className='review-form coachreport-wrapper'>

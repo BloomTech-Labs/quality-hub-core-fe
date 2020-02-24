@@ -15,6 +15,10 @@ import CoachModal from "../2_CoachCardModal/CoachCardModal";
 import ReviewModal from "../03_ReviewModal/ReviewModal";
 import MessageCoachButton from "../2_CoachCardModal/MessageCoachButton";
 
+//Auth0
+
+import { useAuth0 } from "../../../../../../global/auth/react-auth0-spa";
+
 const GET_COACHRATING = gql`
   query RatingByCoach($coach_id: String!) {
     ratingByCoach(coach_id: $coach_id)
@@ -45,6 +49,7 @@ const GET_COACHREVIEWS = gql`
 const CoachCard = ({ post }) => {
   const [reviewModal, openReviewModal] = useState(false);
   const node = useRef();
+  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if (reviewModal) {
@@ -70,12 +75,12 @@ const CoachCard = ({ post }) => {
   let maxWidth = 100;
 
   const { data } = useQuery(GET_COACHRATING, {
-    variables: { coach_id: coach.id },
+    variables: { coach_id: coach.authId },
     fetchPolicy: "network-only"
   });
 
   const { data: coachReviews } = useQuery(GET_COACHREVIEWS, {
-    variables: { coach_id: coach.id },
+    variables: { coach_id: coach.authId },
     fetchPolicy: "network-only"
   });
 
@@ -201,14 +206,14 @@ const CoachCard = ({ post }) => {
         <div>
           <MessageCoachButton coach={coach} post={post} />
         </div>
-        {coach.id === localStorage.getItem("id") ? (
+        {coach.authId === localStorage.getItem("authId") ? (
           <button className="interview-button-disabled">Request</button>
         ) : (
           <>
-            {localStorage.getItem("token") ? (
+            {isAuthenticated ? (
               <Link
                 to={{
-                  pathname: `interviewq/booking/${coach.id}`,
+                  pathname: `interviewq/booking/${coach.authId}`,
                   state: {
                     coachName: `${post.coach.first_name} ${post.coach.last_name}`,
                     price: post.price
