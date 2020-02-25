@@ -7,7 +7,6 @@ import { ICONS } from '../../../../../global/icons/iconConstants';
 import '../../../../../InterviewQ/components/LeftNav/LeftNav.scss'
 const Schedule = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
-	console.log('Ryans calendar test CAKE');
 
 	const [isMonthly, setIsMonthly] = useState(true);
 	const toggleMonthly = () => {
@@ -29,7 +28,7 @@ const Schedule = () => {
 						selectedDate={selectedDate}
 						setSelectedDate={setSelectedDate} toggleMonthly={toggleMonthly}
 						/>) }
-				 	{/* <Route
+				{/* <Route
 					exact
 					path='/interviewq/schedule'
 					render={props => (
