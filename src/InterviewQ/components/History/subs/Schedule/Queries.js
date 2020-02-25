@@ -3,48 +3,48 @@ import { gql } from 'apollo-boost'
 export const COACH_BOOKINGS = gql`
   query coachBooking ($coachId: String!){
     bookingsByCoach(coach_id: $coachId){
-     year
-     month
-     day
-     hour
-     minute
-     coach{
-       first_name
-       email
-       id
-     }
-     seeker{
-       first_name
-       last_name
-       email
-       id
-     }
-   }
-     }
+    year
+    month
+    day
+    hour
+    minute
+    coach{
+      first_name
+      email
+      authId
+    }
+    seeker{
+      first_name
+      last_name
+      email
+      authId
+    }
+  }
+    }
   `
 
   export const SEEKER_BOOKINGS = gql`
   query seekerBooking ($seekerId: String!){
     bookingsBySeeker(seeker_id: $seekerId){
-     year
-     month
-     day
-     hour
-     minute
-     coach{
-       first_name
-       last_name
-       email
-       id
-     }
-     seeker{
-       first_name
-       last_name
-       email
-       id
-     }
-   }
-     }
+    year
+    month
+    day
+    hour
+    minute
+    coach{
+      first_name
+      last_name
+      email
+      authId
+    }
+    seeker{
+      first_name
+      last_name
+      email
+      authId
+    }
+  }
+    }
   `
 
   export const ALL_BOOKINGS = gql`
@@ -64,13 +64,13 @@ export const COACH_BOOKINGS = gql`
                   first_name
                   last_name
 									email
-									id
+									authId
 								}
 								seeker {
                   first_name
                   last_name
 									email
-									id
+									authId
 								}
 							}
 							bookingsBySeeker(seeker_id: $seekerId) {
@@ -88,13 +88,13 @@ export const COACH_BOOKINGS = gql`
                   first_name
                   last_name
 									email
-									id
+									authId
 								}
 								seeker {
                   first_name
                   last_name
 									email
-									id
+									authId
 								}
 							}
 						}
