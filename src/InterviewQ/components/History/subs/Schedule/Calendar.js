@@ -43,7 +43,7 @@ const Calendar = ({ selectedDate, setSelectedDate, toggleMonthly }) => {
 	}
 	const lastMonth = () => {
 		if (isAfter(currentMonth, new Date(2019, 0, 1))){
-		 setCurrentMonth(subMonths(currentMonth, 1))
+		setCurrentMonth(subMonths(currentMonth, 1))
 		}
 	}
 

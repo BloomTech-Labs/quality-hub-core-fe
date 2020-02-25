@@ -13,15 +13,15 @@ export const isPast = ({ year, month, day, hour, minute }) => {
 		: year === currentYr && month === currentMonth && day > currentDay
 		? false
 		: year === currentYr &&
-		  month === currentMonth &&
-		  day === currentDay &&
-		  hour > currentHr
+			month === currentMonth &&
+			day === currentDay &&
+			hour > currentHr
 		? false
 		: year === currentYr &&
-		  month === currentMonth &&
-		  day === currentDay &&
-		  hour === currentHr &&
-		  minute > currentMin
+			month === currentMonth &&
+			day === currentDay &&
+			hour === currentHr &&
+			minute > currentMin
 		? false
 		: true;
 };
