@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, useLocation } from "react-router-dom";
+import axios from 'axios';
 
 import "./global/styles/index.scss";
 import NavBar from "./global/components/NavBar";
@@ -32,12 +33,30 @@ function App() {
       const token = await getTokenSilently();
       const decoded = jwt.decode(token);
       // console.log("decoded token: ", decoded);
+
+      const axiosWithAuth = () => {
+
+        return axios.create({
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          baseURL: `https://explorequality.auth0.com/userinfo`
+        })
+      }
+
+      axiosWithAuth()
+        .get()
+        .then(res => {
+          localStorage.setItem('userInfo', JSON.stringify(res.data))
+        })
+        .catch(err => {
+          console.log(err)
+        })
       localStorage.setItem("loginCount", decoded["http://logins"]);
       localStorage.setItem("email", decoded["http://email"]);
       localStorage.setItem("authId", decoded.sub);
 
       setAccessToken(token);
-      console.log("Token!!!!!!: ", token);
     } catch (e) {
       console.log(e);
     }

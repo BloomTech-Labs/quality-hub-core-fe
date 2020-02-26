@@ -27,13 +27,15 @@ const AvatarDropdown = props => {
 
   const [open, setOpen] = useState(false);
 
+  const [profileInfo] = useState(JSON.parse(localStorage.getItem(('userInfo'))));
+
   const node = useRef();
 
   const logout = () => {
     client.clearStore(); //remove token from cache
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
-    
+
     props.logout();
     // auth.logout();
   };
@@ -63,16 +65,18 @@ const AvatarDropdown = props => {
     getUser();
   }, [open]);
 
+
+
   return (
     <div ref={node}>
       <div
         style={{
-          backgroundImage: `url('${data && data.me.image_url}')`
+          backgroundImage: `url('${data && profileInfo.picture}')`
         }}
         className="avatar-menu"
         onClick={e => setOpen(!open)}
       >
-        {data && !data.me.image_url && blankavatar()}
+        {data && !profileInfo.picture && blankavatar()}
       </div>
       {open && (
         <div className="dropdown-content">
@@ -80,23 +84,23 @@ const AvatarDropdown = props => {
             <label htmlFor="imageInput-2">
               <div className="img-wrapper-dropdown">
                 {data ? ( //ternary 1
-                  data.me.image_url ? ( //ternary 2
+                  profileInfo.picture ? ( //ternary 2
                     <div
                       className="profile-img-dropdown"
                       style={{
-                        backgroundImage: `url('${data.me.image_url}')`
+                        backgroundImage: `url('${profileInfo.picture}')`
                       }}
                     ></div> //ternary 2
                   ) : (
-                    <div className="profile-img-dropdown2">
+                      <div className="profile-img-dropdown2">
+                        {blankavatar(81.25, 81.25)}
+                      </div>
+                    ) //ternary 1
+                ) : (
+                    <div className="profile-img-dropdown3">
                       {blankavatar(81.25, 81.25)}
                     </div>
-                  ) //ternary 1
-                ) : (
-                  <div className="profile-img-dropdown3">
-                    {blankavatar(81.25, 81.25)}
-                  </div>
-                )}
+                  )}
               </div>
             </label>
           </div>
