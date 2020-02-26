@@ -78,10 +78,14 @@ body {
 }
 
 .not-nav {
-	margin-top: 6.4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 
 	@media screen and (max-width: 740px) {
-		margin-top: 25rem;
+		// margin-top: 25rem;
+		
 	}
 }
 

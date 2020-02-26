@@ -33,7 +33,7 @@ const AvatarDropdown = props => {
     client.clearStore(); //remove token from cache
     document.removeEventListener("mousedown", handleOutsideClick);
     setOpen(false);
-    
+
     props.logout();
     // auth.logout();
   };
@@ -88,15 +88,15 @@ const AvatarDropdown = props => {
                       }}
                     ></div> //ternary 2
                   ) : (
-                    <div className="profile-img-dropdown2">
+                      <div className="profile-img-dropdown2">
+                        {blankavatar(81.25, 81.25)}
+                      </div>
+                    ) //ternary 1
+                ) : (
+                    <div className="profile-img-dropdown3">
                       {blankavatar(81.25, 81.25)}
                     </div>
-                  ) //ternary 1
-                ) : (
-                  <div className="profile-img-dropdown3">
-                    {blankavatar(81.25, 81.25)}
-                  </div>
-                )}
+                  )}
               </div>
             </label>
           </div>
