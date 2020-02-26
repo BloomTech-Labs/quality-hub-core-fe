@@ -68,6 +68,7 @@ function App() {
 
   const httpLink = new HttpLink({
     uri: "https://qhubgateway.herokuapp.com/"
+    // uri: "http://localhost:5500"
   });
 
   const authLink = setContext((_, { headers }) => {

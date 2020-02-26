@@ -28,10 +28,6 @@ const GET_COACHBOOKINGS = gql`
         rating
         review
       }
-      response {
-        id
-        text
-      }
       report {
         id
         strengths
@@ -60,6 +56,8 @@ export default function CoachHistory() {
         .map(booking => convertToLocal(booking))
         .filter(booking => isPast(booking))
     : [];
+
+  console.log(filteredData);
 
   return (
     <div className="coach-history">
