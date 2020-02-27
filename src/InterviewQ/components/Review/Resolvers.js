@@ -79,11 +79,22 @@ export const GET_SEEKER_BOOKINGS = gql`
       }
       uniquecheck
       report {
-        id
-        strengths
-        growthAreas
-        suggestions
-        additionalComments
+        firstImpression_rating
+        firstImpression_comment
+        resume_rating
+        resume_comment
+        professionalism_rating
+        professionalism_comment
+        generalAttitude_rating
+        generalAttitude_comment
+        technicalProficiency_rating
+        technicalProficiency_comment
+        contentOfAnswers_rating
+        contentOfAnswers_comment
+        communication_rating
+        communication_comment
+        createdAt
+        isSent
       }
       review {
         id
