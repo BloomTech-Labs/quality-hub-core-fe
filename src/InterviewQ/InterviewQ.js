@@ -15,6 +15,7 @@ import Inbox from "../Core/components/Messaging/Inbox";
 import Room from "./components/Meeting/subs/Room";
 import Schedule from "./components/History/subs/Schedule/Schedule";
 import WeekView from "./components/History/subs/Schedule/WeekView.js";
+import CoachReviewForm from './components/CoachReport/CoachReportStars/CoachReview_Form';
 // import Stripe from '../global/components/Stripe';
 
 //Auth0
@@ -41,11 +42,7 @@ const InterviewQContainer = props => {
           component={ConfirmedInterview}
         />
         <Route exact path="/interviewq/history" component={History} />
-        <Route
-          exact
-          path="/interviewq/history/coachreport/:key"
-          component={CoachReport}
-        />
+        <Route exact path='/interviewq/history/coachreport/:key' component={CoachReviewForm} />
         <Route
           exact
           path="/interviewq/history/review/:id"
