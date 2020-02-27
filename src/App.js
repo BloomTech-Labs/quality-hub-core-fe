@@ -43,15 +43,17 @@ function App() {
           baseURL: `https://explorequality.auth0.com/userinfo`
         })
       }
-
-      axiosWithAuth()
-        .get()
-        .then(res => {
-          localStorage.setItem('userInfo', JSON.stringify(res.data))
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      if (!localStorage.getItem('userInfo')) {
+        axiosWithAuth()
+          .get()
+          .then(res => {
+            localStorage.setItem('userInfo', JSON.stringify(res.data))
+            console.log("I am the INEVITABLE")
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
       localStorage.setItem("loginCount", decoded["http://logins"]);
       localStorage.setItem("email", decoded["http://email"]);
       localStorage.setItem("authId", decoded.sub);

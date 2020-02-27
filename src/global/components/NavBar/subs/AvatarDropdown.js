@@ -27,9 +27,21 @@ const AvatarDropdown = props => {
 
   const [open, setOpen] = useState(false);
 
-  const [profileInfo] = useState(JSON.parse(localStorage.getItem(('userInfo'))));
+  const [profileInfo, setProfileInfo] = useState([JSON.parse(localStorage.getItem('userInfo')) !== null ? JSON.parse(localStorage.getItem('userInfo')) : { picture: 'https://i.stack.imgur.com/l60Hf.png' }]);
+
+
 
   const node = useRef();
+
+  const setUserPicture = () => {
+    if (profileInfo.picture !== JSON.parse(localStorage.getItem(('userInfo'))).picture) {
+      console.log('we are not the same');
+      return setTimeout(
+        () => {
+          setProfileInfo((JSON.parse(localStorage.getItem(('userInfo')))))
+        }, 1500)
+    }
+  };
 
   const logout = () => {
     client.clearStore(); //remove token from cache
@@ -54,6 +66,7 @@ const AvatarDropdown = props => {
 
   useEffect(() => {
     getUser();
+    //setUserPicture();
   }, []);
 
   useEffect(() => {
@@ -93,12 +106,12 @@ const AvatarDropdown = props => {
                     ></div> //ternary 2
                   ) : (
                       <div className="profile-img-dropdown2">
-                        {blankavatar(81.25, 81.25)}
+                        {profileInfo}
                       </div>
                     ) //ternary 1
                 ) : (
                     <div className="profile-img-dropdown3">
-                      {blankavatar(81.25, 81.25)}
+                      {profileInfo}
                     </div>
                   )}
               </div>
