@@ -29,11 +29,22 @@ const GET_COACHBOOKINGS = gql`
         review
       }
       report {
-        id
-        strengths
-        growthAreas
-        suggestions
-        additionalComments
+        firstImpression_rating
+        firstImpression_comment
+        resume_rating
+        resume_comment
+        professionalism_rating
+        professionalism_comment
+        generalAttitude_rating
+        generalAttitude_comment
+        technicalProficiency_rating
+        technicalProficiency_comment
+        contentOfAnswers_rating
+        contentOfAnswers_comment
+        communication_rating
+        communication_comment
+        createdAt
+        isSent
       }
     }
   }
@@ -47,7 +58,7 @@ export default function CoachHistory() {
     fetchPolicy: "network-only"
   });
 
-  error && console.log(error);
+  error && console.log("GET_COACHBOOKINGS ERROR: ", error);
 
   const headings = ["Seeker", "Date", "Time", "Price", "Report", "Review"];
 
@@ -57,6 +68,7 @@ export default function CoachHistory() {
         .filter(booking => isPast(booking))
     : [];
 
+  console.log(data);
   console.log(filteredData);
 
   return (
