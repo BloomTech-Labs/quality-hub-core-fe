@@ -26,11 +26,11 @@ ReactDOM.render(
   <Auth0Provider
     domain={process.env.REACT_APP_AUTH0_DOMAIN}
     client_id={process.env.REACT_APP_CLIENT_ID}
-    // redirect_uri="https://qhubfe.herokuapp.com/callback"
-    redirect_uri="http://localhost:3000/callback"
+    redirect_uri="https://qhubfe.herokuapp.com/callback"
+    // redirect_uri="http://localhost:3000/callback"
     onRedirectCallback={onRedirectCallback}
-    // redirectUri="https://qhubfe.herokuapp.com/callback"
-    redirectUri="http://localhost:3000/callback"
+    redirectUri="https://qhubfe.herokuapp.com/callback"
+    // redirectUri="http://localhost:3000/callback"
     audience={process.env.AUDIENCE}
     responseType="token id_token"
     scope="openid email"
