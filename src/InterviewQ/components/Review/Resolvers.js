@@ -5,6 +5,7 @@ export const CREATE_REVIEW = gql`
     $uniqueBooking: String!
     $rating: Int!
     $review: String!
+    $microservice: String!
   ) {
     createReview(
       uniqueBooking: $uniqueBooking
