@@ -1,18 +1,20 @@
 @import '../../../global/styles/variables';
 
-// .entire-dashboard {
-// 	border: 3px dotted blue;
-// }
+.entire-dashboard {
+	// border: 3px dotted blue;
+	width: 90%;
+}
 
 .lower-dashboard {
 	margin: 5rem auto 0;
 	display: flex;
 	width: 92%;
 	max-width: 94.2rem;
+	// border: 2px dashed red;
 	
 
 	@media screen and (max-width: 1500px) {
-		margin-left: 27rem;
+		// margin-left: 27rem;
 	}
 
 	@media screen and (max-width: 1340px) {
