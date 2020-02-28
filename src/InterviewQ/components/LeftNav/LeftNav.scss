@@ -37,6 +37,9 @@
 		margin-top: 25rem;
 		z-index: 0;
 	}
+	@media screen and (max-width: 740px) {
+		margin-top: 23rem;
+	}
 }
 
 
@@ -97,7 +100,7 @@
 	border-top-right-radius: 2.25rem;
 	border-bottom-right-radius: 2.25rem;
 	width: 18.1rem;
-	@media screen and (max-width: 1340px) {
+	@media screen and (max-width: 1230px) {
 		border-top-left-radius: 2.25rem;
 		border-bottom-left-radius: 2.25rem;
 		border-top-right-radius: 2.25rem;
