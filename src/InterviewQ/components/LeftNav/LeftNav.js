@@ -20,7 +20,7 @@ export default function QNav() {
 	});
 
 	return (
-	
+
 		<div className='QNav'>
 			<NavLink to='/interviewq' exact activeClassName='QNav-row-highlight'>
 				<div className='QNav-row'>
@@ -34,20 +34,20 @@ export default function QNav() {
 				</div>
 			</NavLink>
 
-			<NavLink activeClassName='dashnavactive' to='/interviewq/schedule'>
-				<div className='dash-left-menu-btn'>
+			<NavLink activeClassName='QNav-row-highlight' to='/interviewq/schedule'>
+				<div className='QNav-row'>
 					<Icon
 						icon={ICONS.SCHEDULE}
 						width={24}
 						height={24}
 						color={
 							pathname === '/interviewq/schedule' ||
-							pathname === '/interviewq/schedule/week'
+								pathname === '/interviewq/schedule/week'
 								? 'white'
 								: '#096dd9'
 						}
 					/>
-					<div className='dashnav-txt'>Schedule</div>
+					<div className='QNav-btn'>Schedule</div>
 				</div>
 			</NavLink>
 
@@ -89,9 +89,9 @@ export default function QNav() {
 					</div>
 				</NavLink>
 			) : (
-				null
-			)}
+					null
+				)}
 		</div>
-	
+
 	);
 }

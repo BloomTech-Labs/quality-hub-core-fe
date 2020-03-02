@@ -31,7 +31,7 @@ const InterviewQContainer = props => {
       {!props.location.pathname.includes("meeting") && isAuthenticated && (
         <LeftNav />
       )}
-      <div>
+      <div className="arranged-marriage">
         <Route exact path="/interviewq" component={InterviewLandingPage} />
         <Route path="/interviewq/addcoach" component={CoachForm} />
         <Route path="/interviewq/coachlist" component={CoachList} />

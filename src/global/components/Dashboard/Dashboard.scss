@@ -1,16 +1,21 @@
 @import '../../../global/styles/variables';
 
-// .entire-dashboard {
-// }
+.entire-dashboard {
+	// border: 3px dotted blue;
+	width: 90%;
+}
 
 .lower-dashboard {
 	margin: 5rem auto 0;
 	display: flex;
+	justify-content: center;
 	width: 92%;
 	max-width: 94.2rem;
+	// border: 2px dashed red;
+	
 
 	@media screen and (max-width: 1500px) {
-		margin-left: 27rem;
+		// margin-left: 27rem;
 	}
 
 	@media screen and (max-width: 1340px) {
@@ -45,11 +50,15 @@
 	}
 }
 
-.dash-personalinfo,
+
 .schedule {
 	// flex-grow: 2;
+	max-width: 100%;
+	margin-top: 25px;
+}
+
+.dash-personalinfo {
 	width: 100%;
-	margin: 0 auto;
 }
 
 .dashboard-left-bar {

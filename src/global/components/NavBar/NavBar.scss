@@ -13,18 +13,11 @@
 	top: 0;
 	z-index: 500;
 
-	.nav-left {
-		display: flex;
-
-		a {
-			color: black;
-			text-decoration: none;
-			text-align: left;
-		}
-		@media screen and (max-width: 600px) {
-			display: none;
-		}
+	@media screen and (max-width: 640px) {
+		flex-direction: column;
+		padding-bottom: 80px;
 	}
+
 	.nav-right {
 		display: flex;
 		// justify-content: space-evenly;
