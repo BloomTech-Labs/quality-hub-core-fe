@@ -81,16 +81,8 @@ const NavBar = ({ history }) => {
 
   return (
     <div className="styled-nav" id="main-navbar">
-      <div className="nav-left">
-        <NavLink to="/">
-          <div className="navbar-hamburger-and-title">
-            {/* <div className='navbar-hamburger-icon'>{Hamburger()}</div> */}
-            <h1>QualityHub</h1>
-          </div>
-        </NavLink>
-      </div>
 
-      <div className="nav-center">
+      <div className="nav-left">
         <h1>{navtitle ? `${navtitle}Q` : "QualityHub"}</h1>
       </div>
 
